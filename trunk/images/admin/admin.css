@@ -56,6 +56,18 @@ a.a2{ font-weight: normal; }
 .bklogo img{ padding-right:5px}
 .udl *{ text-decoration:underline }
 .ad a { color:#555}
+/*manage_frame*/
+.frame_box {
+	width: 100%;
+	height: 100%;
+}
+.frame_menu {
+	width: 160px;
+	border: 1px solid #EEE;
+}
+.frame_main {
+	border: 1px solid #EEE;
+}
 /*header*/
 #header{ width:98%; margin:auto }
 /*header*/
