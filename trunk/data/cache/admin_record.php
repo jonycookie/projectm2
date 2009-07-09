@@ -240,3 +240,6 @@
 |admin||/admin.php?adminjob=faq&title=set_creator&action=minihelp|127.0.0.1|1247069572||
 |admin||/admin.php?adminjob=mod_bbs|127.0.0.1|1247069579||
 |admin||/admin.php?adminjob=faq&title=mod_bbs&action=minihelp|127.0.0.1|1247069579||
+|admin||/admin.php?|127.0.0.1|1247141955||
+|admin||/admin.php?adminjob=tree|127.0.0.1|1247141955||
+|admin||/admin.php?adminjob=faq&title=main&action=minihelp|127.0.0.1|1247141977||
