@@ -58,7 +58,7 @@ EOT;
 foreach ($menu_father as $key=>$val){
 print <<<EOT
 -->
-<div class="t" id="$key" style="display:none">
+<div class="t" id="$key">
 <table border="0" cellspacing="0" cellpadding="0" width=100%>
   <tr class="leftH">
     <td>$val</td>
@@ -69,7 +69,7 @@ foreach ($menu_child[$key] as $k=>$v){
 print <<<EOT
 -->
   <tr id='tr_$k' class="leftmenu" onmouseover="changeBg('tr_$k',1);" onmouseout="changeBg('tr_$k',0);">
-    <td><a href="javascript:void(0);" onclick="ShowMain('$k');">$v</a></td>
+    <td><a href="$admin_file?adminjob=$k" target="mainFrame">$v</a></td>
   </tr>
 <!--
 EOT;
@@ -82,43 +82,6 @@ EOT;
 }print <<<EOT
 -->
 </div>
-
-<script language="javascript">
-<!--
-EOT;
-if(!$nav) $nav='setting';
-print <<<EOT
--->
-var nav='$nav';
-Showmenu();
-function Showmenu(){
-	var menus = document.getElementById('menus');
-	var menu = menus.getElementsByTagName('div');
-	for(var i =0;i<menu.length;i++){
-		if(menu[i].id==nav){
-			menu[i].style.display="block";
-		}else{
-			menu[i].style.display="none";
-		}
-	}
-
-}
-function ShowMain(job){
-	var main=parent.mainFrame;
-	var top=parent.topFrame;
-	top.document.getElementById('loadMsg').style.display='';
-	main.location='$admin_file?adminjob='+job;
-}
-
-function changeBg(obj,value){
-	if(value==1)
-		var c = 'leftmenu2';
-	else 
-		var c = 'leftmenu';
-	//alert(obj+value);
-	document.getElementById(obj).className=c;
-}
-</script>
 <!--
 EOT;
 ?>-->

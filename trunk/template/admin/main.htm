@@ -118,9 +118,4 @@ if($admin_name == $manager){
 $s_url = rawurlencode($_SERVER['HTTP_HOST']);
 $rawcmsname = rawurlencode($sys[title]);
 $hash=md5($_SERVER['HTTP_HOST'].$_SERVER['HTTP_USER_AGENT'].$articletotal.$wind_version.$wind_repair.$sys[lang]);
-print <<<EOT
--->
-<script language="JavaScript" src="http://nt.phpwind.com/notice.php?bbsname=$sys[title]&threads=$articletotal&version=$wind_version&repair=$wind_repair&charset=$sys[lang]&t=cms&sysversion=$sysversion&dbversion=$dbversion&url=$s_url&hash=$hash"></script>
-<!--
-EOT;
 }?>-->

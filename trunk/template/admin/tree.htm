@@ -143,7 +143,18 @@ EOT;
 print <<<EOT
 -->
 </script>
-<div class="m"></div>
+
+<a href="$admin_file?adminjob=main" target="mainFrame">管理首页</a>
+<!--
+EOT;
+foreach($menu_father as $key=>$v){
+print <<<EOT
+-->
+		<a href="$admin_file?adminjob=left&nav=$key" id='$key'>$v</a>
+<!--
+EOT;
+}print <<<EOT
+-->
 <div id="menus" style="margin:0 5px 0 5px;">
 <div class="t">
 <table border="0" cellspacing="0" cellpadding="0" width=100%>
