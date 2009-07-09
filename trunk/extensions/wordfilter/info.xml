@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extensions type="Component" version="0.1.0">
+	<name>站点词语过滤</name>
+	<ifopen>0</ifopen>
+	<version>0.1.304</version>
+	<creationDate>2007-12-28</creationDate>
+	<copyright>(C) 2003-2008 PHPWind.com Corporation</copyright>
+	<license></license>
+	<author>CMS</author>
+	<authorEmail></authorEmail>
+	<authorUrl>http://www.cms.com</authorUrl>
+	<description>完善中...</description>
+</extensions>

@@ -1,0 +1,44 @@
+<!--<?php print <<<EOT
+-->
+<h2><span class="step">!</span>$lang[showmsg]</h2>
+<div class="installInfo">$lang[welcome_msg]</div>
+<div class="c"></div>
+<div id="content">
+  <div class="wrapD">
+	<div class="wrapE">
+	  <div class="boxB">
+		<div>
+		  <h3>$lang[promptmsg]</h3>
+		  <div class="tips">$msg</div>
+		</div>
+	  </div>
+	  <div class="c"></div>
+	</div>
+  </div>
+  <div class="stepbt">
+<!--
+EOT;
+if($gojs){print <<<EOT
+-->
+<script language="JavaScript">
+setTimeout(function(){{$url}},3000);
+</script>
+<!--
+EOT;
+}if($backmsg){print <<<EOT
+-->
+	<form id="install" action="$basename?" method="post">
+	<input type="hidden" name="step" value="$tostep">
+	<input type="hidden" name="from" value="prompt">$input
+	</form>
+	<a class="last" href="$backurl">$backmsg</a>
+<!--
+EOT;
+}print <<<EOT
+-->
+	<a class="btA colorA next" style="cursor:pointer;" onClick="$url"><span>$lang[last]</span></a>
+  </div>
+</div>
+<!--
+EOT;
+?>-->

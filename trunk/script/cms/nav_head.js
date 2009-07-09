@@ -1,0 +1,1 @@
+document.write("<li><a href=\"http://www.phpwind.net\" target=\"_blank\" title=\"PHPWind论坛\"><font color=\"blue\"><i>PHPWind</i></font></a></li> <li><a href=\"http://www.cms.com\" target=\"_blank\" title=\"官方演示站\"><font color=\"red\"><b>CMS</b></font></a></li>");

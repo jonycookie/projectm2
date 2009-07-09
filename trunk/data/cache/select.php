@@ -1,0 +1,12 @@
+<?php
+$selectdb=array(
+'11'=>array(
+	'selectid'=>'11',
+	'selectname'=>'常用作者',
+),
+'12'=>array(
+	'selectid'=>'12',
+	'selectname'=>'网址来源',
+),
+);
+?>

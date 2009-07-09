@@ -1,0 +1,29 @@
+<!--<?php
+print <<<EOT
+-->
+<p>标题:$rt[title]</p>
+<p>作者:$rt[publisher]</p>
+<p>日期:$rt[postdate]</p>
+<p>内容:$rt[content]<br/></p>
+<p>
+<!--
+EOT;
+if($pre){
+print <<<EOT
+-->
+<a href="view.php?tid=$tid&amp;page=$pre">上页</a>
+<!--
+EOT;
+}
+if($next){
+print <<<EOT
+-->
+<a href="view.php?tid=$tid&amp;page=$next">下页</a>
+<!--
+EOT;
+}print <<<EOT
+-->
+</p>
+<!--
+EOT;
+?>-->

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extensions type="Component" version="0.1.0">
+	<name>游客投稿</name>
+	<ifopen>1</ifopen>
+	<version>1.0.0</version>
+	<creationDate>2008-01-28</creationDate>
+	<copyright>(C) 2003-2007 PHPWind.com Corporation</copyright>
+	<license></license>
+	<author>CMS</author>
+	<authorEmail></authorEmail>
+	<authorUrl>http://www.cms.com</authorUrl>
+	<description>游客投稿</description>
+</extensions>

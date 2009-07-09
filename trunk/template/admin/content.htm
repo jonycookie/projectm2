@@ -1,0 +1,364 @@
+<!--<?php
+print <<<EOT
+-->
+<style>
+.st{ cursor:pointer;}
+.orderover{color:#0000FF;}
+</style>
+<div class="m"></div>
+<!--
+EOT;
+if(!$action){
+print <<<EOT
+-->
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="head">
+    <td colspan="8">$cname  </td>
+    </tr>
+  <tr class="tr2">
+    <td width="3%">&nbsp;</td>
+    <td>cid</td>
+    <td>分类名</td>
+    <td>内容模型</td>
+    <td>子分类</td>
+    <td>内容总数</td>
+    <td>待发布内容</td>
+    <td>栏目内容操作</td>
+  </tr>
+<!--
+EOT;
+foreach($category as $value){
+!$value[module] && $value[module]='外部链接';
+print <<<EOT
+-->
+  <tr class="tr3">
+    <td><img src="images/admin/cate.gif" align="absmiddle" /></td>
+    <td>$value[cid]</td>
+    <td>$value[cname]</td>
+    <td>$value[module]</td>
+    <td>&nbsp;
+<!--
+EOT;
+if($this->catedb[$value[cid]][mid]!=0){print <<<EOT
+-->
+	<a href="$basename&up=$value[cid]">查看</a>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</td>
+    <td>$value[total]</td>
+    <td>$value[new]</td>
+    <td>&nbsp;
+<!--
+EOT;
+if($this->catedb[$value[cid]][mid]!=0){print <<<EOT
+-->
+	<a href="$basename&action=view&cid=$value[cid]">查看内容</a>
+<!--
+EOT;
+}if($this->catedb[$value[cid]][type]){
+if($this->catedb[$value[cid]][mid]!=0){
+print <<<EOT
+-->
+	 <a href="$admin_file?adminjob=category&action=publist&cid=$value[cid]">更新首页</a>
+<!--
+EOT;
+}if($this->catedb[$value[cid]][mid]>0){
+print <<<EOT
+-->
+	  <a href="$admin_file?adminjob=category&action=pubview&cid=$value[cid]">发布栏目</a>
+	  <a href="$admin_file?adminjob=category&action=pubupdate&cid=$value[cid]">更新栏目</a>
+	  <a href="$admin_file?adminjob=category&action=pubstatistic&cid=$value[cid]">更新统计</a>
+<!--
+EOT;
+}}if($this->catedb[$value[cid]][mid]>0){print <<<EOT
+-->
+	  	 <a href="$admin_file?adminjob=edit&action=add&cid=$value[cid]">添加内容</a></td>
+  </tr>
+<!--
+EOT;
+}}print <<<EOT
+-->
+</table>
+</div>
+<!--
+EOT;
+}elseif($action=='view'){
+print <<<EOT
+-->
+<script language="javascript">
+function orderstyle(id,f){
+  if(f){
+    document.getElementById(id).className = "st orderover";
+  }else{
+    document.getElementById(id).className = "st";
+  }
+}
+</script>
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="tr4">
+    <td style="text-align:center">
+	<form action="$basename" method="post">
+	类型: &nbsp;&nbsp;
+      <select name="displaytype" id="displaytype">
+        <option value="0" $displaytype_0>所有内容</option>
+        <option value="1" $displaytype_1>已发布内容</option>
+        <option value="2" $displaytype_2>未发布内容</option>
+      </select>
+      &nbsp;&nbsp;每页数量:&nbsp;&nbsp;
+      <input name="displaynum" type="text" class="input" id="displaynum" value="$displaynum" size="5" maxlength="3" />
+      &nbsp;&nbsp;标题关键字搜索:&nbsp;&nbsp;
+      <input name="keyword" type="text" class="input" id="keyword" value="$keyword" size="10" />&nbsp;
+      <input name="cid" type="hidden" id="cid" value="$cid" />
+      <input name="action" type="hidden" id="action" value="view" />
+			<input name="order" type="hidden" id="order" value="$order" />
+			<input name="orderby" type="hidden" id="orderby" value="$orderby" />
+      &nbsp;
+      <input type="submit" name="Submit2" value="显示" class="btn" />
+	  </form>
+	  <input type="button" value="添加新内容" class="btn" onclick="window.location='$admin_file?adminjob=edit&action=add&cid=$cid';" /> <input type="button" name="Submit5" value="设置本栏目" class="btn" onclick="window.location='$admin_file?adminjob=category&action=edit&action=edit&cid=$cid';"/>	  </td>
+  </tr>
+</table>
+
+</div>
+<form action="$basename" method="post" name="pub_edit">
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="head">
+    <td colspan="8">
+<!--
+EOT;
+if($mid>0){
+print <<<EOT
+-->
+	<div style="float:right">内容合计 {$total}，其中未发布内容 {$new} 条</div>
+    <!--
+EOT;
+}print <<<EOT
+-->
+      {$cname} <a href="?adminjob=category&action=viewlist&cid=$cid" target="_blank"><img src="images/admin/listhome.png" alt="栏目首页" width="16" height="16" hspace="5" border="0" align="absmiddle" /></a> <a href="rss.php?cid=$cid" target="_blank"><img src="images/admin/page_feed.png" alt="RSS" border="0" align="absmiddle" /></a> <a href="$admin_file?adminjob=category&action=edit&action=edit&cid=$cid"><img src="images/admin/cateset.png" alt="栏目设置" hspace="5" border="0" align="absmiddle" /></a></td>
+    </tr>
+  <tr class="tr2">
+    <td><span id="ordertid" class="st" onmouseover="orderstyle(this.id,1);" onmouseout="orderstyle(this.id,0);" onclick="window.location='$cururl&order=tid&orderby=$orderby1&'">序号$orderimg[tid]</span></td>
+    <td><span id="ordertitle" class="st" onmouseover="orderstyle(this.id,1);" onmouseout="orderstyle(this.id,0);" onclick="window.location='$cururl&order=title&orderby=$orderby1&'">标题$orderimg[title]</span></td>
+    <td><span id="orderpublisher" class="st" onmouseover="orderstyle(this.id,1);" onmouseout="orderstyle(this.id,0);" onclick="window.location='$cururl&order=publisher&orderby=$orderby1&'">发布者$orderimg[publisher]</span></td>
+    <td><span id="orderdigest" class="st" onmouseover="orderstyle(this.id,1);" onmouseout="orderstyle(this.id,0);" onclick="window.location='$cururl&order=digest&orderby=$orderby1&'">推荐$orderimg[digest]</span></td>
+    <td><span id="orderhits" class="st" onmouseover="orderstyle(this.id,1);" onmouseout="orderstyle(this.id,0);" onclick="window.location='$cururl&order=hits&orderby=$orderby1&'">浏览$orderimg[hits]</span></td>
+    <td><span id="orderifpub" class="st" onmouseover="orderstyle(this.id,1);" onmouseout="orderstyle(this.id,0);" onclick="window.location='$cururl&order=ifpub&orderby=$orderby1&'">状态$orderimg[ifpub]</span></td>
+    <td><span id="orderpostdate" class="st" onmouseover="orderstyle(this.id,1);" onmouseout="orderstyle(this.id,0);" onclick="window.location='$cururl&order=postdate&orderby=$orderby1&'">添加时间$orderimg[postdate]</span></td>
+    <td>操作</td>
+  </tr>
+<!--
+EOT;
+$i=0;
+foreach($content as $value){
+$value[title]=substrs($value[title],50);
+$bgcolor = $i%2==0 ? 't_one' : 't_two';
+$i++;
+if($value[url]==''){
+$value[url]='javascript:void(0);';
+}else{
+$target=" target=\"_blank\"";
+}
+$imgadd = $value[photo] ? "<img src=\"images/admin/img.gif\" align=\"absmiddle\" alt=\"图文\" />" : '';
+switch($value[ifpub]){
+case 1:
+$ifpub = '已发布';
+break;
+case 0:
+$ifpub = '<font color=\'red\'>未发布</font>';
+break;
+case 2:
+$ifpub = '待发布';
+break;
+case 3:
+$ifpub = '<font color=\'red\'>待审核</font>';
+break;
+default:
+$ifpub = '未知';
+break;
+}
+$value[postdate] = get_date($value[postdate],'m-d H:i');
+$value[title] = strip_tags($value[title]);
+print <<<EOT
+-->
+  <tr class="tr3 $bgcolor">
+    <td><input name="tids[]" type="checkbox" id="tids[]" value="$value[tid]" />
+      $value[tid]</td>
+    <td><a href="$value[url]" style="$value[titlestyle]" $target >$value[title]</a> $imgadd</td>
+    <td>$value[publisher]<br /></td>
+    <td>{$value[digest]}</td>
+    <td>$value[hits]</td>
+    <td>$ifpub</td>
+    <td>$value[postdate]</td>
+    <td>
+<!--
+EOT;
+if($mid>0){
+print <<<EOT
+-->
+<a href="$admin_file?adminjob=edit&action=edit&cid=$cid&tid=$value[tid]"><img src="images/admin/edit.gif" align="absmiddle" alt="编辑" /></a>
+<a href="$basename&action=whole&cid=$cid&tid=$value[tid]&job=delete"><img src="images/admin/del.gif" align="absmiddle" alt="删除" onClick="return confirm('您确定要删除此内容？');"/></a>
+<!--
+EOT;
+}print <<<EOT
+-->
+<a href="$basename&action=whole&cid=$cid&tid=$value[tid]&job=pubcancel"><img src="images/admin/cancel.gif" align="absmiddle" alt="取消发布" /></a>
+<a href="$basename&action=whole&cid=$cid&tid=$value[tid]&job=pubupdate"><img src="images/admin/update.gif" align="absmiddle" alt="更新静态页" /></a>
+<a href="$basename&action=whole&cid=$cid&tid=$value[tid]&job=pubview"><img src="images/admin/pub.gif" align="absmiddle" alt="发布内容" /></a>
+$value[digest_c]</td>
+  </tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+</div>
+<div class='t' id='tagdiv' style="display:none;">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="line">
+		<td>当前Tags</td>
+		<td><input id="tags" class="input" name="tags" size="70" value="$tags"  onfocus="showtag();" />
+		标签之间请使用逗号,最多5个<br />
+		<fieldset id="tags_show" style="width:70%;display:none;"><legend>热门标签</legend><div id="hottags" style="height:80px;overflow-Y:auto;"></div></fieldset></td>
+  </tr>
+	</table>
+</div>
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="tr4">
+    <td>操作:
+      <select name="job" id="job" onchange="showTarget(this.value);">
+      <option value="move">移动内容</option>
+      <option value="copy">复制内容</option>
+      <option value="pubview" selected="selected">发布内容</option>
+	  <option value="delete">删除内容</option>
+	  <option value="destroy">永久删除</option>
+      <option value="pubcancel">取消发布</option>
+      <option value="pubupdate">更新发布</option>
+	  <option value="batchtag">批量标签</option>
+    </select>
+	<span id='target' style="display:none">
+    目标:
+      <select name="tocid" id="tocid">
+        <option value="0" selected="selected">请选择</option>
+	$cate_select
+		</select>
+	  </span>
+      <input name="cid" type="hidden" id="cid" value="$cid" />
+      <input name="action" type="hidden" id="action" value="whole" />
+    <input type="button" name="Submit3" value="全选" class="btn" onclick="CheckAll(document.pub_edit);" />
+    <input type="submit" name="Submit4" value="提交" class="btn" onclick="return whole(document.pub_edit);" /></td>
+    <td style="text-align:right">$cms->page</td>
+  </tr>
+</table>
+</div>
+</form>
+<script language="javascript" src="script/xhr.js"></script>
+<script language="javascript">
+var okimg = 'images/admin/star_ok.gif';
+var noimg = 'images/admin/star_no.gif';
+var cid = '$cid';
+var mid = '$mid';
+var url = '$basename';
+var current_key;
+var current_tid;
+var current_num;
+var tagsname = '$hottag';
+var digestMsg = new Array(4);
+digestMsg[0] = '您确认要取消此内容的精华推荐吗？';
+digestMsg[1] = '您确认要将此内容设置为 栏目推荐 吗？';
+digestMsg[2] = '您确认要将此内容设置为 站点推荐 吗？';
+digestMsg[3] = '您确认要将此内容作为 头条内容 吗？';
+function showTarget(id){
+	var target = document.getElementById('target');
+	var tagdiv = document.getElementById('tagdiv');
+	if(id=='move' || id=='copy'){
+		target.style.display='';
+	}else{
+	 	target.style.display='none';
+	}
+	if(id=='batchtag'){
+		tagdiv.style.display='';
+	}else{
+	 	tagdiv.style.display='none';
+	}
+}
+function showStar(key,i){
+	for(var s=1;s<=3;s++){
+		var imgid = 'img'+key+'_'+s;
+		if(s<=i){
+		document.getElementById(imgid).src = okimg;
+		}else{
+		document.getElementById(imgid).src = noimg;
+		}
+	}
+}
+
+function reSet(key,num){
+	for(var s=1;s<=3;s++){
+		var imgid = 'img'+key+'_'+s;
+		if(s<=num){
+			document.getElementById(imgid).src = okimg;
+		}else{
+			document.getElementById(imgid).src = noimg;
+		}
+	}
+}
+
+function digest(id,key,num){
+	var msg = confirm(digestMsg[num]);
+	if(msg){
+		current_num = num;
+		current_tid = id;
+		current_key = key;
+		var x = new XHR('digestOk');
+		x.get(url+'&action=digest&tid='+id+'&cid='+cid+'&mid='+mid+'&digestnum='+num);
+	}else{
+		return false;
+	}
+}
+
+function digestOk(res){
+	if(res=='100'){
+		var divname = 'd_'+current_key;
+		var divname2 = 'ss_'+current_key;
+		document.getElementById(divname).innerHTML = "<div id='"+divname2+"' onmouseout=\"reSet('"+current_key+"','"+current_num+"')\"></div>";
+		for(var i=1;i<=3;i++){
+		if(i<=current_num){
+			theimg = okimg;
+		}else{
+			theimg = noimg;
+		}
+		document.getElementById(divname2).innerHTML += "<img id='img"+current_key+"_"+i+"' class='st' src='"+theimg+"' onmouseover=\"showStar('"+current_key+"','"+i+"');\" onclick=\"digest('"+current_tid+"','"+current_key+"','"+i+"');\" />";
+		}
+	}
+}
+function showtag(){
+	var str='';
+	tn = tagsname.split(',');
+	for(i=0;i<tn.length;i++){
+		str +='<a href="javascript:void(0)" onclick="SelectTag('+i+');">'+tn[i]+'</a>&nbsp;&nbsp;&nbsp;';
+	}
+	document.getElementById('hottags').innerHTML=str;
+	document.getElementById('tags_show').style.display = '';
+}
+
+function SelectTag(id){
+	tn = tagsname.split(',');
+	tags = document.pub_edit.tags.value;
+	if(tags.indexOf(tn[id])==-1 && tags.split(',').length<5){
+		document.pub_edit.tags.value += document.pub_edit.tags.value ? ' , '+tn[id] : tn[id];
+	}
+}
+</script>
+<!--
+EOT;
+}print <<<EOT
+-->
+<!--
+EOT;
+?>-->

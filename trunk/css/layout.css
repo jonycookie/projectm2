@@ -1,0 +1,79 @@
+/* CSS Document */
+body{ font-size:12px;color:#666; background: #fff}
+*{ padding:0; margin:0; word-break:break-all;}
+img{ border:0}
+.right,.fr{float:right}
+.left,.fl{float:left}
+ul li{ list-style:none}
+.clear{ clear:both; height:0; font:0/0 Arial;}
+.header,.main,.footer{ width:950px; height:auto; margin:auto; } 
+.header{ min-height:76px;height:auto;_height:76px ; background:#ccc}
+#logo{ float:left;width:200px; overflow:hidden}
+#topguide{ width:100%; height:22px;  margin-bottom:.5em; border-bottom:1px solid #E0FDFF;  text-align:right; overflow:hidden}
+#topguide ul{ padding-right:1em}
+#topguide li{ display:inline; line-height:23px; margin:0 .5em 0 0}
+
+
+
+#guide-link { width:942px; margin:.5em auto 0; background:url(../images/guide2t.gif) no-repeat; }
+#guide-link ul{ background:url(../images/guide2b.gif) no-repeat left bottom; padding:.7em 1em .5em }
+#guide-link li{ display: inline;}
+#guide-link li a{ padding:.5em 0 .6em .5em; color:#64ABE2;}
+
+
+#loginbar h5{  font-size:12px; color:#000; padding:0 .5em .3em ; border-bottom:#D8F0BC 1px dashed ; margin-bottom:.7em}
+#loginbar table{ margin-left:.5em}
+#loginbar td{ padding:.2em .1em}
+#loginbar .ip{ width:120px; border:1px solid #95F2F8; padding:.2em ; font-size:12px;}
+#loginbar .bt{ padding:.3em .4em 0em; color:#2058AC; font-size:12px; font-weight:bold; background:url(../images/area1-left-h2.png) center center; border:1px solid #95F2F8 }
+
+.ad1{ margin:8px 0 0 0}
+.ad2{ margin:0}
+.search { padding:0 .2em .2em; line-height:24px; border-bottom:#eee 1px solid}
+.search input, .search select{*vertical-align:middle;vertical-align: text-top; font:12px/100% Arial}
+.area-1,.area-1-top,.area-1-bot,.area-2,.area-2-bot,.area-3,.area-3-bot{ width:950px; float:left; height:auto}
+.pic-player{ margin-left:1px; width:230px; padding-top:10px; text-align:center;margin:auto}
+.pic-player div.img{ height:180px;margin:auto; }
+.pic-player img{ border:1px solid #1187AA}
+.pic-player h3{ font:bold 12px Arial; margin: 1em auto; text-align:center }
+.pic-player .text { text-align:left; text-indent:2em; padding:0 1em}
+.area-1-left{ width:560px; float:left;}
+.area-1-right{ width:385px; float:right; }
+.area-1-left .right{ float:right;width:293px;}
+.area-1-left .left{ float:left; width:261px; overflow:hidden}
+.area-1-right .left { width:189px; float:left}
+.area-1-right .right{ width:191px; float:right}
+/*area-2*/
+.area-2-wrap{ width:950px; overflow:hidden; margin-top:8px}
+.area-2,.area-2-bot-m,.area-2-bot { float:left;}
+.box1 { float:left; width:308px; padding:0 11px 0 1px; }
+.box2 { float:right; width:308px;padding:0 1px;}
+.footer{ text-align:center; padding:1.5em 0 4em; font:12px Tahoma}
+
+/*area-3*/
+.thread-content { width:710px; float:left}
+.thread-side { width:230px; float:right}
+.thread-content .side { width:230px; float:right}
+.thread-content .content { width:470px;padding:0 ; float:left}
+.thread-side .list,.thread-content .side .list{ margin:1em 0}
+.thread-content .side .list a { color:#999}
+.thread-content .content .list{ margin:1em 1em 1em 0;}
+.thread-content .content .list li{ font-size:1.2em}
+.bl{ border-left:1px solid #eee}
+
+/*area-4*/
+.area-4,.area-4-bot{ float:left; width:950px; margin-top:1em}
+.area-4 .read-content{ width:710px; padding:0; overflow:hidden}
+.area-4 .sidebar{ width: 230px;}
+.sidebar .list { margin:1em .2em 1em .2em}
+
+#footlink { text-align:center;margin:1em 0; padding: .5em; background:#FAFEF6; border:#E9F6CA 1px solid}
+#footlink li{ display:inline; padding:.2em 1em}
+
+/* post comment */
+.post-comment {width:90%; margin:3em auto 2em;}
+.post-comment-left{ float:left; width:62%}
+.post-comment-right{ float:right;width:35%; margin-top:3em}
+
+.quote{font-size:70%;color:#004c7d;margin:2px;padding:0}
+blockquote{width:92%;font-size:85%;color:#81888c;border:1px solid #D4EFF7;border-left-width:3px;padding:5px;margin:0 0 1%}

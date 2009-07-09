@@ -1,0 +1,98 @@
+<!--<?php
+print <<<EOT
+-->
+<div class="m"></div>
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="tr4">
+    <td style="text-align:center">
+	<form action="$basename" method="post" name="show">
+	&nbsp;栏目:&nbsp;<select name="cid" id="cid" onchange="javascript:this.form.submit();" >$cate_select</select>&nbsp;
+	搜索类型: &nbsp;
+      <select name="type" id="type" onchange="javascript:document.show.keyword.value='';">
+        <option value="1" $type_1>操作员</option>
+        <option value="2" $type_2>删除时间</option>
+      </select>
+      &nbsp;
+			<input name="keyword" type="text" class="input" id="keyword" size="10" value="$keyword" onClick="showdate(this.id);" />
+      &nbsp;每页数量:&nbsp;
+      <input name="num" type="text" class="input" id="num" size="5" value="$num" maxlength="3" />
+      <input name="action" type="hidden" id="action" value="show" />
+      &nbsp;
+      <input type="submit" name="Submit2" value="显示" class="btn" />
+	  </form>
+		<input type="button" value="清空栏目内容" class="btn" onclick="javascript:if(confirm('确定要清空本栏目的所有项目?'))window.location='$basename&action=del&cid=$cid';" /> <input type="button" value="还原栏目内容" class="btn" onclick="javascript:if(confirm('确定要还原本栏目的所有项目?'))window.location='$basename&action=undo&cid=$cid';"/>
+	  </td>
+  </tr>
+</table>
+</div>
+<form action="$basename" method="post" name="list">
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="head">
+    <td colspan="8"><div style="float:right">内容合计 {$total}  条</div>{$cname} 回收站</td>
+  </tr>
+  <tr class="tr2">
+    <td>序号</td>
+    <td>标题</td>
+    <td>发布者</td>
+    <td>操作员</td>
+    <td>删除时间</td>
+    <td>操作</td>
+  </tr>
+<!--
+EOT;
+$i=0;
+foreach($content as $value){
+$value[title]=substrs($value[title],50);
+$bgcolor = $i%2==0 ? 't_one' : 't_two';
+$i++;
+print <<<EOT
+-->
+  <tr class="tr3 $bgcolor">
+    <td><input name="tids[]" type="checkbox" id="tids[]" value="$value[tid]" />$value[tid]</td>
+    <td>$value[title]</td>
+		<td>$value[publisher]</td>
+    <td>$value[admin]</td>
+    <td>$value[deltime]</td>
+    <td>
+<a href="$basename&action=del&cid=$cid&tids=$value[tid]"><img src="images/admin/del.gif" align="absmiddle" title="删除" onClick="return confirm('您确定要删除此内容？');" /></a>
+<a href="$basename&action=undo&cid=$cid&tids=$value[tid]"><img src="images/admin/update.gif" align="absmiddle" title="还原" onClick="return confirm('您确定要还原此内容？');" /></a>
+</td>
+  </tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+</div>
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="tr4">
+    <td>操作:
+      <select name="action" id="action">
+      <option value="del"  selected="selected">清空内容</option>
+      <option value="undo">还原内容</option>
+    </select>
+      <input name="cid" type="hidden" id="cid" value="$cid" />
+    <input type="button" name="Submit3" value="全选" class="btn" onclick="CheckAll(document.list);" />
+    <input type="submit" name="Submit4" value="提交" class="btn" onclick="return whole(document.list);" /></td>
+    <td style="text-align:right">$pages</td>
+  </tr>
+</table>
+</div>
+</form>
+<script language="javascript" src="script/date.js"></script>
+<script type="text/javascript">
+function showdate(id){
+	if(document.show.type.value==2){
+		ShowCalendar(id);
+	}else{
+		HiddenCalendar();
+	}
+	return false;
+}
+</script>
+<!--
+EOT;
+?>-->

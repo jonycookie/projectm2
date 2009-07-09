@@ -1,0 +1,49 @@
+<!--<?php
+if($prog=='index'){print <<<EOT
+-->
+<p><a href="index.php?prog=cate">网站板块</a></p>
+<p>推荐板块</p>
+<!--
+EOT;
+foreach($catedb as $key=>$val){
+if(in_array($key,$wapcids)!==false && $val[mid]==1){
+$val[cname]=wap_cv($val[cname]);
+print <<<EOT
+-->
+<p><a href="list.php?cid=$key">$val[cname]</a></p>
+<!--
+EOT;
+}}print <<<EOT
+-->
+<p><a href="index.php?prog=phone">手机信息</a></p>
+<!--
+EOT;
+}elseif($prog=='cate'){print <<<EOT
+-->
+<p>分类:</p>
+<!--
+EOT;
+foreach($catedb as $key => $value){
+if($value[mid]!=1 || !$value[type] || !in_array($key,$cids))continue;
+$add='';
+for($i=1;$i<$value[depth];$i++){
+	$add .= "&gt;";
+}
+$value[cname]=wap_cv($value[cname]);
+print <<<EOT
+-->
+<p>{$add}<a href="list.php?cid=$key">$value[cname]</a></p>
+<!--
+EOT;
+}}elseif($prog=='phone'){print <<<EOT
+-->
+<p>您的手机信息</p>
+<p>语言:$_SERVER[HTTP_ACCEPT_LANGUAGE]</p>
+<p>浏览器:$_SERVER[HTTP_USER_AGENT]</p>
+<!--
+EOT;
+}print <<<EOT
+-->
+<!--
+EOT;
+?>-->

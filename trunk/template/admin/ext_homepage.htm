@@ -1,0 +1,90 @@
+<!--<?php
+print <<<EOT
+-->
+<div class="m"></div>
+<form action="$basename" method="post">
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="head">
+    <td colspan="2">系统默认首页设置</td>
+    </tr>
+  <tr class="tr2">
+    <td width="25%">&nbsp;</td>
+    <td width="75%">&nbsp;</td>
+  </tr>
+  <tr class="line">
+    <td>自动更新时间</td>
+    <td><input name="autoupdate" type="text" class="input" id="autoupdate" value="$autoupdate" size="5" /> 
+      分钟 (只对静态发布的首页有效)</td>
+  </tr>
+  <tr class="line">
+    <td>头条图片调用数目</td>
+    <td><input name="topicimg" type="text" class="input" id="topicimg" value="$topicimg" size="5" />
+      条</td>
+  </tr>
+  <tr class="line">
+    <td>头条新闻调用数目</td>
+    <td><input name="topicnews" type="text" class="input" id="topicnews" value="$topicnews" size="5" />
+      条</td>
+  </tr>
+  <tr class="line">
+    <td>首页显示栏目</td>
+    <td>
+	<select name="discate[]" size="5" multiple id="discate">
+	$cate_select
+	
+	</select>
+	(请按住Ctrl键进行操作)</td>
+  </tr>
+  <tr class="line">
+    <td>栏目调用细节</td>
+    <td><table>
+$cate_moreset	</table></td>
+  </tr>
+<!--
+EOT;
+if($sys[aggrebbs]){
+print <<<EOT
+-->
+  <tr class="line">
+    <td>论坛调用一(会员排行)</td>
+    <td><select name="config[bbs_membersort]" id="bbsmembersort[]">
+      $member_select
+    
+    
+    </select></td>
+  </tr>
+  <tr class="line">
+    <td>论坛调用二(版块排行)</td>
+    <td><select name="config[bbs_forumsort]" id="bbsforumsort[]">
+     $forum_select
+            
+    </select></td>
+  </tr>
+  <tr class="line">
+    <td>会员排行细节设置</td>
+    <td><table>$member_more </table></td>
+  </tr>
+  <tr class="line">
+    <td>版块排行细节设置</td>
+    <td><table>$forum_more </table></td>
+  </tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+  <tr class="line">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</div>
+<div class="sub">
+  <input name="action" type="hidden" id="action" value="save">
+  <input type="submit" name="Submit2" value="提交" class="btn" />
+  <input type="reset" name="Submit" value="重置" class="btn" />
+</div>
+</form>
+<!--
+EOT;
+?>-->

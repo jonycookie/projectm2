@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extensions type="Component" version="0.1.0">
+	<name>模板常量</name>
+	<ifopen>0</ifopen>
+	<version>0.1.400</version>
+	<creationDate>2008-01-08</creationDate>
+	<copyright>(C) 2003-2008 PHPWind.com Corporation</copyright>
+	<license></license>
+	<author>CMS</author>
+	<authorEmail></authorEmail>
+	<authorUrl>http://www.cms.com</authorUrl>
+	<description>本扩展可以自定义模板的一些常量替换</description>
+</extensions>
