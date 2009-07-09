@@ -1,0 +1,39 @@
+<!--# include Template('header');#-->
+<!--header----main-->
+<style>
+.vote{ width:100%; float:left; border:1px solid #eee; }
+.vote-wrapA { padding:1em}
+.vote-table {}
+.vote-table table{ width:100%; border:#E0F0F9 1px solid ; border-collapse:collapse }
+.vote-table table td{ border:#E0F0F9 1px solid ; padding:.5em }
+.vote-table table caption{ text-align:right; padding:.5em; background:#F9FEF5; border-top:1px solid #E0F0F9; color:#000 }
+.tr2 td{ background:#F3F9FD; color:#0099CC}
+</style>
+<div class="main" id="vote-result">
+<div class="vote">
+<div class="vote-wrapA">
+<div class="vote-table">
+	<table border="0" cellspacing="0" cellpadding="0">
+	<caption><span class="fl">$subject</span> 投票人数 $stats</caption>
+		<tr class="tr2">
+			<td>选项名称</td>
+			<td>投票数</td>
+			<td width="30%">比率</td>
+		</tr>
+<!--#
+foreach($options as $k=>$v){
+$p = round($v[stats]/$stats_sum,4)*100;
+#-->
+		<tr>
+			<td width="50%">$v[value]</td>
+			<td>$v[stats]</td>
+			<td><span class="fr">$p%</span><span class="fl" style="width:80%;"><img src="$ext_imgpath/bar3.gif" style="width:$p%; height:10px; vertical-align:middle" /></span></td>
+		</tr>
+<!--#}#-->
+	</table>
+</div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<!--# include Template('foot');#-->

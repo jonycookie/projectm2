@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$view[title]} {$catedb[$cid][cname]} {$very[title]} - Powered by VeryCMS</title>
+<meta name="keywords" content="$metakeyword" />
+<meta name="description" content="$metadescrip" />
+<base href="$very[url]/" />
+<!--css-->
+<link id="csslayout" href="css/layout.css" rel="stylesheet" type="text/css" />
+<link id="cssstyle" rel="stylesheet" type="text/css" href="css/style.css"  />
+<!--css-->
+<!--#if($cid){#-->
+<link rel="alternate" type="application/rss+xml" title="RSS" href="$very[url]/rss.php?cid=$cid" />
+<!--#}#-->
+</head>
+<body>
+<div class="header">
+	<div class="header-wrap1">
+		<div id="topguide">
+			<ul>
+				<very name="const" value="EXT_navhead" />
+			</ul>
+		</div>
+		<div id="logo"><a href=""><img src="images/logo.png" alt="" /></a></div>
+		<div class="clear"></div>
+		<cms type="cate" action="menu" />
+		<div id="guidebg">
+			<ul id="guide">
+				<!--#if(!$cid){$homeclass="active";}else{$homeclass="";}#-->
+				<li class="{$homeclass}"><a href="{$very[url]}" title="{$very[title]}"><span>首页</span></a></li>
+				<loop>
+					<!--#if($val[cid]==$cid){$class="active";}else{$class='';}#-->
+					<li class="{$class}"><a href="{$val[url]}"><span>{$val[cname]}</span></a></li>
+				</loop>
+			</ul>
+			<div class="clear"></div>
+			<!-- 子菜单 -->
+			<div id="guide-link">
+				<ul>
+					<li>&nbsp;</li>
+					<!--#if($cid){#-->
+					<cms type="cate" action="menu" cid="$cid" />
+					<loop>
+						|<li><a href="{$val[url]}"><span>{$val[cname]}</span></a></li>
+						 </loop>
+					<!--#}#-->
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div class="search tar"><div class="left">您的位置：{@$cate::position@}</div>
+		<form method="post" action="search.php">
+			<select name="mid" id="mid">
+				<loop name="moduledb" value="val">
+					<!--#if($val[mid]<=0 || !$val[search]) continue;#-->
+					<option value="{$val[mid]}">{$val[mname]}</option>
+				</loop>
+			</select>
+			<input name="keyword" type="text" class="topsearch" id="keyword"/><input name="s_type" type="hidden" id="s_type" value="simple" /><input name="step" type="hidden" id="step" value="2" /> <input name="Submit" type="image" src="images/search.gif" alt="search" width="51" height="20" border="0"/>
+			<!--#if($cid){#-->
+			<a href="rss.php?cid={$cid}" target="_blank" /><img src="images/rss.gif" align="absmiddle"/></a>
+			<!--#}#-->
+		</form>
+	</div>
+	<div class="clear"></div>
+	<div class="ad1">
+		<script language="javascript"  src="script/verycms/head.js?cid={$cid}&tid={$tid}"></script>
+	</div>
+</div>

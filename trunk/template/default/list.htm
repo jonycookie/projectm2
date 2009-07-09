@@ -1,0 +1,115 @@
+<!--# include Template('header'); #-->
+<!--header----main-->
+
+<div class="main" id="thread">
+	<div class="area-3">
+		<div class="area-3-bot">
+			<div class="thread-content">
+				<div class="box710">
+					<div class="box710b">
+						<div class="box710t">
+							<div class="left">
+								<div class="themeimg">
+<script language="javascript" src="script/veryflash.js"></script>
+<script type="text/javascript">
+			var focus_width=220;
+			var focus_height=159;
+			var swf_height = focus_height;
+	<!--#$array=$cms::thread("mid:{$catedb[$cid][mid]};num:5;digest:1;cid:all-{$cid};where:photo!='';");
+			foreach($array as $val){
+			$pics[] = miniImg($val[photo],220,159);
+			$links[] = str_replace('&','%26',$val[url]);
+			}
+			$flashpics = implode('|',$pics);
+			$flashlinks = implode('|',$links);
+		#-->
+			var pics = '{$flashpics}';
+			var links= '{$flashlinks}';
+			document.write('<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="'+ focus_width +'" height="'+ swf_height +'">');
+			document.write('<param name="allowScriptAccess" value="sameDomain"><param name="movie" value="images/very.swf"><param name="quality" value="high"><param name="bgcolor" value="#ffffff">');
+			document.write('<param name="menu" value="false"><param name=wmode value="opaque">');
+			document.write('<param name="FlashVars" value="pics='+pics+'&links='+links+'&borderwidth='+focus_width+'&borderheight='+focus_height+'">');
+			document.write('<embed src="images/very.swf" wmode="opaque" FlashVars="pics='+pics+'&links='+links+'&borderwidth='+focus_width+'&borderheight='+focus_height+'" menu="false" bgcolor="#ffffff" quality="high" width="'+ focus_width +'" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />');
+			document.write('</object>');
+</script>
+								</div>
+							</div>
+							<div class="content">
+								<div class="thread-t">
+									<h1>{$catedb[$cid][cname]}</h1>
+									<div class="thread-t-d">{$catedb[$cid][description]}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div id="">
+					<div class="box710">
+						<div class="box710b">
+							<div class="box710t">
+								<cms action="thread" num="page-10" mid="{$catedb[$cid][mid]}" cid="all-$cid" />
+								<loop>
+									<dl class="listR">
+									<dt><a href="{$val[url]}" target="_blank">{@substrs($val[title],50)@}</a></dt>
+									<dd>{$val[intro]}</dd>
+									<dd class="tar"><div class="fl" >作者：<span class="orange">{$val[author]}</span>  发表于：<span class="orange">{@get_date($val[postdate],'m-d H:i')@}</span>　点击：<span class="orange">{$val[hits]}</span>　评论：<span class="orange">{$val[comnum]}</span> </div><a href="{$val[url]}" target="_blank">阅读原文</a></dd>
+									</dl>
+								</loop>
+							<!--分页符-->
+							{@$cms::page@}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="thread-side left">
+				<cms action="thread" num="1" digest="3" cid="$cid" mid="{$catedb[$cid][mid]}" where="photo!=''" />
+				<loop>
+					<div class="box230">
+						<div class="box230b">
+							<div class="box230t">
+								<div class="pic-player">
+									<div class="img"><img src="{@miniImg($val[photo],200,160)@}" /></div>
+									<h3><a href="{$val[url]}">{@substrs($val[title],30)@}</a></h3>
+									<div class="gray text">{@substrs(strip_tags($val[content]),150)@}
+										<div class="more"><a href="{$val[url]}">[详细]</a></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</loop>
+				<div class="box230">
+					<div class="box230b">
+						<div class="box230t">
+							<h3>站点推荐</h3>
+							<ul class="list">
+								<cms action="thread" num="15" mid="{@MID_news@}" digest="2" />
+								<loop>
+									<li><em><a href="{$val[cateurl]}">[{$val[catename]}]</a></em><a href="{$val[url]}" target="_blank">{@substrs($val[title],26)@}</a></li>
+								</loop>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="box230">
+					<div class="box230b">
+						<div class="box230t">
+							<h3>热门推荐</h3>
+							<ul class="hits">
+								<cms action="thread" num="15" mid="{$catedb[$cid][mid]}" cid="all-$cid" order="hits DESC" />
+								<loop>
+									<li><a href="{$val[url]}">{@substrs($val[title],30)@}</a></li>
+								</loop>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+<!---main----foot-->
+<!--# include Template('foot');#-->

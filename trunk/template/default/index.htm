@@ -1,0 +1,268 @@
+<!--# include Template('header'); #-->
+<!--header----main-->
+<script language="javascript" src="script/veryflash.js"></script>
+<div class="main">
+  <!--area-1-->
+  <div class="area-1">
+		<div class="area-1-bot">
+			<div class="area-1-top">
+        <div id="system" class="area-1-content">
+          <div class="area-1-left">
+            <div class="right">
+              <h2>精华</h2>
+				<!-- 头条新闻 -->
+              <ul class="list">
+<cms action="thread" return="LIST" mid="{@MID_news@}" num="9" digest="2" />
+<loop name="LIST" value="val">
+                <li><a href="{$val[url]}" target="_blank" style="{$val[titlestyle]}">{@substrs($val[title],40)@}</a></li>
+</loop>
+              </ul>
+            </div>
+<div class="left">
+	<div class="pic-player">
+		<div id="focus" class="img">
+		<script type="text/javascript">
+			var focus_width=230;
+			var focus_height=160;
+			var text_height=20;
+			var swf_height = focus_height+text_height;
+	<!--#$array=$cms::thread("mid:{@MID_news@};num:5;digest:3;where:photo!='';");
+			foreach($array as $val){
+			$pics[] = miniImg($val[photo],230,160);
+			$links[] = str_replace('&','%26',$val[url]);
+			$titles[] = substrs($val[title],15,1);
+			}
+			$flashpics = implode('|',$pics);
+			$flashlinks = implode('|',$links);
+			$flashtitles = implode('|',$titles);
+		#-->
+			var pics = '{$flashpics}';
+			var links= '{$flashlinks}';
+			var texts= '{$flashtitles}';
+
+			document.write('<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="'+ focus_width +'" height="'+ swf_height +'">');
+			document.write('<param name="allowScriptAccess" value="sameDomain"><param name="movie" value="images/very.swf"><param name="quality" value="high"><param name="bgcolor" value="#ffffff">');
+			document.write('<param name="menu" value="false"><param name=wmode value="opaque">');
+			document.write('<param name="FlashVars" value="pics='+pics+'&links='+links+'&texts='+texts+'&borderwidth='+focus_width+'&borderheight='+focus_height+'&textheight='+text_height+'">');
+			document.write('<embed src="images/very.swf" wmode="opaque" FlashVars="pics='+pics+'&links='+links+'&texts='+texts+'&borderwidth='+focus_width+'&borderheight='+focus_height+'&textheight='+text_height+'" menu="false" bgcolor="#ffffff" quality="high" width="'+ focus_width +'" height="'+ swf_height +'" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />');
+			document.write('</object>');
+		 </script>
+		 </div>
+	</div>
+</div>
+</div>
+<div class="area-1-right">
+<cms action="thread" num="1" digest="3" mid="{@MID_news@}" where="photo=''" />
+<loop>
+  <div class="left">
+    <h2><div class="gray fs12 fwn">话题</div><a href="{$val[url]}" target="_blank">{$val[title]}</a></h2>
+    <div class="text gray">{@substrs(strip_tags($val[content]),200)@}
+      <div class="more"><a href="{$val[url]}">[全文]</a></div>
+    </div>
+  </div>
+</loop>
+  <div class="right">	
+    <h3>公告</h3>
+    <div class="notebg">
+<cms type="extend" action="notice" param="1" />
+<loop>
+    <p>{@htmlbalance(substrs($val[content],200))@}</p>
+    <div class="more"><a href="{$val[url]}" target="_blank">[详细]</a></div>
+</loop>
+    <ul class="note">
+<cms type="extend" action="notice" param="2,4" />
+<loop>
+      <li><a href="{$val[url]}" target="_blank">{@substrs($val[title],20)@}</a></li>
+</loop>
+    </ul>
+    <div class="more"><a href="{@$extend::URL('notice')@}" target="_blank">[更多公告]</a></div>
+</div>
+</div></div></div>
+<!--#if($very[aggrebbs]){#-->
+<div class="clear"></div>
+<div id="forum" class="area-1-content">
+  <div class="area-1-left">
+    <div class="right">
+      <h2><a href="{$very[bbs_url]}" class="fr enter"><img src="images/enter.png" /></a>论坛<span class="fwn">精华</span></h2>
+      <ul class="list">
+<cms type="bbs" action="article" num="9" order="digest" />
+<loop>
+        <li><a href="{$val[url]}" target="_blank">{@substrs($val[title],40)@}</a></li>
+</loop>
+      </ul>
+    </div>
+    <div class="left">
+      <div id="forumtop">
+        <table width="100%" border="0">
+          <tr>
+            <th width="40%" class="green">会员排行</th>
+            <th width="60%" class="pink lb">板块排行</th>
+          </tr>
+          <tr>
+            <td><ol class="gray">
+<cms type="bbs" action="user" num="10" order="$very[bbs_membersort]" />
+<loop>
+              <li><a href="{$val[url]}" target="_blank">{@substrs($val[title],20)@}</a></li>
+</loop>
+            </ol></td>
+            <td class="lb"><ol>
+<cms type="bbs" action="forum" num="10" order="$very[bbs_forumsort]" />
+<loop>
+              <li><a href="{$val[url]}" target="_blank">{@substrs($val[title],20)@}</a></li>
+</loop>
+            </ol></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="area-1-right">
+    <div class="left">
+      <h2 class="btb">
+        <div class="gray fs12 fwn">论坛热图</div>
+      </h2>
+      <div class="pic-show">
+<cms type="bbs" action="image" num="4" />
+<loop>
+        <dl class="pic">
+          <dd>
+            <div><a href="{$val[url]}" target="_blank" title="{$val[title]}"><img src="{@miniimg($val[photo],75,75)@}" height="75" width="75" /></a></div>
+          </dd>
+          <dt>{@substrs($val[title],12)@}</dt>
+        </dl>
+</loop>
+      </div>
+    </div>
+    <div class="right">
+      <div class="diy">
+      <script language="javascript"  src="script/verycms/left.js?cid={$cid}&tid={$tid}"></script></div>
+    </div>
+  </div>
+</div>
+<!--#}#-->
+<!--#if($very[aggreblog]){#-->
+<div class="clear"></div>
+<div id="blog" class="area-1-content">
+  <div class="area-1-left">
+    <div class="right">
+      <h2><a href="{$very[blog_url]}" class="fr enter"><img src="images/enter.png" /></a>博客<span class="fwn">精华</span></h2>
+        <ul class="list">
+<cms type="blog" action="weblog" num="9" />
+<loop>
+          <li><a href="{$val[url]}" target="_blank">{@substrs($val[title],40)@}</a></li>
+</loop>
+        </ul>
+      </div>
+      <div class="left">
+        <div id="forumtop">
+          <table width="100%" border="0">
+            <tr>
+              <th width="40%" class="green">写手排行</th>
+              <th width="60%" class="pink lb">热门标签</th>
+            </tr>
+            <tr>
+              <td><ol class="gray">
+<cms type="blog" action="user" num="5" order="$very[blog_membersort]" />
+<loop>
+                <li><a href="{$val[url]}" target="_blank"><img src="{$val[icon]}" border=0 width="30" height="30" title="">{@substrs($val[title],5)@}</a></li>
+</loop>
+              </ol></td>
+              <td class="lb"><ol>
+<cms type="blog" action="tags" num="10" order="$very[blog_tagsort]" />
+<loop>
+                <li><a href="{$val[url]}" target="_blank">{@substrs($val[title],20)@}</a></li>
+</loop>
+              </ol></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="area-1-right">
+      <div class="left">
+        <h2 class="btb">
+          <div class="gray fs12 fwn">博客热图</div>
+        </h2>
+        <div class="pic-show">
+<cms type="blog" action="image" num="4" />
+<loop>
+          <dl class="pic">
+            <dd>
+              <div><a href="{$val[url]}" target="_blank" title="{$val[title]}"><img src="{@miniimg($val[photo],75,75)@}" height="75" width="75" /></a></div>
+            </dd>
+            <dt>{@substrs($val[title],15)@}</dt>
+          </dl>
+</loop>
+        </div>
+      </div>
+      <div class="right">
+        <div class="diy"><script language="javascript"  src="script/verycms/left.js?cid={$cid}&tid={$tid}"></script>
+       </div>
+      </div>
+    </div>
+  </div>
+<!--#}#-->
+</div></div></div>
+  <!--area-1-->
+  <div class="clear"></div>
+  <div class="ad2" style="margin-top:.2em 0">
+  <script language="javascript"  src="script/verycms/mid.js?cid={$cid}&tid={$tid}"></script></div>
+  <!--area-2-->
+  <div class="area-2-wrap">
+    <div class="area-2">
+<!--#
+$i=0;
+$total = count($discate);
+foreach($discate as $cid){
+$i++;
+$class = $i%3==0 ? 'box2' : 'box1';
+$class2='area-2-bot-m';
+if($i%3==1){
+if($total-$i<3){$class2='area-2-bot';}
+#-->
+      <div class="{$class2}">
+<!--#}#-->
+        <div class="{$class}">
+          <h2 class="blue"><a href="{$catedb[$cid][listurl]}" class="fr enter"><img src="images/enter.png" /></a>{$catedb[$cid][cname]}</h2>
+<cms action="thread" mid="{$catedb[$cid][mid]}" cid="all-$cid" num="1" where="photo!=''" />
+<loop>
+		  <div class="pic left"><a href="{$val[url]}"><img src="{@miniimg($val[photo],75,75)@}" width="75" height="75" title="{$val[title]}"/></a></div>
+</loop>
+        <ul class="list1 left">
+<cms action="thread" mid="{$catedb[$cid][mid]}" cid="all-$cid" num="4" />
+<loop>
+          <li><a href="{$val[url]}" target="_blank">{@substrs($val[title],30)@}</a></li>
+</loop>
+        </ul>
+        <div class="clear"></div>
+        <ul class="list">
+<cms action="thread" mid="{$catedb[$cid][mid]}" cid="all-$cid" num="4,6" />
+<loop>
+          <li><em>[{@get_date($val[postdate],'m-d')@}]</em><a href="{$val[url]}" target="_blank">{@substrs($val[title],36)@}</a></li>
+</loop>
+        </ul>
+      </div>
+<!--#if($i%3==0 || $i==count($catedb)){#-->
+</div>
+<!--#}}#-->
+    </div>
+  </div>
+  <!---area2----friends-->
+  <div id="friends">
+  <div class="friends-link">
+<!--系统内嵌友情链接模型-->
+<cms action="thread" mid="{@MID_links@}" num="30" where="photo!=''" order="custom-linkorder DESC" />
+<loop>
+<a href="{$val[linkurl]}" target="_blank" title="{$val[title]}"><img src="{$val[photo]}" /></a>
+</loop>
+<br/>
+<cms action="thread" mid="{@MID_links@}" num="30" where="photo=''" order="custom-linkorder DESC" />
+<loop>
+<a href="{$val[linkurl]}" target="_blank" style="$val[titlestyle]">[{$val[title]}]</a>
+</loop>
+  </div>
+  </div>
+</div>
+<div class="clear"></div>
+<!---main----foot-->
+<!--# include Template('foot'); #-->

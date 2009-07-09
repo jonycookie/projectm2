@@ -1,0 +1,49 @@
+<!--# if(!$type){ #-->
+<span style="padding-left:10px;">共 {$total} 评</span>
+<span style="padding-right:10px;">&gt;&gt; <a href="javascript:openlogin();">我要留言</a></span>
+<!--# foreach($result as $val){ #-->
+<dl class="comment-entry">
+	<dd class="comment-username">$val[author]<div class="smalltxt">$val[postdate]</div>$val[fromip]</dd>
+	<dd class="comment-content">$val[message]</dd>
+</dl>
+<!--# } #-->
+<div class="clear"></div>
+<div class="pages" style="text-align:center; padding:3px 10px 0 10px;">$pages</div>
+<div class="post-comment" id="logined" style="display:none;">
+    <form  name="mform" action="comment.php" method="post" onsubmit="return sendMessag(this,5);" focus="content">
+		<div class="post-comment-left">
+			<div>昵名：<input name="c_author" id="c_author" size="15" maxlength="15" value="网友" onblur="if (value ==''){value='网友'}" onfocus="this.select()" /> <input id="hideip" name="hideip" type="checkbox" value="1">隐藏IP地址</div>
+			<div><textarea name="c_message" id="c_message" maxlength="254"></textarea></div>
+			<input type="hidden" value="0" name="support">
+			<input type="submit" value="发表" name="Submit" id="postSub" />
+<!--#if($very[ckcomment]){#-->
+			<img id="cknum" src="ck.php" onclick="javascript:var nowtime	 = new Date().getTime();this.src='ck.php?nowtime='+nowtime;" style="cursor:pointer" align="absmiddle" /> <input name="ck" id="ck" size="7" value="验证码" onfocus="this.value='';" />
+<!--#}#-->
+		</div>
+		<div id="face" style="margin:1em 0">
+<!--# foreach($facedb as $val){ #-->
+		<img src="images/comment/{$val[facepath]}"  title="{$val[faceintro]}" onclick="insertFace('{$val[id]}');"> 
+<!--# } #-->
+		</div>
+	</form>
+</div>
+<!--# }elseif($type=='showpost'){ #-->
+<div class="post-comment" id="logined">
+    <form  name="mform" action="comment.php" method="post" onsubmit="return sendMessag(this,5,1);" focus="content">
+		<div class="post-comment-left">
+			<div>昵名：<input name="c_author" id="c_author" size="15" maxlength="15" value="网友" onblur="if (value ==''){value='网友'}" onfocus="this.select()" /> <input id="hideip" name="hideip" type="checkbox" value="1">隐藏IP地址</div>
+			<div><textarea name="c_message" id="c_message" maxlength="254"></textarea></div>
+			<input type="hidden" value="0" name="support">
+			<input type="submit" value="发表" name="Submit" id="postSub" />  <a href="comment.php?job=main&cid=$cid&mid=$mid&tid=$tid" target="_blank">查看所有评论</a>
+<!--#if($very[ckcomment]){#-->
+			<img id="cknum" src="ck.php" onclick="javascript:var nowtime	 = new Date().getTime();this.src='ck.php?nowtime='+nowtime;" style="cursor:pointer" align="absmiddle" /> <input name="ck" id="ck" size="7" value="验证码" onfocus="this.value='';" />
+<!--#}#-->
+		</div>
+		<div id="face" style="margin:1em 0">
+<!--# foreach($facedb as $val){ #-->
+		<img src="images/comment/{$val[facepath]}"  title="{$val[faceintro]}" onclick="insertFace('{$val[id]}');"> 
+<!--# } #-->
+		</div>
+	</form>
+</div>
+<!--# } #-->

@@ -1,0 +1,309 @@
+<!--<?php
+if(!$step){print <<<EOT
+-->
+<div class="index-main">
+  <div class="b-wrapA">
+	<div class="b-wrapB">
+	  <div class="b-wrapC">
+	  <form id="goinstall" action="$basename?" method="post">
+	  <input type="hidden" name="step" value="1">
+	  </form>
+		<div class="b-wrapD"><a style="cursor:pointer;" class="startInstall" onClick="document.getElementById('goinstall').submit();"><img src="lang/images/installnow.gif" /></a></div>
+	  </div>
+	</div>
+  </div>
+  <div class="c"></div>
+  <div id="index-content">
+	<div id="index-left">
+	  <div class="wrapD">
+		<ul class="listB">$lang[log_update]</ul>
+		<div><img src="lang/images/problem.png" /></div>
+		<ul class="listB">$lang[log_help]</ul>
+	  </div>
+	</div>
+	<div id="index-right">
+	  <ul id="showlist" class="index-tab">
+		<li id="install"><a style="cursor:pointer;">$lang[log_install_t]</a></li>
+	  </ul>
+	  <div class="content-box">
+		<div id="installdiv" style="display:none;" class="content-wrap">$lang[log_install]</div>
+	  </div>
+	</div>
+	<div class="c"></div>
+  </div>
+</div>
+<div class="c"></div>
+<script language="JavaScript">
+showdivlist('install');
+function showdivlist(showid){
+	var obj  = document.getElementById('showlist');
+	var objs = obj.getElementsByTagName('li');
+	for (var i=0;i<objs.length;i++) {
+		if (objs[i].id==showid) {
+			if (document.getElementById(showid + 'div').style.display == 'none') {
+				document.getElementById(showid).className = 'active';
+				document.getElementById(showid + 'div').style.display = '';
+			} else {
+				return false;
+			}
+		} else {
+			document.getElementById(objs[i].id).className = '';
+			document.getElementById(objs[i].id + 'div').style.display = 'none';
+		}
+	}
+	return false;
+}
+</script>
+<!--
+EOT;
+}else{print <<<EOT
+-->
+<h2><span class="step">$steptitle</span> $stepmsg</h2>
+<div class="installInfo">$lang[welcome_msg]</div>
+<div class="c"></div>
+<div id="content">
+<!--
+EOT;
+if($step == 1){print <<<EOT
+-->
+  <div class="wrapD">
+	<div class="wrapE">
+	  <div class="agreement" style="height:290px; overflow:auto">
+		$wind_licence
+	  </div>
+	  <div class="c"></div>
+	</div>
+  </div>
+  <form id="install" action="$basename?" method="post">
+  <input type="hidden" name="step" value="2">
+  </form>
+  <div class="stepbt">
+	<strong class="last">$stepleft</strong>
+	<a class="btA colorA next" style="cursor:pointer;" onClick="document.getElementById('install').submit();"><span>$stepright</span></a>
+  </div>
+<!--
+EOT;
+}elseif($step == 2){print <<<EOT
+-->
+  <div class="wrapD">
+	<div class="wrapE">
+	  <div class="boxA">
+		<div style="width:57%; float:left">
+		  <h3>$lang[step_2]</h3>
+		  <form id="install" action="$basename?" method="post">
+		  <input type="hidden" name="step" value="3">
+		  <table class="dlA">
+			<tr>
+			  <td>$lang[dbhost]</td>
+			  <td><input type="text" name="dbhost" value="$dbhost" class="inputA" /></td>
+			</tr>
+			<tr>
+			  <td>$lang[dbuser]</td>
+			  <td><input type="text" name="dbuser" value="$dbuser" class="inputA" /></td>
+			</tr>
+			<tr>
+			  <td>$lang[dbpw]</td>
+			  <td><input type="text" name="dbpw" value="$dbpw" class="inputA" /></td>
+			</tr>
+			<tr>
+			  <td>$lang[dbname]</td>
+			  <td><input type="text" name="dbname" value="$dbname" class="inputA" /></td>
+			</tr>
+			<tr>
+			  <td>$lang[dbpres]</td>
+			  <td><input type="text" name="PW" value="$_pre" class="inputA" /></td>
+			</tr>
+		  </table>
+		</div>
+		<div style="margin-left:56%">
+		  <h3>$lang[managermsg]</h3>
+		  <table class="dlA dlB">
+			<tr>
+			  <td>$lang[name]</td>
+			  <td><input type="text" name="manager" value="$manager" class="inputA" /></td>
+			</tr>
+			<tr>
+			  <td>$lang[pwd]</td>
+			  <td><input type="text" name="manager_pwd" class="inputA" /></td>
+			</tr>
+			<tr>
+			  <td>$lang[ckpwd]</td>
+			  <td><input type="text" name="manager_ckpwd" class="inputA" /></td>
+			</tr>
+			<tr>
+			  <td>Email</td>
+			  <td><input type="text" name="manager_email" class="inputA" value="admin@admin.com" /></td>
+			</tr>
+		  </table>
+		  </form>
+		</div>
+	  </div>
+	  <div class="c"></div>
+	</div>
+  </div>
+  <div class="stepbt">
+	<a class="last" href="javascript:history.go(-1);">$stepleft</a>
+	<a class="btA colorA next" style="cursor:pointer;" onClick="postcheck();"><span>$stepright</span></a>
+  </div>
+<script language="JavaScript">
+function postcheck(){
+	var obj = document.getElementById('install');
+	if (!obj.dbhost.value) {
+		alert('$lang[error_dbhost]');
+		return false;
+	} else if (!obj.dbuser.value) {
+		alert('$lang[error_dbuser]');
+		return false;
+	} else if (!obj.dbpw.value) {
+		alert('$lang[error_dbpw]');
+		return false;
+	} else if (!obj.dbname.value) {
+		alert('$lang[error_dbname]');
+		return false;
+	} else if (!obj.manager.value) {
+		alert('$lang[error_adminname]');
+		return false;
+	} else if (!obj.manager_pwd.value) {
+		alert('$lang[error_adminpwd]');
+		return false;
+	} else if (obj.manager_pwd.value != obj.manager_ckpwd.value) {
+		alert('$lang[error_ckpwd]');
+		return false;
+	} else if (!obj.manager_email.value) {
+		alert('$lang[error_adminemail]');
+		return false;
+	}
+	obj.submit();
+}
+</script>
+<!--
+EOT;
+}elseif($step == 3){print <<<EOT
+-->
+  <div class="wrapD">
+	<div class="wrapE">
+	  <div class="boxB">
+		<div>
+		  <h3>$lang[hacklist]</h3>
+		  <form id="install" action="$basename?" method="post">
+		  <input type="hidden" name="step" value="4">
+		  <table class="dlC" width="90%">
+      <tr><td><b>$lang[hackmsg]</b></td></tr>
+			<tr>
+			  <td>
+<!--
+EOT;
+foreach($uninstalldb as $value){print <<<EOT
+-->
+				<li style="background:none;width:38%;"><input type='checkbox' name="hackdb[]" value="$value[dir]" CHECKED disabled /> $value[name]</li>
+<!--
+EOT;
+}print <<<EOT
+-->
+			  </td>
+			</tr>
+		  </table>
+		  </form>
+		</div>
+	  </div>
+	  <div class="c"></div>
+	</div>
+  </div>
+  <div class="stepbt">
+	<a class="last" href="javascript:history.go(-1);">$stepleft</a>
+	<a class="btA colorA next" style="cursor:pointer;" onClick="document.getElementById('install').submit();"><span>$stepright</span></a>
+  </div>
+<!--
+EOT;
+}elseif($step == 4){print <<<EOT
+-->
+  <div class="wrapD">
+	<div class="wrapE">
+	  <div id="log" class="agreement" style="height:290px; overflow:auto;"></div>
+	  <div class="c"></div>
+	</div>
+  </div>
+  <form id="install" action="$basename?" method="post">
+  <input type="hidden" name="step" value="finish">
+  </form>
+  <div class="stepbt">
+	<a class="last" href="javascript:history.go(-1);">$stepleft</a>
+	<a class="btA colorA next" id="finish" style="cursor:pointer;display:none;" onClick="document.getElementById('install').submit();"><span>$stepright</span></a>
+  </div>
+<script language="JavaScript">
+var log = "$log";
+var n = 0;
+var timer = 0;
+log = log.split('<wind>');
+setIntervals();
+function GoPlay(){
+	if (n > log.length-1) {
+		n=-1;
+		clearIntervals();
+	}
+	if (n > -1) {
+		postcheck(n);
+		n++;
+	}
+}
+function postcheck(n){
+	document.getElementById('log').innerHTML += log[n] + '<br /><a name="last"></a>';
+	document.getElementById('log').scrollTop = document.getElementById('log').scrollHeight;
+}
+function setIntervals(){
+	timer = setInterval('GoPlay()',10);
+}
+function clearIntervals(){
+	clearInterval(timer);
+	document.getElementById('finish').style.display = '';
+}
+</script>
+
+<!--
+EOT;
+}elseif($step == 'finish'){print <<<EOT
+-->
+  <div class="wrapD">
+	<div class="wrapE">
+	  <div class="boxB">
+		<div class="cgLeft"></div>
+		<div class="cg" style="margin-left:35%">
+		  <h1>$lang[success_install]</h1>
+		  <ul class="listA">
+			<li>$lang[link_index] ： <a href="index.php" target="_blank" style="color:#000">$bbsurl/index.php</a></li>
+			<li>$lang[link_admin] ： <a href="admin.php" target="_blank" style="color:#000">$bbsurl/admin.php</a></li>
+			<li>$lang[link_phpwind] ： <a href="http://www.phpwind.net" target="_blank" style="color:#000">http://www.phpwind.net</a></li>
+		  </ul>
+		</div>
+	  </div>
+	  <div class="c"></div>
+	</div>
+  </div>
+  <div class="stepbt"><a style="cursor:pointer;" class="btA colorA next" onClick="closewindows();"><span>关  闭</span></a><img src="http://nt.phpwind.com/src/install_stats.php?url=$bbsurl&version=$wind_version&type=cms&charsets=$lang[db_charset]&c=0" width="0" height="0"></div>
+<script language="JavaScript">
+function closewindows(){
+	var agt = navigator.userAgent.toLowerCase();
+	var is_ie = ((agt.indexOf("msie") != -1) && (agt.indexOf("opera") == -1));
+	if (is_ie) {
+		var ieversion = parseFloat(agt.substring(agt.indexOf("msie")+5,agt.indexOf(';',agt.indexOf("msie"))));
+		if (ieversion < 5.5) {
+			var str  = '<object id="notipclose" classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11"><param name="command" value="close"></object>';
+			document.body.insertadjacenthtml(beforeend,str);
+			document.all.notipclose.click();
+		} else {
+			window.opener = null;
+			window.close();
+		}
+	} else {
+		window.close();
+	}
+}
+</script>
+<!--
+EOT;
+}print <<<EOT
+-->
+</div>
+<!--
+EOT;
+}?>-->
