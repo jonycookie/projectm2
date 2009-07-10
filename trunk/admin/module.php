@@ -351,9 +351,9 @@ class module{
 	 * @param string $author 模型作者
 	 */
 	function saveModule($mname,$descrip,$author=''){
-		global $mid,$charset,$db,$very;
+		global $mid,$charset,$db,$sys;
 		require Getlang('module');
-		$author=='' && $author = $very['title'].' ('.$very['url'].')';
+		$author=='' && $author = $sys['title'].' ('.$sys['url'].')';
 		$sqladd = '';
 		if($mid){
 			global $moduledb;
@@ -479,7 +479,7 @@ class module{
 	 *
 	 */
 	function exportModule(){
-		global $db,$very,$charset;
+		global $db,$sys,$charset;
 		require_once('require/chinese.php');
 		$chs = new Chinese($charset,'UTF8');
 		$m = $db->get_one("SELECT * FROM cms_module WHERE mid='$this->mid'");
@@ -502,7 +502,7 @@ class module{
 		$moduleConfig .= "</fields>\n";
 		$moduleConfig .= "</module>";
 		$moduleConfig = $chs->Convert($moduleConfig);
-		$filename = 'VeryCMS_mod_'.randomStr(5).'.xml';
+		$filename = 'CMS_mod_'.randomStr(5).'.xml';
 		$filesize = strlen($moduleConfig);
 		ob_end_clean();
 		header('Pragma: no-cache');

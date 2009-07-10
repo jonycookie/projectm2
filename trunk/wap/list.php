@@ -23,7 +23,7 @@ if($cid){
 		$listdb[] = $rt;
 	}
 }
-wap_header('list',$very['title']);
+wap_header('list',$sys['title']);
 require_once PrintEot('wap_list');
 wap_footer();
 ?>

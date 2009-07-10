@@ -3,25 +3,25 @@
 $step = GetGP('step');
 if(!$step){
 	include_once(D_P.'data/cache/config.php');
-	ifcheck($very['open'],'open');
-	ifcheck($very['rewrite'],'rewrite');
-	ifcheck($very['gzip'],'gzip');
-	ifcheck($very['debug'],'debug');
-	ifcheck($very['hidehelp'],'hidehelp');
-	ifcheck($very['autopage'],'autopage');
-	ifcheck($very['rewrite'],'rewrite');
-	ifcheck($very['aggrebbs'],'aggrebbs');
-	ifcheck($very['aggreblog'],'aggreblog');
-	ifcheck($very['ckcomment'],'ckcomment');
-	ifcheck($very['ckadmin'],'ckadmin');
-	ifcheck($very['skipgif'],'skipgif');
-	ifcheck($very['ckwater'],'ckwater');
-	ifcheck($very['wapifopen'],'wapifopen');
-	ifcheck($very['wapcharset'],'wapcharset');
+	ifcheck($sys['open'],'open');
+	ifcheck($sys['rewrite'],'rewrite');
+	ifcheck($sys['gzip'],'gzip');
+	ifcheck($sys['debug'],'debug');
+	ifcheck($sys['hidehelp'],'hidehelp');
+	ifcheck($sys['autopage'],'autopage');
+	ifcheck($sys['rewrite'],'rewrite');
+	ifcheck($sys['aggrebbs'],'aggrebbs');
+	ifcheck($sys['aggreblog'],'aggreblog');
+	ifcheck($sys['ckcomment'],'ckcomment');
+	ifcheck($sys['ckadmin'],'ckadmin');
+	ifcheck($sys['skipgif'],'skipgif');
+	ifcheck($sys['ckwater'],'ckwater');
+	ifcheck($sys['wapifopen'],'wapifopen');
+	ifcheck($sys['wapcharset'],'wapcharset');
 	$num=0;
 	$forumcheck="<table cellspacing='0' cellpadding='0' border='0' width='100%' align='center'><tr>";
 	$query=$db->query("SELECT cid,cname FROM cms_category WHERE type>0 AND mid=1");
-	$wapcids = explode(',',$very['wapcids']);
+	$wapcids = explode(',',$sys['wapcids']);
 	while($rt=$db->fetch_array($query)){
 		$num++;
 		$htm_tr = $num % 2 == 0 ? '</tr><tr>' : '';
@@ -30,16 +30,16 @@ if(!$step){
 	}
 	unset($wapcids);
 	$forumcheck.="</tr></table>";
-	$very['waterpos'] = $very['waterpos']?$very['waterpos']:0;
-	//$very['waterimg'] = $very['waterimg']?$very['waterimg']:"mark.gif";
-	${'waterpos_ck_'.$very['waterpos']}='checked';
-	if($very['attachmkdir']){
-		$attachdir_ck[$very['attachmkdir']]="checked";
+	$sys['waterpos'] = $sys['waterpos']?$sys['waterpos']:0;
+	//$sys['waterimg'] = $sys['waterimg']?$sys['waterimg']:"mark.gif";
+	${'waterpos_ck_'.$sys['waterpos']}='checked';
+	if($sys['attachmkdir']){
+		$attachdir_ck[$sys['attachmkdir']]="checked";
 	}
-	if($very['htmmkdir']){
-		$htmmkdir[$very['htmmkdir']]="checked";
+	if($sys['htmmkdir']){
+		$htmmkdir[$sys['htmmkdir']]="checked";
 	}
-	$discate = explode(',',$very['discate']);
+	$discate = explode(',',$sys['discate']);
 	require_once(R_P.'require/class_cate.php');
 	$cate = new Cate();
 	$cate_select=$cate->tree();
@@ -51,7 +51,7 @@ if(!$step){
 		if($displaynum[$cid]<=0) $displaynum[$cid]=10; //默认显示数量
 		$cate_moreset .= " <input type=\"text\" name=\"displaynum[$cid]\" class=\"input\" size=3 value=\"".$displaynum[$cid]."\"/>  ".$lang['displaynum']."</td></tr>   ";
 	}
-	if($very['aggrebbs']){
+	if($sys['aggrebbs']){
 		require_once GetLang('extension');
 		$bbsmembers = array(
 		'todaypost'	=>	$lang['bbs_tpost'],
@@ -68,16 +68,16 @@ if(!$step){
 		);
 		foreach ($bbsforums as $key=>$f){
 			$bbs_forum_select.="<option value=\"$key\"";
-			($key==$very['bbs_forumsort']) && $bbs_forum_select.=" SELECTED";
+			($key==$sys['bbs_forumsort']) && $bbs_forum_select.=" SELECTED";
 			$bbs_forum_select.=">$f</option>";
 		}
 		foreach ($bbsmembers as $key=>$m){
 			$bbs_member_select.="<option value=\"$key\"";
-			($key==$very['bbs_membersort']) && $bbs_member_select.=" SELECTED";
+			($key==$sys['bbs_membersort']) && $bbs_member_select.=" SELECTED";
 			$bbs_member_select.=">$m</option>";
 		}
 	}
-	if($very['aggreblog']){
+	if($sys['aggreblog']){
 		require_once GetLang('extension');
 		$blogmembers = array(
 		'blogs'		=>	$lang['blog_num'],
@@ -94,21 +94,21 @@ if(!$step){
 		);
 		foreach ($blogtags as $key=>$f){
 			$blog_tags_select.="<option value=\"$key\"";
-			($key==$very['blog_tagsort']) && $blog_tags_select.=" SELECTED";
+			($key==$sys['blog_tagsort']) && $blog_tags_select.=" SELECTED";
 			$blog_tags_select.=">$f</option>";
 		}
 		foreach ($blogmembers as $key=>$m){
 			$blog_member_select.="<option value=\"$key\"";
-			($key==$very['blog_membersort']) && $blog_member_select.=" SELECTED";
+			($key==$sys['blog_membersort']) && $blog_member_select.=" SELECTED";
 			$blog_member_select.=">$m</option>";
 		}
 	}
-	//$very['loginip = str_replace(",","\n",$very['loginip);
-	if($very['lang']=='gbk'){
+	//$sys['loginip = str_replace(",","\n",$sys['loginip);
+	if($sys['lang']=='gbk'){
 		$gbkselect='selected';
-	}elseif ($very['lang']=='utf-8'){
+	}elseif ($sys['lang']=='utf-8'){
 		$utf8select='selected';
-	}elseif($very['lang']=='big5'){
+	}elseif($sys['lang']=='big5'){
 		$big5select='selected';
 	}
 	$defaulttmp		= array();

@@ -20,19 +20,19 @@ $cate = new Cate();
 $cms = new Cms();
 $cms->listurl = $pageurl;
 /*#### SEO关键字 ####*/
-$metakeyword = $metadescrip = $very['title'].",".$catedb[$cid]['cname'];
+$metakeyword = $metadescrip = $sys['title'].",".$catedb[$cid]['cname'];
 if($catedb[$cid]['metakeyword']){
 	$metakeyword .= ",".$catedb[$cid]['metakeyword'];
-}else if($very['metakeyword']){
-	$metakeyword .= ",".$very['metakeyword'];
+}else if($sys['metakeyword']){
+	$metakeyword .= ",".$sys['metakeyword'];
 }
 if($catedb[$cid]['metadescrip']){
 	$metadescrip .= ",".$catedb[$cid]['metadescrip'];
-}else if($very['metadescrip']){
-	$metadescrip .= ",".$very['metadescrip'];
+}else if($sys['metadescrip']){
+	$metadescrip .= ",".$sys['metadescrip'];
 }
 
-start($very['charset']);
+start($sys['charset']);
 require Template();
 footer();
 ?>

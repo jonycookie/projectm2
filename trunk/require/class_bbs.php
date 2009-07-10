@@ -80,18 +80,18 @@ class BBS{
 	 *
 	 */
 	function __construct(){
-		global $very;
-		if(!$very['aggrebbs']) return ;
-		$this->config['dbname']		= $very['bbs_dbname'];
-		$this->config['url']		= $very['bbs_url'];
-		$this->config['type']		= $very['bbs_type'];
-		$this->config['dbpre']		= $very['bbs_dbpre'];
-		$this->config['attachdir'] 	= $very['bbs_attachdir'];
-		$this->config['picpath'] 	= $very['bbs_picpath'];
-		$this->config['charset']	= $very['bbs_charset'];
-		$this->config['htmifopen']	= $very['bbs_htmifopen'];
-		$this->config['htmdir']		= $very['bbs_htmdir'];
-		$this->config['htmext']		= $very['bbs_htmext'];
+		global $sys;
+		if(!$sys['aggrebbs']) return ;
+		$this->config['dbname']		= $sys['bbs_dbname'];
+		$this->config['url']		= $sys['bbs_url'];
+		$this->config['type']		= $sys['bbs_type'];
+		$this->config['dbpre']		= $sys['bbs_dbpre'];
+		$this->config['attachdir'] 	= $sys['bbs_attachdir'];
+		$this->config['picpath'] 	= $sys['bbs_picpath'];
+		$this->config['charset']	= $sys['bbs_charset'];
+		$this->config['htmifopen']	= $sys['bbs_htmifopen'];
+		$this->config['htmdir']		= $sys['bbs_htmdir'];
+		$this->config['htmext']		= $sys['bbs_htmext'];
 
 		if(eregi('^(http://)',$this->config['attachdir'])){
 			$this->config['attachurl'] = $this->config['attachdir'].'/';
@@ -102,7 +102,7 @@ class BBS{
 			$this->config['attachurl'] = $this->config['url'].'/'.$this->config['attachdir'].'/';
 		}
 		//另外一个DB类的实例
-		$this->mysql = new DB($very['bbs_dbhost'],$very['bbs_dbuser'],$very['bbs_dbpw'],$very['bbs_dbname'],$very['bbs_charset'],0);
+		$this->mysql = new DB($sys['bbs_dbhost'],$sys['bbs_dbuser'],$sys['bbs_dbpw'],$sys['bbs_dbname'],$sys['bbs_charset'],0);
 		$this->setTableName();
 	}
 
@@ -118,13 +118,13 @@ class BBS{
 	 * @return array
 	 */
 	function readcache($filename,$cacheTime){
-		if(!$GLOBALS['very']['sqlcache']){
+		if(!$GLOBALS['sys']['sqlcache']){
 			return false;
 		}
-		if($GLOBALS['very']['querycache']){
+		if($GLOBALS['sys']['querycache']){
 			return false;
 		}else{
-			$cacheTime = $cacheTime ? intval($cacheTime)*60 : intval($GLOBALS['very']['sqlcache'])*60;
+			$cacheTime = $cacheTime ? intval($cacheTime)*60 : intval($GLOBALS['sys']['sqlcache'])*60;
 			if(file_exists($filename) && $GLOBALS['timestamp'] - filemtime($filename) < $cacheTime){
 				$str = readover($filename);
 				$str = unserialize($str);
@@ -142,10 +142,10 @@ class BBS{
 	 * @return array
 	 */
 	function writecache($filename,$info){
-		if(!$GLOBALS['very']['sqlcache']){
+		if(!$GLOBALS['sys']['sqlcache']){
 			return false;
 		}
-		if($GLOBALS['very']['querycache']){
+		if($GLOBALS['sys']['querycache']){
 			return false;
 		}else{
 			$filename = Pcv(D_P."data/sql/$filename.cache");

@@ -192,7 +192,7 @@ class LxBlog5 extends Blog{
 		$limit = $start.','.$num;
 		$where = "WHERE i.type='$type' AND i.ifhide=0";
 		$this->sqladd && $where .= $this->sqladd;
-		$htm_ext	= $GLOBALS['very']['htmext'] ? $GLOBALS['very']['htmext'] : 'html';
+		$htm_ext	= $GLOBALS['sys']['htmext'] ? $GLOBALS['sys']['htmext'] : 'html';
 
 		if($this->onlyimg) {
 			$rs = $this->mysql->query("SELECT * FROM {$this->config['dbpre']}upload u LEFT JOIN {$this->config['dbpre']}items i USING(itemid) LEFT JOIN {$this->config['dbpre']}$type USING(itemid) $where AND u.type='img' $sqladd ORDER BY i.$order DESC  LIMIT $limit");
@@ -207,7 +207,7 @@ class LxBlog5 extends Blog{
 			$bldb['publisher']	= $bldb['author'];
 			if($this->viewtype){
 				if($catedb[$this->viewtype]['htmlpub']){
-					$bldb['url'] = $GLOBALS['very']['htmdir'].'/'.$this->viewtype.'/'.$bldb['tid'].'.'.$htm_ext;
+					$bldb['url'] = $GLOBALS['sys']['htmdir'].'/'.$this->viewtype.'/'.$bldb['tid'].'.'.$htm_ext;
 					if(!file_exists($bldb['url'])){
 						$bldb['ifpub'] = 0;
 						if($catedb[$this->viewtype]['autopub']){
@@ -219,7 +219,7 @@ class LxBlog5 extends Blog{
 						$bldb['ifpub']	= 1;
 					}
 				}else{
-					$bldb['url'] = $GLOBALS['very']['url']."/view.php?tid=".$bldb['tid']."&cid=".$this->viewtype;
+					$bldb['url'] = $GLOBALS['sys']['url']."/view.php?tid=".$bldb['tid']."&cid=".$this->viewtype;
 					$bldb['ifpub'] = 1;
 				}
 			}else{//blog原帖地址
@@ -335,8 +335,8 @@ class LxBlog5 extends Blog{
 		$rs['blogurl']	= $bbsurl = $this->config['url'].'/blog.php?do=showone&uid='.$rs['uid'].'&type='.$type.'&itemid='.$rs['itemid'];
 		$rs['content'] 	= BlogCode::convert($rs['content'],'');
 		if($this->cid && $catedb[$this->cid]['htmlpub']) {
-			$htm_ext	= $GLOBALS['very']['htmext'] ? $GLOBALS['very']['htmext'] : 'html';
-			$logdir		= $GLOBALS['very']['htmdir'].'/'.$this->cid.'/'.$rs['itemid'].'.'.$htm_ext;
+			$htm_ext	= $GLOBALS['sys']['htmext'] ? $GLOBALS['sys']['htmext'] : 'html';
+			$logdir		= $GLOBALS['sys']['htmdir'].'/'.$this->cid.'/'.$rs['itemid'].'.'.$htm_ext;
 			if(file_exists($logdir)) {
 				$rs['ifpub'] = 1;
 			}else {
@@ -379,14 +379,14 @@ $codelang = array(
  */
 class BlogCode {
 	function convert($message,$allow = array(),$prtimes = '-1'){
-		global $code_num,$code_htm,$phpcode_htm,$very,$codelang;
+		global $code_num,$code_htm,$phpcode_htm,$sys,$codelang;
 		$allow['times'] && $prtimes = $allow['times'];
 		$message  = nl2br($message);
 		$message = preg_replace('/\[code\](.+?)\[\/code\]/eis',"BlogCode::phpcode('\\1')",$message,$prtimes);
 		$message = preg_replace('/\[list=([aA1]?)\](.+?)\[\/list\]/is',"<ol type=\"\\1\" style=\"margin:0 0 0 25px\">\\2</ol>", $message);
 		$message = str_replace(
 			array('[u]','[/u]','[b]','[/b]','[i]','[/i]','[list]','[li]','[/li]','[/list]','[sub]','[/sub]','[sup]','[/sup]','[strike]','[/strike]','[blockquote]','[/blockquote]','[hr]','[p]','[/p]','p_w_upload','p_w_picpath'),
-			array('<u>','</u>','<b>','</b>','<i>','</i>','<ul style="margin:0 0 0 15px">','<li>','</li>', '</ul>','<sub>','</sub>','<sup>','</sup>','<strike>','</strike>','<blockquote>','</blockquote>','<hr />','<p>','</p>',$very['blog_url'].'/'.$very['blog_attachdir'],$very['blog_url'].'/'.$very['blog_imgdir']),
+			array('<u>','</u>','<b>','</b>','<i>','</i>','<ul style="margin:0 0 0 15px">','<li>','</li>', '</ul>','<sub>','</sub>','<sup>','</sup>','<strike>','</strike>','<blockquote>','</blockquote>','<hr />','<p>','</p>',$sys['blog_url'].'/'.$sys['blog_attachdir'],$sys['blog_url'].'/'.$sys['blog_imgdir']),
 			$message
 		);
 		$message = preg_replace(
@@ -488,7 +488,7 @@ class BlogCode {
 					'/\[rm\](.+?)\[\/rm\]/is',
 					'/\[rm=[0-9]{1,3}\,[0-9]{1,3}\,[01]{1}\](.+?)\[\/rm\]/is'
 				),
-				"<img src=\"$very[blog_url]/image/default/music.gif\" align=\"absbottom\"> <a href=\"\\1\" target=\"_blank\">\\1</a>",
+				"<img src=\"$sys[blog_url]/image/default/music.gif\" align=\"absbottom\"> <a href=\"\\1\" target=\"_blank\">\\1</a>",
 				$message,
 				$prtimes
 			);
@@ -543,10 +543,10 @@ class BlogCode {
 		return "<object width=\"$width\" height=\"$height\" classid=\"CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6\" id=\"PlayerW\"><param name=\"url\" value=\"$wmvurl\" /><param name=\"autostart\" value=\"$auto\" /><embed width=\"$width\" height=\"$height\" type=\"application/x-mplayer2\" src=\"$wmvurl\"></embed></object><script language=\"javascript\">function FullScreenW(){document.PlayerW.DisplaySize = 3;}</script><input type=\"button\" onclick=\"javascript:FullScreenW()\" value=\"$codelang[full_screen]\"> ";
 	}
 	function flaplayer($flaurl,$width='420',$height='320',$nofla = null){
-		global $codelang,$very;
+		global $codelang,$sys;
 
 		if (!empty($nofla)) {
-			return "<img src=\"$very[blog_url]/image/default/music.gif\" align=\"absbottom\"> <a href=\"$flaurl\" target=\"_blank\">flash: $flaurl</a>";
+			return "<img src=\"$sys[blog_url]/image/default/music.gif\" align=\"absbottom\"> <a href=\"$flaurl\" target=\"_blank\">flash: $flaurl</a>";
 		} else {
 			return "<object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" width=\"$width\" height=\"$height\"><param name=\"movie\" value=\"$flaurl\" /><param name=\"quality\" value=\"high\" /><embed src=\"$flaurl\" quality=\"high\" type=\"application/x-shockwave-flash\" width=\"$width\" height=\"$height\"></embed></object>[<a href=\"$flaurl\" target=\"_blank\">$codelang[full_screen]</a>] ";
 		}
@@ -566,9 +566,9 @@ class BlogCode {
 		return "<\twind_code_$code_num\t>";
 	}
 	function nopic($url){
-		global $very;
+		global $sys;
 		$code_num++;
-		$code_htm[0][$code_num] = "<img src=\"$very[blog_url]/image/default/img.gif\" align=\"absbottom\" border=\"0\" /> <a href=\"$url\" target=\"_blank\">img: $url</a>";
+		$code_htm[0][$code_num] = "<img src=\"$sys[blog_url]/image/default/img.gif\" align=\"absbottom\" border=\"0\" /> <a href=\"$url\" target=\"_blank\">img: $url</a>";
 		return "<\twind_code_$code_num\t>";
 	}
 	function cvpic($url,$picwidth = null,$picheight = null,$type = null,$descrip = null){

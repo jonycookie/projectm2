@@ -5,19 +5,19 @@ require_once(W_P.'global.php');
 require_once(D_P.'data/cache/cate.php');
 require_once(R_P.'require/chinese.php');
 require_once(R_P.'wap/wap_mod.php');
-$very['gzip'] == 1 && function_exists('ob_gzhandler') ? ob_start('ob_gzhandler') : ob_start();
+$sys['gzip'] == 1 && function_exists('ob_gzhandler') ? ob_start('ob_gzhandler') : ob_start();
 $tplpath = 'wap';
-if(!$very['wapifopen']){
+if(!$sys['wapifopen']){
 	wap_msg('wap_closed');
 }
-if($very['lang'] != 'utf8'){
-	$chs = new Chinese('UTF8',$very['lang']);
+if($sys['lang'] != 'utf8'){
+	$chs = new Chinese('UTF8',$sys['lang']);
 	foreach($_POST as $key=>$value){
 		//$$key=$chs->Convert($$key);
 		$_POST[$key] = $chs->Convert($value);
 	}
 }
-$wapcids = explode(',',$very['wapcids']);
+$wapcids = explode(',',$sys['wapcids']);
 
 /**
  * 验证cid的合法性

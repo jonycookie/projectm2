@@ -2,12 +2,12 @@
 !defined('IN_CMS') && die('Forbidden');
 require_once(D_P.'data/cache/cate.php');
 require_once(D_P.'data/cache/field.php');
-$very['aggreblog'] && require_once(R_P.'require/class_blog.php');
-$very['aggrebbs'] &&	require_once(R_P.'require/class_bbs.php');
+$sys['aggreblog'] && require_once(R_P.'require/class_blog.php');
+$sys['aggrebbs'] &&	require_once(R_P.'require/class_bbs.php');
 require_once(R_P.'require/class_ajax.php');
 
 /**
- * VeryCMS的最主要的类之一：输出类
+ * CMS的最主要的类之一：输出类
  * 本类负责读取所有内容
  * @example $cms->thread("mid:1;cid:1;num:1,10;where:photo!='';order:postdate DESC");
  * ;分号区别每一个参数
@@ -154,7 +154,7 @@ class Cms {
 		if(!in_array('num',$allKeys)) throwError('cms_nonum');
 		$this->mid = intval($this->parameter['mid']);
 
-		$sqlcache = intval($GLOBALS['very']['sqlcache'])*60;
+		$sqlcache = intval($GLOBALS['sys']['sqlcache'])*60;
 		if($sqlcache && $this->mid>0 && strpos($this->parameter['num'],"page-")===false && (SCR == 'index' || SCR == 'view'|| !defined('IN_ADMIN'))){
 			//发布首页的时候 或者 内容更新的时候
 			global $sqlcachefile;
@@ -241,7 +241,7 @@ class Cms {
 	 * @return string
 	 */
 	function getListUrl($cid){
-		global $very;
+		global $sys;
 		$m = $this->catedb[$cid];
 		if($m['listpub'] && $m['listurl']){
 			$m['url']=$m['listurl'];
@@ -257,7 +257,7 @@ class Cms {
 	 * @return array
 	 */
 	function readArticle(){ //读取文章
-		global $db,$very;
+		global $db,$sys;
 		$this->selectTable();
 		if($this->cids){
 			$cids = implode(',',$this->cids);
@@ -315,7 +315,7 @@ class Cms {
 				$threaddb['url'] = $threaddb['linkurl']; //如果存在链接
 			}else{
 				if($this->catedb[$threaddb['cid']]['htmlpub'] && $threaddb['url']){
-					$threaddb['url']=$threaddb['ifpub']==1 ? "$very[htmdir]/$threaddb[url]" : '';
+					$threaddb['url']=$threaddb['ifpub']==1 ? "$sys[htmdir]/$threaddb[url]" : '';
 				}else{
 					$threaddb['url']=$threaddb['ifpub']==1 ? "view.php?tid=".$threaddb['tid']."&cid=".$threaddb['cid'] : '';
 				}
@@ -373,7 +373,7 @@ class Cms {
 	 */
 	function readbbs(){ //读取bbs板块
 		global $bbs;
-		if (!$GLOBALS['very']['aggrebbs']) {
+		if (!$GLOBALS['sys']['aggrebbs']) {
 			return array();
 		}
 		$bbsCids = explode(',',$this->parameter['cid']);
@@ -385,7 +385,7 @@ class Cms {
 			if(is_object($bbs)){
 				$this->bbs = $bbs;
 			}else{
-				$bbs = $this->bbs = newBBS($GLOBALS['very']['bbs_type']);
+				$bbs = $this->bbs = newBBS($GLOBALS['sys']['bbs_type']);
 			}
 		}
 		$this->bbs->onlyimg=0; //允许只调用有图片的文章
@@ -418,7 +418,7 @@ class Cms {
 	function readblog()
 	{
 		global $blog;
-		if (!$GLOBALS['very']['aggreblog'])
+		if (!$GLOBALS['sys']['aggreblog'])
 		{
 			return array();
 		}
@@ -429,7 +429,7 @@ class Cms {
 		if(is_object($blog)){
 			$this->blog = $blog;
 		}else{
-			$blog = $this->blog = newBlog($GLOBALS['very']['blog_type']);
+			$blog = $this->blog = newBlog($GLOBALS['sys']['blog_type']);
 		}
 		$this->blog->onlyimg=0; //允许只调用有图片的文章
 		if($this->parameter['where']=="photo!=''"){
@@ -461,7 +461,7 @@ class Cms {
 	 */
 	function countPage()
 	{
-		global $very;
+		global $sys;
 		$page = ($this->start/$this->displaynum)+1;
 		$htmlpage = 0;
 		if($this->pageurl){
@@ -490,8 +490,8 @@ class Cms {
 		}
 		$numofpage	= ceil($total/$this->displaynum);
 		if($htmlpage){ //静态分页
-			//if($very['listpage'] && $numofpage>$very['listpage']) $numofpage=$very['listpage'];
-			//$pages = $this->htmlPage($page,$numofpage,$very['listpage']);
+			//if($sys['listpage'] && $numofpage>$sys['listpage']) $numofpage=$sys['listpage'];
+			//$pages = $this->htmlPage($page,$numofpage,$sys['listpage']);
 			$pages = $this->htmlPage($page,$numofpage);
 			if($page<$numofpage){
 				$this->autoRun=1;  //需要继续生成
@@ -514,24 +514,24 @@ class Cms {
 	 * @return string
 	 */
 	function htmlPage($page,$numofpage,$max=0){ //静态自动分页处理
-		global $very,$catedb,$cid;
+		global $sys,$catedb,$cid;
 		$url = $this->listurl;
 		if(!$url && $cid && $catedb[$cid]['listurl']) {
 			$url = $catedb[$cid]['listurl'];
 		}
-		strpos($url,'http://')===false && $url = $very['url'].'/'.$url;
+		strpos($url,'http://')===false && $url = $sys['url'].'/'.$url;
 		$url_ext 	= end(explode('.',$url));
 		$cid		= $GLOBALS['cid'];
 		$ext_len	= strlen($url_ext)+1;
 		$name_s 	= substr($url,0,-$ext_len); //截取掉.htm / .html
 		$total 		= $numofpage;
 		$max && $numofpage > $max && $numofpage=$max;
-		if($very['listpage']) {
-			if($page <= $very['listpage']) {
+		if($sys['listpage']) {
+			if($page <= $sys['listpage']) {
 				$minpos = 1;
-				$maxpos = $very['listpage'];
+				$maxpos = $sys['listpage'];
 			}else {
-				$position	= ($page-$very['listpage'])%5;
+				$position	= ($page-$sys['listpage'])%5;
 				$position	= $position ? $position:5;
 				$minpos		= $page+1-$position;
 				$maxpos		= $page+5-$position;
@@ -548,12 +548,12 @@ class Cms {
 				if($i==1){
 					$thepage = $url;
 				}else{
-					if($very['listpage']) {
+					if($sys['listpage']) {
 						if(!defined('IN_ADMIN') && !defined('UPDATE')) {
-							$thepage = $very['url']."/list.php?cid=".$cid."&page=".$i;
+							$thepage = $sys['url']."/list.php?cid=".$cid."&page=".$i;
 						}else {
 							if($i>$maxpos) {
-								$thepage = $very['url']."/list.php?cid=".$cid."&page=".$i;
+								$thepage = $sys['url']."/list.php?cid=".$cid."&page=".$i;
 							}else {
 								$thepage = "{$name_s}_$i.{$url_ext}";
 							}
@@ -569,12 +569,12 @@ class Cms {
 			{
 				for($i=$page+1;$i<=$numofpage;$i++)
 				{
-					if($very['listpage']) {
+					if($sys['listpage']) {
 						if(!defined('IN_ADMIN') && !defined('UPDATE')) {
-							$thepage = $very['url']."/list.php?cid=".$cid."&page=".$i;
+							$thepage = $sys['url']."/list.php?cid=".$cid."&page=".$i;
 						}else {
 							if($i>$maxpos) {
-								$thepage = $very['url']."/list.php?cid=".$cid."&page=".$i;
+								$thepage = $sys['url']."/list.php?cid=".$cid."&page=".$i;
 							}else {
 								$thepage = "{$name_s}_$i.{$url_ext}";
 							}
@@ -587,12 +587,12 @@ class Cms {
 					if($flag==4) break;
 				}
 			}
-			if($very['listpage'] && $page<$numofpage && $numofpage>$very['listpage']) {
+			if($sys['listpage'] && $page<$numofpage && $numofpage>$sys['listpage']) {
 				if(!defined('IN_ADMIN') && !defined('UPDATE')) {
-					$lastpageurl = $very['url']."/list.php?cid=".$cid."&page=".$numofpage;
+					$lastpageurl = $sys['url']."/list.php?cid=".$cid."&page=".$numofpage;
 				}else {
 					if($i>$maxpos) {
-						$lastpageurl = $very['url']."/list.php?cid=".$cid."&page=".$numofpage;
+						$lastpageurl = $sys['url']."/list.php?cid=".$cid."&page=".$numofpage;
 					}else {
 						$lastpageurl = "{$name_s}_$numofpage.{$url_ext}";
 					}
@@ -600,7 +600,7 @@ class Cms {
 			}else {
 				$lastpageurl = "{$name_s}_$numofpage.{$url_ext}";
 			}
-			$pages.="<input type=\"text\" size=\"3\" onkeydown=\"javascript: if(event.keyCode==13){if(this.value<=1) return; location='$very[url]/list.php?cid=$cid&page='+this.value;return false;}\"><a href=\"$lastpageurl\" style=\"font-weight:bold\">&raquo;</a> Pages: ( $page/$total total )</div>";
+			$pages.="<input type=\"text\" size=\"3\" onkeydown=\"javascript: if(event.keyCode==13){if(this.value<=1) return; location='$sys[url]/list.php?cid=$cid&page='+this.value;return false;}\"><a href=\"$lastpageurl\" style=\"font-weight:bold\">&raquo;</a> Pages: ( $page/$total total )</div>";
 			return $pages;
 		}
 	}
@@ -613,7 +613,7 @@ class Cms {
 	 * @return array
 	 */
 	function notice($num1,$num2=''){
-		global $db,$very;
+		global $db,$sys;
 		//include(D_P.'data/cache/ext_config.php');
 		if($ext_config['notice']['ifopen']!==1){
 			return array();
@@ -676,19 +676,19 @@ class Cms {
 	}
 
 	function htmlDir($cid){
-		global $very,$timestamp;
+		global $sys,$timestamp;
 		if($this->catedb[$cid]['path']){
 			$filepath = $this->catedb[$cid]['path'].'/';
 		}else {
 			$filepath = $cid.'/';
 		}
 		if($this->mid<0){
-			$this->checkHtmlDir($very['htmdir'].'/'.$filepath);
+			$this->checkHtmlDir($sys['htmdir'].'/'.$filepath);
 			return $filepath;
 		}
 		//BBS,Blog调用类不生成分目录，因为没有数据入库
 
-		switch ($very['htmmkdir']){
+		switch ($sys['htmmkdir']){
 			case 1:
 				$mk = get_date($timestamp,'Y');
 				break;
@@ -710,10 +710,10 @@ class Cms {
 				break;
 		}
 		$filepath .= $mk;
-		$this->checkHtmlDir($very['htmdir'].'/'.$filepath);
-		/*		if(!is_dir(R_P.$very['htmdir'].'/'.$filepath)){
-		mkdir(R_P.$very['htmdir'].'/'.$filepath);
-		chmod(R_P.$very['htmdir'].'/'.$filepath,0777);
+		$this->checkHtmlDir($sys['htmdir'].'/'.$filepath);
+		/*		if(!is_dir(R_P.$sys['htmdir'].'/'.$filepath)){
+		mkdir(R_P.$sys['htmdir'].'/'.$filepath);
+		chmod(R_P.$sys['htmdir'].'/'.$filepath,0777);
 		}*/
 		return $filepath;
 	}
@@ -747,7 +747,7 @@ class Cms {
 	 * @return array
 	 */
 	function Tags($num1,$num2=''){
-		global $db,$very;
+		global $db,$sys;
 		if($num2){
 			$start = $num1 ? intval($num1)-1 : 0;
 			$end = intval($num2);
@@ -772,7 +772,7 @@ class Cms {
 	 * @return array
 	 */
 	function parseTids($tids,$num) {
-		global $very,$db;
+		global $sys,$db;
 		if(strpos($num,',')===false) {
 			$start	= 0;
 			$num	= (int) $num;
@@ -789,7 +789,7 @@ class Cms {
 					$contentlink['url'] = $contentlink['linkurl']; //如果存在链接
 				}else{
 					if($this->catedb[$contentlink['cid']]['htmlpub'] && $contentlink['url']){
-						$contentlink['url']=$contentlink['ifpub'] ? "$very[htmdir]/$contentlink[url]" : '';
+						$contentlink['url']=$contentlink['ifpub'] ? "$sys[htmdir]/$contentlink[url]" : '';
 					}else{
 						$contentlink['url']=$contentlink['ifpub'] ? "view.php?tid=".$contentlink['tid']."&cid=".$contentlink['cid'] : '';
 					}
@@ -871,7 +871,7 @@ class Cont extends Cms {
 	/* 下面方法用于显示单篇内容 */
 	function getone($cid,$tid,$page=1)
 	{
-		global $db,$very;
+		global $db,$sys;
 		$this->pageurl = '';
 		$this->cid = intval($cid);
 		$this->tid = intval($tid);
@@ -880,12 +880,12 @@ class Cont extends Cms {
 
 		if($this->mid=='-2'){
 			if(!is_object($this->bbs)){
-				$this->bbs = newBBS($very['bbs_type']);
+				$this->bbs = newBBS($sys['bbs_type']);
 			}
 			return $this->bbs->getone($this->tid,$this->cid);
 		}elseif ($this->mid=='-1'){
 			if(!is_object($this->blog)){
-				$this->blog = newBlog($very['blog_type']);
+				$this->blog = newBlog($sys['blog_type']);
 			}
 			$this->blog->cid = $this->cid;
 			return $this->blog->getone($this->tid);
@@ -957,7 +957,7 @@ class Cont extends Cms {
 	}
 
 	function fpage($page,$count){
-		global $very;
+		global $sys;
 		!$page && $page = 1;
 		if(!$this->url){
 			if(function_exists('adminmsg')){return;}
@@ -970,7 +970,7 @@ class Cont extends Cms {
 				$preUrl	 = $prePage <= 1 ? $this->url.'&page=1' : $this->url.'&page='.$prePage;
 				$this->pageurl = $this->url.'&page='.$Page;
 				if($page>1){
-					$this->preUrl  = $very['url']."/".$preUrl;
+					$this->preUrl  = $sys['url']."/".$preUrl;
 					$str.="[<a href='$preUrl'>上一页</a>]";
 				}
 				for($i=1;$i<=$count;$i++){
@@ -982,7 +982,7 @@ class Cont extends Cms {
 					}
 				}
 				if($page<$count){
-					$this->nextUrl = $very['url']."/".$nextUrl;
+					$this->nextUrl = $sys['url']."/".$nextUrl;
 					$str.="[<a href='$nextUrl'>下一页</a>]";
 				}
 				return "<div style=\"float:right;\">$str</div>";
@@ -1004,7 +1004,7 @@ class Cont extends Cms {
 					$this->pageurl = $url_pre.'_'.$page.$url_ext;
 				}
 				if($page>1){
-					$this->preUrl  = $very['url']."/".$preUrl;
+					$this->preUrl  = $sys['url']."/".$preUrl;
 					$str.="[<a href='$preUrl'>上一页</a>]";
 				}
 				for($i=1;$i<=$count;$i++){
@@ -1020,7 +1020,7 @@ class Cont extends Cms {
 					}
 				}
 				if($page<$count){
-					$this->nextUrl = $very['url']."/".$nextUrl;
+					$this->nextUrl = $sys['url']."/".$nextUrl;
 					$str.="[<a href='$nextUrl'>下一页</a>]";
 				}
 				return "<div style=\"float:right;\">$str</div>";
@@ -1032,7 +1032,7 @@ class Cont extends Cms {
 	}
 
 	function getNext($postdate){ //获取下一篇内容
-		global $db,$very;
+		global $db,$sys;
 		$postdate = (int)$postdate;
 		if(!$postdate) {
 			$rs = $db->get_one("SELECT postdate FROM cms_contentindex WHERE tid='$this->tid'");
@@ -1045,9 +1045,9 @@ class Cont extends Cms {
 			}elseif($this->catedb[$this->cid]['htmlpub'] && !$this->catedb[$this->cid]['linkurl'] && $this->catedb[$this->cid]['type']){
 				if(!$rs['url']){
 					$rs['url'] = $this->htmlDir($this->cid);
-					$rs['url'] .= '/'.$rs['tid'].'.'.$very['htmext'];
+					$rs['url'] .= '/'.$rs['tid'].'.'.$sys['htmext'];
 				}
-				$rs['url'] = $very['htmdir']."/".$rs['url'];
+				$rs['url'] = $sys['htmdir']."/".$rs['url'];
 			}else{
 				$rs['url'] = 'view.php?tid='.$rs['tid'].'&cid='.$this->cid;
 			}
@@ -1058,7 +1058,7 @@ class Cont extends Cms {
 	}
 
 	function getPrev($postdate){ //前一篇内容
-		global $db,$very;
+		global $db,$sys;
 		$postdate = (int)$postdate;
 		if(!$postdate) {
 			$rs = $db->get_one("SELECT postdate FROM cms_contentindex WHERE tid='$this->tid'");
@@ -1071,9 +1071,9 @@ class Cont extends Cms {
 			}elseif($this->catedb[$this->cid]['htmlpub'] && !$this->catedb[$this->cid]['linkurl'] && $this->catedb[$this->cid]['type']){
 				if(!$rs['url']){
 					$rs['url'] = $this->htmlDir($this->cid);
-					$rs['url'] .= '/'.$rs['tid'].'.'.$very['htmext'];
+					$rs['url'] .= '/'.$rs['tid'].'.'.$sys['htmext'];
 				}
-				$rs['url'] = $very['htmdir']."/".$rs['url'];
+				$rs['url'] = $sys['htmdir']."/".$rs['url'];
 			}else{
 				$rs['url'] = 'view.php?tid='.$rs['tid'].'&cid='.$this->cid;
 			}
@@ -1084,13 +1084,13 @@ class Cont extends Cms {
 	}
 
 	function jsGetPrev($length) {
-		global $very;
-		 return "<script language=\"javascript\" src=\"$very[url]/update.php?type=getprev&tid=$this->tid&cid=$this->cid&length=$length\"></script>";
+		global $sys;
+		 return "<script language=\"javascript\" src=\"$sys[url]/update.php?type=getprev&tid=$this->tid&cid=$this->cid&length=$length\"></script>";
 	}
 
 	function jsGetNext($length) {
-		global $very;
-		 return "<script language=\"javascript\" src=\"$very[url]/update.php?type=getnext&tid=$this->tid&cid=$this->cid&length=$length\"></script>";
+		global $sys;
+		 return "<script language=\"javascript\" src=\"$sys[url]/update.php?type=getnext&tid=$this->tid&cid=$this->cid&length=$length\"></script>";
 	}
 
 	/**
@@ -1101,7 +1101,7 @@ class Cont extends Cms {
 	 */
 	function getTags()
 	{
-		global $db,$very;
+		global $db,$sys;
 		$rs = $db->query("SELECT * FROM cms_contenttag t LEFT JOIN cms_tags s USING(tagid) WHERE t.tid='$this->tid' ");
 		$tagsInfo	= array();
 		$tagids		= array();
@@ -1117,8 +1117,8 @@ class Cont extends Cms {
 
 	function getLinks($tagids)
 	{
-		global $db,$very;
-		$num = $very['linksnum'];
+		global $db,$sys;
+		$num = $sys['linksnum'];
 		$tagids = implode(',',$tagids);
 		!$num && $num=5; //相关文章调用数目
 		$sqlnum = $num*2;
@@ -1132,7 +1132,7 @@ class Cont extends Cms {
 			if($lk['linkurl']){
 				$lk['url'] = $lk['linkurl'];
 			}elseif($lk['url']){
-				$lk['url'] = $very['htmdir'].'/'.$lk['url'];
+				$lk['url'] = $sys['htmdir'].'/'.$lk['url'];
 			}else {
 				$lk['url'] = 'view.php?tid='.$lk['tid'].'&cid='.$lk['cid'];
 			}

@@ -6,7 +6,7 @@ require_once(D_P.'data/cache/field.php');
 require_once(R_P.'require/class_content.php');
 
 /**
- * VeryCMS的最主要的类之一：操作类
+ * CMS的最主要的类之一：操作类
  * 本类负责所有内容的群体/单体操作管理：发布静态、更新静态、删除静态等
  *
  * @copyright PHPWind
@@ -149,7 +149,7 @@ class Action
 	 *
 	 */
 	function move(){
-		global $db,$very;
+		global $db,$sys;
 		set_time_limit(0);
 		$this->siftTid();
 		$tids = implode(',',$this->tids);
@@ -174,7 +174,7 @@ class Action
 	 *
 	 */
 	function delete($destroy=0){
-		global $very,$db,$_OUTPUT,$bbs,$blog,$cms;
+		global $sys,$db,$_OUTPUT,$bbs,$blog,$cms;
 		set_time_limit(0);
 		$this->siftTid();
 		$cid = $this->fromCid;
@@ -246,7 +246,7 @@ class Action
 			foreach($refurbish as $p){
 				if(!$p['ifpub'] || $p['linkurl']) continue;
 				if(empty($p['url'])){
-					$p['url'] = $filepath.'/'.$p['tid'].'.'.$very['htmext'];
+					$p['url'] = $filepath.'/'.$p['tid'].'.'.$sys['htmext'];
 				}
 				$urlinfo = pathinfo($p['url']);
 				$old_dir = current(explode('/',$p['url']));
@@ -255,7 +255,7 @@ class Action
 				if($old_dir!=$new_dir){
 					$p['url'] = $filepath.'/'.$urlinfo['basename'];
 				}else{
-					$this->checkHtmlDir($very['htmdir'].'/'.$urlinfo['dirname']);
+					$this->checkHtmlDir($sys['htmdir'].'/'.$urlinfo['dirname']);
 				}
 				$fpageurl = $this->createHtml($p['tid'],$cid,$p['url'],$p['fpage']);
 				$db->update("UPDATE cms_contentindex SET url='$p[url]',fpageurl='$fpageurl' WHERE tid='$p[tid]'");
@@ -315,14 +315,14 @@ class Action
 	 *
 	 */
 	function pubindex(){
-		global $fielddb,$moduledb,$catedb,$very,$db,$_OUTPUT,$bbs,$blog,$cms,$extend;
+		global $fielddb,$moduledb,$catedb,$sys,$db,$_OUTPUT,$bbs,$blog,$cms,$extend;
 		extract($GLOBALS, EXTR_SKIP);
 		$_OUTPUT = '';
 		require(R_P.'index.php');
-		if ($very['indexupdate']){
+		if ($sys['indexupdate']){
 			$_OUTPUT .= "\n<script src='update.php?type=index'></script>";
 		}
-		if(!writeover(R_P.'index.'.$very['htmext'],$_OUTPUT)){
+		if(!writeover(R_P.'index.'.$sys['htmext'],$_OUTPUT)){
 			Showmsg('pub_writeindexfail');
 		}
 
@@ -333,7 +333,7 @@ class Action
 	 *
 	 */
 	function publist(){
-		global $fielddb,$moduledb,$catedb,$very,$_OUTPUT,$db,$page,$bbs,$blog,$cms,$extend;
+		global $fielddb,$moduledb,$catedb,$sys,$_OUTPUT,$db,$page,$bbs,$blog,$cms,$extend;
 		set_time_limit(0);
 		extract($GLOBALS, EXTR_SKIP);
 		$cid = $this->fromCid;
@@ -345,8 +345,8 @@ class Action
 			}else {
 				$filepath = $cid.'/';
 			}
-			$this->checkHtmlDir($very['htmdir'].'/'.$filepath);
-			$listurl = $very['htmdir'].'/'.$filepath.'index.'.$very['htmext'];
+			$this->checkHtmlDir($sys['htmdir'].'/'.$filepath);
+			$listurl = $sys['htmdir'].'/'.$filepath.'index.'.$sys['htmext'];
 			$pageurl = $listurl; //首页地址
 			/* 列表页自动分页处理 */
 			if(!is_numeric($page) || $page<=0){
@@ -354,7 +354,7 @@ class Action
 			}
 			$page = intval($page);
 			if($page > 1){
-				$listurl = $very['htmdir'].'/'.$filepath.'index_'.$page.'.'.$very['htmext'];
+				$listurl = $sys['htmdir'].'/'.$filepath.'index_'.$page.'.'.$sys['htmext'];
 			}
 			require(R_P.'list.php');
 			if($this->catedb[$cid]['autoupdate']){
@@ -376,11 +376,11 @@ class Action
 	 *
 	 */
 	function pubview(){
-		global $fielddb,$moduledb,$catedb,$very,$_OUTPUT,$db,$timestamp,$bbs,$blog,$cms,$extend;
+		global $fielddb,$moduledb,$catedb,$sys,$_OUTPUT,$db,$timestamp,$bbs,$blog,$cms,$extend;
 		set_time_limit(0);
 		$this->siftTid();
 		extract($GLOBALS, EXTR_SKIP);
-		!$very['htmext'] && $very['htmext']='html';
+		!$sys['htmext'] && $sys['htmext']='html';
 		$cid	= $this->fromCid;
 		$mid	= $this->mid;
 		//栏目静态发布目录
@@ -400,13 +400,13 @@ class Action
 				$articles[$tid] = $p;
 			}
 			if($htmltids) {
-				$db->update("UPDATE cms_contentindex SET url=CONCAT('$filepath','/',tid,'.','$very[htmext]') WHERE tid IN($htmltids) AND cid='$this->fromCid'");
+				$db->update("UPDATE cms_contentindex SET url=CONCAT('$filepath','/',tid,'.','$sys[htmext]') WHERE tid IN($htmltids) AND cid='$this->fromCid'");
 			}
 			foreach($articles as $tid=>$p) {
 				$filename = $fpageurl = '';
 				if($this->catedb[$cid]['htmlpub'] && !$p['linkurl'] && $this->catedb[$cid]['type']){
 					//如果本栏目生成静态且该内容不是一个外部链接
-					$filename = $filepath.'/'.$tid.'.'.$very['htmext'];
+					$filename = $filepath.'/'.$tid.'.'.$sys['htmext'];
 					$fpageurl = $this->createHtml($tid,$cid,$filename,$p['fpage']);
 				}
 				$db->update("UPDATE cms_contentindex SET url='$filename',ifpub=1,fpageurl='$fpageurl' WHERE tid='$p[tid]'");
@@ -415,13 +415,13 @@ class Action
 			$db->update("UPDATE cms_category SET new=new-$total WHERE cid='$cid'");
 		}elseif ($mid < 0){
 //			foreach($this->tids as $tid) {
-//				$filename = D_P.$very['htmdir'].'/'.$filepath.$tid.'.'.$very['htmext'];
+//				$filename = D_P.$sys['htmdir'].'/'.$filepath.$tid.'.'.$sys['htmext'];
 //				if(!writeover($filename,"")){
 //					return false;
 //				}
 //			}
 			foreach ($this->tids as $tid){
-				$filename = $filepath.'/'.$tid.'.'.$very['htmext'];
+				$filename = $filepath.'/'.$tid.'.'.$sys['htmext'];
 				$this->createHtml($tid,$cid,$filename);
 			}
 		}
@@ -432,7 +432,7 @@ class Action
 	 *
 	 */
 	function pubupdate(){
-		global $db,$very,$_OUTPUT,$bbs,$blog,$cms,$extend;
+		global $db,$sys,$_OUTPUT,$bbs,$blog,$cms,$extend;
 		$this->siftTid();
 		extract($GLOBALS, EXTR_SKIP);
 		$tids = implode(',',$this->tids);
@@ -444,7 +444,7 @@ class Action
 			if($this->catedb[$cid]['htmlpub']){
 				$filepath = $this->htmlDir($cid);
 				foreach ($this->tids as $tid){
-					$filename = $filepath.'/'.$tid.'.'.$very['htmext'];
+					$filename = $filepath.'/'.$tid.'.'.$sys['htmext'];
 					$this->unlinkHtml($filename);
 				}
 			}
@@ -457,7 +457,7 @@ class Action
 			while ($p = $db->fetch_array($rs)){
 				if($p['ifpub']!='1' || $p['linkurl']) continue;//要把外部链接内容和未发布的内容排除在外
 				if(empty($p['url'])){ //过去不存在文件地址，则要新构造
-					$p['url'] = $filepath.'/'.$p['tid'].'.'.$very['htmext'];
+					$p['url'] = $filepath.'/'.$p['tid'].'.'.$sys['htmext'];
 				}
 				$urlinfo = pathinfo($p['url']);
 				$old_dir = current(explode('/',$p['url']));
@@ -466,7 +466,7 @@ class Action
 				if($old_dir!=$new_dir){ //说明栏目静态文件发布点已经改变
 					$p['url'] = $filepath.'/'.$urlinfo['basename']; //新的文件地址
 				}else{ //发布点未改变时检查其目录是否还存在
-					$this->checkHtmlDir($very['htmdir'].'/'.$urlinfo['dirname']);
+					$this->checkHtmlDir($sys['htmdir'].'/'.$urlinfo['dirname']);
 				}
 				$fpageurl = $this->createHtml($p['tid'],$cid,$p['url'],$p['fpage']);
 
@@ -487,14 +487,14 @@ class Action
 	 * @return string $fpageurl 多页地址
 	 */
 	function createHtml($tid,$cid,$url,$fpage=0){
-		global $very,$_OUTPUT;
+		global $sys,$_OUTPUT;
 		extract($GLOBALS, EXTR_SKIP);
 		$page	= intval($page);
 		$script	= "\n<script src=\"update.php?type=click&tid=$tid&cid=$cid\"></script>";
 		if ($fpage){ //如果是需要进行分页处理的内容
 			$page		= 1;
 			$fpageurl	= array();
-			$contentUrl	= $very['htmdir'].'/'.$url;
+			$contentUrl	= $sys['htmdir'].'/'.$url;
 			do{
 				$_OUTPUT='';
 				require(R_P.'view.php');
@@ -510,7 +510,7 @@ class Action
 			$_OUTPUT='';
 			require(R_P.'view.php');
 			$_OUTPUT.=$script;
-			if(!writeover(D_P.$very['htmdir'].'/'.$url,$_OUTPUT)){
+			if(!writeover(D_P.$sys['htmdir'].'/'.$url,$_OUTPUT)){
 				Showmsg('pub_writehtmlfail');
 			}
 		}
@@ -524,17 +524,17 @@ class Action
 	 * @param string $urls
 	 */
 	function unlinkHtml($url,$urls){
-		global $very;
+		global $sys;
 		if($urls){ //删除多页
 			foreach (explode('|',$urls) as $url){
 				if(empty($url)) continue;
-//				$url = D_P.$very['htmdir'].'/'.$url;
+//				$url = D_P.$sys['htmdir'].'/'.$url;
 				$url = D_P.$url;
 				unlink($url);
 			}
 		}else{
 			if(empty($url)) return ;
-			$url = D_P.$very['htmdir'].'/'.$url;
+			$url = D_P.$sys['htmdir'].'/'.$url;
 			unlink($url);
 		}
 	}
@@ -544,7 +544,7 @@ class Action
 	 *
 	 */
 	function pubcacel(){
-		global $db,$very;
+		global $db,$sys;
 		$this->siftTid();
 		$tids = implode(',',$this->tids);
 		$mid = $this->mid;
@@ -552,7 +552,7 @@ class Action
 		if($mid<0){
 			$filepath = $this->htmlDir($cid);
 			foreach ($this->tids as $tid){
-				$filename = $filepath.'/'.$tid.'.'.$very['htmext'];
+				$filename = $filepath.'/'.$tid.'.'.$sys['htmext'];
 				$this->unlinkHtml($filename);
 			}
 		} else{
@@ -575,19 +575,19 @@ class Action
 	 * @return string
 	 */
 	function htmlDir($cid){
-		global $very,$timestamp;
+		global $sys,$timestamp;
 		if($this->catedb[$cid]['path']){
 			$filepath = $this->catedb[$cid]['path'].'/';
 		}else {
 			$filepath = $cid.'/';
 		}
 		if($this->mid<0){
-			$this->checkHtmlDir($very['htmdir'].'/'.$filepath);
+			$this->checkHtmlDir($sys['htmdir'].'/'.$filepath);
 			return $filepath;
 		}
 		//BBS,Blog调用类不生成分目录，因为没有数据入库
 
-		switch ($very['htmmkdir']){
+		switch ($sys['htmmkdir']){
 			case 1:
 				$mk = get_date($timestamp,'Y');
 				break;
@@ -609,10 +609,10 @@ class Action
 				break;
 		}
 		$filepath .= $mk;
-		$this->checkHtmlDir($very['htmdir'].'/'.$filepath);
-		/*		if(!is_dir(R_P.$very['htmdir'].'/'.$filepath)){
-		mkdir(R_P.$very['htmdir'].'/'.$filepath);
-		chmod(R_P.$very['htmdir'].'/'.$filepath,0777);
+		$this->checkHtmlDir($sys['htmdir'].'/'.$filepath);
+		/*		if(!is_dir(R_P.$sys['htmdir'].'/'.$filepath)){
+		mkdir(R_P.$sys['htmdir'].'/'.$filepath);
+		chmod(R_P.$sys['htmdir'].'/'.$filepath,0777);
 		}*/
 		return $filepath;
 	}
@@ -654,7 +654,7 @@ class Action
 	}
 /* 涉及到服务器负载问题，本功能不再使用
 	function pubreup(){
-		global $very,$db,$_OUTPUT,$bbs,$blog,$cms;
+		global $sys,$db,$_OUTPUT,$bbs,$blog,$cms;
 		$mid = $this->mid;
 		if ($mid<0) {
 			return ;
@@ -697,7 +697,7 @@ class Action
 			foreach($refurbish as $p){
 				if(!$p['ifpub'] || $p['linkurl']) continue;
 				if(empty($p['url'])){
-					$p['url'] = $filepath.'/'.$p['tid'].'.'.$very['htmext'];
+					$p['url'] = $filepath.'/'.$p['tid'].'.'.$sys['htmext'];
 				}
 				$urlinfo = pathinfo($p['url']);
 				$old_dir = current(explode('/',$p['url']));
@@ -706,7 +706,7 @@ class Action
 				if($old_dir!=$new_dir){
 					$p['url'] = $filepath.'/'.$urlinfo['basename'];
 				}else{
-					$this->checkHtmlDir($very['htmdir'].'/'.$urlinfo['dirname']);
+					$this->checkHtmlDir($sys['htmdir'].'/'.$urlinfo['dirname']);
 				}
 				$fpageurl = $this->createHtml($p['tid'],$cid,$p['url'],$p['fpage']);
 				$db->update("UPDATE cms_contentindex SET url='$p[url]',fpageurl='$fpageurl' WHERE tid='$p[tid]'");

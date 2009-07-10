@@ -77,7 +77,7 @@ class Recycle{
 	 *
 	 */
 	function Undo(){
-		global $very,$cid,$db,$catedb;
+		global $sys,$cid,$db,$catedb;
 		$tids = GetGP('tids');
 		$type = GetGP('type');
 		if($type=='all'){//还原回收站所有项目
@@ -124,7 +124,7 @@ class Recycle{
 	 *
 	 */
 	function Del(){
-		global $very,$cid,$db,$catedb;
+		global $sys,$cid,$db,$catedb;
 		$tids = GetGP('tids');
 		$type = GetGP('type');
 		if($type=='all'){//清空回收站所有项目

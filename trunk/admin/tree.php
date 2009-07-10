@@ -38,7 +38,7 @@ if(!$action){
 	adminbottom(0);
 }elseif ($action=='showXML'){
 	if($cid){
-		$xmlmsg = "<?xml version=\"1.0\" encoding=\"$very[lang]\"?>\n\t<tree>\n";
+		$xmlmsg = "<?xml version=\"1.0\" encoding=\"$sys[lang]\"?>\n\t<tree>\n";
 		if($admin_name==$manager|| !$admindb['privcate']){
 			$rs = $db->query("SELECT * FROM cms_category WHERE up='$cid'");
 		}else{

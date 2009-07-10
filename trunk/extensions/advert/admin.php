@@ -357,11 +357,11 @@ class Advert{
 	}
 
 	function JsShow($pid){
-		global $db,$basename,$action,$very;
+		global $db,$basename,$action,$sys;
 		$job = GetGP('job');
 		$rt = $db->get_one("SELECT jsname FROM cms_adposition WHERE pid='$pid'");
 		if($rt){
-			$url = $very['url']."/script/verycms/{$rt[jsname]}.js?cid=\$cid&tid=\$tid";
+			$url = $sys['url']."/script/cms/{$rt[jsname]}.js?cid=\$cid&tid=\$tid";
 			$jscode = "<script language=\"javascript\"  src=\"$url\"></script>";
 			require PrintExt('header');
 			require PrintExt('admin');

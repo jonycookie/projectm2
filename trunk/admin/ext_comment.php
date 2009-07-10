@@ -64,7 +64,7 @@ class CommentManage{
 	}
 
 	function ShowComment(){
-		global $db,$very,$basename,$action;
+		global $db,$sys,$basename,$action;
 		$page = (int)GetGP('page');
 		$rt = $db->get_one("SELECT COUNT(*) AS total FROM cms_comment WHERE mid='$this->mid'");
 		$total = $rt['total'];
@@ -77,7 +77,7 @@ class CommentManage{
 		$result = array();
 		while ($com = $db->fetch_array($rs)) {
 			if($this->catedb[$cid]['htmlpub']){
-				$com['url']=$very['htmdir'].'/'.$com['url'];
+				$com['url']=$sys['htmdir'].'/'.$com['url'];
 			}else{
 				$com['url']='view.php?tid='.$com['tid'].'&cid='.$com['cid'];
 			}
@@ -120,7 +120,7 @@ class CommentManage{
 	}
 
 	function Search() {
-		global $db,$very,$basename,$action;
+		global $db,$sys,$basename,$action;
 		$tid = (int)GetGP('tid');
 		$page = (int)GetGP('page');
 		$rt = $db->get_one("SELECT COUNT(*) AS total FROM cms_comment WHERE tid='$tid'");
@@ -134,7 +134,7 @@ class CommentManage{
 		$result = array();
 		while ($com = $db->fetch_array($rs)) {
 			if($this->catedb[$cid]['htmlpub']){
-				$com['url']=$very['htmdir'].'/'.$com['url'];
+				$com['url']=$sys['htmdir'].'/'.$com['url'];
 			}else{
 				$com['url']='view.php?tid='.$com['tid'].'&cid='.$com['cid'];
 			}
@@ -150,13 +150,13 @@ class CommentManage{
 	}
 
 	function ShowFace(){
-		global $db,$action,$basename,$very;
+		global $db,$action,$basename,$sys;
 		$rs = $db->query("SELECT * FROM cms_commentface ORDER BY taxis DESC,id");
 		$smiles_new = $smiles_old = $result = array();
 		$picext = array("gif","bmp","jpeg","jpg","png");
 		while ($face = $db->fetch_array($rs)) {
 			$smiles_old[] = $face['facepath'];
-			$face['facepath']=$very['url']."/".$this->basedir.$face['facepath'];
+			$face['facepath']=$sys['url']."/".$this->basedir.$face['facepath'];
 			$result[] = $face;
 		}
 		$fp=opendir(R_P."/".$this->basedir);

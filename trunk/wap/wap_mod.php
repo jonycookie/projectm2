@@ -6,15 +6,15 @@ function wap_header($id,$title,$url="",$t=""){
 	require PrintEot('wap_header');
 }
 function wap_footer(){
-	global $very;
+	global $sys;
 	require_once PrintEot('wap_footer');
 	$output = trim(str_replace(array('<!--<!---->','<!---->',"\r"),'',ob_get_contents()),"\n");
-	if($very['lang'] != 'utf8'){
-		$chs = new Chinese($very['lang'],($very['wapcharset'] ? 'UTF8' : 'UNICODE'));
+	if($sys['lang'] != 'utf8'){
+		$chs = new Chinese($sys['lang'],($sys['wapcharset'] ? 'UTF8' : 'UNICODE'));
 		$output=$chs->Convert($output);
 	}
 	ob_end_clean();
-	$very['gzip'] == 1 && function_exists('ob_gzhandler') ? ob_start('ob_gzhandler') : ob_start();
+	$sys['gzip'] == 1 && function_exists('ob_gzhandler') ? ob_start('ob_gzhandler') : ob_start();
 	echo $output;
 	flush;
 	exit;
@@ -24,10 +24,10 @@ function wap_output($output){
 }
 function wap_msg($msg,$url="",$t="30"){
 	@extract($GLOBALS, EXTR_SKIP);
-	global $very;
+	global $sys;
 	ob_end_clean();
-	$very['gzip'] == 1 && function_exists('ob_gzhandler') ? ob_start('ob_gzhandler') : ob_start();
-	wap_header('msg',$very['title'],$url,$t);
+	$sys['gzip'] == 1 && function_exists('ob_gzhandler') ? ob_start('ob_gzhandler') : ob_start();
+	wap_header('msg',$sys['title'],$url,$t);
 	require GetLang('error');
 	$lang[$msg] && $msg=$lang[$msg];
 	wap_output("<p>$msg</p>\n");

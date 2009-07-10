@@ -5,7 +5,7 @@ if(!in_array($prog,array('index','cate','phone'))){
 	$prog = 'index';
 }
 
-wap_header('index',$very['title']);
+wap_header('index',$sys['title']);
 
 if($prog=='cate'){
 	$cids	= array();

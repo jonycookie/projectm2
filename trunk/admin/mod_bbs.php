@@ -3,8 +3,8 @@
 
 $step = GetGP('step');
 if(!$step){
-	ifcheck($very['aggrebbs'],'aggrebbs');
-	ifcheck($very['bbs_htmifopen'],'bbs_htmifopen');
+	ifcheck($sys['aggrebbs'],'aggrebbs');
+	ifcheck($sys['bbs_htmifopen'],'bbs_htmifopen');
 	if ($fp = opendir(R_P.'combine/bbs')) {
 		$bbstype = array();
 		while (($extdir = readdir($fp))) {
@@ -23,7 +23,7 @@ if(!$step){
 	foreach ($bbstype as $type){
 		$bbsSelect .= "<option value=\"$type\">$type</option>";
 	}
-	$bbsSelect = str_replace("value=\"$very[bbs_type]\"","value=\"$very[bbs_type]\" selected",$bbsSelect);
+	$bbsSelect = str_replace("value=\"$sys[bbs_type]\"","value=\"$sys[bbs_type]\" selected",$bbsSelect);
 }elseif($step==2){
 	$config = GetGP('config');
 	if($config['aggrebbs']){
@@ -50,7 +50,7 @@ if(!$step){
 	$cache = new Cache();
 	$cache->config();
 	require(D_P.'data/cache/config.php');
-	$very['aggrebbs'] && $cache->bbs_config();
+	$sys['aggrebbs'] && $cache->bbs_config();
 	adminmsg('operate_success');
 }
 require PrintEot('header');

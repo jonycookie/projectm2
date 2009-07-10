@@ -3,7 +3,7 @@ if(!$action || $action =="view"){
 print <<<EOT
 -->
 <script language="javascript">
-var path = '$very[url]/$very[attachdir]';
+var path = '$sys[url]/$sys[attachdir]';
 var _img = null;
 
 function showpic(filepath){
@@ -182,7 +182,7 @@ function hideQuote(){
 <script type="text/javascript">
 sBrowseCaption='浏览文件';
 sRemoveToolTip='Remove from queue';
-var facncy 	= '$very[hash]';
+var facncy 	= '$sys[hash]';
 var meloader = null;
 window.addEvent('load', function(){
 var uploader = new FancyUpload($('file-upload'), {

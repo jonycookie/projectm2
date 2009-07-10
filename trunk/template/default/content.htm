@@ -114,10 +114,10 @@ function anchor(anId){
 var preUrl  = "$view[preUrl]";
 var nextUrl = "$view[nextUrl]";
 if (preUrl.indexOf('http')==-1) {
-	preUrl	= "$very[url]/"+ preUrl;
+	preUrl	= "$sys[url]/"+ preUrl;
 }
 if (nextUrl.indexOf('http')==-1) {
-	nextUrl	= "$very[url]/"+ nextUrl;
+	nextUrl	= "$sys[url]/"+ nextUrl;
 }
 document.onkeydown=function nextpage(event) {
 	var nowevent = window.event || event;

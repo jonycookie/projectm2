@@ -10,7 +10,7 @@ if($a_type=='bakout'){//备份数据
 	} else{
 		InitGP(array('tabledb','tablesel','start','tableid','sizelimit','step','pre','tablesel','rows'));
 		$writedata = '';
-		$bak = "#\n# VeryCMS Backup\n# Version:".$wind_version."\n# Time: ".get_date($timestamp,'Y-m-d H:i')."\n# Type: \n# PHPWind: http://www.phpwind.net\n# --------------------------------------------------------\n\n\n";
+		$bak = "#\n# CMS Backup\n# Version:".$wind_version."\n# Time: ".get_date($timestamp,'Y-m-d H:i')."\n# Type: \n# PHPWind: http://www.phpwind.net\n# --------------------------------------------------------\n\n\n";
 		$start = intval($start);
 		!$tabledb && !$tablesel && adminmsg('operate_error');
 		!$tabledb && $tabledb = explode("|",$tablesel);

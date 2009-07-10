@@ -81,7 +81,7 @@ if(!$step){
 		'attachment/temp',
 		'attachment/s',
 		'www',
-		'script/verycms',
+		'script/cms',
 	);
 
 	$msg = array();
@@ -183,7 +183,7 @@ $lang[dbcharset]
 		$REQUEST_URI=$_SERVER['PHP_SELF'] ? $_SERVER['PHP_SELF'] : $_SERVER['SCRIPT_NAME'];
 	}
 	$wwwurl='http://'.$_SERVER['HTTP_HOST'].substr($REQUEST_URI,0,strrpos($REQUEST_URI,'/'));
-	$db->update("REPLACE INTO `cms_config` VALUES ('db_title', 'VeryCMS v3.3', '');");
+	$db->update("REPLACE INTO `cms_config` VALUES ('db_title', 'CMS v3.3', '');");
 	$db->update("REPLACE INTO `cms_config` VALUES ('db_url', '$wwwurl', '')");
 	$db->update("REPLACE INTO `cms_config` VALUES ('db_contact', 'mailto:admin@admin.com', '')");
 	$db->update("REPLACE INTO `cms_config` VALUES ('db_hash', '$db_hash', '')");
@@ -287,9 +287,9 @@ function writeover($filename,$data,$method="rb+"){
 	}
 }
 function GetLang($filename){
-	global $very;
-	empty($very['lang']) && $very['lang']='utf-8';
-	return R_P."lang/$very[lang]/$filename.php";
+	global $sys;
+	empty($sys['lang']) && $sys['lang']='utf-8';
+	return R_P."lang/$sys[lang]/$filename.php";
 }
 function Promptmsg($msg,$tostep=null){
 	@extract($GLOBALS, EXTR_SKIP);

@@ -44,21 +44,21 @@ class Blog{
 	 *
 	 */
 	function __construct(){
-		global $very;
-		if(!$very['aggreblog']) return ;
-		$this->config['dbname']		= $very['blog_dbname'];
-		$this->config['url']		= $very['blog_url'];
-		$this->config['type']		= $very['blog_type'];
-		$this->config['dbpre']		= $very['blog_dbpre'];
-		$this->config['attachdir']	= $very['blog_attachdir'];
-		$this->config['imgdir']		= $very['blog_imgdir'];
-		$this->config['charset']	= $very['blog_charset'];
+		global $sys;
+		if(!$sys['aggreblog']) return ;
+		$this->config['dbname']		= $sys['blog_dbname'];
+		$this->config['url']		= $sys['blog_url'];
+		$this->config['type']		= $sys['blog_type'];
+		$this->config['dbpre']		= $sys['blog_dbpre'];
+		$this->config['attachdir']	= $sys['blog_attachdir'];
+		$this->config['imgdir']		= $sys['blog_imgdir'];
+		$this->config['charset']	= $sys['blog_charset'];
 		if(eregi('^(http://)',$this->config['attachdir'])){
 			$this->config['attachurl'] = $this->config['attachdir'].'/';
 		}else{
 			$this->config['attachurl'] = $this->config['url'].'/'.$this->config['attachdir'].'/';
 		}
-		$this->mysql = new DB($very['blog_dbhost'],$very['blog_dbuser'],$very['blog_dbpw'],$very['blog_dbname'],$very['blog_charset'],0); //另外一个DB类的实例
+		$this->mysql = new DB($sys['blog_dbhost'],$sys['blog_dbuser'],$sys['blog_dbpw'],$sys['blog_dbname'],$sys['blog_charset'],0); //另外一个DB类的实例
 		//$this->setTableName();
 	}
 
@@ -120,13 +120,13 @@ class Blog{
 	 * @return array
 	 */
 	function readcache($filename,$cacheTime){
-		if(!$GLOBALS['very']['sqlcache']){
+		if(!$GLOBALS['sys']['sqlcache']){
 			return false;
 		}
-		if($GLOBALS['very']['querycache']){
+		if($GLOBALS['sys']['querycache']){
 			return false;
 		}else{
-			$cacheTime = $cacheTime ? intval($cacheTime)*60 : intval($GLOBALS['very']['sqlcache'])*60;
+			$cacheTime = $cacheTime ? intval($cacheTime)*60 : intval($GLOBALS['sys']['sqlcache'])*60;
 			if(file_exists($filename) && $GLOBALS['timestamp'] - filemtime($filename) < $cacheTime){
 				$str = readover($filename);
 				$str = unserialize($str);
@@ -144,10 +144,10 @@ class Blog{
 	 * @return array
 	 */
 	function writecache($filename,$info){
-		if(!$GLOBALS['very']['sqlcache']){
+		if(!$GLOBALS['sys']['sqlcache']){
 			return false;
 		}
-		if($GLOBALS['very']['querycache']){
+		if($GLOBALS['sys']['querycache']){
 			return false;
 		}else{
 			$filename = Pcv(D_P."data/sql/$filename.cache");

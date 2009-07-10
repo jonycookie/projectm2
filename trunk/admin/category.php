@@ -1,9 +1,9 @@
 <?php
 !defined('IN_ADMIN') && die('Forbidden');
 require_once(D_P.'data/cache/cate.php');
-if ($catedb[$cid]['mid']==-2 && $very['aggrebbs']){
+if ($catedb[$cid]['mid']==-2 && $sys['aggrebbs']){
 	require_once(R_P.'require/class_bbs.php');
-}elseif ($catedb[$cid]['mid']==-1 && $very['aggreblog']){
+}elseif ($catedb[$cid]['mid']==-1 && $sys['aggreblog']){
 	require_once(R_P.'require/class_blog.php');
 }
 if($admin_name!=$manager && $admindb['privcate'] && $cid && !in_array($cid,$admindb['privcate'])){
@@ -109,14 +109,14 @@ class Category{
 	}
 
 	function add(){ //添加新栏目
-		global $action,$basename,$very;
+		global $action,$basename,$sys;
 		$step = GetGP('step');
 		$up = GetGP('up');
 		if(!$step){
 			$mod_select='';
 			foreach ($this->moduledb as $key=>$m){
-				if(!$very['aggrebbs'] && $key==-2) continue;
-				if(!$very['aggreblog'] && $key==-1) continue;
+				if(!$sys['aggrebbs'] && $key==-2) continue;
+				if(!$sys['aggreblog'] && $key==-1) continue;
 				$mod_select.= "<option value=\"$key\">$m[mname]</option>";
 			}
 			require_once(R_P.'require/class_cate.php');
@@ -173,7 +173,7 @@ class Category{
 	}
 
 	function edit(){ //编辑栏目
-		global $db,$basename,$action,$cid,$very;
+		global $db,$basename,$action,$cid,$sys;
 		$step = GetGP('step');
 		$cateinfo = $db->get_one("SELECT * FROM cms_category WHERE cid='$cid'");
 		if(!$step){
@@ -182,12 +182,12 @@ class Category{
 				$mod_name = $this->moduledb[$mid]['mname'];
 				$mod_select = "<option value=\"$mid\" selected>$mod_name</option>";
 			}
-			if($very['aggrebbs'] && $mid=='-2'){
+			if($sys['aggrebbs'] && $mid=='-2'){
 				$bbsinfo=unserialize($addtion);
 				ifcheck($bbsinfo['viewtype'],'viewtype');
 				ifcheck($bbsinfo['digest'],'ifdigest');
 				ifcheck($bbsinfo['taxis'],'taxis');
-			}elseif ($very['aggreblog'] && $mid=='-1'){
+			}elseif ($sys['aggreblog'] && $mid=='-1'){
 				$bloginfo=unserialize($addtion);
 				ifcheck($bloginfo['viewtype'],'viewtype');
 				ifcheck($bloginfo['digest'],'ifdigest');
@@ -230,8 +230,8 @@ class Category{
 			$cache->singleCate($cid);
 			//如果动态改为静态，则需要重置所有内容为未发布
 			if($filepath!=$cateinfo['filepath'] && $cateinfo['filepath']){
-				$filepath = Pcv(R_P.$very['htmdir'].'/'.$filepath);
-				rename(R_P.$very['htmdir'].'/'.$cateinfo['filepath'],$filepath);
+				$filepath = Pcv(R_P.$sys['htmdir'].'/'.$filepath);
+				rename(R_P.$sys['htmdir'].'/'.$cateinfo['filepath'],$filepath);
 				//如果遇到更名，则更名
 			}
 			if($cateinfo['htmlpub'] == 0 && $htmlpub == 1 && $oldmodule>0){
@@ -247,7 +247,7 @@ class Category{
 	}
 
 	function saveCate(){ //栏目信息的存储过程
-		global $db,$action,$very,$user_tplpath;
+		global $db,$action,$sys,$user_tplpath;
 		extract($_POST,EXTR_SKIP);//
 		$sqladd ='';
 		empty($cname) && Showmsg('cate_nocname');
@@ -266,17 +266,17 @@ class Category{
 			$sqladd = ",link='$link',addtion=''";
 			$mid = 0; //如果是外部调用,mid设置为0
 		}elseif ($mid=='-2'){ //BBS调用
-			if (!$very['aggrebbs']) {
+			if (!$sys['aggrebbs']) {
 				Showmsg('mod_aggrebbs');
 			}
 			if($bbsinfo['fid'] && !ereg("^[0-9,]+$",$bbsinfo['fid'])) Showmsg('cate_fiderror');
 			$addtion = addslashes(serialize($bbsinfo));
 			$sqladd = ",link='',addtion='$addtion'";
 		}elseif ($mid=='-1'){ //Blog调用
-			if (!$very['aggreblog']) {
+			if (!$sys['aggreblog']) {
 				Showmsg('mod_aggreblog');
 			}
-			$blog = newBlog($very['blog_type']);
+			$blog = newBlog($sys['blog_type']);
 			if($bloginfo['fid'] && !ereg("^[0-9,]+$",$bloginfo['fid'])) Showmsg('cate_fiderror');
 			$blogfids = explode(',',$bloginfo['fid']);
 			foreach($blogfids as $key=>$val) {
@@ -338,15 +338,15 @@ class Category{
 				$filepath = $cid.'/';
 			}
 /*			if($listpub && $htmlpub){
-				if(!is_dir(R_P.$very['htmdir'].'/'.$filepath)){
-					mkdir(R_P.$very['htmdir'].'/'.$filepath);
-					chmod(R_P.$very['htmdir'].'/'.$filepath,0777);
-					@fclose(@fopen(R_P.$very['htmdir'].'/'.$filepath.'/index.html', 'w'));
-					@chmod(R_P.$very['htmdir'].'/'.$filepath.'/index.html', 0777);
+				if(!is_dir(R_P.$sys['htmdir'].'/'.$filepath)){
+					mkdir(R_P.$sys['htmdir'].'/'.$filepath);
+					chmod(R_P.$sys['htmdir'].'/'.$filepath,0777);
+					@fclose(@fopen(R_P.$sys['htmdir'].'/'.$filepath.'/index.html', 'w'));
+					@chmod(R_P.$sys['htmdir'].'/'.$filepath.'/index.html', 0777);
 				}
 			}*/
 			if($listpub){
-				$listurl = $filepath.'index.'.$very['htmext'];
+				$listurl = $filepath.'index.'.$sys['htmext'];
 			}else{
 				$listurl = '';
 			}
@@ -419,16 +419,16 @@ class Category{
 	}
 
 	function publist(){ //发表分类首页
-		global $cid,$page,$very;
+		global $cid,$page,$sys;
 		$page = GetGP('page');
 		require_once(R_P.'require/class_action.php');
 		$op = new Action('publist');
 		$op->cate($cid);
 		if($op->catedb[$cid]['listpub'] && !$continue && !$page){
 			if($op->catedb[$cid]['path']){
-				$filepath = $very['htmdir'].'/'.$op->catedb[$cid]['path'].'/';
+				$filepath = $sys['htmdir'].'/'.$op->catedb[$cid]['path'].'/';
 			}else {
-				$filepath = $very['htmdir'].'/'.$cid.'/';
+				$filepath = $sys['htmdir'].'/'.$cid.'/';
 			}
 			$fp = opendir(D_P.$filepath);
 			while ($filename = readdir($fp)) {
@@ -440,7 +440,7 @@ class Category{
 			closedir($fp);
 		}
 		$page = $op->doIt();
-		if($page && (!$very['listpage']||$page<=$very['listpage'])){
+		if($page && (!$sys['listpage']||$page<=$sys['listpage'])){
 			adminmsg('cate_publistcontinue',"$admin_file?adminjob=category&cid=$cid&action=publist&page=$page");
 		}else{
 			adminmsg('cate_publistok');
@@ -507,10 +507,10 @@ class Category{
 	}
 
 	function viewList(){ //查看列表首页
-		global $very;
+		global $sys;
 		$cid = intval($_GET['cid']);
 		if($this->catedb[$cid]['listpub']){
-			$jumpurl = $very['url'].'/'.$this->catedb[$cid]['listurl'];
+			$jumpurl = $sys['url'].'/'.$this->catedb[$cid]['listurl'];
 		}else{
 			$jumpurl = "list.php?cid=$cid";
 		}
@@ -521,11 +521,11 @@ class Category{
 	}
 
 	function getTids($cid,$step){ //根据步数来获取一段Tid进行操作
-		global $db,$very;
+		global $db,$sys;
 		!$cid && Showmsg('data_error');
 		$mid = $this->catedb[$cid]['mid'];
 		(!$step || $step<=0) && $step=1;
-		$opnum = $very['opnum'] ? intval($very['opnum']) : 50;
+		$opnum = $sys['opnum'] ? intval($sys['opnum']) : 50;
 		$start = ($step-1)*$opnum;
 
 		$bbsblogAction = array('publist','pubview','pubupdate');
@@ -536,7 +536,7 @@ class Category{
 			$cidInfo = unserialize(stripslashes($this->catedb[$cid]['addtion']));
 			!$cidInfo['viewtype'] && Showmsg('action_bbsorblog');
 //			$bbs = new BBS();
-			$bbs = newBBS($very['bbs_type']);
+			$bbs = newBBS($sys['bbs_type']);
 			$this->bbs->cid = $cid;
 			$bbs->readConfig($cidInfo);
 			$rs = $bbs->getThread($start,$opnum);
@@ -550,7 +550,7 @@ class Category{
 //			Showmsg('action_bbsorblog'); //当前不对Blog内容在CMS内生成页面
 			$cidInfo = unserialize(stripslashes($this->catedb[$cid]['addtion']));
 			!$cidInfo['viewtype'] && Showmsg('action_bbsorblog');
-			$blog = newBlog($very['blog_type']);
+			$blog = newBlog($sys['blog_type']);
 			$blog->readConfig($cidInfo);
 			$blogcategory = $cidInfo['fid'];
 			$rs = $blog->getBlog($blogcategory,$start,$opnum);
@@ -596,7 +596,7 @@ class Category{
 	}
 
 	function batpub(){
-		global $basename,$page,$cid,$very;
+		global $basename,$page,$cid,$sys;
 		$job  = GetGP('job');
 		$step = GetGP('step');
 		empty($job) && $job = 'list';
@@ -623,9 +623,9 @@ class Category{
 					$op->cate($cid);
 					if($op->catedb[$cid]['listpub'] && !$continue && !$page){
 						if($op->catedb[$cid]['path']){
-							$filepath = $very['htmdir'].'/'.$op->catedb[$cid]['path'].'/';
+							$filepath = $sys['htmdir'].'/'.$op->catedb[$cid]['path'].'/';
 						}else {
-							$filepath = $very['htmdir'].'/'.$cid.'/';
+							$filepath = $sys['htmdir'].'/'.$cid.'/';
 						}
 						$fp = opendir(D_P.$filepath);
 						while ($filename = readdir($fp)) {
@@ -637,7 +637,7 @@ class Category{
 						closedir($fp);
 					}
 					$page = $op->doIt();
-					if(empty($page) || $page>$very['listpage']){
+					if(empty($page) || $page>$sys['listpage']){
 						$page = 1;
 						unset($cids[$key]);
 					}

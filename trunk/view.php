@@ -49,18 +49,18 @@ if($tagkeywords){
 }
 if($catedb[$cid]['metakeyword']){
 	$metakeyword = $metakeyword ? $metakeyword.",".$catedb[$cid]['metakeyword']:$catedb[$cid]['metakeyword'];
-}else if($very['metakeyword']){
-	$metakeyword = $metakeyword ? $metakeyword.",".$very['metakeyword']:$very['metakeyword'];
+}else if($sys['metakeyword']){
+	$metakeyword = $metakeyword ? $metakeyword.",".$sys['metakeyword']:$sys['metakeyword'];
 }
 if($catedb[$cid]['metadescrip']){
 	$metadescrip = $metadescrip ? $view['title'].",".$metadescrip.",".$catedb[$cid]['metadescrip']:$view['title'].",".$catedb[$cid]['metadescrip'];
-}else if($very['metadescrip']){
-	$metadescrip = $metadescrip ? $view['title'].",".$metadescrip.",".$very['metadescrip']:$view['title'].",".$very['metadescrip'];
+}else if($sys['metadescrip']){
+	$metadescrip = $metadescrip ? $view['title'].",".$metadescrip.",".$sys['metadescrip']:$view['title'].",".$sys['metadescrip'];
 }
-$metakeyword = $metakeyword ? $metakeyword.",".$very['title']:$very['title'];
-$metadescrip = $metadescrip ? $metadescrip.",".$very['title']:$very['title'];
+$metakeyword = $metakeyword ? $metakeyword.",".$sys['title']:$sys['title'];
+$metadescrip = $metadescrip ? $metadescrip.",".$sys['title']:$sys['title'];
 
-start($very['charset']);
+start($sys['charset']);
 require Template($view['template']);
 footer();
 ?>

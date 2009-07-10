@@ -3,7 +3,7 @@
 
 $step = GetGP('step');
 if(!$step){
-	ifcheck($very['aggreblog'],'aggreblog');
+	ifcheck($sys['aggreblog'],'aggreblog');
 	if ($fp = opendir(R_P.'combine/blog')) {
 		$blogtype = array();
 		while (($extdir = readdir($fp))) {
@@ -18,7 +18,7 @@ if(!$step){
 	foreach($blogtype as $type) {
 		$blogSelect .= "<option value=\"$type\">$type</option>";
 	}
-	$blogSelect = str_replace("value=\"$very[blog_type]\"","value=\"$very[blog_type]\" selected",$blogSelect);
+	$blogSelect = str_replace("value=\"$sys[blog_type]\"","value=\"$sys[blog_type]\" selected",$blogSelect);
 }elseif($step==2){
 	$config = GetGP('config');
 	if($config['aggreblog']){

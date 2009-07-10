@@ -459,27 +459,27 @@ class PHPWind extends BBS{
 		$subject	= $this->getField('title');
 		$attachurl	= $this->getField('attachurl');
 		$hits		= $this->getField('hits');
-		$htm_ext	= $GLOBALS['very']['htmext'] ? $GLOBALS['very']['htmext'] : 'html';
+		$htm_ext	= $GLOBALS['sys']['htmext'] ? $GLOBALS['sys']['htmext'] : 'html';
 		while ($thread = $this->mysql->fetch_array($rs)) {
 			$thread['title']	= $thread[$subject];
 			$thread['postdate']	= $thread[$postdate];
 			$thread['hits']		= $thread[$hits];
 			if($this->viewtype){
 				if($catedb[$this->cid]['htmlpub']){
-					$thread['url'] = $GLOBALS['very']['htmdir'].'/'.$this->viewtype.'/'.$thread['tid'].'.'.$htm_ext;
+					$thread['url'] = $GLOBALS['sys']['htmdir'].'/'.$this->viewtype.'/'.$thread['tid'].'.'.$htm_ext;
 					if(!file_exists($thread['url'])){
 						$thread['ifpub'] = 0;
 						if($catedb[$this->cid]['autopub']){
 							$upTids .= $upTids ? '|'.$thread['tid'] : $thread['tid'];
 							$thread['ifpub'] = 2;
 						}
-						//$thread['url'] = $GLOBALS['very']['url']."/view.php?tid=".$thread['tid']."&cid=".$this->cid;
+						//$thread['url'] = $GLOBALS['sys']['url']."/view.php?tid=".$thread['tid']."&cid=".$this->cid;
 						$thread['url'] = $this->config['url'].$this->getUrl($thread['tid'],'article');
 					}else{
 						$thread['ifpub']	= 1;
 					}
 				}else{
-					$thread['url']	 = $GLOBALS['very']['url']."/view.php?tid=".$thread['tid']."&cid=".$this->cid;
+					$thread['url']	 = $GLOBALS['sys']['url']."/view.php?tid=".$thread['tid']."&cid=".$this->cid;
 					$thread['ifpub'] = -1;
 				}
 			}else{//BBS原帖地址
@@ -527,8 +527,8 @@ class PHPWind extends BBS{
 		$rs['bbsurl']	= $bbsurl = $this->config['url'].$this->getUrl($rs['tid'],'article');
 		$rs['content'] 	= BBSCode::convert($rs['content'],'',$rs['author']);
 		if($this->cid && $catedb[$this->cid]['htmlpub']) {
-			$htm_ext	= $GLOBALS['very']['htmext'] ? $GLOBALS['very']['htmext'] : 'html';
-			$threaddir	= $GLOBALS['very']['htmdir'].'/'.$this->cid.'/'.$rs['itemid'].'.'.$htm_ext;
+			$htm_ext	= $GLOBALS['sys']['htmext'] ? $GLOBALS['sys']['htmext'] : 'html';
+			$threaddir	= $GLOBALS['sys']['htmdir'].'/'.$this->cid.'/'.$rs['itemid'].'.'.$htm_ext;
 			if(file_exists($threaddir)) {
 				$rs['ifpub'] = 1;
 			}else {
@@ -593,7 +593,7 @@ class PHPWind extends BBS{
 class BBSCode{
 
 	function convert($message,$allow,$author){
-		global $very,$phpcode_htm,$code_htm,$bbsurl;
+		global $sys,$phpcode_htm,$code_htm,$bbsurl;
 
 		$message  = nl2br($message);
 		$code_num = 0;
@@ -613,7 +613,7 @@ class BBSCode{
 		);
 		$message = str_replace($searcharray,$replacearray,$message);
 
-		$message = str_replace("p_w_upload",$very['bbs_attachdir'],$message);//此处位置不可调换
+		$message = str_replace("p_w_upload",$sys['bbs_attachdir'],$message);//此处位置不可调换
 		$searcharray = array(
 		"/\[font=([^\[]+?)\](.+?)\[\/font\]/is",
 		"/\[color=([#0-9a-z]{1,10})\](.+?)\[\/color\]/is",
@@ -791,7 +791,7 @@ class BBSCode{
 		$code_num++;
 
 		$lower_url=strtolower($url);
-		if(substr($lower_url,0,4)!='http')$url="{$GLOBALS['very']['bbs_url']}/$url";
+		if(substr($lower_url,0,4)!='http')$url="{$GLOBALS['sys']['bbs_url']}/$url";
 		if(strpos($lower_url,'login')!==false && (strpos($lower_url,'action=quit')!==false || strpos($lower_url,'action-quit')!==false)){
 			$url=preg_replace('/login/i','log in',$url);
 		}
@@ -872,13 +872,13 @@ class BBSCode{
 	}
 
 	function postcache($key){
-		global $very,$act;
+		global $sys,$act;
 		require(D_P.'data/cache/bbs_cache.php');
 		!$face[$key] && $face[$key] = current($face);
 		if($face[$key][2]){
-			return "<br /><img src=\"$very[bbs_url]/$very[bbs_picpath]/post/smile/{$face[$key][0]}\" /><br />[<font color=red><b>$act</b></font>] {$face[$key][2]}<br />";
+			return "<br /><img src=\"$sys[bbs_url]/$sys[bbs_picpath]/post/smile/{$face[$key][0]}\" /><br />[<font color=red><b>$act</b></font>] {$face[$key][2]}<br />";
 		} else{
-			return "<img src=\"$very[bbs_url]/$very[bbs_picpath]/post/smile/{$face[$key][0]}\" />";
+			return "<img src=\"$sys[bbs_url]/$sys[bbs_picpath]/post/smile/{$face[$key][0]}\" />";
 		}
 	}
 

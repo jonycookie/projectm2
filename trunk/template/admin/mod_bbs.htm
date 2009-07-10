@@ -23,40 +23,40 @@ print <<<EOT
   </tr>
   <tr class="line">
     <td width="25%">论坛网址</td>
-    <td width="75%"><input name="config[bbs_url]" type="text" class="input" id="bbs_url" value="$very[bbs_url]" size="50">
+    <td width="75%"><input name="config[bbs_url]" type="text" class="input" id="bbs_url" value="$sys[bbs_url]" size="50">
     （后面不要加/）</td>
   </tr>
   <tr class="line">
     <td>论坛数据库服务器</td>
-    <td><input name="config[bbs_dbhost]" type="text" class="input"  value="$very[bbs_dbhost]" /></td>
+    <td><input name="config[bbs_dbhost]" type="text" class="input"  value="$sys[bbs_dbhost]" /></td>
   </tr>
   <tr class="line">
     <td>论坛数据库用户名</td>
-    <td><input name="config[bbs_dbuser]" type="text" class="input"  value="$very[bbs_dbuser]" /></td>
+    <td><input name="config[bbs_dbuser]" type="text" class="input"  value="$sys[bbs_dbuser]" /></td>
   </tr>
   <tr class="line">
     <td>论坛数据库密码</td>
-    <td><input name="config[bbs_dbpw]" type="password" class="input" id="config[bbs_dbpw]" value="$very[bbs_dbpw]" /></td>
+    <td><input name="config[bbs_dbpw]" type="password" class="input" id="config[bbs_dbpw]" value="$sys[bbs_dbpw]" /></td>
   </tr>
   <tr class="line">
     <td>论坛数据库名</td>
-    <td><input name="config[bbs_dbname]" type="text" class="input" id="bbs_dbname" value="$very[bbs_dbname]"></td>
+    <td><input name="config[bbs_dbname]" type="text" class="input" id="bbs_dbname" value="$sys[bbs_dbname]"></td>
   </tr>
   <tr class="line">
     <td>论坛数据库编码</td>
-    <td><input name="config[bbs_charset]" type="text" class="input" id="config[bbs_dbname]" value="$very[bbs_charset]" /></td>
+    <td><input name="config[bbs_charset]" type="text" class="input" id="config[bbs_dbname]" value="$sys[bbs_charset]" /></td>
   </tr>
   <tr class="line">
     <td>论坛数据库前缀</td>
-    <td><input name="config[bbs_dbpre]" type="text" class="input" id="bbs_dbpre" value="$very[bbs_dbpre]"></td>
+    <td><input name="config[bbs_dbpre]" type="text" class="input" id="bbs_dbpre" value="$sys[bbs_dbpre]"></td>
   </tr>
 	<tr class="line">
     <td>论坛图片目录：</td>
-    <td><input name="config[bbs_picpath]" type="text" class="input" id="bbs_picpath" value="$very[bbs_picpath]" />(必须为论坛空间上的目录,如果设置绝对路径,目录分隔符请使用 / 不要使用 \ )</td>
+    <td><input name="config[bbs_picpath]" type="text" class="input" id="bbs_picpath" value="$sys[bbs_picpath]" />(必须为论坛空间上的目录,如果设置绝对路径,目录分隔符请使用 / 不要使用 \ )</td>
   </tr>
   <tr class="line">
     <td>论坛附件目录</td>
-    <td><input name="config[bbs_attachdir]" type="text" class="input" id="bbs_attachdir" value="$very[bbs_attachdir]" /> 
+    <td><input name="config[bbs_attachdir]" type="text" class="input" id="bbs_attachdir" value="$sys[bbs_attachdir]" /> 
     (如果为远程附件地址，请填写附件网址) </td>
   </tr>
 	<tr class="line">
@@ -69,11 +69,11 @@ print <<<EOT
 	</tr>
 	<tr class="line">
 		<td>静态目录</td>
-		<td><input type="text" class="input" id="bbs_htmdir" value="$very[bbs_htmdir]" name="config[bbs_htmdir]">(保持与论坛设置一致)</td>
+		<td><input type="text" class="input" id="bbs_htmdir" value="$sys[bbs_htmdir]" name="config[bbs_htmdir]">(保持与论坛设置一致)</td>
 	</tr>
 	<tr class="line">
 		<td>静态目录扩展名设置</td>
-		<td><input type="text" class="input" id="bbs_htmext" value="$very[bbs_htmext]" name="config[bbs_htmext]">(保持与论坛设置一致)</td>
+		<td><input type="text" class="input" id="bbs_htmext" value="$sys[bbs_htmext]" name="config[bbs_htmext]">(保持与论坛设置一致)</td>
 	</tr>
 </table>
 </div>

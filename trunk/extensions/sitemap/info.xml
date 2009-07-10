@@ -6,8 +6,8 @@
 	<creationDate>2007-12-28</creationDate>
 	<copyright>(C) 2003-2008 PHPWind.com Corporation</copyright>
 	<license></license>
-	<author>VeryCMS</author>
+	<author>CMS</author>
 	<authorEmail></authorEmail>
-	<authorUrl>http://www.verycms.com</authorUrl>
+	<authorUrl>http://www.cms.com</authorUrl>
 	<description>现在只是生成Baidu和Google所用到的Sitemap XML,功能还在完善.</description>
 </extensions>

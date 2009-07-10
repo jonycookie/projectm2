@@ -9,7 +9,7 @@ global $ext_config;
 require_once(D_P.'data/cache/ext_config.php');
 class Extend {
 	function notice($num1,$num2=''){
-		global $db,$very,$ext_config;
+		global $db,$sys,$ext_config;
 		if(!$ext_config['notice']['ifopen']){
 			return array();
 		}
@@ -31,11 +31,11 @@ class Extend {
 	}
 
 	function URL($ename){
-		global $very,$ext_config;
+		global $sys,$ext_config;
 		if($ext_config[$ename]){
-			return $very['url']."/extensions.php?E_name=".urlencode($ename);
+			return $sys['url']."/extensions.php?E_name=".urlencode($ename);
 		}else{
-			return $very['url'];
+			return $sys['url'];
 		}
 	}
 

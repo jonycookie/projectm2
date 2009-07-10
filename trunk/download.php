@@ -14,9 +14,9 @@ if(empty($rt)){
 }
 @extract($rt);
 if($isftp){
-	$file = $very['ftpweb'].'/'.$filepath;
+	$file = $sys['ftpweb'].'/'.$filepath;
 }else{
-	$file = $very['attachdir'].'/'.$filepath;
+	$file = $sys['attachdir'].'/'.$filepath;
 }
 switch($type){
 	case "pdf"	: $ctype = "application/pdf"; break;

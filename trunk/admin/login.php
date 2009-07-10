@@ -3,7 +3,7 @@
 $action = GetGP('action');
 if($action=='in'){
 	InitGP(array('username','password','ck'),'P',1);
-	if($very['ckadmin']){
+	if($sys['ckadmin']){
 		empty($ck) && Showmsg('login_nock');
 		$ck = strtolower($ck);
 		GdConfirm($ck);

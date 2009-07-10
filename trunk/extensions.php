@@ -51,7 +51,7 @@ function PrintExt($template,$EXT="htm"){
 }
 
 function Extmsg($msg,$jumpurl='',$t=3){
-	global $basename,$very;
+	global $basename,$sys;
 	ob_end_clean();
 	!$basename && $basename=$_SERVER['REQUEST_URI'];
 	!$jumpurl && $jumpurl=$basename;
@@ -62,11 +62,11 @@ function Extmsg($msg,$jumpurl='',$t=3){
 		$lang = array_merge((array)$lang,(array)$extmsg);
 	}
 	$lang[$msg] && $msg=$lang[$msg];
-	if(strtoupper(substr($very['lang'],0,2))=='GB'){
+	if(strtoupper(substr($sys['lang'],0,2))=='GB'){
 		$charset = 'GB2312';
-	}elseif(strtoupper(substr($very['lang'],0,3))=='BIG'){
+	}elseif(strtoupper(substr($sys['lang'],0,3))=='BIG'){
 		$charset = 'BIG5';
-	}elseif(strtoupper(substr($very['lang'],0,3))=='UTF'){
+	}elseif(strtoupper(substr($sys['lang'],0,3))=='UTF'){
 		$charset = 'UTF-8';
 	}else{
 		$charset = 'GB2312';

@@ -8,8 +8,8 @@ if(!$action){
 		require PrintEot('file_upload');
 		adminbottom();
 	}elseif ($step==2){
-		!is_dir($very['attachdir']) && Showmsg('pub_attachmenterror');
-		!is_writeable($very['attachdir']) && Showmsg('pub_attachementwrite');
+		!is_dir($sys['attachdir']) && Showmsg('pub_attachmenterror');
+		!is_writeable($sys['attachdir']) && Showmsg('pub_attachementwrite');
 		require_once(R_P.'require/class_attach.php');
 		$attach = new Attach();
 		$attach->type ="ajax";
@@ -21,7 +21,7 @@ if(!$action){
 	if(!$step){
 		@include_once(D_P.'data/cache/ftp_config.php');
 		$ftp_pass = substr($ftp_pass,0,1).'********'.substr($ftp_pass,-1);
-		ifcheck($very['ifftp'],'ifftp');
+		ifcheck($sys['ifftp'],'ifftp');
 		require PrintEot('header');
 		require PrintEot('file_upload');
 		adminbottom();

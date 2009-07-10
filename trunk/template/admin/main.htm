@@ -23,7 +23,7 @@ print <<<EOT
 <tr class=head><td>管理帮助(<a href="javascript:window_open('$admin_file?adminjob=faq&action=gethelp&title=content');">?</a>)</td></tr>
 <tr class=line>
   <td>
-1.您当前使用的VeryCMS为 $wind_version 版本，我们等待您的建议来让产品更完美。<br />
+1.您当前使用的CMS为 $wind_version 版本，我们等待您的建议来让产品更完美。<br />
 2.部分功能在当前版本中尚未完全开放，在后续正式版本中将会推出。<br />
 3.所有对栏目的操作均在栏目管理里进行，当前后台不支持oprea操作(右键点击栏目选择操作)<br />
 4.点击此处更新首页[<a href="$admin_file?adminjob=category&action=pubindex" style="color:#FF0000; font-weight:bold">更新首页</a>] 因为首页是纯静态生成，故而如果需要更新需要更新一次。</td>
@@ -116,11 +116,6 @@ EOT;
 if($admin_name == $manager){
 @extract($db->get_one("SELECT SUM(total) AS articletotal FROM cms_category"));
 $s_url = rawurlencode($_SERVER['HTTP_HOST']);
-$rawcmsname = rawurlencode($very[title]);
-$hash=md5($_SERVER['HTTP_HOST'].$_SERVER['HTTP_USER_AGENT'].$articletotal.$wind_version.$wind_repair.$very[lang]);
-print <<<EOT
--->
-<script language="JavaScript" src="http://nt.phpwind.com/notice.php?bbsname=$very[title]&threads=$articletotal&version=$wind_version&repair=$wind_repair&charset=$very[lang]&t=cms&sysversion=$sysversion&dbversion=$dbversion&url=$s_url&hash=$hash"></script>
-<!--
-EOT;
+$rawcmsname = rawurlencode($sys[title]);
+$hash=md5($_SERVER['HTTP_HOST'].$_SERVER['HTTP_USER_AGENT'].$articletotal.$wind_version.$wind_repair.$sys[lang]);
 }?>-->

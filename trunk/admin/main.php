@@ -13,8 +13,8 @@ while ($rs = $db->fetch_array($query)) {
 $filepath 	= R_P;
 $o_size		= number_format($o_size/(1024*1024),2);
 $pw_size	= number_format($pw_size/(1024*1024),2);
-$systemtime	= gmdate("Y-m-d H:i",time()+$very['timedf']*3600);
-$altertime	= gmdate("Y-m-d H:i",$timestamp+$very['timedf']*3600);
+$systemtime	= gmdate("Y-m-d H:i",time()+$sys['timedf']*3600);
+$altertime	= gmdate("Y-m-d H:i",$timestamp+$sys['timedf']*3600);
 $sysversion = PHP_VERSION;
 if(function_exists("gd_info")){
 	$gd			= gd_info();

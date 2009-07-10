@@ -46,7 +46,7 @@ class DB {
 	}
 
 	function query($SQL,$method='') {
-		$GLOBALS['very']['debug'] && writeover(D_P.'data/db_query.txt',"$SQL\t$GLOBALS[timestamp]\n",'ab');
+		$GLOBALS['sys']['debug'] && writeover(D_P.'data/db_query.txt',"$SQL\t$GLOBALS[timestamp]\n",'ab');
 		$GLOBALS['_pre']=='cms_' or $SQL=str_replace('cms_',$GLOBALS['_pre'],$SQL);
 		if($method=='U_B' && function_exists('mysql_unbuffered_query')){
 			$query = mysql_unbuffered_query($SQL,$this->linkId);
@@ -61,7 +61,7 @@ class DB {
 	}
 
 	function get_one($SQL){
-		$GLOBALS['very']['debug'] && writeover(D_P.'data/db_query.txt',"$SQL\t$GLOBALS[timestamp]\n",'ab');
+		$GLOBALS['sys']['debug'] && writeover(D_P.'data/db_query.txt',"$SQL\t$GLOBALS[timestamp]\n",'ab');
 		$query=$this->query($SQL,'U_B');
 		$rs =& mysql_fetch_array($query, MYSQL_ASSOC);
 		return $rs;
@@ -77,7 +77,7 @@ class DB {
 	}
 
 	function update($SQL) {
-		$GLOBALS['very']['debug'] && writeover(D_P.'data/db_query.txt',"$SQL\t$GLOBALS[timestamp]\n",'ab');
+		$GLOBALS['sys']['debug'] && writeover(D_P.'data/db_query.txt',"$SQL\t$GLOBALS[timestamp]\n",'ab');
 		$GLOBALS['_pre']=='cms_' or $SQL=str_replace('cms_',$GLOBALS['_pre'],$SQL);
 		if($GLOBALS['db_lp']==1){
 			if(substr($SQL,0,7)=='REPLACE'){
@@ -130,13 +130,13 @@ class DB {
 	}
 
 	function halt($msg='') {
-		global $very,$REQUEST_URI,$dbhost;
+		global $sys,$REQUEST_URI,$dbhost;
 		$sqlerror = mysql_error($this->linkId);
 		$sqlerrno = mysql_errno($this->linkId);
 		$sqlerror = str_replace($dbhost,'dbhost',$sqlerror);
 		ob_end_clean();
-		($very['gzip'] == 1 && function_exists('ob_gzhandler')) ? ob_start('ob_gzhandler') : ob_start();
-		echo "<html><head><title>$very[name]</title><style type='text/css'>P,BODY{FONT-FAMILY:tahoma,arial,sans-serif;FONT-SIZE:12px;}A { TEXT-DECORATION: none;}a:hover{ text-decoration: underline;}TD { BORDER-RIGHT: 1px; BORDER-TOP: 0px; FONT-SIZE: 12px; COLOR: #000000;}</style><body>\n\n";
+		($sys['gzip'] == 1 && function_exists('ob_gzhandler')) ? ob_start('ob_gzhandler') : ob_start();
+		echo "<html><head><title>$sys[name]</title><style type='text/css'>P,BODY{FONT-FAMILY:tahoma,arial,sans-serif;FONT-SIZE:12px;}A { TEXT-DECORATION: none;}a:hover{ text-decoration: underline;}TD { BORDER-RIGHT: 1px; BORDER-TOP: 0px; FONT-SIZE: 12px; COLOR: #000000;}</style><body>\n\n";
 		echo "<div style='border:1px solid #FF000;padding:10px;margin:auto'>$msg";
 		echo "<br><br><b>The URL is</b>:<br>http://$_SERVER[HTTP_HOST]$REQUEST_URI";
 		echo "<br><br><b>MySQL server error</b>:<br>$sqlerror  ( $sqlerrno )";

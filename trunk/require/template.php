@@ -7,7 +7,7 @@
  * @return string
  */
 function Tpl($tplname,$isPlugTpl=false){
-	global $cid,$user_tplpath,$default_tplpath,$catedb,$very;
+	global $cid,$user_tplpath,$default_tplpath,$catedb,$sys;
 	if(!$catedb) require_once(D_P.'data/cache/cate.php');
 	if($isPlugTpl){
 		$tplname = $tplname.'.htm';
@@ -29,8 +29,8 @@ function Tpl($tplname,$isPlugTpl=false){
 				break;
 			default:
 				$webtplname = 'template_'.strtolower(SCR);
-				if($very[$webtplname]){
-					$tplname = $user_tplpath.'/'.$very[$webtplname];
+				if($sys[$webtplname]){
+					$tplname = $user_tplpath.'/'.$sys[$webtplname];
 				}else{
 					$tplname = $default_tplpath.'/'.strtolower(SCR).'.htm';
 				}
@@ -182,7 +182,7 @@ function tplRarseCMS(&$string){
 /**
  * 解析{@ VAR @}标签
  *
- * @author VeryCMS
+ * @author CMS
  * @param string $string
  * @return string
  */
@@ -205,7 +205,7 @@ function tplRarseConst(&$string){
 /**
  * 解析Loop标签
  *
- * @author VeryCMS
+ * @author CMS
  * @param string $string
  * @return string
  */
@@ -244,13 +244,13 @@ function tplRarseLoop(&$string){
 /**
  * 解析Very标签
  *
- * @author VeryCMS
+ * @author CMS
  * @param string $string
  * @return string
  */
 function tplRarseVery(&$string){
 	include(D_P."data/cache/constcache.php");
-	preg_match_all("/<very(.+?)>/i",$string,$reg);
+	preg_match_all("/<sys(.+?)>/i",$string,$reg);
 	$replace = $condition = array();
 	foreach ($reg[1] as $id=>$val){
 		$parameter = '';
@@ -267,7 +267,7 @@ function tplRarseVery(&$string){
 			$condition[$key] = $value;
 		}
 		if(!$condition['name']){
-			$condition['name']='very';
+			$condition['name']='sys';
 		}
 		if($condition['name'] == 'const'){//常量
 			$replace[$id] = $TplConstDB[$condition['value']];
@@ -275,8 +275,8 @@ function tplRarseVery(&$string){
 			$replace[$id] = "\$catedb[".$condition['cid']."][".$condition['value']."]";
 		}elseif($condition['name'] == 'module'){//模型变量$moduledb
 			$replace[$id] = "\$moduledb[".$condition['mid']."][".$condition['value']."]";
-		}elseif($condition['name'] == 'very'){//站点全局变量$very
-			$replace[$id] = "\$very[".$condition['value']."]";
+		}elseif($condition['name'] == 'sys'){//站点全局变量$sys
+			$replace[$id] = "\$sys[".$condition['value']."]";
 		}elseif($condition['name'] == 'view'){//内容页面单内容变量$view
 			$replace[$id] = "\$view[".$condition['value']."]";
 		}else{
@@ -289,7 +289,7 @@ function tplRarseVery(&$string){
 /**
  * 解析ajax标签
  *
- * @author VeryCMS
+ * @author CMS
  * @param string $string
  * @return string
  */
@@ -340,7 +340,7 @@ function tplRarseAjax(&$string){
 //			$ajax->thisid	 = $condition[$id]['thisid'];
 //			$ajax->getThread();
 //		}
-//		$replace[$id] = "<script src=\"$very[url]/data/js/".$ajaxfile."\"></script>\r\n";
+//		$replace[$id] = "<script src=\"$sys[url]/data/js/".$ajaxfile."\"></script>\r\n";
 	}
 	$string = str_replace($reg[0],$replace,$string);
 }

@@ -6,8 +6,8 @@
 	<creationDate>2008-01-03</creationDate>
 	<copyright>(C) 2003-2008 PHPWind.com Corporation</copyright>
 	<license></license>
-	<author>VeryCMS</author>
+	<author>CMS</author>
 	<authorEmail></authorEmail>
-	<authorUrl>http://www.verycms.com</authorUrl>
-	<description>本扩展是在VeryCMS v3.0的公告功能基础上发展而来,实现可自由安装和卸载,给站长最大的自由度.</description>
+	<authorUrl>http://www.cms.com</authorUrl>
+	<description>本扩展是在CMS v3.0的公告功能基础上发展而来,实现可自由安装和卸载,给站长最大的自由度.</description>
 </extensions>

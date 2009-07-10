@@ -44,8 +44,8 @@ class Search{
 	var $result;
 
 	function __construct(){
-		global $very,$fielddb;
-		$this->config = $very;
+		global $sys,$fielddb;
+		$this->config = $sys;
 		!$this->config['searchmax'] && $this->config['searchmax']=100;
 		$this->fielddb = $fielddb;
 	}
@@ -79,7 +79,7 @@ class Search{
 	 *
 	 */
 	function resultShow(){
-		global $moduledb,$very,$cate;
+		global $moduledb,$sys,$cate;
 		$keyword = $this->keyword;
 		$rawkeyword = rawurlencode($keyword);
 		$total = count($this->result);
@@ -94,7 +94,7 @@ class Search{
 		$start = ($page-1)*20;
 		$pages = numofpage($total,$page,$numofpage,"search.php?step=2&mid=$this->mid&keyword=$rawkeyword&s_type=$this->type&cid=$this->cid&ordering=$this->ordering&keyword_type=$this->keyword_type&");
 		$searchresult	= array_slice ($this->result,$start,20);
-		$metakeyword	= $very['title'];
+		$metakeyword	= $sys['title'];
 		$mkeyword		= str_replace(' ',',',trim($keyword));
 		$metakeyword	.= ','.$mkeyword;
 		$metadescrip	= $metakeyword;
@@ -107,7 +107,7 @@ class Search{
 	 * 和高级搜索的区别是：简单搜索只搜索title字段
 	 */
 	function simpleResult(){
-		global $db,$cate,$very,$catedb,$moduledb,$timestamp;
+		global $db,$cate,$sys,$catedb,$moduledb,$timestamp;
 		$this->keyword	= GetGP('keyword');
 		$this->config['searchtime'] && Cookie("keyword","$this->keyword",$this->config['searchtime']+$timestamp);
 		(strpos($this->keyword,'\'')||strpos($this->keyword,'\"')||strpos($this->keyword,'#')) && throwError('Condition Error');
@@ -133,8 +133,8 @@ class Search{
 			}
 			if(!$where || $where=='()') throwError('没有选择查询条件');
 
-			if($very['searchrange']) {
-				$timelimit = $timestamp-$very['searchrange']*86400;
+			if($sys['searchrange']) {
+				$timelimit = $timestamp-$sys['searchrange']*86400;
 				$where	= "postdate>$timelimit AND ".$where;
 			}
 			$where	= "mid='$this->mid' AND ifpub='1' AND ".$where;
@@ -147,14 +147,14 @@ class Search{
 				}else{
 					if($catedb[$result['cid']]['htmlpub']){
 						if(!$result['url']) continue;
-						$result['url']	= $very['htmdir'].'/'.$result['url'];
+						$result['url']	= $sys['htmdir'].'/'.$result['url'];
 					}else{
 						if($result['cid']<=0) continue;
 						$result['url']	= 'view.php?tid='.$result['tid'].'&cid='.$result['cid'];
 					}
 				}
 				$result['cname']	= $catedb[$result['cid']]['cname'];
-				$result['listurl']	= $very['url']."/".$catedb[$result['cid']]['listurl'];
+				$result['listurl']	= $sys['url']."/".$catedb[$result['cid']]['listurl'];
 				if(count($words)>1){
 					foreach($words as $word){
 						$result['title'] = $this->lightShow($result['title'],$word);
@@ -193,7 +193,7 @@ class Search{
 	 *
 	 */
 	function advanceResult(){
-		global $db,$cate,$very,$catedb,$moduledb,$timestamp;
+		global $db,$cate,$sys,$catedb,$moduledb,$timestamp;
 
 		$this->cid		= (int)GetGP('cid');
 		$this->ordering	= Char_cv(GetGP('ordering'));
@@ -287,8 +287,8 @@ class Search{
 					$order = 'a.hits DESC';
 					break;
 			}
-			if($very['searchrange']) {
-				$timelimit = $timestamp-$very['searchrange']*86400;
+			if($sys['searchrange']) {
+				$timelimit = $timestamp-$sys['searchrange']*86400;
 				$where	= "a.postdate>$timelimit AND ".$where;
 			}
 			$midlimit	= $this->cid?"a.mid='$this->mid' AND a.cid='$this->cid' ":"a.mid='$this->mid'";
@@ -303,14 +303,14 @@ class Search{
 				}else{
 					if($catedb[$result['cid']]['htmlpub']){
 						if(!$result['url']) continue;
-						$result['url']	= $very['htmdir'].'/'.$result['url'];
+						$result['url']	= $sys['htmdir'].'/'.$result['url'];
 					}else{
 						if($result['cid']<=0) continue;
 						$result['url']	= 'view.php?tid='.$result['tid'].'&cid='.$result['cid'];
 					}
 				}
 				$result['cname']	= $catedb[$result['cid']]['cname'];
-				$result['listurl']	= $very['url']."/".$catedb[$result['cid']]['listurl'];
+				$result['listurl']	= $sys['url']."/".$catedb[$result['cid']]['listurl'];
 				if(count($words)>1){
 					foreach($words as $word){
 						$result['title'] = $this->lightShow($result['title'],$word);
@@ -341,7 +341,7 @@ class Search{
 	 *
 	 */
 	function dateResult() {
-		global $db,$cate,$very,$catedb,$moduledb,$timestamp;
+		global $db,$cate,$sys,$catedb,$moduledb,$timestamp;
 		$searchdate = GetGP('searchdate');
 		$this->searchdate = $searchdate;
 		$searchtime = strtotime($searchdate);
@@ -353,13 +353,13 @@ class Search{
 		while($result = $db->fetch_array($rs)) {
 			if(!$result['url']) continue;
 			if($catedb[$result['cid']]['htmlpub']){
-				$result['url']	= $very['htmdir'].'/'.$result['url'];
+				$result['url']	= $sys['htmdir'].'/'.$result['url'];
 			}else{
 				if($result['cid']<=0) continue;
 				$result['url']	= 'view.php?tid='.$result['tid'].'&cid='.$result['cid'];
 			}
 			$result['cname']	= $catedb[$result['cid']]['cname'];
-			$result['listurl']	= $very['url']."/".$catedb[$result['cid']]['listurl'];
+			$result['listurl']	= $sys['url']."/".$catedb[$result['cid']]['listurl'];
 			$searchresult[] = $result;
 		}
 		$this->result = $searchresult;
@@ -425,7 +425,7 @@ class Search{
 	}
 
 	function tagResult(){
-		global $db,$moduledb,$very,$cate,$catedb;
+		global $db,$moduledb,$sys,$cate,$catedb;
 		$tagName = GetGP('tagname');
 		$tagName = urldecode($tagName);
 		if(!$tagName){
@@ -452,7 +452,7 @@ class Search{
 				$tagInfo[] = $tag;
 			}
 		}
-		$metakeyword = $metadescrip = $very['title'].','.$tagName;
+		$metakeyword = $metadescrip = $sys['title'].','.$tagName;
 		start();
 		require Template('tag');
 		footer();

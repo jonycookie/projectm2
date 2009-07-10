@@ -6,8 +6,8 @@
 	<creationDate>2008-01-08</creationDate>
 	<copyright>(C) 2003-2008 PHPWind.com Corporation</copyright>
 	<license></license>
-	<author>VeryCMS</author>
+	<author>CMS</author>
 	<authorEmail></authorEmail>
-	<authorUrl>http://www.verycms.com</authorUrl>
+	<authorUrl>http://www.cms.com</authorUrl>
 	<description>本扩展可以自定义模板的一些常量替换</description>
 </extensions>

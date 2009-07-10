@@ -6,8 +6,8 @@
 	<creationDate>2008-1-23</creationDate>
 	<copyright>(C) 2003-2008 PHPWind.com Corporation</copyright>
 	<license></license>
-	<author>VeryCMS</author>
+	<author>CMS</author>
 	<authorEmail></authorEmail>
-	<authorUrl>http://www.verycms.com</authorUrl>
+	<authorUrl>http://www.cms.com</authorUrl>
 	<description>可以在其他站点上用JS调用本站点的相关文章信息,暂不支持整合内容</description>
 </extensions>

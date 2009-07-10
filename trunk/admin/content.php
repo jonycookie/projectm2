@@ -74,10 +74,10 @@ class ShowContent{
 	}
 
 	function viewContent(){
-		global $very,$db,$action,$basename,$cid;
+		global $sys,$db,$action,$basename,$cid;
 		extract(Init_GP(array('displaynum','keyword','displaytype','page','order','orderby')));
-		if($this->catedb[$cid]['mid']=='-2' && (!$very['aggrebbs'] || !$very['bbs_dbname'])) Showmsg('mod_needaggrebbs');
-		if($this->catedb[$cid]['mid']=='-1' && (!$very['aggreblog'] || !$very['blog_dbname'])) Showmsg('mod_needaggreblog');
+		if($this->catedb[$cid]['mid']=='-2' && (!$sys['aggrebbs'] || !$sys['bbs_dbname'])) Showmsg('mod_needaggrebbs');
+		if($this->catedb[$cid]['mid']=='-1' && (!$sys['aggreblog'] || !$sys['blog_dbname'])) Showmsg('mod_needaggreblog');
 		require_once(R_P.'require/class_cate.php');
 		$cate = new Cate();
 		$cate_select = $cate->treeByMid($this->catedb[$cid]['mid']);
@@ -160,7 +160,7 @@ class ShowContent{
 	}
 
 	function action(){
-		global $cid,$tid,$basename,$very,$sqlcachefile;
+		global $cid,$tid,$basename,$sys,$sqlcachefile;
 		extract(Init_GP(array('tocid','tids','job')));
 		if(!$tids && $tid) $tids = $tid;
 		if($job=='batchtag'){

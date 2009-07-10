@@ -1,5 +1,5 @@
 #
-# robots.txt for VeryCMS <PHPWind>
+# robots.txt for CMS <PHPWind>
 # Version 3.x
 #
 

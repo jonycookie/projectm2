@@ -184,7 +184,7 @@ class Edit extends Content {
 	 */
 
 	function addAttach($atttype='attach'){ //插入附件资源
-		global $inputname,$inputtype,$basename,$type,$page,$very;
+		global $inputname,$inputtype,$basename,$type,$page,$sys;
 		require_once R_P.'require/class_attach.php';
 		$attach = new Attach();
 		$attach->displaynum = 15;
@@ -227,7 +227,7 @@ class Edit extends Content {
 		$attach->upload();
 		$errorNumber = 0;
 		$fileName = $attach->fileName;
-		$fileUrl = $GLOBALS['very']['attachdir'].'/'.$attach->filePath;
+		$fileUrl = $GLOBALS['sys']['attachdir'].'/'.$attach->filePath;
 		echo '<script type="text/javascript">' ;
 		echo 'window.parent.OnUploadCompleted(' . $errorNumber . ',"' . str_replace( '"', '\\"', $fileUrl ) . '","' . str_replace( '"', '\\"', $fileName ) . '", "' . str_replace( '"', '\\"', $customMsg ) . '") ;' ;
 		echo '</script>' ;
@@ -238,7 +238,7 @@ class Edit extends Content {
 	 *
 	 */
 	function searchtids(){
-		global $inputname,$inputtype,$basename,$type,$page,$very,$moduledb;
+		global $inputname,$inputtype,$basename,$type,$page,$sys,$moduledb;
 		require_once(R_P.'require/class_cate.php');
 		$cate = new Cate();
 		$cate_select = $cate->tree();
@@ -263,7 +263,7 @@ class Edit extends Content {
 	}
 
 	function selecttids() {
-		global $very,$db,$action,$basename,$catedb,$moduledb,$inputname,$inputtype;
+		global $sys,$db,$action,$basename,$catedb,$moduledb,$inputname,$inputtype;
 		extract(Init_GP(array('displaynum','page','cid')));
 		require_once(R_P.'require/class_cate.php');
 		$cate = new Cate();
@@ -277,8 +277,8 @@ class Edit extends Content {
 		if(!$cname) Showmsg('pub_cateerror');
 		$mid == 0 && Showmsg('pub_nocontent');
 
-		if($mid=='-2' && (!$very['aggrebbs'] || !$very['bbs_dbname'])) Showmsg('mod_needaggrebbs');
-		if($mid=='-1' && (!$very['aggreblog']|| !$very['blog_dbname'])) Showmsg('mod_needaggreblog');
+		if($mid=='-2' && (!$sys['aggrebbs'] || !$sys['bbs_dbname'])) Showmsg('mod_needaggrebbs');
+		if($mid=='-1' && (!$sys['aggreblog']|| !$sys['blog_dbname'])) Showmsg('mod_needaggreblog');
 
 		if(!$displaynum){
 			$displaynum = 30;

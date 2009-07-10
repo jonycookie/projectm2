@@ -47,7 +47,7 @@ include_once(D_P.'data/cache/config.php');
 require_once(D_P.'data/sql_config.php');
 require_once(R_P.'require/class_db.php');
 include_once(D_P.'data/cache/nav.php');
-$very['cvtime'] != 0 && $timestamp += $very['cvtime']*60;
+$sys['cvtime'] != 0 && $timestamp += $sys['cvtime']*60;
 $queryNum = 0;
 $db = new DB($dbhost,$dbuser,$dbpw,$dbname,$charset,$pconnect);
 unset($dbhost,$dbuser,$dbpw,$dbname,$t_array);
@@ -57,12 +57,12 @@ $wind_spend		= '';
 $wind_version	= "3.3";
 $wind_repair	= '';
 $user_tplpath	= 'template/user'; //用户模板路径
-$default_tplpath= $very['default_tplpath']?$very['default_tplpath']:"template/default";	//系统模板路径
+$default_tplpath= $sys['default_tplpath']?$sys['default_tplpath']:"template/default";	//系统模板路径
 
-if($very['rewrite_dir'] && $very['rewrite_ext']){
+if($sys['rewrite_dir'] && $sys['rewrite_ext']){
 	$_SINIT	= array('..',')','<','=');
 	$_SHAVE = array('&#46;&#46;','&#41;','&#60;','&#61;');
-	$self_array = explode('-',$very['rewrite_ext'] ? substr($_SERVER['QUERY_STRING'],0,strpos($_SERVER['QUERY_STRING'],$very['rewrite_ext'])) : $_SERVER['QUERY_STRING']);
+	$self_array = explode('-',$sys['rewrite_ext'] ? substr($_SERVER['QUERY_STRING'],0,strpos($_SERVER['QUERY_STRING'],$sys['rewrite_ext'])) : $_SERVER['QUERY_STRING']);
 	$s_count = count($self_array);
 	for($i=0;$i<$s_count;$i++){
 		$_key	= $self_array[$i];
@@ -86,8 +86,8 @@ if(in_array(SCR,array('index','list','view'))){
 //主要函数库
 
 function start($charset=''){
-	global $very;
-	!$charset && $charset=$very['lang'];
+	global $sys;
+	!$charset && $charset=$sys['lang'];
 	ob_start();
 	$charset && @header("Content-Type: text/html; charset=$charset");
 }
@@ -100,17 +100,17 @@ function start($charset=''){
  * @param integer $ck_Time 保存时间
  */
 function Cookie($ck_Var,$ck_Value,$ck_Time = 'F'){
-	global $timestamp,$very;
+	global $timestamp,$sys;
 	$ck_Time = $ck_Time == 'F' ? $timestamp + 31536000 : ($ck_Value == '' && $ck_Time == 0 ? $timestamp - 31536000 : $ck_Time);
 	$S		 = $_SERVER['SERVER_PORT'] == '443' ? 1:0;
-	$very['ckdomain'] = '';
-	$very['ckpath'] = '/';
-	setCookie(CookiePre().'_'.$ck_Var,$ck_Value,$ck_Time,$very['ckpath'],$very['ckdomain'],$S);
+	$sys['ckdomain'] = '';
+	$sys['ckpath'] = '/';
+	setCookie(CookiePre().'_'.$ck_Var,$ck_Value,$ck_Time,$sys['ckpath'],$sys['ckdomain'],$S);
 }
 
 function PwStrtoTime($time){
-	global $very;
-	return function_exists('date_default_timezone_set') ? strtotime($time) - $very['timedf']*3600 : strtotime($time);
+	global $sys;
+	return function_exists('date_default_timezone_set') ? strtotime($time) - $sys['timedf']*3600 : strtotime($time);
 }
 
 /**
@@ -124,8 +124,8 @@ function GetCookie($Var){
 }
 
 function CookiePre(){
-	global $very;
-	return substr(md5($very['url']),0,5);
+	global $sys;
+	return substr(md5($sys['url']),0,5);
 }
 
 function Char_cv($msg){
@@ -162,9 +162,9 @@ function Strip_S(&$array){
 }
 
 function get_date($timestamp,$timeformat=''){
-	global $very;
-	$date_show = $timeformat ? $timeformat : $very['datefm'];
-	$offset = $very['timedf']=='111' ? 0 : $very['timedf'];
+	global $sys;
+	$date_show = $timeformat ? $timeformat : $sys['datefm'];
+	$offset = $sys['timedf']=='111' ? 0 : $sys['timedf'];
 	return gmdate($date_show,$timestamp+$offset*3600);
 }
 
@@ -179,8 +179,8 @@ function get_date($timestamp,$timeformat=''){
  * @return string
  */
 function substrs($content,$length,$num=0,$add=0,$code=''){
-	global $very;
-	$code = $code ? $code : strtoupper($very['lang']);
+	global $sys;
+	$code = $code ? $code : strtoupper($sys['lang']);
 	$content = strip_tags($content);
 	if($length && strlen($content)>$length){
 		$retstr='';
@@ -321,8 +321,8 @@ function SafeCheck($CK,$PwdCode,$var='AdminUser',$expire=1800)
 }
 
 function StrCode($string,$action='ENCODE'){
-	global $very;
-	$key	= substr(md5($_SERVER["HTTP_USER_AGENT"].$very['hash']),8,18);
+	global $sys;
+	$key	= substr(md5($_SERVER["HTTP_USER_AGENT"].$sys['hash']),8,18);
 	$string	= $action == 'ENCODE' ? $string : base64_decode($string);
 	$len	= strlen($key);
 	$code	= '';
@@ -358,9 +358,9 @@ function num_rand($lenth){
  * @return string
  */
 function GetLang($filename){
-	global $very;
-	empty($very['lang']) && $very['lang']='gbk';
-	return Pcv(R_P."lang/$very[lang]/$filename.php");
+	global $sys;
+	empty($sys['lang']) && $sys['lang']='gbk';
+	return Pcv(R_P."lang/$sys[lang]/$filename.php");
 }
 
 /**
@@ -436,10 +436,10 @@ require_once R_P.'require/class_'.$class_name.'.php';
  *
  */
 function footer(){
-	global $very,$_OUTPUT,$cid,$page;
+	global $sys,$_OUTPUT,$cid,$page;
 	$output = str_replace(array('<!--<!---->','<!---->'),array('',''),ob_get_contents());
 	
-	if($very['rewrite']){
+	if($sys['rewrite']){
 		$output = preg_replace(
 		"/\<a(\s*[^\>]+\s*)href\=([\"|\']?)([^\"\'>\s]+\.php\?[^\"\'>\s]+)([\"|\']?)/ies",
 		"Htm_cv('\\3','<a\\1href=\"')",
@@ -451,7 +451,7 @@ function footer(){
 		//如果是后台传入,则为生成静态动作
 		$_OUTPUT = $output;
 	}else{
-		($very['gzip'] == 1 && function_exists('ob_gzhandler')) ? ob_start('ob_gzhandler') : ob_start();
+		($sys['gzip'] == 1 && function_exists('ob_gzhandler')) ? ob_start('ob_gzhandler') : ob_start();
 //		$cid = intval($cid);
 //		$page = $page ? intval($page) : 1;
 //		SCR == 'list' && $output .= "\n<script src='update.php?type=list&cid=".$cid."&page=".$page."'></script>";
@@ -469,16 +469,16 @@ function footer(){
  * @return string
  */
 function Htm_cv($url,$tag){
-	global $very;
-	if(!preg_match("^(http|ftp|telnet|mms|rtsp)|admin.php|rss.php",$url) || strpos($url,$very['url'])===0){
+	global $sys;
+	if(!preg_match("^(http|ftp|telnet|mms|rtsp)|admin.php|rss.php",$url) || strpos($url,$sys['url'])===0){
 		if(strpos($url,'#')!==false){
 			$add = substr($url,strpos($url,'#'));
 		}
 		$url = str_replace(
 		array('.php?','=','&',$add),
-		array($very['rewrite_dir'],'-','-',''),
+		array($sys['rewrite_dir'],'-','-',''),
 		htmlchars_decode($url)
-		).$very['rewrite_ext'].$add;
+		).$sys['rewrite_ext'].$add;
 	}
 	return stripslashes($tag)."$url\"";
 }
@@ -508,8 +508,8 @@ function Template($tplname){
  * @return string
  */
 function miniImg($sourceImg,$width,$height,$quality=85){
-	global $very,$attach;
-	if ($very['skipgif']) { //忽略对Gif图片的处理
+	global $sys,$attach;
+	if ($sys['skipgif']) { //忽略对Gif图片的处理
 		if(strtolower(end(explode('.',$sourceImg))) == 'gif') return $sourceImg;
 	}
 	require_once(R_P.'require/class_attach.php'); //需要对附件进行处理，调用附件处理类
@@ -535,7 +535,7 @@ function miniImg($sourceImg,$width,$height,$quality=85){
  *
  */
 function checkRefer(){
-	global $catedb,$very,$cid,$tid,$db;
+	global $catedb,$sys,$cid,$tid,$db;
 	if(function_exists('adminmsg')) return ; //说明是后台浏览
 	$tid = (int)$tid;
 	$cid = (int)$cid;
@@ -568,7 +568,7 @@ function checkRefer(){
 			$rs = $db->get_one("SELECT url FROM cms_contentindex WHERE tid='$tid' AND cid='$cid' AND ifpub>=1");
 			if($rs){
 				if($rs['url']) {
-					$jumpurl = $very['htmdir'].'/'.$rs['url'];
+					$jumpurl = $sys['htmdir'].'/'.$rs['url'];
 					if(file_exists(R_P.$jumpurl)){
 						ObHeader($jumpurl);
 					}
@@ -580,22 +580,22 @@ function checkRefer(){
 		}
 		return ;
 	}elseif (SCR=='index'){
-		if(/*$very['htmlindex'] && */!function_exists('adminmsg')){
-			if(!file_exists(R_P.'index.'.$very['htmext'])){
+		if(/*$sys['htmlindex'] && */!function_exists('adminmsg')){
+			if(!file_exists(R_P.'index.'.$sys['htmext'])){
 				exit("首页尚未生成，请到后台更新首页");
 			}else{
-				ObHeader('index.'.$very['htmext']); //倘若不是发布动作，转向到静态页
+				ObHeader('index.'.$sys['htmext']); //倘若不是发布动作，转向到静态页
 			}
 		}
 	}
 }
 
 function ObHeader($URL){
-	global $very;
-	if($very['rewrite'] && strtolower(substr($URL,0,4))!='http'){
-		$URL="$very[url]/$URL";
+	global $sys;
+	if($sys['rewrite'] && strtolower(substr($URL,0,4))!='http'){
+		$URL="$sys[url]/$URL";
 	}
-	if($very['gzip']){
+	if($sys['gzip']){
 		header("Location: $URL");exit;
 	}else{
 		ob_start();
@@ -642,7 +642,7 @@ function randomStr($num){
 }
 
 function generateStr($len){
-	global $very;
+	global $sys;
 	mt_srand((double)microtime() * 1000000);
     $keychars = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWYXZ";
 	$maxlen = strlen($keychars)-1;
@@ -650,7 +650,7 @@ function generateStr($len){
 	for ($i=0;$i<$len;$i++){
 		$str .= $keychars[mt_rand(0,$maxlen)];
 	}
-	return substr(md5($str.time().$_SERVER["HTTP_USER_AGENT"].$very['hash']),mt_rand(0,32-$len),$len);
+	return substr(md5($str.time().$_SERVER["HTTP_USER_AGENT"].$sys['hash']),mt_rand(0,32-$len),$len);
 }
 
 /**

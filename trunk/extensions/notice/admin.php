@@ -77,7 +77,7 @@ class Notice{
 	}
 
 	function Editor($inputname,$Value=''){
-		global $very;
+		global $sys;
 		$height=150;
 		$width=450;
 		require_once(R_P.'require/fckeditor.php');
@@ -87,13 +87,13 @@ class Notice{
 		$edit->ToolbarSet = 'Basic';
 		$edit->BasePath = 'require/';
 		$edit->Value = $Value;
-		$edit->BaseSrc = $very['url'];
+		$edit->BaseSrc = $sys['url'];
 		$Html = $edit->CreateHtml();
 		return $Html;
 	}
 
 	function Save($job){
-		global $very,$db,$admin_name,$timestamp;
+		global $sys,$db,$admin_name,$timestamp;
 		$title = GetGP('title');
 		$content = GetGP('content');
 		empty($title) && Showmsg('ext_noticetitle');

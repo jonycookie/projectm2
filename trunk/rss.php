@@ -78,10 +78,10 @@ class Rss extends Cms {
 	 */
 	function ShowRSS($cid)
 	{
-		global $very;
+		global $sys;
 		$cid = intval($cid);
 		$this->channelId = $cid;
-		$this->config = $very;
+		$this->config = $sys;
 		if($this->config['lang'] == 'gbk') {
 			$this->config['encode'] = 'gb2312';
 		}elseif($this->config['lang'] == 'utf8') {
@@ -136,7 +136,7 @@ class Rss extends Cms {
 		$this->ChannelInfo .= "<link>".$channelUrl."</link>\r\n";
 		$this->ChannelInfo .= "<description><![CDATA[".$cateinfo['description']."]]></description>\r\n";
 		$this->ChannelInfo .= "<copyright><![CDATA[".$this->config['title']."]]></copyright>\r\n";
-		$this->ChannelInfo .= "<generator>VeryCMS Powered By PHPWind </generator>\r\n";
+		$this->ChannelInfo .= "<generator>CMS Powered By PHPWind </generator>\r\n";
 		$this->ChannelInfo .="<pubDate>".date('r',$timestamp)."</pubDate>\r\n";
 		$this->XML_end = "</channel>\r\n</rss>";
 	}

@@ -45,7 +45,7 @@ class Cate{
 	 * @return array
 	 */
 	function menu($cid=0){
-		global $very;
+		global $sys;
 		$menu = array();
 		foreach ($this->catedb as $key=>$c){
 			if($c['type']!=1) continue; //跳过不显示的栏目
@@ -80,9 +80,9 @@ class Cate{
 	 *
 	 */
 	function nav(){
-		global $view,$cid,$very,$E_name,$ext_config;
+		global $view,$cid,$sys,$E_name,$ext_config;
 		if(defined('IN_EXT')) {
-			$this->position = "<a href=\"$very[url]\">$very[title]</a>&nbsp;".$ext_config[$E_name]['name'];
+			$this->position = "<a href=\"$sys[url]\">$sys[title]</a>&nbsp;".$ext_config[$E_name]['name'];
 			return true;
 		}
 		if($cid){
@@ -91,7 +91,7 @@ class Cate{
 		if($view['title']){
 			$this->position = $this->position." > ".$view['title'];
 		}
-		$this->position = "<a href=\"$very[url]\">$very[title]</a>". $this->position;
+		$this->position = "<a href=\"$sys[url]\">$sys[title]</a>". $this->position;
 	}
 
 	/**

@@ -104,6 +104,6 @@ objAD.Cid			 = \"$value[cid]\";
 ";
 		}
 		$jscode .= "{$zoneAD}.Show();";
-		writeover(R_P.'script/verycms/'.$adpinfo['jsname'].'.js',$jscode);
+		writeover(R_P.'script/cms/'.$adpinfo['jsname'].'.js',$jscode);
 	}
 }

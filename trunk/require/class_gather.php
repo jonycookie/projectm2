@@ -343,7 +343,7 @@ class Gather{
 	 * @return string 本地化之后的内容
 	 */
 	function imageToLocal($data){
-		global $very;
+		global $sys;
 		$chunklist = array ();
 		$chunklist = explode("\n", $data);
 		$links = array ();
@@ -369,7 +369,7 @@ class Gather{
 			if(!in_array($file_ext,array('jpg','jpeg','png','gif'))) $file_ext='jpg';
 			 //如果不是指定格式，则强制格式，防止本地化可能带来的安全问题
 			$imgname = substr(md5($imgsrc),10,10).'.'.$file_ext;
-			$newImgSrc = $very['attachdir'].'/'.$savedir.'/'.$nameadd.$imgname;
+			$newImgSrc = $sys['attachdir'].'/'.$savedir.'/'.$nameadd.$imgname;
 			$TargetImg = D_P.$newImgSrc;
 			if(!file_exists($TargetImg))copy($imgsrc,$TargetImg);
 			$newImg[$key] = $newImgSrc;
@@ -429,7 +429,7 @@ class Gather{
 	 * @param string $fieldrule
 	 */
 	function getContent($fieldrule){
-		global $db,$very;
+		global $db,$sys;
 		$Content = new Content($this->config['mid']);
 		$this->validNum=0;
 		$fieldrule = unserialize($fieldrule);
@@ -523,7 +523,7 @@ class Gather{
 				$Content->InsertData($fieldvalue,0);
 			}
 			$i++;
-			$nowtime = time()+$very['cvtime']*60+$i;
+			$nowtime = time()+$sys['cvtime']*60+$i;
 			if($filtreitFlag){
 				$db->update("UPDATE cms_collection SET gathertime='$nowtime' WHERE md5url='$md5Url'");
 			}else{

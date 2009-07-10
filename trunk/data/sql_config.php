@@ -5,7 +5,7 @@
 $dbhost		=	'localhost';		// 数据库服务器地址，一般为localhost
 $dbuser		=	'root';		// 数据库用户名
 $dbpw		=	'';		// 数据库访问密码
-$dbname		=	'verycms';		// 数据库名称，注意不要跟用户名，数据库服务器地址混淆
+$dbname		=	'cms';		// 数据库名称，注意不要跟用户名，数据库服务器地址混淆
 $database	=	'mysql';		// 数据库类型，一般为MySQL，请勿修改
 $_pre		=	'cms_';		// 数据表前缀，不同的前缀可以使得一个数据库内安装多次同样的程序而不至于冲突
 $pconnect	=	'0';		//是否持续连接

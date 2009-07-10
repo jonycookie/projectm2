@@ -448,7 +448,7 @@ class GatherAdmin{
 		if(!$rs)
 		Showmsg('data_error');
 		//$filename = 'gather'.$rs['gid'].'.txt';
-		$filename = 'VeryCMS_gat_'.randomStr(10).'.txt';
+		$filename = 'CMS_gat_'.randomStr(10).'.txt';
 		if($rs['mid']!=1)
 		unset($rs['mid']);
 		unset($rs['gid']);

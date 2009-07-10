@@ -9,8 +9,8 @@ $rs = $db->query("SELECT * FROM cms_notice LIMIT 10");
 while ($n = $db->fetch_array($rs)) {
 	$notice[] = $n;
 }
-$metakeyword = $metadescrip = $very['title'].','.$ext_config[$E_name]['name'];
-start($very['charset']);
+$metakeyword = $metadescrip = $sys['title'].','.$ext_config[$E_name]['name'];
+start($sys['charset']);
 require TemplateExt('index');
 footer();
 ?>

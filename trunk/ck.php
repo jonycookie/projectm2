@@ -6,10 +6,10 @@ $timestamp=time();
 $x_size=70; //验证图片宽度，单位像素
 $y_size=25; //验证图片高度
 require_once(D_P.'data/cache/config.php');
-$very['cvtime'] != 0 && $timestamp += $very['cvtime']*60;
+$sys['cvtime'] != 0 && $timestamp += $sys['cvtime']*60;
 if($_GET['admin']){
-	$very['ckpath']='/';
-	$very['ckdomain']='';
+	$sys['ckpath']='/';
+	$sys['ckdomain']='';
 }
 $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"; //字母表
 $chars_len=strlen($chars); //获取字母表长度
@@ -85,8 +85,8 @@ function_exists('imagesetpixel') && function_exists('imageString') && function_e
 基本函数
 */
 function StrCode($string,$action='ENCODE'){
-	global $very;
-	$key	= substr(md5($_SERVER["HTTP_USER_AGENT"].$very['hash']),8,18);
+	global $sys;
+	$key	= substr(md5($_SERVER["HTTP_USER_AGENT"].$sys['hash']),8,18);
 	$string	= $action == 'ENCODE' ? $string : base64_decode($string);
 	$len	= strlen($key);
 	$code	= '';
@@ -98,12 +98,12 @@ function StrCode($string,$action='ENCODE'){
 	return $code;
 }
 function Cookie($ck_Var,$ck_Value,$ck_Time = 'F'){
-	global $timestamp,$very;
+	global $timestamp,$sys;
 	$ck_Time = $ck_Time == 'F' ? $timestamp + 31536000 : ($ck_Value == '' && $ck_Time == 0 ? $timestamp - 31536000 : $ck_Time);
 	$S		 = $_SERVER['SERVER_PORT'] == '443' ? 1:0;
-	$very['ckdomain'] = '';
-	$very['ckpath'] = '/';
-	setCookie(CookiePre().'_'.$ck_Var,$ck_Value,$ck_Time,$very['ckpath'],$very['ckdomain'],$S);
+	$sys['ckdomain'] = '';
+	$sys['ckpath'] = '/';
+	setCookie(CookiePre().'_'.$ck_Var,$ck_Value,$ck_Time,$sys['ckpath'],$sys['ckdomain'],$S);
 }
 
 function GetCookie($Var){
@@ -111,16 +111,16 @@ function GetCookie($Var){
 }
 
 function CookiePre(){
-	global $very;
-	return substr(md5($very['url']),0,5);
+	global $sys;
+	return substr(md5($sys['url']),0,5);
 }
 
 function randstr($lenth){
-	global $very;
+	global $sys;
 	mt_srand((double)microtime() * 1000000);
 	for($i=0;$i<$lenth;$i++){
 		$randval.= mt_rand(0,9);
-	}	$randval=substr(md5($randval.time().$_SERVER["HTTP_USER_AGENT"].$very['hash']),mt_rand(0,32-$lenth),$lenth);
+	}	$randval=substr(md5($randval.time().$_SERVER["HTTP_USER_AGENT"].$sys['hash']),mt_rand(0,32-$lenth),$lenth);
 	return $randval;
 }
 

@@ -95,8 +95,8 @@ class Attach{
 	 * @param integer $aid
 	 */
 	function del($aid){
-		global $db,$very;
-		$path = D_P.$very['attachdir'].'/';
+		global $db,$sys;
+		$path = D_P.$sys['attachdir'].'/';
 		if(is_array($aid)){
 			$delaid = $delfile = array();
 			foreach ($aid as $d){
@@ -109,7 +109,7 @@ class Attach{
 				$delfile[] = $dels['filepath'];
 			}
 			foreach ($delfile as $filename){
-				if($very['ifftp'] && $file['isftp'] && require_once(R_P.'require/class_ftp.php')) {
+				if($sys['ifftp'] && $file['isftp'] && require_once(R_P.'require/class_ftp.php')) {
 					$ftp->delete($filename);
 				}else {
 					P_unlink($path.$filename);
@@ -119,7 +119,7 @@ class Attach{
 		}else{
 			$file = $db->get_one("SELECT filepath,aid,isftp FROM cms_attach WHERE aid='$aid'");
 			$filename = $path.$file['filepath'];
-			if($very['ifftp'] && $file['isftp'] && require_once(R_P.'require/class_ftp.php')) {
+			if($sys['ifftp'] && $file['isftp'] && require_once(R_P.'require/class_ftp.php')) {
 				$ftp->delete($file['filepath']);
 			}else {
 				P_unlink($filename);
@@ -136,7 +136,7 @@ class Attach{
 	 *
 	 */
 	function upload(){
-		global $timestamp,$db,$very,$filedir;
+		global $timestamp,$db,$sys,$filedir;
 		$forbidden_ext = array('php','php3','asp','aspx','asa','jsp','cgi','exe','pl','htm','html');
 		//禁止上传这些文件
 		$pic_ext = array('png','jpg','jpeg','gif'); //要进行缩略处理的图片文件后缀
@@ -151,7 +151,7 @@ class Attach{
 		$i = $this->uploadnum = 0;
 
 		foreach ($_FILES as $key=>$value){
-			$very['ifftp'] && empty($ftp) && require_once(R_P.'require/class_ftp.php');//是否远程上传
+			$sys['ifftp'] && empty($ftp) && require_once(R_P.'require/class_ftp.php');//是否远程上传
 			$i++;
 			if(is_array($value)){
 				$filename	= $value['name'];
@@ -163,9 +163,9 @@ class Attach{
 				$filesize	= ${$key.'_size'};
 			}
 			if($this->type=='ajax') {
-				if($very['lang'] != 'utf8'){
+				if($sys['lang'] != 'utf8'){
 					require_once(R_P.'require/chinese.php');
-					$chs = new Chinese('UTF8',$very['lang']);
+					$chs = new Chinese('UTF8',$sys['lang']);
 					$filename = $chs->Convert($filename);
 				}
 			}
@@ -177,10 +177,10 @@ class Attach{
 
 			$savedir = $this->saveDir($file_ext);
 			$filedir = $savedir;
-			if($very['ifftp']) {
-				$savedir = D_P.$very['attachdir'].'/temp';
+			if($sys['ifftp']) {
+				$savedir = D_P.$sys['attachdir'].'/temp';
 			}else {
-				$savedir = D_P.$very['attachdir'].'/'.$savedir;
+				$savedir = D_P.$sys['attachdir'].'/'.$savedir;
 			}
 
 			$randvar	= substr(md5($timestamp+$this->uploadnum),10,10);
@@ -191,32 +191,32 @@ class Attach{
 			}
 			$newimg='s_'.$upfilename;
 			$newtarget=$savedir.'/'.$newimg;
-			if(in_array($file_ext,$pic_ext) && ($automini || $very['ckwater'])){
-				if(!($img_size=getimagesize($target)) && $very['watermark']){
+			if(in_array($file_ext,$pic_ext) && ($automini || $sys['ckwater'])){
+				if(!($img_size=getimagesize($target)) && $sys['watermark']){
 					P_unlink($target);
 					$this->showerror('pub_uploadfail','500');
 				}
 				$water = new image($target);
-				if($img_size[2]<'4' && $very['ckwater'] && $img_size[0]>$very['waterwidth'] && $img_size[1]>$very['waterheight']){//图片水印
-					if(function_exists('imagecreatefromgif') && function_exists('imagealphablending') && ($very['waterimg'] && function_exists('imagecopymerge') || !$very['waterimg'] && function_exists('imagettfbbox'))){
+				if($img_size[2]<'4' && $sys['ckwater'] && $img_size[0]>$sys['waterwidth'] && $img_size[1]>$sys['waterheight']){//图片水印
+					if(function_exists('imagecreatefromgif') && function_exists('imagealphablending') && ($sys['waterimg'] && function_exists('imagecopymerge') || !$sys['waterimg'] && function_exists('imagettfbbox'))){
 						//$water->setSrcImg($target);
-						if($very['waterimg']) {
-							!$very['jpgquality'] && $very['jpgquality'] = "75";
-							!$very['waterpct']	 && $very['waterpct']	= "75";
-							$water->setMaskImg(D_P."images/water/".$very['waterimg']);
-							$water->setMaskImgPct($very['jpgquality']);
-							$water->setMaskTxtPct($very['waterpct']);
+						if($sys['waterimg']) {
+							!$sys['jpgquality'] && $sys['jpgquality'] = "75";
+							!$sys['waterpct']	 && $sys['waterpct']	= "75";
+							$water->setMaskImg(D_P."images/water/".$sys['waterimg']);
+							$water->setMaskImgPct($sys['jpgquality']);
+							$water->setMaskTxtPct($sys['waterpct']);
 						}else{
-							!$very['watertext'] && $this->showerror('config_nowaterinfo',412);
-							!$very['waterfont'] && $very['waterfont']  = "10";
-							!$very['watercolor']&& $very['watercolor'] = "#FF0000";
-							$very['watertextlib']&& $water->setMaskFont($very['watertextlib']);
+							!$sys['watertext'] && $this->showerror('config_nowaterinfo',412);
+							!$sys['waterfont'] && $sys['waterfont']  = "10";
+							!$sys['watercolor']&& $sys['watercolor'] = "#FF0000";
+							$sys['watertextlib']&& $water->setMaskFont($sys['watertextlib']);
 
-							$water->setMaskFontSize($very['waterfont']);
-							$water->setMaskFontColor($very['watercolor']);
-							$water->setMaskWord($very['watertext']);
+							$water->setMaskFontSize($sys['waterfont']);
+							$water->setMaskFontColor($sys['watercolor']);
+							$water->setMaskWord($sys['watertext']);
 						}
-						$water->setMaskPosition($very['waterpos']);
+						$water->setMaskPosition($sys['waterpos']);
 					}
 				}
 				if($automini){//缩略图
@@ -242,7 +242,7 @@ class Attach{
 				$filepath = $filedir.'/'.$upfilename;
 			}
 
-			if($very['ifftp'] && isset($ftp) && $ftpsize=$ftp->upload($target,$filepath)) {//远程上传图片
+			if($sys['ifftp'] && isset($ftp) && $ftpsize=$ftp->upload($target,$filepath)) {//远程上传图片
 				P_unlink($target);
 				$isftp = '1';
 			}
@@ -277,7 +277,7 @@ class Attach{
 	 * @return string 本地化之后的内容
 	 */
 	function imageToLocal($data){
-		global $very,$db,$timestamp;
+		global $sys,$db,$timestamp;
 		$chunklist = array ();
 		$chunklist = explode("\n", $data);
 		$links = array ();
@@ -299,14 +299,14 @@ class Attach{
 		$newImg = array();
 		$savedir = $this->saveDir('image');
 		foreach ($source as $key=>$imgsrc){
-			if(strpos($imgsrc,"http://")!==false && !strpos($imgsrc,$very['url'])){
+			if(strpos($imgsrc,"http://")!==false && !strpos($imgsrc,$sys['url'])){
 				//确认是外部图片需要本地化
 				$file_ext = strtolower(substr(strrchr($imgsrc,"."),1));
 				if(!in_array($file_ext,array('jpg','jpeg','png','gif'))) $file_ext='jpg';
 				//如果不是指定格式，则强制格式，防止本地化可能带来的安全问题
 				$imgname = substr(md5($imgsrc),10,10).'.'.$file_ext;
 				$filepath = $savedir.'/'.$nameadd.$imgname;
-				$newImgSrc = $very['attachdir'].'/'.$filepath;
+				$newImgSrc = $sys['attachdir'].'/'.$filepath;
 				$TargetImg = D_P.$newImgSrc;
 				if(!file_exists($TargetImg)){
 					if(!(getContent::copy($imgsrc,$TargetImg))){
@@ -314,27 +314,27 @@ class Attach{
 						continue;
 					}
 /**
-					if($very['ckwater']){//本地化的图片暂时关闭水印
+					if($sys['ckwater']){//本地化的图片暂时关闭水印
 						if(!($img_size=getimagesize($TargetImg))){
 						}else{
 							$water = new image($TargetImg);
-							if($img_size[2]<'4' && $img_size[0]>$very['waterwidth'] && $img_size[1]>$very['waterheight']){
-								if(function_exists('imagecreatefromgif') && function_exists('imagealphablending') && ($very['waterimg'] && function_exists('imagecopymerge') || !$very['waterimg'] && function_exists('imagettfbbox'))){
-									if($very['waterimg']) {
-										!$very['jpgquality'] && $very['jpgquality'] = "75";
-										!$very['waterpct']	 && $very['waterpct']	= "75";
-										$water->setMaskImg(D_P."images/water/".$very['waterimg']);
-										$water->setMaskImgPct($very['jpgquality']);
-										$water->setMaskTxtPct($very['waterpct']);
+							if($img_size[2]<'4' && $img_size[0]>$sys['waterwidth'] && $img_size[1]>$sys['waterheight']){
+								if(function_exists('imagecreatefromgif') && function_exists('imagealphablending') && ($sys['waterimg'] && function_exists('imagecopymerge') || !$sys['waterimg'] && function_exists('imagettfbbox'))){
+									if($sys['waterimg']) {
+										!$sys['jpgquality'] && $sys['jpgquality'] = "75";
+										!$sys['waterpct']	 && $sys['waterpct']	= "75";
+										$water->setMaskImg(D_P."images/water/".$sys['waterimg']);
+										$water->setMaskImgPct($sys['jpgquality']);
+										$water->setMaskTxtPct($sys['waterpct']);
 									}else{
-										!$very['waterfont'] && $very['waterfont']  = "10";
-										!$very['watercolor']&& $very['watercolor'] = "#FF0000";
-										$very['watertextlib']&& $water->setMaskFont($very['watertextlib']);
-										$water->setMaskFontSize($very['waterfont']);
-										$water->setMaskFontColor($very['watercolor']);
-										$water->setMaskWord($very['watertext']);
+										!$sys['waterfont'] && $sys['waterfont']  = "10";
+										!$sys['watercolor']&& $sys['watercolor'] = "#FF0000";
+										$sys['watertextlib']&& $water->setMaskFont($sys['watertextlib']);
+										$water->setMaskFontSize($sys['waterfont']);
+										$water->setMaskFontColor($sys['watercolor']);
+										$water->setMaskWord($sys['watertext']);
 									}
-									$water->setMaskPosition($very['waterpos']);
+									$water->setMaskPosition($sys['waterpos']);
 								}
 							}
 							$water->setDstImg($TargetImg);
@@ -367,8 +367,8 @@ class Attach{
 	 * @return string
 	 */
 	function saveDir($file_ext){
-		global $very;
-		switch($very['attachmkdir']){
+		global $sys;
+		switch($sys['attachmkdir']){
 			case 1: $savedir = ''; break;
 			case 2: 
 				if(in_array(strtolower($file_ext),array('gif','jpg','jpeg','png','image'))) {
@@ -386,11 +386,11 @@ class Attach{
 			case 4: $savedir = date('ymd'); break;
 			default:$savedir = date('ymd'); break;
 		}
-		if(!$very['ifftp'] && !is_dir(D_P.$very['attachdir'].'/'.$savedir)){
-			@mkdir(D_P.$very['attachdir'].'/'.$savedir);
-			@chmod(D_P.$very['attachdir'].'/'.$savedir, 0777);
-			@fclose(@fopen(D_P.$very['attachdir'].'/'.$savedir.'/index.html', 'w'));
-			@chmod(D_P.$very['attachdir'].'/'.$savedir.'/index.html', 0777);
+		if(!$sys['ifftp'] && !is_dir(D_P.$sys['attachdir'].'/'.$savedir)){
+			@mkdir(D_P.$sys['attachdir'].'/'.$savedir);
+			@chmod(D_P.$sys['attachdir'].'/'.$savedir, 0777);
+			@fclose(@fopen(D_P.$sys['attachdir'].'/'.$savedir.'/index.html', 'w'));
+			@chmod(D_P.$sys['attachdir'].'/'.$savedir.'/index.html', 0777);
 		}
 		return $savedir; //返回路径
 	}
@@ -426,18 +426,18 @@ class Attach{
 	}
 
 	function getAttachPath($imgsrc){ //获取到一个附件的绝对路径和文件名称
-		global $very;
+		global $sys;
 		if($this->picheight && $this->picwidth){
 			$nameadd=$this->picwidth.'_'.$this->picheight.'_';
 		}
 		$SourceImg = $TargetImg = $SmallImg ='';
 		if (strpos($imgsrc,'http://')===0){ //说明是一个网址
-			$temppath = D_P.$very['attachdir'].'/temp/'; //此路径为临时图片保存目录
+			$temppath = D_P.$sys['attachdir'].'/temp/'; //此路径为临时图片保存目录
 			$file_ext = end(explode('.',$imgsrc));
 			$imgname = substr(md5($imgsrc),10,10).'.'.$file_ext;
 			//$savedir = $this->saveDir();
 			$SourceImg = $temppath.$imgname; //绝对路径
-			$SmallImg = $very['attachdir'].'/s/'.$nameadd.$imgname;
+			$SmallImg = $sys['attachdir'].'/s/'.$nameadd.$imgname;
 			$TargetImg = D_P.$SmallImg;
 			if(!file_exists($SourceImg)){
 				if(!(getContent::copy($imgsrc,$SourceImg))){

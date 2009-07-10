@@ -124,7 +124,7 @@ class wordfilter{
 	function export(){
 		global $db,$type;
 		$rs = $db->query("SELECT * FROM cms_wordfilter WHERE type='$type'");
-		$filename = 'VeryCMS_wordfilter_'.randomStr(5).'.txt';
+		$filename = 'CMS_wordfilter_'.randomStr(5).'.txt';
 		$words = '';
 		while($rt = $db->fetch_array($rs)){
 			$words .= $rt['srcword']."=>".$rt['tarword']."\r\n";

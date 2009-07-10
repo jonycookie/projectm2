@@ -39,8 +39,8 @@ class navCache{
 		$navinfo_f = implode(' ',$navinfo);
 		$jsnavhead = "document.write(\"".addslashes($navinfo_h)."\");\n";
 		$jsnavfoot = "document.write(\"".addslashes($navinfo_f)."\");\n";
-		$jsmsghead = "<script language=\"javascript\" src=\"script/verycms/nav_head.js\"></script>";
-		$jsmsgfoot = "<script language=\"javascript\" src=\"script/verycms/nav_foot.js\"></script>";
+		$jsmsghead = "<script language=\"javascript\" src=\"script/cms/nav_head.js\"></script>";
+		$jsmsgfoot = "<script language=\"javascript\" src=\"script/cms/nav_foot.js\"></script>";
 		$writemsg.= "\$navhead = \"".addslashes($jsmsghead)."\";\n";
 		$writemsg.= "\$navfoot = \"".addslashes($jsmsgfoot)."\";\n";
 		$writemsg.= '?>';
@@ -52,8 +52,8 @@ class navCache{
 		$id = $const->isHave('EXT_navfoot');
 		$vararray = array('title'=>"EXT_navfoot",'name'=>"EXT_navfoot",'value'=>$jsmsgfoot,'id'=>$id);
 		$const->setConst($vararray);
-		writeover(R_P.'script/verycms/nav_head.js',$jsnavhead);
-		writeover(R_P.'script/verycms/nav_foot.js',$jsnavfoot);
+		writeover(R_P.'script/cms/nav_head.js',$jsnavhead);
+		writeover(R_P.'script/cms/nav_foot.js',$jsnavfoot);
 		writeover(D_P.'data/cache/nav.php',$writemsg);
 	}
 

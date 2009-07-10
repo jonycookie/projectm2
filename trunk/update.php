@@ -10,9 +10,9 @@ if($type == 'list'){
 		$cateinfo['path'] = $cid;
 	}
 	if($page>1){
-		$listurl = $very['htmdir'].'/'.$cateinfo['path'].'/index_'.$page.'.'.$very['htmext'];
+		$listurl = $sys['htmdir'].'/'.$cateinfo['path'].'/index_'.$page.'.'.$sys['htmext'];
 	}else{
-		$listurl = $very['htmdir'].'/'.$cateinfo['listurl'];
+		$listurl = $sys['htmdir'].'/'.$cateinfo['listurl'];
 	}
 	if($cateinfo['listpub'] && $timestamp - filemtime($listurl) > $cateinfo['autoupdate']*60){
 		require_once(R_P.'require/class_action.php');
@@ -29,7 +29,7 @@ if($type == 'list'){
 				$action->doIt();
 				writeover(D_P.'data/cache/updatelist_'.$cid.'.cache','');
 			}else{
-				$opnum = $very['opnum'] ? intval($very['opnum']) : 30;
+				$opnum = $sys['opnum'] ? intval($sys['opnum']) : 30;
 				$upTids = explode('|',$upTids);
 				$upTid = array_splice($upTids,0,$opnum);
 				$upTids = implode('|',$upTids);
@@ -44,7 +44,7 @@ if($type == 'list'){
 		}
 	}
 }elseif ($type == 'index'){
-	if($timestamp - filemtime(R_P.'index.html') > $very['indexupdate']*60){
+	if($timestamp - filemtime(R_P.'index.html') > $sys['indexupdate']*60){
 		InitGP(array('page','type'),'G');
 		require_once(R_P.'require/class_action.php');
 		$action = new Action('pubindex');
@@ -57,7 +57,7 @@ if($type == 'list'){
 	if($cateinfo['mid']>0){
 		$rs = $db->get_one("SELECT hits,comnum FROM cms_contentindex WHERE tid='$tid'");
 	}else if ($cateinfo['mid']==-2) {
-		$bbs = newBBS($very['bbs_type']);
+		$bbs = newBBS($sys['bbs_type']);
 		$hits = $bbs->getField('hits');
 		$replies = $bbs->getField('replies');
 		$rs = $bbs->mysql->get_one("SELECT $hits AS hits,$replies AS comnum FROM $bbs->table WHERE tid='$tid'");
@@ -88,9 +88,9 @@ EOT;
 		$cateinfo['path'] = $cid;
 	}
 	if($page>1){
-		$listurl = $very['htmdir'].'/'.$cateinfo['path'].'/index_'.$page.'.'.$very['htmext'];
+		$listurl = $sys['htmdir'].'/'.$cateinfo['path'].'/index_'.$page.'.'.$sys['htmext'];
 	}else{
-		$listurl = $very['htmdir'].'/'.$cateinfo['listurl'];
+		$listurl = $sys['htmdir'].'/'.$cateinfo['listurl'];
 	}
 	require_once(R_P.'require/class_action.php');
 	$action = new Action('publist');

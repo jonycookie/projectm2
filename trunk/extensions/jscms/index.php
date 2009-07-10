@@ -43,7 +43,7 @@ $newlist = '';
 while($rt = $db->fetch_array($rs)){
 	$rt['postdate'] = get_date($rt['postdate'],'m-d H:i');
 	$rt['title'] = substrs($rt['title'],$length);
-	$article = "$pre <a href='$very[url]/view.php?tid=$rt[tid]&cid=$rt[cid]' target='_blank'>$rt[title]</a>";
+	$article = "$pre <a href='$sys[url]/view.php?tid=$rt[tid]&cid=$rt[cid]' target='_blank'>$rt[title]</a>";
 	if($author){
 		$article .= "($rt[publisher])";
 	}

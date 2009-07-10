@@ -24,22 +24,22 @@ print <<<EOT
 </tr>
 <tr class=line>
   <td width="25%">静态文件发布目录</td>
-  <td width="37%">$very[htmdir]</td>
+  <td width="37%">$sys[htmdir]</td>
   <td width="38%">$htm_check</td>
 </tr>
 <tr class=line>
   <td>附件资源上传目录</td>
-  <td>$very[attachdir]</td>
+  <td>$sys[attachdir]</td>
   <td>$img_check</td>
 </tr>
 <tr class=line>
 	<td>图片缩略图保存目录</td>
-	<td>{$very[attachdir]}/s</td>
+	<td>{$sys[attachdir]}/s</td>
 	<td>$imgs_check</td>
 </tr>
 <tr class=line>
   <td>图片本地化临时目录</td>
-  <td>{$very[attachdir]}/temp</td>
+  <td>{$sys[attachdir]}/temp</td>
   <td>$imgtemp_check</td>
 </tr>
 <tr class=line>
@@ -49,7 +49,7 @@ print <<<EOT
 </tr>
 <tr class=line>
 	<td>广告JS缓存目录</td>
-	<td>script/verycms</td>
+	<td>script/cms</td>
 	<td>$jscache_check</td>
 </tr>
 <tr class=line>

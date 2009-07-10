@@ -41,7 +41,7 @@ class Comment{
 	 * @param integer page 当前显示的页数
 	 */
 	function main(){
-		global $db,$very,$timestamp,$catedb;
+		global $db,$sys,$timestamp,$catedb;
 		$rt		= $db->get_one("SELECT comnum,title,url FROM cms_contentindex WHERE tid='$this->tid'");
 		$cid	= $this->cid;
 		$mid	= $this->mid;
@@ -50,9 +50,9 @@ class Comment{
 		$total	= $rt['comnum'];
 		$this->total  = $total;
 		if($catedb[$cid]['htmlpub']){
-			$titleurl = $very['url']."/".$very['htmdir']."/".$rt['url'];
+			$titleurl = $sys['url']."/".$sys['htmdir']."/".$rt['url'];
 		}else{
-			$titleurl = $very['url']."/view.php?tid=".$tid."&cid=".$cid;
+			$titleurl = $sys['url']."/view.php?tid=".$tid."&cid=".$cid;
 		}
 		$this->title  = array('title'=>$title,'url'=>$titleurl);
 		$start = ($this->pageNo-1)*$this->numSize;
@@ -67,7 +67,7 @@ class Comment{
 	 * AJAX显示评论信息内容
 	 */
 	function getcomment(){
-		global $db,$very;
+		global $db,$sys;
 		$rt = $db->get_one("SELECT comnum FROM cms_contentindex WHERE tid='$this->tid'");
 		$total	= $rt['comnum'];
 		require_once(R_P.'require/ajax_page.php');
@@ -92,7 +92,7 @@ class Comment{
 	 * 显示评论框
 	 */
 	function showpost() {
-		global $very,$facedb;
+		global $sys,$facedb;
 		$cid	= $this->cid;
 		$mid	= $this->mid;
 		$tid	= $this->tid;
@@ -113,8 +113,8 @@ class Comment{
 	}
 
 	function addMsg(){
-		global $db,$timestamp,$onlineip,$very,$ck,$c_author,$c_message,$hideip,$ajax,$shownum;
-		if($very['ckcomment']){
+		global $db,$timestamp,$onlineip,$sys,$ck,$c_author,$c_message,$hideip,$ajax,$shownum;
+		if($sys['ckcomment']){
 			$ck = strtolower($ck);
 			GdConfirm($ck);
 		}
@@ -189,7 +189,7 @@ class Comment{
 	*热门评论排行
 	*/
 	function showHotComment($cid,$num) {
-		global $db,$timestamp,$catedb,$very;
+		global $db,$timestamp,$catedb,$sys;
 		$comment	= array();
 		$time		= $this->time?$this->time:7;
 		$timelimit	= $timestamp - $time*86400;
@@ -209,9 +209,9 @@ class Comment{
 		$query = $db->query($sql);
 		while($rs = $db->fetch_array($query)) {
 			if($catedb[$rs['cid']]['htmlpub']){
-				$rs['url'] = $very['url']."/".$very['htmdir']."/".$rs['url'];
+				$rs['url'] = $sys['url']."/".$sys['htmdir']."/".$rs['url'];
 			}else{
-				$rs['url'] = $very['url']."/view.php?tid=".$rs['tid']."&cid=".$cid;
+				$rs['url'] = $sys['url']."/view.php?tid=".$rs['tid']."&cid=".$cid;
 			}
 			$comment[] =$rs;
 		}

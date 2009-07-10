@@ -415,27 +415,27 @@ class Discuz extends BBS{
 		$subject	= $this->getField('title');
 		$attachurl	= $this->getField('attachurl');
 		$hits		= $this->getField('hits');
-		$htm_ext	= $GLOBALS['very']['htmext'] ? $GLOBALS['very']['htmext'] : 'html';
+		$htm_ext	= $GLOBALS['sys']['htmext'] ? $GLOBALS['sys']['htmext'] : 'html';
 		while ($thread = $this->mysql->fetch_array($rs)) {
 			$thread['title']	= $thread[$subject];
 			$thread['postdate']	= $thread[$postdate];
 			$thread['hits']		= $thread[$hits];
 			if($this->viewtype){
 				if($catedb[$this->cid]['htmlpub']){
-					$thread['url'] = $GLOBALS['very']['htmdir'].'/'.$this->viewtype.'/'.$thread['tid'].'.'.$htm_ext;
+					$thread['url'] = $GLOBALS['sys']['htmdir'].'/'.$this->viewtype.'/'.$thread['tid'].'.'.$htm_ext;
 					if(!file_exists($thread['url'])){
 						$thread['ifpub'] = 0;
 						if($catedb[$this->cid]['autopub']){
 							$upTids .= $upTids ? '|'.$thread['tid'] : $thread['tid'];
 							$thread['ifpub'] = 2;
 						}
-						//$thread['url'] = $GLOBALS['very']['url']."/view.php?tid=".$thread['tid']."&cid=".$this->cid;
+						//$thread['url'] = $GLOBALS['sys']['url']."/view.php?tid=".$thread['tid']."&cid=".$this->cid;
 						$thread['url'] = $this->config['url'].$this->getUrl($thread['tid'],'article');
 					}else{
 						$thread['ifpub']	= 1;
 					}
 				}else{
-					$thread['url']	 = $GLOBALS['very']['url']."/view.php?tid=".$thread['tid']."&cid=".$this->cid;
+					$thread['url']	 = $GLOBALS['sys']['url']."/view.php?tid=".$thread['tid']."&cid=".$this->cid;
 					$thread['ifpub'] = -1;
 				}
 			}else{//BBS原帖地址

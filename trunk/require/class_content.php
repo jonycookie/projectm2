@@ -5,7 +5,7 @@ require_once(D_P.'data/cache/field.php');
 require_once(D_P.'data/cache/select.php');
 
 /**
- * VeryCMS的最主要的类之一：输入编辑类
+ * CMS的最主要的类之一：输入编辑类
  * 本类提供各种内容模型的输入输出接口，添加内容、编辑内容的基本管理
  *
  */
@@ -187,7 +187,7 @@ class Content{
 	 * @return array
 	 */
 	function editArea($tid,$type='admin'){
-		global $very;
+		global $sys;
 		$t = $this->mysql->get_one("SELECT * FROM cms_contentindex i LEFT JOIN $this->table c USING(tid) WHERE i.tid='$tid'");
 		$inputArea = array();
 		foreach ($this->fields as $field){
@@ -306,7 +306,7 @@ class Content{
 	 * @return string
 	 */
 	function Editor($inputname,$tooltype,$Value=''){
-		global $very;
+		global $sys;
 		if($tooltype=='Default' || $tooltype=='CDefault'){
 			$height=420;
 			$width=650;
@@ -324,7 +324,7 @@ class Content{
 		$edit->ToolbarSet = $tooltype;
 		$edit->BasePath = 'require/';
 		$edit->Value = $Value;
-		$edit->BaseSrc = $very['url'];
+		$edit->BaseSrc = $sys['url'];
 		$edit->BaseName = $GLOBALS['admin_file'];
 		$Html = $edit->CreateHtml();
 		if($tooltype=='Default'){
@@ -494,14 +494,14 @@ class Content{
 	 * @return string 根据数据所构造出的查询语句
 	 */
 	function ParseData(&$array,$type=null){
-		global $very,$user_tplpath;
+		global $sys,$user_tplpath;
 		$number_input = array('tinyint','smallint','int');
 		foreach ($this->fields as $field){
 			$key = $field['fieldid'];
 			if (empty($array[$key]) && empty($array[$key.'_value']) && $field['inputtype']!='mselect'){
 				$array[$key]='';
 			}else{
-				$array[$key] = str_replace($very['url'].'/','',$array[$key]);
+				$array[$key] = str_replace($sys['url'].'/','',$array[$key]);
 				//保持一个相对路径以防域名变动带来的错误
 				if($field['inputtype']=='checkbox'){ //复选框内容要特殊处理
 					$array[$key]=','.implode(',',$array[$key]).','; //前后附加一个,是为了搜索方便
@@ -523,7 +523,7 @@ class Content{
 							}
 						}
 					}
-					$cutpagesize = $GLOBALS['very']['perpage'] ? $GLOBALS['very']['perpage']:5;
+					$cutpagesize = $GLOBALS['sys']['perpage'] ? $GLOBALS['sys']['perpage']:5;
 					if (($array['autofpage'] && strlen($array[$key])>$cutpagesize*1024) || strpos($array[$key],'<div style=\"page-break-after: always\"><span style=\"display: none\">&nbsp;</span></div>')>0 || strpos($array[$key],'<div style=\"page-break-after: always;\"><span style=\"display: none;\">&nbsp;</span></div>')>0) { //自动分页
 						$query1['fpage'] = "`fpage`=1";
 						if(($array['autofpage'] && strlen($array[$key])>$cutpagesize*1024) && !strpos($array[$key],'<div style=\"page-break-after: always\"><span style=\"display: none\">&nbsp;</span></div>') && !strpos($array[$key],'<div style=\"page-break-after: always;\"><span style=\"display: none;\">&nbsp;</span></div>')) {

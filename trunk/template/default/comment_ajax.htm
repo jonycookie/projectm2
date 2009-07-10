@@ -16,7 +16,7 @@
 			<div><textarea name="c_message" id="c_message" maxlength="254"></textarea></div>
 			<input type="hidden" value="0" name="support">
 			<input type="submit" value="发表" name="Submit" id="postSub" />
-<!--#if($very[ckcomment]){#-->
+<!--#if($sys[ckcomment]){#-->
 			<img id="cknum" src="ck.php" onclick="javascript:var nowtime	 = new Date().getTime();this.src='ck.php?nowtime='+nowtime;" style="cursor:pointer" align="absmiddle" /> <input name="ck" id="ck" size="7" value="验证码" onfocus="this.value='';" />
 <!--#}#-->
 		</div>
@@ -35,7 +35,7 @@
 			<div><textarea name="c_message" id="c_message" maxlength="254"></textarea></div>
 			<input type="hidden" value="0" name="support">
 			<input type="submit" value="发表" name="Submit" id="postSub" />  <a href="comment.php?job=main&cid=$cid&mid=$mid&tid=$tid" target="_blank">查看所有评论</a>
-<!--#if($very[ckcomment]){#-->
+<!--#if($sys[ckcomment]){#-->
 			<img id="cknum" src="ck.php" onclick="javascript:var nowtime	 = new Date().getTime();this.src='ck.php?nowtime='+nowtime;" style="cursor:pointer" align="absmiddle" /> <input name="ck" id="ck" size="7" value="验证码" onfocus="this.value='';" />
 <!--#}#-->
 		</div>

@@ -67,7 +67,7 @@ class Sitemap {
 	}
 
 	function Show() {
-		global $db,$very,$sitetype,$basename;
+		global $db,$sys,$sitetype,$basename;
 		$mids = array();
 		$query = $db->query("SELECT mid,mname FROM cms_module");
 		while($rs = $db->fetch_array($query)) {
@@ -83,8 +83,8 @@ class Sitemap {
 		adminbottom();
 	}
 	function createMap($sitetype) {
-		global $db,$very,$basename;
-		if($this->sitecount && $this->sitecount != $very['sitecount']){
+		global $db,$sys,$basename;
+		if($this->sitecount && $this->sitecount != $sys['sitecount']){
 			$key = 'db_sitecount';
 			$db->pw_update(
 			"SELECT * FROM cms_config WHERE db_name='$key'",
@@ -96,9 +96,9 @@ class Sitemap {
 			$cache->config();
 		}
 		$this->selectTable();
-		$this->website = $very['url'];
-		$this->webadmin = str_replace("mailto:","",$very['contact']);
-		$this->webhtmdir = $very['htmdir'];
+		$this->website = $sys['url'];
+		$this->webadmin = str_replace("mailto:","",$sys['contact']);
+		$this->webhtmdir = $sys['htmdir'];
 		if($sitetype=='google') {
 			$this->fileaddress = "sitemap.xml";
 			$this->googleSiteMap();
@@ -108,8 +108,8 @@ class Sitemap {
 		}else {
 			Showmsg('data_error');
 		}
-		if($very['aggrebbs']) {
-			$bbsdb = new DB($very['bbs_dbhost'],$very['bbs_dbuser'],$very['bbs_dbpw'],$very['bbs_dbname'],$very['bbs_charset'],'0');
+		if($sys['aggrebbs']) {
+			$bbsdb = new DB($sys['bbs_dbhost'],$sys['bbs_dbuser'],$sys['bbs_dbpw'],$sys['bbs_dbname'],$sys['bbs_charset'],'0');
 		}
 		adminmsg("SiteMap：".$this->website."/".$this->fileaddress,$basename."&sitetype=".$sitetype);
 	}

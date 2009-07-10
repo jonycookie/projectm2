@@ -14,7 +14,7 @@ $adminjob = Char_cv($adminjob);
 list($admin_name,$admin_password) = explode("\t",GetCookie('Adminuser'));
 if(!$admin_name) {
 	InitGP(array("admin_name","admin_password","fancy"));
-	if($fancy==$very['hash']) {
+	if($fancy==$sys['hash']) {
 		$admin_name = Char_cv($admin_name);
 		$admin_password =  Char_cv($admin_password);
 	}
@@ -113,25 +113,25 @@ function Showmsg($msg){
 }
 
 function adminbottom($display=1){
-	global $adminjob,$wind_version,$db,$timestamp,$P_S_T,$very;
+	global $adminjob,$wind_version,$db,$timestamp,$P_S_T,$sys;
 	$qn=$GLOBALS['queryNum'];
-	$ft_gzip=($very['gzip']==1 ? "Gzip enabled" : "Gzip disabled");
+	$ft_gzip=($sys['gzip']==1 ? "Gzip enabled" : "Gzip disabled");
 	$t_array	= explode(' ',microtime());
 	$totaltime	= number_format(($t_array[0]+$t_array[1]-$P_S_T),6);
 	$wind_spend	= "Total $totaltime(s) query $qn , $ft_gzip ";
 	if($display==1) require PrintEot('footer');
 	$output = str_replace(array('<!--<!---->','<!---->'),array('',''),ob_get_contents());
 	ob_end_clean();
-	$very['gzip'] == 1 && function_exists('ob_gzhandler') ? ob_start('ob_gzhandler') : ob_start();
+	$sys['gzip'] == 1 && function_exists('ob_gzhandler') ? ob_start('ob_gzhandler') : ob_start();
 	echo $output;
 	exit;
 }
 
 function checkAdmin($admin_name,$admin_password){
 	global $db,$manager,$manager_pwd,$timestamp,$logfile;
-	if($GLOBALS['very']['cktime']){
-		$GLOBALS['very']['cktime']<5 && $GLOBALS['very']['cktime']=5; //必须保证5分钟的有效时间
-		$cktime = $GLOBALS['very']['cktime']*60;
+	if($GLOBALS['sys']['cktime']){
+		$GLOBALS['sys']['cktime']<5 && $GLOBALS['sys']['cktime']=5; //必须保证5分钟的有效时间
+		$cktime = $GLOBALS['sys']['cktime']*60;
 	}else{
 		$cktime = 1800;
 	}
@@ -250,7 +250,7 @@ function PostLog($log){
 }
 
 function EncodeUrl($url){
-	global $very,$admin_name,$admin_uid;
+	global $sys,$admin_name,$admin_uid;
 	$url_a = substr($url,strrpos($url,'?')+1);
 	substr($url,-1)=='&' && $url=substr($url,0,-1);
 	parse_str($url_a,$url_a);
@@ -258,20 +258,20 @@ function EncodeUrl($url){
 	foreach($url_a as $key=>$val){
 		$source .= $key.$val;
 	}
-	$posthash=substr(md5($source.$admin_name.$admin_uid.$very['hash']),0,8);
+	$posthash=substr(md5($source.$admin_name.$admin_uid.$sys['hash']),0,8);
 	$url .= "&verify=$posthash";
 	return $url;
 }
 
 function PostCheck($verify){
-	global $very,$admin_name,$admin_uid;
+	global $sys,$admin_name,$admin_uid;
 	$source='';
 	foreach($_GET as $key=>$val){
 		if($key!='verify'){
 			$source .= $key.$val;
 		}
 	}
-	if($verify!=substr(md5($source.$admin_name.$admin_uid.$very['hash']),0,8)){
+	if($verify!=substr(md5($source.$admin_name.$admin_uid.$sys['hash']),0,8)){
 		adminmsg('bad_request');
 	}else{
 		return true;

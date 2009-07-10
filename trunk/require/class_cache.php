@@ -19,7 +19,7 @@ class Cache{
 				$this->config();
 			}
 			$this->extension();
-			$very['aggrebbs'] && $this->bbs_config();
+			$sys['aggrebbs'] && $this->bbs_config();
 			$this->updatecache_ftp();
 			$this->cate();
 			$this->field();
@@ -40,7 +40,7 @@ class Cache{
 	function config(){
 		global $db;
 		$cache="<?php\n";
-		$cache_array = "\$very = array(\n";
+		$cache_array = "\$sys = array(\n";
 		$rs = $db->query("SELECT * FROM cms_config WHERE db_name LIKE 'db_%'");
 		while ($sitedb = $db->fetch_array($rs)) {
 			$key_name = addslashes(substr($sitedb['db_name'],3));
@@ -63,16 +63,16 @@ class Cache{
 	}
 
 	function bbs_config(){
-		global $very;
-		if(!$very['aggrebbs']) {
+		global $sys;
+		if(!$sys['aggrebbs']) {
 			return false;
 		}
-		$bbs = newBBS($very['bbs_type']);
+		$bbs = newBBS($sys['bbs_type']);
 		$cache = "<?php\n";
-		if($very['bbs_type']=='PHPWind'){
+		if($sys['bbs_type']=='PHPWind'){
 			$configdb = '';
 			$face = "\$face=array(\n";
-			$query = $bbs->mysql->query("SELECT db_name,db_value FROM {$very['bbs_dbpre']}config");
+			$query = $bbs->mysql->query("SELECT db_name,db_value FROM {$sys['bbs_dbpre']}config");
 			$notcache = array('db_hackdb','db_hash','db_thread','db_union','db_adminreason','db_head','db_foot','$db_ipban');
 			while(@extract(db_cv($bbs->mysql->fetch_array($query)))){
 				if(strpos($db_name,'db_')!==false){
@@ -82,9 +82,9 @@ class Cache{
 					$configdb .= "\$$db_name=".pw_var_export($db_value,0).";\n";
 				}
 			}
-			$rs = $bbs->mysql->query("SELECT * FROM {$very['bbs_dbpre']}smiles WHERE type=0 ORDER BY vieworder");
+			$rs = $bbs->mysql->query("SELECT * FROM {$sys['bbs_dbpre']}smiles WHERE type=0 ORDER BY vieworder");
 			while(@extract(db_cv($bbs->mysql->fetch_array($rs)))){
-				$query = $bbs->mysql->query("SELECT * FROM {$very['bbs_dbpre']}smiles WHERE type='$id' ORDER BY vieworder");
+				$query = $bbs->mysql->query("SELECT * FROM {$sys['bbs_dbpre']}smiles WHERE type='$id' ORDER BY vieworder");
 				while($smile=db_cv($bbs->mysql->fetch_array($query))){
 					$face .= "\t'$smile[id]'=>array('$path/$smile[path]','$smile[name]','$smile[descipt]'),\n";
 				}
@@ -108,7 +108,7 @@ class Cache{
 	}
 
 	function cate(){
-		global $db,$very;
+		global $db,$sys;
 		$cache = "<?php\n";
 		$rs = $db->query("SELECT * FROM cms_category ORDER BY taxis DESC");
 		$categorye=$subdb=array();
@@ -118,11 +118,11 @@ class Cache{
 			}else{
 				if($catedb['listpub']){
 					$file_ext = strtolower(substr(strrchr($catedb['listurl'],"."),1));
-					if($file_ext!=$very['htmext']){
-						$catedb['listurl'] = str_replace($file_ext,$very['htmext'],$catedb['listurl']);
-						$db->update("UPDATE cms_category SET listurl='$very[htmext]' WHERE cid='$catedb[cid]'");
+					if($file_ext!=$sys['htmext']){
+						$catedb['listurl'] = str_replace($file_ext,$sys['htmext'],$catedb['listurl']);
+						$db->update("UPDATE cms_category SET listurl='$sys[htmext]' WHERE cid='$catedb[cid]'");
 					}
-					$catedb['listurl']=$very['htmdir'].'/'.$catedb['listurl'];
+					$catedb['listurl']=$sys['htmdir'].'/'.$catedb['listurl'];
 				}else{
 					$catedb['listurl']='list.php?cid='.$catedb['cid'];
 				}
@@ -186,7 +186,7 @@ class Cache{
 	 */
 	 /*
 	function specialcate(){
-		global $db,$very;
+		global $db,$sys;
 		$cache = "<?php\n\$catedb=array(\n";
 		$rs = $db->query("SELECT * FROM cms_specialcategory ORDER BY taxis DESC");
 		while ($catedb = $db->fetch_array($rs)) {
@@ -195,7 +195,7 @@ class Cache{
 				$catedb['listurl']=$catedb['link'];
 			}else{
 				if($catedb['listpub']){
-					$catedb['listurl']=$very['htmdir'].'/'.$catedb['listurl'];
+					$catedb['listurl']=$sys['htmdir'].'/'.$catedb['listurl'];
 				}else{
 					$catedb['listurl']='list.php?cid='.$catedb['cid'];
 				}
@@ -252,7 +252,7 @@ class Cache{
 			$catedb['listurl']=$catedb['link'];
 		}else{
 			if($catedb['listpub']){
-				$catedb['listurl']=$very['htmdir'].'/'.$catedb['listurl'];
+				$catedb['listurl']=$sys['htmdir'].'/'.$catedb['listurl'];
 			}else{
 				$catedb['listurl']='list.php?cid='.$catedb['cid'];
 			}

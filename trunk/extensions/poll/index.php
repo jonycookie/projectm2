@@ -78,7 +78,7 @@ if(!$job){
 	$cms	= new Cms();
 	$cate	= new Cate();
 	$extend = new Extend();
-	$metakeyword = $metadescrip = $very['title'].','.$ext_config[$E_name]['name'];
+	$metakeyword = $metadescrip = $sys['title'].','.$ext_config[$E_name]['name'];
 	require TemplateExt('view');
 	exit;
 }

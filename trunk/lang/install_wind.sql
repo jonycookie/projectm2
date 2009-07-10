@@ -393,7 +393,7 @@ INSERT INTO `cms_adposition` (`pid`, `name`, `type`, `inad`, `showtype`, `jsname
 
 INSERT INTO `cms_advert` (`adid`, `cid`, `type`, `name`, `priority`, `intro`, `config`, `pid`, `countview`, `views`, `countclick`, `clicks`, `linkurl`, `linktarget`, `linkalt`, `starttime`, `endtime`) VALUES 
 (1, '0,2,1,6,3,4,5', 'img', '头部Banner', 1, '', 'a:8:{s:3:"url";s:36:"http://www.phpwind.com/vc/uu1001.jpg";s:5:"width";s:3:"950";s:6:"height";s:2:"80";s:10:"flashwmode";s:1:"0";s:7:"linkurl";s:0:"";s:10:"linktarget";s:0:"";s:7:"linkalt";s:0:"";s:8:"priority";s:1:"1";}', 1, 0, 0, 0, 0, 'http://www.uu1001.com/', '1', '', 1207008000, 1238544000),
-(4, '0', 'img', '首页中间图片', 1, '', 'a:8:{s:3:"url";s:20:"images/verycmsv3.jpg";s:5:"width";s:3:"950";s:6:"height";s:2:"80";s:10:"flashwmode";s:1:"0";s:7:"linkurl";s:0:"";s:10:"linktarget";s:0:"";s:7:"linkalt";s:0:"";s:8:"priority";s:1:"1";}', 2, 0, 0, 0, 0, '', '1', '', 1207008000, 1238544000),
+(4, '0', 'img', '首页中间图片', 1, '', 'a:8:{s:3:"url";s:20:"images/cmsv3.jpg";s:5:"width";s:3:"950";s:6:"height";s:2:"80";s:10:"flashwmode";s:1:"0";s:7:"linkurl";s:0:"";s:10:"linktarget";s:0:"";s:7:"linkalt";s:0:"";s:8:"priority";s:1:"1";}', 2, 0, 0, 0, 0, '', '1', '', 1207008000, 1238544000),
 (5, '0', 'img', 'what', 1, '', 'a:8:{s:3:"url";s:15:"images/what.jpg";s:5:"width";s:3:"175";s:6:"height";s:3:"220";s:10:"flashwmode";s:1:"0";s:7:"linkurl";s:0:"";s:10:"linktarget";s:0:"";s:7:"linkalt";s:0:"";s:8:"priority";s:1:"1";}', 3, 0, 0, 0, 0, '', '1', '', 1207008000, 1238544000);
 
 INSERT INTO `cms_category` (`cid`, `cname`, `up`, `depth`, `mid`, `path`, `htmlpub`, `listpub`, `comment`, `copyctrl`, `autopub`, `autoupdate`, `tpl_index`, `tpl_content`, `file_index`, `file_content`, `taxis`, `total`, `new`, `link`, `addtion`, `listurl`, `metakeyword`, `metadescrip`, `description`, `type`) VALUES
@@ -450,7 +450,7 @@ INSERT INTO `cms_config` (`db_name`, `db_value`, `decrip`) VALUES
 ('db_timedf', '8', ''),
 ('db_cvtime', '0', ''),
 ('db_datefm', 'Y-m-d H:i', ''),
-('db_title', 'VeryCMS v3.3', ''),
+('db_title', 'CMS v3.3', ''),
 ('db_searchtime', '5', ''),
 ('db_searchmax', '100', ''),
 ('db_listpage', '', ''),
@@ -471,8 +471,8 @@ INSERT INTO `cms_config` (`db_name`, `db_value`, `decrip`) VALUES
 INSERT INTO `cms_const` (`id`, `title`, `name`, `value`, `type`) VALUES
 (1, '新闻资讯', 'MID_news', '1', 'MID'),
 (2, '友情链接', 'MID_links', '2', 'MID'),
-(3, 'EXT_navhead', 'EXT_navhead', '&lt;script language=&quot;javascript&quot; src=&quot;script/verycms/nav_head.js?cid={$cid}&tid={$tid}&quot;&gt;&lt;/script&gt;', 'EXT'),
-(4, 'EXT_navfoot', 'EXT_navfoot', '&lt;script language=&quot;javascript&quot; src=&quot;script/verycms/nav_foot.js?cid={$cid}&tid={$tid}&quot;&gt;&lt;/script&gt;', 'EXT');
+(3, 'EXT_navhead', 'EXT_navhead', '&lt;script language=&quot;javascript&quot; src=&quot;script/cms/nav_head.js?cid={$cid}&tid={$tid}&quot;&gt;&lt;/script&gt;', 'EXT'),
+(4, 'EXT_navfoot', 'EXT_navfoot', '&lt;script language=&quot;javascript&quot; src=&quot;script/cms/nav_foot.js?cid={$cid}&tid={$tid}&quot;&gt;&lt;/script&gt;', 'EXT');
 
 INSERT INTO `cms_content2` (`tid`, `linkorder`) VALUES
 (1, 99);
@@ -513,8 +513,8 @@ INSERT INTO `cms_module` (`mid`, `mname`, `author`, `descrip`, `search`) VALUES
 INSERT INTO `cms_nav` (`nid`, `title`, `style`, `link`, `alt`, `pos`, `target`, `view`) VALUES
 (1, 'PHPWind', '|||', 'http://www.phpwind.net', 'PHPWind官方', 'foot', 1, 0),
 (2, 'UU1001', '|||', 'http://www.uu1001.com', 'UU1001免费论坛', 'foot', 1, 0),
-(3, 'VeryCMS', '|||', 'http://www.verycms.net', 'VeryCMS官方', 'foot', 0, 0),
-(4, 'VeryCMS', 'red|1||', 'http://www.verycms.com', '官方演示站', 'head', 1, 1),
+(3, 'CMS', '|||', 'http://www.cms.net', 'CMS官方', 'foot', 0, 0),
+(4, 'CMS', 'red|1||', 'http://www.cms.com', '官方演示站', 'head', 1, 1),
 (6, 'PHPWind', 'blue||1|', 'http://www.phpwind.net', 'PHPWind论坛', 'head', 1, 2);
 
 INSERT INTO `cms_select` (`selectid`, `selectname`) VALUES

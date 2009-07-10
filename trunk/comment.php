@@ -11,12 +11,12 @@ require_once(D_P.'data/cache/face.php');
 //$cate		= new Cate();
 InitGP(array("shownum","job","page","ck","c_author","c_message","hideip","ajax"));
 $comment	= new Comment();
-if($very['commentdays']) {
-	$comment->time = (int)$very['commentdays'];
+if($sys['commentdays']) {
+	$comment->time = (int)$sys['commentdays'];
 }
 !$job && $job ='main';
 $comment->$job();
-start($very['charset']);
+start($sys['charset']);
 require Template('comment');
 footer();
 ?>

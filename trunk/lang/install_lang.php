@@ -45,8 +45,8 @@ $lang = array(
 
 	'hackmsg'			=> '扩展将默认全部安装,用户可在后台管理扩展',
 	'hacklist'			=> '扩展列表',
-	'have_file'			=> '您已经安装过 VeryCMS，如需重新安装，请删除此文件（{#bbsurl}/data/{#syslogo}.lock）后再进行安装',
-	'have_install'		=> '数据库 <b>{#dbname}</b> 中已经安装过VeryCMS，"继续安装" 将清除原来的数据，使用其它数据库请 "返回上一步" 重新设置',
+	'have_file'			=> '您已经安装过 CMS，如需重新安装，请删除此文件（{#bbsurl}/data/{#syslogo}.lock）后再进行安装',
+	'have_install'		=> '数据库 <b>{#dbname}</b> 中已经安装过CMS，"继续安装" 将清除原来的数据，使用其它数据库请 "返回上一步" 重新设置',
 	'header_pw'			=> '官方论坛',
 	'header_help'		=> '帮助',
 
@@ -55,7 +55,7 @@ $lang = array(
 	'link_admin'		=> '系统后台地址',
 	'link_phpwind'		=> 'PW官方论坛',
 	'log_help'			=> '<li><a href="http://www.phpwind.com/download.php" target="_blank" class="black">官方及周边资源下载</a></li><li><a href="http://www.phpwind.net/thread.php?fid=67" target="_blank" class="black">更多讨论与帮助</a></li>',
-	'log_install'		=> '<p>(一) 运行环境需求：PHP+MYSQL。</p><p>(二) 安装步骤：</p><p>(1) Linux 或 Freebsd 服务器下安装方法。</p><p>第一步：使用ftp工具中的二进制模式，将该软件包里的 upload 目录及其文件上传到您的空间，假设上传后目录仍旧为 upload。</p><p>第二步：先确认以下目录或文件属性为 (777) 可写模式。</p><p>data， data/sql_config.php， data/cache， data/comment， data/tpl_cache， data/sql， data/rss，data/js，template/user， attachment， attachment/temp， attachment/s， www， script/verycms</p><p>第三步：运行 <small>http://yourwebsite/upload/{#basename}</small> 安装程序，填入安装相关信息与资料，完成安装！</p><p>(2) Windows 服务器下安装方法。</p><p>第一步：使用ftp工具，将该软件包里的 upload 目录及其文件上传到您的空间，假设上传后目录仍旧为 upload。</p><p>第二步：运行 <small>http://yourwebsite/upload/{#basename}</small> 安装程序，填入安装相关信息与资料，完成安装！</p>',
+	'log_install'		=> '<p>(一) 运行环境需求：PHP+MYSQL。</p><p>(二) 安装步骤：</p><p>(1) Linux 或 Freebsd 服务器下安装方法。</p><p>第一步：使用ftp工具中的二进制模式，将该软件包里的 upload 目录及其文件上传到您的空间，假设上传后目录仍旧为 upload。</p><p>第二步：先确认以下目录或文件属性为 (777) 可写模式。</p><p>data， data/sql_config.php， data/cache， data/comment， data/tpl_cache， data/sql， data/rss，data/js，template/user， attachment， attachment/temp， attachment/s， www， script/cms</p><p>第三步：运行 <small>http://yourwebsite/upload/{#basename}</small> 安装程序，填入安装相关信息与资料，完成安装！</p><p>(2) Windows 服务器下安装方法。</p><p>第一步：使用ftp工具，将该软件包里的 upload 目录及其文件上传到您的空间，假设上传后目录仍旧为 upload。</p><p>第二步：运行 <small>http://yourwebsite/upload/{#basename}</small> 安装程序，填入安装相关信息与资料，完成安装！</p>',
 	'log_install_t'		=> '安装须知',
 	'log_marketing'		=> '<div>尊敬的站长：</div><p>感谢您选择PHPWind Forums论坛系统。基于彼此的信赖，我们诚邀您加入PHPWind一站式营销计划。</p><p>PHPWind一站式营销是帮助广大站长获取收益的网络广告营销平台，它的优势与特色在于：</p><div style="padding:1em 2em">充分结合PHPWind Forums论坛系统，使广告投放与管理操作更加得心应手；<br />经由专业力量优化的广告代码，更符合社区的属性；<br />长达一年的实战社区营销经验累积与调试；<br />值得信赖的合作伙伴与精心挑选的广告产品——Google Adsense、北京新锐光芒科技有限公司；<br />更具优势的结算方式——广告收益次月以人民币进行结算，最低收益提领额度为100元。</div><p><a href="http://union.phpwind.com/question.php" target="_blank" class="black"><u>关于PHPWind一站式营销</u></a>&nbsp; &nbsp;<a href="http://www.phpwind.net/thread.php?fid=82" target="_blank" class="black"><u>讨论区</u></a></p><p>从建站到挣钱， PHPWind永远是您最真诚的伙伴！</p>',
 	'log_marketing_t'	=> 'PHPWind社区营销',
@@ -110,16 +110,16 @@ $lang = array(
 	'success_5'			=> '扩展添加成功!',
 	'success_5_1'		=> '友情链接添加成功!',
 	'success_5_2'		=> '系统缓存更新完成',
-	'success_install'	=> '恭喜您，您的 VeryCMS v{#wind_version} 已经安装成功！',
-	'success_repair'	=> '恭喜您，您的 VeryCMS v{#wind_version} 已经更新成功！',
-	'success_upto'		=> '恭喜您，您的 VeryCMS v{#wind_version} 已经升级成功！',
+	'success_install'	=> '恭喜您，您的 CMS v{#wind_version} 已经安装成功！',
+	'success_repair'	=> '恭喜您，您的 CMS v{#wind_version} 已经更新成功！',
+	'success_upto'		=> '恭喜您，您的 CMS v{#wind_version} 已经升级成功！',
 
 	'title_install'		=> 'PHPWind Install',
 	'title_repair'		=> 'PHPWind Repair',
 	'title_upto'		=> 'PHPWind Upto',
 
-	'welcome_msg'		=> '欢迎来到 VeryCMS 安装向导，安装前请仔细阅读 安装说明里的每处细节后才能开始安装。安装文件夹里同样提供了有关软件安装的说明，请您同样仔细阅读，以保证安装进程的顺利进行。',
-	'welcome_msgupto'	=> '欢迎来到 VeryCMS 升级向导，升级前请仔细阅读 升级说明里的每处细节后才能开始升级。升级文件夹里同样提供了有关软件升级的说明，请您同样仔细阅读，以保证升级进程的顺利进行。',
+	'welcome_msg'		=> '欢迎来到 CMS 安装向导，安装前请仔细阅读 安装说明里的每处细节后才能开始安装。安装文件夹里同样提供了有关软件安装的说明，请您同样仔细阅读，以保证安装进程的顺利进行。',
+	'welcome_msgupto'	=> '欢迎来到 CMS 升级向导，升级前请仔细阅读 升级说明里的每处细节后才能开始升级。升级文件夹里同样提供了有关软件升级的说明，请您同样仔细阅读，以保证升级进程的顺利进行。',
 
 	'ext_sql'			=>"REPLACE INTO `cms_extension` (`name`, `value`, `decrip`) VALUES
 ('ext_config', 'a:9:{s:10:\"wordfilter\";a:4:{s:4:\"name\";s:18:\"站点词语过滤\";s:3:\"dir\";s:10:\"wordfilter\";s:6:\"ifopen\";i:1;s:7:\"version\";s:7:\"0.1.304\";}s:8:\"tplconst\";a:4:{s:4:\"name\";s:12:\"模板常量\";s:3:\"dir\";s:8:\"tplconst\";s:6:\"ifopen\";i:1;s:7:\"version\";s:7:\"0.1.400\";}s:7:\"sitemap\";a:4:{s:4:\"name\";s:12:\"站点地图\";s:3:\"dir\";s:7:\"sitemap\";s:6:\"ifopen\";i:1;s:7:\"version\";s:7:\"0.1.305\";}s:4:\"poll\";a:4:{s:4:\"name\";s:12:\"站点调查\";s:3:\"dir\";s:4:\"poll\";s:6:\"ifopen\";i:1;s:7:\"version\";s:7:\"0.1.403\";}s:6:\"notice\";a:4:{s:4:\"name\";s:12:\"站点公告\";s:3:\"dir\";s:6:\"notice\";s:6:\"ifopen\";i:1;s:7:\"version\";s:7:\"0.2.400\";}s:3:\"nav\";a:4:{s:4:\"name\";s:18:\"自定义导航栏\";s:3:\"dir\";s:3:\"nav\";s:6:\"ifopen\";i:1;s:7:\"version\";s:7:\"0.2.398\";}s:5:\"jscms\";a:4:{s:4:\"name\";s:14:\"文章JS调用\";s:3:\"dir\";s:5:\"jscms\";s:6:\"ifopen\";i:1;s:7:\"version\";s:7:\"0.1.479\";}s:10:\"contribute\";a:4:{s:4:\"name\";s:12:\"游客投稿\";s:3:\"dir\";s:10:\"contribute\";s:6:\"ifopen\";s:1:\"1\";s:7:\"version\";s:5:\"1.0.0\";}s:6:\"advert\";a:4:{s:4:\"name\";s:12:\"站点广告\";s:3:\"dir\";s:6:\"advert\";s:6:\"ifopen\";i:1;s:7:\"version\";s:5:\"0.1.0\";}}', '');",
