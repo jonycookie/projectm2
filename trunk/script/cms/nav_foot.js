@@ -1,1 +1,0 @@
-document.write("<li><a href=\"http://www.phpwind.net\" target=\"_blank\" title=\"PHPWind官方\">PHPWind</a></li> <li><a href=\"http://www.uu1001.com\" target=\"_blank\" title=\"UU1001免费论坛\">UU1001</a></li> <li><a href=\"http://www.cms.net\" target=\"_self\" title=\"CMS官方\">CMS</a></li>");
