@@ -46,7 +46,6 @@ if($action=='in'){
 	$adminFileName = end(explode('/',$admin_file));
 	ObHeader($adminFileName);
 }
-require PrintEot('header');
 require PrintEot('login');
 adminbottom();
 ?>
