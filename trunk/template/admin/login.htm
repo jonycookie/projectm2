@@ -1,0 +1,91 @@
+<!--<?php
+print <<<EOT
+-->
+<style>
+body{background-color:#f3f2ef;}
+</style>
+<div style="width:350px; margin:auto; margin-top:30px;">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="13" height="13"><img src="images/admin/l1_c.gif" width="13" height="13"></td>
+    <td background="images/admin/top_line.gif"></td>
+    <td width="13" height="13"><img src="images/admin/r1_c.gif" width="13" height="13"></td>
+  </tr>
+  <tr>
+    <td background="images/admin/l_line.gif"></td>
+    <td style="padding:10px; background-color:#FFFFFF">
+	<form action="$admin_file" method="post" target="_parent" name="login">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr><td colspan="2">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width=2><img src="images/admin/line_lft.png"></td>
+        <td background="images/admin/loginline.png" style="color:white; font-weight:bold;height:30px; padding-left:10px;">Administrator Login </td>
+        <td><img src="images/admin/line_rt.png"></td>
+        </tr>
+      </table>
+      </td></tr>
+      <tr>
+        <td colspan="2">&nbsp;</td>
+        </tr>
+      <tr class="tr">
+        <td width="30%" style="padding-left:15px;">用户名:</td>
+        <td width="70%">
+          <input name="username" type="text" class="input" /></td>
+      </tr>
+      <tr class="tr">
+        <td style="padding-left:15px">密&nbsp;&nbsp;&nbsp;码:</td>
+        <td>
+          <input name="password" type="password" class="input" /></td>
+      </tr>
+<!--
+EOT;
+if($very[ckadmin]){
+print <<<EOT
+-->
+      <tr class="tr">
+        <td style="padding-left:15px">验证码:</td>
+        <td><img src="ck.php" name="ck" align="absmiddle" id='ck'>
+          <input name="ck" type="text" class="input" size="4" /></td>
+      </tr>
+      <tr class="tr">
+        <td colspan="2" align="center"><a href="javascript:void(0);" onclick="return showck();">看不清，换一张图片</a></td>
+      </tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+      <tr class="tr">
+        <td colspan="2" align="center">
+        <input type="hidden" name="action" value="in" />
+        <input type="submit" name="Submit" value="登录" class="btn" />
+        <input type="button" name="Submit2" value="返回" class="btn" onClick="window.history.go(-1);" />        </td>
+        </tr>
+	  <tr class="tr">
+	    <td colspan="2" align="center">&nbsp;</td>
+	    </tr>
+    </table>
+	</form>
+	</td>
+    <td background="images/admin/r_line.gif"></td>
+  </tr>
+  <tr>
+    <td width="13" height="13" background="images/admin/l2_c.gif"></td>
+    <td height="13" background="images/admin/bot_line.gif"></td>
+    <td background="images/admin/r2_c.gif"></td>
+  </tr>
+</table>
+
+</div>
+<script language="JavaScript">
+document.login.username.focus();
+function showck(){
+	var nowtime	 = new Date().getTime();
+	var ck=document.getElementById('ck');
+	ck.src='ck.php?nowtime='+nowtime;
+	return false;
+}
+</script>
+<!--
+EOT;
+?>-->

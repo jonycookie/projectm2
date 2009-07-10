@@ -1,0 +1,92 @@
+<!--# include Template('header');#--><!--header----main-->
+<div class="main" id="read">
+    <div class="area-4">
+        <div class="area-4-bot">
+            <div class="thread-content">
+                <div class="box710">
+                    <div class="box710b">
+                        <div class="box710t">
+                            <div class="read-content left">
+                                <div class="postion">
+                                    共有 <strong class="green">$total</strong>
+                                    条 关于 <span class="pink">$keyword</span>
+                                    的搜索结果
+                                </div>
+                                <div style="padding-left:4px;">
+                                    <form method="post" action="search.php">
+                                        <div style="float:left;clear:left">
+                                            <select name="mid" id="mid" onchange="getCid(this.value)">
+                                                <!--# foreach($moduledb as $val){
+                                                if($val[mid]<=0 || !$val[search]) continue;
+                                                #--><option value="$val[mid]">$val[mname]</option>
+                                                <!--#}#-->
+                                            </select>
+                                        </div>
+                                        <div id='searchfield' style="float:left;clear:none">
+                                        </div>
+                                        <div style="float:left;clear:none">
+                                            <select name="ordering" id="ordering">
+                                                <option value="newest"$select_newest>新的排在最前面</option>
+                                                <option value="oldest"$select_oldest>旧的排在最前面</option>
+                                                <option value="popular"$select_popular>点击量最多的</option>
+                                            </select>
+                                        </div>
+                                        <div style="float:left;clear:none">
+                                            <input name="keyword" type="text" class="topsearch" id="keyword" value='$keyword'/>
+                                        </div>
+										<input name="s_type" type="hidden" id="s_type" value="advance" />
+										<input name="step" type="hidden" id="step" value="2" />
+										<input name="Submit" type="image" src="images/search.gif" alt="search" width="51" height="20" border="0"/>
+                                    </form>
+                                </div>
+                                <div class="search-result" id="search">
+                                    <!--#foreach($searchresult as $val){#-->
+                                    <dl>
+                                        <dt>
+                                            <a href="$val[listurl]" title="">[$val[cname]]</a>&nbsp;&nbsp;<a onclick="return c('6a7d',this.innerHTML,this.href,1)" href="$val[url]" target="_blank">$val[title]</a>
+                                        </dt>
+                                    </dl>
+                                    <!--#}#-->
+                                </div>
+                                $pages
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="thread-side left">
+                <div class="box230">
+                    <div class="box230b">
+                        <div class="box230t">
+                            <h3 class="green">广告位置</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+    <script language="JavaScript" src="script/xhr.js">
+    </script>
+    <script language="JavaScript" type="text/javascript">
+        document.onload = getCid(1);
+        function getCid(mid){
+            var time = new Date();
+            var timestamp = time.valueOf();
+            var x = new XHR("gotCidValue");
+            var url = "search.php?action=ajax&mid=" + mid + '&time=' + timestamp;
+            //document.write(url);
+            x.get(url);
+        }
+        
+        function gotCidValue(ret){
+            if (ret != null || ret != 'error') {
+                document.getElementById('searchfield').innerHTML = ret;
+            }
+            else {
+                alert("获取栏目失败");
+            }
+        }
+    </script>
+    <!--# include Template('foot');#-->

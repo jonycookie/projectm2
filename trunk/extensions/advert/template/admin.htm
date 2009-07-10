@@ -1,0 +1,965 @@
+<!--<?php
+print <<<EOT
+-->
+<div class="m"></div>
+<div class="t">
+  <table width=100% align=center cellspacing=0 cellpadding=0>
+    <tr class="tr4">
+      <td>
+				<input type="button" name="Submit5" value="广告版位管理" class="btn" onclick="window.location='$basename&action=adp';"/>
+				<input type="button" name="Submit5" value="添加广告版位" class="btn" onclick="window.location='$basename&action=adp&job=add';"/>
+				<input type="button" name="Submit5" value="广告内容管理" class="btn" onclick="window.location='$basename&action=adv';"/>
+				<input type="button" name="Submit5" value="添加新广告" class="btn" onclick="window.location='$basename&action=adv&job=add';"/>
+				<input type="button" name="Submit5" value="JS缓存更新" class="btn" onclick="window.location='$basename&action=jscache';"/>
+	<!--	<input type="button" name="Submit5" value="导出广告版位" class="btn" onclick="windows.location='$basename&action=adexport';"/>
+				<input type="button" name="Submit5" value="导入广告版位" class="btn" onclick="windows.location='$basename&action=adimport';"/>-->
+			</td>
+    </tr>
+  </table>
+</div>
+<div class="t">
+<table cellspacing=0 cellpadding=0>
+<tr class=head><td colspan=2>提示信息</td></tr>
+<tr class=tr3><td>
+<font color="red">新添加广告版位,生成JS代码,并手动添加到相应的栏目模版的相应位置</font><br />
+<font color="blue">每次修改广告设置后,都要更新JS缓存后才会生效</font><br />
+您可以根据自己不同的频道栏目模版结构,添加需要的广告版位<br />
+一个广告版位可以同时在多个频道栏目中显示<br />
+一个广告版位中可以有多个广告内容,并选择不同的显示方式<br />
+
+</td></tr></table>
+</div>
+<!--
+EOT;
+if(!$action || $action =='adp'){
+if(!$job){
+print <<<EOT
+-->
+<form method='post' action="$basename">
+<div class="t">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="head">
+			<td colspan="8">广告版位管理</td>
+		</tr>
+
+		<tr class="tr2">
+			<td >选中</td>
+			<td >序号</td>
+			<td >版位名称</td>
+			<td >版位类型</td>
+			<td >显示方式</td>
+			<td >版位状态</td>
+			<td >版位操作</td>
+			<td >JS操作</td>
+		</tr>
+<!--
+EOT;
+$type = array('code'=>'文字广告','banner'=>'横幅广告','fixed'=>'固定位置','float'=>'漂浮移动','move'=>'随屏漂移','pop'=>'弹出窗口');
+$showtype = array('1'=>'权重随机','2'=>'权重优先','3'=>'权重循环');
+foreach($adplist as $key=>$value){
+$value[showtype] = $showtype[$value[showtype]]; 
+$value[type] = $type[$value[type]];
+$value[active] = $value[active] ? "开启" : "关闭";
+print <<<EOT
+-->
+		<tr class="tr3">
+			<td ><input type="checkbox" name="ids[]" value="$value[pid]" ></td>
+			<td >$value[pid]</td>
+			<td >$value[name]</td>
+			<td >$value[type]</td>
+			<td >$value[showtype]</td>
+			<td >$value[active]</td>
+			<td ><a href="#" onclick="window.location='$basename&action=adv&pid=$value[pid]';">[查看]</a>&nbsp;<a href="#" onclick="window.location='$basename&action=adv&job=add&pid=$value[pid]';">[添加]</a>&nbsp;<a href="#" onclick="window.location='$basename&action=adp&job=edit&pid=$value[pid]';">[编辑]</a>&nbsp;<a href="#" onclick="if(confirm('删除广告版位将同时删除版位下面的所有广告您确定要删除该广告版位吗？'))window.location='$basename&action=adp&job=del&ids=$value[pid]';">[删除]</a>
+			</td>
+			<td ><a href="#" onclick="window.location='$basename&action=jscache&pid=$value[pid]';">[更新缓存]</a>&nbsp;<a href="#" onclick="window.location='$basename&action=adp&job=jsshow&pid=$value[pid]';">[生成代码]</a>
+			</td>
+		</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+	</table>
+</div>
+<div class="sub">
+  <input name="action" type="hidden" id="action" value="adp">
+	<input name="job" type="hidden" id="job" value="del">
+	<input type="button" name="checkall" value="全 选" class="btn" onClick="return CheckAll(this.form);">
+  <input type="submit" name="del" value="删除选中版位" class="btn" onClick="return delNotice(this.form);">
+</div>
+</form>
+<script language="javascript">
+function CheckAll(form){
+	for (var i=0;i<form.elements.length-2;i++){
+		var e = form.elements[i];
+		e.checked == true ? e.checked = false : e.checked = true;
+	}
+}
+function delNotice(){
+	var msg=confirm("删除广告版位将同时删除版位下面的所有广告您确定要删除选中的广告版位吗？");
+	if(msg){
+		return true;
+	}else{
+		return false;
+	}
+}
+</script>
+<!--
+EOT;
+}elseif($job=='edit'){
+print <<<EOT
+-->
+<form method='post' action="$basename">
+<div class="t">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="head">
+			<td colspan="5">编辑广告版位</td>
+		</tr>
+		<tr class="tr2">
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr class="line">
+			<td width="25%">版位名称</td>
+			<td><input name="adpinfo[name]" type="text" class="input" value="$adpinfo[name]" size="55">&nbsp;<font color=red>*</font></td>
+		</tr>
+		<tr class="line">
+			<td width="25%">版位标识符</td>
+			<td><input name="adpinfo[jsname]" type="text" class="input" value="$adpinfo[jsname]" size="55">&nbsp;<font color="red">*</font>(生成JS文件名,字母与数字组合,长度最小为3)</td>
+		</tr>
+		<tr class="line">
+			<td width="25%">版位描述</td>
+			<td><textarea name="adpinfo[intro]" cols="60" rows="5" id="content">$adpinfo[intro]</textarea></td>
+		</tr>
+		<tr class="line">
+			<td width="25%">版位尺寸：</td>
+			<td>宽：<input type="text" name="adpinfo[width]" value="$adpinfo[width]" size="4" class="input" />像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="adpinfo[height]" value="$adpinfo[height]" size="4" class="input" />像素&nbsp;<font color=red>*</font>(默认100)</td>
+		</tr>
+		<tr class="line">
+			<td width="25%">版位类型</td>
+			<td>
+				<select id="type" name="adpinfo[type]" onchange="showcode(this.options[this.selectedIndex].value)">
+					<option value="code" $type_code>文字广告</option>
+					<option value="banner" $type_banner>横幅广告</option>
+					<option value="fixed" $type_fixed>固定位置</option>
+					<option value="float" $type_float>漂浮移动</option>
+					<option value="pop" $type_pop>弹出窗口</option>
+					<option value="move" $type_move>随屏漂移</option>
+				</select>
+			</td>
+		</tr>
+		<tr class="line">
+			<td width="25%">版位设置</td>
+			<td>
+				<div id="adv_type" class="t"></div>
+			</td>
+		</tr>
+		<tr class="line">
+			<td width="25%">显示方式</td>
+			<td>
+				<input type="radio" id="showtype" name="adpinfo[showtype]" value="1" $showtype_1/>按权重随机显示：权重越大显示机会越大<br/>
+				<input type="radio" id="showtype" name="adpinfo[showtype]" value="2" $showtype_2/>按权重优先显示：显示权重值最大的广告<br/>
+				<input type="radio" id="showtype" name="adpinfo[showtype]" value="3" $showtype_3/>按顺序循环显示：此方式仅对矩形横幅有效<br/>
+			</td>
+		</tr>
+		<tr class="line">
+			<td width="25%">版位状态</td>
+			<td>
+				<input type="radio" id="active" name="adpinfo[active]" value="1" $active_1/>前台显示
+				<input type="radio" id="active" name="adpinfo[active]" value="0" $active_0/>暂时关闭
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="sub">
+	<input name="action" type="hidden" id="action" value="$action">
+	<input name="job" type="hidden" id="job" value="$job">
+	<input name="adpinfo[pid]" type="hidden" id="pid" value="$adpinfo[pid]">
+	<input name="step" type="hidden" id="step" value="2">
+	<input class="btn" type="submit" value="提交">
+	<input class="btn" type="reset" name="Submit" value="重置">
+</div>
+</form>
+<div class="t" id="fixed" style="display:none;" disabled>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="line">
+			<td colspan=2><b>广告版位设置--固定位置</b></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">广告位置（上）：</td>
+			<td><input type="text" name="setting[top]" size="30" value="$setting[top]"></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">广告位置(左):</td>
+			<td><input type="text" name="setting[left]" size="30" value="$setting[left]"></td>
+		</tr>
+	</table>
+</div>
+<div class="t" id="banner" style="display:none;" disabled>
+	默认设置
+</div>
+<div class="t" id="float" style="display:none;" disabled>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="line">
+			<td colspan=2><b>广告版位设置--漂浮移动</b></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">漂浮类型:</td>
+			<td>
+				<select id="floattype" name="setting[floattype]">
+					<option value="1" $floattype_1/>变速漂浮</option>
+					<option value="2" $floattype_2/>匀速漂浮</option>
+					<option value="3" $floattype_3/>上下漂浮</option>
+					<option value="4" $floattype_4/>左右漂浮</option>
+				</select>
+			</td>
+		</tr>
+		<tr class="line">
+			<td width="20%">初始位置（上）：</td>
+			<td><input type="text" name="setting[top]" size="30" value="$setting[top]"></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">初始位置(左):</td>
+			<td><input type="text" name="setting[left]" size="30" value="$setting[left]"></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">加速延迟:</td>
+			<td><input type="text" name="setting[delay]" size="30" value="$setting[delay]"></td>
+		</tr>
+	</table>
+</div>
+<div class="t" id="code" style="display:none;" disabled>
+	默认设置
+</div>
+<div class="t" id="pop" style="display:none;" disabled>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="line">
+			<td colspan=2><b>广告版位设置--弹出窗口</b></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">弹出方式:</td>
+			<td>
+				<select id="poptype" name="setting[poptype]">
+					<option value="1" $poptype_1/>前置窗口</option>
+					<option value="2" $poptype_2/>后置窗口</option>
+					<option value="3" $poptype_3/>网页对话框</option>
+					<option value="4" $poptype_4/>背投广告</option>
+				</select>
+				("网页对话框"弹出方式只适用"页面广告")
+			</td>
+		</tr>
+		<tr class="line">
+			<td width="20%">弹出位置（上）：</td>
+			<td><input type="text" name="setting[top]" size="30" value="$setting[top]"></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">弹出位置（左）：</td>
+			<td><input type="text" name="setting[left]" size="30" value="$setting[left]"></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">时间间隔：</td>
+			<td><input type="text" name="setting[cookiehour]" size="15" value="$setting[cookiehour]">小时(设为0时总是弹出)</td>
+		</tr>
+	</table>
+</div>
+<div class="t" id="move" style="display:none;" disabled>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="line">
+			<td colspan=2><b>广告版位设置--随屏漂移</b></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">开始位置（上）：</td>
+			<td><input type="text" name="setting[top]" size="30" value="$setting[top]"></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">开始位置（左）：</td>
+			<td><input type="text" name="setting[left]" size="30" value="$setting[left]"></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">移动平滑度：</td>
+			<td><input type="text" name="setting[delta]" size="15" value="$setting[delta]">（取值在0.001至1之间）</td>
+		</tr>
+	</table>			
+</div>
+<script language="JavaScript">
+	function getObj(id){
+		return document.getElementById(id);
+	}
+
+	function showcode(idName){
+		getObj('adv_type').innerHTML=getObj(idName).innerHTML;
+	}
+	showcode('$adpinfo[type]');
+</script>
+<!--
+EOT;
+}elseif($job=="add"){
+print <<<EOT
+-->
+<form method='post' action="$basename">
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="head">
+    <td colspan="5">添加广告版位</td>
+  </tr>
+	<tr class="tr2">
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+  </tr>
+  <tr class="line">
+		<td width="25%">版位名称</td>
+		<td><input name="adpinfo[name]" type="text" class="input" value="" size="55">&nbsp;<font color=red>*</font></td>
+	</tr>
+  <tr class="line">
+		<td width="25%">版位标识符</td>
+		<td><input name="adpinfo[jsname]" type="text" class="input" value="$adpinfo[jsname]" size="55">&nbsp;<font color="red">*</font>(生成JS文件名,字母与数字组合,长度最小为3)</td>
+	</tr>
+  <tr class="line">
+		<td width="25%">版位描述</td>
+		<td><textarea name="adpinfo[intro]" cols="60" rows="5" id="content"></textarea></td>
+	</tr>
+	<tr class="line">
+		<td width="25%">版位尺寸：</td>
+		<td>宽：<input type="text" name="adpinfo[width]" value="100" size="4" class="input" />像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="adpinfo[height]" value="100" size="4" class="input" />像素&nbsp;<font color=red>*</font>(默认100)</td>
+	</tr>
+	<tr class="line">
+		<td width="25%">版位类型</td>
+		<td>
+			<select id="type" name="adpinfo[type]" onchange="showcode(this.options[this.selectedIndex].value)">
+				<option value="code" >文字广告</option>
+				<option value="banner" >横幅广告</option>
+				<option value="fixed" >固定位置</option>
+				<option value="float" >漂浮移动</option>
+				<option value="pop" >弹出窗口</option>
+				<option value="move" >随屏漂移</option>
+			</select>
+		</td>
+	</tr>
+	<tr class="line">
+		<td width="25%">版位设置</td>
+		<td>
+			<div id="adv_type"></div>
+		</td>
+	</tr>
+	<tr class="line">
+		<td width="25%">显示方式</td>
+		<td>
+			<input type="radio" id="showtype" name="adpinfo[showtype]" value="1" checked/>按权重随机显示：权重越大显示机会越大<br/>
+			<input type="radio" id="showtype" name="adpinfo[showtype]" value="2"/>按权重优先显示：显示权重值最大的广告<br/>
+			<input type="radio" id="showtype" name="adpinfo[showtype]" value="3"/>按顺序循环显示：此方式仅对矩形横幅有效<br/>
+		</td>
+	</tr>
+	<tr class="line">
+		<td width="25%">版位状态</td>
+		<td>
+			<input type="radio" id="active" name="adpinfo[active]" value="1" checked/>前台显示
+			<input type="radio" id="active" name="adpinfo[active]" value="0" />暂时关闭
+		</td>
+	</tr>
+</table>
+</div>
+<div class="sub">
+	<input name="action" type="hidden" id="action" value="$action">
+		<input name="job" type="hidden" id="job" value="$job">
+	<input name="step" type="hidden" id="step" value="2">
+	<input class="btn" type="submit" value="提交">
+	<input class="btn" type="reset" name="Submit" value="重置">
+</div>
+</form>
+<div class="t" id="fixed" style="display:none;" disabled>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="line">
+			<td colspan=2><b>广告版位设置--固定位置</b></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">广告位置（上）：</td>
+			<td><input type="text" name="setting[top]" value="100" size="30"></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">广告位置(左):</td>
+			<td><input type="text" name="setting[left]" value="100" size="30"></td>
+		</tr>
+	</table>
+</div>
+<div id="banner" style="display:none;" disabled>
+	默认设置
+</div>
+<div class="t" id="float" style="display:none;" disabled>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="line">
+			<td colspan=2><b>广告版位设置--漂浮移动</b></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">漂浮类型:</td>
+			<td>
+				<select id="floattype" name="setting[floattype]">
+					<option value="1" />变速漂浮</option>
+					<option value="2" />匀速漂浮</option>
+					<option value="3" />上下漂浮</option>
+					<option value="4" />左右漂浮</option>
+				</select>
+			</td>
+		</tr>
+		<tr class="line">
+			<td width="20%">初始位置（上）：</td>
+			<td><input type="text" name="setting[top]" value="100" size="30"></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">初始位置(左):</td>
+			<td><input type="text" name="setting[left]" value="100" size="30"></td>
+		</tr>
+		<tr class="line">
+				<td width="20%">加速延迟:</td>
+				<td><input type="text" name="setting[delay]" size="30" value="$setting[delay]"></td>
+			</tr>
+	</table>
+</div>
+<div id="code" style="display:none;" disabled>
+	默认设置
+</div>
+<div class="t" id="pop" style="display:none;" disabled>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="line">
+			<td colspan=2><b>广告版位设置--弹出窗口</b></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">弹出方式:</td>
+			<td>
+				<select id="floattype" name="setting[floattype]">
+					<option value="1" />前置窗口</option>
+					<option value="2" />后置窗口</option>
+					<option value="3" />网页对话框</option>
+					<option value="4" />背投广告</option>
+				</select>
+				("网页对话框"弹出方式只适用"页面广告")
+			</td>
+		</tr>
+		<tr class="line">
+			<td width="20%">弹出位置（上）：</td>
+			<td><input type="text" name="setting[top]" value="100" size="30"></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">弹出位置（左）：</td>
+			<td><input type="text" name="setting[left]" value="100" size="30"></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">时间间隔：</td>
+			<td><input type="text" name="setting[cookiehour]" value="0" size="15">小时(设为0时总是弹出)</td>
+		</tr>
+	</table>
+</div>
+<div class="t" id="move" style="display:none;" disabled>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="line">
+			<td colspan=2><b>广告版位设置--随屏漂移</b></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">开始位置（上）：</td>
+			<td><input type="text" name="setting[top]" value="100" size="30"></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">开始位置（左）：</td>
+			<td><input type="text" name="setting[left]" value="100" size="30"></td>
+		</tr>
+		<tr class="line">
+			<td width="20%">移动平滑度：</td>
+			<td><input type="text" name="setting[delta]" value="0.15" size="15">（取值在0.001至1之间）</td>
+		</tr>
+	</table>			
+</div>
+
+<script language="JavaScript">
+function getObj(id){
+	return document.getElementById(id);
+}
+/**
+function showcode(idName){
+	getObj(oldtype).style.display = 'none';
+	getObj(oldtype).disabled = true;
+
+	getObj(idName).style.display = '';
+	getObj(idName).disabled = false;
+	oldtype =idName;
+}
+**/
+function showcode(idName){
+	getObj('adv_type').innerHTML=getObj(idName).innerHTML;
+}
+showcode('code');
+</script>
+<!--
+EOT;
+}elseif($job=='jsshow'){
+print <<<EOT
+-->
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="head">
+    <td colspan="1">生成的JS代码</td>
+  </tr>
+	<tr class="line">
+		<td>提示说明</td>
+	</tr>
+	<tr class="line">
+		<td><textarea name="jscode" cols="150" rows="6" id="jscode">$jscode</textarea></td>
+	</tr>
+</table>
+</div>
+<div class="sub">
+<input type="button" value="复 制" class="btn" onclick="CopyCode(document.getElementById('jscode'));"/>
+</div>
+<script language="JavaScript">
+function CopyCode(obj){ 
+	obj.select(); 
+	var js=obj.createTextRange(); 
+	js.execCommand("Copy");
+	alert("代码已经复制，请到模板中你要想显示广告的位置粘贴！");
+}
+</script>
+<!--
+EOT;
+}}elseif($action=='adv'){
+if(!$job){
+print <<<EOT
+-->
+<form method='post' action="$basename">
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="head">
+    <td colspan="8">广告内容管理  &nbsp;<select name="cid" id="cid" onchange="getMsg()"><option value="-1">所有栏目</option>$cate_select</select>&nbsp;<select name="pid" id="pid" onchange="getMsg()"><option value="0">所有版位</option>$AdvertTree</select></td>
+  </tr>
+  <tr class="tr2">
+		<td width="5%">选中</td>
+    <td>序号</td>
+    <td>广告名称</td>
+    <td>广告类型</td>
+    <td>广告权值</td>
+		<td>结束时间</td>
+    <td>广告操作</td>
+  </tr>
+<!--
+EOT;
+$type = array('txt'=>'文本广告','img'=>'图片广告','flash'=>'动画广告','code'=>'代码广告','page'=>'页面广告');
+foreach($advlist as $key=>$value){
+$value[type]=$type[$value[type]];
+print <<<EOT
+-->
+  <tr class="tr3">
+		<td width="5%"><input type="checkbox" name="ids[]" value="$value[adid]" ></td>
+    <td>$value[adid]</td>
+    <td>$value[name]</td>
+    <td>$value[type]</td>
+    <td>$value[priority]</td>
+		<td>$value[endtime]</td>
+    <td><a href="#" onclick="window.location='$basename&action=adv&job=edit&adid=$value[adid]';">[编辑]</a>&nbsp;<a href="#" onclick="if(confirm('您确定要删除该广告吗？'))window.location='$basename&action=adv&job=del&ids=$value[adid]';">[删除]</a></td>
+  </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+	</table>
+</div>
+<div class="sub">
+  <input name="action" type="hidden" id="action" value="adv">
+	<input name="job" type="hidden" id="job" value="del">
+	<input type="button" name="checkall" value="全 选" class="btn" onClick="return CheckAll(this.form);">
+  <input type="submit" name="del" value="删除选中版位" class="btn" onClick="return delNotice(this.form);">
+</div>
+</form>
+<script language="javascript">
+function getObj(id){
+	return document.getElementById(id);
+}
+function CheckAll(form){
+	for (var i=0;i<form.elements.length-2;i++){
+		var e = form.elements[i];
+		e.checked == true ? e.checked = false : e.checked = true;
+	}
+}
+function delNotice(form){
+	if(confirm('您确定要删除选中的广告吗？')){
+		return true;
+	}else{
+		return false;
+	}
+}
+function getMsg(){
+		pid=getObj('pid').options[getObj('pid').selectedIndex].value;
+		cid=getObj('cid').options[getObj('cid').selectedIndex].value;
+		window.location='$basename&action=adv&pid='+pid+'&cid='+cid;
+}
+</script>
+<!--
+EOT;
+}elseif($job=='edit'){
+print <<<EOT
+-->
+<script language="javascript" src="script/date.js"></script>
+<form method='post' action="$basename">
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="head">
+    <td colspan="5">编辑广告内容</td>
+  </tr>
+	<tr class="tr2">
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+  </tr>
+  <tr class="line">
+		<td width="25%">广告名称</td>
+		<td><input name="advinfo[name]" type="text" class="input" value="$advinfo[name]" size="60">&nbsp;<font color=red>*</font></td>
+	</tr>
+	<tr class="line">
+		<td width="25%">广告类型</td>
+		<td>
+			<select id="type" name="advinfo[type]" onchange="showcode(this.options[this.selectedIndex].value)">
+				<option value="txt" $type_txt>文本广告</option>
+				<option value="img" $type_img>图片广告</option>
+				<option value="flash" $type_flash>动画广告</option>
+				<option value="code" $type_code>代码广告</option>
+				<option value="page" $type_page>页面广告</option>
+			</select>
+		</td>
+	</tr>
+	<tr class="tr">
+		<td colspan="2">
+			<div id="adv_type"></div>
+		</td>
+	</tr>
+	<tr class="line">
+		<td width="25%"><b>开始时间</b> - <b>结束时间</b></td>
+		<td><input type="text" size="19" name="advinfo[starttime]" id="starttime" value="$advinfo[starttime]" onClick="ShowCalendar(this.id);"  class="input" /> - <input type="text" size="20" name="advinfo[endtime]" id="endtime" value="$advinfo[endtime]" onClick="ShowCalendar(this.id);"  class="input" /> 格式：yyyy-mm-dd</td>
+	</tr>
+	<tr class="line">
+		<td width="25%">链接地址：</td>
+		<td><input type="text" name="advinfo[linkurl]" value="$advinfo[linkurl]" size="60" class="input" /></td>
+	</tr>
+	<tr class="line">
+		<td width="25%">链接提示：</td>
+		<td><input type="text" name="advinfo[linkalt]" value="$advinfo[linkalt]" size="60" class="input" /></td>
+	</tr>
+	<tr class="line">
+		<td width="25%">链接目标:</td>
+		<td>
+			<input type="radio" name="advinfo[linktarget]" value="1" $linktarget_1>新窗口
+			<input type="radio" name="advinfo[linktarget]" value="0" $linktarget_0>原窗口
+		</td>
+	</tr>
+	<tr class="line">
+		<td width="25%">广告权值</td>
+		<td>
+			<input type="text" name="advinfo[priority]" value="$advinfo[priority]" size="2" maxlength="2" class="input" />(同一版位多广告时显示优先顺序,权值为0不显示,默认为1)
+		</td>
+	</tr>
+	<tr class="line">
+		<td width="25%">广告投放栏目</td>
+		<td>
+			<select name="cids[]" size="8" multiple id="cids">
+			$cate_select
+			</select>
+			(按住Ctrl键进行多选操作)<br/><font color='blue'>本设置只本为方便站长广告管理,要在栏目中显示广告,请到相应栏目的相应位置添加JS代码</font>
+		</td>
+  </tr>
+	<tr class="line">
+		<td width="25%">广告投放版位</td>
+		<td>
+			<select name="advinfo[pid]" id="pids">
+			$AdvertTree
+			</select>
+			<font color='blue'>本设置将广告添加到相应的版位中,可实现一版位中多条广告</font>
+		</td>
+  </tr>
+</table>
+</div>
+<div class="sub">
+	<input name="action" type="hidden" id="action" value="$action">
+	<input name="job" type="hidden" id="job" value="$job">
+	<input name="advinfo[adid]" type="hidden" id="adid" value="$advinfo[adid]">
+	<input name="step" type="hidden" id="step" value="2">
+	<input class="btn" type="submit" value="提交">
+	<input class="btn" type="reset" name="Submit" value="重置">
+</div>
+</form>
+<div id="txt" style="display:none;" disabled>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="tr2">
+			<td colspan="2"><b>广告内容设置--文本</b></td>
+		</tr>
+		<tr class="line">
+			<td width="25%">广告文本内容：</td>
+			<td><textarea name="advinfo[intro]" cols="60" rows="5" >$advinfo[intro]</textarea>&nbsp;<font color=red>*</font></td>
+		</tr>
+	</table>
+</div>
+
+<div id="img" style="display:none;" disabled>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="tr2">
+			<td colspan=2><b>广告内容设置--图片</b></td>
+		</tr>
+		<tr class="line">
+			<td width="25%">图片地址：</td>
+			<td><input type="text" name="config[url]" value="$config[url]" size="60" class="input" />&nbsp;<font color=red>*</font></td>
+		</tr>
+		<tr class="line">
+			<td width="25%">图片尺寸：</td>
+			<td>宽：<input type="text" name="config[width]" value="$config[width]" size="4" class="input" />像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="config[height]" value="$config[height]" size="4" class="input" />像素&nbsp;<font color=red>*</font>(默认100)</td>
+		</tr>
+		<tr class="line">
+			<td width="25%">广告内容介绍：</td>
+			<td><textarea name="advinfo[intro]" cols="60" rows="5" >$advinfo[intro]</textarea>(文字广告版位必填)</td>
+		</tr>
+	</table>
+</div>
+
+<div id="code" style="display:none;" disabled>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="tr2">
+			<td colspan=2><b>广告内容设置--代码</b></td>
+		</tr>
+		<tr class="line">
+			<td width="25%">广告代码内容：</td>
+			<td><textarea name="advinfo[intro]" cols="60" rows="5" >$advinfo[intro]</textarea>&nbsp;<font color=red>*</font></td>
+		</tr>
+	</table>
+</div>
+
+<div id="flash" style="display:none;" disabled>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="tr2">
+			<td colspan=2><b>广告内容设置--动画</b></td>
+		</tr>
+		<tr class="line">
+			<td width="25%">动画地址：</td>
+			<td><input type="text" name="config[url]" value="$config[url]" size="60" class="input" />&nbsp;<font color=red>*</font></td>
+		</tr>
+		<tr class="line">
+			<td width="25%">动画尺寸：</td>
+			<td>宽：<input type="text" name="config[width]" value="$config[width]" size="4" class="input" />像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="config[height]" value="$config[height]" size="4" class="input" />像素&nbsp;<font color=red>*</font>(默认100)</td>
+		</tr>
+		<tr class="line">
+			<td width="25%">背景透明:</td>
+			<td>
+				<input type="radio" name="config[flashwmode]" value="0" $flashwmode_0>不透明
+				<input type="radio" name="config[flashwmode]" value="1" $flashwmode_1>透明
+			</td>
+		</tr>
+		<tr class="line">
+			<td width="25%">广告内容：</td>
+			<td><textarea name="advinfo[intro]" cols="60" rows="5" >$advinfo[intro]</textarea>(文字广告版位必填)</td>
+		</tr>
+	</table>
+</div>
+
+<div id="page" style="display:none;" disabled>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="tr2">
+			<td colspan=2><b>广告内容设置--页面</b></td>
+		</tr>
+		<tr class="line">
+			<td width="25%">页面地址：</td>
+			<td><input type="text" name="config[url]" value="$config[url]" size="60" class="input" />&nbsp;<font color=red>*</font></td>
+		</tr>
+		<tr class="line">
+			<td width="25%">广告内容：</td>
+			<td><textarea name="advinfo[intro]" cols="60" rows="5" >$advinfo[intro]</textarea>(文字广告版位必填)</td>
+		</tr>
+	</table>
+</div>
+<script language="JavaScript">
+	function getObj(id){
+		return document.getElementById(id);
+	}
+	function showcode(idName){
+		getObj('adv_type').innerHTML=getObj(idName).innerHTML;
+	}
+	showcode('$advinfo[type]');
+</script>
+<!--
+EOT;
+}elseif($job=="add"){
+print <<<EOT
+-->
+<script language="javascript" src="./script/date.js"></script>
+<form method='post' name="form" action="$basename">
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="head">
+    <td colspan="5">添加广告内容</td>
+  </tr>
+	<tr class="tr2">
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+  </tr>
+  <tr class="line">
+		<td width="25%">广告名称</td>
+		<td><input name="advinfo[name]" type="text" class="input" value="" size="60">&nbsp;<font color=red>*</font></td>
+	</tr>
+	<tr class="line">
+		<td width="25%">广告类型</td>
+		<td>
+			<select id="type" name="advinfo[type]" onchange="showcode(this.options[this.selectedIndex].value)">
+				<option value="txt" >文本广告</option>
+				<option value="img" >图片广告</option>
+				<option value="flash" >动画广告</option>
+				<option value="code" >代码广告</option>
+				<option value="page" >页面广告</option>
+			</select>
+		</td>
+	</tr>
+	<tr class="tr"><td colspan="2">
+	<div id="adv_type" class="t"></div>
+	</td></tr>
+	<tr class="line">
+		<td width="25%"><b>开始时间</b> - <b>结束时间</b></td>
+		<td><input type="text" size="19" name="advinfo[starttime]" id="starttime" value="$starttime" onClick="ShowCalendar(this.id);" class="input" /> - <input type=text size="20" name="advinfo[endtime]" id="endtime" value="$endtime" onClick="ShowCalendar(this.id);" class="input" /> 格式：yyyy-mm-dd</td>
+	</tr>
+	<tr class="line">
+		<td width="25%">链接地址：</td>
+		<td><input type="text" name="advinfo[linkurl]" size="60" class="input" value="http://"/></td>
+	</tr>
+	<tr class="line">
+		<td width="25%">链接提示：</td>
+		<td><input type="text" name="advinfo[linkalt]" size="60" class="input" /></td>
+	</tr>
+	<tr class="line">
+		<td width="25%">链接目标:</td>
+		<td>
+			<input type="radio" name="advinfo[linktarget]" value="1" checked>新窗口
+			<input type="radio" name="advinfo[linktarget]" value="0" >原窗口
+		</td>
+	</tr>
+	<tr class="line">
+		<td width="25%">广告权值</td>
+		<td>
+			<input type="text" name="advinfo[priority]" value="1" size="2" maxlength="2" class="input" />(同一版位多广告时显示优先顺序,权值为0不显示,默认为1)
+		</td>
+	</tr>
+	<tr class="line">
+		<td width="25%">广告投放栏目</td>
+		<td>
+			<select name="cids[]" size="8" multiple id="cids">
+			$cate_select
+			</select>
+			(按住Ctrl键进行多选操作)<br/><font color='blue'>本设置只本为方便站长广告管理,要在栏目中显示广告,请到相应栏目的相应位置添加JS代码</font>
+		</td>
+  </tr>
+	<tr class="line">
+		<td width="25%">广告投放版位</td>
+		<td>
+			<select name="advinfo[pid]" id="pids">
+			$AdvertTree
+			</select>
+			<font color='blue'>本设置将广告添加到相应的版位中,可实现一版位中多条广告</font>
+		</td>
+  </tr>
+</table>
+</div>
+<div class="sub">
+	<input name="action" type="hidden" id="action" value="$action">
+	<input name="job" type="hidden" id="job" value="$job">
+	<input name="step" type="hidden" id="step" value="2">
+	<input class="btn" type="submit" value="提交">
+	<input class="btn" type="reset" name="Submit" value="重置">
+</div>
+</form>
+<div id="txt" style="display:none;" disabled>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr class="tr2">
+				<td colspan="2"><b>广告内容设置--文本</b></td>
+			</tr>
+			<tr class="line">
+				<td width="25%">广告文本内容：</td>
+				<td><textarea name="advinfo[intro]" cols="60" rows="5" >$advinfo[intro]</textarea>&nbsp;<font color=red>*</font></td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="img" style="display:none;" disabled>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr class="tr2">
+				<td colspan=2><b>广告内容设置--图片</b></td>
+			</tr>
+			<tr class="line">
+				<td width="25%">图片地址：</td>
+				<td><input type="text" name="config[url]" size="60" class="input" />&nbsp;<font color=red>*</font></td>
+			</tr>
+			<tr class="line">
+				<td width="25%">图片尺寸：</td>
+				<td>宽：<input type="text" name="config[width]" size="4" class="input" value="100"/>像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="config[height]" size="4" class="input" value="100"/>像素&nbsp;<font color=red>*</font>(默认100)</td>
+			</tr>
+			<tr class="line">
+				<td width="25%">广告内容：</td>
+				<td><textarea name="advinfo[intro]" cols="60" rows="5" >$advinfo[intro]</textarea>(文字广告版位必填)</td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="code" style="display:none;" disabled>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr class="tr2">
+				<td colspan=2><b>广告内容设置--代码</b></td>
+			</tr>
+			<tr class="line">
+				<td width="25%">广告代码内容：</td>
+				<td><textarea name="advinfo[intro]" cols="60" rows="5" >$advinfo[intro]</textarea>&nbsp;<font color=red>*</font></td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="flash" style="display:none;" disabled>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr class="tr2">
+				<td colspan=2><b>广告内容设置--动画</b></td>
+			</tr>
+			<tr class="line">
+				<td width="25%">动画地址：</td>
+				<td><input type="text" name="config[url]" size="60" class="input" />&nbsp;<font color=red>*</font></td>
+			</tr>
+			<tr class="line">
+				<td width="25%">动画尺寸：</td>
+				<td>宽：<input type="text" name="config[width]" size="4" class="input" value="100"/>像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="config[height]" size="4" class="input" value="100"/>像素&nbsp;<font color=red>*</font>(默认100)</td>
+			</tr>
+			<tr class="line">
+				<td width="25%">背景透明:</td>
+				<td>
+					<input type="radio" name="config[flashwmode]" value="0" checked>不透明
+					<input type="radio" name="config[flashwmode]" value="1" >透明
+				</td>
+			</tr>
+			<tr class="line">
+				<td width="25%">广告内容：</td>
+				<td><textarea name="advinfo[intro]" cols="60" rows="5" >$advinfo[intro]</textarea>(文字广告版位必填)</td>
+			</tr>
+		</table>
+	</div>
+	<div id="page" style="display:none;" disabled>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr class="tr2">
+				<td colspan=2><b>广告内容设置--页面</b></td>
+			</tr>
+			<tr class="line">
+				<td width="25%">页面地址：</td>
+				<td><input type="text" name="config[url]"size="60" class="input" value="http://"/>&nbsp;<font color=red>*</font></td>
+			</tr>
+			<tr class="line">
+				<td width="25%">广告内容：</td>
+				<td><textarea name="advinfo[intro]" cols="60" rows="5" >$advinfo[intro]</textarea>(文字广告版位必填)</td>
+			</tr>
+		</table>
+	</div>
+<script language="JavaScript">
+	function getObj(id){
+		return document.getElementById(id);
+	}
+
+	function showcode(idName){
+		getObj('adv_type').innerHTML=getObj(idName).innerHTML;
+	}
+	showcode('txt');
+</script>
+<!--
+EOT;
+}}
+?>-->

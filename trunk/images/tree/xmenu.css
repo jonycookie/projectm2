@@ -1,0 +1,29 @@
+.webfx-menu{ position: absolute; background:#fff; filter : progid:DXImageTransform.Microsoft.Alpha(opacity=93);opacity:0.9; border:1px solid #ADD2E1;}
+.webfx-menu .h { padding-bottom:0}
+.webfx-menu td, .webfx-menu li{ background:#E2EFF5;}
+.webfx-menu li { width:100px;list-style:none; padding:0; }
+.webfx-menu a{ color:#282973; display: block;padding:5px 10px 3px 10px}
+.webfx-menu a:hover{ background:#7ab; text-decoration:none ; color:#fff; font-weight:bold}
+.webfx-menu ul.ul1 li { width:135px;}
+.webfx-menu ul.ul1 li a{display: inline;padding:0 }
+.webfx-menu-bar {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-SIZE: 12px; BACKGROUND: rgb(120,172,255); PADDING-BOTTOM: 2px; PADDING-TOP: 2px; FONT-FAMILY: Verdana, Helvetica, Sans-Serif
+}
+.webfx-menu-bar A {
+	BORDER-RIGHT: rgb(120,172,255) 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: rgb(120,172,255) 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 1px; BORDER-LEFT: rgb(120,172,255) 1px solid; COLOR: black; PADDING-TOP: 1px; BORDER-BOTTOM: rgb(120,172,255) 1px solid; ; HEIGHT: expression(/MSIE 5\.0/.test(navigator.userAgent) ? "17px" : "auto"); TEXT-DECORATION: none
+}
+.webfx-menu-bar A:visited {
+	BORDER-RIGHT: rgb(120,172,255) 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: rgb(120,172,255) 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 1px; BORDER-LEFT: rgb(120,172,255) 1px solid; COLOR: black; PADDING-TOP: 1px; BORDER-BOTTOM: rgb(120,172,255) 1px solid; ; HEIGHT: expression(/MSIE 5\.0/.test(navigator.userAgent) ? "17px" : "auto"); TEXT-DECORATION: none
+}
+.webfx-menu-bar A:hover {
+	BORDER-RIGHT: rgb(0,66,174) 1px solid; BORDER-TOP: rgb(234,242,255) 1px solid; BACKGROUND: rgb(120,172,255); BORDER-LEFT: rgb(234,242,255) 1px solid; COLOR: black; BORDER-BOTTOM: rgb(0,66,174) 1px solid; TEXT-DECORATION: none
+}
+.webfx-menu-bar A .arrow {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; FLOAT: none; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+}
+.webfx-menu-bar A:active {
+	moz-outline: none; outline: none
+}
+.webfx-menu-bar A:unknown {
+	moz-outline: none; outline: none
+}

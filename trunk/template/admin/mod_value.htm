@@ -1,0 +1,111 @@
+<!--<?php
+print <<<EOT
+-->
+<div class="m"></div>
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<form id="form1" name="form1" method="post" action="$basename">
+	<tr class="tr4">
+		<td>选择器名称:&nbsp;&nbsp;
+			<input name="action" type="hidden" id="action" value="add" />
+			<input name="selectname" type="text" class="input" id="selectname" />
+			&nbsp;&nbsp;
+			<input type="submit" name="Submit" value="增加新选择器" class="btn" /> 
+		</td>
+	</tr>
+</form>
+</table>
+</div>
+<!--
+EOT;
+if($action=='show'){
+print <<<EOT
+-->
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr class="head">
+		<td colspan="4">预设值选择器管理</td>
+	</tr>
+	<tr class="tr2">
+		<td>选择器名称</td>
+		<td>&nbsp;</td>
+		<td>选择器名称</td>
+		<td>&nbsp;</td>
+	</tr>
+		<tr class="tr3">
+		<td colspan="4">
+
+<!--
+EOT;
+$i=0;
+while($s = $db->fetch_array($rs)){
+print <<<EOT
+-->
+<div style="float:left; width:48%;padding:3px;background-color:#FFFFD0; margin:3px;"><span style="float:right"><a href="$basename&action=edit&selectid=$s[selectid]">编辑</a> <a href="$basename&action=del&selectid=$s[selectid]" onclick="return delSelect();">删除</a></span>$s[selectname]</div>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</td>
+	</tr>
+</table>
+</div>
+<script language="javascript">
+function delSelect(){
+	var msg = confirm("你确认要删除此选择器么？");
+	if(msg){
+		return true;
+	}else{
+		return false;
+	}
+}
+</script>
+<!--
+EOT;
+}elseif($action=='edit'){
+print <<<EOT
+-->
+<form action="$basename" method="post">
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr class="head">
+		<td colspan="2">预设值选择器管理</td>
+		</tr>
+	<tr class="tr2">
+		<td width="25%">&nbsp;</td>
+		<td width="75%">&nbsp;</td>
+	</tr>
+	<tr class="tr3">
+		<td>选择器名称</td>
+		<td><input name="selectname" type="text" class="input" id="selectname" value="$selectname" /></td>
+	</tr>
+<!--
+EOT;
+$i=0;
+foreach($value as $key=>$v){
+$i++;
+print <<<EOT
+-->
+	<tr class="tr3">
+		<td>预设值 {$i} </td>
+		<td><input value="$v[value]" name="value[$key]" class="input" /> $v[usetime] </td>
+	</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+</div>
+<div class="sub">
+	<input type="reset" name="Submit2" value="重置" class="btn" />
+	<input name="step" type="hidden" id="step" value="2" />
+	<input name="selectid" type="hidden" id="selectid" value="$selectid" />
+	<input name="action" type="hidden" id="action" value="edit" />
+	<input name="" type="submit" value="提交" class="btn" />
+</div>
+</form>
+<!--
+EOT;
+}
+?>-->

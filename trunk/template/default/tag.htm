@@ -1,0 +1,46 @@
+<!--# include Template('header');#--><!--header----main-->
+<div class="main" id="read">
+    <div class="area-4">
+        <div class="area-4-bot">
+            <div class="thread-content">
+                <div class="box710">
+                    <div class="box710b">
+                        <div class="box710t">
+                            <div class="read-content left">
+                                <div class="postion">
+                                    有关 <strong class="green">$tagName</strong>
+                                    的内容
+                                </div>
+                                <div class="search-result">
+                                    <!--#foreach($tagInfo as $val){#-->
+                                    <dl>
+                                        <dt>
+                                            <a onclick="return c('6a7d',this.innerHTML,this.href,1)" href="$val[url]" target="_blank">$val[title]</a>
+                                        </dt>
+                                        <dd class="gray">
+                                            {@substrs($val[content],100)@} [{$val[cname]}] {@get_date($val[postdate])@}
+                                        </dd>
+                                    </dl>
+                                    <!--#}#-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="thread-side left">
+                <div class="box230">
+                    <div class="box230b">
+                        <div class="box230t">
+                            <h3 class="green">
+                            广告位置</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+<div class="clear">
+</div>
+<!--# include Template('foot');#-->

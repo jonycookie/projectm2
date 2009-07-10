@@ -1,0 +1,143 @@
+<!--<?php
+print <<<EOT
+-->
+<div class="m"></div>
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="tr4">
+    <td><input type="button" name="Submit5" value="添加新公告" class="btn" onclick="window.location='$basename&action=add';"/>
+    <input type="button" name="Submit5" value="查看公告" class="btn" onclick="window.location='$basename';"/>
+    <input type="button" name="Submit6" value="模板接口" class="btn" onclick="window.location='$basename&action=tplapi';"/>
+    </td>
+  </tr>
+</table>
+</div>
+<!--
+EOT;
+if(!$action || $action=='show'){
+print <<<EOT
+-->
+<form action="$basename" method="post" name="FORM">
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="head">
+    <td colspan="5">站点公告管理</td>
+    </tr>
+  <tr class="tr2">
+    <td>序号</td>
+    <td>标题</td>
+    <td>发布人</td>
+    <td>发布日期</td>
+    <td>操作</td>
+  </tr>
+<!--
+EOT;
+foreach($notice as $val){
+print <<<EOT
+-->
+  <tr class="tr3">
+    <td><input name="nid[]" type="checkbox" id="nid" value="$val[nid]">
+      $val[nid]</td>
+    <td>$val[title]</td>
+    <td>$val[author]</td>
+    <td>$val[postdate]</td>
+    <td><a href="$basename&action=edit&nid=$val[nid]">查看</a> <a href="javascript:void(0);" onClick="return delNotice($val[nid]);">删除</a></td>
+  </tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+</div>
+<div class="sub">
+  <input name="action" type="hidden" id="action" value="del">
+	<input type="button" name="Submit" value="全选" onClick="CheckAll(document.FORM);" class="btn" />
+  <input type="submit" name="Submit2" value="删除选中公告" onClick="return confirm('您确定要删除选中的公告？')" class="btn">
+</div>
+</form>
+<script language="javascript">
+function delNotice(nid){
+	var msg = confirm("您确定要删除此公告么？");
+	if(msg){
+		window.location='$basename&action=del&nid='+nid;
+		window.location.reload();
+	}else{
+		return false;
+	}
+}
+</script>
+<!--
+EOT;
+}elseif($action=='add' || $action=='edit'){
+print <<<EOT
+-->
+<form action="$basename" method="post">
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="head">
+    <td colspan="2">公告管理</td>
+    </tr>
+  <tr class="tr2">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="line">
+    <td width="20%">公告标题</td>
+    <td width="80%"><input name="title" type="text" class="input" id="title" value="$title" size="40"></td>
+  </tr>
+  <tr class="line">
+    <td>公告内容</td>
+    <td>$contentEdit</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</div>
+<div class="sub">
+<input name="action" type="hidden" id="action" value="$action">
+<input name="nid" type="hidden" id="nid" value="$nid">
+<input name="step" type="hidden" id="step" value="2">
+<input class="btn" type="submit" value="提交">
+<input class="btn" type="reset" name="Submit" value="重置">
+</div>
+</form>
+<!--
+EOT;
+}elseif($action == 'tplapi'){
+print <<<EOT
+-->
+<div class="t">
+<table cellspacing="0" cellpadding="0">
+  <tr class="head"><td colspan="2">模板调用接口</td></tr>
+	<tr class="tr3">
+	  <td width="20%">第一种CMS标签调用</td>
+    <td>
+    <textarea rows="5" cols="70">
+&lt;cms type=&quot;extand&quot; action=&quot;notice&quot; return=&quot;list&quot; param=&quot;[开始条数,]显示条数&quot; /&gt;
+&lt;loop name=&quot;list&quot key=&quot;key&quot; value=&quot;val&quot; &gt;
+\$val[url]-------公告链接
+\$val[title]-----公告标题
+\$val[content]---公告内容
+&lt;/loop&gt;</textarea>
+注: []为可选择参数
+</td>
+	</tr>
+	<tr class="tr3">
+	  <td width="20%">第二种PHP标签调用</td>
+    <td>
+    <textarea rows="5" cols="70">
+&lt;!--#\$array = \$extend::notice([开始条数,]显示条数);
+foreach(\$array as \$key=>\$val){#--&gt;
+\$val[url]-------公告链接
+\$val[title]-----公告标题
+\$val[content]---公告内容
+&lt;!--# } #--&gt;</textarea>
+    </td>
+	</tr>
+</table>
+</div>
+<!--
+EOT;
+}?>-->

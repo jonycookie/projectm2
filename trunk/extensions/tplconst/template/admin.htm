@@ -1,0 +1,142 @@
+<!--<?php
+print <<<EOT
+-->
+<div class="m"></div>
+<form action="$basename" method="post" name="FORM1">
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="tr4">
+    <td>
+		<input type="button" name="button6" value="添加常量" class="btn" onclick="window.location='$basename&action=add';" />
+		<input type="button" name="button5" value="查看常量" class="btn" onclick="window.location='$basename&';" />
+		常量名:
+		<input type="text" name="keyword" value="" id="keyword" class="input" />
+		&nbsp;&nbsp;<input type="submit" name="Submit5" value="搜索" class="btn" />
+    </td>
+  </tr>
+</table>
+</div>
+</form>
+<!--
+EOT;
+if($action=='view'){
+$typename = array('CID'=>'栏目标识符','MID'=>'模型标识符','TPL'=>'模板常量','EXT'=>'扩展常量');
+print <<<EOT
+-->
+<form action="$basename" method="post" name="FORM2">
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="head">
+    <td colspan="5">站点常量管理</td>
+  </tr>
+  <tr class="tr2">
+    <td>序号</td>
+    <td>标题</td>
+    <td>常量名</td>
+    <td>常量类型</td>
+    <td>操作</td>
+  </tr>
+<!--
+EOT;
+foreach($vars as $val){
+print <<<EOT
+-->
+  <tr class="tr3">
+    <td><input name="varid[]" type="checkbox" id="varid" value="$val[id]">
+      $val[id]</td>
+    <td>$val[title]</td>
+    <td>$val[name]</td>
+    <td>{$typename[$val[type]]}</td>
+    <td><a href="$basename&action=edit&varid=$val[id]">查看</a> <a href="javascript:void(0);" onClick="return delNotice($val[varid]);">删除</a></td>
+  </tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+</div>
+<div class="sub">
+  <input name="action" type="hidden" id="action" value="del">
+	<input type="button" name="Submit" value="全选" onClick="CheckAll(this.form);" class="btn" />
+  <input type="submit" name="Submit2" value="删除选中常量" onClick="return confirm('您确定要删除选中的常量？')" class="btn">
+</div>
+</form>
+<script language="javascript">
+function delNotice(varid){
+	var msg = confirm("您确定要删除此常量么？");
+	if(msg){
+		window.location='$basename&action=del&varid='+varid;
+		window.location.reload();
+	}else{
+		return false;
+	}
+}
+</script>
+<!--
+EOT;
+}elseif($action=='add' || $action=='edit'){
+print <<<EOT
+-->
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="head"><td>常量名相关说明</td></tr>
+  <tr class="tr3"><td>
+    <b>常量名命名规则:</b><br />
+    &nbsp;&nbsp;常量名都是以常量类型开头,且只能为字母或数字或下划线等字符<br />
+    &nbsp;&nbsp;如果你的常量名不是以指定的常量类型开头,那么系统会自动添加<br />
+    <b>常量类型分为:</b><br />
+    &nbsp;&nbsp;CID => 栏目标识符
+    &nbsp;&nbsp;MID => 模型标识符
+    &nbsp;&nbsp;TPL => 模板常量
+    &nbsp;&nbsp;EXT => 扩展常量<br />
+    <b>例子:</b><br />
+    &nbsp;&nbsp;模板常量:TPL_test<br />
+  </td></tr>
+</table>
+</div>
+<form action="$basename" method="post">
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="head">
+    <td colspan="2">模板常量管理</td>
+    </tr>
+  <tr class="tr2">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="line">
+    <td width="20%">常量类型</td>
+    <td width="80%"><select name="type" id="type">
+			<!--<option value="CID" $type_CID>栏目标识符</option>
+			<option value="MID" $type_MID>模型标识符</option>-->
+			<option value="TPL" $type_TPL>模板常量</option></select></td>
+  </tr>
+  <tr class="line">
+    <td width="20%">常量描述</td>
+    <td width="80%"><input name="title" type="text" class="input" id="title" value="$var[title]" size="40"></td>
+  </tr>
+  <tr class="line">
+    <td>常量名</td>
+    <td><input name="name" type="text" class="input" id="name" value="$var[name]" size="40"></td>
+  </tr>
+  <tr class="line">
+    <td>常量值</td>
+    <td><textarea id="value" name="value" rows="5" cols="40">$var[value]</textarea></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</div>
+<div class="sub">
+<input name="action" type="hidden" id="action" value="save">
+<input name="id" type="hidden" id="id" value="$var[id]">
+<input class="btn" type="submit" value="提交">
+<input class="btn" type="reset" name="Submit" value="重置">
+</div>
+</form>
+<!--
+EOT;
+}
+?>-->

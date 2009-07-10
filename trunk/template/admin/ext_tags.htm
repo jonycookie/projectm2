@@ -1,0 +1,62 @@
+<!--<?php
+print <<<EOT
+-->
+<div class="m"></div>
+<div class="t"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="tr4">
+		<td>查找标签</td>
+		<td><form action="$basename" method="post"><input name="keyword" type="text" class="input" id="keyword">
+        <input type="submit" name="Submit" value="查看" class="btn"></form></td>
+    <td>增加新标签</td>
+    <td><form action="$basename" method="post"><input name="tagname" type="text" class="input" id="tagname">
+        <input name="action" type="hidden" id="action" value="add">
+        <input type="submit" name="Submit" value="添加" class="btn"></form></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</div>
+<form action="$basename" method="post" name="FORM">
+<div class="t">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="head">
+    <td colspan="6">标签管理器</td>
+    </tr>
+  <tr class="tr2">
+    <td width="5%">&nbsp;</td>
+	<td>TAGID</td>
+    <td>标签名称</td>
+    <td>相关内容</td>
+    <td>&nbsp;</td>
+    <td>管理</td>
+  </tr>
+<!--
+EOT;
+while($taginfo = $db->fetch_array($tagdb)){
+print <<<EOT
+-->
+  <tr class="tr3">
+     <td><input name="tagid[]" type="checkbox" id="tagid" value="$taginfo[tagid]" /></td>
+	 <td>$taginfo[tagid]</td>
+    <td>$taginfo[tagname]</td>
+    <td>$taginfo[num]</td>
+    <td>&nbsp;</td>
+    <td><a href="$basename&tagid=$taginfo[tagid]&action=del" onclick="return confirm('您确定要删除此标签？');">删除</a></td>
+
+  </tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+</div>
+<div class="pages">$pages</div>
+<div class="sub">
+	<input name="action" type="hidden" id="action" value="del" />
+	<input type="button" class="btn" onclick="CheckAll(document.FORM);" value="全选" />
+	<input type="submit" name="Submit3" value="删除选中标签" onclick="return confirm('您确定要删除选中的标签？');" class="btn" />
+</div>
+<script language="javascript" src="images/admin/admin.js"></script>
+</form>
+<!--
+EOT;
+?>-->

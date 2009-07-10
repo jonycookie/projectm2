@@ -1,0 +1,109 @@
+<!--<?php
+print <<<EOT
+-->
+<base target="_self">
+<script language="javascript">
+
+var	ftpweb = '$very[ftpweb]';
+var	path = '$very[attachdir]';
+var weburl ='$very[url]';
+var _img = null;
+var inputname = '$inputname';
+var inputtype = '$inputtype';
+function insertImg(aid,filename,type){
+	var imgsrc;
+	if (type) {
+		imgsrc = ftpweb+"/"+filename;
+	}else {
+		imgsrc = path+"/"+filename;
+	}
+	//imgsrc = weburl + "/download.php?id=" + aid;
+	if(window.dialogArguments){
+		var win = window.dialogArguments;
+	}else{
+		var win = window.opener;
+	}
+	//var input = window.opener.document.getElementsByName(inputname);
+	if(inputtype=='editor'){
+		win.document.getElementById(inputname).value=imgsrc;
+		//win.parent.dialogArguments.document.getElementById('aid').value+=','+aid;
+	}else if(inputtype=='input'){
+		win.document.getElementById(inputname).value=imgsrc;
+		win.document.getElementById('aid').value=','+aid;
+	}
+	window.close();
+
+}
+
+function goclick(element){
+	if(document.all){
+		parent.document.getElementById(element).click();
+	}else{
+		var evt = parent.document.createEvent("MouseEvents");
+		evt.initEvent("click",true,true);
+		parent.document.getElementById(element).dispatchEvent(evt);
+	}
+}
+
+
+</script>
+<body onkeydown="if (event.keyCode==116){reload.click();}">
+<a id="reload" href="$basename&action=addmedia&type=flash&inputtype=$inputtype&inputname=$inputname" style="display:none">reload...</a>
+<div id="msg" style="border:#69788c 1px solid; background-color:#fdfdfd;padding:3px; width:300px;position:absolute; top:100px; left:150px; display:none;">
+<div style="height:20px; padding:3px;"><img src="images/admin/ing.gif" align="absmiddle" /> 上传中，请耐心等待.....</div></div>
+<div class="t">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr class="head">
+			<td colspan="5">附件管理
+				<form action="$basename" method="post" name="upload" target="uploadFrame" enctype="multipart/form-data">
+					上传
+					<input name="file" type="file" class="input" />
+					描述：
+					<input type="text" name="fileintro1" class="input" />
+					<input name="inputname" type="hidden" id="inputname" value="$inputname" />
+					<input name="inputtype" type="hidden" id="inputtype" value="$inputtype" />
+					<input name="action" type="hidden" id="action" value="upload" />
+					<input type="submit" name="Submit" value=" 上传 " class="btn" onclick="javascript:document.getElementById('msg').style.display = '';" />
+				</form></td>
+		</tr>
+		<tr class="tr2">
+			<td>文件名</td>
+			<td>描述</td>
+			<td>插入</td>
+			<td>文件大小</td>
+			<td>上传时间</td>
+		</tr>
+<!--
+EOT;
+$imgext = array('gif','jpg','jpeg','png');
+$mediaext = array('swf','wma','mp3','wmv','avi','asx','mov','rm','rmvb','mid');
+$addonext = array('doc','xls','ppt','rar','zip','7z','txt','wps','docx');
+foreach($files as $file){
+if(in_array(strtolower($file[type]),$imgext)||in_array(strtolower($file[type]),$mediaext)||in_array(strtolower($file[type]),$addonext)){
+$addimg="<img src=\"images/admin/insert.gif\" style=\"cursor:pointer;\" align=\"absmiddle\" onClick=\"insertImg($file[aid],'".$file[filepath]."',$file[isftp]);\" alt=\"插入此文件\">";
+}else{
+$addimg='';
+}
+print <<<EOT
+-->
+		<tr class="tr3">
+			<td><img src="$file[icon]" width="16" height="16" hspace="5" align="absmiddle" /> <a href="$file[url]" >$file[filename]</a> </td>
+			<td>$file[fileintro]&nbsp;</td>
+			<td>$addimg</td>
+			<td>$file[filesize]<br /></td>
+			<td>$file[uploadtime]<br />
+				<a href="$basename&action=del&path=$path&file=$file[name]"></a></td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+		<tr>
+			<td colspan="5">$pages</td>
+		</tr>
+	</table>
+</div>
+<iframe name="uploadFrame" width="0" style="display:none"></iframe>
+<!--
+EOT;
+?>-->
