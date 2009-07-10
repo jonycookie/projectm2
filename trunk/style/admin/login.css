@@ -1,0 +1,40 @@
+/* CSS Document */
+body {
+	font: normal normal 12px/20px tahoma, 'ËÎÌו', sans-serif;
+	background: #fff;
+	margin:0;
+	padding:0;
+	text-align: center;
+}
+h1,h2,h3,h4,h5,h6 {
+	margin: 0;
+	padding: 0;
+}
+h6 {
+	font-size: 9px;
+	color: #666;
+}
+input {
+	font: normal normal 12px/20px tahoma, 'ËÎÌו', sans-serif;
+}
+.form {
+	border: 1px solid #d0d9e0;
+	background: #f2f6f9;
+	width: 300px;
+	margin: 200px auto;
+	text-align: left;
+}
+.formBox {
+	border: 1px solid #d0d9e0;
+	background: #fff;
+	margin: 15px;
+	padding: 15px;
+}
+.txt {
+	border: 3px solid #d0d9e0;
+	background: #f2f6f9;
+	padding: 2px;
+	margin: 0;
+	height: 18px;
+	line-height: 18px;
+}
