@@ -8,48 +8,49 @@ print <<<EOT
 <link href="style/admin/frame.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<table cellpadding="0" cellspacing="0" border="0">
-  <tr>
-    <td>
- 
- 
-<div id="menus" style="margin:0 5px 0 5px; width:170px;">
+<div class="header">
+	<div id="menus" style="margin:0 5px 0 5px; width:170px;">
 <!--
 EOT;
 		foreach ($menu_father as $key=>$val){
 print <<<EOT
 -->
-<div class="t" id="$key">
-<table border="0" cellspacing="0" cellpadding="0" width=100%>
-  <tr class="leftH">
-    <td>$val</td>
-  </tr>
+		<div class="t" id="$key">
+		<table border="0" cellspacing="0" cellpadding="0" width=100%>
+		  <tr class="leftH">
+		    <td>$val</td>
+		  </tr>
 <!--
 EOT;
 			foreach ($menu_child[$key] as $k=>$v){
 print <<<EOT
 -->
-  <tr id='tr_$k' class="leftmenu" onmouseover="changeBg('tr_$k',1);" onmouseout="changeBg('tr_$k',0);">
-    <td><a href="$admin_file?adminjob=$k">$v</a></td>
-  </tr>
+		  <tr id='tr_$k' class="leftmenu" onmouseover="changeBg('tr_$k',1);" onmouseout="changeBg('tr_$k',0);">
+		    <td><a href="$admin_file?adminjob=$k">$v</a></td>
+		  </tr>
 <!--
 EOT;
 			}
 print <<<EOT
 -->
-</table>
-</div>
+		</table>
+		</div>
 <!--
 EOT;
 		}
 print <<<EOT
 -->
+	</div>
 </div>
-    
+<table cellpadding="0" cellspacing="15" border="0" class="frame">
+  <tr>
+    <td>
+ 
+		<iframe src="$admin_file?adminjob=tree" name="treeFrame" scrolling="yes" frameborder="0" id="treeFrame" title="treeFrame"></iframe>    
     
     
     </td>
-    <td><iframe src="$admin_file?adminjob=main" name="mainFrame" scrolling="yes" frameborder="0" id="mainFrame" title="mainFrame"></iframe></td>
+    <td><iframe src="$admin_file?adminjob=main" name="mainFrame" scrolling="yes" frameborder="0" id="mainFrame" title="mainFrame" heigth="100%"></iframe></td>
   </tr>
 </table>
 </body>
