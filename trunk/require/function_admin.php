@@ -22,13 +22,8 @@ function Showmsg($msg){
 }
 
 function adminbottom($display=1){
-	global $adminjob,$wind_version,$db,$timestamp,$P_S_T,$sys;
-	$qn=$GLOBALS['queryNum'];
-	$ft_gzip=($sys['gzip']==1 ? "Gzip enabled" : "Gzip disabled");
-	$t_array	= explode(' ',microtime());
-	$totaltime	= number_format(($t_array[0]+$t_array[1]-$P_S_T),6);
-	$wind_spend	= "Total $totaltime(s) query $qn , $ft_gzip ";
-	if($display==1) require PrintEot('footer');
+	global $adminjob,$sys;
+	require PrintEot('footer');
 	$output = str_replace(array('<!--<!---->','<!---->'),array('',''),ob_get_contents());
 	ob_end_clean();
 	$sys['gzip'] == 1 && function_exists('ob_gzhandler') ? ob_start('ob_gzhandler') : ob_start();

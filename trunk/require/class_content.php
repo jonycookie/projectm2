@@ -328,9 +328,9 @@ class Content{
 		$edit->BaseName = $GLOBALS['admin_file'];
 		$Html = $edit->CreateHtml();
 		if($tooltype=='Default'){
-			$Html.="<input type=\"checkbox\" name=\"imagetolocal\" value=1 /> 外部图片本地化 <br />";
-			$Html.="<input type=\"checkbox\" name=\"selectimage\" value=1 /> 自动提取第一张图片为新闻图片<br />";
-			$Html.="<input type=\"checkbox\" name=\"autofpage\" value=1 /> 自动分页处理";
+			$Html.="<br /><input type=\"checkbox\" name=\"imagetolocal\" value=1 /> 外部图片本地化";
+			$Html.="<br /><input type=\"checkbox\" name=\"selectimage\" value=1 /> 自动提取第一张图片为新闻图片";
+			$Html.="<br /><input type=\"checkbox\" name=\"autofpage\" value=1 /> 自动分页处理";
 		}
 		//$basedir = "editor";
 		/*		if($this->IsCompatible()){
