@@ -80,7 +80,6 @@ if(empty($adminjob)){
 	require_once PrintEot('left');
 	adminbottom(0);
 }elseif ($adminjob=='top'){
-	require_once PrintEot('header');
 	require_once PrintEot('top');
 	adminbottom(0);
 }elseif($adminjob=='faq'){
