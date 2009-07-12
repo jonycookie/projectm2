@@ -1,10 +1,9 @@
 <!--<?php
 print <<<EOT
 -->
-<div class="m"></div>
 <div class="t">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr class="tr4">
+  <tr>
     <td><input type="button" name="Submit" value="新增采集规则" onclick="window.location='$basename&action=add';" class="btn">
 			<input type="button" name="Submit" value="新增RSS规则" onclick="window.location='$basename&action=add&type=1';" class="btn">
       <input type="button" name="Submit2" value="查看所有规则" onclick="window.location='$basename';"  class="btn">
@@ -482,7 +481,7 @@ EOT;
 </div>
 <div class="t">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr class="tr4">
+  <tr>
     <td><select name="method" id="method"  onchange="showTarget(this.value);">
       <option value="delgather">删除</option>
       <option value="usegather" selected="selected">入库</option>

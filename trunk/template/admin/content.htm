@@ -5,7 +5,6 @@ print <<<EOT
 .st{ cursor:pointer;}
 .orderover{color:#0000FF;}
 </style>
-<div class="m"></div>
 <!--
 EOT;
 if(!$action){
@@ -99,7 +98,7 @@ function orderstyle(id,f){
 </script>
 <div class="t">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr class="tr4">
+  <tr>
     <td style="text-align:center">
 	<form action="$basename" method="post">
 	类型: &nbsp;&nbsp;
@@ -229,7 +228,7 @@ EOT;
 </div>
 <div class="t">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr class="tr4">
+  <tr>
     <td>操作:
       <select name="job" id="job" onchange="showTarget(this.value);">
       <option value="move">移动内容</option>
