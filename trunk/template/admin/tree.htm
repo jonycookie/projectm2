@@ -1,168 +1,26 @@
 <!--<?php
 print <<<EOT
 -->
-<style type="text/css">
-<!--
-#Layer1 {
-	position:absolute;
-	left:291px;
-	top:52px;
-	width:248px;
-	height:93px;
-	z-index:10;
-}
-.leftmenu td{
-	height:28px;
-	color:#333333;
-	padding-left:30px;
-	background-image:url(images/admin/bg_menu.png);
-	background-repeat:no-repeat;
-}
-.leftmenu a{
-	color:#9c8d6b;
-	text-decoration:none;
-}
-.leftH td {
-	color:#333;
-	padding:2px 0px 3px 20px;
-	text-align: left;color:#000000;
-	font-size:14px;
-	height:25px;
-	background:#e6f5ff;
-	font-weight:bold;
-}
--->
-</style>
-<link href="images/tree/xtree.css" rel="stylesheet" type="text/css" />
-<link href="images/tree/xmenu.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="images/tree/xtree.js"></script>
-<script type="text/javascript" src="images/tree/xmlextras.js"></script>
-<script type="text/javascript" src="images/tree/xloadtree.js"></script>
-<script type="text/javascript" src="images/tree/xmenu.js"></script>
-<script language=JavaScript>
-var elo;
-var loadmenuok=false;
-var type = 'main';
-
-function goMain(action) {
-	var main = parent.mainFrame;
-	var top=parent.topFrame;
-	top.document.getElementById('loadMsg').style.display='';
-	main.location=action;
-}
-function goNew(action){
-	window.open(action);
-	return;
-}
-function goDel(action){
-	var msg = confirm('您确定要删除此栏目么？删除之后所有栏目下数据都将丢失!');
-	if(msg){
-		goMain(action);
-		return;
-	}else{
-		return;
-	}
-
-}
-function rightMenu(e,cid) {
-	var toolMenu = new WebFXMenu;
-	toolMenu.width = 90;
-	if(cid == 'root'){
-		toolMenu.add(new WebFXMenuItem('新建栏目','javascript:goMain("$admin_file?adminjob=category&action=add")','新建栏目'));
-		toolMenu.add(new WebFXMenuItem('统计内容','javascript:goMain("$admin_file?adminjob=category&action=total")','统计内容数'));
-		toolMenu.add(new WebFXMenuItem('更新首页','javascript:goMain("$admin_file?adminjob=category&action=pubindex")','更新首页'));
-		toolMenu.add(new WebFXMenuItem('批量处理','javascript:goMain("$admin_file?adminjob=category&action=batpub")','批量处理'));
-	} else if(cid == 'recycle'){
-		toolMenu.add(new WebFXMenuItem('清空回收站','javascript:if(confirm("确定要清空回收站?"))goMain("$admin_file?adminjob=recycle&action=del&type=all");','清空回收站'));
-		toolMenu.add(new WebFXMenuItem('还原所有项','javascript:if(confirm("确定要还原所有项目?"))goMain("$admin_file?adminjob=recycle&action=undo&type=all");','还原所有'));
-	}else if(cid == 'nopriv'){
-		
-	} else {
-		toolMenu.add(new WebFXMenuItem('添加新内容','javascript:goMain("$admin_file?adminjob=edit&action=add&cid='+ cid +'")','新建文档'));
-		toolMenu.add(new WebFXMenuItem('查看此首页','javascript:goNew("$admin_file?adminjob=category&action=viewlist&cid='+ cid +'")','查看首页'));
-		toolMenu.add(new WebFXMenuItem('更新此首页','javascript:goMain("$admin_file?adminjob=category&action=publist&cid='+ cid +'")', '更新栏目首页'));
-		toolMenu.add(new WebFXMenuItem('栏目设置','javascript:goMain("$admin_file?adminjob=category&action=edit&action=edit&cid='+ cid +'")','栏目设置'));
-		toolMenu.add(new WebFXMenuItem('添加子栏目','javascript:goMain("$admin_file?adminjob=category&action=add&up='+ cid +'")','添加子栏目'));
-		toolMenu.add(new WebFXMenuItem('发布此栏目','javascript:goMain("$admin_file?adminjob=category&action=pubview&cid='+ cid +'")', '发布此栏目'));
-		toolMenu.add(new WebFXMenuItem('更新此栏目','javascript:goMain("$admin_file?adminjob=category&action=pubupdate&cid='+ cid +'")', '更新此栏目'));
-		toolMenu.add(new WebFXMenuItem('删除此栏目','javascript:goDel("$admin_file?adminjob=category&action=del&cid='+ cid +'")', '删除此栏目'));
-	}
-	var menudata = document.getElementById('menudata');
-	menudata.innerHTML = toolMenu ;
-	var eve = e || document.event;
-	elo=eve.srcElement;
-	toolMenu.left = eve.clientX;
-	toolMenu.top = eve.clientY+document.body.scrollTop;
-	toolMenu.show();
-
-}
-
-/// XP Look
-webFXTreeConfig.rootIcon		= "images/tree/xp/folder.png";
-webFXTreeConfig.openRootIcon	= "images/tree/xp/openfolder.png";
-webFXTreeConfig.folderIcon		= "images/tree/xp/folder.png";
-webFXTreeConfig.openFolderIcon	= "images/tree/xp/openfolder.png";
-webFXTreeConfig.fileIcon		= "images/tree/xp/file.png";
-webFXTreeConfig.lMinusIcon		= "images/tree/xp/Lminus.png";
-webFXTreeConfig.lPlusIcon		= "images/tree/xp/Lplus.png";
-webFXTreeConfig.tMinusIcon		= "images/tree/xp/Tminus.png";
-webFXTreeConfig.tPlusIcon		= "images/tree/xp/Tplus.png";
-webFXTreeConfig.iIcon			= "images/tree/xp/I.png";
-webFXTreeConfig.lIcon			= "images/tree/xp/L.png";
-webFXTreeConfig.tIcon			= "images/tree/xp/T.png";
-
-
-var rti;
-var tree = new WebFXTree("Root","root");
-var rtree = new WebFXTree("回收站","recycle","javascript:goMain('$admin_file?adminjob=recycle&action=show')");
-rtree.icon		="images/tree/xp/recycle.png";
-rtree.openIcon	="images/tree/xp/recycle.png";
-<!--
-EOT;
-while($cate=$db->fetch_array($root)){
-if(count($children[$cate[cid]])>0){
-if($admin_name==$manager|| !$admindb[privcate] ||($admindb[privcate] && in_array($cate[cid],$admindb[privcate]))){
-print <<<EOT
--->
-	tree.add(new WebFXLoadTreeItem("$cate[cname]", "$admin_file?adminjob=tree&action=showXML&cid=$cate[cid]","javascript:goMain('$admin_file?adminjob=content&action=view&cid=$cate[cid]');","$cate[cid]"));
-<!--
-EOT;
-}else{
-print <<<EOT
--->
-	tree.add(new WebFXLoadTreeItem("$cate[cname]", "$admin_file?adminjob=tree&action=showXML&cid=$cate[cid]","javascript:void(0)","nopriv"));
-<!--
-EOT;
-}}else{
-print <<<EOT
--->
-tree.add(new WebFXTreeItem("$cate[cname]","javascript:goMain('$admin_file?adminjob=content&action=view&cid=$cate[cid]');","$cate[cid]"));
-<!--
-EOT;
-}}
-print <<<EOT
--->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>CMS - Powered by PHPWind.Net</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="style/admin/admin.css" rel="stylesheet" type="text/css" />
+<link href="style/admin/tree.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="script/jquery.js"></script>
+<script type="text/javascript" src="script/jquery.tree.js"></script>
+<script type="text/javascript">
+$(function(){
+		$("#tree").tree({ script: 'admin.php?adminjob=tree&action=showXML' });
+});
 </script>
-<div id="menus" style="margin:0 5px 0 5px;">
+
+</head>
+<body>
 <div class="t">
-<table border="0" cellspacing="0" cellpadding="0" width=100%>
-  <tr class="leftH">
-    <td>站点栏目管理</td>
-  </tr>
-  <tr class="tr">
-  	<td style="text-align:left"><a href="javascript:goMain('$admin_file?adminjob=category');"><img src="images/admin/page_nav.png" hspace="2" style="vertical-align:middle;" />栏目结构</a> &nbsp;<a href="javascript:goMain('$admin_file?adminjob=content');"><img src="images/admin/page_view.png" hspace="2" style="vertical-align:middle;margin-left:3px;" />栏目内容</a></td>
-  </tr>
-  <tr class="tr3"><td>
-<script>
-document.write(tree);
-document.write(rtree);
-</script>
-  </td>
-  </tr>
-</table>
-</div>
-</div>
-<div id="menudata">
+<ul id="tree">
+</ul>
 </div>
 <!--
 EOT;
