@@ -63,7 +63,7 @@ body, .BackColor
 	font-weight: bold;
 	font-size: 14pt;
 	color: #627097;
-	background-color: #f1f3f7;
+	background-color: #f2f6f9;
 	padding: 3px 10px 3px 10px;
 }
 
@@ -73,8 +73,8 @@ body, .BackColor
 	right: 0px;
 	left: 0px;
 	bottom: 0px;
-	border-top: #dadde6 1px solid;
-	background-color: #f1f3f7;
+	border-top: #d0d9e0 1px solid;
+	background-color: #f2f6f9;
 	padding: 7px 10px 7px 10px;
 }
 
@@ -82,7 +82,7 @@ body, .BackColor
 {
 	border: #627097 1px solid;
 	color: #627097;
-	background-color: #dadde6;
+	background-color: #d0d9e0;
 }
 
 #btnOk
@@ -102,26 +102,26 @@ body, .BackColor
 
 .PopupTitleBorder
 {
-	border-bottom: #dadde6 1px solid;
+	border-bottom: #d0d9e0 1px solid;
 }
 
 .PopupTabArea
 {
 	color: #627097;
-	background-color: #f1f3f7;
+	background-color: #f2f6f9;
 }
 
 .PopupTabEmptyArea
 {
 	padding-left: 10px;
-	border-bottom: #dadde6 1px solid;
+	border-bottom: #d0d9e0 1px solid;
 }
 
 .PopupTab, .PopupTabSelected
 {
-	border-right: #dadde6 1px solid;
-	border-top: #dadde6 1px solid;
-	border-left: #dadde6 1px solid;
+	border-right: #d0d9e0 1px solid;
+	border-top: #d0d9e0 1px solid;
+	border-left: #d0d9e0 1px solid;
 	padding: 3px 5px 3px 5px;
 	color: #627097;
 }
@@ -129,7 +129,7 @@ body, .BackColor
 .PopupTab
 {
 	margin-top: 1px;
-	border-bottom: #dadde6 1px solid;
+	border-bottom: #d0d9e0 1px solid;
 	cursor: pointer;
 	cursor: hand;
 }
@@ -373,7 +373,7 @@ body, .BackColor
 
 /*
 	Color Gradient Generator:
-	http://www.herethere.net/~samson/php/color_gradient/?cbegin=627097&cend=f1f3f7&steps=4
+	http://www.herethere.net/~samson/php/color_gradient/?cbegin=627097&cend=f2f6f9&steps=4
 */
 
 .throbber_1
@@ -398,5 +398,5 @@ body, .BackColor
 
 .throbber_5
 {
-	background-color: #f1f3f7;
+	background-color: #f2f6f9;
 }

@@ -34,11 +34,11 @@ body
 
 #xToolbarSpace
 {
-    border-top: #dadde6 1px solid;
+    border-top: #d0d9e0 1px solid;
 }
 #xEditingArea
 {
-    border: #dadde6 1px solid;
+    border: #d0d9e0 1px solid;
 }
 
 .SourceField
@@ -79,7 +79,7 @@ body
     width: 1px;
     height: 16px;
     margin: 2px;
-    background-color: #dadde6;
+    background-color: #d0d9e0;
 }
 
 .TB_Start
@@ -106,12 +106,12 @@ body
 
 .TB_SideBorder
 {
-    background-color: #dadde6;
+    background-color: #d0d9e0;
 }
 
 .TB_Expand, .TB_Collapse
 {
-    background: #dadde6;
+    background: #d0d9e0;
 }
 
 .TB_Collapse
@@ -137,7 +137,7 @@ body
 
 .TB_Button_On
 {
-    border: #dadde6 1px solid;
+    border: #d0d9e0 1px solid;
     background-color: #f1f3f7;
 }
 
@@ -214,7 +214,7 @@ body
 
 .MN_Menu
 {
-    border: 1px solid #dadde6;
+    border: 1px solid #d0d9e0;
     padding: 2px;
     background-color: #ffffff;
     cursor: default;
@@ -265,7 +265,7 @@ body
 .MN_Item_Over
 {
     color: #ffffff;
-    background-color: #dadde6;
+    background-color: #d0d9e0;
 }
 
 .MN_Item_Over .MN_Icon
@@ -297,7 +297,7 @@ body
 
 .Menu .TB_Button_On, .Menu .TB_Button_On_Over
 {
-    border: #dadde6 1px solid;
+    border: #d0d9e0 1px solid;
     background-color: #ffffff;
 }
 
@@ -307,7 +307,7 @@ body
 
 .FCK_Panel
 {
-    border: #dadde6 1px solid;
+    border: #d0d9e0 1px solid;
     padding: 2px;
     background-color: #ffffff;
 }
@@ -327,7 +327,7 @@ body
     overflow: auto;
     white-space: nowrap;
     cursor: default;
-    border: 1px solid #dadde6;
+    border: 1px solid #d0d9e0;
     padding-left: 2px;
     padding-right: 2px;
 }
@@ -372,7 +372,7 @@ body
 
 .SC_Field
 {
-    border: #dadde6 1px solid;
+    border: #d0d9e0 1px solid;
     cursor: default;
 }
 
@@ -402,7 +402,7 @@ body
 {
     background-position: center center;
     background-image: url(images/toolbar.buttonarrow.gif);
-    border-left: #dadde6 1px solid;
+    border-left: #d0d9e0 1px solid;
     width: 14px;
     background-repeat: no-repeat;
 }
