@@ -408,7 +408,7 @@ class module{
 			while ($f = $db->fetch_array($rs)) {
 				$f['fieldsize'] && $f['fieldsize']='('.$f['fieldsize'].')';
 				$f['ifgather'] = $f['ifgather'] ? 'YES' : 'NO';
-				$f['ifindex'] = $f['ifindex'] ? 'f_index' : 'f_index2';
+				$f['ifindex'] = $f['ifindex'] ? 'f_index' : 'f_index_none';
 				$fielddb[] = $f;
 			}
 			ifcheck($moduledb[$this->mid]['search'],'ifsearch');
