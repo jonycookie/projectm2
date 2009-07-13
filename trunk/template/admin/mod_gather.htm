@@ -35,7 +35,7 @@ foreach($gather as $value){
 print <<<EOT
 -->
   <tr class="tr3">
-    <td><img src="images/admin/gat.gif" align="absmiddle" alt="改名" /></td>
+    <td><img src="images/admin/page_gat.gif" align="absmiddle" /></td>
     <td>$value[gid]</td>
     <td>$value[gname]</td>
     <td>$value[module]</td>
@@ -45,7 +45,7 @@ print <<<EOT
 	<a href="javascript:void(0);" onClick="gather('$value[gid]','1');"><img src="images/admin/test.gif" alt="采集测试" border="0" align="absmiddle" /></a> &nbsp;
 	</td>
     <td><a href="$basename&action=edit&gid=$value[gid]"><img src="images/admin/edit.gif" alt="编辑" border="0" align="absmiddle" /></a>&nbsp;
-	<a href="javascript:void(0);" onclick="return delgather($value[gid]);"><img src="images/admin/del.gif" alt="删除" border="0" align="absmiddle" /></a>
+	<a href="javascript:void(0);" onclick="return delgather($value[gid]);"><img src="images/admin/delete.gif" alt="删除" border="0" align="absmiddle" /></a>
 	&nbsp;<a href="$basename&action=export&gid=$value[gid]"><img src="images/admin/export.gif" alt="导出" border="0" align="absmiddle"  /></a></td>
   </tr>
 <!--
@@ -76,7 +76,7 @@ EOT;
 </table>
 </div>
 <div id="msg" style="border:#69788c 1px solid; background-color:#fdfdfd;padding:3px; width:400px;position:absolute; top:100px; left:150px; display:none;">
-<div style="height:20px; padding:3px;"><img src="images/admin/ing.gif" align="absmiddle" /> 采集中，请耐心等待.....</div>
+<div style="height:20px; padding:3px;"><img src="images/admin/loading.gif" align="absmiddle" /> 采集中，请耐心等待.....</div>
 <div id="operate" style=" border:#ffc467 1px solid; color:#46618c; background-color:#ffeda1;line-height:150%;overflow:auto;display:none; padding:5px;">
 已经开始进行采集，请耐心等待.....
 </div>

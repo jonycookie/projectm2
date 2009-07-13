@@ -123,13 +123,13 @@ EOT;
 if($file[tid]){
 print <<<EOT
 -->
-	<a href="javascript:void(0);" onclick="return viewQuote('$file[aid]');"><img src="images/admin/quote.png" align="absmiddle" alt="查看引用" /></a>
+	<a href="javascript:void(0);" onclick="return viewQuote('$file[aid]');"><img src="images/admin/quote.gif" align="absmiddle" alt="查看引用" /></a>
 <!--
 EOT;
 }else{
 print <<<EOT
 -->
-	<a href="$basename&action=del&aid=$file[aid]"><img src="images/admin/del.gif" align="absmiddle" alt="删除" onClick="return confirm('您确定要删除此附件？');"/></a>
+	<a href="$basename&action=del&aid=$file[aid]"><img src="images/admin/delete.gif" align="absmiddle" alt="删除" onClick="return confirm('您确定要删除此附件？');"/></a>
 <!--
 EOT;
 }print <<<EOT
@@ -139,15 +139,6 @@ EOT;
 EOT;
 }print <<<EOT
 -->
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
 </table>
 </div>
 <div class="pages">$pages</div>

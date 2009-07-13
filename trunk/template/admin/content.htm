@@ -138,7 +138,7 @@ print <<<EOT
 EOT;
 }print <<<EOT
 -->
-      {$cname} <a href="?adminjob=category&action=viewlist&cid=$cid" target="_blank"><img src="images/admin/listhome.png" alt="栏目首页" width="16" height="16" hspace="5" border="0" align="absmiddle" /></a> <a href="rss.php?cid=$cid" target="_blank"><img src="images/admin/page_feed.png" alt="RSS" border="0" align="absmiddle" /></a> <a href="$admin_file?adminjob=category&action=edit&action=edit&cid=$cid"><img src="images/admin/cateset.png" alt="栏目设置" hspace="5" border="0" align="absmiddle" /></a></td>
+      {$cname} <a href="?adminjob=category&action=viewlist&cid=$cid" target="_blank"><img src="images/admin/listhome.gif" alt="栏目首页" width="16" height="16" hspace="5" border="0" align="absmiddle" /></a> <a href="rss.php?cid=$cid" target="_blank"><img src="images/admin/page_feed.gif" alt="RSS" border="0" align="absmiddle" /></a> <a href="$admin_file?adminjob=category&action=edit&action=edit&cid=$cid"><img src="images/admin/cateset.gif" alt="栏目设置" hspace="5" border="0" align="absmiddle" /></a></td>
     </tr>
   <tr class="tr2">
     <td><span id="ordertid" class="st" onmouseover="orderstyle(this.id,1);" onmouseout="orderstyle(this.id,0);" onclick="window.location='$cururl&order=tid&orderby=$orderby1&'">序号$orderimg[tid]</span></td>
@@ -200,14 +200,14 @@ if($mid>0){
 print <<<EOT
 -->
 <a href="$admin_file?adminjob=edit&action=edit&cid=$cid&tid=$value[tid]"><img src="images/admin/edit.gif" align="absmiddle" alt="编辑" /></a>
-<a href="$basename&action=whole&cid=$cid&tid=$value[tid]&job=delete"><img src="images/admin/del.gif" align="absmiddle" alt="删除" onClick="return confirm('您确定要删除此内容？');"/></a>
+<a href="$basename&action=whole&cid=$cid&tid=$value[tid]&job=delete"><img src="images/admin/delete.gif" align="absmiddle" alt="删除" onClick="return confirm('您确定要删除此内容？');"/></a>
 <!--
 EOT;
 }print <<<EOT
 -->
 <a href="$basename&action=whole&cid=$cid&tid=$value[tid]&job=pubcancel"><img src="images/admin/cancel.gif" align="absmiddle" alt="取消发布" /></a>
 <a href="$basename&action=whole&cid=$cid&tid=$value[tid]&job=pubupdate"><img src="images/admin/update.gif" align="absmiddle" alt="更新静态页" /></a>
-<a href="$basename&action=whole&cid=$cid&tid=$value[tid]&job=pubview"><img src="images/admin/pub.gif" align="absmiddle" alt="发布内容" /></a>
+<a href="$basename&action=whole&cid=$cid&tid=$value[tid]&job=pubview"><img src="images/admin/publish.gif" align="absmiddle" alt="发布内容" /></a>
 $value[digest_c]</td>
   </tr>
 <!--
