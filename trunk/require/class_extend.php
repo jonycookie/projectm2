@@ -1,8 +1,8 @@
 <?php
 /**
- * This software is the proprietary information of PHPWind.com.
+ * This software is the proprietary information of IM2.com.
  * $Id: class_extend.php 494 2008-01-30 07:07:19Z vcteam1 $
- * @Copyright (c) 2003-08 PHPWind.com Corporation.
+ * @Copyright (c) 2003-08 IM2.com Corporation.
  */
 defined('IN_CMS') or die('Forbidden');
 global $ext_config;

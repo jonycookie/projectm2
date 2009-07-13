@@ -9,34 +9,35 @@ if(!$action){
 print <<<EOT
 -->
 <div class="t">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td>
-<form action="$basename" method="post">
-  <input name="filename" type="text" class="input" id="filename">
-  <input name="directory" type="hidden" id="directory" value="$path">
-  <input name="action" type="hidden" id="action" value="mkdir">
-  <input type="submit" name="Submit" value="建立新文件夹" class="btn">
-  <input type="button" name="Submit2" value="创建新模板" class="btn" onClick="window.location='$basename&action=new&directory=$path';">
-</form>	</td>
-  </tr>
+<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td>
+		<form action="$basename" method="post">
+		  <input name="filename" type="text" class="input" id="filename">
+		  <input name="directory" type="hidden" id="directory" value="$path">
+		  <input name="action" type="hidden" id="action" value="mkdir">
+		  <input type="submit" name="Submit" value="建立新文件夹" class="btn">
+		  <input type="button" name="Submit2" value="创建新模板" class="btn" onClick="window.location='$basename&action=new&directory=$path';">
+		</form>
+		</td>
+	</tr>
 </table>
 </div>
 <div class="t">
 <table width="100%" border="0" cellspacing="0" cellpadding="0" id='filetable'>
-  <tr class="head">
-    <td colspan="5">用户模板管理</td>
-    </tr>
-  <tr class="tr2">
-    <td width="5%">&nbsp;</td>
-    <td>文件名</td>
-    <td>文件大小</td>
-    <td>修改时间</td>
-    <td>管理</td>
-  </tr>
-<tr class="tr3">
-  <td colspan="5"><a href="$basename&directory=$path&job=up"><img src="images/admin/file/updir.gif" width="16" height="16" align="absmiddle" />上一级目录</a></td>
-</tr>
+	<tr class="head">
+		<td colspan="5">用户模板管理</td>
+	</tr>
+	<tr class="tr2">
+		<td width="20">&nbsp;</td>
+		<td>文件名</td>
+		<td>文件大小</td>
+		<td>修改时间</td>
+		<td>管理</td>
+	</tr>
+	<tr class="tr3">
+		<td colspan="5"><a href="$basename&directory=$path&job=up">$path</a></td>
+	</tr>
 <!--
 EOT;
 $i=0;
@@ -44,11 +45,12 @@ foreach($files as $file){
 $i++;
 print <<<EOT
 -->
-  <tr class="tr3" id="tr$i">
-    <td colspan="2" ondblclick="return reName($i);"><img src="$file[icon]" width="16" height="16" hspace="5" align="absmiddle" />
+	<tr class="tr3" id="tr$i">
+    <td><img src="$file[icon]" width="16" height="16" hspace="5" align="absmiddle" /></td>
+    <td ondblclick="return reName($i);">
 	<span id='td$i'><a href="$file[url]"><span id='name$i'>$file[name]</span></a></span></td>
-    <td>$file[size]<br /></td>
-    <td>$file[time]<br /></td>
+    <td>$file[size]</td>
+    <td>$file[time]</td>
     <td>
 		<a href="javascript:void(0);" onclick="return reName($i);"><img src="images/admin/rename.gif" align="absmiddle" alt="改名" /></a>
 		<a href="javascript:void(0);" onclick="return removeFile($i);"><img src="images/admin/delete.gif" align="absmiddle" alt="删除" /></a>

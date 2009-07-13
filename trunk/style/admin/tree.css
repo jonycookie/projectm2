@@ -13,14 +13,9 @@ UL.jqueryFileTree LI {
 }
 
 UL.jqueryFileTree A {
-	color: #333;
 	text-decoration: none;
 	display: block;
 	padding: 0px 2px;
-}
-
-UL.jqueryFileTree A:hover {
-	color: #627097;
 }
 
 /* Core Styles */

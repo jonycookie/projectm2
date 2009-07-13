@@ -1,6 +1,6 @@
 CMS 软件使用协议
 
-版权所有 (c) 2003-08, PHPWind.com
+版权所有 (c) 2003-08, IM2.com
 保留所有权力.
 
 CMS 由 PHPWind Dev Team 独立开发,全部核心技术归属 PHPWind Dev Team

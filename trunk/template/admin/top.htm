@@ -8,16 +8,17 @@ print <<<EOT
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="style/admin/admin.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="script/jquery.js"></script>
+<script type="text/javascript" src="script/jquery.tabber.js"></script>
 <script type="text/javascript">  
 $(function () {
-    $('.tabmenu a').mouseover(function () {
-        $('.tabcontent').hide().filter(this.hash).show();
-        
-        $('.tabmenu a').removeClass('active');
-        $(this).addClass('active');
-        
-        return false;
-    }).filter(':first').mouseover();
+		$.tabber({
+			tabs: '.tabMenu a',
+			selectedClass: 'active',
+			contents: '.tabContent',
+			defaultTab: 1,
+			effect: 'none',
+			effectSpeed: 'fast'
+		})
 });
 </script>
 </head>
@@ -25,16 +26,16 @@ $(function () {
 
 
 <div class="header">
+	<h1 class="logo"><a href="#" onclick="$('.dock').toggle();">cms.manage</a></h1>
 	<div class="dock">
 		<ul>
 			<li><a href="$sys[url]" title="站点首页" target="_blank">站点首页</a></li>
 			<li><a href="javascript:pubIndex();" title="更新站点首页">更新首页</a></li>
-			<li><a href="$admin_file?adminjob=login&action=out" title="Login out" target="_parent" onClick="return loginOut();">退出登录</a></li>
+			<li><a href="$admin_file?adminjob=login&action=out" target="_parent" onclick="return confirm('您确认要离开本管理系统么?');">退出登录</a></li>
 		</ul>
 	</div>
-	<h1 class="logo"><a href="$admin_file?adminjob=main" target="mainFrame">cms.manage</a></h1>
 	<div id="navtab" class="tabs">
-		<ul class="tabmenu">
+		<ul class="tabMenu">
 <!--
 EOT;
 foreach ($menu_father as $key=>$val){
@@ -46,6 +47,7 @@ EOT;
 }
 print <<<EOT
 -->
+			<li><a href="http://4234234.com" onclick="">432234</a></li>
 		</ul>
 
 <!--
@@ -53,7 +55,7 @@ EOT;
 foreach ($menu_father as $key=>$val){
 print <<<EOT
 -->
-		<ul class="tabcontent" id="$key">
+		<ul class="tabContent" id="$key">
 <!--
 EOT;
 foreach ($menu_child[$key] as $k=>$v){
@@ -73,6 +75,8 @@ print <<<EOT
 -->
 	</div>
 </div>
+		<div class="tabMenu">tabMenu</div>
+		<div class="tabContent">tabContent</div>
 
 <!--
 EOT;

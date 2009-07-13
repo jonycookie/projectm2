@@ -1,9 +1,9 @@
 <?php
 /**
- * This software is the proprietary information of PHPWind.com.
+ * This software is the proprietary information of IM2.com.
  * $Id: global.php 624 2008-06-03 09:48:16Z vcteam1 $
  *
- * @Copyright (c) 2003-08 PHPWind.com Corporation.
+ * @Copyright (c) 2003-08 IM2.com Corporation.
  */
 error_reporting(E_ERROR | E_PARSE);
 set_magic_quotes_runtime(0);

@@ -1,5 +1,5 @@
 #
-# robots.txt for CMS <PHPWind>
+# robots.txt for CMS
 # Version 3.x
 #
 

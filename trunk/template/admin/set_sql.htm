@@ -4,15 +4,17 @@ print <<<EOT
 <div class="t">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td>
-	<input type="button" name="Submit" value="数据备份" onclick="window.location='$basename&a_type=bakout';" class="btn" /> <input type="button" name="Submit" value="数据恢复" onclick="window.location='$basename&a_type=bakin';" class="btn" /></td>
+    <td><input type="button" name="Submit" value="数据备份" onclick="window.location='$basename&a_type=bakout';" class="btn" /> <input type="button" name="Submit" value="数据恢复" onclick="window.location='$basename&a_type=bakin';" class="btn" /></td>
   </tr>
 </table>
 </div>
 <div class="t">
-<table cellspacing=0 cellpadding=0>
-<tr class=head><td colspan=2>提示信息</td></tr>
-<tr class=tr3><td>
+<table cellspacing="0" cellpadding="0">
+<tr class="head">
+	<td colspan="2">提示信息</td>
+</tr>
+<tr class=tr3>
+	<td>
 <!--
 EOT;
 if($a_type=='bakout'){
@@ -32,7 +34,9 @@ print <<<EOT
 EOT;
 }print <<<EOT
 -->
-</td></tr></table>
+	</td>
+</tr>
+</table>
 </div>
 <!--
 EOT;
@@ -42,14 +46,16 @@ print <<<EOT
 <form action="$basename&" method=post>
 <input type=hidden name="action" value="bakout">
 <div class="t">
-<table cellspacing=0 cellpadding=0>
-<tr class=head><td colspan=4>数据库表</td></tr>
-<tr class="tr2">
-<td width="5%">&nbsp;</td>
-<td width="5%">ID</td>
-<td >数据库表</td>
-<td width="10%">选择</td>
-</tr>
+<table cellspacing="0" cellpadding="0" border="0">
+	<tr class="head">
+		<td colspan="4">数据库表</td>
+	</tr>
+	<tr class="tr2">
+		<td width="20">选择</td>
+		<td width="20">&nbsp;</td>
+		<td>ID</td>
+		<td>数据库表</td>
+	</tr>
 <!--
 EOT;
 $id=0;
@@ -58,35 +64,42 @@ $id++;
 $tablename=$_pre=='cms_' ? $table : str_replace($_pre,'cms_',$table); 
 print <<<EOT
 -->
-<tr class="tr3">
-<td><img src="images/admin/page_db.gif" align="absmiddle" /></td>
-<td>$id</td>
-<td >$table</td>
-<td><input type=checkbox name=tabledb[] value=$tablename></td>
-</tr>
+	<tr class="tr3">
+		<td><input type="checkbox" name="tabledb[]" value="$tablename" /></td>
+		<td><img src="images/admin/page_db.gif" align="absmiddle" /></td>
+		<td>$id</td>
+		<td >$table</td>
+	</tr>
 <!--
 EOT;
 }print <<<EOT
 -->
-<tr class=head><td colspan=4>分卷备份</td></tr>
-<tr class=tr3><td colspan=4><input type=text name="sizelimit" value="2048" size=5 class="input"> 每个分卷文件长度</td></tr>
+	<tr class="head">
+		<td colspan="4">分卷备份</td>
+	</tr>
+	<tr class="tr3">
+		<td colspan="4"><input type=text name="sizelimit" value="2048" size="5" class="input" />每个分卷文件长度</td>
+	</tr>
 </table>
 </div>
 <div class="sub">
-<input type="button" class="btn" name="chkall" value="全 选" onclick="CheckAll(this.form)">
-<input type=submit value="提 交" class="btn"></div>
+	<input type="button" class="btn" name="chkall" value="全 选" onclick="CheckAll(this.form)">
+	<input type="submit" value="提 交" class="btn">
+</div>
 </form>
 <form action="$basename&" method=post>
-<input type=hidden name="action" value="bakout">
+<input type="hidden" name="action" value="bakout" />
 <div class="t">
-<table cellspacing=0 cellpadding=0>
-<tr class=head><td colspan=4>非CMS数据库表 (本系统的插件或其他系统的数据库表)</td></tr>
-<tr class="tr2">
-<td width="5%">&nbsp;</td>
-<td width="5%">ID</td>
-<td >数据库表</td>
-<td width="10%">选择</td>
-</tr>
+<table cellspacing="0" cellpadding="0" border="0">
+	<tr class="head">
+		<td colspan="4">非CMS数据库表 (本系统的插件或其他系统的数据库表)</td>
+	</tr>
+	<tr class="tr2">
+		<td width="20">选择</td>
+		<td width="20">&nbsp;</td>
+		<td>ID</td>
+		<td>数据库表</td>
+	</tr>
 <!--
 EOT;
 $id=0;
@@ -94,23 +107,29 @@ foreach($othortable as $key=>$table){
 $id++;
 print <<<EOT
 -->
-<tr class="tr3">
-<td><img src="images/admin/page_db.gif" align="absmiddle" /></td>
-<td>$id</td>
-<td >$table</td>
-<td><input type=checkbox name=tabledb[] value=$table></td>
-</tr>
+	<tr class="tr3">
+		<td><input type="checkbox" name="tabledb[]" value="$table" /></td>
+		<td><img src="images/admin/page_db.gif" align="absmiddle" /></td>
+		<td>$id</td>
+		<td >$table</td>
+	</tr>
 <!--
 EOT;
 }print <<<EOT
 -->
-<tr class=head><td colspan=4>分卷备份</td></tr>
-<tr class=tr3><td colspan=4><input type=text name="sizelimit" value="2048" size=5 class="input"> 每个分卷文件长度</td></tr>
+	<tr class="head">
+		<td colspan="4">分卷备份</td>
+	</tr>
+	<tr class="tr3">
+		<td colspan="4"><input type=text name="sizelimit" value="2048" size="5" class="input" />每个分卷文件长度</td>
+	</tr>
 </table>
 </div>
 <div class="sub">
-<input type="button" name="chkall" value="全 选" onclick="CheckAll(this.form)" class="btn">
-<input type=submit value="提 交" class="btn"></div></form>
+	<input type="button" name="chkall" value="全 选" onclick="CheckAll(this.form)" class="btn">
+	<input type="submit" value="提 交" class="btn">
+</div>
+</form>
 <!--
 EOT;
 }elseif($a_type=='bakin'){
@@ -118,34 +137,35 @@ if(!$action){print <<<EOT
 -->
 <form method="post" action="$basename&a_type=bakin">
 <div class="t">
-<table cellspacing=0 cellpadding=0>
-<tr class=head>
-	<td colspan=8 class=head>系统备份文件</td>
-</tr>
-<tr class=tr2>
-	<td width=5%>&nbsp;</td>
-	<td width=5%>ID</td>
-	<td width=35%>文件名</td>
-	<td width=10%>版本</td>
-	<td width=20%>备份时间</td>
-	<td width=10%>卷号</td>
-	<td width=10%>导入</td>
-	<td width=5% >删</td>
-</tr>
+<table cellspacing="0" cellpadding="0" border="0">
+	<tr class=head>
+		<td colspan="8" class="head">系统备份文件</td>
+	</tr>
+	<tr class="tr2">
+		<td width="20">&nbsp;</td>
+		<td>ID</td>
+		<td>文件名</td>
+		<td>版本</td>
+		<td>备份时间</td>
+		<td>卷号</td>
+		<td>导入</td>
+		<td>删</td>
+	</tr>
 <!--
 EOT;
 foreach($filedb as $id=>$bakfile){
 $id++;
 print <<<EOT
 -->
-<tr class=tr3>
-<td><img src="images/admin/page_db.gif" align="absmiddle" /></td>
-<td>$id</td>
-<td><a href="data/$bakfile[name]" target="_blank">$bakfile[name]</a></td>
-<td>$bakfile[version]</td>
-<td>$bakfile[time]</td><td>$bakfile[num]</td>
-<td><a href="$basename&a_type=bakin&action=bakincheck&pre=$bakfile[pre]"><img src="images/admin/import.gif" align="absmiddle" alt="导入" /></a></td>
-<td><input name="delfile[]" type=checkbox value="$bakfile[name]"></td></tr>
+	<tr class="tr3">
+		<td><img src="images/admin/page_db.gif" align="absmiddle" /></td>
+		<td>$id</td>
+		<td><a href="data/$bakfile[name]" target="_blank">$bakfile[name]</a></td>
+		<td>$bakfile[version]</td>
+		<td>$bakfile[time]</td><td>$bakfile[num]</td>
+		<td><a href="$basename&a_type=bakin&action=bakincheck&pre=$bakfile[pre]"><img src="images/admin/import.gif" align="absmiddle" alt="导入" /></a></td>
+		<td><input name="delfile[]" type="checkbox" value="$bakfile[name]"></td>
+	</tr>
 <!--
 EOT;
 }print <<<EOT
@@ -153,9 +173,9 @@ EOT;
 </table>
 </div>
 <div class="sub">
-<input name=action type=hidden value="del">
-<input type="button" name="chkall" value="全 选" onclick="CheckAll(this.form)" class="btn">
-<input type="submit" name="delete" value="删除备份" onclick="return checkset('此功能不可恢复,您确认要删除选中的备份文件！');" class="btn">
+	<input name=action type=hidden value="del" />
+	<input type="button" name="chkall" value="全 选" onclick="CheckAll(this.form)" class="btn" />
+	<input type="submit" name="delete" value="删除备份" onclick="return checkset('此功能不可恢复,您确认要删除选中的备份文件！');" class="btn" />
 </div>
 </form>
 <script language=JavaScript>
@@ -175,14 +195,18 @@ print <<<EOT
 -->
 <form action="$basename&a_type=bakin&action=bakin&pre=$pre" method="post">
 <div class="t">
-<table  cellspacing=0 cellpadding=0>
-<tr class=head><td colspan=2>提示信息</td></tr>
-<tr class=line><td>
-备份恢复功能将覆盖原来的数据,您确认要导入备份数据 
-</td><td><input type="submit" value="确认导入备份" class="btn" /></td></tr></table>
+<table  cellspacing="0" cellpadding="0" border="0">
+	<tr class="head">
+		<td colspan="2">提示信息</td>
+	</tr>
+	<tr class="line">
+		<td>备份恢复功能将覆盖原来的数据,您确认要导入备份数据</td>
+		<td><input type="submit" value="确认导入备份" class="btn" /></td>
+	</tr>
+</table>
 </div>
 </form>
-<div class="sub"> <input type='button' value='返 回 继 续 操 作' onclick='javascript:history.go(-1);' class="btn"></div>
+<div class="sub"> <input type='button' value='返 回 继 续 操 作' onclick='javascript:history.go(-1);' class="btn" /></div>
 <!--
 EOT;
 }}

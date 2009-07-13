@@ -3,8 +3,8 @@ error_reporting(0);
 define('D_P',__FILE__ ? substr(__FILE__,0,-6) : './');
 define('R_P',D_P);
 $timestamp=time();
-$x_size=70; //验证图片宽度，单位像素
-$y_size=25; //验证图片高度
+$x_size=45; //验证图片宽度，单位像素
+$y_size=20; //验证图片高度
 require_once(D_P.'data/cache/config.php');
 $sys['cvtime'] != 0 && $timestamp += $sys['cvtime']*60;
 if($_GET['admin']){
@@ -18,9 +18,8 @@ if(function_exists('imagecreate') && function_exists('imagecolorallocate') && fu
 function_exists('imagesetpixel') && function_exists('imageString') && function_exists('imagedestroy') && function_exists('imagefilledrectangle') && function_exists('imagerectangle')){
 	$aimg = imagecreate($x_size,$y_size);
 	$back = imagecolorallocate($aimg,255,255,255);
-	$border = imagecolorallocate($aimg,0,0,0);
 	imagefilledrectangle($aimg,0,0,$x_size - 1,$y_size - 1,$back);
-	imagerectangle($aimg,0,0,$x_size - 1,$y_size - 1,$border);
+	imagerectangle($aimg,0,0,$x_size - 1,$y_size - 1);
   
     for($i=1; $i<=20;$i++){
 		$dot = imagecolorallocate($aimg,mt_rand(50,255),mt_rand(50,255),mt_rand(50,255));

@@ -2,9 +2,9 @@
 /**
  * 插件前台接口
  *
- * This software is the proprietary information of PHPWind.com.
+ * This software is the proprietary information of IM2.com.
  * $Id: extensions.php 546 2008-04-01 02:19:25Z vcteam $
- * @Copyright (c) 2003-08 PHPWind.com Corporation.
+ * @Copyright (c) 2003-08 IM2.com Corporation.
  */
 define('IN_EXT',true);
 require_once('global.php');

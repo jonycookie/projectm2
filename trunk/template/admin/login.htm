@@ -6,22 +6,24 @@ print <<<EOT
 <head>
 <title>CMS - Powered by PHPWind.Net</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-</head>
 <link href="style/admin/login.css" rel="stylesheet" type="text/css" />
+</head>
 <body>
 <div class="form">
 	<div class="formBox">
 	<form action="$admin_file" method="post" target="_parent" name="login">
         <h6>User Name:</h6>
-          <input name="username" type="text" size="40" class="txt" /></td>
+          <input name="username" type="text" size="40" class="txt username" />
         <h6>Password:</h6>
-          <input name="password" type="password" size="40" class="txt" />
+          <input name="password" type="password" size="40" class="txt password" />
 <!--
 EOT;
 if($sys[ckadmin]){
 print <<<EOT
 -->
-      <div class="ckadmin"><input name="ck" type="text" class="input" size="4" /><img src="ck.php" name="ck" align="absmiddle" id='ck' onclick="return showck();" /></div>
+        <h6>Validate Code:</h6>
+		<img src="ck.php" name="ck" align="absmiddle" id='ck' onclick="this.src='ck.php?nowtime='+new Date().getTime();" /><br />
+		<input name="ck" type="text" class="txt" size="4" />
 <!--
 EOT;
 }print <<<EOT
@@ -34,15 +36,6 @@ EOT;
     </div>
 
 </div>
-<script language="JavaScript">
-document.login.username.focus();
-function showck(){
-	var nowtime	 = new Date().getTime();
-	var ck=document.getElementById('ck');
-	ck.src='ck.php?nowtime='+nowtime;
-	return false;
-}
-</script>
 </body>
 </html>
 <!--

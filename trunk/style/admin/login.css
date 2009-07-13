@@ -1,9 +1,21 @@
 ﻿/* CSS Document */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td
+{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-family: inherit;
+	font-size:100%;
+	text-align: left;
+	vertical-align: baseline;
+	list-style: none;
+}
 body {
 	font: normal normal 12px/20px tahoma, '宋体', sans-serif;
 	background: #fff;
-	margin:0;
-	padding:0;
 	text-align: center;
 }
 h1,h2,h3,h4,h5,h6 {
@@ -11,8 +23,13 @@ h1,h2,h3,h4,h5,h6 {
 	padding: 0;
 }
 h6 {
+	font-weight: bold;
 	font-size: 9px;
 	color: #666;
+}
+img {
+	border: 0;
+	vertical-align: middle;
 }
 input {
 	font: normal normal 12px/20px tahoma, '宋体', sans-serif;
@@ -31,12 +48,11 @@ input {
 	padding: 15px;
 }
 .txt {
-	border: 3px solid #d0d9e0;
-	background: #f2f6f9;
-	padding: 2px;
-	margin: 0;
-	height: 18px;
-	line-height: 18px;
+	border: 1px solid #d0d9e0;
+	border-color: #bfc4d2 #d0d9e0 #d0d9e0 #bfc4d2;
+	padding: 2px 0px 2px 1px;
+	font-size:1.0em;
+	vertical-align:middle
 }
 .formBox .toolbar {
 	margin: 10px 0 0;

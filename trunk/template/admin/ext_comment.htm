@@ -34,12 +34,12 @@ print <<<EOT
 -->
 <form action="$basename" method="post" name="FORM">
 <div class="t">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table border="0" cellspacing="0" cellpadding="0">
   <tr class="head">
     <td colspan="6">评论信息管理</td>
     </tr>
   <tr class="tr2">
-    <td>&nbsp;</td>
+    <td width="20">&nbsp;</td>
     <td>原文标题</td>
     <td>评论人</td>
     <td>评论时间</td>
@@ -52,7 +52,7 @@ foreach($result as $val){
 print <<<EOT
 -->
   <tr class="tr3">
-    <td width="10"><input name="ids[$val[tid]][]" type="checkbox" id="ids[$val[tid]]" value="$val[id]"></td>
+    <td><input name="ids[$val[tid]][]" type="checkbox" id="ids[$val[tid]]" value="$val[id]"></td>
     <td><a href="$val[url]" target="_blank">$val[title]</a></td>
     <td>$val[author]&nbsp;($val[fromip])</td>
     <td>$val[postdate]&nbsp;</td>
@@ -101,7 +101,7 @@ print <<<EOT
     <td><img src="$val[facepath]" /></td>
     <td><input class="input" name="faceintro[$val[id]]" value="$val[faceintro]" size="50"/></td>
     <td><input class="input" name="taxis[$val[id]]" value="$val[taxis]" size="10"/></td>
-    <td>[<a href="$basename&action=delface&id=$val[id]" onClick="if(!confirm('确定删除此表情?')) return false;">删除</a>]</td>
+    <td><a href="$basename&action=delface&id=$val[id]" onclick="return confirm('您确定要删除此表情？');"><img src="images/admin/delete.gif" align="absmiddle" alt="删除" /></a></td>
   </tr>
 <!--
 EOT;
@@ -118,15 +118,15 @@ EOT;
 <form action="$basename" method="post">
 <input type="hidden" name="id" value="$id">
 <input type="hidden" name="action" value="addface">
-<div class="t" style="width:60%">
-<table cellspacing="1" cellpadding="0" border="0">
+<div class="t">
+<table cellspacing="0" cellpadding="0" border="0">
 <tr class="head">
 	<td colspan="3">表情管理（表情图片路径:扩展目录/images/comment/,该目录下尚未被添加的表情）</td>
 </tr>
 <tr class="tr2">
-	<td width="15%">添 加</td>
+	<td width="20">&nbsp;</td>
 	<td>图片路径</td>
-	<td width="40%">图片预览</td>
+	<td>图片预览</td>
 </tr>
 <!--
 EOT;

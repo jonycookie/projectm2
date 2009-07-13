@@ -1,8 +1,8 @@
 <?php
 /**
- * This software is the proprietary information of PHPWind.com.
+ * This software is the proprietary information of IM2.com.
  * $Id: index.php 556 2008-04-07 05:57:47Z vcteam $
- * @Copyright (c) 2003-08 PHPWind.com Corporation.
+ * @Copyright (c) 2003-08 IM2.com Corporation.
  */
 defined('IN_EXT') or die('Forbidden');
 $job = GetGP('job');

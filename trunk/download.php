@@ -1,8 +1,8 @@
 <?php
 /**
- * This software is the proprietary information of PHPWind.com.
+ * This software is the proprietary information of IM2.com.
  * $Id: download.php 513 2008-02-18 09:41:17Z vcteam $
- * @Copyright (c) 2003-08 PHPWind.com Corporation.
+ * @Copyright (c) 2003-08 IM2.com Corporation.
  */
 define('SCR','download');
 require_once('global.php');

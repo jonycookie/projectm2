@@ -94,10 +94,11 @@ function checkLoadFinished(count) {
 <div class="t">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr class="head">
-    <td colspan="7">附件资源管理 (此处附件显示无法做到完全准确，只能作为参考) </td>
+    <td colspan="8">附件资源管理 (此处附件显示无法做到完全准确，只能作为参考) </td>
   </tr>
   <tr class="tr2">
-    <td width="5%">&nbsp;</td>
+    <td width="20">&nbsp;</td>
+    <td width="20">&nbsp;</td>
     <td>原始文件名</td>
     <td>描述</td>
     <td>文件保存路径</td>
@@ -112,7 +113,8 @@ print <<<EOT
 -->
   <tr class="tr3">
     <td><input name="aid[]" type="checkbox" id="del[]" value="$file[aid]" $file[disable] /></td>
-    <td><img src="$file[icon]" width="16" height="16" hspace="5" align="absmiddle" /><a href="$file[url]">$file[filename] </a></td>
+    <td><img src="$file[icon]" width="16" height="16" hspace="5" /></td>
+    <td><a href="$file[url]">$file[filename] </a></td>
     <td>$file[fileintro]&nbsp;</td>
     <td>$file[filepath]</td>
     <td>$file[filesize]</td>

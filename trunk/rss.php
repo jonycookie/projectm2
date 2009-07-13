@@ -84,7 +84,7 @@ class Rss extends Cms {
 		$this->config = $sys;
 		if($this->config['lang'] == 'gbk') {
 			$this->config['encode'] = 'gb2312';
-		}elseif($this->config['lang'] == 'utf8') {
+		}elseif($this->config['lang'] == 'utf-8') {
 			$this->config['encode'] = 'utf-8';
 		}elseif($this->config['lang'] == 'big5') {
 			$this->config['encode'] = 'big5';
