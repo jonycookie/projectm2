@@ -24,7 +24,7 @@ UL.jqueryFileTree A:hover {
 }
 
 /* Core Styles */
-.jqueryFileTree LI.directory { background: url(images/directory.png) left 2px no-repeat; }
-.jqueryFileTree LI.expanded { background: url(images/folder_open.png) left 2px no-repeat; }
-.jqueryFileTree LI.file { background: url(images/file.png) left 2px no-repeat; }
+.jqueryFileTree LI.directory { background: url(images/book.gif) left 2px no-repeat; }
+.jqueryFileTree LI.expanded { background: url(images/book_open.gif) left 2px no-repeat; }
+.jqueryFileTree LI.file { background: url(images/file.gif) left 2px no-repeat; }
 .jqueryFileTree LI.wait { background: url(images/spinner.gif) left 2px no-repeat; }
