@@ -151,7 +151,7 @@ class Content{
 					break;
 				case 'mselect':
 					$str="<select multiple size=8 name=\"$fieldid\" id=\"$fieldid\">";
-					$str.="</select><input type=hidden name=\"".$fieldid."_value\" id=\"".$fieldid."_value\" value=''> $selectValue <br /><img  onclick=del('$fieldid') src='images/admin/del.gif'><img onclick=moveUp('$fieldid') src='images/admin/up.png'><img onclick=moveDown('$fieldid') src='images/admin/down.png'>";
+					$str.="</select><input type=hidden name=\"".$fieldid."_value\" id=\"".$fieldid."_value\" value=''> $selectValue <br /><img  onclick=del('$fieldid') src='images/admin/delete.gif'><img onclick=moveUp('$fieldid') src='images/admin/up.gif'><img onclick=moveDown('$fieldid') src='images/admin/down.gif'>";
 					$field['input']=$str;
 					break;
 				case 'edit':
@@ -262,7 +262,7 @@ class Content{
 							}
 						}
 					}
-					$str.="</select><input type=hidden name=\"".$fieldid."_value\" id=\"".$fieldid."_value\" value=''> $selectValue <br /><img  onclick=del('$fieldid') src='images/admin/del.gif'><img onclick=moveUp('$fieldid') src='images/admin/up.png'><img onclick=moveDown('$fieldid') src='images/admin/down.png'>";
+					$str.="</select><input type=hidden name=\"".$fieldid."_value\" id=\"".$fieldid."_value\" value=''> $selectValue <br /><img  onclick=del('$fieldid') src='images/admin/delete.gif'><img onclick=moveUp('$fieldid') src='images/admin/up.gif'><img onclick=moveDown('$fieldid') src='images/admin/down.gif'>";
 					$field['input']=$str;
 					break;
 				case 'edit':

@@ -13,8 +13,8 @@ function Showmsg($msg){
 		$lang = array_merge((array)$lang,(array)$extmsg);
 	}
 	$lang[$msg] && $msg=$lang[$msg];
-	$errmsg="<div style='font-size:12px;font-family:verdana;line-height:180%;color:#666;border:dashed 1px #ccc;padding:1px;margin:20px;'>";
-	$errmsg.="<div style=\"background: #eeedea;padding-left:10px;font-weight:bold;height:25px;\">$lang[prompt]</div>";
+	$errmsg="<div class=\"t\">";
+	$errmsg.="<div style=\"background: #eeedea;padding:10px;font-weight:bold;\">$lang[prompt]</div>";
 	$errmsg.="<div style='padding:20px;font-size:14px;'><img src='images/admin/bg_face.gif' align='absmiddle' hspace=20 >$msg</div>";
 	$errmsg.="<div style=\"text-align:center;height:30px;\"><input class=btn type=button onclick='window.history.go(-1)' value=' $lang[back] ' /></div>";
 	$errmsg.="</div>";
