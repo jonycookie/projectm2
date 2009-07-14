@@ -5,67 +5,93 @@
 // Dec 25, 2007 (Merry Christmas!)
 /***************************************/
 
-(function($){
+if(jQuery) (function($){
+	
+	$.extend($.fn, {
+		tabber: function(o) {
 
-		$.tabber = function(params){
+			// Defaults
+			if( !o ) var o = {};
+			if( o.tabs == undefined ) o.tabs = '.tabMenu a';
+			if( o.selectedClass == undefined ) o.selectedClass = 'active';
+			if( o.contents == undefined ) o.contents = '.tabContent';
+			if( o.defaultTab == undefined ) o.defaultTab = ':first';
+			if( o.effect == undefined ) o.effect = 'none';
+			if( o.effectSpeed == undefined ) o.effectSpeed = 'fast';
+			if( o.eventName == undefined ) o.eventName = 'click';
+
+			var target = $(this);
+			var tabs = target.find(o.tabs);
+			var contents = target.find(o.contents);
+			
 				
-				// parameters
-				var tabs = params.tabs;
-				var selectedClass = params.selectedClass;
-				var contents = params.contents;
-				var defaultTab = params.defaultTab;
-				var effect = params.effect;
-				var effectSpeed = params.effectSpeed;
+			// If we want to show the first block of content when the page loads
+			var tabber = $(tabs).filter(function(){
+				return this.hash != '';
+			});
+			// each anchor
+			tabber.each(function(){
 				
-				$(contents).hide();
-				
-				// If we want to show the first block of content when the page loads
-				if(!isNaN(defaultTab)){
-					defaultTab--;
-					$(contents+":eq("+defaultTab+")").show();
-					$(tabs+":eq("+defaultTab+")").addClass(selectedClass);	
-				}
-				
-				// each anchor
-				$(tabs).each(function(){
-					if (this.hash) {
+					function tabsinit(){
+						var content = target.find(this.hash);
 						
-						$(this).mouseover(function(){
-							// once clicked, remove all classes
-							$(tabs).each(function(){
-								$(this).removeClass(selectedClass);
-							})
-							// hide all content
-							$(contents).hide();
-							
-							// now lets show the desired information
-							$(this).addClass(selectedClass);
-							var contentObj = this.hash;
-							
-							if(effect != 'none'){
-								
-								switch(effect){
-									
-									case 'slide':
-									$(contentObj).slideDown(effectSpeed);
-									break;
-									case 'fade':
-									$(contentObj).fadeIn(effectSpeed);
-									break;
-									
-								}
-									
-							}
-							else {
-								$(contentObj).show();
-							}
-							return false;
+						// once clicked, remove all classes
+						tabber.each(function(){
+							$(this).removeClass(o.selectedClass);
 						})
 						
+						// hide all content
+						contents.hide();
+						
+						// now lets show the desired information
+						$(this).addClass(o.selectedClass);
+						
+
+
+						// ajax
+						if($(this).attr('rel')) {                          //如果ajax请求url不为空
+							content.html('Loading...');
+							$.ajax({
+								url: $(this).attr('rel'),
+								cache: false,
+								success: function(html) {
+									content.html(html);
+								},
+								error:function() {
+									content.html('Error');
+								}
+							});
+						}
+
+						
+						// effect
+						if(o.effect != 'none'){
+							
+							switch(o.effect){
+								
+								case 'slide':
+								content.slideDown(o.effectSpeed);
+								break;
+								case 'fade':
+								content.fadeIn(o.effectSpeed);
+								break;
+								
+							}
+								
+						}
+						else {
+							content.show();
+						}
+						return false;
 					}
 					
-				})
+					$(tabber)
+					.bind(o.eventName == 'all' ? 'click mouseover' : o.eventName, tabsinit)
+					.filter(o.defaultTab)
+					.trigger(o.eventName == 'all' ? 'click' : o.eventName);
+			});
 			
-			}
+		}
+	});
 	
-})(jQuery);	
+})(jQuery);
