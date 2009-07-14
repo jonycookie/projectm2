@@ -35,23 +35,34 @@ input {
 	font: normal normal 12px/20px tahoma, '宋体', sans-serif;
 }
 .form {
-	border: 1px solid #d0d9e0;
-	background: #f2f6f9;
+	border: 1px solid #d0dbe7;
+	background: #f2f6fb;
 	width: 300px;
 	margin: 200px auto;
 	text-align: left;
 }
 .formBox {
-	border: 1px solid #d0d9e0;
+	border: 1px solid #d0dbe7;
 	background: #fff;
 	margin: 15px;
 	padding: 15px;
 }
+select {
+	font-size: 12px;
+}
+.btn {
+	border: 1px solid #627097;
+	background:#d0dbe7 none repeat scroll 0 0;
+	border-color:#d0dbe7 #627097 #627097 #d0dbe7;
+	color:#000000;
+	cursor:pointer;
+	margin:3px 0;
+	padding:2px 5px;
+}
 .txt {
-	border: 1px solid #d0d9e0;
-	border-color: #bfc4d2 #d0d9e0 #d0d9e0 #bfc4d2;
+	border: 1px solid #d0dbe7;
+	border-color: #627097 #d0dbe7 #d0dbe7 #627097;
 	padding: 2px 0px 2px 1px;
-	font-size:1.0em;
 	vertical-align:middle
 }
 .formBox .toolbar {

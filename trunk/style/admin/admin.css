@@ -17,7 +17,7 @@ body {
 	font-family: Tahoma;
 	font-size: 12px;
 	color: #666;
-	background: #f2f6f9 url(images/bg_body.gif) top repeat-x fixed;
+	background: #f2f6fb url(images/bg_body.gif) top repeat-x fixed;
 }
 td, th, div {
 	WORD-BREAK: break-all;
@@ -143,26 +143,28 @@ textarea, input {
 	margin-bottom:1px
 }
 select {
+	font-size: 12px;
 }
 .btn {
-	border: 1px solid #d0d9e0;
-	background:#d0d9e0 none repeat scroll 0 0;
-	border-color:#d0d9e0 #bfc4d2 #bfc4d2 #d0d9e0;
+	border: 1px solid #627097;
+	background:#d0dbe7 none repeat scroll 0 0;
+	border-color:#d0dbe7 #627097 #627097 #d0dbe7;
 	color:#000000;
 	cursor:pointer;
 	margin:3px 0;
 	padding:2px 5px;
 }
 .input {
-	border: 1px solid #d0d9e0;
-	border-color: #bfc4d2 #d0d9e0 #d0d9e0 #bfc4d2;
+	border: 1px solid #d0dbe7;
+	border-color: #627097 #d0dbe7 #d0dbe7 #627097;
 	padding: 2px 0px 2px 1px;
-	font-size:1.0em;
 	vertical-align:middle
 }
 .file {
-	padding: 2px 3px 0 3px;
-	height: 21px
+	border: 1px solid #d0dbe7;
+	border-color: #627097 #d0dbe7 #d0dbe7 #627097;
+	padding: 2px 0px 2px 1px;
+	vertical-align:middle
 }
 form {
 	display:inline;
@@ -170,7 +172,8 @@ form {
 	padding:0
 }
 textarea {
-	border: solid 1px #388EB0;
+	border: 1px solid #d0dbe7;
+	border-color: #627097 #d0dbe7 #d0dbe7 #627097;
 }
 /*a link 基本连接颜色 */
 a {
@@ -213,7 +216,7 @@ a.a2 {
 .t {
 	margin: 8px;
 	padding: 8px;
-	border: 1px solid #d0d9e0;
+	border: 1px solid #d0dbe7;
 	background: #fff;
 }
 .t table {
@@ -271,14 +274,14 @@ a.a2 {
 }
 /*table tr2*/
 .tr2 {
-	background:#f2f6f9
+	background:#f2f6fb
 }
 .tr2 td, .tr2 th {
 	text-align:left;
 	color: #659b28;
 	line-height:21px;
-	border-bottom:1px solid #d0d9e0;
-	border-top:1px solid #d0d9e0;
+	border-bottom:1px solid #d0dbe7;
+	border-top:1px solid #d0dbe7;
 	padding:0 6px 2px
 }
 .tr2 th {
@@ -290,7 +293,7 @@ a.a2 {
 }
 /*table tr3*/
 .tr3 td, .tr3 th {
-	border-bottom: 1px solid #f2f6f9;
+	border-bottom: 1px solid #f2f6fb;
 	padding: 5px 8px
 }
 .tr3 th {
@@ -539,18 +542,18 @@ filter : progid:DXImageTransform.Microsoft.Alpha(opacity=93);
 .header h1 a {
 	display: block;
 	padding: 2px 5px;
-	border: 1px solid #f2f6f9;
+	border: 1px solid #f2f6fb;
 	text-decoration: none;
 }
 .header h1 a:hover {
 	display: block;
-	border: 1px solid #d0d9e0;
+	border: 1px solid #d0dbe7;
 	background: #fff;
 }
 .header .dock {
 	display: none;
 	float: right;
-	border-bottom: 1px solid #d0d9e0;
+	border-bottom: 1px solid #d0dbe7;
 	background: #fff;
 }
 .header .dock:after {
@@ -561,9 +564,9 @@ filter : progid:DXImageTransform.Microsoft.Alpha(opacity=93);
 
 .tabMenu {
 	line-height: 18px;
-	border-top: 1px solid #d0d9e0;
-	border-bottom: 1px solid #d0d9e0;
-	background: #f2f6f9;
+	border-top: 1px solid #d0dbe7;
+	border-bottom: 1px solid #d0dbe7;
+	background: #f2f6fb;
 	zoom: 1;
 }
 .tabMenu:after {
@@ -577,8 +580,8 @@ filter : progid:DXImageTransform.Microsoft.Alpha(opacity=93);
 .tabMenu li a {
 	display: block;
 	float: left;
-    border-right:1px solid #d0d9e0;
-    padding: 5px 15px;
+	border-right:1px solid #d0dbe7;
+	padding: 5px 15px;
     *padding: 6px 15px 5px 15px;
     text-decoration: none;
 	margin-bottom: -1px;
@@ -589,7 +592,7 @@ filter : progid:DXImageTransform.Microsoft.Alpha(opacity=93);
 }
 .tabContent {
 	clear: both;
-	border-bottom: 1px solid #d0d9e0;
+	border-bottom: 1px solid #d0dbe7;
 	background: #fff;
 	padding: 5px 15px;
 	zoom: 1;

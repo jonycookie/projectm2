@@ -18,21 +18,21 @@ input {
 	font: normal normal 12px/20px tahoma, '宋体', sans-serif;
 }
 .form {
-	border: 1px solid #d0d9e0;
-	background: #f2f6f9;
+	border: 1px solid #d0dbe7;
+	background: #f2f6fb;
 	width: 300px;
 	margin: 200px auto;
 	text-align: left;
 }
 .formBox {
-	border: 1px solid #d0d9e0;
+	border: 1px solid #d0dbe7;
 	background: #fff;
 	margin: 15px;
 	padding: 15px;
 }
 .txt {
-	border: 3px solid #d0d9e0;
-	background: #f2f6f9;
+	border: 3px solid #d0dbe7;
+	background: #f2f6fb;
 	padding: 2px;
 	margin: 0;
 	height: 18px;
