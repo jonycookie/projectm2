@@ -23,7 +23,6 @@ function Showmsg($msg){
 
 function adminbottom($display=1){
 	global $adminjob,$sys;
-	require PrintEot('footer');
 	$output = str_replace(array('<!--<!---->','<!---->'),array('',''),ob_get_contents());
 	ob_end_clean();
 	$sys['gzip'] == 1 && function_exists('ob_gzhandler') ? ob_start('ob_gzhandler') : ob_start();
