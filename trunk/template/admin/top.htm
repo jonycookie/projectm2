@@ -11,13 +11,14 @@ print <<<EOT
 <script type="text/javascript" src="script/jquery.tabber.js"></script>
 <script type="text/javascript">  
 $(function () {
-		$.tabber({
+		$("#navtab").tabber({
 			tabs: '.tabMenu a',
 			selectedClass: 'active',
 			contents: '.tabContent',
-			defaultTab: 1,
+			defaultTab: ':first',
 			effect: 'none',
-			effectSpeed: 'fast'
+			effectSpeed: 'fast',
+			eventName: 'mouseover'
 		})
 });
 </script>
@@ -47,7 +48,6 @@ EOT;
 }
 print <<<EOT
 -->
-			<li><a href="http://4234234.com" onclick="">432234</a></li>
 		</ul>
 
 <!--
@@ -75,8 +75,6 @@ print <<<EOT
 -->
 	</div>
 </div>
-		<div class="tabMenu">tabMenu</div>
-		<div class="tabContent">tabContent</div>
 
 <!--
 EOT;
