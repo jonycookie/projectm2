@@ -13,9 +13,9 @@ print <<<EOT
   <tr class="line">
     <td>调用范围</td>
     <td>
-      <input value="tid" name="type" type="radio" class="input" $type_tid /> 单文章调用(TID)
-      <input value="cid" name="type" type="radio" class="input" $type_cid /> 栏目内容调用(CID)
-      <input value="mid" name="type" type="radio" class="input" $type_mid /> 模型内容调用(MID)
+      <input value="tid" name="type" type="radio" $type_tid /> 单文章调用(TID)
+      <input value="cid" name="type" type="radio" $type_cid /> 栏目内容调用(CID)
+      <input value="mid" name="type" type="radio" $type_mid /> 模型内容调用(MID)
     </td>
   </tr>
   <tr class="line">
@@ -23,51 +23,51 @@ print <<<EOT
       TID或CID或MID
     </td>
     <td>
-      <input type="text" id="id" name="id" class="input" size="70" value="$id" />
+      <input type="text" id="id" name="id" class="txt" size="70" value="$id" />
       多ID逗号隔开,暂不支持整合栏目
     </td>
   </tr>
   <tr class="line">
     <td>附加显示</td>
     <td>文章开头:&nbsp;&nbsp;
-      <input value="0" name="pre" type="radio" class="input" $pre_0 />0.&lt;li&gt;
-      <input value="1" name="pre" type="radio" class="input" $pre_1 />1.◇
-      <input value="2" name="pre" type="radio" class="input" $pre_2 />2.·
-      <input value="3" name="pre" type="radio" class="input" $pre_3 />3.○
-      <input value="4" name="pre" type="radio" class="input" $pre_4 />4.●
-      <input value="5" name="pre" type="radio" class="input" $pre_5 />5.-
-      <input value="6" name="pre" type="radio" class="input" $pre_6 />6.□-
+      <input value="0" name="pre" type="radio" $pre_0 />0.&lt;li&gt;
+      <input value="1" name="pre" type="radio" $pre_1 />1.◇
+      <input value="2" name="pre" type="radio" $pre_2 />2.·
+      <input value="3" name="pre" type="radio" $pre_3 />3.○
+      <input value="4" name="pre" type="radio" $pre_4 />4.●
+      <input value="5" name="pre" type="radio" $pre_5 />5.-
+      <input value="6" name="pre" type="radio" $pre_6 />6.□-
       <br />
       文章结尾:&nbsp;&nbsp;
-      <input type="checkbox" class="input" value="1" name="end[author]" $author/>
+      <input type="checkbox" value="1" name="end[author]" $author/>
       作者
-      <input type="checkbox" class="input" value="1" name="end[hits]" $hits/>
+      <input type="checkbox" value="1" name="end[hits]" $hits/>
       点击量
-      <input type="checkbox" class="input" value="1" name="end[comnum]" $comnum/>
+      <input type="checkbox" value="1" name="end[comnum]" $comnum/>
       评论数
-      <input type="checkbox" class="input" value="1" name="end[postdate]" $postdate/>
+      <input type="checkbox" value="1" name="end[postdate]" $postdate/>
       发布时间
-      <input type="checkbox" class="input" value="1" name="end[channel]" $channel/>
+      <input type="checkbox" value="1" name="end[channel]" $channel/>
       栏目名称
     </td>
   </tr>
   <tr class="line">
     <td>标题长度</td>
-    <td><input type="text" id="length" name="length" class="input" value="$length" /></td>
+    <td><input type="text" id="length" name="length" class="txt" value="$length" /></td>
   </tr>
 <!--
   <tr class="line">
     <td>开始时间 - 结束时间</td>
     <td>
-      <input type="text" name="stime" id="stime" size="20" class="input" onclick="ShowCalendar(this.id);" />
+      <input type="text" name="stime" id="stime" size="20" class="txt" onclick="ShowCalendar(this.id);" />
       -
-      <input type="text" name="etime" id="etime" size="20" class="input" onclick="ShowCalendar(this.id);" />
+      <input type="text" name="etime" id="etime" size="20" class="txt" onclick="ShowCalendar(this.id);" />
      </td>
   </tr>
 -->
   <tr class="line">
     <td>显示数目</td>
-    <td><input type="text" id="num" name="num" class="input" value="$num" /></td>
+    <td><input type="text" id="num" name="num" class="txt" value="$num" /></td>
   </tr>
   <tr class="line">
     <td>排序</td>
@@ -108,7 +108,7 @@ print <<<EOT
     </tr>
     <tr class="tr3">
       <td>调用代码</td>
-      <td><input type="text" id="jscode" name="jscode" class="input" size="100" value="$jscode" onmouseover="FORM1.jscode.select();" />
+      <td><input type="text" id="jscode" name="jscode" class="txt" size="100" value="$jscode" onmouseover="FORM1.jscode.select();" />
       <input type="submit" class="btn" value="查看效果">
       <input type="button" class="btn" value="复制代码(ie)" onclick="CopyCode(document.getElementById('jscode'));"></td>
     </tr>

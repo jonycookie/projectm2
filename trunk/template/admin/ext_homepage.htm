@@ -13,17 +13,17 @@ print <<<EOT
   </tr>
   <tr class="line">
     <td>自动更新时间</td>
-    <td><input name="autoupdate" type="text" class="input" id="autoupdate" value="$autoupdate" size="5" /> 
+    <td><input name="autoupdate" type="text" class="txt" id="autoupdate" value="$autoupdate" size="5" /> 
       分钟 (只对静态发布的首页有效)</td>
   </tr>
   <tr class="line">
     <td>头条图片调用数目</td>
-    <td><input name="topicimg" type="text" class="input" id="topicimg" value="$topicimg" size="5" />
+    <td><input name="topicimg" type="text" class="txt" id="topicimg" value="$topicimg" size="5" />
       条</td>
   </tr>
   <tr class="line">
     <td>头条新闻调用数目</td>
-    <td><input name="topicnews" type="text" class="input" id="topicnews" value="$topicnews" size="5" />
+    <td><input name="topicnews" type="text" class="txt" id="topicnews" value="$topicnews" size="5" />
       条</td>
   </tr>
   <tr class="line">
@@ -79,9 +79,9 @@ EOT;
 </table>
 </div>
 <div class="sub">
-  <input name="action" type="hidden" id="action" value="save">
-  <input type="submit" name="Submit2" value="提交" class="btn" />
-  <input type="reset" name="Submit" value="重置" class="btn" />
+  <input name="action" type="hidden" id="action" value="save" />
+  <input type="submit" name="submit" value="提交" class="btn" />
+  <input type="reset" name="reset" value="重置" class="btn" />
 </div>
 </form>
 <!--

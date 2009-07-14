@@ -13,18 +13,18 @@ print <<<EOT
 	<tr>
 		<td>
 		<form action="$basename" method="post">
-		  <input name="filename" type="text" class="input" id="filename">
-		  <input name="directory" type="hidden" id="directory" value="$path">
-		  <input name="action" type="hidden" id="action" value="mkdir">
-		  <input type="submit" name="Submit" value="建立新文件夹" class="btn">
-		  <input type="button" name="Submit2" value="创建新模板" class="btn" onClick="window.location='$basename&action=new&directory=$path';">
+		  <input type="text" name="filename" id="filename" class="txt" />
+		  <input type="hidden" name="directory" id="directory" value="$path" />
+		  <input type="hidden" name="action" id="action" value="mkdir" />
+		  <input type="submit" name="Submit" value="建立新文件夹" class="btn" />
+		  <input type="button" name="Submit2" value="创建新模板" class="btn" onClick="window.location='$basename&action=new&directory=$path';" />
 		</form>
 		</td>
 	</tr>
 </table>
 </div>
 <div class="t">
-<table width="100%" border="0" cellspacing="0" cellpadding="0" id='filetable'>
+<table border="0" cellspacing="0" cellpadding="0" id='filetable'>
 	<tr class="head">
 		<td colspan="5">用户模板管理</td>
 	</tr>
@@ -49,8 +49,8 @@ print <<<EOT
     <td><img src="$file[icon]" width="16" height="16" hspace="5" align="absmiddle" /></td>
     <td ondblclick="return reName($i);">
 	<span id='td$i'><a href="$file[url]"><span id='name$i'>$file[name]</span></a></span></td>
-    <td>$file[size]</td>
-    <td>$file[time]</td>
+    <td>$file[size] &nbsp;</td>
+    <td>$file[time] &nbsp;</td>
     <td>
 		<a href="javascript:void(0);" onclick="return reName($i);"><img src="images/admin/rename.gif" align="absmiddle" alt="改名" /></a>
 		<a href="javascript:void(0);" onclick="return removeFile($i);"><img src="images/admin/delete.gif" align="absmiddle" alt="删除" /></a>
@@ -109,7 +109,7 @@ function reName(id){
 		isdir=1;
 	}
 	var td = document.getElementById(tdName);
-	td.innerHTML="<input class='input' name='ajax_input' id='ajax_input' value="+filename+" onblur=\"submitName(this.value,'"+filename+"','"+id+"');\">";
+	td.innerHTML="<input class='txt' name='ajax_input' id='ajax_input' value="+filename+" onblur=\"submitName(this.value,'"+filename+"','"+id+"');\">";
 	document.getElementById('ajax_input').focus();
 	return false;
 }
@@ -220,21 +220,19 @@ print <<<EOT
   </tr>
   <tr class="line">
     <td>文件名:
-      <input name="filename" type="text" id="filename" class="input" />
-      .htm(文件格式只能是htm后缀,新建文件时不需要自己填写,系统自动命名)</td>
+      <input type="text" name="filename" id="filename" class="txt" />.htm (文件格式只能是htm后缀,新建文件时不需要自己填写,系统自动命名)</td>
     </tr>
   <tr class="tr3">
-    <td style="text-align:center">$html
-      </td>
+    <td style="text-align:center">$html</td>
   </tr>
 </table>
 
 </div>
 <div class="sub">
-<input type="submit" name="Submit3" value="保存文件" class="btn">
-<input name="path" type="hidden" id="path" value="$directory">
-<input name="action" type="hidden" id="action" value="$action">
-<input name="step" type="hidden" id="step" value="2">
+	<input type="hidden" name="path" id="path" value="$directory" />
+	<input type="hidden" name="action" id="action" value="$action" />
+	<input type="hidden" name="step" id="step" value="2" />
+	<input type="submit" name="submit" value="保存文件" class="btn" />
 </div>
 </form>
 <!--

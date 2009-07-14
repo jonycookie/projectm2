@@ -13,20 +13,20 @@ print <<<EOT
 			</tr>
 			<tr class="line">
 				<td width="25%">网站标题</td>
-				<td width="75%"><input name="config[title]" type="text" class="input" id="config[title]" value="$sys[title]" size="30"></td>
+				<td width="75%"><input type="text" name="config[title]" id="config[title]" value="$sys[title]" size="30" class="txt" /></td>
 			</tr>
 			<tr class="line">
 				<td>站点网址</td>
-				<td><input name="config[url]" type="text" class="input" id="config[url]" value="$sys[url]" size="50" />
+				<td><input type="text" name="config[url]" id="config[url]" value="$sys[url]" size="50" class="txt" />
 					<span style="color:#FF0000">(最后面不要加/，请务必设置正确)</span></td>
 			</tr>
 			<tr class="line">
 				<td>联系我们Url</td>
-				<td><input name="config[contact]" type="text" class="input" id="config[contact]" value="$sys[contact]" size="30"></td>
+				<td><input type="text" name="config[contact]" id="config[contact]" value="$sys[contact]" size="30" class="txt" /></td>
 			</tr>
 			<tr class="line">
 				<td>网站ICP备案号</td>
-				<td><input name="config[icp]" type="text" class="input" id="config[icp]" value="$sys[icp]" size="30"></td>
+				<td><input type="text" name="config[icp]" id="config[icp]" value="$sys[icp]" size="30" class="txt" /></td>
 			</tr>
 			<tr class="line">
 				<td>DEBUG 模式运行网站</td>
@@ -61,15 +61,15 @@ print <<<EOT
 			</tr>
 			<tr class="line">
 				<td>站点Meta关键字</td>
-				<td><input name="config[metakeyword]" type="text" class="input" id="config[metakeyword]" value="$sys[metakeyword]" size="50" /></td>
+				<td><input type="text" name="config[metakeyword]" id="config[metakeyword]" value="$sys[metakeyword]" size="50" class="txt" /></td>
 			</tr>
 			<tr class="line">
 				<td>站点Meta描述</td>
-				<td><input name="config[metadescrip]" type="text" class="input" id="config[metadescrip]" value="$sys[metadescrip]" size="50" /></td>
+				<td><input type="text" name="config[metadescrip]" id="config[metadescrip]" value="$sys[metadescrip]" size="50" class="txt" /></td>
 			</tr>
 			<tr class="line">
 				<td>站点首页模板</td>
-				<td><input name="config[template_index]" type="text" class="input" id="config[template_index]" value="$sys[template_index]" size="50" />
+				<td><input type="text" name="config[template_index]" id="config[template_index]" value="$sys[template_index]" size="50" class="txt" />
 				<img src="images/admin/selecttpl.png" name="Submit2" onclick="selectTpl('config[template_index]');" align="absmiddle" style="cursor:pointer" /></td>
 			</tr>
 			<tr class="line">
@@ -81,13 +81,13 @@ print <<<EOT
 EOT;
 foreach($defaulttmp as $key=>$val){
 if($default_tplpath==$val){
-	$selected = "selected";
+	$selected = "selected=\"selected\"";
 }else{
 	$selected = "";
 }
 print <<<EOT
 -->
-	<option value="$val" $selected>$key</option>
+					<option value="$val" $selected>$key</option>
 <!--
 EOT;
 }
@@ -104,7 +104,7 @@ print <<<EOT
 			</tr>
 			<tr class="line">
 				<td>内容自动分页长度</td>
-				<td><input name="config[perpage]" type="text" id="config[perpage]" value="$sys[perpage]" size="5" class="input" />
+				<td><input type="text" name="config[perpage]" id="config[perpage]" value="$sys[perpage]" size="5" class="txt" />
 					k</td>
 			</tr>
 			<tr>
@@ -116,36 +116,36 @@ print <<<EOT
 			</tr>
 			<tr class="line">
 				<td>动态查询缓存时间</td>
-				<td><input name="config[sqlcache]" type="text" id="config[sqlcache]" value="$sys[sqlcache]" size="5" class="input" />
+				<td><input type="text" name="config[sqlcache]" id="config[sqlcache]" value="$sys[sqlcache]" size="5" class="txt" />
 					分钟 (开启缓存将有效降低系统负载，在读取重复的查询时，直接从缓存读取，设置为0表示不启用) </td>
 			</tr>
 			<tr class="line">
 				<td>标签显示页结果数</td>
-				<td><input name="config[tagsnum]" type="text" id="config[tagsnum]" value="$sys[tagsnum]" size="5" class="input" />
+				<td><input type="text" name="config[tagsnum]" id="config[tagsnum]" value="$sys[tagsnum]" size="5" class="txt" />
 					(标签页相关内容最多读取数量，请合理设置来维持系统低负载运行)</td>
 			</tr>
 			<tr class="line">
 				<td>列表最大静态分页数量</td>
-				<td><input name="config[listpage]" type="text" id="config[listpage]" value="$sys[listpage]" size="5" class="input" />
+				<td><input name="config[listpage]" type="text" id="config[listpage]" value="$sys[listpage]" size="5" class="txt" />
 					(此处设置静态分页的最大值，超出部分为动态显示)</td>
 			</tr>
 			<tr class="line">
 				<td>搜索间隔时间</td>
-				<td><input name="config[searchtime]" type="text" class="input" id="config[searchtime]" value="$sys[searchtime]" size="5" />
+				<td><input type="text" name="config[searchtime]" id="config[searchtime]" value="$sys[searchtime]" size="5" class="txt" />
 					秒</td>
 			</tr>
 			<tr class="line">
 				<td>搜索内容范围</td>
-				<td><input name="config[searchrange]" type="text" class="input" id="config[searchrange]" value="$sys[searchrange]" size="5" />
+				<td><input type="text" name="config[searchrange]" id="config[searchrange]" value="$sys[searchrange]" size="5" class="txt" />
 					天(搜索多少天之内的文章)</td>
 			</tr>
 			<tr class="line">
 				<td>搜索最大结果数</td>
-				<td><input name="config[searchmax]" type="text" class="input" id="config[searchmax]" value="$sys[searchmax]" size="5" /></td>
+				<td><input type="text" name="config[searchmax]" id="config[searchmax]" value="$sys[searchmax]" size="5" class="txt" /></td>
 			</tr>
 			<tr class="line">
 				<td>热门评论天数</td>
-				<td><input name="config[commentdays]" type="text" class="input" id="config[commentdays]" value="$sys[commentdays]" size="5" />(多少天之内发表的文章收录到热门评论里面,此功能只应用于评论独立页面)</td>
+				<td><input type="text" name="config[commentdays]" id="config[commentdays]" value="$sys[commentdays]" size="5" class="txt" /> (多少天之内发表的文章收录到热门评论里面,此功能只应用于评论独立页面)</td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
@@ -156,18 +156,18 @@ print <<<EOT
 			</tr>
 			<tr class="line">
 				<td>伪静态开启</td>
-				<td><input name="config[rewrite]" type="radio" value="1" $rewrite_Y />
+				<td><input type="radio" name="config[rewrite]" value="1" $rewrite_Y />
 					开启
 					<input type="radio" name="config[rewrite]" value="0" $rewrite_N />
 					关闭 <span style="color:#FF0000">(只有在页面被动态浏览时，伪静态才有开启必要)</span> </td>
 			</tr>
 			<tr class="line">
 				<td>静态目录</td>
-				<td><input name="config[rewrite_dir]" type="text" class="input" id="config[rewrite_dir]" value="$sys[rewrite_dir]" /></td>
+				<td><input type="text" name="config[rewrite_dir]" id="config[rewrite_dir]" value="$sys[rewrite_dir]" class="txt" /></td>
 			</tr>
 			<tr class="line">
 				<td>静态目录扩展名设置</td>
-				<td><input name="config[rewrite_ext]" type="text" class="input" id="config[rewrite_ext]" value="$sys[rewrite_ext]" /></td>
+				<td><input type="text" name="config[rewrite_ext]" id="config[rewrite_ext]" value="$sys[rewrite_ext]" class="txt" /></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
@@ -178,15 +178,15 @@ print <<<EOT
 			</tr>
 			<tr class="line">
 				<td>生成静态每次操作数量</td>
-				<td><input name="config[opnum]" type="text" class="input" id="config[opnum]" value="$sys[opnum]" size="5"></td>
+				<td><input type="text" name="config[opnum]" id="config[opnum]" value="$sys[opnum]" size="5" class="txt" /></td>
 			</tr>
 			<tr class="line">
 				<td>全局静态文件发布目录</td>
-				<td><input name="config[htmdir]" type="text" class="input" id="config[htmdir]" value="$sys[htmdir]" size="40"></td>
+				<td><input type="text" name="config[htmdir]" id="config[htmdir]" value="$sys[htmdir]" size="40" class="txt" /></td>
 			</tr>
 			<tr class="line">
 				<td>静态文件后缀设置</td>
-				<td><input name="config[htmext]" type="text" class="input" id="config[htmext]" value="$sys[htmext]"></td>
+				<td><input type="text" name="config[htmext]" id="config[htmext]" value="$sys[htmext]" class="txt" /></td>
 			</tr>
 			<tr class="line">
 				<td>栏目静态文件分目录规则</td>
@@ -203,13 +203,13 @@ print <<<EOT
 			<!--
   <tr class="line">
     <td>附件资源访问域名</td>
-    <td><input name="config[attachurl]" type="text" class="input" id="config[attachurl]" value="$sys[attachurl]" size="40" />
+    <td><input name="config[attachurl]" type="text" class="txt" id="config[attachurl]" value="$sys[attachurl]" size="40" />
       <span style="color:#FF0000">(可将一个独立的域名绑定到附件目录)</span></td>
   </tr>
 -->
 			<tr class="line">
 				<td>附件资源存放目录</td>
-				<td><input name="config[attachdir]" type="text" class="input" id="config[attachdir]" value="$sys[attachdir]" size="40" />
+				<td><input type="text" name="config[attachdir]" id="config[attachdir]" value="$sys[attachdir]" size="40" class="txt" />
 					(上传的Flash 图片等等资源的保存目录)</td>
 			</tr>
 			<tr class="line">
@@ -232,15 +232,15 @@ print <<<EOT
 			</tr>
 			<tr class="line">
 				<td>RSS输出内容数量</td>
-				<td><input name="config[rss_itemnum]" type="text" class="input" id="config[rss_itemnum]" value="$sys[rss_itemnum]" size="10" /></td>
+				<td><input type="text" name="config[rss_itemnum]" id="config[rss_itemnum]" value="$sys[rss_itemnum]" size="10" class="txt" /></td>
 			</tr>
 			<tr class="line">
 				<td>RSS输出图片数量</td>
-				<td><input name="config[rss_imagenum]" type="text" class="input" id="config[rss_imagenum]" value="$sys[rss_imagenum]" size="10" /></td>
+				<td><input type="text" name="config[rss_imagenum]" id="config[rss_imagenum]" value="$sys[rss_imagenum]" size="10" class="txt" /></td>
 			</tr>
 			<tr class="line">
 				<td>RSS自动更新时间</td>
-				<td><input name="config[rss_update]" type="text" class="input" id="config[rss_update]" value="$sys[rss_update]" size="10" />
+				<td><input type="text" name="config[rss_update]" id="config[rss_update]" value="$sys[rss_update]" size="10" class="txt" />
 					分钟</td>
 			</tr>
 			<tr>
@@ -252,12 +252,12 @@ print <<<EOT
 			</tr>
 			<tr class="line">
 				<td>首页自动更新间隔时间</td>
-				<td><input name="config[indexupdate]" type="text" class="input" id="config[indexupdate]" value="$sys[indexupdate]" size="5" />
+				<td><input type="text" name="config[indexupdate]" id="config[indexupdate]" value="$sys[indexupdate]" size="5" class="txt" />
 					分钟(如果设置为0表示不启用自动更新)</td>
 			</tr>
 			<tr class="line">
 				<td>首页调用栏目</td>
-				<td><select name="discate[]" size="5" multiple id="discate">
+				<td><select name="discate[]" id="discate" size="5" multiple="multiple">
 
 	$cate_select
 
@@ -347,7 +347,7 @@ EOT;
 			</tr>
 			<tr class="line">
 				<td>后台登录COOKIE失效时间</td>
-				<td><input name="config[cktime]" type="text" class="input" id="config[cktime]" value="$sys[cktime]" size="5">
+				<td><input type="text" name="config[cktime]" id="config[cktime]" value="$sys[cktime]" size="5" class="txt" />
 					分钟
 					(在后台多长时间之内没有活动之后，登录自动失效)</td>
 			</tr>
@@ -362,7 +362,7 @@ EOT;
 			</tr>
 			<tr class="line">
 				<td>网站安全验证参数</td>
-				<td><input name="config[hash]" type="text" class="input" id="config[hash]" value="$sys[hash]"></td>
+				<td><input type="text" name="config[hash]" id="config[hash]" value="$sys[hash]" class="txt" /></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
@@ -382,8 +382,8 @@ EOT;
 				<td>添加水印的图片大小控制</td>
 
 				<td>
-					宽: <input size="5" name="config[waterwidth]" value="" type="text" class="input">
-					高:<input size="5" name="config[waterheight]" value="" type="text" class="input">只对超过程序设置的大小的附件图片才加上水印图片或文字(设置为0不限制)
+					宽: <input size="5" name="config[waterwidth]" value="" type="text" class="txt" />
+					高: <input size="5" name="config[waterheight]" value="" type="text" class="txt" /> (只对超过程序设置的大小的附件图片才加上水印图片或文字，设置为0不限制)
 				</td>
 			</tr>
 			<tr class="line">
@@ -397,32 +397,32 @@ EOT;
 			</tr>
 			<tr class="line">
 				<td>水印图片文件名</td>
-				<td><input type=text name="config[waterimg]"  value="$sys[waterimg]" class="input">水印图片存放路径：images/water，如果水印图片不存在，则使用文字水印</td>
+				<td><input type="text" name="config[waterimg]"  value="$sys[waterimg]" class="txt" /> (水印图片存放路径：images/water，如果水印图片不存在，则使用文字水印)</td>
 			</tr>
 			<tr class="line">
 				<td>水印文字字体库</td>
-				<td><input name="config[watertextlib]" value="$sys[watertextlib]" type="text" class="input">请将你的文字库放在require/encode文件夹下面</td>
+				<td><input type="text" name="config[watertextlib]" value="$sys[watertextlib]" class="txt" /> (请将你的文字库放在require/encode文件夹下面)</td>
 			</tr>
 			<tr class="line">
 				<td>水印图片文字</td>
-				<td><input name="config[watertext]" value="$sys[watertext]" type="text" class="input"></td>
+				<td><input type="text" name="config[watertext]" value="$sys[watertext]" class="txt" /></td>
 			</tr>
 			<tr class="line">
 				<td>水印图片文字字体大小</td>
-				<td><input name="config[waterfont]" value="$sys[waterfont]" type="text" class="input"></td>
+				<td><input type="text" name="config[waterfont]" value="$sys[waterfont]" class="txt" /></td>
 			</tr>
 			<tr class="line">
 				<td>水印图片文字颜色</td>
-				<td><input name="config[watercolor]" value="$sys[watercolor]" type="text" class="input">（十六进制颜色值，默认为#FF0000:红色)</td>
+				<td><input type="text" name="config[watercolor]" value="$sys[watercolor]" class="txt" /> (十六进制颜色值，默认为#FF0000:红色)</td>
 			</tr>
 
 			<tr class="line">
 				<td>水印透明度</td>
-				<td><input name="config[waterpct]" value="$sys[waterpct]" type="text" class="input">该值决定图片水印清晰度，其值范围从 0 到 100</td>
+				<td><input type="text" name="config[waterpct]" value="$sys[waterpct]" class="txt" /> (该值决定图片水印清晰度，其值范围从 0 到 100)</td>
 			</tr>
 			<tr class="line">
 				<td>图片质量</td>
-				<td><input name="config[jpgquality]" value="$sys[jpgquality]" type="text" class="input">该值决定 jpg 格式图片的质量，范围从 0 到 100</td>
+				<td><input type="text" name="config[jpgquality]" value="$sys[jpgquality]" class="txt" /> (该值决定 jpg 格式图片的质量，范围从 0 到 100)</td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
@@ -449,7 +449,7 @@ EOT;
 			</tr>
 			<tr class="line">
 				<td>WAP 页面长度控制</td>
-				<td><input name="config[waplimit]" value="$sys[waplimit]" type="text" class="input">建议设置为：300-2000 之间</td>
+				<td><input type="text" name="config[waplimit]" value="$sys[waplimit]" class="txt" /> (建议设置为：300-2000 之间)</td>
 			</tr>
 			<tr class="line">
 				<td>WAP 推荐板块</td>
@@ -499,20 +499,19 @@ EOT;
 			</tr>
 			<tr class="line">
 				<td>本地时间与网站服务器的时间差</td>
-				<td><input name="config[cvtime]" type="text" class="input" id="config[cvtime]" value="$sys[cvtime]">
-					单位(分)</td>
+				<td><input type="text" name="config[cvtime]" id="config[cvtime]" value="$sys[cvtime]" class="txt" /> 分钟</td>
 			</tr>
 			<tr class="line">
 				<td>网站默认时间显示格式</td>
-				<td><input name="config[datefm]" type="text" class="input" id="config[datefm]" value="$sys[datefm]"></td>
+				<td><input type="text" name="config[datefm]" id="config[datefm]" value="$sys[datefm]" class="txt" /></td>
 			</tr>
 		</table>
 	</div>
-	<center>
+	<div class="sub">
 		<input name="step" type="hidden" id="step" value="2">
-		<input type="submit" name="Submit" value=" 提 交 " class="btn">
-		<input type="reset" name="Submit2" value=" 重 置 " class="btn">
-	</center>
+		<input type="submit" name="Submit" value="提交" class="btn">
+		<input type="reset" name="reset" value="重置" class="btn">
+	</div>
 </form>
 <script type="text/JavaScript">
 function selectTpl(name){

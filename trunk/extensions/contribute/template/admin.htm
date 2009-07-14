@@ -13,7 +13,7 @@ print <<<EOT
   </tr>
 </table>
 </div>
-<form action="$basename" method="post" name="FORM">
+<form action="$basename" method="post" name="form">
 <div class="t">
 <input type="hidden" id="step" name="step" value="2" />
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -25,7 +25,7 @@ print <<<EOT
       投稿页标题
     </td>
     <td>
-      <input name="title" type="text" class="input" id="title" value="$contribute[title]" size="30">
+      <input name="title" type="text" class="txt" id="title" value="$contribute[title]" size="30" />
     </td>
   </tr>
   <tr class="line">

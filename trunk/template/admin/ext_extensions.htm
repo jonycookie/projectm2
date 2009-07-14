@@ -47,7 +47,7 @@ print <<<EOT
 </table>
 </div>
 <div class="sub">
-	<input type='button' class="btn" onclick="javascript:window.history.go(-1);" value='返 回'>
+	<input type="button" class="btn" onclick="javascript:window.history.go(-1);" value="返 回" />
 </div>
 <!--
 EOT;
@@ -85,14 +85,14 @@ $t_style = ++$i%2 ? 't_one' : 't_two';
 print <<<EOT
 -->
 		<tr class="tr3 $t_style">
-			<td><input name="name[$value[dir]]" value="$value[name]" class="input" size="30"></td>
+			<td><input type="text" name="name[$value[dir]]" value="$value[name]" class="txt" size="30" /></td>
 			<td>
-				<select name="ifopen[$value[dir]]" style="width:70%">
+				<select name="ifopen[$value[dir]]">
 					<option value="0" ${$value[dir].'_0'}>禁用</option>
 					<option value="1" ${$value[dir].'_1'}>启用</option>
 				</select>
 			</td>
-			<td><a href="$basename&extensionset=manage&E_name=$value[dir]" style="color:blue" title="点击管理此扩展">管理</a></td>
+			<td><a href="$basename&extensionset=manage&E_name=$value[dir]" title="点击管理此扩展">管理</a></td>
 			<td>$value[dir]</td>
 			<td>$value[version]</td>
 			<td><a href="$basename&extensionset=about&extdir=$value[dir]&type=install" title="点击查看此扩展相关信息">关于</a></td>

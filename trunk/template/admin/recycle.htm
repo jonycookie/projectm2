@@ -13,9 +13,9 @@ print <<<EOT
         <option value="2" $type_2>删除时间</option>
       </select>
       &nbsp;
-			<input name="keyword" type="text" class="input" id="keyword" size="10" value="$keyword" onClick="showdate(this.id);" />
+			<input type="text" name="keyword" id="keyword" size="10" value="$keyword" onClick="showdate(this.id);" class="txt" />
       &nbsp;每页数量:&nbsp;
-      <input name="num" type="text" class="input" id="num" size="5" value="$num" maxlength="3" />
+      <input type="text" name="num" id="num" size="5" value="$num" maxlength="3" class="txt" />
       <input name="action" type="hidden" id="action" value="show" />
       &nbsp;
       <input type="submit" name="Submit2" value="显示" class="btn" />
@@ -49,7 +49,7 @@ $i++;
 print <<<EOT
 -->
   <tr class="tr3 $bgcolor">
-    <td><input name="tids[]" type="checkbox" id="tids[]" value="$value[tid]" />$value[tid]</td>
+    <td><input type="checkbox" name="tids[]" id="tids[]" value="$value[tid]" />$value[tid]</td>
     <td>$value[title]</td>
 		<td>$value[publisher]</td>
     <td>$value[admin]</td>

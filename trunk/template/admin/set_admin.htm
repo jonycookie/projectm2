@@ -62,24 +62,24 @@ print <<<EOT
 </tr>
 <tr class="line">
   <td width="25%">管理员账号</td>
-  <td width="75%"><input name="new_username" type="text" disabled="disabled" class="input" id="new_username" value="$edit[username]" /></td>
+  <td width="75%"><input name="new_username" type="text" id="new_username" value="$edit[username]" disabled="disabled" class="txt" /></td>
 </tr>
 <tr class="line">
   <td>管理员密码</td>
-  <td><input name="new_password" type="text" id="new_password" class="input" />
+  <td><input type="text" name="new_password" id="new_password" class="txt" />
   (如果不修改清留空)</td>
 </tr>
 <tr class="line">
   <td>密码确认</td>
-  <td><input name="new_password2" type="text" id="new_password2" class="input" /></td>
+  <td><input type="text" name="new_password2" id="new_password2" class="txt" /></td>
 </tr>
 <tr class="line">
   <td>E-mail</td>
-  <td><input name="new_email" type="text" class="input" id="new_email" value="$edit[email]" /></td>
+  <td><input type="text" name="new_email" id="new_email" value="$edit[email]" class="txt" /></td>
 </tr>
 </table>
 </div>
-<div class="t" style="width:50%">
+<div class="t">
 <table border="0" cellspacing="0" cellpadding="0">
 <tr class="head">
   <td colspan="2">权限设置</td>
@@ -96,12 +96,12 @@ print <<<EOT
 EOT;
 foreach($menu as $key=>$title){
 if($key != 'root' && $key!='set_creator' && $key!='set_admin'){
-$ifchecked = in_array($key,$edit[priv])? "checked" : '';
+$ifchecked = in_array($key,$edit[priv])? "checked=\"checked\"" : '';
 print <<<EOT
 -->
 <tr class="line">
   <td>$title</td>
-  <td><input name="check[$key]" type="checkbox" id="check[$key]" value="1" $ifchecked /></td>
+  <td><input type="checkbox" name="check[$key]" id="check[$key]" value="1" $ifchecked /></td>
 </tr>
 <!--
 EOT;
@@ -123,13 +123,13 @@ EOT;
 </tr>
 </table>
 </div>
-<center>
+<div class="sub">
   <input name="uid" type="hidden" id="uid" value="$edit[uid]" />
   <input name="action" type="hidden" id="action" value="edit" />
-  <input name="step" type="hidden" id="step" value="2">
-  <input type="submit" name="Submit" value=" 提 交 " class="btn">
-  <input type="reset" name="Submit2" value=" 重 置 " class="btn">
-</center>
+  <input name="step" type="hidden" id="step" value="2" />
+  <input type="submit" name="submit" value="提交" class="btn" />
+  <input type="reset" name="reset" value="重置" class="btn" />
+</div>
 </form>
 <!--
 EOT;
@@ -142,19 +142,19 @@ print <<<EOT
 <tr class="head"><td colspan="2">添加管理员</td></tr>
 <tr class="line">
   <td width="25%">管理员账号</td>
-  <td width="75%"><input name="new_username" type="text" id="new_username" class="input" /></td>
+  <td width="75%"><input type="text" name="new_username" id="new_username" class="txt" /></td>
 </tr>
 <tr class="line">
   <td>管理员密码</td>
-  <td><input name="new_password" type="text" id="new_password" class="input" /></td>
+  <td><input type="text" name="new_password" id="new_password" class="txt" /></td>
 </tr>
 <tr class="line">
   <td>密码确认</td>
-  <td><input name="new_password2" type="text" id="new_password2" class="input" /></td>
+  <td><input type="text" name="new_password2" id="new_password2" class="txt" /></td>
 </tr>
 <tr class="line">
   <td>E-mail</td>
-  <td><input name="new_email" type="text" id="new_email" class="input" /></td>
+  <td><input type="text" name="new_email" id="new_email" class="txt" /></td>
 </tr>
 </table>
 </div>
@@ -179,7 +179,7 @@ print <<<EOT
 -->
 <tr class="line">
   <td>$title</td>
-  <td><input name="check[$key]" type="checkbox" id="check[$key]" value="1" /></td>
+  <td><input type="checkbox" name="check[$key]" id="check[$key]" value="1" /></td>
 </tr>
 <!--
 EOT;
@@ -193,7 +193,7 @@ EOT;
       请选择栏目
     </td>
     <td>
-      <select name="privcate[]" size="5" multiple id="privcate">
+      <select name="privcate[]" id="privcate" size="5" multiple="multiple">
       $cate_select
 	  </select>
 	  (按住Ctrl键进行多选操作)
@@ -201,12 +201,12 @@ EOT;
 </tr>
 </table>
 </div>
-<center>
+<div class="sub">
   <input name="action" type="hidden" id="action" value="add" />
   <input name="step" type="hidden" id="step" value="2">
-  <input type="submit" name="Submit" value=" 提 交 " class="btn">
-  <input type="reset" name="Submit2" value=" 重 置 " class="btn">
-</center>
+  <input type="submit" name="submit" value="提交" class="btn" />
+  <input type="reset" name="reset" value="重置" class="btn" />
+</div>
 </form>
 <!--
 EOT;

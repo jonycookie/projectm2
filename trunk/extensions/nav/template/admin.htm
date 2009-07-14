@@ -25,9 +25,9 @@ print <<<EOT
 	<tr class="tr3">
 	  <td width="20%">第一种站点常量调用</td>
     <td>头部导航栏
-    <input type="text" name="ifapi1" value="&lt;sys name=&quot;const&quot; value=&quot;EXT_navhead&quot; /&gt;" class="input" size="70" /><br />
+    <input type="text" name="ifapi1" value="&lt;sys name=&quot;const&quot; value=&quot;EXT_navhead&quot; /&gt;" class="txt" size="70" /><br />
     底部导航栏
-    <input type="text" name="ifapi2" value="&lt;sys name=&quot;const&quot; value=&quot;EXT_navfoot&quot; /&gt;" class="input" size="70" />
+    <input type="text" name="ifapi2" value="&lt;sys name=&quot;const&quot; value=&quot;EXT_navfoot&quot; /&gt;" class="txt" size="70" />
     </td>
 	</tr>
 	<tr class="tr3">
@@ -54,7 +54,7 @@ print <<<EOT
 	</tr>
 	<tr class="line">
 	  <td width="20%">栏目名称</td>
-	  <td width="80%"><input name="title" type="text" class="input"  id="title" value="$title"></td>
+	  <td width="80%"><input name="title" type="text" class="txt"  id="title" value="$title"></td>
   </tr>
 	<tr class="line">
 	  <td>字体样式</td>
@@ -70,12 +70,12 @@ $color_select</select>
   </tr>
 	<tr class="line">
 	  <td>栏目链接</td>
-	  <td><input name="link" type="text" class="input"  id="link" value="$link" size="50">
+	  <td><input name="link" type="text" class="txt"  id="link" value="$link" size="50">
       （如果是外部链接，要加http://）</td>
   </tr>
 	<tr class="line">
 	  <td>文字说明</td>
-	  <td><input name="alt" type="text" class="input"  id="alt" value="$alt">
+	  <td><input name="alt" type="text" class="txt"  id="alt" value="$alt">
       （鼠标悬浮于链接文字上时的说明内容）</td>
   </tr>
 	<tr class="line">
@@ -87,20 +87,20 @@ $color_select</select>
 	  </tr>
 	<tr class="line">
 	  <td>栏目类型</td>
-	  <td><input type="radio" name="pos" value="head" $head_check>
+	  <td><input type="radio" name="pos" value="head" $head_check />
 	    头部导航
-        <input type="radio" name="pos" value="foot" $foot_check>
+        <input type="radio" name="pos" value="foot" $foot_check />
         底部导航</td>
   </tr>
 	<tr class="line">
 	  <td>位置排序</td>
-      <td><input name="view" type="text" class="input"  id="view" value="$view" size="5"></td>
+      <td><input name="view" type="text" class="txt"  id="view" value="$view" size="5" /></td>
   </tr>
 </table>
 </div>
 <div style="text-align:center"><input name="nid" type="hidden" id="nid" value="$nid" />
 	<input name="action" type="hidden" id="action" value="$actionvalue">
-	  <input type="submit" class="btn" name="Submit" value="提交"></div>
+	  <input type="submit" class="btn" name="submit" value="提交"></div>
 </form>
 <!--
 EOT;
@@ -129,7 +129,7 @@ print <<<EOT
 <tr class="tr3">
 	  <td>$i</td>
 	  <td><a href="$n[link]" target="_blank" title="$n[alt]">$n[title]</a></td>
-	  <td><input name="view[$n[nid]]" type="text" class="input"  id="view[$n[nid]]" value="$n[view]" size="5" /></td>
+	  <td><input name="view[$n[nid]]" type="text" class="txt"  id="view[$n[nid]]" value="$n[view]" size="5" /></td>
 	  <td><a href="$basename&action=del&nid=$n[nid]"><img src="images/admin/delete.gif" align="absmiddle" alt="删除" /></a> <a href="$basename&job=edit&nid=$n[nid]"><img src="images/admin/edit.gif" align="absmiddle" alt="编辑" /></a></td>
   </tr>
 <!--

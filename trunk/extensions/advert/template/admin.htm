@@ -3,7 +3,7 @@ print <<<EOT
 -->
 <div class="m"></div>
 <div class="t">
-  <table width=100% align=center cellspacing=0 cellpadding=0>
+  <table border="0" cellspacing="0" cellpadding="0">
     <tr class="tr4">
       <td>
 				<input type="button" name="Submit5" value="广告版位管理" class="btn" onclick="window.location='$basename&action=adp';"/>
@@ -18,7 +18,7 @@ print <<<EOT
   </table>
 </div>
 <div class="t">
-<table cellspacing=0 cellpadding=0>
+<table border="0" cellspacing="0" cellpadding="0">
 <tr class=head><td colspan=2>提示信息</td></tr>
 <tr class=tr3><td>
 <font color="red">新添加广告版位,生成JS代码,并手动添加到相应的栏目模版的相应位置</font><br />
@@ -121,11 +121,11 @@ print <<<EOT
 		</tr>
 		<tr class="line">
 			<td width="25%">版位名称</td>
-			<td><input name="adpinfo[name]" type="text" class="input" value="$adpinfo[name]" size="55">&nbsp;<font color=red>*</font></td>
+			<td><input name="adpinfo[name]" type="text" class="txt" value="$adpinfo[name]" size="55" />&nbsp;<font color=red>*</font></td>
 		</tr>
 		<tr class="line">
 			<td width="25%">版位标识符</td>
-			<td><input name="adpinfo[jsname]" type="text" class="input" value="$adpinfo[jsname]" size="55">&nbsp;<font color="red">*</font>(生成JS文件名,字母与数字组合,长度最小为3)</td>
+			<td><input name="adpinfo[jsname]" type="text" class="txt" value="$adpinfo[jsname]" size="55" />&nbsp;<font color="red">*</font>(生成JS文件名,字母与数字组合,长度最小为3)</td>
 		</tr>
 		<tr class="line">
 			<td width="25%">版位描述</td>
@@ -133,7 +133,7 @@ print <<<EOT
 		</tr>
 		<tr class="line">
 			<td width="25%">版位尺寸：</td>
-			<td>宽：<input type="text" name="adpinfo[width]" value="$adpinfo[width]" size="4" class="input" />像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="adpinfo[height]" value="$adpinfo[height]" size="4" class="input" />像素&nbsp;<font color=red>*</font>(默认100)</td>
+			<td>宽：<input type="text" name="adpinfo[width]" value="$adpinfo[width]" size="4" class="txt" />像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="adpinfo[height]" value="$adpinfo[height]" size="4" class="txt" />像素&nbsp;<font color=red>*</font>(默认100)</td>
 		</tr>
 		<tr class="line">
 			<td width="25%">版位类型</td>
@@ -157,16 +157,16 @@ print <<<EOT
 		<tr class="line">
 			<td width="25%">显示方式</td>
 			<td>
-				<input type="radio" id="showtype" name="adpinfo[showtype]" value="1" $showtype_1/>按权重随机显示：权重越大显示机会越大<br/>
-				<input type="radio" id="showtype" name="adpinfo[showtype]" value="2" $showtype_2/>按权重优先显示：显示权重值最大的广告<br/>
-				<input type="radio" id="showtype" name="adpinfo[showtype]" value="3" $showtype_3/>按顺序循环显示：此方式仅对矩形横幅有效<br/>
+				<input type="radio" id="showtype" name="adpinfo[showtype]" value="1" $showtype_1 />按权重随机显示：权重越大显示机会越大<br/>
+				<input type="radio" id="showtype" name="adpinfo[showtype]" value="2" $showtype_2 />按权重优先显示：显示权重值最大的广告<br/>
+				<input type="radio" id="showtype" name="adpinfo[showtype]" value="3" $showtype_3 />按顺序循环显示：此方式仅对矩形横幅有效<br/>
 			</td>
 		</tr>
 		<tr class="line">
 			<td width="25%">版位状态</td>
 			<td>
-				<input type="radio" id="active" name="adpinfo[active]" value="1" $active_1/>前台显示
-				<input type="radio" id="active" name="adpinfo[active]" value="0" $active_0/>暂时关闭
+				<input type="radio" id="active" name="adpinfo[active]" value="1" $active_1 />前台显示
+				<input type="radio" id="active" name="adpinfo[active]" value="0" $active_0 />暂时关闭
 			</td>
 		</tr>
 	</table>
@@ -187,11 +187,11 @@ print <<<EOT
 		</tr>
 		<tr class="line">
 			<td width="20%">广告位置（上）：</td>
-			<td><input type="text" name="setting[top]" size="30" value="$setting[top]"></td>
+			<td><input type="text" name="setting[top]" size="30" value="$setting[top]" /></td>
 		</tr>
 		<tr class="line">
 			<td width="20%">广告位置(左):</td>
-			<td><input type="text" name="setting[left]" size="30" value="$setting[left]"></td>
+			<td><input type="text" name="setting[left]" size="30" value="$setting[left]" /></td>
 		</tr>
 	</table>
 </div>
@@ -207,10 +207,10 @@ print <<<EOT
 			<td width="20%">漂浮类型:</td>
 			<td>
 				<select id="floattype" name="setting[floattype]">
-					<option value="1" $floattype_1/>变速漂浮</option>
-					<option value="2" $floattype_2/>匀速漂浮</option>
-					<option value="3" $floattype_3/>上下漂浮</option>
-					<option value="4" $floattype_4/>左右漂浮</option>
+					<option value="1" $floattype_1>变速漂浮</option>
+					<option value="2" $floattype_2>匀速漂浮</option>
+					<option value="3" $floattype_3>上下漂浮</option>
+					<option value="4" $floattype_4>左右漂浮</option>
 				</select>
 			</td>
 		</tr>
@@ -240,10 +240,10 @@ print <<<EOT
 			<td width="20%">弹出方式:</td>
 			<td>
 				<select id="poptype" name="setting[poptype]">
-					<option value="1" $poptype_1/>前置窗口</option>
-					<option value="2" $poptype_2/>后置窗口</option>
-					<option value="3" $poptype_3/>网页对话框</option>
-					<option value="4" $poptype_4/>背投广告</option>
+					<option value="1" $poptype_1>前置窗口</option>
+					<option value="2" $poptype_2>后置窗口</option>
+					<option value="3" $poptype_3>网页对话框</option>
+					<option value="4" $poptype_4>背投广告</option>
 				</select>
 				("网页对话框"弹出方式只适用"页面广告")
 			</td>
@@ -308,11 +308,11 @@ print <<<EOT
   </tr>
   <tr class="line">
 		<td width="25%">版位名称</td>
-		<td><input name="adpinfo[name]" type="text" class="input" value="" size="55">&nbsp;<font color=red>*</font></td>
+		<td><input name="adpinfo[name]" type="text" class="txt" value="" size="55">&nbsp;<font color=red>*</font></td>
 	</tr>
   <tr class="line">
 		<td width="25%">版位标识符</td>
-		<td><input name="adpinfo[jsname]" type="text" class="input" value="$adpinfo[jsname]" size="55">&nbsp;<font color="red">*</font>(生成JS文件名,字母与数字组合,长度最小为3)</td>
+		<td><input name="adpinfo[jsname]" type="text" class="txt" value="$adpinfo[jsname]" size="55" />&nbsp;<font color="red">*</font>(生成JS文件名,字母与数字组合,长度最小为3)</td>
 	</tr>
   <tr class="line">
 		<td width="25%">版位描述</td>
@@ -320,7 +320,7 @@ print <<<EOT
 	</tr>
 	<tr class="line">
 		<td width="25%">版位尺寸：</td>
-		<td>宽：<input type="text" name="adpinfo[width]" value="100" size="4" class="input" />像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="adpinfo[height]" value="100" size="4" class="input" />像素&nbsp;<font color=red>*</font>(默认100)</td>
+		<td>宽：<input type="text" name="adpinfo[width]" value="100" size="4" class="txt" />像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="adpinfo[height]" value="100" size="4" class="txt" />像素&nbsp;<font color=red>*</font>(默认100)</td>
 	</tr>
 	<tr class="line">
 		<td width="25%">版位类型</td>
@@ -595,8 +595,7 @@ EOT;
 }elseif($job=='edit'){
 print <<<EOT
 -->
-<script language="javascript" src="script/date.js"></script>
-<form method='post' action="$basename">
+<form method="post" action="$basename">
 <div class="t">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr class="head">
@@ -608,7 +607,7 @@ print <<<EOT
   </tr>
   <tr class="line">
 		<td width="25%">广告名称</td>
-		<td><input name="advinfo[name]" type="text" class="input" value="$advinfo[name]" size="60">&nbsp;<font color=red>*</font></td>
+		<td><input name="advinfo[name]" type="text" class="txt" value="$advinfo[name]" size="60">&nbsp;<font color=red>*</font></td>
 	</tr>
 	<tr class="line">
 		<td width="25%">广告类型</td>
@@ -629,15 +628,15 @@ print <<<EOT
 	</tr>
 	<tr class="line">
 		<td width="25%"><b>开始时间</b> - <b>结束时间</b></td>
-		<td><input type="text" size="19" name="advinfo[starttime]" id="starttime" value="$advinfo[starttime]" onClick="ShowCalendar(this.id);"  class="input" /> - <input type="text" size="20" name="advinfo[endtime]" id="endtime" value="$advinfo[endtime]" onClick="ShowCalendar(this.id);"  class="input" /> 格式：yyyy-mm-dd</td>
+		<td><input type="text" name="advinfo[starttime]" id="starttime" value="$advinfo[starttime]" size="19"  class="txt" onClick="ShowCalendar(this.id);" /> - <input type="text" name="advinfo[endtime]" id="endtime" value="$advinfo[endtime]" size="20" class="txt" onClick="ShowCalendar(this.id);" /> 格式：yyyy-mm-dd</td>
 	</tr>
 	<tr class="line">
 		<td width="25%">链接地址：</td>
-		<td><input type="text" name="advinfo[linkurl]" value="$advinfo[linkurl]" size="60" class="input" /></td>
+		<td><input type="text" name="advinfo[linkurl]" value="$advinfo[linkurl]" size="60" class="txt" /></td>
 	</tr>
 	<tr class="line">
 		<td width="25%">链接提示：</td>
-		<td><input type="text" name="advinfo[linkalt]" value="$advinfo[linkalt]" size="60" class="input" /></td>
+		<td><input type="text" name="advinfo[linkalt]" value="$advinfo[linkalt]" size="60" class="txt" /></td>
 	</tr>
 	<tr class="line">
 		<td width="25%">链接目标:</td>
@@ -649,7 +648,7 @@ print <<<EOT
 	<tr class="line">
 		<td width="25%">广告权值</td>
 		<td>
-			<input type="text" name="advinfo[priority]" value="$advinfo[priority]" size="2" maxlength="2" class="input" />(同一版位多广告时显示优先顺序,权值为0不显示,默认为1)
+			<input type="text" name="advinfo[priority]" value="$advinfo[priority]" size="2" maxlength="2" class="txt" />(同一版位多广告时显示优先顺序,权值为0不显示,默认为1)
 		</td>
 	</tr>
 	<tr class="line">
@@ -700,11 +699,11 @@ print <<<EOT
 		</tr>
 		<tr class="line">
 			<td width="25%">图片地址：</td>
-			<td><input type="text" name="config[url]" value="$config[url]" size="60" class="input" />&nbsp;<font color=red>*</font></td>
+			<td><input type="text" name="config[url]" value="$config[url]" size="60" class="txt" />&nbsp;<font color=red>*</font></td>
 		</tr>
 		<tr class="line">
 			<td width="25%">图片尺寸：</td>
-			<td>宽：<input type="text" name="config[width]" value="$config[width]" size="4" class="input" />像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="config[height]" value="$config[height]" size="4" class="input" />像素&nbsp;<font color=red>*</font>(默认100)</td>
+			<td>宽：<input type="text" name="config[width]" value="$config[width]" size="4" class="txt" />像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="config[height]" value="$config[height]" size="4" class="txt" />像素&nbsp;<font color=red>*</font>(默认100)</td>
 		</tr>
 		<tr class="line">
 			<td width="25%">广告内容介绍：</td>
@@ -732,11 +731,11 @@ print <<<EOT
 		</tr>
 		<tr class="line">
 			<td width="25%">动画地址：</td>
-			<td><input type="text" name="config[url]" value="$config[url]" size="60" class="input" />&nbsp;<font color=red>*</font></td>
+			<td><input type="text" name="config[url]" value="$config[url]" size="60" class="txt" />&nbsp;<font color=red>*</font></td>
 		</tr>
 		<tr class="line">
 			<td width="25%">动画尺寸：</td>
-			<td>宽：<input type="text" name="config[width]" value="$config[width]" size="4" class="input" />像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="config[height]" value="$config[height]" size="4" class="input" />像素&nbsp;<font color=red>*</font>(默认100)</td>
+			<td>宽：<input type="text" name="config[width]" value="$config[width]" size="4" class="txt" />像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="config[height]" value="$config[height]" size="4" class="txt" />像素&nbsp;<font color=red>*</font>(默认100)</td>
 		</tr>
 		<tr class="line">
 			<td width="25%">背景透明:</td>
@@ -759,7 +758,7 @@ print <<<EOT
 		</tr>
 		<tr class="line">
 			<td width="25%">页面地址：</td>
-			<td><input type="text" name="config[url]" value="$config[url]" size="60" class="input" />&nbsp;<font color=red>*</font></td>
+			<td><input type="text" name="config[url]" value="$config[url]" size="60" class="txt" />&nbsp;<font color=red>*</font></td>
 		</tr>
 		<tr class="line">
 			<td width="25%">广告内容：</td>
@@ -781,7 +780,7 @@ EOT;
 }elseif($job=="add"){
 print <<<EOT
 -->
-<script language="javascript" src="./script/date.js"></script>
+<script type="text/javascript" src="script/jquery.calendar.js"></script>
 <form method='post' name="form" action="$basename">
 <div class="t">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -794,7 +793,7 @@ print <<<EOT
   </tr>
   <tr class="line">
 		<td width="25%">广告名称</td>
-		<td><input name="advinfo[name]" type="text" class="input" value="" size="60">&nbsp;<font color=red>*</font></td>
+		<td><input name="advinfo[name]" type="text" class="txt" value="" size="60">&nbsp;<font color=red>*</font></td>
 	</tr>
 	<tr class="line">
 		<td width="25%">广告类型</td>
@@ -813,15 +812,15 @@ print <<<EOT
 	</td></tr>
 	<tr class="line">
 		<td width="25%"><b>开始时间</b> - <b>结束时间</b></td>
-		<td><input type="text" size="19" name="advinfo[starttime]" id="starttime" value="$starttime" onClick="ShowCalendar(this.id);" class="input" /> - <input type=text size="20" name="advinfo[endtime]" id="endtime" value="$endtime" onClick="ShowCalendar(this.id);" class="input" /> 格式：yyyy-mm-dd</td>
+		<td><input type="text" size="19" name="advinfo[starttime]" id="starttime" value="$starttime" onClick="ShowCalendar(this.id);" class="txt" /> - <input type=text size="20" name="advinfo[endtime]" id="endtime" value="$endtime" onClick="ShowCalendar(this.id);" class="txt" /> 格式：yyyy-mm-dd</td>
 	</tr>
 	<tr class="line">
 		<td width="25%">链接地址：</td>
-		<td><input type="text" name="advinfo[linkurl]" size="60" class="input" value="http://"/></td>
+		<td><input type="text" name="advinfo[linkurl]" size="60" class="txt" value="http://"/></td>
 	</tr>
 	<tr class="line">
 		<td width="25%">链接提示：</td>
-		<td><input type="text" name="advinfo[linkalt]" size="60" class="input" /></td>
+		<td><input type="text" name="advinfo[linkalt]" size="60" class="txt" /></td>
 	</tr>
 	<tr class="line">
 		<td width="25%">链接目标:</td>
@@ -833,7 +832,7 @@ print <<<EOT
 	<tr class="line">
 		<td width="25%">广告权值</td>
 		<td>
-			<input type="text" name="advinfo[priority]" value="1" size="2" maxlength="2" class="input" />(同一版位多广告时显示优先顺序,权值为0不显示,默认为1)
+			<input type="text" name="advinfo[priority]" value="1" size="2" maxlength="2" class="txt" />(同一版位多广告时显示优先顺序,权值为0不显示,默认为1)
 		</td>
 	</tr>
 	<tr class="line">
@@ -883,11 +882,11 @@ print <<<EOT
 			</tr>
 			<tr class="line">
 				<td width="25%">图片地址：</td>
-				<td><input type="text" name="config[url]" size="60" class="input" />&nbsp;<font color=red>*</font></td>
+				<td><input type="text" name="config[url]" size="60" class="txt" />&nbsp;<font color=red>*</font></td>
 			</tr>
 			<tr class="line">
 				<td width="25%">图片尺寸：</td>
-				<td>宽：<input type="text" name="config[width]" size="4" class="input" value="100"/>像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="config[height]" size="4" class="input" value="100"/>像素&nbsp;<font color=red>*</font>(默认100)</td>
+				<td>宽：<input type="text" name="config[width]" size="4" class="txt" value="100"/>像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="config[height]" size="4" class="txt" value="100"/>像素&nbsp;<font color=red>*</font>(默认100)</td>
 			</tr>
 			<tr class="line">
 				<td width="25%">广告内容：</td>
@@ -915,11 +914,11 @@ print <<<EOT
 			</tr>
 			<tr class="line">
 				<td width="25%">动画地址：</td>
-				<td><input type="text" name="config[url]" size="60" class="input" />&nbsp;<font color=red>*</font></td>
+				<td><input type="text" name="config[url]" size="60" class="txt" />&nbsp;<font color=red>*</font></td>
 			</tr>
 			<tr class="line">
 				<td width="25%">动画尺寸：</td>
-				<td>宽：<input type="text" name="config[width]" size="4" class="input" value="100"/>像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="config[height]" size="4" class="input" value="100"/>像素&nbsp;<font color=red>*</font>(默认100)</td>
+				<td>宽：<input type="text" name="config[width]" size="4" class="txt" value="100"/>像素&nbsp;<font color=red>*</font>(默认100)&nbsp;高：<input type="text" name="config[height]" size="4" class="txt" value="100"/>像素&nbsp;<font color=red>*</font>(默认100)</td>
 			</tr>
 			<tr class="line">
 				<td width="25%">背景透明:</td>
@@ -941,7 +940,7 @@ print <<<EOT
 			</tr>
 			<tr class="line">
 				<td width="25%">页面地址：</td>
-				<td><input type="text" name="config[url]"size="60" class="input" value="http://"/>&nbsp;<font color=red>*</font></td>
+				<td><input type="text" name="config[url]"size="60" class="txt" value="http://"/>&nbsp;<font color=red>*</font></td>
 			</tr>
 			<tr class="line">
 				<td width="25%">广告内容：</td>

@@ -130,27 +130,27 @@ EOT;
 -->
   <tr class="line">
     <td>相关图片</td>
-    <td><input class="input" name="photo" id="photo" value="$photo" size="70">
+    <td><input type="text" name="photo" id="photo" value="$photo" size="70" class="txt" />
       <img src='images/admin/addimg.gif' style='cursor:pointer;' align='absmiddle' onclick="selectImg('photo');">
       该字段标志着主题是否属于图文主题</td>
   </tr>
   <tr class="line">
     <td>外部链接</td>
-    <td><input class="input" name="linkurl" id="linkurl" value="$linkurl" size="70">  </td>
+    <td><input type="text" name="linkurl" id="linkurl" value="$linkurl" size="70" class="txt" />  </td>
   </tr>
   <tr class="line">
 	  <td>自定义时间</td>
-	  <td><input name="postdate" type="text" class="input" id="postdate" value="$postdate" size="70">
+	  <td><input type="text" name="postdate" id="postdate" value="$postdate" size="70" class="txt">
 		<img src='images/admin/addtime.gif' style='cursor:pointer;' align='absmiddle' onclick="ShowCalendar('postdate');"></td>
   </tr>
   <tr class="line">
 	  <td>自定义模板</td>
-	  <td><input name="template" type="text" class="input" id="template" value="$template" size="70">
+	  <td><input type="text" name="template" id="template" value="$template" size="70" class="txt" />
 		<img src="images/admin/selecttpl.png" name="Submit22" onclick="selectTpl('template');" align="absmiddle" style="cursor:pointer" /></td>
   </tr>
   <tr class="line">
 		<td>当前Tags</td>
-		<td><input id="tags" class="input" name="tags" size="70" value="$tags"  onfocus="showtag();" />
+		<td><input type="text" name="tags" id="tags" size="70" value="$tags"  onfocus="showtag();" class="txt" />
 		标签之间请使用逗号,最多5个<br />
 		<fieldset id="tags_show" style="width:70%;display:none;"><legend>热门标签</legend><div id="hottags" style="height:80px;overflow-Y:auto;"></div></fieldset></td>
   </tr>
@@ -161,8 +161,8 @@ EOT;
   <input name="aid" type="hidden" id="aid" value="$aids" />
   <input name="tid" type="hidden" id="tid" value="$tid" />
   <input name="action" type="hidden" id="action" value="$action" />
-  <input type="submit" name="Submit" value="提交" class="btn" onclick="setselectvalue()" />
-  <input type="reset" name="Submit2" value="重置" class="btn" />
+  <input type="submit" name="submit" value="提交" class="btn" onclick="setselectvalue()" />
+  <input type="reset" name="reset" value="重置" class="btn" />
 </div>
 </form>
 <script language="javascript" src="script/xhr.js"></script>

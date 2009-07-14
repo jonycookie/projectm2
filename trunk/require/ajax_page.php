@@ -73,7 +73,7 @@ class pager{
 	* @return void 
 	* @access public
 	*/
-    function pager($total, $pageSize, $query, $class="input", $style=null)
+    function pager($total, $pageSize, $query, $class="txt", $style=null)
     {
     	preg_match("/\?([^&]+)$/", $query, $m);
         if (preg_match("/&?([^&]+)$/", $query, $m))

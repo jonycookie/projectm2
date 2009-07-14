@@ -14,16 +14,16 @@ foreach($this->moduledb as $key=>$val){
 if($key<=0){continue;}
 print <<<EOT
 -->
-    <option value="$key" ${'select_'.$key}/>$val[mname]</option>
+    <option value="$key" ${'select_'.$key}>$val[mname]</option>
 <!--
 EOT;
 }print <<<EOT
 -->
     </select>
 			&nbsp;&nbsp;查看指定文章评论内容,文章ID:&nbsp;&nbsp;
-      <input name="tid" type="text" class="input" id="tid" size="10" />
-      <input name="action" type="hidden" id="action" value="search" />
-      <input type="submit" name="Submit2" value="显 示" class="btn" />
+      <input type="text" name="tid" id="tid" size="10" class="txt" />
+      <input type="hidden" name="action" id="action" value="search" />
+      <input type="submit" name="Submit2" value="显示" class="btn" />
 	</td></tr>
 </table></form>
 </div>
@@ -52,7 +52,7 @@ foreach($result as $val){
 print <<<EOT
 -->
   <tr class="tr3">
-    <td><input name="ids[$val[tid]][]" type="checkbox" id="ids[$val[tid]]" value="$val[id]"></td>
+    <td><input type="checkbox" name="ids[$val[tid]][]" id="ids[$val[tid]]" value="$val[id]" /></td>
     <td><a href="$val[url]" target="_blank">$val[title]</a></td>
     <td>$val[author]&nbsp;($val[fromip])</td>
     <td>$val[postdate]&nbsp;</td>
@@ -69,8 +69,8 @@ EOT;
 <div class="sub">
   <input name="action" type="hidden" id="action" value="delall">
   <input name="mid" type="hidden" id="mid" value="$this->mid">
-  <input type="button" name="Submit" value="全选" onClick="CheckAll(document.FORM);" class="btn" />
-  <input type="submit" name="Submit2" value="删除选中评论" onClick="return confirm('您确定要删除选中的评论？')"class="btn" />
+  <input type="button" name="button" value="全选" onClick="CheckAll(document.FORM);" class="btn" />
+  <input type="submit" name="submit" value="删除选中评论" onClick="return confirm('您确定要删除选中的评论？')"class="btn" />
 </div>
 </form>
 <!--
@@ -99,8 +99,8 @@ print <<<EOT
   <tr class="tr3">
     <td>$val[id]</td>
     <td><img src="$val[facepath]" /></td>
-    <td><input class="input" name="faceintro[$val[id]]" value="$val[faceintro]" size="50"/></td>
-    <td><input class="input" name="taxis[$val[id]]" value="$val[taxis]" size="10"/></td>
+    <td><input type="text" name="faceintro[$val[id]]" value="$val[faceintro]" size="50" class="txt" /></td>
+    <td><input type="text" name="taxis[$val[id]]" value="$val[taxis]" size="10" class="txt" /></td>
     <td><a href="$basename&action=delface&id=$val[id]" onclick="return confirm('您确定要删除此表情？');"><img src="images/admin/delete.gif" align="absmiddle" alt="删除" /></a></td>
   </tr>
 <!--
@@ -110,14 +110,14 @@ EOT;
 </table>
 </div>
 <div class="sub">
-<input name="action" type="hidden" id="action" value="edit">
-<input type="submit" name="Submit4" value="提交修改" class="btn" />
+<input name="action" type="hidden" id="action" value="edit" />
+<input type="submit" name="submit" value="提交修改" class="btn" />
 </div>
 </form>
 
 <form action="$basename" method="post">
-<input type="hidden" name="id" value="$id">
-<input type="hidden" name="action" value="addface">
+<input type="hidden" name="id" value="$id" />
+<input type="hidden" name="action" value="addface" />
 <div class="t">
 <table cellspacing="0" cellpadding="0" border="0">
 <tr class="head">
@@ -133,9 +133,9 @@ EOT;
 foreach($smiles_new as $value){print <<<EOT
 -->
 <tr class="line">
-	<td><input type="checkbox" name="add[]" value="$value[path]"></td>
+	<td><input type="checkbox" name="add[]" value="$value[path]" /></td>
 	<td>$value[path]</td>
-	<td><img src="$value[src]"></td>
+	<td><img src="$value[src]" /></td>
 </tr>
 <!--
 EOT;
@@ -144,8 +144,8 @@ EOT;
 </table>
 </div>
 <div class="sub">
-	<input type="button" class="btn" value="全 选" onclick="CheckAll(this.form)">
-	<input type="submit" class="btn" value="添 加">
+	<input type="button" value="全 选" onclick="CheckAll(this.form)" class="btn">
+	<input type="submit" value="添 加" class="btn">
 </div>
 </form>
 <!--

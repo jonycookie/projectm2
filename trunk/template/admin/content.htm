@@ -97,7 +97,7 @@ function orderstyle(id,f){
 }
 </script>
 <div class="t">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td style="text-align:center">
 	<form action="$basename" method="post">
@@ -108,15 +108,15 @@ function orderstyle(id,f){
         <option value="2" $displaytype_2>未发布内容</option>
       </select>
       &nbsp;&nbsp;每页数量:&nbsp;&nbsp;
-      <input name="displaynum" type="text" class="input" id="displaynum" value="$displaynum" size="5" maxlength="3" />
+      <input type="text" name="displaynum" id="displaynum" value="$displaynum" size="5" maxlength="3" class="txt" />
       &nbsp;&nbsp;标题关键字搜索:&nbsp;&nbsp;
-      <input name="keyword" type="text" class="input" id="keyword" value="$keyword" size="10" />&nbsp;
-      <input name="cid" type="hidden" id="cid" value="$cid" />
-      <input name="action" type="hidden" id="action" value="view" />
-			<input name="order" type="hidden" id="order" value="$order" />
-			<input name="orderby" type="hidden" id="orderby" value="$orderby" />
+      <input type="text" name="keyword" id="keyword" value="$keyword" size="10" class="txt" />&nbsp;
+      <input type="hidden" name="cid" id="cid" value="$cid" />
+      <input type="hidden" name="action" id="action" value="view" />
+      <input type="hidden" name="order" id="order" value="$order" />
+      <input type="hidden" name="orderby" id="orderby" value="$orderby" />
       &nbsp;
-      <input type="submit" name="Submit2" value="显示" class="btn" />
+      <input type="submit" name="submit" value="显示" class="btn" />
 	  </form>
 	  <input type="button" value="添加新内容" class="btn" onclick="window.location='$admin_file?adminjob=edit&action=add&cid=$cid';" /> <input type="button" name="Submit5" value="设置本栏目" class="btn" onclick="window.location='$admin_file?adminjob=category&action=edit&action=edit&cid=$cid';"/>	  </td>
   </tr>
@@ -220,7 +220,7 @@ EOT;
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr class="line">
 		<td>当前Tags</td>
-		<td><input id="tags" class="input" name="tags" size="70" value="$tags"  onfocus="showtag();" />
+		<td><input type="text" id="tags" name="tags" size="70" value="$tags"  onfocus="showtag();" class="txt" />
 		标签之间请使用逗号,最多5个<br />
 		<fieldset id="tags_show" style="width:70%;display:none;"><legend>热门标签</legend><div id="hottags" style="height:80px;overflow-Y:auto;"></div></fieldset></td>
   </tr>
@@ -231,24 +231,24 @@ EOT;
   <tr>
     <td>操作:
       <select name="job" id="job" onchange="showTarget(this.value);">
-      <option value="move">移动内容</option>
-      <option value="copy">复制内容</option>
-      <option value="pubview" selected="selected">发布内容</option>
-	  <option value="delete">删除内容</option>
-	  <option value="destroy">永久删除</option>
-      <option value="pubcancel">取消发布</option>
-      <option value="pubupdate">更新发布</option>
-	  <option value="batchtag">批量标签</option>
-    </select>
-	<span id='target' style="display:none">
+	      <option value="move">移动内容</option>
+	      <option value="copy">复制内容</option>
+	      <option value="pubview" selected="selected">发布内容</option>
+		  <option value="delete">删除内容</option>
+		  <option value="destroy">永久删除</option>
+	      <option value="pubcancel">取消发布</option>
+	      <option value="pubupdate">更新发布</option>
+		  <option value="batchtag">批量标签</option>
+	  </select>
+	<span id="target" style="display:none">
     目标:
       <select name="tocid" id="tocid">
         <option value="0" selected="selected">请选择</option>
 	$cate_select
 		</select>
 	  </span>
-      <input name="cid" type="hidden" id="cid" value="$cid" />
-      <input name="action" type="hidden" id="action" value="whole" />
+      <input type="hidden" name="cid" id="cid" value="$cid" />
+      <input type="hidden" name="action" id="action" value="whole" />
     <input type="button" name="Submit3" value="全选" class="btn" onclick="CheckAll(document.pub_edit);" />
     <input type="submit" name="Submit4" value="提交" class="btn" onclick="return whole(document.pub_edit);" /></td>
     <td style="text-align:right">$cms->page</td>

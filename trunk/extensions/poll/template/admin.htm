@@ -92,11 +92,11 @@ print <<<EOT
   </tr>
   <tr class="line">
     <td width="20%">调查标题</td>
-		<td><input id="subject" name="poll[subject]" value="$subject" class="input" size="70" /></td>
+		<td><input type="text" id="subject" name="poll[subject]" value="$subject" class="txt" size="70" /></td>
   </tr>
 	<tr class="line">
 		<td>标识符</td>
-		<td><input id="mark" name="poll[mark]" value="$mark" class="input" size="20" />
+		<td><input type="text" id="mark" name="poll[mark]" value="$mark" class="txt" size="20" />
       <select name="mid" id="mid" onchange="document.FORM.mark.value=this.value;">
 				<option value="">默认标识符</option>
 				<option value="index">首页调查</option>
@@ -106,23 +106,23 @@ print <<<EOT
 	<tr class="line">
 		<td>调查类型</td>
 		<td>
-		<input value="1" name="poll[ismulti]" class="input" type="checkbox" $ismulti_Y />
+		<input value="1" name="poll[ismulti]" type="checkbox" $ismulti_Y />
 		多选
-		<input value="1" name="poll[longtime]" class="input" type="checkbox" $longtime />
+		<input value="1" name="poll[longtime]" type="checkbox" $longtime />
 		长期有效<br />
 		开始时间 － 结束时间
-		<input type="text" name="poll[stime]" id="stime" value="$stime" size="20" class="input" onClick="ShowCalendar(this.id);" />
+		<input type="text" name="poll[stime]" id="stime" value="$stime" size="20" class="txt" onclick="ShowCalendar(this.id);" />
 		&nbsp;－&nbsp;
-		<input type="text" name="poll[etime]" id="etime" value="$etime" size="20" class="input" onClick="ShowCalendar(this.id);" /></td>
+		<input type="text" name="poll[etime]" id="etime" value="$etime" size="20" class="txt" onclick="ShowCalendar(this.id);" /></td>
 	</tr>
 
   <tr class="line">
     <td>调查简介</td>
-		<td><textarea name="poll[content]" cols="70" rows="3" class="input" id="content" wrap="soft">$content</textarea></td>
+		<td><textarea name="poll[content]" cols="70" rows="3" id="content" wrap="soft">$content</textarea></td>
   </tr>
   <tr class="line">
     <td>调查选项</td>
-		<td><textarea name="poll[options]" cols="70" rows="6" class="input" id="options" wrap="soft">$options</textarea>
+		<td><textarea name="poll[options]" cols="70" rows="6" id="options" wrap="soft">$options</textarea>
 		<p>注：一行一选项。已经开始调查投票后，调整选项顺序会影响原有的投票结果</p></td>
   </tr>
 </table>

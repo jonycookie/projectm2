@@ -62,15 +62,16 @@ EOT;
 <form action="$basename" method="post" enctype="multipart/form-data">
   <tr class="line">
     <td>请选择要导入的文件&nbsp;&nbsp;
-    	<input name="xmlfile" type="file" class="input" id="xmlfile" size="30" />
+    	<input type="file" name="xmlfile" id="xmlfile" size="30" class="txt" />
       	<select name="mid" id="mid">
       		<option value="">请选择内容模型</option>
 
 		$module_select
 
       	</select>
-      	<input name="action" type="hidden" id="action" value="import" />
-				<input type="submit" name="Submit5" value="导入" class="btn" /></td>
+      	<input type="hidden" name="action" id="action" value="import" />
+		<input type="submit" name="Submit5" value="导入" class="btn" />
+	</td>
     </tr>
 </form>
 </table>
@@ -129,7 +130,7 @@ print <<<EOT
   </tr>
   <tr class="line">
     <td>采集规则名称</td>
-    <td><input name="gname" type="text" class="input" id="gname" value="$gname" /></td>
+    <td><input type="text" name="gname" id="gname" value="$gname" class="txt" /></td>
   </tr>
   <tr class="line">
     <td>是否过滤已采集过的网址</td>
@@ -140,19 +141,19 @@ print <<<EOT
   </tr>
   <tr class="line">
     <td>采集某段时间之前采集过的网址</td>
-    <td><input name="ignoretime" type="text" class="input" id="ignoretime" value="$ignoretime" size="5" />
+    <td><input type="text" name="ignoretime" id="ignoretime" value="$ignoretime" size="5" class="txt" />
       天</td>
   </tr>
   <tr class="line">
     <td>关键替换(增加替换规则数量)</td>
-    <td><input name="replacenum" type="text" class="input" id="replacenum" value="$strNum" size="10"> <input type="button" name="Submit5" value="增加" class="btn" onclick="MakeStr();" /></td>
+    <td><input type="text" name="replacenum" id="replacenum" value="$strNum" size="10" class="txt" /> <input type="button" name="Submit5" value="增加" class="btn" onclick="MakeStr();" /></td>
   </tr>
   <tr class="line">
     <td>关键字替换规则</td>
     <td>原始字段:
-      <input name="str1_1" type="text" class="input" id="str1_1" value="$str1[1]" />
+      <input type="text" name="str1_1" id="str1_1" value="$str1[1]" class="txt" />
       目标字段:
-      <input name="str2_1" type="text" class="input" id="str2_1" value="$str2[1]" />
+      <input type="text" name="str2_1" id="str2_1" value="$str2[1]" class="txt" />
       <br />
 <span id='replace'>
 </span></td>
@@ -184,9 +185,9 @@ print <<<EOT
   <tr class="line">
     <td>多页数字变化规则</td>
     <td>从
-      <input name="startpage" type="text" class="input" id="startpage" value="$startpage" size="5" />
+      <input type="text" name="startpage" id="startpage" value="$startpage" size="5" class="txt" />
       到
-      <input name="endpage" type="text" class="input" id="endpage" value="$endpage" size="5" /></td>
+      <input type="text" name="endpage" id="endpage" value="$endpage" size="5" class="txt" /></td>
   </tr>
   </table>
   </div>
@@ -213,12 +214,12 @@ print <<<EOT
   </tr>
   <tr class="line">
     <td width="25%">绑定栏目</td>
-    <td width="75%"><input name="bindcid" id="bindcid" size="70" value="$bindcid" class="input">
+    <td width="75%"><input type="text" name="bindcid" id="bindcid" value="$bindcid" size="70" class="txt" />
       栏目CID，必须和MID相对应</td>
   </tr>
   <tr class="line">
 	<td>当前Tags</td>
-	<td><input id="tags" class="input" name="tags" size="70" value="$tags"  onfocus="showtag();" />
+	<td><input type="text" name="tags" id="tags" value="$tags" size="70" class="txt" onfocus="showtag();" />
 	标签之间请使用逗号,最多5个<br />
 	<fieldset id="tags_show" style="width:70%;display:none;"><legend>热门标签</legend><div id="hottags" style="height:80px;overflow-Y:auto;"></div></fieldset></td>
   </tr>
@@ -266,11 +267,11 @@ EOT;
 </table>
 </div>
 <div class="sub">
-  <input type="submit" name="Submit3" value="提交" class="btn" />
-  <input name="gid" type="hidden" id="gid" value="$gid" />
-	<input name="type" type="hidden" id="type" value="0" />
-  <input name="step" type="hidden" id="step" value="2" />
-  <input name="action" type="hidden" id="action" value="$action" />
+	<input type="hidden" name="gid" id="gid" value="$gid" />
+	<input type="hidden" name="type" id="type" value="0" />
+	<input type="hidden" name="step" id="step" value="2" />
+	<input type="hidden" name="action" id="action" value="$action" />
+	<input type="submit" name="submit" value="提交" class="btn" />
 </div>
 </form>
 <script language="javascript">
@@ -322,7 +323,7 @@ function MakeStr()
    var endNum =  addNum+startNum;
    if(endNum>11) endNum = 11;
    for(startNum;startNum<endNum;startNum++){
-	   upfield.innerHTML += "原始字段: <input type='text' name='str1_"+startNum+"' class='input' value=\""+str1[startNum]+"\" /> 目标字段: <input type='text' name='str2_"+startNum+"' class='input' value=\""+str2[startNum]+"\" /> <br/>";
+	   upfield.innerHTML += "原始字段: <input type='text' name='str1_"+startNum+"' class='txt' value=\""+str1[startNum]+"\" /> 目标字段: <input type='text' name='str2_"+startNum+"' class='txt' value=\""+str2[startNum]+"\" /> <br/>";
    }
 	 document.FORM.replacenum.value='';
 }
@@ -373,10 +374,10 @@ print <<<EOT
   </tr>
   <tr class="line">
     <td>采集规则名称</td>
-    <td><input name="gname" type="text" class="input" id="gname" value="$gname" /></td>
+    <td><input type="text" name="gname" id="gname" value="$gname" class="txt" /></td>
   </tr>
   </table>
-  <table width="100%" cellpadding="0" cellspacing="0">
+  <table border="0" cellpadding="0" cellspacing="0">
   <tr class="line">
     <td width="25%">采集RSS网址<br />
       (一行一个网址)</td>
@@ -413,7 +414,7 @@ print <<<EOT
 -->
   <tr class="line">
     <td width="25%">{$gather[fieldname]}采集变量</td>
-    <td width="75%"><input name="fieldrule[$gather[fieldid]]" type="text" class="input" id="$gather[fieldid]" value="$gather[fieldrule]" size="70" />
+    <td width="75%"><input type="text" name="fieldrule[$gather[fieldid]]" id="$gather[fieldid]" value="$gather[fieldrule]" size="70" class="txt" />
 		<select id="selectrss" onchange="getObj('$gather[fieldid]').value=this.value;">
 			<option value="">自定义变量</option>
 			<option value="title">RSS标题</option>
@@ -430,11 +431,11 @@ EOT;
 </table>
 </div>
 <div class="sub">
-  <input type="submit" name="Submit3" value="提交" class="btn" />
-  <input name="gid" type="hidden" id="gid" value="$gid" />
-	<input name="type" type="hidden" id="type" value="$type" />
-  <input name="step" type="hidden" id="step" value="2" />
-  <input name="action" type="hidden" id="action" value="$action" />
+	<input type="hidden" name="gid" id="gid" value="$gid" />
+	<input type="hidden" name="type" id="type" value="$type" />
+	<input type="hidden" name="step" id="step" value="2" />
+	<input type="hidden" name="action" id="action" value="$action" />
+	<input type="submit" name="submit" value="提交" class="btn" />
 </div>
 </form>
 <!--
@@ -447,7 +448,7 @@ print <<<EOT
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr class="head">
     <td colspan="7">$gname 采集结果</td>
-    </tr>
+  </tr>
   <tr class="tr2">
     <td>&nbsp;</td>
     <td>序号</td>
@@ -455,7 +456,6 @@ print <<<EOT
     <td>采集时间</td>
     <td>采集者</td>
     <td>操作</td>
-    <td>&nbsp;</td>
   </tr>
 <!--
 EOT;
@@ -471,7 +471,6 @@ print <<<EOT
     <td>$value[postdate]</td>
     <td>$value[publisher]</td>
     <td><a href="$basename&action=delgather&tid=$value[tid]&mid=$mid&gid=$gid">删除</a></td>
-    <td>&nbsp;</td>
   </tr>
 <!--
 EOT;
@@ -480,13 +479,13 @@ EOT;
 </table>
 </div>
 <div class="t">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td><select name="method" id="method"  onchange="showTarget(this.value);">
       <option value="delgather">删除</option>
       <option value="usegather" selected="selected">入库</option>
     </select>
-	<span id='target'>
+	<span id="target">
     目标:
       <select name="tocid" id="tocid" >
 	$cate_select

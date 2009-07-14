@@ -62,11 +62,11 @@ print <<<EOT
 	</tr>
 	<tr class="tr3">
 		<td>内容添加时间段</td>
-		<td><input type="input" name="stime" id="stime" class="input" value="" onclick="ShowCalendar(this.id);" /> - <input type="input" name="etime" id="etime" class="input" value="" onclick="ShowCalendar(this.id);" /> </td>
+		<td><input type="text" name="stime" id="stime" class="txt" value="" onclick="ShowCalendar(this.id);" /> - <input type="text" name="etime" id="etime" class="txt" value="" onclick="ShowCalendar(this.id);" /> </td>
 	</tr>
 	<tr class="tr3">
 		<td>批处理操作</td>
-		<td><input type="radio" id="do" name="do" value="pubview" checked/>
+		<td><input type="radio" id="do" name="do" value="pubview" checked="checked" />
 			发布内容
 				<input type="radio" id="do" name="do" value="pubupdate" />
 			更新发布
@@ -77,7 +77,7 @@ print <<<EOT
 </table>
 </div>
 <div class="sub">
-	<input type="submit" class="btn" name="submit" id="submit" value="提 交" />
+	<input type="submit" name="submit" id="submit" value="提交" class="btn" />
 </div>
 </form>
 <script language="javascript" src="script/date.js"></script>

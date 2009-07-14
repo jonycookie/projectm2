@@ -29,7 +29,7 @@ print <<<EOT
         <td>$value[cid]</td>
         <td>$value[cname]</td>
         <td>$value[module]</td>
-        <td><input name="taxis[$value[cid]]" type="text" class="input" id="taxis[$value[cid]]" value="$value[taxis]" size="5" maxlength="2"></td>
+        <td><input name="taxis[$value[cid]]" type="text" class="txt" id="taxis[$value[cid]]" value="$value[taxis]" size="5" maxlength="2" /></td>
         <td>
 <!--
 EOT;
@@ -97,7 +97,7 @@ print <<<EOT
       </tr>
       <tr class="line">
         <td>栏目名称</td>
-        <td><input name="cname" type="text" class="input" id="cname" value="$cname"></td>
+        <td><input name="cname" type="text" class="txt" id="cname" value="$cname" /></td>
       </tr>
       <tr class="line">
         <td>栏目类型</td>
@@ -127,7 +127,7 @@ print <<<EOT
               <table width="100%" cellpadding="0" cellspacing="0">
                 <tr class="line">
                   <td width="20%">调用分类ID</td>
-                  <td width="80%"><input name="bloginfo[fid]" type="text" class="input" value="$bloginfo[fid]"></td>
+                  <td width="80%"><input name="bloginfo[fid]" type="text" class="txt" value="$bloginfo[fid]" /></td>
                 </tr>
 				<tr class="line">
                   <td>内容页浏览方式</td>
@@ -145,7 +145,7 @@ print <<<EOT
                 </tr>
                 <tr class="line">
                 	<td>调用时间限制</td>
-                	<td><input name="bloginfo[postdate]" type="text" class="input" id="bloginfo[postdate]" value="$bloginfo[postdate]" size="5" />
+                	<td><input name="bloginfo[postdate]" type="text" class="txt" id="bloginfo[postdate]" value="$bloginfo[postdate]" size="5" />
                 		天 </td>
                 	</tr>
                 <tr class="line">
@@ -158,7 +158,7 @@ print <<<EOT
               <table width="100%" cellpadding="0" cellspacing="0">
                 <tr class="line">
                   <td width="20%">调用板块ID</td>
-                  <td width="80%"><input class="input" name="bbsinfo[fid]" type="text" value="$bbsinfo[fid]">
+                  <td width="80%"><input class="txt" name="bbsinfo[fid]" type="text" value="$bbsinfo[fid]" />
                     (可以用逗号,区分多个版块id,如果留空调用所有板块)</td>
                 </tr>
 				<tr class="line">
@@ -184,22 +184,22 @@ print <<<EOT
                 </tr>
                 <tr class="line">
                   <td>调用帖浏览数</td>
-                  <td><input name="bbsinfo[hits]" type="text" class="input" id="bbs[hits]" value="$bbsinfo[hits]" size="5" />
+                  <td><input name="bbsinfo[hits]" type="text" class="txt" id="bbs[hits]" value="$bbsinfo[hits]" size="5" />
                     (只调用浏览数大于这个值的主题,留空不作限制)</td>
                 </tr>
                 <tr class="line">
                   <td>调用帖回复数</td>
-                  <td><input name="bbsinfo[replies]" type="text" class="input" id="bbs[replies]" value="$bbsinfo[replies]" size="5" />
+                  <td><input name="bbsinfo[replies]" type="text" class="txt" id="bbs[replies]" value="$bbsinfo[replies]" size="5" />
                     (只调用回复数大于这个值的主题,留空不作限制)</td>
                 </tr>
                 <tr class="line">
                   <td>调用主题时间段</td>
-                  <td><input name="bbsinfo[postdate]" type="text" class="input" id="bbs[postdate]" value="$bbsinfo[postdate]" size="5" />
+                  <td><input name="bbsinfo[postdate]" type="text" class="txt" id="bbs[postdate]" value="$bbsinfo[postdate]" size="5" />
                     (只调用多少天以内发表的主题,留空不作限制)</td>
                 </tr>
                 <tr class="line">
                   <td>调用回复时间段</td>
-                  <td><input name="bbsinfo[lastpost]" type="text" class="input" id="bbs[lastpost]" value="$bbsinfo[lastpost]" size="5" />
+                  <td><input name="bbsinfo[lastpost]" type="text" class="txt" id="bbs[lastpost]" value="$bbsinfo[lastpost]" size="5" />
                     (只调用多少天以内回复过的主题,留空不作限制) </td>
                 </tr>
               </table>
@@ -208,7 +208,7 @@ print <<<EOT
               <table width="100%" cellpadding="0" cellspacing="0">
 			       <tr class="line">
 						<td width="20%">连接地址</td>
-						<td width="80%"><input name="link" type="text" $ifdisabled class="input" id="linkurl" value="$link" size=50 /> (连接到一个外部网址)</td>
+						<td width="80%"><input name="link" type="text" class="txt" id="linkurl" value="$link" size="50" $ifdisabled /> (连接到一个外部网址)</td>
 		 			</tr>
 			  </table>
 			  </div>
@@ -235,51 +235,50 @@ print <<<EOT
 	</tr>
 	<tr class="line">
 	  <td width="20%">唯一标识符</td>
-	  <td width="80%"><div style="float:right; padding-right:65px;">(可以使用该标识符代替CID进行CMS内容调用,)</div><input name="varname" type="text" class="input" id="varname" value="$vars[name]" /></td>
+	  <td width="80%"><input name="varname" type="text" class="txt" id="varname" value="$vars[name]" /> (可以使用该标识符代替CID进行CMS内容调用,)</td>
 	</tr>
 	<tr class="line">
-	  <td width="20%">栏目简介</td>
-	  <td width="80%">
-	  <div style="float:right; padding-right:65px;">(栏目的简单描述，可用于Rss输出栏目摘要)</div>
-	 $description_input </td>
+	  <td>栏目简介</td>
+	  <td>
+	 $description_input <br />(栏目的简单描述，可用于Rss输出栏目摘要)</td>
 	</tr>
 	<tr class="line">
 	  <td>栏目Meta关键字</td>
-	  <td><div style="float:right; padding-right:165px;">(有利于搜索引擎的搜索)</div><input name="metakeyword" type="text" class="input" id="metakeyword" value="$metakeyword" size="50" /></td>
+	  <td><input name="metakeyword" type="text" class="txt" id="metakeyword" value="$metakeyword" size="50" /> (有利于搜索引擎的搜索)</td>
 	</tr>
 	<tr class="line">
 	  <td>栏目Meta描述</td>
-	  <td><div style="float:right; padding-right:165px;">(有利于搜索引擎的搜索)</div><input name="metadescrip" type="text" class="input" id="metadescrip" value="$metadescrip" size="50" /></td>
+	  <td><input name="metadescrip" type="text" class="txt" id="metadescrip" value="$metadescrip" size="50" /> (有利于搜索引擎的搜索)</td>
 	</tr>
 	<tr class="line">
 	  <td>内容页发布形式</td>
-	  <td><div style="float:right; padding-right:100px;">(是否将栏目文章自动生成Html文件)</div>
+	  <td>
 		<input type="radio" name="htmlpub" value="0" $htmlpub_N>
 		动态发布
 		<input type="radio" name="htmlpub" value="1" $htmlpub_Y>
-		静态发布 </td>
+		静态发布 (是否将栏目文章自动生成Html文件)</td>
 	</tr>
 	<tr class="line">
 	  <td>列表页发布形式</td>
-	  <td><div style="float:right; padding-right:100px;">(是否将栏目列表自动生成Html文件)</div>
+	  <td>
 		<input type="radio" name="listpub" value="0" $listpub_N />
 		动态发布
 		<input type="radio" name="listpub" value="1" $listpub_Y />
-		静态发布 </td>
+		静态发布 (是否将栏目列表自动生成Html文件)</td>
 	</tr>
 	<tr class="line">
 	  <td>静态列表页更新时间</td>
-	  <td><div style="float:right; padding-right:65px;">(是否将静态栏目列表页栏目首页自动更新)</div>
-	  <input name="autoupdate" type="text" class="input" id="autoupdate" value="$autoupdate" size="5" />
-	  分钟(0表示关闭)</td>
+	  <td>
+	  <input name="autoupdate" type="text" class="txt" id="autoupdate" value="$autoupdate" size="5" />
+	  分钟(0表示关闭) (是否将静态栏目列表页栏目首页自动更新)</td>
 	</tr>
 	<tr class="line">
 	  <td>是否自动发布</td>
-	  <td><div style="float:right; padding-right:65px;">(添加文章之后自动发布出去还是手动发布)</div>
+	  <td>
 		<input name="autopub" type="radio" value="1" $autopub_Y>
 		自动发布
 		<input type="radio" name="autopub" value="0" $autopub_N />
-		手动发布 </td>
+		手动发布 (添加文章之后自动发布出去还是手动发布)</td>
 	</tr>
 	<tr class="line">
 	  <td>是否允许评论</td>
@@ -290,43 +289,26 @@ print <<<EOT
 	</tr>
 	<tr class="line">
 	  <td>是否开启文章水印</td>
-	  <td><div style="float:right; padding-right:200px;">(防止文章被复制)</div>
+	  <td>
 		<input type="radio" name="copyctrl" value="1" $copyctrl_Y />
 		开启水印
 		<input type="radio" name="copyctrl" value="0" $copyctrl_N />
-		关闭水印</td>
+		关闭水印 (防止文章被复制)</td>
 	</tr>
 	<tr class="line">
 	  <td>静态文件发布点</td>
-	  <td><input name="path" type="text" class="input" id="path" value="$path" size="50" />
-		(相对于站点{$sys[htmdir]}目录下的子目录,最后不要加斜杠,请不要随意更改)</td>
+	  <td><input name="path" type="text" class="txt" id="path" value="$path" size="50" /> (相对于站点{$sys[htmdir]}目录下的子目录,最后不要加斜杠,请不要随意更改)</td>
 	</tr>
 	<tr class="line">
 	  <td>栏目首页模板</td>
-	  <td><input name="tpl_index" type="text" class="input" id="tpl_index" value="$tpl_index" size="50" />
+	  <td><input name="tpl_index" type="text" class="txt" id="tpl_index" value="$tpl_index" size="50" />
 		<img src="images/admin/selecttpl.png" name="Submit2" onclick="selectTpl('tpl_index');" align="absmiddle" style="cursor:pointer" /></td>
 	</tr>
 	<tr class="line">
 	  <td>内容页模板</td>
-	  <td><input name="tpl_content" type="text" class="input" id="tpl_content" value="$tpl_content" size="50" />
+	  <td><input name="tpl_content" type="text" class="txt" id="tpl_content" value="$tpl_content" size="50" />
 		<img src="images/admin/selecttpl.png" name="Submit22" onclick="selectTpl('tpl_content');" align="absmiddle" style="cursor:pointer" /></td>
 	</tr>
-	<!--当前版本暂不支持自定义名
-<tr class="line">
-<td>首页文件名</td>
-<td><input name="file_index" type="text" class="input" id="file_index" value="$file_index">
-(例如index.html)</td>
-</tr>
-<tr class="line">
-<td>内容页文件名命名规则</td>
-<td><input name="file_content" type="text"  class="input" id="file_content" value="$file_content">
-（）</td>
-</tr>
-<tr class="line">
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
--->
   </table>
 </div>
   <div class="sub">

@@ -22,49 +22,49 @@ print <<<EOT
   </tr>
   <tr class="line">
     <td width="25%">博客网址</td>
-    <td width="75%"><input name="config[blog_url]" type="text" class="input" id="blog_url" value="$sys[blog_url]" size="50">
+    <td width="75%"><input type="text" name="config[blog_url]" id="blog_url" value="$sys[blog_url]" size="50" class="txt" />
     （后面不要加/）</td>
   </tr>
   <tr class="line">
     <td>博客数据库服务器</td>
-    <td><input name="config[blog_dbhost]" type="text" class="input"  value="$sys[blog_dbhost]" /></td>
+    <td><input type="text" name="config[blog_dbhost]"  value="$sys[blog_dbhost]" class="txt" /></td>
   </tr>
   <tr class="line">
     <td>博客数据库用户名</td>
-    <td><input name="config[blog_dbuser]" type="text" class="input"  value="$sys[blog_dbuser]" /></td>
+    <td><input type="text" name="config[blog_dbuser]"  value="$sys[blog_dbuser]" class="txt" /></td>
   </tr>
   <tr class="line">
     <td>博客数据库密码</td>
-    <td><input name="config[blog_dbpw]" type="password" class="input" id="config[blog_dbpw]" value="$sys[blog_dbpw]" /></td>
+    <td><input type="password" name="config[blog_dbpw]" id="config[blog_dbpw]" value="$sys[blog_dbpw]" class="txt" /></td>
   </tr>
   <tr class="line">
     <td>博客数据库名</td>
-    <td><input name="config[blog_dbname]" type="text" class="input" id="blog_dbname" value="$sys[blog_dbname]"></td>
+    <td><input type="text" name="config[blog_dbname]" id="blog_dbname" value="$sys[blog_dbname]" class="txt" /></td>
   </tr>
   <tr class="line">
     <td>博客数据库编码</td>
-    <td><input name="config[blog_charset]" type="text" class="input" id="config[blog_dbname]" value="$sys[blog_charset]" /></td>
+    <td><input type="text" name="config[blog_charset]" id="config[blog_dbname]" value="$sys[blog_charset]" class="txt" /></td>
   </tr>
   <tr class="line">
     <td>博客数据库前缀</td>
-    <td><input name="config[blog_dbpre]" type="text" class="input" id="blog_dbpre" value="$sys[blog_dbpre]"></td>
+    <td><input type="text" name="config[blog_dbpre]" id="blog_dbpre" value="$sys[blog_dbpre]" class="txt" /></td>
   </tr>
   <tr class="line">
     <td>博客附件目录</td>
-    <td><input name="config[blog_attachdir]" type="text" class="input" id="blog_attachdir" value="$sys[blog_attachdir]" /> 
+    <td><input type="text" name="config[blog_attachdir]" id="blog_attachdir" value="$sys[blog_attachdir]" class="txt" /> 
     (如果为远程附件地址，请填写附件网址) </td>
   </tr>
   <tr class="line">
     <td>博客图片目录</td>
     <td>
-		<input name="config[blog_imgdir]" type="text" class="input" id="blog_imgdir" value="$sys[blog_imgdir]" />
+		<input type="text" name="config[blog_imgdir]" id="blog_imgdir" value="$sys[blog_imgdir]" class="txt" />
 	</td>
   </tr>
 </table>
 </div>
 <div class="sub">
-  <input name="step" type="hidden" id="step" value="2">
-  <input type="submit" name="Submit" value=" 提 交 " class="btn">
+  <input name="step" type="hidden" id="step" value="2" />
+  <input type="submit" name="Submit" value="提交" class="btn" />
 </div>
 </form>
 <!--

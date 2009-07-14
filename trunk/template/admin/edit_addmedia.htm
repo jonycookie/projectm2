@@ -1,7 +1,6 @@
 <!--<?php
 print <<<EOT
 -->
-<base target="_self">
 <script language="javascript">
 
 var	ftpweb = '$sys[ftpweb]';
@@ -57,13 +56,13 @@ function goclick(element){
 			<td colspan="5">附件管理
 				<form action="$basename" method="post" name="upload" target="uploadFrame" enctype="multipart/form-data">
 					上传
-					<input name="file" type="file" class="input" />
+					<input type="file" name="file" class="txt" />
 					描述：
-					<input type="text" name="fileintro1" class="input" />
-					<input name="inputname" type="hidden" id="inputname" value="$inputname" />
-					<input name="inputtype" type="hidden" id="inputtype" value="$inputtype" />
-					<input name="action" type="hidden" id="action" value="upload" />
-					<input type="submit" name="Submit" value=" 上传 " class="btn" onclick="javascript:document.getElementById('msg').style.display = '';" />
+					<input type="text" name="fileintro1" class="txt" />
+					<input type="hidden" name="inputname" id="inputname" value="$inputname" />
+					<input type="hidden" name="inputtype" id="inputtype" value="$inputtype" />
+					<input type="hidden" name="action" id="action" value="upload" />
+					<input type="submit" name="submit" value="上传" class="btn" onclick="javascript:document.getElementById('msg').style.display = '';" />
 				</form></td>
 		</tr>
 		<tr class="tr2">

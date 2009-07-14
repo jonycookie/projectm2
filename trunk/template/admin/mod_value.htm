@@ -7,9 +7,9 @@ print <<<EOT
 	<tr>
 		<td>选择器名称:&nbsp;&nbsp;
 			<input name="action" type="hidden" id="action" value="add" />
-			<input name="selectname" type="text" class="input" id="selectname" />
+			<input name="selectname" type="text" class="txt" id="selectname" />
 			&nbsp;&nbsp;
-			<input type="submit" name="Submit" value="增加新选择器" class="btn" /> 
+			<input type="submit" name="submit" value="增加新选择器" class="btn" /> 
 		</td>
 	</tr>
 </form>
@@ -77,7 +77,7 @@ print <<<EOT
 	</tr>
 	<tr class="tr3">
 		<td>选择器名称</td>
-		<td><input name="selectname" type="text" class="input" id="selectname" value="$selectname" /></td>
+		<td><input type="text" name="selectname" id="selectname" value="$selectname" class="txt" /></td>
 	</tr>
 <!--
 EOT;
@@ -88,7 +88,7 @@ print <<<EOT
 -->
 	<tr class="tr3">
 		<td>预设值 {$i} </td>
-		<td><input value="$v[value]" name="value[$key]" class="input" /> $v[usetime] </td>
+		<td><input type="text" name="value[$key]" value="$v[value]" class="txt" /> $v[usetime]</td>
 	</tr>
 <!--
 EOT;
@@ -97,11 +97,11 @@ EOT;
 </table>
 </div>
 <div class="sub">
-	<input type="reset" name="Submit2" value="重置" class="btn" />
 	<input name="step" type="hidden" id="step" value="2" />
 	<input name="selectid" type="hidden" id="selectid" value="$selectid" />
 	<input name="action" type="hidden" id="action" value="edit" />
 	<input name="" type="submit" value="提交" class="btn" />
+	<input type="reset" name="reset" value="重置" class="btn" />
 </div>
 </form>
 <!--

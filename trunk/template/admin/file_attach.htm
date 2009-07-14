@@ -37,7 +37,6 @@ function checkLoadFinished(count) {
 	document.getElementById('loading').style.display="none";
 }
 </script>
-<base target="_self">
 <div id="quote" style="background-color:#FFFFFF; position:absolute; right:5px; top:5px; width:400px; display:none" class="t">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr class="head">
@@ -78,10 +77,10 @@ function checkLoadFinished(count) {
 		<option value="txt">文档文件</option>
       </select> 
       &nbsp;&nbsp;每页数量:&nbsp;&nbsp;
-      <input name="displaynum" type="text" class="input" id="displaynum" size="5" maxlength="3" />
+      <input type="text" name="displaynum" id="displaynum" size="5" maxlength="3" class="txt" />
       &nbsp;&nbsp;名称关键字搜索:&nbsp;&nbsp;
-      <input name="keyword" type="text" class="input" id="keyword" size="10" />&nbsp;
-      <input name="action" type="hidden" id="action" value="view" />
+      <input type="text" name="keyword" id="keyword" size="10" class="txt" />&nbsp;
+      <input type="hidden" name="action" id="action" value="view" />
       &nbsp;
       <input type="submit" name="Submit2" value="显示" class="btn" />
 	  </form>
@@ -145,8 +144,8 @@ EOT;
 </div>
 <div class="pages">$pages</div>
 <div class="sub">
-  <input name="path" type="hidden" id="path" value="$path" />
-  <input name="action" type="hidden" id="action" value="del" />
+  <input type="hidden" name="path" id="path" value="$path" />
+  <input type="hidden" name="action" id="action" value="del" />
   <input type="button" name="Submit2" value="全选" class="btn" onclick="CheckAll(document.file);" />
   <input type="submit" name="Submit" value="删除" onClick="return confirm('您确定要删除选中的附件？');" class="btn" />
 </div>
@@ -233,7 +232,7 @@ print <<<EOT
 	<fieldset>
 		<fieldset class="actions">
 			<input type="file" id="file-upload" name="file-upload" />
-			<input type="button" value="开始上传" onclick="check()"/>
+			<input type="button" value="开始上传" onclick="check()" />
 			<input type="submit" id="mysub" style="display:none" />
 			<span id="upload-clear"></span>
 		</fieldset>

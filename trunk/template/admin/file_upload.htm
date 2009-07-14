@@ -22,9 +22,9 @@ print <<<EOT
     </tr>
   <tr class="line">
     <td width="25%">上传文件数量</td>
-    <td width="75%"><input name="uploadnum" type="text" class="input" id="uploadnum" size="10">
-      <input type="button" name="Submit" value="增加" class="btn" onClick="MakeUpload();">
-      <input type="button" name="Submit2" value="恢复" class="btn" onClick="ResetUpload();"></td>
+    <td width="75%"><input type="text" name="uploadnum" id="uploadnum" size="10" class="txt" />
+      <input type="button" name="Submit" value="增加" onClick="MakeUpload();" class="btn" />
+      <input type="button" name="Submit2" value="恢复" onClick="ResetUpload();" class="btn" /></td>
   </tr>
   <tr class="line">
     <td>自动缩略图片文件</td>
@@ -34,11 +34,11 @@ print <<<EOT
   </tr>
   <tr class="line">
     <td>缩略标准</td>
-    <td>宽度 <input name="width" type="text" class="input" id="width" size="5" /> 
+    <td>宽度 <input type="text" name="width" id="width" size="5" class="txt" /> 
       像素&nbsp;&nbsp;&nbsp;
-        高度 <input name="height" type="text" class="input" id="height" size="5" /> 
+        高度 <input type="text" name="height" id="height" size="5" class="txt" /> 
         像素 质量
-        <input name="quality" type="text" class="input" id="quality" size="5" maxlength="2" />
+        <input type="text" name="quality" id="quality" size="5" maxlength="2" class="txt" />
         %</td>
   </tr>
   <tr class="line">
@@ -46,15 +46,15 @@ print <<<EOT
     </tr>
   <tr class="line">
     <td colspan="2">
-	上传文件1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="file" name="file1" class="input" size="50"> <input type="text" name="fileintro1" class="input" />
+	上传文件1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="file" name="file1" size="50" class="txt" /> <input type="text" name="fileintro1" class="txt" />
 	文件描述<br>
-	上传文件2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="file" name="file2" class="input" size="50">
-	<input type="text" name="fileintro2" class="input" />
+	上传文件2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="file" name="file2" size="50" class="txt" />
+	<input type="text" name="fileintro2" class="txt" />
 文件描述<br>
-	上传文件3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="file" name="file3" class="input" size="50">
-	<input type="text" name="fileintro3" class="input" />
+	上传文件3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="file" name="file3" size="50" class="txt" />
+	<input type="text" name="fileintro3" class="txt" />
 文件描述<br>
-	<span id='uploadfield'></span>	</td>
+	<span id="uploadfield"></span>	</td>
     </tr>
   <tr class="line">
     <td>&nbsp;</td>
@@ -78,7 +78,7 @@ function MakeUpload()
    var endNum =  addNum+startNum;
    if(endNum>11) endNum = 11;
    for(startNum;startNum<endNum;startNum++){
-	   upfield.innerHTML += "上传文件"+startNum+":&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type='file' name='file"+startNum+"' class='input' size='50' /> <input type='text' name='fileintro'"+startNum+" class='input' /> 文件描述<br/>";
+	   upfield.innerHTML += "上传文件"+startNum+":&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type='file' name='file"+startNum+"' class='txt' size='50' /> <input type='text' name='fileintro'"+startNum+" class='txt' /> 文件描述<br/>";
    }
 }
 function ResetUpload()
@@ -101,40 +101,40 @@ print <<<EOT
   </tr>
   <tr class="line">
     <td>是否使用ftp方式上传：</td>
-    <td><input type=radio value=1 name=config[ifftp] $ifftp_Y>开启 
-		<input type=radio value=0 name=config[ifftp] $ifftp_N>关闭 &nbsp;&nbsp;&nbsp;本功能适合上传附件到远程服务器(尤其针对镜像站点，可将附件传至主站点，便于附件的统一管理)
+    <td><input type=radio value=1 name=config[ifftp] $ifftp_Y />开启 
+		<input type=radio value=0 name=config[ifftp] $ifftp_N />关闭 (本功能适合上传附件到远程服务器，尤其针对镜像站点，可将附件传至主站点，便于附件的统一管理)
 	</td>
   </tr>
   <tr class="line">
 	<td>web访问地址：</td>
-	<td><input size=40 name=config[ftpweb] value='$sys[ftpweb]'>&nbsp;&nbsp;&nbsp;例如：http://www.phpwind.net/attachment</td>
+	<td><input type="text" name="config[ftpweb]" value="$sys[ftpweb]" size="40" class="txt" /> (例如：http://www.phpwind.net/attachment)</td>
   </tr>
   <tr class="line">
 	<td>ftp服务器地址：</td>
-	<td><input size=40 name=ftp[ftp_server] value='$ftp_server'></td>
+	<td><input type="text"  name="ftp[ftp_server]" value="$ftp_server" size="40" class="txt" /></td>
   </tr>
   <tr class="line">
 	<td>ftp服务器端口：</td>
-	<td><input size=40 name=ftp[ftp_port] value='$ftp_port'></td>
+	<td><input type="text"  name="ftp[ftp_port]" value="$ftp_port" size="40" class="txt" /></td>
   </tr>
   <tr class="line">
 	<td>ftp上传目录：</td>
-	<td><input size=40 name=ftp[ftp_dir] value='$ftp_dir'>&nbsp;&nbsp;&nbsp;请确保该目录等同于主站点的attachment目录</td>
+	<td><input type="text"  name="ftp[ftp_dir]" value="$ftp_dir" size="40" class="txt" /> (请确保该目录等同于主站点的attachment目录)</td>
   </tr>
   <tr class="line">
 	<td>ftp帐号：</td>
-	<td><input size=40 name=ftp[ftp_user] value='$ftp_user'></td>
+	<td><input type="text"  name="ftp[ftp_user]" value="$ftp_user" size="40" class="txt" /></td>
   </tr>
   <tr class="line">
 	<td>ftp密码：</td>
-	<td><input size=40 name=ftp[ftp_pass] value='$ftp_pass'>&nbsp;&nbsp;&nbsp;安全考虑，只显示密码的前后两位，中间显示八个 * 号</td>
+	<td><input type="text"  name="ftp[ftp_pass]" value="$ftp_pass" size="40" class="txt" /> (安全考虑，只显示密码的前后两位，中间显示八个 * 号)</td>
   </tr>
 </table>
 </div>
 <div class="sub">
-  <input name="step" type="hidden" id="step" value="2">
-  <input name="action" type="hidden" id="action" value="setftp">
-  <input type="submit" name="Submit" value=" 提 交 " class="btn">
+  <input name="step" type="hidden" id="step" value="2" />
+  <input name="action" type="hidden" id="action" value="setftp" />
+  <input type="submit" name="submit" value="提交" class="btn" />
 </div>
 </form>
 <!--

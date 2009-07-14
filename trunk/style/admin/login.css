@@ -32,7 +32,8 @@ img {
 	vertical-align: middle;
 }
 input {
-	font: normal normal 12px/20px tahoma, '宋体', sans-serif;
+	font: normal normal 12px tahoma, '宋体', sans-serif;
+	vertical-align: middle;
 }
 .form {
 	border: 1px solid #d0dbe7;
