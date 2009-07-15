@@ -13,8 +13,6 @@ if(!$step) {
 	foreach ($discate as $cid){
 		$cate_select = str_replace("value=\"$cid\"","value=\"$cid\" selected ",$cate_select);
 	}
-	require_once(R_P.'require/class_content.php');
-	$contribute['intro'] = Content::Editor('intro','Basic',stripslashes($contribute['intro']));
 }else {
 	$discate = GetGP('discate');
 	$title	 = GetGP('title');
