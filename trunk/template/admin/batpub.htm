@@ -1,15 +1,15 @@
 <!--<?php
 print <<<EOT
 -->
+
 <div class="t">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td>批处理:
-		<input type="button" name="Submit1" value="栏目首页更新" class="btn" onclick="window.location='$basename&action=batpub&job=list&';"/>
-		<input type="button" name="Submit2" value="内容页更新" class="btn" onclick="window.location='$basename&action=batpub&job=view&';"/>
-	</td>
-  </tr>
-</table>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td>批处理:
+				<input type="button" name="Submit1" value="栏目首页更新" class="btn" onclick="window.location='$basename&action=batpub&job=list&';"/>
+				<input type="button" name="Submit2" value="内容页更新" class="btn" onclick="window.location='$basename&action=batpub&job=view&';"/></td>
+		</tr>
+	</table>
 </div>
 <!--
 EOT;
@@ -17,25 +17,35 @@ if($job=='list'){
 print <<<EOT
 -->
 <form action="$basename" method="post">
-<input type="hidden" name="step" value="1" id="step" />
-<div class="t">
-<table width="98%" border="0" cellspacing="0" cellpadding="0">
-	<tr class="head">
-		<td colspan="2">栏目首页更新批处理
-		<select name="cid" id="cid" onchange="window.location='$basename&cid='+this.value;"><option value="0">站点根分类</option>$cate_select</select></td>
-	</tr>
-	<tr class="tr2">
-		<td colspan="2">选择子分类进行批处理</td>
-	</tr>
-	<tr class="line">
-		<td width="25%">更新栏目<br />(按住Ctrl键或Shift键进行多选操作)</td>
-		<td><select name="cids[]" size="10" multiple id="cids">$catedb</select></td>
-	</tr>
-</table>
-</div>
-<div class="sub">
-	<input type="submit" class="btn" name="submit" id="submit" value="提 交" />
-</div>
+	<input type="hidden" name="step" value="1" id="step" />
+	<div class="t">
+		<table width="98%" border="0" cellspacing="0" cellpadding="0">
+			<tr class="head">
+				<td colspan="2">栏目首页更新批处理
+					<select name="cid" id="cid" onchange="window.location='$basename&cid='+this.value;">
+						<option value="0">站点根分类</option>
+						
+						$cate_select
+					
+					</select></td>
+			</tr>
+			<tr class="tr2">
+				<td colspan="2">选择子分类进行批处理</td>
+			</tr>
+			<tr class="line">
+				<td width="25%">更新栏目<br />
+					(按住Ctrl键或Shift键进行多选操作)</td>
+				<td><select name="cids[]" size="10" multiple id="cids">
+						
+						$catedb
+					
+					</select></td>
+			</tr>
+		</table>
+	</div>
+	<div class="sub">
+		<input type="submit" class="btn" name="submit" id="submit" value="提交" />
+	</div>
 </form>
 <!--
 EOT;
@@ -43,42 +53,53 @@ EOT;
 print <<<EOT
 -->
 <form action="$basename" method="post">
-<input type="hidden" name="step" value="1" id="step" />
-<div class="t">
-<table width="98%" border="0" cellspacing="0" cellpadding="0">
-	<tr class="head">
-		<td colspan="2">内容页更新批处理
-		<select name="cid" id="cid" onchange="window.location='$basename&cid='+this.value;"><option value="0">站点根分类</option>$cate_select</select></td>
-	</tr>
-	<tr class="tr2">
-		<td colspan="2">选择子分类进行批处理</td>
-	</tr>
-	<tr class="line">
-		<td width="25%">更新栏目<br />(按住Ctrl键或Shift键进行多选操作)</td>
-		<td><select name="cids[]" size="10" multiple id="cids">$catedb</select></td>
-	</tr>
-	<tr class="tr2">
-		<td colspan="2">内容页批处理条件</td>
-	</tr>
-	<tr class="tr3">
-		<td>内容添加时间段</td>
-		<td><input type="text" name="stime" id="stime" class="txt" value="" onclick="ShowCalendar(this.id);" /> - <input type="text" name="etime" id="etime" class="txt" value="" onclick="ShowCalendar(this.id);" /> </td>
-	</tr>
-	<tr class="tr3">
-		<td>批处理操作</td>
-		<td><input type="radio" id="do" name="do" value="pubview" checked="checked" />
-			发布内容
-				<input type="radio" id="do" name="do" value="pubupdate" />
-			更新发布
-				<input type="radio" id="do" name="do" value="pubcancel" />
-			取消发布
-		</td>
-	</tr>
-</table>
-</div>
-<div class="sub">
-	<input type="submit" name="submit" id="submit" value="提交" class="btn" />
-</div>
+	<input type="hidden" name="step" value="1" id="step" />
+	<div class="t">
+		<table width="98%" border="0" cellspacing="0" cellpadding="0">
+			<tr class="head">
+				<td colspan="2">内容页更新批处理
+					<select name="cid" id="cid" onchange="window.location='$basename&cid='+this.value;">
+						<option value="0">站点根分类</option>
+						
+						$cate_select
+					
+					</select></td>
+			</tr>
+			<tr class="tr2">
+				<td colspan="2">选择子分类进行批处理</td>
+			</tr>
+			<tr class="line">
+				<td width="25%">更新栏目<br />
+					(按住Ctrl键或Shift键进行多选操作)</td>
+				<td><select name="cids[]" size="10" multiple id="cids">
+						
+						$catedb
+					
+					</select></td>
+			</tr>
+			<tr class="tr2">
+				<td colspan="2">内容页批处理条件</td>
+			</tr>
+			<tr class="tr3">
+				<td>内容添加时间段</td>
+				<td><input type="text" name="stime" id="stime" class="txt" value="" onclick="ShowCalendar(this.id);" />
+					-
+					<input type="text" name="etime" id="etime" class="txt" value="" onclick="ShowCalendar(this.id);" /></td>
+			</tr>
+			<tr class="tr3">
+				<td>批处理操作</td>
+				<td><input type="radio" id="do" name="do" value="pubview" checked="checked" />
+					发布内容
+					<input type="radio" id="do" name="do" value="pubupdate" />
+					更新发布
+					<input type="radio" id="do" name="do" value="pubcancel" />
+					取消发布 </td>
+			</tr>
+		</table>
+	</div>
+	<div class="sub">
+		<input type="submit" name="submit" id="submit" value="提交" class="btn" />
+	</div>
 </form>
 <script language="javascript" src="script/date.js"></script>
 <!--

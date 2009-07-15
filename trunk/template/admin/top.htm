@@ -24,8 +24,6 @@ $(function() {
 </script>
 </head>
 <body>
-
-
 <div class="header">
 	<h1 class="logo"><a href="#" onclick="$('.dock').toggle();">cms.manage</a></h1>
 	<div class="dock">
@@ -49,7 +47,6 @@ EOT;
 print <<<EOT
 -->
 		</ul>
-
 <!--
 EOT;
 foreach ($menu_father as $key=>$val){
@@ -61,7 +58,7 @@ EOT;
 foreach ($menu_child[$key] as $k=>$v){
 print <<<EOT
 -->
-				<li><a href="$admin_file?adminjob=$k" target="mainFrame">$v</a></li>
+			<li><a href="$admin_file?adminjob=$k" target="mainFrame">$v</a></li>
 <!--
 EOT;
 }

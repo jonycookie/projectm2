@@ -1,85 +1,85 @@
 <!--<?php
 print <<<EOT
 -->
+
 <form action="$basename" method="post">
-<div class="t">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr class="head">
-    <td colspan="2">论坛整合设置</td>
-    </tr>
-    <tr class="line">
-        <td>是否整合论坛</td>
-        <td><input type="radio" name="config[aggrebbs]" value="1" $aggrebbs_Y />
-          整合
-            <input type="radio" name="config[aggrebbs]" value="0" $aggrebbs_N />
-          不整合</td>
-  </tr>
-  <tr class="line">
-    <td>论坛程序类型</td>
-    <td><select name="config[bbs_type]" id="bbs_type">
-      $bbsSelect
-    </select>    </td>
-  </tr>
-  <tr class="line">
-    <td width="25%">论坛网址</td>
-    <td width="75%"><input name="config[bbs_url]" type="text" class="txt" id="bbs_url" value="$sys[bbs_url]" size="50" />
-    （后面不要加/）</td>
-  </tr>
-  <tr class="line">
-    <td>论坛数据库服务器</td>
-    <td><input name="config[bbs_dbhost]" type="text" class="txt"  value="$sys[bbs_dbhost]" /></td>
-  </tr>
-  <tr class="line">
-    <td>论坛数据库用户名</td>
-    <td><input name="config[bbs_dbuser]" type="text" class="txt"  value="$sys[bbs_dbuser]" /></td>
-  </tr>
-  <tr class="line">
-    <td>论坛数据库密码</td>
-    <td><input name="config[bbs_dbpw]" type="password" class="txt" id="config[bbs_dbpw]" value="$sys[bbs_dbpw]" /></td>
-  </tr>
-  <tr class="line">
-    <td>论坛数据库名</td>
-    <td><input name="config[bbs_dbname]" type="text" class="txt" id="bbs_dbname" value="$sys[bbs_dbname]" /></td>
-  </tr>
-  <tr class="line">
-    <td>论坛数据库编码</td>
-    <td><input name="config[bbs_charset]" type="text" class="txt" id="config[bbs_dbname]" value="$sys[bbs_charset]" /></td>
-  </tr>
-  <tr class="line">
-    <td>论坛数据库前缀</td>
-    <td><input name="config[bbs_dbpre]" type="text" class="txt" id="bbs_dbpre" value="$sys[bbs_dbpre]" /></td>
-  </tr>
-	<tr class="line">
-    <td>论坛图片目录：</td>
-    <td><input name="config[bbs_picpath]" type="text" class="txt" id="bbs_picpath" value="$sys[bbs_picpath]" /> (必须为论坛空间上的目录,如果设置绝对路径,目录分隔符请使用 / 不要使用 \ )</td>
-  </tr>
-  <tr class="line">
-    <td>论坛附件目录</td>
-    <td><input name="config[bbs_attachdir]" type="text" class="txt" id="bbs_attachdir" value="$sys[bbs_attachdir]" /> 
-    (如果为远程附件地址，请填写附件网址) </td>
-  </tr>
-	<tr class="line">
-		<td >是否开启静态目录部署功能</td>
-		<td>
-			<input type="radio" name="config[bbs_htmifopen]" value="1" $bbs_htmifopen_Y />是
-			<input type="radio" name="config[bbs_htmifopen]" value="0" $bbs_htmifopen_N />否
-			(如果论坛未开启伪静态功能,请勿启用)
-		</td>
-	</tr>
-	<tr class="line">
-		<td>静态目录</td>
-		<td><input type="text" class="txt" id="bbs_htmdir" value="$sys[bbs_htmdir]" name="config[bbs_htmdir]" /> (保持与论坛设置一致)</td>
-	</tr>
-	<tr class="line">
-		<td>静态目录扩展名设置</td>
-		<td><input type="text" class="txt" id="bbs_htmext" value="$sys[bbs_htmext]" name="config[bbs_htmext]" /> (保持与论坛设置一致)</td>
-	</tr>
-</table>
-</div>
-<div class="sub">
-  <input name="step" type="hidden" id="step" value="2" />
-  <input type="submit" name="submit" value="提交" class="btn" />
-</div>
+	<div class="t">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr class="head">
+				<td colspan="2">论坛整合设置</td>
+			</tr>
+			<tr class="line">
+				<td>是否整合论坛</td>
+				<td><input type="radio" name="config[aggrebbs]" value="1" $aggrebbs_Y />
+					整合
+					<input type="radio" name="config[aggrebbs]" value="0" $aggrebbs_N />
+					不整合</td>
+			</tr>
+			<tr class="line">
+				<td>论坛程序类型</td>
+				<td>
+					<select name="config[bbs_type]" id="bbs_type">
+						$bbsSelect
+					</select>
+				</td>
+			</tr>
+			<tr class="line">
+				<td width="25%">论坛网址</td>
+				<td width="75%"><input name="config[bbs_url]" type="text" class="txt" id="bbs_url" value="$sys[bbs_url]" size="50" /> (后面不要加/)</td>
+			</tr>
+			<tr class="line">
+				<td>论坛数据库服务器</td>
+				<td><input name="config[bbs_dbhost]" type="text" class="txt"  value="$sys[bbs_dbhost]" /></td>
+			</tr>
+			<tr class="line">
+				<td>论坛数据库用户名</td>
+				<td><input name="config[bbs_dbuser]" type="text" class="txt"  value="$sys[bbs_dbuser]" /></td>
+			</tr>
+			<tr class="line">
+				<td>论坛数据库密码</td>
+				<td><input name="config[bbs_dbpw]" type="password" class="txt" id="config[bbs_dbpw]" value="$sys[bbs_dbpw]" /></td>
+			</tr>
+			<tr class="line">
+				<td>论坛数据库名</td>
+				<td><input name="config[bbs_dbname]" type="text" class="txt" id="bbs_dbname" value="$sys[bbs_dbname]" /></td>
+			</tr>
+			<tr class="line">
+				<td>论坛数据库编码</td>
+				<td><input name="config[bbs_charset]" type="text" class="txt" id="config[bbs_dbname]" value="$sys[bbs_charset]" /></td>
+			</tr>
+			<tr class="line">
+				<td>论坛数据库前缀</td>
+				<td><input name="config[bbs_dbpre]" type="text" class="txt" id="bbs_dbpre" value="$sys[bbs_dbpre]" /></td>
+			</tr>
+			<tr class="line">
+				<td>论坛图片目录：</td>
+				<td><input name="config[bbs_picpath]" type="text" class="txt" id="bbs_picpath" value="$sys[bbs_picpath]" /> (必须为论坛空间上的目录,如果设置绝对路径,目录分隔符请使用 / 不要使用 \ )</td>
+			</tr>
+			<tr class="line">
+				<td>论坛附件目录</td>
+				<td><input name="config[bbs_attachdir]" type="text" class="txt" id="bbs_attachdir" value="$sys[bbs_attachdir]" /> (如果为远程附件地址，请填写附件网址) </td>
+			</tr>
+			<tr class="line">
+				<td >是否开启静态目录部署功能</td>
+				<td><input type="radio" name="config[bbs_htmifopen]" value="1" $bbs_htmifopen_Y />
+					是
+					<input type="radio" name="config[bbs_htmifopen]" value="0" $bbs_htmifopen_N />
+					否 (如果论坛未开启伪静态功能,请勿启用) </td>
+			</tr>
+			<tr class="line">
+				<td>静态目录</td>
+				<td><input type="text" class="txt" id="bbs_htmdir" value="$sys[bbs_htmdir]" name="config[bbs_htmdir]" /> (保持与论坛设置一致)</td>
+			</tr>
+			<tr class="line">
+				<td>静态目录扩展名设置</td>
+				<td><input type="text" class="txt" id="bbs_htmext" value="$sys[bbs_htmext]" name="config[bbs_htmext]" /> (保持与论坛设置一致)</td>
+			</tr>
+		</table>
+	</div>
+	<div class="sub">
+		<input name="step" type="hidden" id="step" value="2" />
+		<input type="submit" name="submit" value="提交" class="btn" />
+	</div>
 </form>
 <!--
 EOT;
