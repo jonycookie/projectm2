@@ -49,7 +49,6 @@ class Notice{
 		global $basename,$action;
 		$step = GetGP('step');
 		if(!$step){
-			$contentEdit = $this->Editor('content');
 			require PrintExt('header');
 			require PrintExt('admin');
 			adminbottom();
@@ -66,7 +65,6 @@ class Notice{
 		if(!$step){
 			@extract($db->get_one("SELECT * FROM cms_notice WHERE nid='$nid'"));
 			$title = Char_cv($title);
-			$contentEdit = $this->Editor('content',$content);
 			require PrintExt('header');
 			require PrintExt('admin');
 			adminbottom();
@@ -74,22 +72,6 @@ class Notice{
 			$this->Save('edit');
 			adminmsg('ext_noticeeditok');
 		}
-	}
-
-	function Editor($inputname,$Value=''){
-		global $sys;
-		$height=150;
-		$width=450;
-		require_once(R_P.'require/fckeditor.php');
-		$edit = new Fckeditor($inputname);
-		$edit->Height = $height;
-		$edit->Width = $width;
-		$edit->ToolbarSet = 'Basic';
-		$edit->BasePath = 'require/';
-		$edit->Value = $Value;
-		$edit->BaseSrc = $sys['url'];
-		$Html = $edit->CreateHtml();
-		return $Html;
 	}
 
 	function Save($job){
