@@ -46,7 +46,7 @@ class Edit extends Content {
 		}else{
 			Cookie('defaultcid',$cid,$timestamp+31536000);
 		}
-		$cate_select = str_replace("value=\"$cid\"","value=\"$cid\" selected",$cate_select);
+		$cate_select = str_replace("value=\"$cid\"","value=\"$cid\" selected=\"selected\"",$cate_select);
 		$catename = $catedb[$cid]['cname'];
 		$this->mid = $catedb[$cid]['mid'];
 		$this->cid = $cid;
@@ -100,7 +100,7 @@ class Edit extends Content {
 			require_once(R_P.'require/color.php');
 			$cate = new Cate();
 			$cate_select = $cate->tree();
-			$cate_select = str_replace("value=\"$cid\"","value=\"$cid\" selected",$cate_select);
+			$cate_select = str_replace("value=\"$cid\"","value=\"$cid\" selected=\"selected\"",$cate_select);
 			$inputArea = $this->inputArea();
 			$hottag = $this->hottag();
 			foreach ($colors as $c){
@@ -131,7 +131,7 @@ class Edit extends Content {
 			require_once(R_P.'require/class_cate.php');
 			$cate = new Cate();
 			$cate_select = $cate->tree();
-			$cate_select = str_replace("value=\"$cid\"","value=\"$cid\" selected",$cate_select);
+			$cate_select = str_replace("value=\"$cid\"","value=\"$cid\" selected=\"selected\"",$cate_select);
 			$inputArea	= $this->editArea($tid);
 			$tags		= $this->getTags($tid);
 			$aids		= $this->getAttach($tid);
@@ -144,12 +144,12 @@ class Edit extends Content {
 			$photo		= $inputArea['photo'];
 			$titlestyle = unserialize($inputArea['titlestyle']);
 			${'digest_'.$digest} = 'checked';
-			$titleb_check = $titlestyle['titleb'] ? 'checked' : '';
-			$titleii_check= $titlestyle['titleii'] ? 'checked' : '';
-			$titleu_check = $titlestyle['titleu'] ? 'checked' : '';
+			$titleb_check = $titlestyle['titleb'] ? 'checked=\"checked\"' : '';
+			$titleii_check= $titlestyle['titleii'] ? 'checked=\"checked\"' : '';
+			$titleu_check = $titlestyle['titleu'] ? 'checked=\"checked\"' : '';
 			foreach ($colors as $c){
 				if($c == $titlestyle['titlecolor']){
-					$color_select .= "<option value=\"$c\" style=\"background-color:$c;color:$c\" selected>$c</option>";
+					$color_select .= "<option value=\"$c\" style=\"background-color:$c;color:$c\" selected=\"selected\">$c</option>";
 				}else{
 					$color_select .= "<option value=\"$c\" style=\"background-color:$c;color:$c\">$c</option>";
 				}

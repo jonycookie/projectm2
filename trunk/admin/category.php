@@ -132,12 +132,6 @@ class Category{
 				$mid = 1; //default
 				$mod_select=str_replace("value=\"1\"","value=\"1\" selected",$mod_select);
 			}
-			require_once(R_P.'require/fckeditor.php');
-			$e = new FCKeditor('description');
-			$e->ToolbarSet = 'Basic';
-			$e->Height=120;
-			$e->Width=320;
-			$description_input = $e->CreateHtml();
 
 			$bbsinfo['digest'] = $autopub = $comment = $display = $htmlpub = $listpub = 1;
 			$bbsinfo['viewtype'] = 0;
@@ -207,14 +201,8 @@ class Category{
 			require_once(R_P.'require/class_cate.php');
 			$cate = new Cate();
 			$cate_select = $cate->tree();
-			$cate_select = str_replace("value=\"$up\"","value=\"$up\" selected",$cate_select);
-			require_once(R_P.'require/fckeditor.php');
-			$e = new FCKeditor('description');
-			$e->ToolbarSet = 'Basic';
-			$e->Height=120;
-			$e->Width=320;
-			$e->Value=$description;
-			$description_input = $e->CreateHtml();
+			$cate_select = str_replace("value=\"$up\"","value=\"$up\" selected=\"selected\"",$cate_select);
+
 			require_once(R_P.'require/class_const.php');
 			$const = new TplConst('CID');
 			$vars = $const->getConstByValue($cid);

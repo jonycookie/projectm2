@@ -60,10 +60,6 @@ if(!$action){
 		}
 		if(strpos($filepath,'..')) die('Forbidden');
 		$filecontent = readover($filepath);
-		require_once(R_P.'require/fckeditor.php');
-		$editor = new Fckeditor('filecontent');
-		$editor->Value = $filecontent;
-		$html = $editor->createHtml();
 	}elseif ($step==2){
 		$filecontent = $_POST['filecontent'];
 		if(strpos($filepath,$user_tplpath)!=0 || strpos($filepath,"..") || !in_array(strtolower(end(explode('.',$filepath))),$allow_ext)){
@@ -76,11 +72,7 @@ if(!$action){
 }elseif ($action=='new'){
 	InitGP(array('filename','path'));
 	$url = urlencode($basename);
-	if(!$step){
-		require_once(R_P.'require/fckeditor.php');
-		$editor = new Fckeditor('filecontent');
-		$html = $editor->createHtml();
-	}elseif($step==2){
+	if($step==2){
 		$filepath = '';
 		$filecontent = $_POST['filecontent'];
 		!ereg("^[0-9a-zA-Z_\-]+$",$filename) && Showmsg('file_filenameerror');
