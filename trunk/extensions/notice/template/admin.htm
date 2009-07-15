@@ -4,7 +4,7 @@ print <<<EOT
 <div class="m"></div>
 <div class="t">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr class="tr4">
+  <tr>
     <td><input type="button" name="Submit5" value="添加新公告" class="btn" onclick="window.location='$basename&action=add';"/>
     <input type="button" name="Submit5" value="查看公告" class="btn" onclick="window.location='$basename';"/>
     <input type="button" name="Submit6" value="模板接口" class="btn" onclick="window.location='$basename&action=tplapi';"/>
@@ -87,7 +87,7 @@ print <<<EOT
   </tr>
   <tr class="line">
     <td>公告内容</td>
-    <td>$contentEdit</td>
+    <td><textarea name="content" id="content" cols="120" rows="40" class="wysiwyg">$content</textarea></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
