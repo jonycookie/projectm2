@@ -26,7 +26,7 @@ foreach($categorydb as $value){
 print <<<EOT
 -->
 			<tr class="tr3">
-				<td><img src="images/admin/cate.gif" align="absmiddle" /></td>
+				<td><img src="images/admin/document_cate.gif" width="16" height="16" align="absmiddle" /></td>
 				<td>$value[cid]</td>
 				<td>$value[cname]</td>
 				<td>$value[module]</td>
@@ -130,16 +130,16 @@ print <<<EOT
 								</tr>
 								<tr class="line">
 									<td>内容页浏览方式</td>
-									<td><input name="bloginfo[viewtype]" type="radio" value="1" $viewtype_y>
+									<td><input name="bloginfo[viewtype]" type="radio" value="1" $viewtype_Y>
 										在CMS站点浏览
-										<input name="bloginfo[viewtype]" type="radio" value="0" $viewtype_n>
+										<input name="bloginfo[viewtype]" type="radio" value="0" $viewtype_N>
 										转入blog浏览</td>
 								</tr>
 								<tr class="line">
 									<td>是否只调用精华</td>
-									<td><input name="bloginfo[digest]" type="radio" value="1" $ifdigest_y />
+									<td><input name="bloginfo[digest]" type="radio" value="1" $ifdigest_Y />
 										是
-										<input name="bloginfo[digest]" type="radio" value="0" $ifdigest_n />
+										<input name="bloginfo[digest]" type="radio" value="0" $ifdigest_N />
 										否 </td>
 								</tr>
 								<tr class="line">
@@ -162,23 +162,23 @@ print <<<EOT
 								</tr>
 								<tr class="line">
 									<td>内容页浏览方式</td>
-									<td><input name="bbsinfo[viewtype]" type="radio" value="1" $viewtype_y>
+									<td><input name="bbsinfo[viewtype]" type="radio" value="1" $viewtype_Y>
 										在CMS站点浏览
-										<input name="bbsinfo[viewtype]" type="radio" value="0" $viewtype_n>
+										<input name="bbsinfo[viewtype]" type="radio" value="0" $viewtype_N>
 										转入论坛浏览</td>
 								</tr>
 								<tr class="line">
 									<td>是否只调用精华</td>
-									<td><input name="bbsinfo[digest]" type="radio" value="1" $ifdigest_y>
+									<td><input name="bbsinfo[digest]" type="radio" value="1" $ifdigest_Y>
 										是
-										<input name="bbsinfo[digest]" type="radio" value="0" $ifdigest_n>
+										<input name="bbsinfo[digest]" type="radio" value="0" $ifdigest_N>
 										否 </td>
 								</tr>
 								<tr class="line">
 									<td>主题排序方法</td>
-									<td><input name="bbsinfo[taxis]" type="radio" value="1" $taxis_y>
+									<td><input name="bbsinfo[taxis]" type="radio" value="1" $taxis_Y>
 										主题时间
-										<input name="bbsinfo[taxis]" type="radio" value="0" $taxis_n>
+										<input name="bbsinfo[taxis]" type="radio" value="0" $taxis_N>
 										回复时间 </td>
 								</tr>
 								<tr class="line">
@@ -245,16 +245,16 @@ print <<<EOT
 			</tr>
 			<tr class="line">
 				<td>内容页发布形式</td>
-				<td><input type="radio" name="htmlpub" value="0" $htmlpub_n>
+				<td><input type="radio" name="htmlpub" value="0" $htmlpub_N>
 					动态发布
-					<input type="radio" name="htmlpub" value="1" $htmlpub_y>
+					<input type="radio" name="htmlpub" value="1" $htmlpub_Y>
 					静态发布 (是否将栏目文章自动生成Html文件)</td>
 			</tr>
 			<tr class="line">
 				<td>列表页发布形式</td>
-				<td><input type="radio" name="listpub" value="0" $listpub_n />
+				<td><input type="radio" name="listpub" value="0" $listpub_N />
 					动态发布
-					<input type="radio" name="listpub" value="1" $listpub_y />
+					<input type="radio" name="listpub" value="1" $listpub_Y />
 					静态发布 (是否将栏目列表自动生成Html文件)</td>
 			</tr>
 			<tr class="line">
@@ -264,23 +264,23 @@ print <<<EOT
 			</tr>
 			<tr class="line">
 				<td>是否自动发布</td>
-				<td><input name="autopub" type="radio" value="1" $autopub_y>
+				<td><input name="autopub" type="radio" value="1" $autopub_Y>
 					自动发布
-					<input type="radio" name="autopub" value="0" $autopub_n />
+					<input type="radio" name="autopub" value="0" $autopub_N />
 					手动发布 (添加文章之后自动发布出去还是手动发布)</td>
 			</tr>
 			<tr class="line">
 				<td>是否允许评论</td>
-				<td><input type="radio" name="comment" value="1" $comment_y />
+				<td><input type="radio" name="comment" value="1" $comment_Y />
 					开启评论
-					<input type="radio" name="comment" value="0" $comment_n />
+					<input type="radio" name="comment" value="0" $comment_N />
 					关闭评论</td>
 			</tr>
 			<tr class="line">
 				<td>是否开启文章水印</td>
-				<td><input type="radio" name="copyctrl" value="1" $copyctrl_y />
+				<td><input type="radio" name="copyctrl" value="1" $copyctrl_Y />
 					开启水印
-					<input type="radio" name="copyctrl" value="0" $copyctrl_n />
+					<input type="radio" name="copyctrl" value="0" $copyctrl_N />
 					关闭水印 (防止文章被复制)</td>
 			</tr>
 			<tr class="line">
@@ -291,12 +291,12 @@ print <<<EOT
 			<tr class="line">
 				<td>栏目首页模板</td>
 				<td><input name="tpl_index" type="text" class="txt" id="tpl_index" value="$tpl_index" size="50" />
-					<img src="images/admin/selecttpl.png" name="Submit2" onclick="selectTpl('tpl_index');" align="absmiddle" style="cursor:pointer" /></td>
+					<img src="images/admin/addtpl.gif" onclick="selectTpl('tpl_index');" width="16" height="16" align="absmiddle" style="cursor:pointer" /></td>
 			</tr>
 			<tr class="line">
 				<td>内容页模板</td>
 				<td><input name="tpl_content" type="text" class="txt" id="tpl_content" value="$tpl_content" size="50" />
-					<img src="images/admin/selecttpl.png" name="Submit22" onclick="selectTpl('tpl_content');" align="absmiddle" style="cursor:pointer" /></td>
+					<img src="images/admin/addtpl.gif" onclick="selectTpl('tpl_content');" width="16" height="16" align="absmiddle" style="cursor:pointer" /></td>
 			</tr>
 		</table>
 	</div>
@@ -310,7 +310,7 @@ print <<<EOT
 		<input type="submit" name="submit" value="提交" class="btn">
 	</div>
 </form>
-<script type="text/JavaScript">
+<script type="text/javascript">
 <!--
 function selectTpl(name){
 	window.open('$basename&action=selectTpl&inputname='+name);

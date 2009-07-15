@@ -35,18 +35,17 @@ foreach($gather as $value){
 print <<<EOT
 -->
   <tr class="tr3">
-    <td><img src="images/admin/page_gat.gif" align="absmiddle" /></td>
+    <td><img src="images/admin/document_gat.gif" width="16" height="16" align="absmiddle" /></td>
     <td>$value[gid]</td>
-    <td>$value[gname]</td>
+    <td><a href="$basename&action=view&gid=$value[gid]">$value[gname]</a></td>
     <td>$value[module]</td>
     <td>
-	<a href="javascript:void(0);" onClick="gather('$value[gid]','0');"><img src="images/admin/start.gif" alt="开始采集" border="0" align="absmiddle" /></a> &nbsp;
-	<a href="$basename&action=view&gid=$value[gid]"><img src="images/admin/view.gif" alt="查看" border="0" align="absmiddle" /></a>&nbsp;
-	<a href="javascript:void(0);" onClick="gather('$value[gid]','1');"><img src="images/admin/test.gif" alt="采集测试" border="0" align="absmiddle" /></a> &nbsp;
+	<a href="javascript:void(0);" onclick="gather('$value[gid]','0');"><img src="images/admin/start.gif" alt="开始采集" width="16" height="16" align="absmiddle" /></a>
+	<a href="javascript:void(0);" onclick="gather('$value[gid]','1');"><img src="images/admin/test.gif" alt="采集测试" width="16" height="16" align="absmiddle" /></a>
 	</td>
-    <td><a href="$basename&action=edit&gid=$value[gid]"><img src="images/admin/edit.gif" alt="编辑" border="0" align="absmiddle" /></a>&nbsp;
-	<a href="javascript:void(0);" onclick="return delgather($value[gid]);"><img src="images/admin/delete.gif" alt="删除" border="0" align="absmiddle" /></a>
-	&nbsp;<a href="$basename&action=export&gid=$value[gid]"><img src="images/admin/export.gif" alt="导出" border="0" align="absmiddle"  /></a></td>
+    <td><a href="$basename&action=edit&gid=$value[gid]"><img src="images/admin/edit.gif" alt="编辑" width="16" height="16" align="absmiddle" /></a>
+	<a href="javascript:void(0);" onclick="return delgather($value[gid]);"><img src="images/admin/delete.gif" alt="删除" width="16" height="16" align="absmiddle" /></a>
+	<a href="$basename&action=export&gid=$value[gid]"><img src="images/admin/export.gif" alt="导出" width="16" height="16" align="absmiddle" /></a></td>
   </tr>
 <!--
 EOT;

@@ -66,7 +66,7 @@ print <<<EOT
 -->
 	<tr class="tr3">
 		<td><input type="checkbox" name="tabledb[]" value="$tablename" /></td>
-		<td><img src="images/admin/page_db.gif" align="absmiddle" /></td>
+		<td><img src="images/admin/document_db.gif" width="16" height="16" align="absmiddle" /></td>
 		<td>$id</td>
 		<td >$table</td>
 	</tr>
@@ -109,7 +109,7 @@ print <<<EOT
 -->
 	<tr class="tr3">
 		<td><input type="checkbox" name="tabledb[]" value="$table" /></td>
-		<td><img src="images/admin/page_db.gif" align="absmiddle" /></td>
+		<td><img src="images/admin/document_db.gif" width="16" height="16" align="absmiddle" /></td>
 		<td>$id</td>
 		<td >$table</td>
 	</tr>
@@ -158,12 +158,12 @@ $id++;
 print <<<EOT
 -->
 	<tr class="tr3">
-		<td><img src="images/admin/page_db.gif" align="absmiddle" /></td>
+		<td><img src="images/admin/document_db.gif" width="16" height="16" align="absmiddle" /></td>
 		<td>$id</td>
 		<td><a href="data/$bakfile[name]" target="_blank">$bakfile[name]</a></td>
 		<td>$bakfile[version]</td>
 		<td>$bakfile[time]</td><td>$bakfile[num]</td>
-		<td><a href="$basename&a_type=bakin&action=bakincheck&pre=$bakfile[pre]"><img src="images/admin/import.gif" align="absmiddle" alt="导入" /></a></td>
+		<td><a href="$basename&a_type=bakin&action=bakincheck&pre=$bakfile[pre]"><img src="images/admin/tick.gif" alt="导入" width="16" height="16" align="absmiddle" /></a></td>
 		<td><input name="delfile[]" type="checkbox" value="$bakfile[name]"></td>
 	</tr>
 <!--
@@ -173,8 +173,8 @@ EOT;
 </table>
 </div>
 <div class="sub">
-	<input name=action type=hidden value="del" />
-	<input type="button" name="chkall" value="全 选" onclick="CheckAll(this.form)" class="btn" />
+	<input type="hidden" name="action" value="del" />
+	<input type="button" name="chkall" value="全选" onclick="CheckAll(this.form)" class="btn" />
 	<input type="submit" name="delete" value="删除备份" onclick="return checkset('此功能不可恢复,您确认要删除选中的备份文件！');" class="btn" />
 </div>
 </form>
@@ -196,17 +196,16 @@ print <<<EOT
 <form action="$basename&a_type=bakin&action=bakin&pre=$pre" method="post">
 <div class="t">
 <table  cellspacing="0" cellpadding="0" border="0">
-	<tr class="head">
-		<td colspan="2">提示信息</td>
-	</tr>
-	<tr class="line">
+	<tr>
 		<td>备份恢复功能将覆盖原来的数据,您确认要导入备份数据</td>
-		<td><input type="submit" value="确认导入备份" class="btn" /></td>
 	</tr>
 </table>
 </div>
+<div class="sub">
+	<input type="submit" value="确认导入备份" class="btn" />
+	<input type="button" value="返回继续操作" onclick="javascript:history.go(-1);" class="btn" />
+</div>
 </form>
-<div class="sub"> <input type='button' value='返 回 继 续 操 作' onclick='javascript:history.go(-1);' class="btn" /></div>
 <!--
 EOT;
 }}

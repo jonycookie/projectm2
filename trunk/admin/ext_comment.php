@@ -86,7 +86,7 @@ class CommentManage{
 			$com['postdate'] = get_date($com['postdate']);
 			$result[] = $com;
 		}
-		${'select_'.$this->mid} = "selected";
+		${'select_'.$this->mid} = "selected=\"selected\"";
 		require PrintEot('header');
 		require PrintEot('ext_comment');
 		adminbottom();

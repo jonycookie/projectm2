@@ -111,11 +111,11 @@ function operate($msg,$jumpurl='',$t=2){
 function ifcheck($var,$out){
 	global ${$out.'_Y'},${$out.'_N'},$checks;
 	if($var){
-		${$out.'_Y'}="CHECKED";
-		$checks[$out.'_Y']="CHECKED";
+		${$out.'_Y'}="checked=\"checked\"";
+		$checks[$out.'_Y']="checked=\"checked\"";
 	}else{
-		${$out.'_N'}="CHECKED";
-		$checks[$out.'_N']="CHECKED";
+		${$out.'_N'}="checked=\"checked\"";
+		$checks[$out.'_N']="checked=\"checked\"";
 	}
 }
 

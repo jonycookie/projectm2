@@ -32,7 +32,7 @@ if($action=='search'){
 				$detail[6]=htmlspecialchars($detail[6]);
 				$adlogfor.="
 <tr class=tr3 align='center'>
-<td><img src=\"images/admin/page_log.gif\" align=\"absmiddle\" /></td>
+<td><img src=\"images/admin/document_log.gif\" align=\"absmiddle\" /></td>
 <td>$detail[1]<br /></td>
 <td>$detail[2]<br /></td>
 <td>$detail[3]<br /></td>
@@ -72,7 +72,7 @@ if($action=='search'){
 		$detail[6]=htmlspecialchars($detail[6]);
 		$adlogfor.="
 <tr class=tr3>
-<td><img src=\"images/admin/page_log.gif\" align=\"absmiddle\" /></td>
+<td><img src=\"images/admin/document_log.gif\" align=\"absmiddle\" /></td>
 <td>$detail[1]<br /></td>
 <td>$detail[2]<br /></td>
 <td>$detail[3]<br /></td>

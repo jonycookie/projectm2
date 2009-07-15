@@ -1,7 +1,7 @@
 <!--<?php
 print <<<EOT
 -->
-<script language="javascript">
+<script type="text/javascript">
 var inputname = '$inputname';
 function insertTpl(value){
 	window.opener.document.getElementById(inputname).value=value;
@@ -31,7 +31,7 @@ $i++;
 print <<<EOT
 -->
   <tr class="tr3" id="tr$i">
-    <td colspan="2"><img src="$file[icon]" width="16" height="16" hspace="5" align="absmiddle" />
+    <td colspan="2"><img src="$file[icon]" width="16" height="16" align="absmiddle" />
 	<span id='td$i'><a href="$file[url]"><span id='name$i'>$file[name]</span></a></span></td>
     <td>$file[size]<br /></td>
     <td>$file[time]<br />

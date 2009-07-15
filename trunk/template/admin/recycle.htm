@@ -55,8 +55,8 @@ print <<<EOT
     <td>$value[admin]</td>
     <td>$value[deltime]</td>
     <td>
-<a href="$basename&action=del&cid=$cid&tids=$value[tid]"><img src="images/admin/delete.gif" align="absmiddle" title="删除" onclick="return confirm('您确定要删除此内容？');" /></a>
-<a href="$basename&action=undo&cid=$cid&tids=$value[tid]"><img src="images/admin/update.gif" align="absmiddle" title="还原" onclick="return confirm('您确定要还原此内容？');" /></a>
+<a href="$basename&action=del&cid=$cid&tids=$value[tid]" onclick="return confirm('您确定要删除此内容？');"><img src="images/admin/delete.gif" alt="删除" width="16" height="16" align="absmiddle" /></a>
+<a href="$basename&action=undo&cid=$cid&tids=$value[tid]" onclick="return confirm('您确定要还原此内容？');"><img src="images/admin/update.gif" alt="还原" width="16" height="16" align="absmiddle" /></a>
 </td>
   </tr>
 <!--
@@ -73,7 +73,7 @@ EOT;
       <option value="del"  selected="selected">清空内容</option>
       <option value="undo">还原内容</option>
     </select>
-      <input name="cid" type="hidden" id="cid" value="$cid" />
+      <input type="hidden" name="cid" id="cid" value="$cid" />
     <input type="button" name="Submit3" value="全选" class="btn" onclick="CheckAll(document.list);" />
     <input type="submit" name="Submit4" value="提交" class="btn" onclick="return whole(document.list);" /></td>
     <td style="text-align:right">$pages</td>

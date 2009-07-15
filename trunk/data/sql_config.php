@@ -40,6 +40,13 @@ $moduledb=array(
 		'descrip'=>'系统内嵌模型',
 		'search'=>'0',
 	),
+	'123'=>array(
+		'mid'=>'123',
+		'mname'=>'test1',
+		'author'=>'CMS v3.3 (http://cms)',
+		'descrip'=>'',
+		'search'=>'0',
+	),
 	'-2'=>array(
 		'mid'=>'-2',
 		'mname'=>'论坛整合',

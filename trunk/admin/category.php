@@ -194,7 +194,7 @@ class Category{
 			ifcheck($comment,'comment');
 			ifcheck($copyctrl,'copyctrl');
 			$d = 'type_'.$type;
-			$$d = 'checked';
+			$$d = 'checked=\"disabled\"';
 			//ifcheck($display,'display');
 			extract($GLOBALS['checks']);
 			require_once(D_P.'data/cache/cate.php');

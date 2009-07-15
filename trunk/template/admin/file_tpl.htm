@@ -36,7 +36,7 @@ print <<<EOT
 		<td>管理</td>
 	</tr>
 	<tr class="tr3">
-		<td colspan="5"><a href="$basename&directory=$path&job=up">$path</a></td>
+		<td colspan="5"><a href="$basename&directory=$path&job=up">&gt; $path</a></td>
 	</tr>
 <!--
 EOT;
@@ -46,14 +46,14 @@ $i++;
 print <<<EOT
 -->
 	<tr class="tr3" id="tr$i">
-    <td><img src="$file[icon]" width="16" height="16" hspace="5" align="absmiddle" /></td>
+    <td><img src="$file[icon]" width="16" height="16" align="absmiddle" /></td>
     <td ondblclick="return reName($i);">
 	<span id='td$i'><a href="$file[url]"><span id='name$i'>$file[name]</span></a></span></td>
     <td>$file[size] &nbsp;</td>
     <td>$file[time] &nbsp;</td>
     <td>
-		<a href="javascript:void(0);" onclick="return reName($i);"><img src="images/admin/rename.gif" align="absmiddle" alt="改名" /></a>
-		<a href="javascript:void(0);" onclick="return removeFile($i);"><img src="images/admin/delete.gif" align="absmiddle" alt="删除" /></a>
+		<a href="javascript:void(0);" onclick="return reName($i);"><img src="images/admin/rename.gif" alt="改名" width="16" height="16" align="absmiddle" /></a>
+		<a href="javascript:void(0);" onclick="return removeFile($i);"><img src="images/admin/delete.gif" alt="删除" width="16" height="16" align="absmiddle" /></a>
 	</td>
   </tr>
 <!--
