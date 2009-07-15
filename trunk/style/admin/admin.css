@@ -597,24 +597,16 @@ filter : progid:DXImageTransform.Microsoft.Alpha(opacity=93);
 	position: relative;
 }
 .header h1{
+	float: right;
 	position: absolute;
+	margin: 0;
+	padding: 0;
 	right: 20px;
 	top: 10px;
 	font-size: 9px;
 	font-weight: bold;
 	line-height: 13px;
 	float: right;
-}
-.header h1 a {
-	display: block;
-	padding: 2px 5px;
-	border: 1px solid #f2f6fb;
-	text-decoration: none;
-}
-.header h1 a:hover {
-	display: block;
-	border: 1px solid #d0dbe7;
-	background: #fff;
 }
 .header .dock {
 	display: none;
@@ -648,7 +640,7 @@ filter : progid:DXImageTransform.Microsoft.Alpha(opacity=93);
 	float: left;
 	border-right:1px solid #d0dbe7;
 	padding: 5px 15px;
-    *padding: 6px 15px 5px 15px;
+    *padding: 6px 15px 6px 15px;
     text-decoration: none;
 	margin-bottom: -1px;
 	cursor: pointer;

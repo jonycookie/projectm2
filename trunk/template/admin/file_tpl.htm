@@ -183,16 +183,16 @@ print <<<EOT
     <td></td>
     </tr>
   <tr class="tr3">
-    <td style="text-align:center">$html</td>
+    <td><textarea name="filecontent" id="filecontent" cols="120" rows="40" class="wysiwyg">$filecontent</textarea></td>
   </tr>
 </table>
 
 </div>
 <div class="sub">
-<input type="submit" name="Submit3" value="保存文件" class="btn">
-<input name="filepath" type="hidden" id="filepath" value="$filepath">
-<input name="action" type="hidden" id="action" value="$action">
-<input name="step" type="hidden" id="step" value="2">
+<input type="submit" name="submit" value="保存文件" class="btn" />
+<input name="filepath" type="hidden" id="filepath" value="$filepath" />
+<input name="action" type="hidden" id="action" value="$action" />
+<input name="step" type="hidden" id="step" value="2" />
 </div>
 </form>
 <!--
@@ -223,7 +223,7 @@ print <<<EOT
       <input type="text" name="filename" id="filename" class="txt" />.htm (文件格式只能是htm后缀,新建文件时不需要自己填写,系统自动命名)</td>
     </tr>
   <tr class="tr3">
-    <td style="text-align:center">$html</td>
+    <td><textarea name="filecontent" id="filecontent" cols="120" rows="40" class="wysiwyg">$filecontent</textarea></td>
   </tr>
 </table>
 
