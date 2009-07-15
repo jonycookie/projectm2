@@ -155,23 +155,14 @@ class Content{
 					$field['input']=$str;
 					break;
 				case 'edit':
-					if($type=='custom') {
-						$tooltype = 'CBasic';
-					}else {
-						$tooltype = 'Default';
-					}
-					$str = $this->Editor($fieldid,$tooltype);
-					$str.= "<br />".$selectValue;
+					$str = "<textarea name=\"$fieldid\" id=\"$fieldid\" cols=\"120\" rows=\"40\" class=\"wysiwyg\"></textarea>";
+					$str.="<br /><input type=\"checkbox\" name=\"imagetolocal\" value=\"1\" /> 外部图片本地化";
+					$str.="<br /><input type=\"checkbox\" name=\"selectimage\" value=\"1\" /> 自动提取第一张图片为新闻图片";
+					$str.="<br /><input type=\"checkbox\" name=\"autofpage\" value=\"1\" /> 自动分页处理";
 					$field['input']=$str;
 					break;
 				case 'basic':
-					if($type=='custom') {
-						$tooltype = 'CBasic';
-					}else {
-						$tooltype = 'Basic';
-					}
-					$str = $this->Editor($fieldid,$tooltype);
-					$str.= $selectValue;
+					$str = "<textarea name=\"$fieldid\" id=\"$fieldid\" cols=\"80\" rows=\"5\" class=\"wysiwyg\"></textarea>";
 					$field['input']=$str;
 					break;
 			}
@@ -267,22 +258,15 @@ class Content{
 					break;
 				case 'edit':
 					$fieldvalue = stripslashes($fieldvalue);
-					if($type=='custom') {
-						$tooltype = 'CBasic';
-					}else {
-						$tooltype = 'Default';
-					}
-					$str = $this->Editor($fieldid,$tooltype,$fieldvalue);
+					$str = "<textarea name=\"$fieldid\" id=\"$fieldid\" cols=\"120\" rows=\"40\" class=\"wysiwyg\">$fieldvalue</textarea>";
+					$str.="<br /><input type=\"checkbox\" name=\"imagetolocal\" value=\"1\" /> 外部图片本地化";
+					$str.="<br /><input type=\"checkbox\" name=\"selectimage\" value=\"1\" /> 自动提取第一张图片为新闻图片";
+					$str.="<br /><input type=\"checkbox\" name=\"autofpage\" value=\"1\" /> 自动分页处理";
 					$field['input']=$str;
 					break;
 				case 'basic':
 					$fieldvalue = stripslashes($fieldvalue);
-					if($type=='custom') {
-						$tooltype = 'CBasic';
-					}else {
-						$tooltype = 'Basic';
-					}
-					$str = $this->Editor($fieldid,$tooltype,$fieldvalue);
+					$str = "<textarea name=\"$fieldid\" id=\"$fieldid\" cols=\"80\" rows=\"5\" class=\"wysiwyg\">$fieldvalue</textarea>";
 					$field['input']=$str;
 					break;
 			}
@@ -298,52 +282,6 @@ class Content{
 		return $inputArea;
 	}
 
-	/**
-	 * FCK编辑器生成
-	 *
-	 * @param string $inputname
-	 * @param string $Value
-	 * @return string
-	 */
-	function Editor($inputname,$tooltype,$Value=''){
-		global $sys;
-		if($tooltype=='Default' || $tooltype=='CDefault'){
-			$height=420;
-			$width=650;
-		}elseif($tooltype=='Basic'){
-			$height=150;
-			$width=450;
-		}elseif($tooltype=='CBasic') {
-			$height=150;
-			$width=500;
-		}
-		require_once(R_P.'require/fckeditor.php');
-		$edit = new Fckeditor($inputname);
-		$edit->Height = $height;
-		$edit->Width = $width;
-		$edit->ToolbarSet = $tooltype;
-		$edit->BasePath = 'require/';
-		$edit->Value = $Value;
-		$edit->BaseSrc = $sys['url'];
-		$edit->BaseName = $GLOBALS['admin_file'];
-		$Html = $edit->CreateHtml();
-		if($tooltype=='Default'){
-			$Html.="<br /><input type=\"checkbox\" name=\"imagetolocal\" value=\"1\" /> 外部图片本地化";
-			$Html.="<br /><input type=\"checkbox\" name=\"selectimage\" value=\"1\" /> 自动提取第一张图片为新闻图片";
-			$Html.="<br /><input type=\"checkbox\" name=\"autofpage\" value=\"1\" /> 自动分页处理";
-		}
-		//$basedir = "editor";
-		/*		if($this->IsCompatible()){
-		$url = urlencode($basename);
-		$Html.="<iframe src=\"$basename&action=wysiswyg&inputname=$inputname&basename=$url\" height=\"$height\" width=\"$width\" frameborder=\"0\" scrolling=\"no\"></iframe>";
-		$Value = ltrim($Value);
-		$Value = htmlspecialchars($Value);
-		$Html.= "<input type=\"hidden\" name=\"$inputname\" id=\"$inputname\" value=\"$Value\">";
-		}else{
-		$Html = "<textarea name=\"{$inputname}\" rows=\"4\" cols=\"40\" style=\"width: {$width}px; height: {$height}px;\">{$Value}</textarea>" ;
-		}*/
-		return $Html;
-	}
 
 	/**
 	 * 判断浏览器
