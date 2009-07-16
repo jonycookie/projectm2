@@ -17,7 +17,7 @@ print <<<EOT
     </tr>
   <tr class="tr2">
     <td width="20">&nbsp;</td>
-    <td>cid</td>
+    <td>CID</td>
     <td>分类名</td>
     <td>内容模型</td>
     <td>子分类</td>
@@ -87,15 +87,6 @@ EOT;
 }elseif($action=='view'){
 print <<<EOT
 -->
-<script language="javascript">
-function orderstyle(id,f){
-  if(f){
-    document.getElementById(id).className = "st orderover";
-  }else{
-    document.getElementById(id).className = "st";
-  }
-}
-</script>
 <div class="t">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -125,9 +116,9 @@ function orderstyle(id,f){
 </div>
 <form action="$basename" method="post" name="pub_edit">
 <div class="t">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table border="0" cellspacing="0" cellpadding="0">
   <tr class="head">
-    <td colspan="8">
+    <td colspan="9">
 <!--
 EOT;
 if($mid>0){
@@ -141,26 +132,24 @@ EOT;
       {$cname} <a href="?adminjob=category&action=viewlist&cid=$cid" target="_blank"><img src="images/admin/document_cate.gif" alt="栏目首页" width="16" height="16" align="absmiddle" /></a> <a href="rss.php?cid=$cid" target="_blank"><img src="images/admin/document_feed.gif" alt="RSS" width="16" height="16" align="absmiddle" /></a> <a href="$admin_file?adminjob=category&action=edit&action=edit&cid=$cid"><img src="images/admin/edit.gif" alt="栏目设置" width="16" height="16" align="absmiddle" /></a></td>
     </tr>
   <tr class="tr2">
-    <td><span id="ordertid" class="st" onmouseover="orderstyle(this.id,1);" onmouseout="orderstyle(this.id,0);" onclick="window.location='$cururl&order=tid&orderby=$orderby1&'">序号$orderimg[tid]</span></td>
-    <td><span id="ordertitle" class="st" onmouseover="orderstyle(this.id,1);" onmouseout="orderstyle(this.id,0);" onclick="window.location='$cururl&order=title&orderby=$orderby1&'">标题$orderimg[title]</span></td>
-    <td><span id="orderpublisher" class="st" onmouseover="orderstyle(this.id,1);" onmouseout="orderstyle(this.id,0);" onclick="window.location='$cururl&order=publisher&orderby=$orderby1&'">发布者$orderimg[publisher]</span></td>
-    <td><span id="orderdigest" class="st" onmouseover="orderstyle(this.id,1);" onmouseout="orderstyle(this.id,0);" onclick="window.location='$cururl&order=digest&orderby=$orderby1&'">推荐$orderimg[digest]</span></td>
-    <td><span id="orderhits" class="st" onmouseover="orderstyle(this.id,1);" onmouseout="orderstyle(this.id,0);" onclick="window.location='$cururl&order=hits&orderby=$orderby1&'">浏览$orderimg[hits]</span></td>
-    <td><span id="orderifpub" class="st" onmouseover="orderstyle(this.id,1);" onmouseout="orderstyle(this.id,0);" onclick="window.location='$cururl&order=ifpub&orderby=$orderby1&'">状态$orderimg[ifpub]</span></td>
-    <td><span id="orderpostdate" class="st" onmouseover="orderstyle(this.id,1);" onmouseout="orderstyle(this.id,0);" onclick="window.location='$cururl&order=postdate&orderby=$orderby1&'">添加时间$orderimg[postdate]</span></td>
+    <td width="20"><a href="javascript:void(0);" onclick="$('input[name=\'tids[]\']').click()">#</a></td>
+    <td><a href="$cururl&order=tid&orderby=$orderby1&">序号$orderimg[tid]</a></td>
+    <td><a href="$cururl&order=title&orderby=$orderby1&">标题$orderimg[title]</a></td>
+    <td><a href="$cururl&order=publisher&orderby=$orderby1&">发布者$orderimg[publisher]</a></td>
+    <td><a href="$cururl&order=digest&orderby=$orderby1&">推荐$orderimg[digest]</a></td>
+    <td><a href="$cururl&order=hits&orderby=$orderby1&">浏览$orderimg[hits]</a></td>
+    <td><a href="$cururl&order=ifpub&orderby=$orderby1&">状态$orderimg[ifpub]</a></td>
+    <td><a href="$cururl&order=postdate&orderby=$orderby1&">添加时间$orderimg[postdate]</a></td>
     <td>操作</td>
   </tr>
 <!--
 EOT;
-$i=0;
 foreach($content as $value){
-$value[title]=substrs($value[title],50);
-$bgcolor = $i%2==0 ? 't_one' : 't_two';
-$i++;
+	$value[title]=substrs($value[title],50);
 if($value[url]==''){
-$value[url]='javascript:void(0);';
+	$value[url]='javascript:void(0);';
 }else{
-$target=" target=\"_blank\"";
+	$target=" target=\"_blank\"";
 }
 $imgadd = $value[photo] ? "<img src=\"images/admin/img.gif\" align=\"absmiddle\" alt=\"图文\" />" : '';
 switch($value[ifpub]){
@@ -184,9 +173,9 @@ $value[postdate] = get_date($value[postdate],'m-d H:i');
 $value[title] = strip_tags($value[title]);
 print <<<EOT
 -->
-  <tr class="tr3 $bgcolor">
-    <td><input name="tids[]" type="checkbox" id="tids[]" value="$value[tid]" />
-      $value[tid]</td>
+  <tr class="tr3">
+    <td><input name="tids[]" type="checkbox" value="$value[tid]" /></td>
+    <td>$value[tid]</td>
     <td><a href="$value[url]" style="$value[titlestyle]" $target >$value[title]</a> $imgadd</td>
     <td>$value[publisher]<br /></td>
     <td>{$value[digest]}</td>
@@ -216,9 +205,9 @@ EOT;
 -->
 </table>
 </div>
-<div class='t' id='tagdiv' style="display:none;">
+<div class="t" id="batchtag" style="display:none;">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr class="line">
+	<tr>
 		<td>当前Tags</td>
 		<td><input type="text" id="tags" name="tags" size="70" value="$tags"  onfocus="showtag();" class="txt" />
 		标签之间请使用逗号,最多5个<br />
@@ -229,8 +218,8 @@ EOT;
 <div class="t">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td>操作:
-      <select name="job" id="job" onchange="showTarget(this.value);">
+    <td>
+      <select name="job" id="job" onchange="$('#'+this.value).show();">
 	      <option value="move">移动内容</option>
 	      <option value="copy">复制内容</option>
 	      <option value="pubview" selected="selected">发布内容</option>
@@ -240,17 +229,14 @@ EOT;
 	      <option value="pubupdate">更新发布</option>
 		  <option value="batchtag">批量标签</option>
 	  </select>
-	<span id="target" style="display:none">
-    目标:
+	  目标:
       <select name="tocid" id="tocid">
         <option value="0" selected="selected">请选择</option>
-	$cate_select
+		$cate_select
 		</select>
-	  </span>
       <input type="hidden" name="cid" id="cid" value="$cid" />
       <input type="hidden" name="action" id="action" value="whole" />
-    <input type="button" name="Submit3" value="全选" class="btn" onclick="CheckAll(document.pub_edit);" />
-    <input type="submit" name="Submit4" value="提交" class="btn" onclick="return whole(document.pub_edit);" /></td>
+    <input type="submit" name="submit" value="提交" class="btn" /></td>
     <td style="text-align:right">$cms->page</td>
   </tr>
 </table>

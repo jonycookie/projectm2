@@ -39,7 +39,7 @@ print <<<EOT
     <td colspan="6">评论信息管理</td>
     </tr>
   <tr class="tr2">
-    <td width="20">&nbsp;</td>
+    <td width="20">#</td>
     <td>原文标题</td>
     <td>评论人</td>
     <td>评论时间</td>
@@ -52,7 +52,7 @@ foreach($result as $val){
 print <<<EOT
 -->
   <tr class="tr3">
-    <td><input type="checkbox" name="ids[$val[tid]][]" id="ids[$val[tid]]" value="$val[id]" /></td>
+    <td><input type="checkbox" name="ids[$val[tid]][]" value="$val[id]" /></td>
     <td><a href="$val[url]" target="_blank">$val[title]</a></td>
     <td>$val[author]&nbsp;($val[fromip])</td>
     <td>$val[postdate]&nbsp;</td>
@@ -69,7 +69,6 @@ EOT;
 <div class="sub">
   <input name="action" type="hidden" id="action" value="delall">
   <input name="mid" type="hidden" id="mid" value="$this->mid">
-  <input type="button" name="button" value="全选" onClick="CheckAll(document.FORM);" class="btn" />
   <input type="submit" name="submit" value="删除选中评论" onClick="return confirm('您确定要删除选中的评论？')"class="btn" />
 </div>
 </form>

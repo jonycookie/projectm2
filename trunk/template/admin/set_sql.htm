@@ -43,7 +43,7 @@ EOT;
 if($a_type=='bakout'){
 print <<<EOT
 -->
-<form action="$basename&" method=post>
+<form action="$basename&" method="post" id="cms">
 <input type=hidden name="action" value="bakout">
 <div class="t">
 <table cellspacing="0" cellpadding="0" border="0">
@@ -51,7 +51,7 @@ print <<<EOT
 		<td colspan="4">数据库表</td>
 	</tr>
 	<tr class="tr2">
-		<td width="20">选择</td>
+	    <td width="20"><a href="javascript:void(0);" onclick="$('#cms input[name=\'tabledb[]\']').click()">#</a></td>
 		<td width="20">&nbsp;</td>
 		<td>ID</td>
 		<td>数据库表</td>
@@ -83,11 +83,10 @@ EOT;
 </table>
 </div>
 <div class="sub">
-	<input type="button" class="btn" name="chkall" value="全 选" onclick="CheckAll(this.form)">
-	<input type="submit" value="提 交" class="btn">
+	<input type="submit" value="提交" class="btn">
 </div>
 </form>
-<form action="$basename&" method=post>
+<form action="$basename&" method="post" id="non_cms">
 <input type="hidden" name="action" value="bakout" />
 <div class="t">
 <table cellspacing="0" cellpadding="0" border="0">
@@ -95,7 +94,7 @@ EOT;
 		<td colspan="4">非CMS数据库表 (本系统的插件或其他系统的数据库表)</td>
 	</tr>
 	<tr class="tr2">
-		<td width="20">选择</td>
+	    <td width="20"><a href="javascript:void(0);" onclick="$('#non_cms input[name=\'tabledb[]\']').click()">#</a></td>
 		<td width="20">&nbsp;</td>
 		<td>ID</td>
 		<td>数据库表</td>
@@ -126,8 +125,7 @@ EOT;
 </table>
 </div>
 <div class="sub">
-	<input type="button" name="chkall" value="全 选" onclick="CheckAll(this.form)" class="btn">
-	<input type="submit" value="提 交" class="btn">
+	<input type="submit" value="提交" class="btn">
 </div>
 </form>
 <!--
@@ -142,6 +140,7 @@ if(!$action){print <<<EOT
 		<td colspan="8" class="head">系统备份文件</td>
 	</tr>
 	<tr class="tr2">
+	    <td width="20"><a href="javascript:void(0);" onclick="$('input[name=\'delfile[]\']').click()">#</a></td>
 		<td width="20">&nbsp;</td>
 		<td>ID</td>
 		<td>文件名</td>
@@ -149,7 +148,6 @@ if(!$action){print <<<EOT
 		<td>备份时间</td>
 		<td>卷号</td>
 		<td>导入</td>
-		<td>删</td>
 	</tr>
 <!--
 EOT;
@@ -158,13 +156,13 @@ $id++;
 print <<<EOT
 -->
 	<tr class="tr3">
+		<td><input type="checkbox" name="delfile[]" value="$bakfile[name]"></td>
 		<td><img src="images/admin/document_db.gif" width="16" height="16" align="absmiddle" /></td>
 		<td>$id</td>
 		<td><a href="data/$bakfile[name]" target="_blank">$bakfile[name]</a></td>
 		<td>$bakfile[version]</td>
 		<td>$bakfile[time]</td><td>$bakfile[num]</td>
 		<td><a href="$basename&a_type=bakin&action=bakincheck&pre=$bakfile[pre]"><img src="images/admin/tick.gif" alt="导入" width="16" height="16" align="absmiddle" /></a></td>
-		<td><input name="delfile[]" type="checkbox" value="$bakfile[name]"></td>
 	</tr>
 <!--
 EOT;
@@ -174,20 +172,9 @@ EOT;
 </div>
 <div class="sub">
 	<input type="hidden" name="action" value="del" />
-	<input type="button" name="chkall" value="全选" onclick="CheckAll(this.form)" class="btn" />
-	<input type="submit" name="delete" value="删除备份" onclick="return checkset('此功能不可恢复,您确认要删除选中的备份文件！');" class="btn" />
+	<input type="submit" name="delete" value="删除备份" onclick="return confirm('此功能不可恢复,您确认要删除选中的备份文件！');" class="btn" />
 </div>
 </form>
-<script language=JavaScript>
-function checkset(confirm_info)
-{
-	if(confirm(confirm_info)){
-		return true;
-	} else {
-		return false;
-	}
-}
-</script>
 <!--
 EOT;
 }elseif($action=='bakincheck'){

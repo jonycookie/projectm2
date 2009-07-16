@@ -449,7 +449,7 @@ print <<<EOT
     <td colspan="7">$gname 采集结果</td>
   </tr>
   <tr class="tr2">
-    <td>&nbsp;</td>
+    <td width="20"><a href="javascript:void(0);" onclick="$('input[name=\'tids[]\']').click()">#</a></td>
     <td>序号</td>
     <td>标题</td>
     <td>采集时间</td>
@@ -464,7 +464,7 @@ $i++;
 print <<<EOT
 -->
   <tr class="tr3">
-    <td><input name="tids[]" type="checkbox" id="tids[]" value="$value[tid]" /></td>
+    <td><input type="checkbox" name="tids[]" value="$value[tid]" /></td>
     <td>$i</td>
     <td><a href="$value[url]" target="_blank">$value[title]</a></td>
     <td>$value[postdate]</td>
@@ -480,37 +480,28 @@ EOT;
 <div class="t">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><select name="method" id="method"  onchange="showTarget(this.value);">
+    <td><select name="method" id="method">
       <option value="delgather">删除</option>
       <option value="usegather" selected="selected">入库</option>
     </select>
-	<span id="target">
-    目标:
-      <select name="tocid" id="tocid" >
-	$cate_select
+    入库目标:
+    <select name="tocid" id="tocid" >
+		$cate_select
 	</select>
-	<input type="checkbox" name="useall" value="1" />入库全部采集
-	</span>
-      <input name="fromcid" type="hidden" id="fromcid" value="$cid" />
-      <input name="gid" type="hidden" id="gid" value="$gid" />
-      <input name="action" type="hidden" id="action" value="whole" />
-    <input type="button" name="Submit3" value="全选" class="btn" onclick="CheckAll(document.gat);" />
-    <input type="submit" name="Submit4" value="提交" class="btn" /></td>
+	<label><input type="checkbox" name="useall" value="1" />入库全部采集</label>
+    </td>
     <td style="text-align:right">$pages</td>
   </tr>
 </table>
 </div>
+<div class="sub">
+      <input name="fromcid" type="hidden" id="fromcid" value="$cid" />
+      <input name="gid" type="hidden" id="gid" value="$gid" />
+      <input name="action" type="hidden" id="action" value="whole" />
+      <input type="submit" name="submit" value="提交" class="btn" />
+</div>
 </form>
-<script language="javascript">
-function showTarget(id){
-	var target = document.getElementById('target');
-	if(id=='usegather'){
-		target.style.display='';
-	}else{
-	 	target.style.display='none';
-	}
-}
-</script>
+
 <!--
 EOT;
 }

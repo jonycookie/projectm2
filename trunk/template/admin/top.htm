@@ -9,19 +9,6 @@ print <<<EOT
 <link href="style/admin/admin.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="script/jquery.js"></script>
 <script type="text/javascript" src="script/jquery.tabber.js"></script>
-<script type="text/javascript">  
-$(function() {
-	$("#navtab").tabber({
-		tabs: '.tabMenu a',
-		selectedClass: 'active',
-		contents: '.tabContent',
-		defaultTab: ':first',
-		effect: 'none',
-		effectSpeed: 'fast',
-		eventName: 'mouseover'
-	})
-});
-</script>
 </head>
 <body>
 <div class="header">
@@ -32,8 +19,8 @@ $(function() {
 			<li><a href="$admin_file?adminjob=login&action=out" target="_parent" onclick="return confirm('您确认要离开本管理系统么?');">退出登录</a></li>
 		</ul>
 	</div>
-	<div id="navtab" class="tabs">
-		<ul class="tabMenu">
+	<div class="tabber">
+		<ul class="tabs">
 <!--
 EOT;
 foreach ($menu_father as $key=>$val){
@@ -51,7 +38,7 @@ EOT;
 foreach ($menu_father as $key=>$val){
 print <<<EOT
 -->
-		<ul class="tabContent" id="$key">
+		<ul class="content" id="$key">
 <!--
 EOT;
 foreach ($menu_child[$key] as $k=>$v){
@@ -71,6 +58,13 @@ print <<<EOT
 -->
 	</div>
 </div>
+<script type="text/javascript">
+$(function(){
+	$(".tabber").tabber({
+		eventName: 'mouseover'
+	});
+});
+</script>
 </body>
 </html>
 <!--

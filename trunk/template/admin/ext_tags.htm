@@ -21,7 +21,7 @@ print <<<EOT
     <td colspan="6">标签管理器</td>
     </tr>
   <tr class="tr2">
-    <td width="5%">&nbsp;</td>
+    <td width="20"><a href="javascript:void(0);" onclick="$('input[name=\'tagid[]\']').click()">#</a></td>
 	<td>TAGID</td>
     <td>标签名称</td>
     <td>相关内容</td>
@@ -34,7 +34,7 @@ while($taginfo = $db->fetch_array($tagdb)){
 print <<<EOT
 -->
   <tr class="tr3">
-     <td><input name="tagid[]" type="checkbox" id="tagid" value="$taginfo[tagid]" /></td>
+     <td><input name="tagid[]" type="checkbox" value="$taginfo[tagid]" /></td>
 	 <td>$taginfo[tagid]</td>
     <td>$taginfo[tagname]</td>
     <td>$taginfo[num]</td>
@@ -51,10 +51,8 @@ EOT;
 <div class="pages">$pages</div>
 <div class="sub">
 	<input name="action" type="hidden" id="action" value="del" />
-	<input type="button" class="btn" onclick="CheckAll(document.FORM);" value="全选" />
-	<input type="submit" name="Submit3" value="删除选中标签" onclick="return confirm('您确定要删除选中的标签？');" class="btn" />
+	<input type="submit" name="submit" value="删除选中标签" onclick="return confirm('您确定要删除选中的标签？');" class="btn" />
 </div>
-<script language="javascript" src="images/admin/admin.js"></script>
 </form>
 <!--
 EOT;
