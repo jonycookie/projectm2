@@ -258,12 +258,6 @@
                 tags : ['img']
             },
 
-            uploadImage : {
-                visible : true,
-                exec    : function()
-                {selectImg('content')},
-            },
-
             separator06 : { separator : true },
 
             h1mozilla : { visible : true && $.browser.mozilla, className : 'h1', command : 'heading', arguments : ['h1'], tags : ['h1'] },
