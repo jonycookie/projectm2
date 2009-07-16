@@ -12,9 +12,9 @@ if(jQuery) (function($){
 
 			// Defaults
 			if( !o ) var o = {};
-			if( o.tabs == undefined ) o.tabs = '.tabMenu a';
+			if( o.tabs == undefined ) o.tabs = '.tabs a';
 			if( o.selectedClass == undefined ) o.selectedClass = 'active';
-			if( o.contents == undefined ) o.contents = '.tabContent';
+			if( o.contents == undefined ) o.contents = '.content';
 			if( o.defaultTab == undefined ) o.defaultTab = ':first';
 			if( o.effect == undefined ) o.effect = 'none';
 			if( o.effectSpeed == undefined ) o.effectSpeed = 'fast';
