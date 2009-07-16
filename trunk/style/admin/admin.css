@@ -576,6 +576,7 @@ filter : progid:DXImageTransform.Microsoft.Alpha(opacity=93);
 
 .wysiwyg ul.panel li a.createLink { background-position: -80px -48px; }
 .wysiwyg ul.panel li a.insertImage { background-position: -80px -80px; }
+.wysiwyg ul.panel li a.uploadImage { background-position: -80px -80px; }
 
 .wysiwyg ul.panel li a.html { background-position: -48px -48px; }
 .wysiwyg ul.panel li a.removeFormat { background-position: -80px -64px; }
