@@ -25,7 +25,7 @@ if(!$action){
 	require PrintEot('tree');
 	adminbottom(0);
 }elseif ($action=='showXML'){
-	$xmlmsg = "<ul class=\"jqueryFileTree\" style=\"display: none;\">\n";
+	$xmlmsg = "<ul class=\"jqueryFileTree\">\n";
 	if($admin_name==$manager|| !$admindb['privcate']){
 		$rs = $db->query("SELECT * FROM cms_category WHERE up='$cid'");
 	}else{
