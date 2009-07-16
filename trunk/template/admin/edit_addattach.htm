@@ -80,7 +80,7 @@ $mediaext = array('swf','wma','mp3','wmv','avi','asx','mov','rm','rmvb','mid');
 $addonext = array('doc','xls','ppt','rar','zip','7z','txt','wps','docx');
 foreach($files as $file){
 if(in_array(strtolower($file[type]),$imgext)||in_array(strtolower($file[type]),$mediaext)||in_array(strtolower($file[type]),$addonext)){
-$addimg="<img src=\"images/admin/insert.gif\" style=\"cursor:pointer;\" align=\"absmiddle\" onClick=\"insertImg($file[aid],'".$file[filepath]."',$file[isftp]);\" alt=\"插入此文件\">";
+$addimg="<img src=\"images/admin/insert.gif\" style=\"cursor:pointer;\" align=\"absmiddle\" onclick=\"insertImg($file[aid],'".$file[filepath]."',$file[isftp]);\" alt=\"插入此文件\">";
 }else{
 $addimg='';
 }
