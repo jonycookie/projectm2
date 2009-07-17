@@ -1,0 +1,133 @@
+<!--{eval $_TPL['titles'] = array('记录');}-->
+<!--{template header}-->
+
+<!--{if $space[self]}-->
+<h2 class="title"><img src="image/app/doing.gif">记录</h2>
+<div class="tabs_header">
+	<ul class="tabs">
+		<!--{if $space[friendnum]}--><li$actives[we]><a href="space.php?uid=$space[uid]&do=$do"><span>最新好友记录</span></a></li><!--{/if}-->
+		<li$actives[me]><a href="space.php?uid=$space[uid]&do=$do&view=me"><span>我的记录</span></a></li>
+		<li$actives[all]><a href="space.php?uid=$space[uid]&do=$do&view=all"><span>大家的记录</span></a></li>
+		<li$actives[mood]><a href="space.php?uid=$space[uid]&do=mood"><span>同心情的朋友</span></a></li>
+	</ul>
+</div>
+<!--{else}-->
+<!--{eval 
+	$_TPL['spacetitle'] = "记录";
+}-->
+<!--{template space_menu}-->
+<!--{/if}-->
+
+<div id="content">	
+
+	<!--{if $space[self]}-->
+	<form method="post" action="cp.php?ac=doing&view=$_GET[view]" class="post_doing">
+		<ul style="margin-bottom: 1em;">
+			<li>
+				<p>		
+				<table cellspacing="0" cellpadding="0" width="100%">
+				<tr>
+				<td><a href="###" id="face" onclick="showFace(this.id, 'message');"><img src="image/facelist.gif" align="absmiddle" /></a></td>
+				<!--{if checkperm('seccode')}-->
+				<td>
+					<!--{if $_SCONFIG['questionmode']}-->
+					请先回答提问：<!--{eval question();}--> 
+					<!--{else}-->
+					请先输入验证码：<script>seccode();</script> 
+					<!--{/if}-->
+					<input type="text" id="seccode" name="seccode" value="" size="10" class="t_input">
+				</td>
+				<!--{/if}-->
+				<td align="right">还可输入 <strong id="maxlimit">200</strong> 个字符</td>
+				</tr>
+				</table>
+				<textarea id="message" name="message" onkeyup="textCounter(this, 'maxlimit', 200)" onkeydown="ctrlEnter(event, 'add');" rows="4" style="width:438px; height: 72px;"></textarea>
+				<input type="hidden" name="addsubmit" value="true" />
+				<button type="submit" id="add" name="add" class="post_button">发布</button>
+				</p>
+			</li>
+		</ul>
+	<input type="hidden" name="refer" value="$theurl" />
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+	</form>
+	<!--{/if}-->
+
+	<!--{if $list}-->
+	<div class="doing_list">
+		<ol>
+		<!--{loop $list $basevalue}-->
+			<li id="dl$basevalue[doid]">
+				<div class="avatar48"><a href="space.php?uid=$basevalue[uid]"><img src="<!--{avatar($basevalue[uid],small)}-->" alt="{$_SN[$basevalue[uid]]}" /></a></div>
+				<div class="doing">
+					<div class="doingcontent"><a href="space.php?uid=$basevalue[uid]">{$_SN[$basevalue[uid]]}</a>: <span>$basevalue[message]</span> 
+					<a href="cp.php?ac=doing&op=comment&doid=$basevalue[doid]" id="do_comment_$basevalue[doid]" onclick="ajaxmenu(event, this.id, 99999, '', -1)" class="re">回复</a>
+					<!--{if $basevalue[uid]==$_SGLOBAL[supe_uid]}--> <a href="cp.php?ac=doing&op=delete&doid=$basevalue[doid]&id=$basevalue[id]" id="doing_delete_{$basevalue[doid]}_{$basevalue[id]}" onclick="ajaxmenu(event, this.id, 99999)" class="re gray">删除</a><!--{/if}-->
+					</div>
+					<div class="doingtime">(<!--{date('m-d H:i',$basevalue[dateline],1)}-->)</div>
+		
+					<!--{if $clist[$basevalue[doid]] || $doid}-->
+					<div class="sub_doing">
+					<ol>
+					
+					<!--{if $doid}-->
+						<li>
+							<div class="doingre">
+							<form method="post" id="doingform" name="doingform" action="cp.php?ac=doing&op=comment&doid=$doid">
+							<h1>评论两句</h1>
+							<p class="btn_line">
+								<a href="###" id="face_$doid" onclick="showFace(this.id, 'message_$doid');"><img src="image/facelist.gif" align="absmiddle" /></a>
+								<input type="text" name="message" id="message_$doid" value="" class="t_input" size="35">
+								<input type="hidden" name="refer" value="$theurl">
+								<input type="hidden" name="commentsubmit" value="true">
+								<input type="submit" name="commentsubmit_submit" value="确定" class="submit" />
+							</p>
+							<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+							</form>
+							</div>
+						</li>
+					<!--{/if}-->
+					
+					<!--{loop $clist[$basevalue[doid]] $value}-->
+						<li style="margin-left: {$value[layer]}em;<!--{if $value[id]==$_GET[highlight]}-->color:red;font-weight:bold;<!--{/if}-->">
+						<a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a>: $value[message] <span class="doingtime">(<!--{date('m-d H:i',$value[dateline],1)}-->)</span> 
+						<a href="cp.php?ac=doing&op=comment&doid=$value[doid]&id=$value[id]" id="do_comment_{$value[doid]}_{$value[id]}" onclick="ajaxmenu(event, this.id, 99999, '', -1)" class="re">回复</a>
+						<!--{if $value[uid]==$_SGLOBAL[supe_uid] || $basevalue[uid] == $_SGLOBAL[supe_uid]}--> <a href="cp.php?ac=doing&op=delete&doid=$value[doid]&id=$value[id]" id="doing_delete_{$value[doid]}_{$value[id]}" onclick="ajaxmenu(event, this.id, 99999)" class="gray">删除</a><!--{/if}-->
+						</li>
+					<!--{/loop}-->
+					</ol>
+					</div>
+					<!--{/if}-->
+				</div>
+			</li>
+		<!--{/loop}-->
+		</ol>
+		<div class="page">$multi</div>
+	</div>
+	
+	<!--{else}-->
+	<div class="c_form">现在还没有记录。<!--{if $space[self]}-->你可以用一句话记录下这一刻在做什么。<!--{/if}--></div>
+	<!--{/if}-->
+</div>
+
+<div id="sidebar">
+	<!--{if $moodlist}-->
+	<div class="sidebox">
+		<h2 class="title">
+			<p class="r_option"><a href="space.php?uid=$space[uid]&do=mood">全部</a></p>
+			跟<!--{if $space[self]}-->我<!--{else}-->{$_SN[$space[uid]]}<!--{/if}-->同心情的朋友
+		</h2>
+		<ul class="avatar_list">
+			<!--{loop $moodlist $key $value}-->
+			<li>
+				<div class="avatar48"><a href="space.php?uid=$value[uid]&do=doing"><img src="<!--{avatar($value[uid],small)}-->" alt="{$_SN[$value[uid]]}" /></a></div>
+				<p><a href="space.php?uid=$value[uid]" title="{$_SN[$value[uid]]}">{$_SN[$value[uid]]}</a></p>
+				<p class="time"><!--{date('n月j日',$value[updatetime],1)}--></p>
+			</li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<!--{/if}-->
+</div>
+<!--/sidebar-->
+
+<!--{template footer}-->

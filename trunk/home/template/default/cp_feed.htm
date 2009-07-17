@@ -1,0 +1,66 @@
+<!--{template header}-->
+
+<!--{if $_GET['op'] == 'delete'}-->
+<div id="$feedid" <!--{if !$_SGLOBAL[inajax]}-->class="inpage"<!--{/if}-->>
+<form method="post" id="feedform_{$feedid}" name="feedform_{$feedid}" action="cp.php?ac=feed&op=delete&feedid=$feedid">
+	<h1>确定删除该动态吗？</h1>
+	<p class="btn_line">
+		<input type="hidden" name="refer" value="$_SGLOBAL[refer]">
+		<!--{if $_SGLOBAL[inajax]}-->
+		<input type="hidden" name="feedsubmit" value="true" />
+		<button name="feedsubmit_btn" type="button" class="submit" value="true" onclick="ajaxpost('feedform_{$feedid}', '$feedid', 'feed_delete')">确定</button>
+		<button name="btncancel" type="button" class="button" onclick="hideMenu()">取消</button>
+		<!--{else}-->
+		<button name="feedsubmit" type="submit" class="submit" value="true">确定</button>
+		<!--{/if}-->
+	</p>
+	
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+</form>
+</div>
+
+<!--{elseif $_GET['op'] == 'ignore'}-->
+
+<div id="$_GET[feedid]" <!--{if !$_SGLOBAL[inajax]}-->class="inpage"<!--{/if}-->>
+<form method="post" id="feedform_{$_GET[feedid]}" name="feedform_{$_GET[feedid]}" action="cp.php?ac=feed&op=ignore&icon=$icon">
+	<h1>屏蔽指定动态</h1>
+	<p>在下次浏览时不再显示此类动态</p>
+	<p class="btn_line">
+		<input type="radio" name="uid" id="uid1" value="$_GET[uid]" checked> <label for="uid1">仅屏蔽该好友的</label>
+		<br>
+		<input type="radio" name="uid" id="uid0" value="0"> <label for="uid0">屏蔽所有好友的</label>
+		<br><br>
+		<input type="hidden" name="refer" value="$_SGLOBAL[refer]">
+		<!--{if $_SGLOBAL[inajax]}-->
+		<input type="hidden" name="feedignoresubmit" value="true" />
+		<button name="feedignoresubmit_btn" type="button" class="submit" value="true" onclick="ajaxpost('feedform_{$_GET[feedid]}', '$_GET[feedid]')">确定</button>
+		<button name="btncancel" type="button" class="button" onclick="hideMenu()">取消</button>
+		<!--{else}-->
+		<button name="feedignoresubmit" type="submit" class="submit" value="true">确定</button>
+		<!--{/if}-->
+	</p>
+	
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+</form>
+</div>
+
+<!--{elseif $_GET['op'] == 'get'}-->
+
+	<!--{if $list}-->
+	<!--{loop $list $day $values}-->
+	<!--{if $day=='yesterday'}--><h4 class="feedtime">昨天</h4><!--{elseif $day!='today'}--><h4 class="feedtime">$day</h4><!--{/if}-->
+	<ul>
+	<!--{loop $values $value}-->
+		<!--{template space_feed_li}-->
+	<!--{/loop}-->
+	</ul>
+	<!--{/loop}-->
+	<!--{else}-->
+	<ul>
+		<li>没有新的动态了。</li>
+	</ul>
+	<!--{/if}-->
+	
+<!--{/if}-->
+
+<!--{template footer}-->

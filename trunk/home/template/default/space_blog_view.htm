@@ -1,0 +1,187 @@
+<!--{eval $_TPL['titles'] = array($blog['subject'], '日志');}-->
+<!--{template header}-->
+
+<!--{if $space[self]}-->
+<h2 class="title"><img src="image/app/blog.gif" />日志</h2>
+<div class="tabs_header">
+	<ul class="tabs">
+		<!--{if $space[friendnum]}--><li$actives[we]><a href="space.php?uid=$space[uid]&do=$do"><span>好友最新日志</span></a></li><!--{/if}-->
+		<li class="active"><a href="space.php?uid=$space[uid]&do=$do&view=me"><span>我的日志</span></a></li>
+		<li><a href="space.php?uid=$space[uid]&do=$do&view=trace"><span>我踩过的日志</span></a></li>
+		<li><a href="space.php?uid=$space[uid]&do=$do&view=all"><span>大家的日志</span></a></li>
+		<li class="null"><a href="cp.php?ac=blog">发表新日志</a></li>
+	</ul>
+</div>
+<!--{else}-->
+<!--{eval 
+	$_TPL['spacetitle'] = "日志";
+	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=$do&view=me\">查看全部日志</a>";
+}-->
+<!--{template space_menu}-->
+<!--{/if}-->
+
+<div class="h_status">
+	<!--{if $blog['related']}--><a href="javascript:;" onclick="closeSide2(this);" id="a_showSide" class="r_option">&raquo; 关闭侧边栏</a><!--{/if}-->
+	查看日志<span class="pipe">|</span><a href="space.php?uid=$space[uid]&do=$do&view=me">返回日志列表</a>
+</div>
+
+<div<!--{if $blog['related']}--> id="content"<!--{/if}-->>
+	<div class="entry">
+		<div class="title">
+			<h1>$blog[subject]</h1>
+			<!--{if $blog['friend']}-->
+			<span class="r_option locked gray">
+			<a href="space.php?uid=$space[uid]&do=$do&view=me&friend=$blog[friend]" class="gray">
+			<!--{if $blog['friend'] == 1}-->仅好友可见
+			<!--{elseif $blog['friend'] == 2}-->指定好友可见
+			<!--{elseif $blog['friend'] == 3}-->仅自己可见
+			<!--{elseif $blog['friend'] == 4}-->凭密码可见<!--{/if}-->
+			</a>
+			</span>
+			<!--{/if}-->
+			<!--{if $blog[tag]}-->
+				<a href="space.php?uid=$blog[uid]&do=tag">标签</a>:&nbsp;
+				<!--{loop $blog[tag] $tagid $tagname}-->
+				<a href="space.php?uid=$blog[uid]&do=tag&id=$tagid">$tagname</a>&nbsp;
+				<!--{/loop}-->
+			<!--{/if}-->
+			<span class="time"><!--{date('Y-m-d H:i',$blog[dateline],1)}--></span>
+		</div>
+
+		<div id="blog_article" class="article">
+			<!--{if $_SGLOBAL['ad']['rightside']}-->
+			<div style="float: right; padding:5px;"><!--{ad/rightside}--></div>
+			<!--{/if}-->
+			<div class="resizeimg">$blog[message]</div>
+		</div>
+		
+		<div class="status">
+			<a href="cp.php?ac=share&type=blog&id=$blog[blogid]" id="a_share" onclick="ajaxmenu(event, this.id, 99999,'' , -1)" class="a_share">分享</a>
+			<div class="r_option">
+				<!--{if $_SGLOBAL[supe_uid] == $blog[uid] || checkperm('manageblog')}-->
+				<a href="cp.php?ac=blog&blogid=$blog[blogid]&op=edit">编辑</a><span class="pipe">|</span>
+				<a href="cp.php?ac=blog&blogid=$blog[blogid]&op=delete" id="blog_delete_$blog[blogid]" onclick="ajaxmenu(event, this.id, 99999)">删除</a><span class="pipe">|</span>
+				<!--{/if}-->
+				<a href="cp.php?ac=common&op=report&idtype=blog&id=$blog[blogid]" id="a_report" onclick="ajaxmenu(event, this.id, 99999,'' , -1)">举报</a><span class="pipe">|</span>
+			</div>
+
+			<!--{if $blog[viewnum]}-->$blog[viewnum] 次阅读 | <!--{/if}-->
+			<span id="comment_replynum">$blog[replynum]</span> 个评论
+		</div>
+	</div>
+
+	<!--{if $tracelist || (empty($tracelist) && !$space[self])}-->
+	<div class="trace" style="padding-bottom: 10px;">
+		<div class="title">
+			<!--{if $blog[tracenum]}--><a href="javascript:;" onclick="show_trace_all();" class="r_option">全部($blog[tracenum])</a><!--{/if}-->
+			<h2>留下脚印</h2>
+		</div>
+		<div id="trace_div">
+		<ul class="avatar_list" id="trace_ul">
+		<!--{if $tracelist}-->
+			<!--{loop $tracelist $value}-->
+			<li>
+				<div class="avatar48"><a href="space.php?uid=$value[uid]" title="{$_SN[$value[uid]]}" target="_blank"><img src="<!--{avatar($value[uid],small)}-->" alt="{$_SN[$value[uid]]}" class="avatar" /></a></div>
+				<p><a href="space.php?uid=$value[uid]" title="{$_SN[$value[uid]]}" target="_blank">{$_SN[$value[uid]]}</a></p>
+			</li>
+			<!--{/loop}-->
+			<!--{if !$space[self]}-->
+			<li style="padding-top: 16px;"><a href="cp.php?ac=blog&blogid=$blog[blogid]&op=trace" id="trace_$blog[blogid]" onclick="ajaxmenu(event, this.id, 2000, 'show_trace')" class="tracebutton">踩一脚</a></li>
+			<!--{/if}-->
+		<!--{else}-->
+			<li><a href="cp.php?ac=blog&blogid=$blog[blogid]&op=trace" id="trace_$blog[blogid]" onclick="ajaxmenu(event, this.id, 2000, 'show_trace')" class="tracebutton">踩一脚</a></li>
+			<li style="padding-left: 8px; width: auto; line-height: 28px;" class="gray">您的头像会显示在这里</li>
+		<!--{/if}-->
+		</ul>
+		</div>
+	</div>
+	<!--{/if}-->
+	<div class="comments" id="div_main_content">
+	
+		<h2>评论</h2>
+
+		<div class="comments_list" id="comment">
+			<!--{if $cid}-->
+			<div class="notice">
+				当前只显示与你操作相关的单个评论，<a href="space.php?uid=$blog[uid]&do=blog&id=$blog[blogid]">点击此处查看全部评论</a>
+			</div>
+			<!--{/if}-->
+			<ul id="comment_ul">
+			<!--{loop $list $value}-->
+				<!--{template space_comment_li}-->
+			<!--{/loop}-->
+			</ul>
+		</div>
+		<div class="page">$multi</div>
+		
+		<!--{if !$blog[noreply]}-->
+		<form id="quickcommentform_{$id}" name="quickcommentform_{$id}" action="cp.php?ac=comment" method="post" class="quickpost">
+			
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<a href="###" id="face" title="插入表情" onclick="showFace(this.id, 'comment_message');"><img src="image/facelist.gif" align="absmiddle" /></a><br>
+						<textarea id="comment_message" onkeydown="ctrlEnter(event, 'commentsubmit_btn');" name="message" rows="5" style="width:500px;"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="hidden" name="refer" value="space.php?uid=$blog[uid]&do=$do&id=$id" />
+						<input type="hidden" name="id" value="$id">
+						<input type="hidden" name="idtype" value="blogid">
+						<input type="hidden" name="commentsubmit" value="true" />
+						<input type="button" id="commentsubmit_btn" name="commentsubmit_btn" class="submit" value="评论" onclick="ajaxpost('quickcommentform_{$id}', 'comment_status', 'comment_add')" />
+						<span id="comment_status"></span>
+					</td>
+				</tr>
+			</table>
+		<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" /></form>
+		<br />
+		<!--{/if}-->
+	</div>
+	
+</div>
+
+<!--{if $blog['related']}-->
+<div id="sidebar">
+		<!--{loop $blog['related'] $appid $values}-->
+		<div class="sidebox">
+		<h2 class="title"><!--{if $_SGLOBAL[app][$appid][name]}-->{$_SGLOBAL[app][$appid][name]}<!--{else}-->相关阅读<!--{/if}--></h2>
+			<ul class="news_list">
+				<!--{loop $values['data'] $value}-->
+				<li style="height:auto;">$value[html]</li>
+				<!--{/loop}-->
+			</ul>
+		</div>
+		<!--{/loop}-->	
+</div>
+<!--{/if}-->
+
+<script type="text/javascript">
+<!--
+function closeSide2(oo) {
+	if($('sidebar').style.display == 'none'){
+		$('content').style.cssText = '';
+		$('sidebar').style.display = 'block';
+		oo.innerHTML = '&raquo; 关闭侧边栏';
+	}
+	else{
+		$('content').style.cssText = 'margin: 0pt; width: 810px;';
+		$('sidebar').style.display = 'none';		
+		oo.innerHTML = '&laquo; 打开侧边栏';
+	}
+}
+function show_trace(id) {
+	ajaxget('do.php?ac=ajax&op=trace&blogid='+$id, 'trace_ul');
+	return false;
+}
+function show_trace_all() {
+	ajaxget('do.php?ac=ajax&op=traceall&blogid='+$id+'&ajaxdiv=trace_div', 'trace_div');
+	return false;
+}
+resizeImg('blog_article','500');
+resizeImg('div_main_content','450');
+-->
+</script>
+		
+<!--{template footer}-->
