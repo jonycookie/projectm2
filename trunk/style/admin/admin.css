@@ -527,7 +527,7 @@ filter : progid:DXImageTransform.Microsoft.Alpha(opacity=93);
 
 
 /* wysiwyg */
-.wysiwyg { border: 1px solid #d0dbe7; border-color: #627097 #d0dbe7 #d0dbe7 #627097; padding: 5px 0; background-color: #ffffff; }
+.wysiwyg { border: 1px solid #d0dbe7; border-color: #627097 #d0dbe7 #d0dbe7 #627097; padding: 5px 0 0; background-color: #ffffff; }
 .wysiwyg * { margin: 0; padding: 0; }
 
 .wysiwyg ul.panel { border-bottom: 1px solid #d0dbe7; float: left; width: 100%; padding: 0 0 4px 0; }

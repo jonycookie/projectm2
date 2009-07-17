@@ -926,11 +926,11 @@ class Cont extends Cms {
 				}
 			}
 		}
-		$content_array = explode('<div style="page-break-after: always"><span style="display: none">&nbsp;</span></div>',$rs['content']);
+		$content_array = explode('<hr style="width: 100%; height: 2px;">',$rs['content']);
 		/* 此处功能不完善，尚需要对没有分页标签的自动分页进行处理 */
 		$count = count($content_array);
 		if($count==1){
-			$content_array = explode('<div style="page-break-after: always;"><span style="display: none;">&nbsp;</span></div>',$rs['content']);
+			$content_array = explode('<hr style="width: 100%; height: 2px;">',$rs['content']);
 			$count = count($content_array);
 		}
 		$rs['content'] = $content_array[$page-1];

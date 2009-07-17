@@ -107,7 +107,7 @@ class Content{
 			switch ($inputtype){
 				case 'input':
 					$sizelimit = $inputsize ? "size=\"$field[inputsize]\"" : '';
-					$field['input']="<input name=\"$fieldid\" id=\"$fieldid\" value=\"$field[defaultvalue]\" $sizelimit class=\"txt\"> $selectValue $inputlabel";
+					$field['input']="<input type=\"text\" name=\"$fieldid\" id=\"$fieldid\" value=\"$field[defaultvalue]\" $sizelimit class=\"txt\"> $selectValue $inputlabel";
 					break;
 				case 'textarea':
 					$sizelimit = $inputsize>60 ? "cols=\"$inputsize\"" : "cols=\"60\"";
@@ -120,7 +120,7 @@ class Content{
 					$inputlabel = explode('|',$inputlabel);
 					foreach ($defaultvalue as $value){
 						$selected = $i==0 ? "checked=\"checked\"" : '';
-						$str.="<input type=\"radio\" value=\"$value\" name=\"$fieldid\" $selected /> $inputlabel[$i]";
+						$str.="<label><input type=\"radio\" value=\"$value\" name=\"$fieldid\" $selected /> $inputlabel[$i]</label>";
 						$i++;
 					}
 					$field['input']=$str;
@@ -132,7 +132,7 @@ class Content{
 					$str='';
 					foreach ($defaultvalue as $value){
 						//$selected=$i==0 ? "checked" : '';
-						$str.="<input type=\"checkbox\" value=\"$value\" name=\"{$fieldid}[]\" $selected> $inputlabel[$i] ";
+						$str.="<label><input type=\"checkbox\" value=\"$value\" name=\"{$fieldid}[]\" $selected> $inputlabel[$i]</label>";
 						$i++;
 					}
 					$field['input']=$str;
@@ -140,7 +140,7 @@ class Content{
 				case 'select':
 					$defaultvalue = explode('|',$defaultvalue);
 					$inputlabel = explode('|',$inputlabel);
-					$str="<select name=\"$fieldid\">";
+					$str="<select name=\"$fieldid\" id=\"$fieldid\">";
 					$i=0;
 					foreach ($defaultvalue as $value){
 						$str.="<option value=\"$value\">$inputlabel[$i]</option>";
@@ -151,14 +151,14 @@ class Content{
 					break;
 				case 'mselect':
 					$str="<select name=\"$fieldid\" id=\"$fieldid\" size=\"8\" multiple=\"multiple\">";
-					$str.="</select><input type=\"hidden\" name=\"".$fieldid."_value\" id=\"".$fieldid."_value\" value=\"\"> $selectValue <br /><img onclick=del('$fieldid') src=\"images/admin/delete.gif\"><img onclick=\"moveUp('$fieldid')\" src=\"images/admin/up.gif\"><img onclick=\"moveDown('$fieldid')\" src=\"images/admin/down.gif\">";
+					$str.="</select><input type=\"hidden\" name=\"".$fieldid."_value\" id=\"".$fieldid."_value\" value=\"\"> $selectValue <br /><img onclick=del('$fieldid') src=\"images/admin/cross.gif\"><img onclick=\"moveUp('$fieldid')\" src=\"images/admin/up.gif\"><img onclick=\"moveDown('$fieldid')\" src=\"images/admin/down.gif\">";
 					$field['input']=$str;
 					break;
 				case 'edit':
 					$str = "<textarea name=\"$fieldid\" id=\"$fieldid\" cols=\"120\" rows=\"40\" class=\"wysiwyg\"></textarea>";
-					$str.="<br /><input type=\"checkbox\" name=\"imagetolocal\" value=\"1\" /> 外部图片本地化";
-					$str.="<br /><input type=\"checkbox\" name=\"selectimage\" value=\"1\" /> 自动提取第一张图片为新闻图片";
-					$str.="<br /><input type=\"checkbox\" name=\"autofpage\" value=\"1\" /> 自动分页处理";
+					$str.="<br /><label><input type=\"checkbox\" name=\"imagetolocal\" value=\"1\" /> 外部图片本地化</label>";
+					$str.="<br /><label><input type=\"checkbox\" name=\"selectimage\" value=\"1\" /> 自动提取第一张图片为新闻图片</label>";
+					$str.="<br /><label><input type=\"checkbox\" name=\"autofpage\" value=\"1\" /> 自动分页处理</label>";
 					$field['input']=$str;
 					break;
 				case 'basic':
@@ -192,7 +192,7 @@ class Content{
 				case 'input':
 					$fieldvalue = stripslashes($fieldvalue);
 					$sizelimit = $inputsize ? "size=\"$field[inputsize]\"" : '';
-					$field['input']="<input name=\"$fieldid\" id=\"$fieldid\" value=\"$fieldvalue\" $sizelimit class=\"input\"> $selectValue $inputlabel";
+					$field['input']="<input type=\"text\" name=\"$fieldid\" id=\"$fieldid\" value=\"$fieldvalue\" $sizelimit class=\"txt\"> $selectValue $inputlabel";
 					break;
 				case 'textarea':
 					$fieldvalue = stripslashes($fieldvalue);
@@ -206,7 +206,7 @@ class Content{
 					$i=0;
 					foreach ($defaultvalue as $value){
 						$selected = $fieldvalue==$value ? 'checked=\"checked\"' : '';
-						$str.="<input type=\"radio\" value=\"$value\" name=\"$fieldid\" $selected /> $inputlabel[$i]";
+						$str.="<label><input type=\"radio\" name=\"$fieldid\" value=\"$value\" $selected /> $inputlabel[$i]</label>";
 						$i++;
 					}
 					$field['input']=$str;
@@ -219,7 +219,7 @@ class Content{
 					$i=0;
 					foreach ($defaultvalue as $value){
 						$selected = in_array($value,$fieldvalue) ? 'checked=\"checked\"' : '';
-						$str.="<input type=\"checkbox\" value=\"$value\" name=\"{$fieldid}[]\" $selected /> $inputlabel[$i] ";
+						$str.="<label><input type=\"checkbox\" value=\"$value\" name=\"{$fieldid}[]\" $selected /> $inputlabel[$i]</label>";
 						$i++;
 					}
 					$field['input']=$str;
@@ -227,7 +227,7 @@ class Content{
 				case 'select':
 					$defaultvalue = explode('|',$defaultvalue);
 					$inputlabel = explode('|',$inputlabel);
-					$str="<select name=\"$fieldid\">";
+					$str="<select name=\"$fieldid\" id=\"$fieldid\">";
 					$i=0;
 					foreach ($defaultvalue as $value){
 						$str.="<option value=\"$value\">$inputlabel[$i]</option>";
@@ -253,15 +253,15 @@ class Content{
 							}
 						}
 					}
-					$str.="</select><input type=\"hidden\" name=\"".$fieldid."_value\" id=\"".$fieldid."_value\" value=\"\"> $selectValue <br /><img onclick=\"del('$fieldid')\" src=\"images/admin/delete.gif\" /><img onclick=\"moveUp('$fieldid')\" src=\"images/admin/up.gif\" /><img onclick=\"moveDown('$fieldid')\" src=\"images/admin/down.gif\" />";
+					$str.="</select><input type=\"hidden\" name=\"".$fieldid."_value\" id=\"".$fieldid."_value\" value=\"\"> $selectValue <br /><img onclick=\"del('$fieldid')\" src=\"images/admin/cross.gif\" /><img onclick=\"moveUp('$fieldid')\" src=\"images/admin/up.gif\" /><img onclick=\"moveDown('$fieldid')\" src=\"images/admin/down.gif\" />";
 					$field['input']=$str;
 					break;
 				case 'edit':
 					$fieldvalue = stripslashes($fieldvalue);
 					$str = "<textarea name=\"$fieldid\" id=\"$fieldid\" cols=\"120\" rows=\"40\" class=\"wysiwyg\">$fieldvalue</textarea>";
-					$str.="<br /><input type=\"checkbox\" name=\"imagetolocal\" value=\"1\" /> 外部图片本地化";
-					$str.="<br /><input type=\"checkbox\" name=\"selectimage\" value=\"1\" /> 自动提取第一张图片为新闻图片";
-					$str.="<br /><input type=\"checkbox\" name=\"autofpage\" value=\"1\" /> 自动分页处理";
+					$str.="<br /><label><input type=\"checkbox\" name=\"imagetolocal\" value=\"1\" /> 外部图片本地化</label>";
+					$str.="<br /><label><input type=\"checkbox\" name=\"selectimage\" value=\"1\" /> 自动提取第一张图片为新闻图片</label>";
+					$str.="<br /><label><input type=\"checkbox\" name=\"autofpage\" value=\"1\" /> 自动分页处理</label>";
 					$field['input']=$str;
 					break;
 				case 'basic':
@@ -320,19 +320,19 @@ class Content{
 				case 0:
 					return ;
 				case 1:
-					$select = "<img src=\"images/admin/addcolor.gif\" id=\"show_$inputname\" style=\"cursor:pointer;\" align=\"absmiddle\" onclick=\"showColor('show_".$inputname."','".$inputname."');\" />";
+					$select = "<img src=\"images/admin/color_plus.gif\" id=\"show_$inputname\" style=\"cursor:pointer;\" align=\"absmiddle\" onclick=\"showColor('show_".$inputname."','".$inputname."');\" />";
 					break;
 				case 2:
-					$select = "<img src=\"images/admin/addatt.gif\" style=\"cursor:pointer;\" align=\"absmiddle\" onclick=\"selectAttach('".$inputname."');\" />";
+					$select = "<img src=\"images/admin/chain_plus.gif\" style=\"cursor:pointer;\" align=\"absmiddle\" onclick=\"selectAttach('".$inputname."');\" />";
 					break;
 				case 3:
-					$select = "<img src=\"images/admin/addtime.gif\" style=\"cursor:pointer;\" align=\"absmiddle\" onclick=\"ShowCalendar('".$inputname."');\" />";
+					$select = "<img src=\"images/admin/clock_plus.gif\" style=\"cursor:pointer;\" align=\"absmiddle\" onclick=\"ShowCalendar('".$inputname."');\" />";
 					break;
 				case 4:
 					$select = "<img src=\"images/admin/rename.gif\" style=\"cursor:pointer;\" align=\"absmiddle\" onclick=\"selectTids('".$inputname."','".$inputtype."');\" />";
 					break;
 				case 5:
-					$select = "<img src=\"images/admin/addimg.gif\" style=\"cursor:pointer;\" align=\"absmiddle\" onclick=\"selectImg('".$inputname."');\" />";
+					$select = "<img src=\"images/admin/image_plus.gif\" style=\"cursor:pointer;\" align=\"absmiddle\" onclick=\"selectImg('".$inputname."');\" />";
 					break;
 			}
 		}else{
@@ -462,13 +462,13 @@ class Content{
 						}
 					}
 					$cutpagesize = $GLOBALS['sys']['perpage'] ? $GLOBALS['sys']['perpage']:5;
-					if (($array['autofpage'] && strlen($array[$key])>$cutpagesize*1024) || strpos($array[$key],'<div style=\"page-break-after: always\"><span style=\"display: none\">&nbsp;</span></div>')>0 || strpos($array[$key],'<div style=\"page-break-after: always;\"><span style=\"display: none;\">&nbsp;</span></div>')>0) { //自动分页
+					if (($array['autofpage'] && strlen($array[$key])>$cutpagesize*1024) || strpos($array[$key],'<hr style="width: 100%; height: 2px;">')>0 || strpos($array[$key],'<hr style="width: 100%; height: 2px;">')>0) { //自动分页
 						$query1['fpage'] = "`fpage`=1";
-						if(($array['autofpage'] && strlen($array[$key])>$cutpagesize*1024) && !strpos($array[$key],'<div style=\"page-break-after: always\"><span style=\"display: none\">&nbsp;</span></div>') && !strpos($array[$key],'<div style=\"page-break-after: always;\"><span style=\"display: none;\">&nbsp;</span></div>')) {
-							if(strpos($array[$key],'<div style=\"page-break-after: always\"><span style=\"display: none\">&nbsp;</span></div>')){
-								$array[$key] = $this->cutPage($array[$key],$cutpagesize,'<div style=\"page-break-after: always\"><span style=\"display: none\">&nbsp;</span></div>');
+						if(($array['autofpage'] && strlen($array[$key])>$cutpagesize*1024) && !strpos($array[$key],'<hr style="width: 100%; height: 2px;">') && !strpos($array[$key],'<hr style="width: 100%; height: 2px;">')) {
+							if(strpos($array[$key],'<hr style="width: 100%; height: 2px;">')){
+								$array[$key] = $this->cutPage($array[$key],$cutpagesize,'<hr style="width: 100%; height: 2px;">');
 							}else{
-								$array[$key] = $this->cutPage($array[$key],$cutpagesize,'<div style=\"page-break-after: always;\"><span style=\"display: none;\">&nbsp;</span></div>');
+								$array[$key] = $this->cutPage($array[$key],$cutpagesize,'<hr style="width: 100%; height: 2px;">');
 							}
 						}
 					}else{

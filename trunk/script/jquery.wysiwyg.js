@@ -342,8 +342,8 @@
                     newY = ( element.rows * 16 ) + 16;
 
                 var editor = this.editor = $('<iframe></iframe>').css({
-                    minHeight : ( newY - 6 ).toString() + 'px',
-                    width     : ( newX - 8 ).toString() + 'px'
+                    minHeight : ( newY ).toString() + 'px',
+                    width     : ( newX ).toString() + 'px'
                 }).attr('id', $(element).attr('id') + 'IFrame');
 
                 if ( $.browser.msie )

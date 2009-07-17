@@ -497,7 +497,7 @@ class Gather{
 					if(empty($pageContent)) {
 						break;
 					}
-					$fieldvalue['content'].='<div style="page-break-after: always"><span style="display: none">&nbsp;</span></div>'.$pageContent;
+					$fieldvalue['content'].='<hr style="width: 100%; height: 2px;">'.$pageContent;
 					$otherPage = $this->fpageUrl();
 					if(count($otherPage)) {
 						$otherPage = array_diff($otherPage,$basePage);
