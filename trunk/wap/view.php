@@ -13,9 +13,9 @@ if($tid){
 	$sys['waplimit'] = (int)$sys['waplimit'];
 	$rt['title']  = wap_cv($rt['title']);
 	if($sys['waplimit']){
-		$content_array = getPageContent(str_replace('<div style=\"page-break-after: always\"><span style=\"display: none\">&nbsp;</span></div>','',$rt['content']),$sys['waplimit']);	
+		$content_array = getPageContent(str_replace('<hr style="width: 100%; height: 2px;">','',$rt['content']),$sys['waplimit']);	
 	}elseif($rt['fpage']){
-		$content_array = explode('<div style="page-break-after: always"><span style="display: none">&nbsp;</span></div>',$rs['content']);
+		$content_array = explode('<hr style="width: 100%; height: 2px;">',$rs['content']);
 	}
 	if($content_array){
 		$rt['content'] = $content_array[$page-1];
