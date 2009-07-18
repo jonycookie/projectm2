@@ -23,7 +23,6 @@
 <!--{else}-->
 
 <div id="content">
-	<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
 		<table cellspacing="0" cellpadding="0" width="100%" class="task_notice">
 			<tr>
 				<td width="70"><img src="$task[image]" width="64" height="64" alt="Icon" /></td>
@@ -36,7 +35,6 @@
 				</td>
 			</tr>
 		</table>
-	</div></div></div></div>
 				
 	<div style="padding-top:20px;">
 	<!--{if $task['done']}-->
@@ -112,9 +110,7 @@
 			</table><br>
 			
 			<!--{if $_GET['view']=='result'}-->
-			<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
-				<div class="task_notice">提示：请先按照上面的步骤说明完成活动后再点击领取奖励链接。</div>
-			</div></div></div></div>
+			<div class="task_notice">提示：请先按照上面的步骤说明完成活动后再点击领取奖励链接。</div>
 			<!--{/if}-->
 				
 			<div style="text-align:center;padding:10px;">
@@ -167,7 +163,6 @@
 		<div class="c_form">已经没有新的活动啦。</div>
 	<!--{else}-->
 		<!--{loop $tasklist $value}-->
-		<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
 			<table cellspacing="0" cellpadding="0" width="100%" class="task_notice">
 				<tr>
 					<td width="70"><img src="$value[image]" width="64" height="64" alt="Icon" class="icon" /></td>
@@ -201,7 +196,6 @@
 					</td>
 				</tr>
 			</table>
-		</div></div></div></div><br>
 		<!--{/loop}-->
 	<!--{/if}-->
 

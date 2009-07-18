@@ -198,38 +198,6 @@ a.c_link {
 	overflow: hidden;
 	display: block;
 }
-/*avatar bg*/
-.ar_r_t {
-	float: left;
-	background: #FFF url(image/avatar_bg.gif) no-repeat right top;
-}
-.ar_l_t {
-	padding: 5px 0 0;
-	background: url(image/avatar_bg.gif) no-repeat left top;
-}
-.ar_r_b {
-	background: url(image/avatar_bg.gif) no-repeat right bottom;
-}
-.ar_l_b {
-	padding: 0 12px 12px 5px;
-	background: url(image/avatar_bg.gif) no-repeat left bottom;
-}
-/*yellow radius*/
-.ye_r_t {
-	width: 100%;
-	background: url(image/yel_bg.gif) no-repeat right top;
-}
-.ye_l_t {
-	padding: 5px 0 0;
-	background: url(image/yel_bg.gif) no-repeat left top;
-}
-.ye_r_b {
-	background: url(image/yel_bg.gif) no-repeat right bottom;
-}
-.ye_l_b {
-	padding: 0 5px 5px;
-	background: url(image/yel_bg.gif) no-repeat left bottom;
-}
 .ybg {
 	margin-bottom: 2px;
 	padding: 10px;
@@ -384,9 +352,6 @@ li.notify {
 }
 #main {
 	margin: 0 0 20px;
-	width: 100%;
-	background: url(image/appSidebar_bg.gif) repeat-y 0 0;
-	overflow: hidden;
 }
 /*************************************************APP SIDEBAR***/
 #app_sidebar {
@@ -456,9 +421,6 @@ li.notify {
 	border-top: 1px solid #F2F2F2;
 }
 #mainarea {
-	float: left;
-	width: 810px;
-	overflow: hidden;
 }
 .chostlp img {
 	float: right;
@@ -486,16 +448,12 @@ li.notify {
 #content {
 	float: left;
 	margin: 0 20px 0 0;
-	width: 540px;
+	width: 700px;
 	overflow: hidden;
 }
 /*************************************************COMPOSER***/
 .composer_header {
 	margin: 0;
-}
-.ar_r_t {
-	margin: 0 15px 0 0;
-	overflow: hidden;
 }
 .composer {
 	padding: 0 10px 10px 20px;
@@ -1900,6 +1858,7 @@ a#i_rss {
 	overflow: hidden;
 }
 #footer {
+	clear: both;
 	padding: 10px 0 10px 0;
 	border-top: 1px solid #EBE6C9;
 	color: #333;
@@ -2348,21 +2307,6 @@ li.news_title {
 .pm_list .pm_body {
 	float: left;
 	background: url(image/pm_bg.gif) repeat-y 100% 0;
-}
-.pm_list .pm_h {
-	position: relative;
-	padding: 5px 0 0 15px;
-	width: 560px;
-	background: url(image/pm_bg.gif) no-repeat 0 0;
-}
-.pm_list .pm_f {
-	padding: 0 10px 5px;
-	background: url(image/pm_bg.gif) no-repeat -590px 100%;
-}
-.pm_list .pm_c {
-	padding: 10px;
-	color: #444;
-	line-height: 200%;
 }
 .pm_list .avatar48 {
 	float: left;

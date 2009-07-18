@@ -56,9 +56,9 @@
 <div id="content">	
 	<form method="post" action="cp.php?ac=invite&appid=$appid&ref" class="c_form">
 		<!--{if $get_invite}-->
-		<div class="c_mgs"><div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
+		<div class="c_mgs">
 			每邀请成功一个好友，就可获得 <strong>$get_invite</strong> 个奖励积分。赶快行动吧！
-		</div></div></div></div></div>
+		</div>
 		<!--{/if}-->
 		<table cellspacing="0" cellpadding="0" class="formtable" width="100%">
 			<caption>
@@ -66,7 +66,7 @@
 				<p>
 				<div class="composer_header">
 					<!--{if $appid}-->
-					<div class="ar_r_t"><div class="ar_l_t"><div class="ar_r_b"><div class="ar_l_b"><img src="http://appicon.manyou.com/logos/{$appid}" alt="{$appinfo[appname]}" /></div></div></div></div>
+					<img src="http://appicon.manyou.com/logos/{$appid}" alt="{$appinfo[appname]}" />
 					<!--{/if}-->
 					<p>
 						您可以通过QQ、MSN等IM工具，或者发送邮件，把下面的链接告诉你的好友，邀请他们加入进来。
@@ -131,7 +131,7 @@
 			<tr>
 				<td>
 					<div class="title" style="margin: 10px 0;">预览邀请函</div>
-					<div class="c_mgs"><div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
+					<div class="c_mgs">
 						<table border="0">
 						<tr>
 						<td valign="top">$mailvar[0]</td>
@@ -152,7 +152,7 @@
 						<strong>如果你拥有{$mailvar[2]}上面的账号，请点击以下链接查看我的个人主页：</strong><br>
 						{$mailvar[5]}<br>
 						</td></tr></table>
-					</div></div></div></div></div>
+					</div>
 				</td>
 			</tr>
 		</table>

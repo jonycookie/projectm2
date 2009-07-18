@@ -4,7 +4,7 @@
 
 <div id="content" style="width:640px;">
 
-	<div class="c_mgs"><div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
+	<div class="c_mgs">
 		<div id="m_search"<!--{if !empty($gets)}--> style="display:none;"<!--{/if}-->>
 			<form method="get" action="network.php">
 			用户名 <input type="text" name="username" value="$_GET[username]" class="t_input" />
@@ -136,10 +136,10 @@
 				</tr>
 			</table>
 		</form>
-	</div></div></div></div></div>
+	</div>
 	
 	<!--{if $now_pos >= 0}-->
-	<div class="c_mgs"><div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
+	<div class="c_mgs">
 		排行榜公告：<br>
 		<!--{if $_GET[view]=='show'}-->
 			<!--{if $space[showcredit]}-->
@@ -162,11 +162,11 @@
 		<!--{if $cache_mode}-->
 		<p>下面列出的为前100名排行，数据每 $cache_time 分钟更新一次。</p>
 		<!--{/if}-->
-	</div></div></div></div></div>
+	</div>
 	<!--{/if}-->
 	
 	<!--{if $_GET['view']=='show'}-->
-	<div class="c_mgs"><div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
+	<div class="c_mgs">
 		<table width="100%">
 			<tr><td width="50%" valign="top">
 			<div class="l_status"><strong>帮助好友来上榜</strong></div>
@@ -213,7 +213,7 @@
 				return true;
 			}
 		</script>
-	</div></div></div></div></div>
+	</div>
 	<!--{/if}-->
 
 	<!--{template space_list}-->

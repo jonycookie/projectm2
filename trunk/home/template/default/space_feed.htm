@@ -6,7 +6,7 @@
 <!--{if $space[self]}-->
 	<div class="composer_header">
 	
-		<div class="ar_r_t"><div class="ar_l_t"><div class="ar_r_b"><div class="ar_l_b"><img src="<!--{avatar($_SGLOBAL[supe_uid],middle)}-->" alt="{$_SN[$_SGLOBAL[supe_uid]]}" width="120" /></div></div></div></div>
+		<img src="<!--{avatar($_SGLOBAL[supe_uid],middle)}-->" alt="{$_SN[$_SGLOBAL[supe_uid]]}" width="120" />
 		
 		<div class="composer">
 			<h3 class="index_name">
@@ -74,14 +74,14 @@
 	<div class="feed">
 	
 	<!--{if empty($_SCOOKIE['closefeedbox']) && $_SGLOBAL['ad']['feedbox']}-->
-	<div id="feed_box" class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
+	<div id="feed_box">
 		<div class="task_notice">
 			<a title="忽略" class="float_cancel" href="javascript:;" onclick="close_feedbox();">忽略</a>
 			<div class="task_notice_body">
 			<!--{ad/feedbox}-->
 			</div>
 		</div>
-	</div></div></div></div>
+	</div>
 	<!--{/if}-->
 	
 	<!--{if $list}-->
@@ -110,16 +110,14 @@
 
 <div id="sidebar">
 	<!--{if $task}-->
-	<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
-		<div class="task_notice" style="width:230px;">
-			<a title="忽略" class="float_cancel" href="cp.php?ac=task&taskid=$task[taskid]&op=ignore">忽略</a>
-			<div class="task_notice_body">
-				<img src="$task[image]" alt="" class="icon" />
-				<h3><a href="cp.php?ac=task&op=do&taskid=$task[taskid]">$task[name]</a></h3>
-				<p>可获得 <span class="num">$task[credit]</span> 积分</p>
-			</div>
+	<div class="task_notice" style="width:230px;">
+		<a title="忽略" class="float_cancel" href="cp.php?ac=task&taskid=$task[taskid]&op=ignore">忽略</a>
+		<div class="task_notice_body">
+			<img src="$task[image]" alt="" class="icon" />
+			<h3><a href="cp.php?ac=task&op=do&taskid=$task[taskid]">$task[name]</a></h3>
+			<p>可获得 <span class="num">$task[credit]</span> 积分</p>
 		</div>
-	</div></div></div></div>
+	</div>
 	<!--{/if}-->
 	
 	<!--{if $visitorlist}-->
@@ -164,46 +162,42 @@
 	
 	<!--{if $birthlist}-->
 	<div class="searchfirend">
-		<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
-			<h3>好友生日提醒</h3>
-			<div class="box">
-			<table cellpadding="2" cellspacing="4">
-			<!--{loop $birthlist $key $values}-->
-			<tr>
-				<td align="right" valign="top" style="padding-left:10px;">
-				<!--{if $values[0]['istoday']}-->今天<!--{else}-->{$values[0][birthmonth]}-{$values[0][birthday]}<!--{/if}-->
-				</td>
-				<td style="padding-left:10px;">
-				<ul>
-				<!--{loop $values $value}-->
-				<li><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></li>
-				<!--{/loop}-->
-				</ul>
-				</td>
-			</tr>
+		<h3>好友生日提醒</h3>
+		<div class="box">
+		<table cellpadding="2" cellspacing="4">
+		<!--{loop $birthlist $key $values}-->
+		<tr>
+			<td align="right" valign="top" style="padding-left:10px;">
+			<!--{if $values[0]['istoday']}-->今天<!--{else}-->{$values[0][birthmonth]}-{$values[0][birthday]}<!--{/if}-->
+			</td>
+			<td style="padding-left:10px;">
+			<ul>
+			<!--{loop $values $value}-->
+			<li><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></li>
 			<!--{/loop}-->
-			</table>
-			</div>
-		</div></div></div></div>
+			</ul>
+			</td>
+		</tr>
+		<!--{/loop}-->
+		</table>
+		</div>
 	</div>
 	<!--{/if}-->
 	
 	<div class="searchfirend">
-		<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
-			<h3>快速定位</h3>
-			<form method="post" action="cp.php?ac=friend">
-			<p>
-				<!--{if $_SCONFIG['realname']}-->姓名: <!--{else}-->用户名:<!--{/if}--> 
-				<input type="text" name="username" value="" class="t_input" size="15" />
-				<input type="hidden" name="searchmode" value="1" />
-				<input type="hidden" name="findsubmit" value="1" />
-				<input type="submit" name="findsubmit_btn" value="找人" class="submit" />
-			</p>
-			<p><a href="cp.php?ac=friend&op=find">查找我可能认识的人</a><span class="pipe">|</span>
-				<a href="cp.php?ac=invite">邀请我的好友</a></p>
-			<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
-			</form>
-		</div></div></div></div>
+		<h3>快速定位</h3>
+		<form method="post" action="cp.php?ac=friend">
+		<p>
+			<!--{if $_SCONFIG['realname']}-->姓名: <!--{else}-->用户名:<!--{/if}--> 
+			<input type="text" name="username" value="" class="t_input" size="15" />
+			<input type="hidden" name="searchmode" value="1" />
+			<input type="hidden" name="findsubmit" value="1" />
+			<input type="submit" name="findsubmit_btn" value="找人" class="submit" />
+		</p>
+		<p><a href="cp.php?ac=friend&op=find">查找我可能认识的人</a><span class="pipe">|</span>
+			<a href="cp.php?ac=invite">邀请我的好友</a></p>
+		<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+		</form>
 	</div>
 	
 </div>

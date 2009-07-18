@@ -76,7 +76,6 @@
 	</div>
 	
 	<div class="searchfirend">
-		<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
 			<h3>寻找好友</h3>
 			<form method="get" action="network.php">
 			<p>
@@ -112,7 +111,6 @@
 		</ul>
 	<!--{/if}-->
 	
-		</div></div></div></div>
 	</div>
 	
 	<div class="userbox">
@@ -133,20 +131,18 @@
 
 
 	<div class="m_box">
-		<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
-			<h2 class="atitle">
-				<div class="r_option"><a href="network.php?ac=album">全部</a></div>
-				相册
-			</h2>
-			<ul class="albs2">
-			<!--{loop $netcache['albumlist'] $value}-->
-				<li>
-					<a href="space.php?uid={$value[uid]}&do=album&id={$value[albumid]}" title="$value[albumname]"><img src="$value[pic]" alt="$value[albumname]" style="width: 75px;height:75px;" /></a>
-					<p><a href="space.php?uid={$value[uid]}&do=album&id={$value[albumid]}" title="$value[albumname]">$value[albumname]</a></p>
-				</li>
-			<!--{/loop}-->
-			</ul>
-		</div></div></div></div>
+		<h2 class="atitle">
+			<div class="r_option"><a href="network.php?ac=album">全部</a></div>
+			相册
+		</h2>
+		<ul class="albs2">
+		<!--{loop $netcache['albumlist'] $value}-->
+			<li>
+				<a href="space.php?uid={$value[uid]}&do=album&id={$value[albumid]}" title="$value[albumname]"><img src="$value[pic]" alt="$value[albumname]" style="width: 75px;height:75px;" /></a>
+				<p><a href="space.php?uid={$value[uid]}&do=album&id={$value[albumid]}" title="$value[albumname]">$value[albumname]</a></p>
+			</li>
+		<!--{/loop}-->
+		</ul>
 	</div>
 	
 
@@ -209,7 +205,6 @@
 
 <div id="sidebar">
 	<!--{if $task}-->
-	<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
 		<div class="task_notice2">
 			<h3>$task[name]</h3>
 			<div class="task_content">
@@ -224,7 +219,6 @@
 			</div>
 			<!--{/if}-->
 		</div>
-	</div></div></div></div>
 	<!--{/if}-->
 	
 	<div class="sidebox">

@@ -47,12 +47,12 @@
 			<img src="image/systempm.gif" width="48" height="48" />
 			<!--{/if}-->
 		</div>
-		<div class="pm_body"><div class="pm_h"><div class="pm_f">
+		<div class="pm_body">
 			<p><!--{if $value[msgfromid]}--><a href="space.php?uid=$value[msgfromid]">{$_SN[$value[msgfromid]]}</a> <!--{/if}--><span class="time"><!--{date('Y-m-d H:i',$value[dateline],1)}--></span></p>		
 			<div class="pm_c">
 				$value[message]
 			</div>
-		</div></div></div>
+		</div>
 	</li>
 	<!--{/loop}-->
 </ul>
@@ -68,7 +68,7 @@
 		<div class="avatar48">
 			<a href="space.php?uid=$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" width="48" height="48" /></a>
 		</div>
-		<div class="pm_body"><div class="pm_h"><div class="pm_f">
+		<div class="pm_body">
 			<p><a href="space.php?uid=$space[uid]">{$_SN[$space[uid]]}</a></p>		
 			<div class="pm_c">
 				<form id="pmform" name="pmform" method="post" action="cp.php?ac=pm&op=send&touid=$touid&pmid=$pmid&daterange=$daterange">
@@ -79,7 +79,7 @@
 				<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 				</form>
 			</div>
-		</div></div></div>
+		</div>
 	</li>
 </ul>
 <!--{/if}-->
@@ -117,7 +117,7 @@
 			<img src="image/systempm.gif" width="48" height="48" />
 			<!--{/if}-->
 		</div>
-		<div class="pm_body"><div class="pm_h"><div class="pm_f">
+		<div class="pm_body">
 			<p>
 			<!--{if $value[touid]}-->
 			<a href="space.php?uid=$value[touid]">{$_SN[$value[touid]]}</a> 
@@ -134,7 +134,7 @@
 				</p>
 			</div>
 			<a href="cp.php?ac=pm&op=delete&folder=inbox&pmid=$value[pmid]" id="a_delete_$value[pmid]" class="float_del" onclick="ajaxmenu(event, this.id, 99999)">删除</a>
-		</div></div></div>
+		</div>
 		</li>
 	<!--{/loop}-->
 	</ol>
