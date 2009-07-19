@@ -82,7 +82,6 @@ if($action=='search'){
 </tr>";
 	}
 }
-require PrintEot('header');
 require PrintEot('set_log');
 adminbottom();
 ?>

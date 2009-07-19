@@ -53,7 +53,6 @@ if(!$step){
 	$sys['aggrebbs'] && $cache->bbs_config();
 	adminmsg('operate_success');
 }
-require PrintEot('header');
 require PrintEot('mod_bbs');
 adminbottom();
 ?>

@@ -101,7 +101,6 @@ if($a_type=='bakout'){//备份数据
 		adminmsg('operate_success');
 	}
 }
-require PrintEot('header');
 require PrintEot('set_sql');
 adminbottom();
 

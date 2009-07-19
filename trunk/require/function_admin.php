@@ -6,7 +6,6 @@
 */
 function Showmsg($msg){
 	extract($GLOBALS, EXTR_SKIP);
-	require PrintEot('header');
 	require GetLang('cpmsg');
 	if(defined('IN_EXT') && file_exists(E_P.'lang/extmsg.php')){
 		require_once(E_P.'lang/extmsg.php');
@@ -62,7 +61,6 @@ function checkAdmin($admin_name,$admin_password){
 }
 
 function adminmsg($msg,$jumpurl='',$t=2){
-	require PrintEot('header');
 	extract($GLOBALS, EXTR_SKIP);
 	!$basename && $basename=$_SERVER['REQUEST_URI'];
 	!$jumpurl && $jumpurl=$basename;
@@ -83,7 +81,6 @@ function adminmsg($msg,$jumpurl='',$t=2){
 }
 
 function operate($msg,$jumpurl='',$t=2){
-	require PrintEot('header');
 	extract($GLOBALS, EXTR_SKIP);
 	!$basename && $basename=$_SERVER['REQUEST_URI'];;
 	!$jumpurl && $jumpurl=$basename;

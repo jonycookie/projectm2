@@ -68,7 +68,6 @@ class ShowContent{
 			$ct['module'] = $this->moduledb[$ct['mid']]['mname'];
 			$category[] = $ct;
 		}
-		require PrintEot('header');
 		require PrintEot('content');
 		adminbottom();
 	}
@@ -127,7 +126,6 @@ class ShowContent{
 		if($mid>0) $this->showDigest($content);
 		$hottag = $this->hottag();
 		${'displaytype_'.$displaytype} = " selected ";
-		require PrintEot('header');
 		require PrintEot('content');
 		adminbottom();
 	}

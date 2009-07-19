@@ -58,21 +58,18 @@ class Help{
 			case 'search':
 				$keyword = GetGP('keyword');
 				$helpmsg = $this->search($keyword);
-				require PrintEot('header');
 				require PrintEot('faq');
 				adminbottom(0);
 				break;
 			case 'gethelp':
 				$title = GetGP('title');
 				$helpmsg = $this->getHelp($title);
-				require PrintEot('header');
 				require PrintEot('faq');
 				adminbottom(0);
 				break;
 			case 'getmsg':
 				$hid = (int)GetGP('hid');
 				$helpmsg = $this->getMSG();
-				require PrintEot('header');
 				require PrintEot('faq');
 				adminbottom(0);
 				break;

@@ -65,9 +65,8 @@ class Recycle{
 		}*/
 		$cate = new Cate();
 		$cate_select = $cate->tree();
-		$cate_select = str_replace("value=\"$cid\"","value=\"$cid\" selected ",$cate_select);
-		${'type_'.$type} = 'selected';
-		require PrintEot('header');
+		$cate_select = str_replace("value=\"$cid\"","value=\"$cid\" selected=\"selected\" ",$cate_select);
+		${'type_'.$type} = 'selected=\"selected\"';
 		require PrintEot('recycle');
 		adminbottom();
 	}

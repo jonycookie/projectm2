@@ -46,7 +46,6 @@ class AdminExt{
 			}
 			closedir($fp);
 		}
-		require PrintEot('header');
 		require PrintEot('ext_extensions');
 		adminbottom();
 	}
@@ -98,7 +97,6 @@ class AdminExt{
 			}
 			!$infodb['name'] && $infodb['name'] = $extdir;
 		}
-		require PrintEot('header');
 		require PrintEot('ext_extensions');
 		adminbottom();
 	}

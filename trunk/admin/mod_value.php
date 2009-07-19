@@ -28,7 +28,6 @@ class Value{
 	function show(){
 		global $db,$action,$basename;
 		$rs = $db->query("SELECT * FROM cms_select");
-		require PrintEot('header');
 		require PrintEot('mod_value');
 		adminbottom();
 	}
@@ -61,7 +60,6 @@ class Value{
 			for ($i=0;$i<$len;$i++){
 				$value['a_'.$i] = array();
 			}
-			require PrintEot('header');
 			require PrintEot('mod_value');
 			adminbottom();
 		}elseif ($_POST['step']==2){

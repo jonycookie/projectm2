@@ -34,7 +34,6 @@ if($action){
 	}
 	adminmsg('operate_success');
 }
-require PrintEot('header');
 require PrintEot('set_cache');
 adminbottom();
 ?>

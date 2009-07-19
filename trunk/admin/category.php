@@ -103,7 +103,6 @@ class Category{
 			$tree['module'] = $this->moduledb[$tree['mid']]['mname'];
 			$categorydb[] = $tree;
 		}
-		require PrintEot('header');
 		require PrintEot('category');
 		adminbottom();
 	}
@@ -145,7 +144,6 @@ class Category{
 			ifcheck($copyctrl,'copyctrl');
 			$type_1 = 'checked';
 			extract($GLOBALS['checks']);
-			require PrintEot('header');
 			require PrintEot('category');
 			adminbottom();
 		}elseif ($step==2){
@@ -206,7 +204,6 @@ class Category{
 			require_once(R_P.'require/class_const.php');
 			$const = new TplConst('CID');
 			$vars = $const->getConstByValue($cid);
-			require PrintEot('header');
 			require PrintEot('category');
 			adminbottom();
 		}elseif ($step==2){
@@ -578,7 +575,6 @@ class Category{
 		if($job=='up') $p->up();
 		$files = $p->getDir();
 		$direct = $p->currentpath;
-		require PrintEot('header');
 		require PrintEot('selecttpl');
 		adminbottom(0);
 	}
@@ -597,7 +593,6 @@ class Category{
 				$cate_select = $cate->tree();
 				$cate_select = str_replace("value=\"$cid\"","value=\"$cid\" selected ",$cate_select);
 				$catedb = $cate->tree($cid);
-				require PrintEot('header');
 				require PrintEot('batpub');
 				adminbottom();
 			}else{
@@ -648,7 +643,6 @@ class Category{
 				$cate_select = $cate->tree();
 				$cate_select = str_replace("value=\"$cid\"","value=\"$cid\" selected ",$cate_select);
 				$catedb = $cate->tree($cid);
-				require PrintEot('header');
 				require PrintEot('batpub');
 				adminbottom();
 			}else{

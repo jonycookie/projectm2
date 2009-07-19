@@ -51,7 +51,6 @@ class GatherAdmin{
 			continue;
 			$module_select .= "<option value=$mid>$m[mname]</option>";
 		}
-		require PrintEot('header');
 		require PrintEot('mod_gather');
 		adminbottom();
 	}
@@ -84,7 +83,6 @@ class GatherAdmin{
 			$hottag = $this->hottag();
 			ifcheck($multi,'multi');
 			extract($GLOBALS['checks']);
-			require PrintEot('header');
 			require PrintEot('mod_gather');
 			adminbottom();
 		}elseif ($step==2){
@@ -138,7 +136,6 @@ class GatherAdmin{
 			ifcheck($multi,'multi');
 			ifcheck($filtreit,'filtreit');
 			extract($GLOBALS['checks']);
-			require PrintEot('header');
 			require PrintEot('mod_gather');
 			adminbottom();
 		}elseif ($step==2){
@@ -396,7 +393,6 @@ class GatherAdmin{
 		$cate = new Cate();
 		$cate_select = $cate->tree();
 		$cate_select = str_replace("value=\"$cid\"","value=\"$cid\" selected",$cate_select);
-		require PrintEot('header');
 		require PrintEot('mod_gather');
 		adminbottom();
 	}

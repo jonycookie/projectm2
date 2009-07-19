@@ -33,7 +33,6 @@ class Edit extends Content {
 		$cate = new Cate();
 		$cate_select = $cate->tree();
 		if(!$defaultcid && !$cid){
-			require PrintEot('header');
 			require PrintEot('edit');
 			adminbottom();
 		}
@@ -106,7 +105,6 @@ class Edit extends Content {
 			foreach ($colors as $c){
 				$color_select .= "<option value=\"$c\" style=\"background-color:$c;color:$c\">$c</option>";
 			}
-			require PrintEot('header');
 			require PrintEot('edit');
 			adminbottom();
 		}elseif ($step==2){
@@ -155,7 +153,6 @@ class Edit extends Content {
 				}
 			}
 			unset($inputArea['template'],$inputArea['digest'],$inputArea['linkurl'],$inputArea['photo'],$inputArea['template'],$inputArea['titlestyle'],$inputArea['postdate']);
-			require PrintEot('header');
 			require PrintEot('edit');
 			adminbottom();
 		}elseif ($step==2){
@@ -190,7 +187,6 @@ class Edit extends Content {
 		$attach->displaynum = 15;
 		$files = $attach->show($page,$type);
 		$pages = $attach->pages;
-		require PrintEot('header');
 		if($atttype=='img') {
 			require PrintEot('edit_addimage');
 		}elseif($atttype=='flash') {
@@ -257,7 +253,6 @@ class Edit extends Content {
 		$pages = numofpage($total,$page,$numofpage,"admin.php?adminjob=edit&action=searchtids&inputname=$inputname&inputtype=$inputtype&step=2&mid=$search->mid&keyword=$search->keyword&s_type=$search->type&cid=$search->cid&ordering=$search->ordering&keyword_type=$search->keyword_type&searchdate=$search->searchdate&");
 		$searchresult = array_slice ($search->result,$start,20);
 		$content = $searchresult;
-		require PrintEot('header');
 		require PrintEot('edit_search');
 		adminbottom(0);
 	}
@@ -297,7 +292,6 @@ class Edit extends Content {
 		$cms->pageurl="$basename&action=selecttids&inputname=$inputname&inputtype=$inputtype&cid=$cid&$numadd$pubadd&";
 		$content = $cms->thread("cid:$cid;num:page-$displaynum;mid:$mid;order:ifpub,postdate DESC;$where");
 		$pages = $cms->page;
-		require PrintEot('header');
 		require PrintEot('edit_search');
 		adminbottom(0);
 	}
@@ -313,7 +307,6 @@ class Edit extends Content {
 		if($job=='up') $p->up();
 		$files = $p->getDir();
 		$direct = $p->currentpath;
-		require PrintEot('header');
 		require PrintEot('selecttpl');
 		adminbottom(0);
 	}

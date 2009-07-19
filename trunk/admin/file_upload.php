@@ -4,7 +4,6 @@ InitGP(array('step','action'));
 if(!$action){
 	if(!$step){
 		$upload_file_size = ini_get('file_uploads') ? ini_get('upload_max_filesize') : 'Disabled';
-		require PrintEot('header');
 		require PrintEot('file_upload');
 		adminbottom();
 	}elseif ($step==2){
@@ -22,7 +21,6 @@ if(!$action){
 		@include_once(D_P.'data/cache/ftp_config.php');
 		$ftp_pass = substr($ftp_pass,0,1).'********'.substr($ftp_pass,-1);
 		ifcheck($sys['ifftp'],'ifftp');
-		require PrintEot('header');
 		require PrintEot('file_upload');
 		adminbottom();
 	}elseif($step==2) {

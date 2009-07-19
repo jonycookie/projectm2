@@ -29,7 +29,6 @@ $max_upload = ini_get('file_uploads') ? ini_get('upload_max_filesize') : '<span 
 $max_ex_time= ini_get('max_execution_time').' seconds';
 
 @extract($db->get_one("SELECT VERSION() AS dbversion"));
-require PrintEot('header');
 require PrintEot('main');
 adminbottom();
 ?>

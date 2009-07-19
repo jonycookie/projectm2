@@ -13,7 +13,6 @@ $rss_check = is_writeable(D_P.'data/rss') ? $yes : $no;
 $data_check = is_writeable(D_P.'data') ? $yes : $no;
 $cache_check = is_writeable(D_P.'data/cache') ? $yes : $no;
 $jscache_check = is_writeable(D_P.'script/cms') ? $yes : $no;
-require PrintEot('header');
 require PrintEot('set_dircheck');
 adminbottom();
 ?>

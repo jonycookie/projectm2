@@ -31,7 +31,6 @@ if($step==2){
 	}
 	adminmsg('operate_success');
 }
-require PrintEot('header');
 require PrintEot('set_creator');
 adminbottom();
 ?>

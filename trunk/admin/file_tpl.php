@@ -147,7 +147,6 @@ if(!$action){
 	chmod($newdir,0777);
 	adminmsg('file_mkdirok',"$basename&directory=$path");
 }
-require PrintEot('header');
 require PrintEot('file_tpl');
 adminbottom();
 

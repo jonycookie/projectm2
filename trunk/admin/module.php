@@ -76,7 +76,6 @@ class module{
 	function show(){
 		global $moduledb,$basename;
 		sort($moduledb);
-		require PrintEot('header');
 		require PrintEot('module');
 	}
 
@@ -88,7 +87,6 @@ class module{
 		global $action,$step,$basename,$moduledb;
 		if(!$step){
 			$mname = $moduledb[$this->mid]['mname'];
-			require PrintEot('header');
 			require PrintEot('module');
 		}elseif ($step==2){
 			$array = Init_GP(array('fieldname','fieldid','fieldtype','fieldsize','inputtype','getvalue','inputsize','defaultvalue','inputlabel','ifgather','ifindex','ifsearch','ifcontribute'),'P');
@@ -114,10 +112,9 @@ class module{
 			ifcheck($ifindex,'ifindex');
 			ifcheck($ifcontribute,'ifcontribute');
 			extract($GLOBALS['checks']);
-			${$fieldtype.'_s'} = 'selected';
-			${$inputtype.'_i'} = 'selected';
-			${'getvalue_'.$getvalue} = 'selected';
-			require PrintEot('header');
+			${$fieldtype.'_s'} = 'selected=\"selected\"';
+			${$inputtype.'_i'} = 'selected=\"selected\"';
+			${'getvalue_'.$getvalue} = 'selected=\"selected\"';
 			require PrintEot('module');
 		}elseif ($step==2){
 			$array = Init_GP(array('fieldname','fieldid','fieldtype','fieldsize','inputtype','getvalue','inputsize','defaultvalue','inputlabel','ifgather','ifindex','ifsearch','ifcontribute'),'P');
@@ -416,7 +413,6 @@ class module{
 			require_once(R_P.'require/class_const.php');
 			$const = new TplConst('MID');
 			$vars = $const->getConstByValue($this->mid);
-			require PrintEot('header');
 			require PrintEot('module');
 		}elseif ($step==2){
 			$mname = GetGP('mname','P');

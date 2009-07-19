@@ -46,7 +46,6 @@ if(!$step){
 	$cache->config();
 	adminmsg('operate_success');
 }
-require PrintEot('header');
 require PrintEot('mod_blog');
 adminbottom();
 ?>

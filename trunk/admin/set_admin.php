@@ -91,7 +91,6 @@ if(!$action){
 		adminmsg('admin_editok');
 	}
 }
-require PrintEot('header');
 require PrintEot('set_admin');
 adminbottom();
 ?>

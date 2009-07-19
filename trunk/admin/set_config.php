@@ -167,7 +167,6 @@ if(!$step){
 	$cache->config();
 	adminmsg('set_saveok');
 }
-require PrintEot('header');
 require PrintEot('set_config');
 adminbottom();
 ?>

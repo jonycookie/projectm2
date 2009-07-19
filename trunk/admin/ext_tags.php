@@ -60,7 +60,6 @@ class Tags{
 		$numofpage = ceil($total/$displaynum);
 		$pages = numofpage($total,$page,$numofpage,"$basename&keyword=$keyword&");
 		$tagdb = $db->query("SELECT * FROM cms_tags $sqladd ORDER BY tagid DESC LIMIT $start,$displaynum");
-		require PrintEot('header');
 		require PrintEot('ext_tags');
 		adminbottom();
 	}

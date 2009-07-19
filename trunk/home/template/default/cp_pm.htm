@@ -41,7 +41,7 @@
 	<tr>
 		<th><label for="username">收件人：</label></th>
 		<td>
-			<script type="text/javascript" src="source/script_autocomplete.js"></script>
+			<script type="text/javascript" src="script/autocomplete.js"></script>
 			<input type="text" id="username" name="username" value="" style="width: 396px;" class="t_input" tabindex="1" <!--{if $friends}--> onclick="auc.handleEvent(this.value ,event);" onkeyup="auc.handleEvent(this.value ,event);" onkeydown="closeOpt(username,event);inputKeyDown(event);" autocomplete="off" <!--{/if}--> />
 			<!--{if $friends}-->
 			<div id="username_menu" class="ajax_selector" onclick="$('username_menu').style.display='none';" style="display:none">

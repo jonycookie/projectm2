@@ -9,7 +9,6 @@ if(!$action||$action =='view'){
 	!$type && $type='all';
 	$files = $attach->show($page,$type,$keyword);
 	$pages = $attach->pages;
-	require PrintEot('header');
 	require PrintEot('file_attach');
 	adminbottom();
 }elseif ($action=='del'){

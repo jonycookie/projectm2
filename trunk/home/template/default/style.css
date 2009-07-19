@@ -588,7 +588,6 @@ height: expression(this.height > 100 && this.width/this.height < 0.7 ? 100 : tru
 	float: right;
 	width: 90px;
 	height: 25px;
-	background: url(image/buttons.gif) no-repeat 0 0;
 	text-indent: -500px;
 	overflow: hidden;
 	display: block;
@@ -1110,7 +1109,6 @@ width: expression(this.width > 520 ? 520 : true);
 .affiche {
 	margin: 10px 0;
 	padding: 10px;
-	width: 518px;
 	border: 1px solid #EBE6C9;
 	background: #FCF9E6;
 	overflow: hidden;

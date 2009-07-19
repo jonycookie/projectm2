@@ -290,14 +290,14 @@ a.a2 {
 	line-height:21px;
 	border-bottom:1px solid #d0dbe7;
 	border-top:1px solid #d0dbe7;
-	padding:0 6px 2px
+	padding: 0 8px
 }
 .tr2 th {
 	font-weight: normal
 }
 .tr2 a {
 	color:#5F7937;
-	margin-left:5px
+	text-decoration: none;
 }
 /*table tr3*/
 .tr3 td, .tr3 th {
