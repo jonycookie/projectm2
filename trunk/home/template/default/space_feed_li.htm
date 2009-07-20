@@ -5,6 +5,7 @@
 		<!--{elseif $value[uid] && $space[self] && $notime}-->
 		<a href="cp.php?ac=feed&op=ignore&icon=$value[icon]&uid=$value[uid]&feedid=$value[feedid]" id="a_feedicon_$value[feedid]" onclick="ajaxmenu(event, this.id, 99999)" class="float_cancel" title="屏蔽">屏蔽</a>
 		<!--{/if}-->
+		<div class="avatar48"><a href="space.php?uid=$value[uid]"><img src="<!--{avatar($value[uid],small)}-->" alt="{$_SN[$value[uid]]}" width="48" height="48" /></a></div>
 		<a class="type" href="space.php?uid=$_GET[uid]&do=feed&view=$_GET[view]&appid=$value[appid]&icon=$value[icon]" title="只看此类动态"><img src="$value[icon_image]" /></a>$value[title_template] 
 		<!--{if $value['appid']==UC_APPID}-->
 		<!--{if $value['body_data']['sid']}-->
@@ -14,6 +15,9 @@
 		<!--{/if}-->
 		<!--{/if}-->
 		<!--{if empty($notime)}--><span class="time"><!--{date('m-d H:i',$value[dateline],1)}--></span><!--{/if}-->
+		<!--{if $value['body_general']}-->
+		<div class="popup"><span class="q">$value[body_general]</span></div>
+		<!--{/if}-->
 		<div class="feed_content">
 			<!--{if $value['image_1']}-->
 			<a href="$value[image_1_link]"{$value[target]}><img src="$value[image_1]" class="summaryimg" /></a>
@@ -46,9 +50,6 @@
 				<img src="image/flash.gif" alt="点击查看" onclick="javascript:showFlash('flash', '{$value['body_data']['flashaddr']}', this, '{$value['feedid']}');" style="cursor:pointer;" />
 			</div>
 			<!--{/if}-->
-			<!--{/if}-->
-			<!--{if $value['body_general']}-->
-			<div class="quote"><span class="q">$value[body_general]</span></div>
 			<!--{/if}-->
 		</div>
 	</div>

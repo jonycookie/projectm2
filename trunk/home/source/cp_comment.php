@@ -80,7 +80,7 @@ if(submitcheck('commentsubmit')) {
 			$fs['title_data'] = array('touser'=>"<a href=\"space.php?uid=$tospace[uid]\">".$_SN[$tospace['uid']]."</a>");
 			$fs['body_template'] = '';
 			$fs['body_data'] = array();
-			$fs['body_general'] = '';
+			$fs['body_general'] = $summay;
 			$fs['images'] = array();
 			$fs['image_links'] = array();
 			break;
@@ -104,7 +104,7 @@ if(submitcheck('commentsubmit')) {
 			$fs['title_data'] = array('touser'=>"<a href=\"space.php?uid=$tospace[uid]\">".$_SN[$tospace['uid']]."</a>", 'blog'=>"<a href=\"space.php?uid=$tospace[uid]&do=blog&id=$id\">$blog[subject]</a>");
 			$fs['body_template'] = '';
 			$fs['body_data'] = array();
-			$fs['body_general'] = '';
+			$fs['body_general'] = $summay;
 			$fs['target_ids'] = $blog['target_ids'];
 			$fs['friend'] = $blog['friend'];
 			break;
@@ -114,7 +114,7 @@ if(submitcheck('commentsubmit')) {
 			$fs['title_data'] = array('touser'=>"<a href=\"space.php?uid=$tospace[uid]\">".$_SN[$tospace['uid']]."</a>", 'share'=>"<a href=\"space.php?uid=$tospace[uid]&do=share&id=$id\">".str_replace(cplang('share_action'), '', $share['title_template'])."</a>");
 			$fs['body_template'] = '';
 			$fs['body_data'] = array();
-			$fs['body_general'] = '';
+			$fs['body_general'] = $summay;
 			break;
 	}
 
