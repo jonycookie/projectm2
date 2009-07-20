@@ -49,9 +49,9 @@ EOT;
 if($value[mid]>=1){
 print <<<EOT
 -->
-<a href="javascript:void(0)" onclick="window.location='$basename&action=edit&mid=$value[mid]';return false;"><img src="images/admin/edit.gif" title="编辑" width="16" height="16" align="absmiddle" /></a>
-<a href="javascript:void(0)" onclick="if(confirm('确定要删除选中的内容模型吗？'))window.location='$basename&action=del&mid=$value[mid]';return false;"><img src="images/admin/cross.gif" title="删除" width="16" height="16" align="absmiddle" /></a>
-<a href="javascript:void(0)" onclick="window.location='$basename&action=export&mid=$value[mid]';return false;"><img src="images/admin/export.gif" title="导出" width="16" height="16" align="absmiddle" /></a>
+<a href="$basename&action=edit&mid=$value[mid]"><img src="images/admin/edit.gif" title="编辑" width="16" height="16" align="absmiddle" /></a>
+<a href="$basename&action=del&mid=$value[mid]" onclick="return confirm('确定要删除选中的内容模型吗？')"><img src="images/admin/cross.gif" title="删除" width="16" height="16" align="absmiddle" /></a>
+<a href="$basename&action=export&mid=$value[mid]"><img src="images/admin/export.gif" title="导出" width="16" height="16" align="absmiddle" /></a>
 <!--
 EOT;
 }print <<<EOT
@@ -163,9 +163,9 @@ print <<<EOT
     <td>$value[ifgather]</td>
     <td><input type="text" name="vieworder[$value[fid]]" id="vieworder[$value[fid]]" value="$value[vieworder]" size="5" maxlength="5" class="txt" /></td>
     <td>
-	<a href="javascript:void(0)" onclick="if(confirm('编辑一个字段可能存在潜在的危险，有可能因为数据类型的改变而丢失信息。\\n\\n您确认要对它进行编辑吗？'))window.location='$basename&action=editfield&fid=$value[fid]&mid=$value[mid]';return false;"><img src="images/admin/edit.gif" title="编辑" width="16" height="16" align="absmiddle" /></a>
-	<a href="javascript:void(0)" onclick="if(confirm('删除一个字段将会影响到所有该模型下的内容，并且存储在该字段下所有的信息都会丢失。\\n\\n您确认要删除吗？'))window.location='$basename&action=delfield&fid=$value[fid]&mid=$value[mid]';return false;"><img src="images/admin/cross.gif" title="删除" width="16" height="16" align="absmiddle" /></a>
-	<a href="javascript:void(0)" onclick="if(confirm('编辑一个字段索引可能存在潜在的危险，有可能因为数据类型的改变而丢失信息。\\n\\n您确认要对它进行编辑吗？'))window.location='$basename&action=editindex&fid=$value[fid]&mid=$value[mid]';return false;"><img src="images/admin/$value[ifindex].gif" title="索引" width="16" height="16" align="absmiddle" /></a>
+	<a href="$basename&action=editfield&fid=$value[fid]&mid=$value[mid]"><img src="images/admin/edit.gif" title="编辑" width="16" height="16" align="absmiddle" /></a>
+	<a href="$basename&action=delfield&fid=$value[fid]&mid=$value[mid]" onclick="return confirm('删除一个字段将会影响到所有该模型下的内容，并且存储在该字段下所有的信息都会丢失。\\n\\n您确认要删除吗？')"><img src="images/admin/cross.gif" title="删除" width="16" height="16" align="absmiddle" /></a>
+	<a href="$basename&action=editindex&fid=$value[fid]&mid=$value[mid]"><img src="images/admin/$value[ifindex].gif" title="索引" width="16" height="16" align="absmiddle" /></a>
 </td>
   </tr>
 <!--
@@ -208,11 +208,11 @@ print <<<EOT
     </tr>
   <tr class="line">
     <td width="25%">字段名称</td>
-    <td width="75%"><input type="text" name="fieldname" id="fieldname" value="$fieldname" maxlength="10" class="txt" /></td>
+    <td width="75%"><input type="text" name="fieldname" id="fieldname" value="$fieldname" class="txt" /></td>
   </tr>
   <tr class="line">
     <td>字段ID</td>
-    <td><input type="text" name="fieldid" id="fieldid" value="$fieldid" maxlength="12" $sysedit  class="txt" />
+    <td><input type="text" name="fieldid" id="fieldid" value="$fieldid" $sysedit class="txt" />
       (必须为英文)</td>
   </tr>
   <tr class="line">
