@@ -1,0 +1,934 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kingcms>
+	<name>内容管理</name>
+	<ACCESS>
+		<open1>栏目管理[</open1>
+		<portal>访问</portal>
+		<portal_list_edt>创建/编辑</portal_list_edt>
+		<portal_list_delete>删除</portal_list_delete>
+		<portal_list_updown>排序</portal_list_updown>
+		<portal_rewriterule>查看伪静态规则</portal_rewriterule>
+		<close1>]</close1>
+
+		<br1>|</br1>
+
+		<open2>内容列表[</open2>
+		<portal_content>访问</portal_content>
+		<portal_content_edt>编辑</portal_content_edt>
+		<portal_content_delete>删除</portal_content_delete>
+		<portal_content_updown>排序</portal_content_updown>
+		<close2>]</close2>
+
+		<br2>|</br2>
+
+		<open3>模型管理[</open3>
+		<portal_model>访问</portal_model>
+		<portal_model_edt>编辑</portal_model_edt>
+		<portal_model_delete>删除</portal_model_delete>
+		<portal_model_updown>排序</portal_model_updown>
+		<portal_model_dbcopy>模型</portal_model_dbcopy>
+		<portal_model_dbout>导出</portal_model_dbout>
+		<portal_model_dbin>导入</portal_model_dbin>
+		<close3>]</close3>
+
+		<br3>|</br3>
+
+		<open4>字段管理[</open4>
+		<portal_field>访问</portal_field>
+		<portal_field_edt>编辑</portal_field_edt>
+		<portal_field_delete>删除</portal_field_delete>
+		<portal_field_updown>排序</portal_field_updown>
+		<close4>]</close4>
+
+		<br4>|</br4>
+
+		<open5>绑定域名[</open5>
+		<portal_site>访问</portal_site>
+		<portal_site_edt>编辑</portal_site_edt>
+		<portal_site_delete>删除</portal_site_delete>
+		<close5>]</close5>
+
+		<br5>-</br5>
+
+		<open6>标签管理[</open6>
+		<portal_tag>访问</portal_tag>
+		<portal_tag_edt>编辑</portal_tag_edt>
+		<portal_tag_delete>删除</portal_tag_delete>
+		<close6>]</close6>
+
+		<br6>|</br6>
+
+		<open7>栏目编辑员管理[</open7>
+		<portal_editor>访问</portal_editor>
+		<portal_editor_edt>添加/编辑</portal_editor_edt>
+		<portal_editor_delete>删除</portal_editor_delete>
+		<close7>]</close7>
+
+		<br7>|</br7>
+
+		<open8>订单管理[</open8>
+		<portal_orders>查看</portal_orders>
+		<portal_orders_edt>设置</portal_orders_edt>
+		<portal_orders_delete>删除</portal_orders_delete>
+		<portal_orders_delivery>发货</portal_orders_delivery>
+		<close8>]</close8>
+
+		<br8>|</br8>
+
+		<open9>快递管理[</open9>
+		<portal_express>访问</portal_express>
+		<portal_express_edt>添加/编辑</portal_express_edt>
+		<portal_express_delete>删除</portal_express_delete>
+		<close9>]</close9>
+
+	</ACCESS>
+
+	<CHANNEL>
+		<center access="portal" href="../portal/manage.php" img="a1">栏目中心</center>
+		<add access="portal_list_edt" href="../portal/manage.php?action=edt">添加栏目</add>
+		<model access="portal_model" href="../portal/manage.model.php" class="hr" img="a2">模型管理</model>
+		<tag access="portal_tag" href="../portal/manage.tag.php" img="i5">标签管理</tag>
+		<site access="portal_site" href="../portal/manage.php?action=site">域名绑定</site>
+		<rewriterule access="portal_rewriterule" href="javascript:;" class="k_ajax" rel="{URL:'../portal/manage.php',CMD:'rewriterule'}">伪静态规则</rewriterule>
+		<orders access="portal_orders" href="../portal/manage.orders.php" class="hr" img="p1">订单管理</orders>
+		<express access="portal_express" href="../portal/manage.express.php" img="j6">物流费用设置</express>
+		<config access="#config" href="../system/manage.php?action=config&amp;kmodule=portal" class="hr" img="e7" >参数设置</config>
+	</CHANNEL>
+
+	<const>
+		<dirty>脏话过滤(垂直线分开)</dirty>
+		<keywords>关键字组(关键字之间用垂直线分开)</keywords>
+		<xmlopen>生成XML页面</xmlopen>
+		<xmlpath>XML文件存放目录</xmlpath>
+		<blackcontent>禁止发言的字符串</blackcontent>
+		<rss>RSS数据显示</rss>
+		<atom>Atom数据显示</atom>
+		<transfer>银行汇款</transfer>
+		<isuserbuy>非会员购物</isuserbuy>
+		<tenpayseller>财付通帐号</tenpayseller>
+		<tenpaykey>财付通密钥</tenpaykey>
+		<templateorders>订单页模板</templateorders>
+		<alipayregmail>注册Mail</alipayregmail>
+		<alipaypartner>合作伙伴ID</alipaypartner>
+		<alipaykey>支付宝密钥</alipaykey>
+	</const>
+
+	<attrib memo="这个是中文标签属性，和label下面的attrib是有一定区别的">
+		<relate>相关</relate>
+		<hot>热门</hot>
+		<focus>焦点</focus>
+		<commend>推荐</commend>
+		<head>头条</head>
+		<good>好评</good>
+		<bad>差评</bad>
+		<hit>点击</hit>
+		<lately>近期热点</lately>
+		<comment>热评</comment>
+		<chill>冷门</chill>
+		<rand>随机</rand>
+		<list>列表</list>
+		<page>页面</page>
+		<recent>最近访问</recent>
+	</attrib>
+
+	<title>
+		<model>模型管理</model>
+		<field>字段列表</field>
+		<fieldedt>编辑字段</fieldedt>
+		<fieldadd>添加字段</fieldadd>
+		<list>栏目中心</list>
+		<listhome>栏目首页</listhome>
+		<listadd>添加栏目</listadd>
+		<listedt>编辑栏目</listedt>
+		<listattrib>栏目属性</listattrib>
+		<dbcopy>复制模型</dbcopy>
+		<menu>单级菜单排序</menu>
+		<relate>搜索插入相关内容</relate>
+		<site>域名绑定</site>
+		<tag>标签管理</tag>
+		<tagedt>编辑标签</tagedt>
+		<tagadd>添加标签</tagadd>
+		<create>生成进度</create>
+		<content>内容列表</content>
+		<contentedt>编辑内容</contentedt>
+		<contentadd>添加内容</contentadd>
+		<modeledt>编辑模型</modeledt>
+		<modeladd>添加模型</modeladd>
+		<plist>分页列表</plist>
+		<addpage>添加分页</addpage>
+		<user>会员系统</user>
+		<rewriterule>伪静态设置方法</rewriterule>
+
+		<reglicense>会员注册协议</reglicense>
+		<reguser>注册会员</reguser>
+		<login>会员登录</login>
+
+		<listeditor>栏目编辑员</listeditor>
+		<listeditoredt>添加/编辑栏目编辑员</listeditoredt>
+
+		<mycart>我的购物车</mycart>
+		<buyok>成功购买的商品</buyok>
+		<ordersshow>我购买的产品</ordersshow>
+
+		<orders>订单管理</orders>
+		<ordersall>全部订单</ordersall>
+		<orderspaid>待发货</orderspaid>
+		<ordersdef>最近一个月</ordersdef>
+		<ordersview>查看订单</ordersview>
+
+		<express>物流管理</express>
+		<expressedt>编辑物流</expressedt>
+		<delivery>发货设置</delivery>
+
+		<stop>无权访问！</stop>
+	</title>
+
+	<caption>
+		<phrase>词组</phrase>
+		<xml>XML数据</xml>
+		<orders>订单及支付设置</orders>
+		<tenpay>财付通设置</tenpay>
+		<alipay>支付宝设置</alipay>
+		<basic>基本设置</basic>
+		<list>列表页</list>
+		<page>内容页</page>
+		<access>会员发布权限</access>
+		<other>其他</other>
+		<all>更多选项</all>
+	</caption>
+
+	<user>
+		<realname>真实姓名</realname>
+		<nickname>别名</nickname>
+		<address>通信地址</address>
+		<name>会员名</name>
+		<pass>密码</pass>
+		<oldpass>原来的密码</oldpass>
+		<thispass>当前密码</thispass>
+		<newpass>新密码</newpass>
+		<renewpass>确认新密码</renewpass>
+		<pass1>确认密码</pass1>
+		<mail>邮箱</mail>
+		<ask>设置找回密码问题</ask>
+		<answer>设置答案</answer>
+		<register>注册成为会员</register>
+		<iaccept>我已阅读并接受协议</iaccept>
+		<count>会员总数</count>
+		<reg>立即注册</reg>
+		<lostpwd>忘记密码</lostpwd>
+		<expire>登录有效期</expire>
+
+		<ask tip="翻译时，下面的字符不能超过30个字节">
+			<please>请选择</please>
+			<ask1>母亲的名字</ask1>
+			<ask2>爷爷的名字</ask2>
+			<ask3>父亲出生的城市</ask3>
+			<ask4>启蒙老师的名字</ask4>
+			<ask5>您计算机型号</ask5>
+			<ask6>您最爱吃的小吃名字</ask6>
+			<ask7>您的驾照号</ask7>
+		</ask>
+
+		<regok>感谢您注册成为我们的会员!</regok>
+		<loginok>登录成功</loginok>
+		<welcome>欢迎您的到来!</welcome>
+		<lostok>修改完毕,请用新密码登录!</lostok>
+
+		<return>
+			<home>返回到网站首页</home>
+			<uc>用户中心</uc>
+			<re>来源页</re>
+		</return>
+
+		<nologin>尚未登录?</nologin>
+		<regshop>注册会员方便管理订单</regshop>
+
+	</user>
+
+	<orders>
+		<odinfo>订单信息</odinfo>
+		<realname>收件人姓名</realname>
+		<tel>联系电话</tel>
+		<post>邮政编码</post>
+		<mail>电子邮件</mail>
+		<feedback>留言</feedback>
+		<address>收货地址</address>
+		<name>订单名称</name>
+		<no>订单号</no>
+		<number>数量</number>
+		<paymethod>付款方式</paymethod>
+		<prod>商品</prod>
+		<express>物流</express>
+		<total>合计</total>
+		<userinfo>收货人信息</userinfo>
+		<date>创建时间</date>
+		<value>交易清单</value>
+		<statu>交易状态</statu>
+		<status>
+			<s1>交易创建</s1>
+			<s2>等待买家付款</s2>
+			<s3>买家付款成功</s3>
+			<s4>发货成功</s4>
+			<s5>确认收货，交易成功</s5>
+			<s6>交易关闭，未完成超时关闭</s6>
+			<s7>修改交易价格成功</s7>
+			<s8>买家申请退款</s8>
+			<s9>退款成功</s9>
+			<s10>退款关闭</s10>
+			<s11>修改交易价格</s11>
+		</status>
+		<method>
+			<alipay>支付宝付款</alipay>
+			<tenpay>财付通支付</tenpay>
+			<bank>银行汇款</bank>
+		</method>
+		<viewmethod>查看付款方式</viewmethod>
+	</orders>
+
+	<express>
+		<pub>发货</pub>
+		<name>物流名称</name>
+		<sprice>起始价(500g以内费用)</sprice>
+		<iprice>递增价(500g以上,每增加500g增加的费用)</iprice>
+		<address>快递查询地址</address>
+		<expressnumber>运单号</expressnumber>
+	</express>
+
+	<cart>
+		<not>您暂时没有购物记录!</not>
+		<refresh>刷新购物车</refresh>
+		<checkout>去收银台</checkout>
+		<clear>清空购物车</clear>
+		<backcart>返回购物车</backcart>
+		<suborders>提交订单</suborders>
+		<prodinfo>产品信息</prodinfo>
+		<youorders>您的订单号</youorders>
+		<prodname>产品名称</prodname>
+		<total>共计</total>
+		<alltotal>总费用</alltotal>
+		<payment>付款</payment>
+		<olpay>在线支付</olpay>
+		<myorders>我的订单</myorders>
+		<paymode>付款方式</paymode>
+
+		<tenpay>财付通</tenpay>
+		<alipay>支付宝</alipay>
+
+		<upbank>上传汇款凭证</upbank>
+		<bankmemo>请用数码相机拍照或扫描仪扫描银行汇款单，上传给我们，以便我们确认您是否已经汇款。</bankmemo>
+		<bankmemo1>请确保您的图像清晰可见，文件格式扩展名为JPG/JPEG，并且文件不大于200kb。</bankmemo1>
+
+		<upok>成功上传您的凭证，我们会尽快处理，谢谢合作！</upok>
+		<reup>重新上传</reup>
+
+	</cart>
+
+	<static>
+		<t0>生成HTML</t0>
+		<t1>动态</t1>
+		<t2>伪静态</t2>
+		<t3>不显示</t3>
+		<t4>订单、留言类</t4>
+	</static>
+
+	<progress>
+		<when>生成用时</when>
+		<success>-</success>
+		<remainder>待生成栏目</remainder>
+		<sleep>休眠用时</sleep>
+		<exist>文件已存在,跳过</exist>
+		<create>
+			<list>正在生成列表</list>
+			<listhome>正在生成列表首页</listhome>
+			<plist>正在生成分页列表</plist>
+			<page>正在生成内容</page>
+		</create>
+	</progress>
+
+	<cmd>
+		<createpage>内容页面</createpage>
+		<createlist>主题列表</createlist>
+		<createlisthome>列表首页</createlisthome>
+	</cmd>
+
+	
+	<common>
+		<show1>显示</show1>
+		<show0>隐藏</show0>
+		<remark>备注</remark>
+		<create>列表及内容</create>
+		<createpage>内容页</createpage>
+		<createlist>列表页</createlist>
+		<createall>全站</createall>
+		<createnot>未生成内容</createnot>
+		<deletelist>栏目及数据</deletelist>
+		<deletecachelist>所选栏目缓存</deletecachelist>
+		<deletecache>所有栏目缓存</deletecache>
+		<uniondata>栏目数据</uniondata>
+		<moveto>移动到..</moveto>
+		<copycode>拷贝模型代码</copycode>
+		<incode>导入模型</incode>
+		<addsite>添加域名绑定</addsite>
+		<edtmenu>编辑菜单</edtmenu>
+		<pagelist>分页列表</pagelist>
+		<pcount>统计</pcount>
+		<addpage>添加分页</addpage>
+		<fieldlist>字段列表</fieldlist>
+		<addfield>添加字段</addfield>
+		<moreinfo>详细信息</moreinfo>
+		<y tip="货币单位">元</y>
+		<exp>扩展属性</exp>
+		<delivery>确认发货</delivery>
+	</common>
+
+	<list>
+		<nav>栏目导航</nav>
+
+		<listname>栏目名称</listname>
+
+		<model>模型列表</model>
+		<field>字段名</field>
+		<root>Root</root>
+		<modelname>模型名称</modelname>
+		<table>数据表名称</table>
+		<klanguage>语言</klanguage>
+		<field>字段列表</field>
+		<dbcopy>复制模型</dbcopy>
+		<dbout>导出模型</dbout>
+		<dbin>导入模型</dbin>
+		<dbdelete>删除模型</dbdelete>
+		<kmemo>标题右侧的提示</kmemo>
+		<khelp>表单右侧的弹出式帮助</khelp>
+
+		<ktitle>字段标题</ktitle>
+		<kfield>字段名 (英文字符和数字)</kfield>
+		<ntype>字段类型</ntype>
+		<nvalidate>数据类型</nvalidate>
+
+		<issearch>允许搜索</issearch>
+		<isrelate>关联字段</isrelate>
+		<listall>展开全部</listall>
+		<listpl>分页显示</listpl>
+
+		<contentlist>列表</contentlist>
+
+		<menu>菜单</menu>
+
+		<url>被绑定网址</url>
+		<effect>效果</effect>
+
+		<browlist>浏览列表</browlist>
+
+		<admin1>管理显示</admin1>
+		<admin2>管理次页</admin2>
+		<user1>会员显示</user1>
+		<user2>会员次页</user2>
+		<islist>列表显示</islist>
+
+		<delcache>清除缓存</delcache>
+
+		<tag>模板标签</tag>
+
+		<prodname>商品名称</prodname>
+		<unitprice>单价</unitprice>
+		<total>商品费用总计</total>
+		<selexpress>选择物流方式</selexpress>
+		<notexpress>无需物流</notexpress>
+		<alltotal>全部合计</alltotal>
+
+	</list>
+
+	<remove>
+		<a>链接</a>
+		<table>表格</table>
+		<style>样式(style)</style>
+		<id>ID</id>
+		<class>类(class)</class>
+		<oneimage>设置第一张图为缩略图</oneimage>
+		<replacetag>替换关键字链接</replacetag>
+	</remove>
+
+
+	<label>
+		<listname>栏目名称</listname>
+		<listtitle>栏目标题</listtitle>
+		<listtitle1>浏览器头标题栏上的内容</listtitle1>
+		<siteid>绑定域名</siteid>
+		<isblank>新窗口中打开</isblank>
+		<linkpath>转向链接地址</linkpath>
+		<template1>单页 - 外部模板</template1>
+		<template2>单页 - 内部模板</template2>
+		<onetype>单页 - 文档类型</onetype>
+		<npage>内容页 - 文档类型</npage>
+		<nlist>列表页 - 文档类型</nlist>
+		<path>单页 - 路径</path>
+		<iscontent1>编辑内容</iscontent1>
+		<model>应用模型</model>
+		<listpath>列表页 - 路径</listpath>
+		<templatelist1>列表页 - 外部模板</templatelist1>
+		<templatelist2>列表页 - 内部模板</templatelist2>
+		<pathmode>内容页 - 路径样式</pathmode>
+		<templatepage1>内容页 - 外部模板</templatepage1>
+		<templatepage2>内容页 - 内部模板</templatepage2>
+		<templatepublish>会员发帖页面 - 外部模板</templatepublish>
+		<templatesearch>搜索页面 - 外部模板</templatesearch>
+		<url>绑定域名</url>
+		<url1>留空则不绑定</url1>
+		<publish1>会员发布 - 主题</publish1>
+		<publish2>会员发布 - 回复</publish2>
+		<mpublish1>会员发布主题[预设]</mpublish1>
+		<mpublish2>会员发布回复[预设]</mpublish2>
+		<pub0>不允许发布(栏目编辑允许发布)</pub0>
+		<pub1>直接发布</pub1>
+		<pub2>草稿(验证后发布)</pub2>
+		<listid1>上级栏目</listid1>
+		<rule>伪静态规则</rule>
+
+		<listeditor>栏目编辑员</listeditor>
+		<issub>从属</issub>
+
+		<templatetag1>标签 - 外部模板</templatetag1>
+		<templatetag2>标签 - 内部模板</templatetag2>
+
+		<relate1>手动关联</relate1>
+		<relate0>自动关联</relate0>
+
+		<insert>自动完成</insert>
+
+		<onepage>单页</onepage>
+		<hyperlink>超链接</hyperlink>
+
+		<newmodelname>新模型名称</newmodelname>
+		<newtable>新数据表</newtable>
+		<nsize>字符串长度限制 (最小值-最大值,不能大于255)</nsize>
+		<nsizetext>字符串长度限制(最小值-最大值)</nsizetext>
+		<kdefault>默认值 (默认填写的内容)</kdefault>
+		<kdefault1>预置选项</kdefault1>
+		
+		<koption>选项值</koption>
+
+		<nstyle>文本框尺寸 (宽X高)</nstyle>
+		<nstylewidth>文本框长度</nstylewidth>
+		<nupfile>上传文件类型</nupfile>
+
+		<attrib1>是否显示属性</attrib1>
+
+		<form>是否显示表单</form>
+		<retitle>标题重命名</retitle>
+
+		<attrib>
+			<isshow>显示</isshow>
+			<isadmin1>管理页显示</isadmin1>
+			<isadmin2>管理次页显示</isadmin2>
+			<isuser1>会员页显示</isuser1>
+			<isuser2>会员页次页显示</isuser2>
+			<islist>后台列表页显示</islist>
+			<ishead>头条</ishead>
+			<iscommend>推荐</iscommend>
+			<isup>置顶</isup>
+			<isfocus>焦点</isfocus>
+			<ishot>热门</ishot>
+
+			<iskeyword>关键字</iskeyword>
+			<istag>TAG</istag>
+			<isdescription>简述</isdescription>
+			<isimage>缩略图</isimage>
+			<iscontent>内容</iscontent>
+			<ispath>路径</ispath>
+			<isdate>日期</isdate>
+			<isprice>价格</isprice>
+			<isrelate>相关</isrelate>
+
+			<issearch>加入到搜索</issearch>
+			<isrelate1>设置为关联字段</isrelate1>
+
+			<isid>管理列表中显示ID</isid>
+		</attrib>
+		
+		<site>
+			<name>网站名称</name>
+			<url>绑定的域名(不以/结束，如：http://www.kingcms.com)</url>
+		</site>
+
+		<setmenu>菜单设置(指定要显示的菜单)</setmenu>
+		<menu1>菜单[1] UL/LI 结构的多级菜单</menu1>
+		<menu2>菜单[2] OL/LI 结构的多级菜单</menu2>
+		<menu3>菜单[3] 单级菜单</menu3>
+		<menu4>菜单[4] 单级菜单</menu4>
+		<menu5>菜单[5] 单级菜单</menu5>
+
+		<map>站点地图</map>
+		<maps>站点地图中显示</maps>
+
+		<find>搜索</find>
+
+		<ktag>标签名称</ktag>
+		<kcolor>颜色</kcolor>
+
+		<bold>加粗</bold>
+
+		<listnumber>列表页 - 每页显示数</listnumber>
+		<pagenumber>内容页 - 每页显示数</pagenumber>
+		<mlistnumber>列表页 - 每页显示数[预设]</mlistnumber>
+		<mpagenumber>内容页 - 每页显示数[预设]</mpagenumber>
+
+		<newlist>合并数据到栏目..</newlist>
+
+		<moveto>移动到新的栏目</moveto>
+
+		<listorder>列表页 - 项目排序</listorder>
+		<pageorder>内容页 - 分页排序</pageorder>
+
+		<nshow>只显示最近更新</nshow>
+
+		<locktime>会员可再编辑时间设置</locktime>
+		<showtime>可显示时间设置</showtime>
+		<unit>单位:小时</unit>
+
+		<havecontent>有内容</havecontent>
+		<showtitle>显示字段标题</showtitle>
+		
+		<imgalt>相关图片的说明或介绍</imgalt>
+		<imgsrc>图片路径或远程地址</imgsrc>
+
+		<filealt>相关文件的说明或介绍</filealt>
+		<filesrc>文件路径或远程地址</filesrc>
+	</label>
+
+	<order>
+		<list1>正常倒序 - 新内容排前</list1>
+		<list2>正常正序 - 新内容排后</list2>
+		<list3>更新倒序 - 论坛模式</list3>
+		<list4>浏览倒序 - 关注度高的排前</list4>
+		<list5>浏览倒序 - 最近关注度高的排前</list5>
+		<list6>会员去顶 - DIGG式排序，好评多的排前</list6>
+		<list7>会员去顶 - DIGG式排序，差评多的排前</list7>
+		<list8>会员去顶 - DIGG式排序，对比评比排序</list8>
+		<list9>价格排序 - 从低到高</list9>
+		<list10>价格排序 - 从高到低</list10>
+
+		<page1>手动排序 - 默认新内容排后</page1>
+		<page2>手动排序 - 默认新内容排前</page2>
+		<page3>时间正序 - 新内容排后</page3>
+		<page4>时间倒序 - 新内容排前</page4>
+		<page5>时间正序 - 主题置前,新内容排后</page5>
+		<page6>时间倒序 - 主题置前,新内容排前</page6>
+		<page7>问答模式 - 主题置前,正答排前</page7>
+
+	</order>
+
+	<type>
+		<n99>组</n99>
+		<n0>系统字段</n0>
+		<n1>单行文本</n1>
+		<n2>多行文本 (不支持编辑器)</n2>
+		<n3>多行文本 (支持编辑器)</n3>
+		<n4>单选 (下拉列表)</n4>
+		<n5>单选 (按钮)</n5>
+		<n6>多选 (多选列表)</n6>
+		<n7>多选 (复选按钮)</n7>
+		<n8>(单) 图片上传框</n8>
+		<n9>(多) 图片列表</n9>
+		<n10>(单) 文件上传框</n10>
+		<n11>(多) 文件列表</n11>
+		<n12>颜色框</n12>
+		<n13>是/否</n13>
+		<n14>日期</n14>
+		<n15>日期+时间</n15>
+	</type>
+
+	<validate>
+		<n0>任意字符</n0>
+		<n1>英文字符+数字</n1>
+		<n2>数字,无符号</n2>
+		<n3>数字+小数点+逗号</n3>
+		<n4>数字+字母+下划线</n4>
+		<n5>邮箱</n5>
+		<n6>网址</n6>
+		<n7>图片网址</n7>
+		<n8>日期+时间</n8>
+		<n9>日期</n9>
+		<n13>颜色值</n13>
+		<n22>数字,有符号</n22>
+	</validate>
+
+	<check>
+		<nsize1>取值范围为0-255</nsize1>
+		<nsize2>取值范围为1-255</nsize2>
+		
+		<siteurl>域名不能以/结束</siteurl>
+
+		<path>列表页路径和封面页路径不能一致</path>
+		<black>包含禁止使用的单词</black>
+		<reg>
+			<u-1>用户名不合法!</u-1>
+			<u-2>包含不允许注册的词语!</u-2>
+			<u-3>用户名已经存在!</u-3>
+			<u-4>Email 格式有误!</u-4>
+			<u-5>Email 不允许注册!</u-5>
+			<u-6>该 Email 已经被注册!</u-6>
+		</reg>
+
+		<edit>
+			<u-1>旧密码不正确</u-1>
+			<u-4>Email 格式有误</u-4>
+			<u-5>Email 不允许注册</u-5>
+			<u-6>该 Email 已经被注册</u-6>
+			<u-7>没有做任何修改</u-7>
+			<u-8>该用户受保护无权限更改</u-8>
+		</edit>
+
+		<pwd>
+			<p-1>用户名不存在,或者被删除!</p-1>
+			<p-2>账号密码不正确!</p-2>
+		</pwd>
+
+		<lost>
+			<mail>您输入的邮箱地址有误</mail>
+			<answer>您录入的答案不正确</answer>
+			<name>用户不存在或被删除!</name>
+		</lost>
+
+		<incode>模型数据有误!</incode>
+
+		<listnumber>列表页显示数不能大于100</listnumber>
+		<pagenumber>分页显示数不能大于100</pagenumber>
+	</check>
+
+	<ok>
+		<show1>成功设置为显示</show1>
+		<show0>成功设置为隐藏</show0>
+		<union>成功合并栏目数据</union>
+	</ok>
+
+	<error>
+		<sublist>请先删除下级栏目</sublist>
+		<dellist>此栏目不允许删除</dellist>
+		<url>已有栏目使用此域名，请先修改为其他。</url>
+		<url1>不能删除所有网址</url1>
+		<listnumber>不能大于100</listnumber>
+		<model1>必须为同一模型才可以合并数据</model1>
+		<model2>此模型不支持数据合并</model2>
+		<model3>至少要选择两个栏目</model3>
+		<moveto>栏目模型不一致</moveto>
+		<moveto1>同一栏目，无需移动</moveto1>
+		<nothome>暂未创建网站首页!</nothome>
+		<istmodel>删除失败!已有栏目使用此模型.</istmodel>
+
+		<connect>通信错误,请重试!</connect>
+		<number>数量错误,必须为整数!</number>
+
+		<stop>禁止访问的页面，操作终止！</stop>
+		<stopmsg>此栏目已设置为禁止访问状态！</stopmsg>
+		<payment>未知的付款错误!</payment>
+		<notmodel>没有可搜索的模型!</notmodel>
+
+		<noaccess>您无权编辑当前主题！</noaccess>
+		<timeout>已经超出了可编辑时间，不可以再进行编辑。</timeout>
+
+		<noturl>您正在请求的页面未被解析!</noturl>
+
+		<cart>您无权访问他人的订单!</cart>
+		<status>交易状态有变，访问出错!</status>
+		<ext>图像格式必须为jpeg类型!</ext>
+		<upbank>上传过程出现意外错误，上传文件失败！</upbank>
+
+		<nottag>您正在调用的标签不存在!</nottag>
+		
+		<notimgsrc>图片地址不能为空!</notimgsrc>
+		<retimgsrc>图片地址重复，请不要重复添加!</retimgsrc>
+		
+		<notfilesrc>文件地址不能为空!</notfilesrc>
+		<retfilesrc>文件地址重复，请不要重复添加!</retfilesrc>
+	</error>
+
+	<tip>
+		<kobjnot>请先填写一个值!</kobjnot>
+		<isexist1>有重复值!</isexist1>
+		<isexist0>无重复值!</isexist0>
+		<ktitle>请先填写</ktitle>
+		<onclick>请点击这里自动设置关联内容</onclick>
+		<notkey>操作失败，没有找到相关关键字</notkey>
+		<nottag>操作失败，没有找到相关标签</nottag>
+		<notrelate>操作失败，没有找到相关内容</notrelate>
+		<kkey>请先删除已有关键字</kkey>
+		<ktag>请先删除已有标签</ktag>
+		<notpic>暂无图片</notpic>
+		<notfile>暂无文件</notfile>
+		<noedt>不允许修改的字段属性</noedt>
+		<noteditor>本频道暂无栏目管理员!</noteditor>
+		<notorders>暂时没有订单!</notorders>
+	</tip>
+
+	<help>
+		<issub>同时可以管理下级栏目</issub>
+
+		<kpathmode>变量区分大小写，变量的对应关系如下：
+			TIME => 时间戳，结果如：1214008065
+			ID   => 内容ID，从1开始递增
+			PID  => 分页ID，可以不填写
+			yyyy => 4位数字表示的完整年份，如：2008
+			yy   => 简化的年份，如：08
+			MMM  => 月份的完整英文表示
+			MM   => 2位数字表示的月份
+			dd   => 月份中第几天的2位数字表示
+			hh   => 小时数
+			mm   => 分数
+			ss   => 秒数
+			RND  => 3位随机数,支持重复调用
+
+			路径样式尽量设置成不要出现重复值，否则会出错。
+		</kpathmode>
+		
+		<listorder><![CDATA[<span class="red">此文本框填写的是SQL代码中的order by部分
+			若对SQL和KingCMS数据表结构并不熟悉，则不要手工填写。</span>
+			预置选项的解释如下：
+			<strong class="green">正常倒序 - 新内容排前</strong>
+			通常用在新闻、文章、下载等列表页的排序，新增加的内容在前面显示，也
+			可以手动设置前后顺序。
+			<strong class="green">正常正序 - 新内容排后</strong>
+			这种排序可能用处并不很多，和上面的排序方法正好相反，新增加的内容在
+			后面跟着显示，这样在添加新内容的时候，不能在列表里及时看到，需要翻
+			页到最后一页才可以看到，也可以手动设置前后顺序。
+			<strong class="green">更新倒序-论坛模式</strong>
+			论坛的排序是这样的，置顶的内容在第一页顶部显示，新回复的内容在前面显示。
+			不支持手动设置顺序。
+			<strong class="green">浏览倒序 - 关注度高的排前</strong>
+			列表页很少采用这种排序，但商城等模型采用这种方法或许对销售有好处。
+			这是以访问量比较大的内容显示在前面，不支持手动设置。
+			<strong class="green">浏览倒序 - 最近关注度高的排前</strong>
+			在采用上一种方法的时候，或许会遇到一个问题，排在前面的永远排在前面，
+			比如某个产品，去年很流行，访问次数到了几十万，但今年可能没有人关注，
+			但因为这个产品的浏览次数很多，它还是拍在前面，这样不利于最新产品的销售。
+			把最近关注度比较高的排在前面，有利于及时更新热门产品列表。
+			<strong class="green">会员去顶 - DIGG式排序，好评多的排前</strong>
+			时下流行的一种排序，相对访客友好，又是一个比较互动的排序。
+			<strong>会员去顶 - DIGG式排序，差评多的排前</strong>
+			或许..没有几个人会把差评高的内容放在前面吧？也许你能挖掘这个功能的潜力。
+			<strong class="green">会员去顶 - DIGG式排序，对比评比排序</strong>
+			某个内容的差评和好评一样高，如果采用上面两个方法中的一个的时候，他都
+			是排在前面，这样可不好。
+			干脆就让他们做个评比吧，比例高的在前。
+			<strong class="green">价格排序 - 从低到高</strong>
+			物美价廉的产品经常受消费者的欢迎，一点点提高消费者的的心理价位，或许
+			采用这种方法比较好。
+			<strong class="green">价格排序 - 从高到低</strong>
+			奢侈品类商品的话，或许把价格高的排在前面更好。]]>
+		</listorder>
+
+		<pageorder><![CDATA[<span class="red">此文本框填写的是SQL代码中的order by部分
+		若对SQL和KingCMS数据表结构并不熟悉，则不要手工填写。</span>
+		这个排序和列表页的排序不同，这个是用在文章、论坛等内容分页的排序
+		预置选项的解释如下：
+		<strong class="green">手动排序 - 默认新内容排后</strong>
+		支持手动控制顺序，新发布的内容在后页显示，适合在文章、新闻分页等模型
+		<strong class="green">手动排序 - 默认新内容排前</strong>
+		支持手动控制顺序，新发布的内容在前面显示，用处不详。
+		<strong class="green">时间正序 - 新内容排后</strong>
+		不支持手动设置顺序，新发布的内容在后页显示，等同于第一个方法，但不能手动调整顺序
+		<strong class="green">时间倒序 - 新内容排前</strong>
+		新添加的内容在前显示，不支持手动设置
+		<strong class="green">时间正序 - 主题置前，新内容排后</strong>
+		论坛、贴吧等的排序方案
+		<strong class="green">时间倒序 - 主题置前，新内容排前</strong>
+		和上面方案相反，但共同的是主题都是在前面。
+		<strong class="green">问答模式 - 主题置前,正答排前</strong>
+		像百度知道、SINA爱问一样，把优秀的答案排到前面]]>
+		</pageorder>
+
+		<template><![CDATA[关于内部模板和外部模板的关系，先看下图：
+		<img src="../system/images/template.gif"/>
+		如上图，网站模板一般都是由Logo、Menu、Main、Bottom等层构成，其
+		中Main层是常变的部分，其他3个层很少有变化，甚至整个网站都一致。
+		我们所定义的外部模板就是网站中固定的部分，只修改经常变化的Main
+		部分，也就是内部模板。
+		这样分开来设计网站模板，会得到事半功倍的效果。
+		当然你习惯与设计不拆分成内外的模板，也一样可以。
+		<span class="red">模板名称只能是英文、数字和部分字符构成，不能用中文！</span>
+		]]></template>
+
+		<khelp><![CDATA[显示帮助图标<img src="../system/images/white.gif" class="os g6"/>，如下：
+		<span style="display:block;margin:10px 0px"><input class="k_in w100" type="input"/><img src="../system/images/white.gif" class="os g6"/></span>点击图标后弹出当前这种窗口，显示的内容是您说定义的帮助内容，支持HTML标签。]]></khelp>
+
+		<kmemo><![CDATA[<img src="../portal/images/kmemo.gif"/>]]></kmemo>
+
+		<pagenumber><![CDATA[文章分页，每页可显示的内容数；
+		文章、下载等系统设置为默认值1即可；
+		当为论坛等，一个页面需要显示多个内容的时候，设置为小于100的数字]]></pagenumber>
+
+		<comma><![CDATA[多个值用英文逗号分开，如：
+		<input value="IT,KingCMS,CMS" class="k_in w300" />]]></comma>
+
+		<koption><![CDATA[多个选项值之间用回车分开；
+		填写方法1,值和内容用垂直线分开
+		<span class="block k_in w300">zh-cn|简体中文
+		zh|繁体中文
+		en|英文</span>
+		填写方法2,显示内容作为值
+		<span class="block k_in w300">中国
+美国
+法国</span>]]></koption>
+
+		<kdefault><![CDATA[多个默认值之间用回车分开；
+		填写方法1,<strong>值</strong>和<strong>名称</strong>用垂直线分开
+		<span class="block k_in w300">Chinese|中文
+		English|英文</span>
+		填写方法2,直接显示填写的内容
+		<span class="block k_in w300">Chinese
+English</span>]]></kdefault>
+
+		<relate><![CDATA[关联内容最大不要超过20条；
+		要使用自动关联功能，请先填写标题框，并且
+		标题中包含系统关键字组中定义的关键字才可
+		以自动设置；否则会弹出手工设置窗口。]]></relate>
+
+		<site>请先确认被绑定的域名已经指向到当前
+		空间，并已绑定到当前空间。此功能不需
+		要泛解析，也不需要目录绑定域名功能，
+		只要域名正常解析到空间即可使用。</site>
+
+		<model>单页的超链接类型可以转换为其他模型，但指定为其他模型后，不能再修改类型。</model>
+
+		<path><![CDATA[若为主站或子站首页，则地址置为空。
+		文档类型为动态或伪静态的时候，此路径无效。
+		目录形式必须以/结尾]]></path>
+		<listpath><![CDATA[分页变量为：PID，区分大小写；
+		路径中可以不写PID，系统自动补充PID]]></listpath>
+
+		<locktime><![CDATA[允许再次编辑的时间设置
+		当过了这个时间范围后，会员就不能再次进行编辑操作。
+		0代表不受时间限制，随时可以再次编辑。]]></locktime>
+
+		<showtime><![CDATA[允许显示的时间设置
+		当过了这个时间范围后，内容将不在列表里显示。
+		0代表总显示]]></showtime>
+
+		<weight>重量的单位为克(g)，用做计算物流费用之用。</weight>
+
+		<atom><![CDATA[Atom 是一种内容聚合格式，这种
+格式和RSS一样，也是建立在XML
+数据格式的基础之上的。]]></atom>
+
+		<tenpayseller>财付通帐号，一般是QQ号
+		若不填写，则不使用财付通支付。</tenpayseller>
+
+		<tenpaykey>开通财付通的商家服务-&gt;中介担保交易后，在
+		https://www.tenpay.com/med/admin_opentrans_key.shtml
+		里可以设置密钥，把设置过的密钥写进去就可以。</tenpaykey>
+
+		<alipaykey>开通支付宝的商家服务-&gt;中介
+		担保交易后，可以获得密钥。</alipaykey>
+		<rule>上面是以Apache服务器为例做的伪静态规则，
+		其他类型的服务器，如IIS，根据上述规则做适当的改动。</rule>
+	</help>
+
+	<msg>
+		<listname>出现这个错误的可能原因是有遗留cache文件造成的，请手工删除_cache/portal目录</listname>
+	</msg>
+
+	<goto>
+		<addpag>保存后继续添加分页</addpag>
+	</goto>
+
+
+</kingcms>

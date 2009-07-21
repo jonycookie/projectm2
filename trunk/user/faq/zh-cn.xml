@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kingcms>
+
+	<item>
+		<title>验证码太难录入?</title>
+		<body><![CDATA[KingCMS默认的验证码可能很难看懂，那是因为我们在选择默认字体的时候看重的是其小巧的体积。
+		你完全可以删掉它们，并拷贝喜欢的字体到字体目录里。
+		系统会自动认出来。
+		若要改成中文验证码，也可以拷贝中文字体库进去。具体方法见KingCMS指南。
+		字体库路径：//system/verify_font/]]></body>
+	</item>
+
+
+
+</kingcms>

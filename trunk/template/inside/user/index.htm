@@ -1,0 +1,38 @@
+<p>
+	<a href="#" class="k_user_resetpwd">{lang:user.title.resetpwd/}</a>
+	-
+	<a href="index.php?action=safe">{lang:user.title.safe/}</a>
+	-
+	<a href="index.php?action=edit">{lang:user.title.edit/}</a>
+	-
+	<a href="index.php?action=orders">{lang:user.title.orders/}</a>
+<!--
+	-
+	<a href="index.php?action=head">{lang:user.title.head/}</a>
+	
+-->
+	-
+	<a class="k_user_logout">{lang:system.login.logout/}</a>
+</p>
+
+
+<div id="k_userinfo">
+
+	{king:user.info userid='(king:userid/)'}
+		<p>所属用户组：
+		{king:user.group gid="(king:gid/)"}
+			{king:name/}
+		{/king:user.group}
+		
+		</p>
+
+		<p>{lang:portal.user.name/} : {king:username/}</p>
+		<p>{lang:portal.user.mail/} : {king:usermail/}</p>
+		<p>{lang:portal.user.nickname/} :{king:nickname/}</p>
+		<p>{lang:portal.user.realname/} :{king:realname/}</p>
+		<p>{lang:user.common.point/} :{king:userpoint/}</p>
+
+	{/king:user.info}
+
+
+</div>

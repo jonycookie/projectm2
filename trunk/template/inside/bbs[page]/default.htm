@@ -1,0 +1,25 @@
+<h1>{king:title/}</h1>
+
+
+<p>浏览次数：{king:hit/}</p>
+
+<p>添加：<a href="{king:add/}">添加主题</a></p>
+<p>回复：<a href="{king:reply/}">回复主题</a></p>
+<p>编辑：<a href="{king:edit/}">编辑主题</a></p>
+
+
+{king:portal.bbs type="page"}
+	<h4>[标题]{king:title/}</h4>
+	<p style="word-break:break-all">{king:content size="500"/} - 
+		{king:user userid='(king:userid/)'}
+			{king:username/}
+		{/king:user}
+	</p>
+
+
+{/king:portal.bbs}
+
+
+{king:portal.pagelist/}
+
+
