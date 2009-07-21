@@ -38,11 +38,11 @@
 	define('KC_DB_ADMIN','kc');
 
 	define('KC_DB_HOST','localhost');
-	define('KC_DB_DATA','test');
+	define('KC_DB_DATA','cms');
 	define('KC_DB_USER','root');
-	define('KC_DB_PASS','root');
+	define('KC_DB_PASS','');
 
-	define('KC_DB_SQLITE','634anpd3y15q.db3');
+	define('KC_DB_SQLITE','lms96h26qjcd.db3');
 
 /* ------>>> 参数设置 <<<---------------------------- */
 
