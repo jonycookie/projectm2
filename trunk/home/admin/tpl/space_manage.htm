@@ -1,0 +1,263 @@
+<!--{template admin/tpl/header}-->
+
+<div class="mainarea">
+<div class="maininner">
+
+<!--{if $uid}-->
+	<form method="post" action="admincp.php?ac=space&uid=$uid">
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+	<div class="bdrcontent">
+		<div class="title">
+			<h3>$member[username] 基本信息</h3>
+		</div>
+		<table cellspacing="0" cellpadding="0" class="formtable">
+		<tr><th style="width:12em;">用户名</th><td>$member[username]</td></tr>
+		<tr><th>头像</th><td><a href="space.php?uid=$member[uid]" target="_blank"><img src="<!--{avatar($member[uid],big)}-->" alt="$member[username]" class="avatar" /></a>
+		<br>[<a href="admincp.php?ac=space&op=deleteavatar&uid=$uid">删除头像</a>]
+		</td></tr>
+		<tr><th>开通时间</th><td><!--{date('Y-m-d H:i',$member[dateline])}--></td></tr>
+		<tr><th>更新时间</th><td><!--{if $member[updatetime]}--><!--{date('Y-m-d H:i',$member[updatetime])}--><!--{/if}--></td></tr>
+		<tr><th>上次登录</th><td><!--{date('Y-m-d H:i',$member[lastlogin])}--></td></tr>
+		<tr><th>上次登录IP</th><td>$member[ip]</td></tr>
+		<tr><th>好友数</th><td>$member[friendnum]</td></tr>
+		<tr><th>查看数</th><td>$member[viewnum]</td></tr>
+		<tr><th>批量管理</th>
+			<td>
+			<a href="admincp.php?ac=blog&uid=$member[uid]&searchsubmit=1" target="_blank">日志</a> | 
+			<a href="admincp.php?ac=album&uid=$member[uid]&searchsubmit=1" target="_blank">相册</a> | 
+			<a href="admincp.php?ac=pic&uid=$member[uid]&searchsubmit=1" target="_blank">图片</a> | 
+			<a href="admincp.php?ac=comment&authorid=$member[uid]&searchsubmit=1" target="_blank">评论</a> | 
+			<a href="admincp.php?ac=thread&uid=$member[uid]&searchsubmit=1" target="_blank">话题</a> | 
+			<a href="admincp.php?ac=post&uid=$member[uid]&searchsubmit=1" target="_blank">回帖</a> | 
+			<a href="admincp.php?ac=doing&uid=$member[uid]&searchsubmit=1" target="_blank">记录</a> | 
+			<a href="admincp.php?ac=feed&uid=$member[uid]&searchsubmit=1" target="_blank">事件</a> | 
+			<a href="admincp.php?ac=share&uid=$member[uid]&searchsubmit=1" target="_blank">分享</a>
+		</td></tr>
+		<tr><th>&nbsp;</th>
+			<td><!--{if empty($member['flag'])}-->
+			<a href="admincp.php?ac=space&op=delete&uid=$member[uid]" onclick="return confirm('危险，这将删除该用户所有数据，并且本操作不可恢复，确认删除？');">删除该用户所有数据</a>
+			<!--{else}-->
+			本用户被保护，不能删除
+			<!--{/if}--></td>
+		</tr>
+		</table>
+	</div><br>
+	<div class="bdrcontent">
+		<div class="title">
+			<h3>$member[username] 个人资料</h3>
+		</div>
+		<table cellspacing="0" cellpadding="0" class="formtable">
+		<tr><th style="width:12em;">姓名</th><td><input type="text" name="name" value="$member[name]">
+			<input type="radio" name="namestatus" value="0"<!--{if $member[namestatus]==0}--> checked<!--{/if}-->> 认证失败
+			<input type="radio" name="namestatus" value="1"<!--{if $member[namestatus]==1}--> checked<!--{/if}-->> 认证通过
+		</td></tr>
+		<tr>
+			<th style="width:12em;">常用邮箱</th>
+			<td>
+				<input type="text" id="email" class="t_input" name="email" value="$member[email]" />
+				<input type="radio" name="emailcheck" value="0"<!--{if $member[emailcheck]==0}--> checked<!--{/if}-->> 未激活
+				<input type="radio" name="emailcheck" value="1"<!--{if $member[emailcheck]==1}--> checked<!--{/if}-->> 已经验证激活
+			</td>
+		</tr>
+		<tr>
+			<th>性别</th>
+			<td>
+				<label for="sexm"><input id="sexm" type="radio" value="1" name="sex"$sexarr[1] />男</label> 
+				<label for="sexw"><input id="sexw" type="radio" value="2" name="sex"$sexarr[2] />女</label>
+			</td>
+		</tr>
+		<tr>
+			<th>婚恋状态</th>
+			<td>
+				<select id="marry" name="marry">
+					<option value="0">无</option>
+					<option value="1"$marryarr[1]>单身</option>
+					<option value="2"$marryarr[2]>非单身</option>
+				</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<th>生日</th>
+			<td>
+				<select id="birthyear" name="birthyear">
+					<option value="0">无</option>
+					$birthyeayhtml
+				</select> 年 
+				<select id="birthmonth" name="birthmonth">
+					<option value="0">无</option>
+					$birthmonthhtml
+				</select> 月 
+				<select id="birthday" name="birthday">
+					<option value="0">无</option>
+					$birthdayhtml
+				</select> 日
+			</td>
+		</tr>
+		<tr>
+			<th>血型</th>
+			<td>
+				<select id="blood" name="blood">
+					<option value="">保密</option>
+					$bloodhtml
+				</select>
+			</td>
+		</tr>
+	
+		<tr>
+			<th>家乡</th>
+			<td>
+				<script type="text/javascript" src="script/city.js"></script>
+				<script type="text/javascript">
+				<!--
+				showprovince('birthprovince', 'birthcity', '$member[birthprovince]');
+				showcity('birthcity', '$member[birthcity]', 'birthprovince');
+				
+				//-->
+				</script>
+			</td>
+		</tr>
+		<tr>
+			<th>居住地</th>
+			<td>
+				<script type="text/javascript">
+				<!--
+				showprovince('resideprovince', 'residecity', '$member[resideprovince]');
+				showcity('residecity', '$member[residecity]', 'resideprovince');
+				//-->
+				</script>
+			</td>
+		</tr>
+		<tr>
+			<th>QQ</th>
+			<td>
+				<input type="text" class="t_input" name="qq" value="$member[qq]" /> 
+			</td>
+		</tr>
+		<tr>
+			<th>MSN</th>
+			<td>
+				<input type="text" class="t_input" name="msn" value="$member[msn]" /> 
+			</td>
+		</tr>	
+
+		<!--{loop $profilefields $value}-->
+		<tr>
+			<th>$value[title]<!--{if $value[required]}-->*<!--{/if}--></th>
+			<td>
+				$value[formhtml]
+				<!--{if $value[note]}--><br>$value[note]<!--{/if}-->
+			</td>
+		</tr>
+		<!--{/loop}-->
+		</table>
+	</div><br>
+	<div class="bdrcontent">
+		<div class="title">
+			<h3>$member[username] 属性设置</h3>
+		</div>
+		<table cellspacing="0" cellpadding="0" class="formtable">
+		<!--{if $_SCONFIG['allowdomain'] && $_SCONFIG['domainroot']}-->
+		<tr><th style="width:12em;">二级域名</th><td><input type="text" name="domain" value="$member[domain]" size="10">.{$_SCONFIG[domainroot]}</td></tr>
+		<!--{/if}-->
+		<tr><th style="width:12em;">额外空间大小</th><td><input type="text" name="addsize" value="$member[addsize]" size="10"> M</td></tr>
+		<tr><th>积分数</th><td><input type="text" name="credit" value="$member[credit]" size="10"></td></tr>
+		<tr><th>用户组</th><td>
+		<select name="groupid">
+		<option value="0">普通用户组</option>
+		<!--{loop $_SGLOBAL['usergroup'] $value}-->
+		<!--{if $value['system']}-->
+		<option value="$value[gid]"{$groupidarr[$value[gid]]}>$value[grouptitle]</option>
+		<!--{/if}-->
+		<!--{/loop}-->
+		</select>
+		<p>普通用户组，会自动根据用户积分数目的多少进行自动升级/降级<br>系统用户组，用户的身份不受积分影响</p>
+		<tr><th>清空自定义CSS</th><td>
+			<input type="radio" name="clearcss" value="0" checked> 不处理
+			<input type="radio" name="clearcss" value="1"> 清空
+			<p>用户自定义的CSS如果存在恶意代码，可以选择清空。</p>
+			</td></tr>
+		<tr><th>删除保护</th><td>
+			<input type="radio" name="flag" value="0"<!--{if $member[flag]==0}--> checked<!--{/if}-->> 不保护
+			<input type="radio" name="flag" value="1"<!--{if $member[flag]==1}--> checked<!--{/if}-->> 保护
+			<p>保护状态下，该用户将不能够在UCenter、以及本应用中删除。</p>
+			</td></tr>
+		</td></tr>
+		
+		</table>
+	</div>
+	
+	<div class="footactions">
+		<input type="hidden" name="refer" value="$_SGLOBAL[refer]">
+		<input type="submit" name="usergroupsubmit" value="提交" class="submit">
+	</div>
+	</form>
+<!--{elseif $_POST['optype'] == 4}-->
+
+	<form method="post" action="$url">
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+	<div class="bdrcontent">
+		<div class="title">
+			<h3>批量发送邮件</h3>
+			<p>您可以对选定的用户进行批量发送邮件。注意，本操作将会增加服务器负载。</p>
+		</div>
+		<table cellspacing="0" cellpadding="0" class="formtable">
+		<tr>
+			<th style="width:8em;">收件人(UID)</th>
+			<td>$uids</td>
+		</tr>
+		<tr>
+			<th>邮件标题</th>
+			<td><input type="text" name="subject" value="" size="60"></td>
+		</tr>
+		<tr>
+			<th>邮件内容</th>
+			<td><textarea name="message" cols="80" rows="10"></textarea><br>邮件内容支持html代码</td>
+		</tr>
+		</table>
+	</div>
+	
+	<div class="footactions">
+		<input type="hidden" name="uids" value="$uids">
+		<input type="hidden" name="refer" value="$_SGLOBAL[refer]">
+		<input type="submit" name="sendemailsubmit" value="发送邮件" class="submit">
+	</div>
+	</form>
+	
+<!--{elseif $_POST['optype'] == 5}-->
+
+	<form method="post" action="$url">
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+	<div class="bdrcontent">
+		<div class="title">
+			<h3>批量打招呼</h3>
+			<p>您可以对选定的用户进行批量打招呼，以对其简单说明一些事情。注意，本操作将会增加服务器负载。</p>
+		</div>
+		<table cellspacing="0" cellpadding="0" class="formtable">
+		<tr>
+			<th style="width:8em;">收件人(UID)</th>
+			<td>$uids</td>
+		</tr>
+		<tr>
+			<th>招呼内容</th>
+			<td><input type="text" name="note" value="" size="60"> （不要超过50个字符）</td>
+		</tr>
+		</table>
+	</div>
+	
+	<div class="footactions">
+		<input type="hidden" name="uids" value="$uids">
+		<input type="hidden" name="refer" value="$_SGLOBAL[refer]">
+		<input type="submit" name="pokesubmit" value="打招呼" class="submit">
+	</div>
+	</form>	
+<!--{/if}-->
+
+</div>
+</div>
+
+<div class="side">
+	<!--{template admin/tpl/side}-->
+</div>
+
+<!--{template admin/tpl/footer}-->
