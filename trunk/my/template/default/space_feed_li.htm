@@ -1,0 +1,56 @@
+<li id="feed_$value[feedid]_li">
+	<div style="width:100%;overflow:hidden;"{$value[style]}>
+		<!--{if $value[uid] && $value[uid]==$_SGLOBAL[supe_uid]}-->
+		<a href="cp.php?ac=feed&op=delete&feedid=$value[feedid]" class="float_delete" id="a_feed_$value[feedid]" onclick="ajaxmenu(event, this.id, 99999)" title="删除">删除</a>
+		<!--{elseif $value[uid] && $space[self] && $notime}-->
+		<a href="cp.php?ac=feed&op=ignore&icon=$value[icon]&uid=$value[uid]&feedid=$value[feedid]" id="a_feedicon_$value[feedid]" onclick="ajaxmenu(event, this.id, 99999)" class="float_cancel" title="屏蔽">屏蔽</a>
+		<!--{/if}-->
+		<a class="type" href="space.php?uid=$_GET[uid]&do=feed&view=$_GET[view]&appid=$value[appid]&icon=$value[icon]" title="只看此类动态"><img src="$value[icon_image]" /></a>$value[title_template] 
+		<!--{if $value['appid']==UC_APPID}-->
+		<!--{if $value['body_data']['sid']}-->
+		(<a href="space.php?uid=$value[uid]&do=share&id={$value['body_data']['sid']}"{$value[target]}>评论</a>)
+		<!--{elseif $value['body_data']['doid']}-->
+		(<a href="space.php?uid=$value[uid]&do=doing&doid={$value['body_data']['doid']}"{$value[target]}>回复</a>)
+		<!--{/if}-->
+		<!--{/if}-->
+		<!--{if empty($notime)}--><span class="time"><!--{date('m-d H:i',$value[dateline],1)}--></span><!--{/if}-->
+		<div class="feed_content">
+			<!--{if $value['image_1']}-->
+			<a href="$value[image_1_link]"{$value[target]}><img src="$value[image_1]" class="summaryimg" /></a>
+			<!--{/if}-->
+			<!--{if $value['image_2']}-->
+			<a href="$value[image_2_link]"{$value[target]}><img src="$value[image_2]" class="summaryimg" /></a>
+			<!--{/if}-->
+			<!--{if $value['image_3']}-->
+			<a href="$value[image_3_link]"{$value[target]}><img src="$value[image_3]" class="summaryimg" /></a>
+			<!--{/if}-->
+			<!--{if $value['image_4']}-->
+			<a href="$value[image_4_link]"{$value[target]}><img src="$value[image_4]" class="summaryimg" /></a>
+			<!--{/if}-->
+			<!--{if $value['body_template']}-->
+			<div class="detail" <!--{if $value['image_3']}-->style="clear: both;"<!--{/if}-->>
+				$value[body_template]
+			</div>
+			<!--{/if}-->
+			<!--{if $value['appid']==UC_APPID}-->
+			<!--{if !empty($value['body_data']['flashvar'])}-->
+			<div class="media">
+				<img src="image/vd.gif" alt="点击播放" onclick="javascript:showFlash('{$value['body_data']['host']}', '{$value['body_data']['flashvar']}', this, '{$value['feedid']}');" style="cursor:pointer;" />
+			</div>
+			<!--{elseif !empty($value['body_data']['musicvar'])}-->
+			<div class="media">
+				<img src="image/music.gif" alt="点击播放" onclick="javascript:showFlash('music', '{$value['body_data']['musicvar']}', this, '{$value['feedid']}');" style="cursor:pointer;" />
+			</div>
+			<!--{elseif !empty($value['body_data']['flashaddr'])}-->
+			<div class="media">
+				<img src="image/flash.gif" alt="点击查看" onclick="javascript:showFlash('flash', '{$value['body_data']['flashaddr']}', this, '{$value['feedid']}');" style="cursor:pointer;" />
+			</div>
+			<!--{/if}-->
+			<!--{/if}-->
+			<!--{if $value['body_general']}-->
+			<div class="quote"><span class="q">$value[body_general]</span></div>
+			<!--{/if}-->
+		</div>
+	</div>
+</li>
+

@@ -1,0 +1,33 @@
+<p>
+
+{king:portal.model issearch='1'}
+
+	<a href="search.php?modelid={king:modelid/}">{king:modelname/}</a>
+	
+{/king:portal.model}
+
+
+	{king:modeltables}
+	<a href="search.php?modelid={king:modelid/}">{king:modelname/}</a>
+	{/king:modeltables}
+
+</p>
+
+<form name="form1" method="get" action="search.php">
+
+
+	<table>
+		<tr>
+			<td>关键字</td>
+			<td><input type="text" class="k_in w200" name="query" value="{get:query/}"/></td>
+		</tr>
+
+		<tr><td>作者</td><td><input type="text" class="k_in w100" name="_author" value="{get:_author/}"/></td></tr>
+
+		<tr><td>来源</td><td><input type="text" class="k_in w100" name="_source" value="{get:_source/}"/></td></tr>
+
+	</table>
+
+	<p><input type="submit" value="搜索"/></p>
+
+</form>

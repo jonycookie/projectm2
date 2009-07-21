@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="{king:keywords/}" />
+<meta name="description" content="{king:description/}" />
+<title>{king:title/} - Powered by KingCMS for PHP</title>
+<link href="../images/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div id="top">
+
+	<span class="block fl w500 left">
+		<a href="{const:system.siteurl/}{const:system.inst/}"><img src="../images/logo.png"/></a>
+	</span>
+
+	<span class="block fl w500 right">
+		<strong>
+			<a href="{const:system.siteurl/}en/">English</a>
+			|
+			<a href="{const:system.siteurl/}">Chinese</a>
+		</strong>
+	</span>
+</div>
+
+<div id="topbanner">
+	<a href="/download/" class="download">下载使用</a>
+	<a href="/license/" class="license">许可协议</a>
+	<span class="version">当前最新版本是：{config:system.version/} (PHP)</span>
+	<a href="http://help.kingcms.com/" class="help">OnLine帮助文档</a>
+	<a href="" class="club" target="_blank">社区交流</a>
+</div>
+
+<div id="nav">
+	<a href="{config:system.siteurl/}">{config:system.sitename/}</a> / {king:nav line="/" /}
+</div>
+
+
+
+<div id="main">
+
+	<h4>多模型联合调用</h4>
+	{king:portal type="new" number="8"}
+	<p><a href="{king:path/}">{king:kid/}) {king:title/}</a></p>
+	{/king:portal}
+
+	<h4 class="title">{king:title/}</h4>
+	{king:user.state id="userstat"}
+		<a href="#" class="k_user_login">登录</a>
+		<a href="#" class="k_user_register">注册</a>
+	{?king:user.state}
+		当前用户：{king:username/},用户ID：{king:userid/}<br/>
+		<a href="{const:system.inst/}user/index.php">用户中心</a>
+		<a href="#" class="k_user_logout">退出</a>
+	{/king:user.state}
+
+
+	<p>
+	{king:portal.list listid1='0'}
+		<a href="{king:listpath/}">{king:listname/}</a>
+	{/king:portal.list}
+	</p>
+	<p>
+	{king:portal.list listid1='1'}
+		<a href="{king:listpath/}">{king:listname/}</a>
+	{/king:portal.list}
+	</p>
+
+	{king:portal.article type="new" zebra="3" kid!='562,556'}
+		<a href="{king:path/}">{king:title/}</a> - {king:zebra/} - {king:_author none="未知"/}<br/>
+	{/king:portal.article}
+	<h4>下面是调用5个图片文章，需要在添加文章的时候，补充缩略图</h4>
+	{king:portal.article type="new" number="5"}
+		<a href="{king:path/}">
+			<img src="{king:image border='fillet' border-color='666666' empty='fillet' Empty-Color='#FFFFFF' Empty-R='5' width='160' height='100'/}" style="width:160px;height:100px;"/>
+		</a>
+	{/king:portal.article}
+
+
+	<h4>调用不规则新闻</h4>
+	{king:portal.article type="irregular" length="30" listid='4' number='8'}
+		<a href="{king:path/}">{king:subtitle/}</a> 
+		<?php /* 可以用{king:i/} mod 2的方法，也可以利用斑马线属性zebra */
+			if(!{king:zebra/}){
+				echo "<br/>";
+			}
+		?>
+	{/king:portal.article}
+
+
+	<h4>调用内容</h4>
+	<p>文章总数 : {king:dbquery.count table="%s__article" where="kid1=0"/}</p>
+	<p>论坛主题贴:{king:dbquery.count table="%s__bbs" where="kid1=0"/}</p>
+	<p>论坛回复贴:{king:dbquery.count table="%s__bbs" where="kid1<>0"/}</p>
+	<p>注册会员总数:{king:dbquery.count table="%s_user" /}</p>
+
+	<h4>根据模块调用</h4>
+	{king:portal.model}
+		<p>{king:modelname/} : {king:dbquery.count table="%s__(king:modeltable/)" where="kid1=0"/}</p>
+	{/king:portal.model}
+
+	<h4>直接读取数据库</h4>
+	{king:dbquery.select table="%s__article" number="5" orderby="kid desc"}
+		<p><a href="{king:kpath/}">标题:{king:ktitle/}</a></p>
+	{/king:dbquery.select}
+
+	<h4>用完整的SQL语句直接读取数据库</h4>
+
+	<div>
+	{king:dbquery query="select ktitle,kpath from %s__Article where kid1=0 order by kid desc limit 0,5"}
+		<p><a href="{king:kpath/}">{king:ktitle/}</a></p>
+	{/king:dbquery}
+
+	</div>
+
+	<h4>调用标签</h4>
+	<p>
+		<style type="text/css">
+			.bold_1{font-weight:bold;}
+		</style>	
+		{king:portal.tag number="50"}
+			<a href="{king:path/}" style="font-size:{king:size/}px;color:{king:color/}" class="bold_{king:bold/}">{king:title/}</a>
+		{/king:portal.tag}
+	</p>
+
+	<h4>指定栏目的推荐文章</h4>
+	{king:portal.Article type="commend" listid1=="2,3,4" number="13"}
+
+		<p><a href="{king:path/}">{king:title/}</a></p>
+	
+	{/king:portal.Article} 
+
+
+	{king:block name="test"/}
+
+	<h4>调用数据源</h4>
+	{king:dbquery name="sqlite" query="select * from test"}
+	<p>{king:kname/}</p>
+	{/king:dbquery}
+
+	<h4>栏目缩略图调用</h4>
+	{king:portal.list}
+	<p><img src="{king:root/}{king:image width='160' height='90'/}"/>{king:listname /}</p>
+	{/king:portal.list}
+
+	<h4>跨站调用</h4>
+	{king:portal.article type="new" Conn='test'}
+	<p><a href="{king:path/}">{king:title/}</a></p>
+	{/king:portal.article}
+	<h4>目标站名称：{config:system.sitename conn='test'/}</h4>
+	
+	<h4>指定栏目的推荐文章</h4>
+	{king:portal.article listid='3' type='commend' number='10'}
+		<p><a href="{king:path/}">{king:title/}</a></p>
+	{/king:portal.article}	
+</div>
+
+<div id="bottom">
+	<span class="block fl w500 left">
+		{king:portal.menu3}
+			<a href="{king:listpath/}">{king:listname/}</a>
+		{/king:portal.menu3}
+	</span>
+	<span class="block fl right">
+		&copy 2004-2009 KingCMS.com All rights reserved.<br/>
+		{config:system.info/} {config:system.beian/}
+	</span>
+</div>
+
+
+</body>
+</html>
