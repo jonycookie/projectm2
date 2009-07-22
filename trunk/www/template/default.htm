@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="{king:keywords/}" />
+<meta name="description" content="{king:description/}" />
+<title>{king:title/} - Powered by KingCMS for PHP</title>
+<link href="../images/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div id="top">
+
+	<span class="block fl w500 left">
+		<a href="{const:system.siteurl/}{const:system.inst/}"><img src="../images/logo.png"/></a>
+	</span>
+
+	<span class="block fl w500 right">
+		<strong>
+			<a href="{const:system.siteurl/}en/">English</a>
+			|
+			<a href="{const:system.siteurl/}">Chinese</a>
+		</strong>
+	</span>
+</div>
+
+<div id="topbanner">
+	<a href="/download/" class="download">下载使用</a>
+	<a href="/license/" class="license">许可协议</a>
+	<span class="version">当前最新版本是：{config:system.version/} (PHP)</span>
+	<a href="http://help.kingcms.com/" class="help">OnLine帮助文档</a>
+	<a href="" class="club" target="_blank">社区交流</a>
+</div>
+
+<div id="nav">
+	<a href="{config:system.siteurl/}{config:system.inst/}">{config:system.sitename/}</a> / {king:nav line="/" /}
+</div>
+
+<div id="main">
+	<h4 class="title">{king:title/}</h4>
+	{king:inside/}
+</div>
+
+<div id="bottom">
+	<span class="block fl w500 left">
+		<a href="#">栏目1</a>
+		<a href="#">栏目1</a>
+		<a href="#">栏目1</a>
+		{king:menu3 line="|"/}
+
+		{king:menu/}
+	</span>
+	<span class="block fl right">
+		&copy 2004-2009 KingCMS.com All rights reserved.<br/>
+		{config:system.info/} {config:system.beian/}
+	</span>
+</div>
+
+
+</body>
+</html>

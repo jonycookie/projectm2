@@ -1,0 +1,136 @@
+
+/* ======= >>> KingCMS CSS <<<======================= *
+
++   许可协议: http://www.KingCMS.com/license/        +
+
++   官方网站: http://www.KingCMS.com/                +
+
++   电子邮件: KingCMS(a)Gmail.com                    +
+
+* ================================================== */
+@import "system.css";
+
+html{
+	background:#FFF;padding:0px;
+}
+body{
+	font-size:12px;margin:0px;font-family:微软雅黑,Verdana,宋体;padding:0px;
+	background:url(body_bg.gif) repeat-y top 1000px;display:table;
+}
+form{
+	margin:0px;padding:0px;
+}
+
+a:link,
+a:visited,
+a:active{
+	color:#0F2B6C;font-size:12px;font-weight:normal;text-decoration:none;
+}
+a:hover{
+	font-size:12px;text-decoration:underline;color:#0044DD;
+}
+
+img{
+	border:none;
+}
+
+select{
+	font-size:14px;
+}
+
+.block{
+	display:block;
+}
+.none{
+	border:none;width:0px;height:0px;display:none;
+}
+
+
+/** div#top */
+#top{
+	display:block;width:1000px;height:76px;
+	background:url(top_bg.png) repeat-x top;
+	border-bottom:1px solid #FFF;
+}
+#top .left a{
+	margin-left:12px;margin-top:19px;display:block;
+}
+#top .left a img{
+	border:none;
+}
+#top .right{
+	text-align:right;
+}
+#top .right strong{
+	margin-right:10px;margin-top:12px;display:block;color:#FFF;
+}
+#top .right strong a{
+	font-weight:bold;color:#FFF;
+}
+
+/** div#topbanner */
+#topbanner{
+	display:block;width:1000px;height:32px;clear:both;
+	background:url(topbanner_bg.png) repeat-x top;
+}
+#topbanner *{
+	display:block;float:left;
+	line-height:30px;height:32px;
+}
+#topbanner .download{
+	background:url(topbanner_download.png) no-repeat 1px 1px;padding-left:50px;width:65px;
+	font-size:14px;color:#000;
+}
+#topbanner .license{
+	background:url(topbanner_license.png) no-repeat 1px 1px;padding-left:15px;width:100px;
+	font-size:14px;
+}
+#topbanner .version{
+	width:530px;
+	color:#666;
+}
+#topbanner .help{
+	width:125px;
+	background:url(topbanner_help.png) no-repeat right 3px;
+}
+#topbanner .club{
+	width:90px;padding-left:10px;
+	background:url(topbanner_club.png) no-repeat right 3px;
+}
+
+/* div #nav */
+#nav{
+	height:32px;line-height:30px;width:1000px;
+	text-indent:20px;
+	background:url(nav_bg.png) repeat-x top;
+	
+}
+/* div #main */
+#main{
+	width:960px;margin:20px;margin-top:0px;
+}
+#main h4.title{
+	margin:0px;margin-bottom:5px;padding:0px;padding-top:6px;height:30px;width:960px;
+	border-bottom:2px solid #B2D3EA;
+	color:#0099FF;font-size:14px;line-height:30px;
+}
+
+/* div#bottom */
+#bottom{
+	width:1000px;height:50px;
+	border-top:1px solid #B2D3EA;
+}
+#bottom .left{
+	padding-top:12px;
+	line-height:18px;text-indent:10px;
+}
+#bottom .left a{
+	margin:5px;
+	color:#0097CC;text-decoration:underline;
+}
+#bottom .right{
+	padding-top:8px;width:440px;padding-right:45px;height:50px;
+	line-height:18px;text-align:right;
+	background:url(bottom_logo.png) no-repeat right 10px;
+	color:#4C5A62;
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kingcms>
+	<name>数据源</name>
+	<ACCESS>
+		<dbquery>访问</dbquery>
+		<dbquery_edt>创建/编辑</dbquery_edt>
+		<dbquery_delete>删除</dbquery_delete>
+		<dbquery_updown>排序</dbquery_updown>
+	</ACCESS>
+
+	<CHANNEL>
+		<center access="dbquery" href="../dbquery/manage.php" img="p5">数据源管理</center>
+		<add access="dbquery_edt" href="javascript:;" rel="{URL:'../dbquery/manage.php',CMD:'edt',METHOD:'GET'}" class="k_ajax" img="c2">添加源</add>
+	</CHANNEL>
+
+	<list>
+		<name>数据源名称</name>
+		<tag>调用标签</tag>
+		<type>数据源类型</type>
+
+	</list>
+
+	<type>
+		<t1>MySQL</t1>
+		<t2>SQLite</t2>
+	</type>
+
+	<title>
+		<add>添加数据源</add>
+		<edt>编辑数据源</edt>
+	</title>
+
+	<label>
+		<name>数据源名称</name>
+		<dbhost>数据库主机</dbhost>
+		<dbname>数据库名</dbname>
+		<dbuser>数据库帐号</dbuser>
+		<dbpass>数据库密码</dbpass>
+		<dbfile>数据库文件</dbfile>
+		<dbcharset>数据库编码</dbcharset>
+		<type>数据类型</type>
+	</label>
+
+	<title>
+		<center>数据源管理</center>
+	</title>
+
+	<error>
+		<name>数据源名称有重复!</name>
+		<dbfile>找不到数据库文件!</dbfile>
+	</error>
+
+	<ok>
+	</ok>
+
+	<help>
+		<bind><![CDATA[
+		]]></bind>
+	</help>
+
+</kingcms>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kingcms>
+
+	<item>
+		<title>碎片是什么</title>
+		<body><![CDATA[碎片是模板中应用的代码片段。
+		把重复调用的代码片段写到碎片内容里，直接用碎片调用标签来调用。
+		这样可以减少模板数量，并且更新更为及时。]]></body>
+	</item>
+
+	<item>
+		<title>添加新绑定是什么</title>
+		<body><![CDATA[这是调用碎片内容的特殊应用。
+		一个碎片在不同的栏目里可能需要输出的代码片段有区别。
+		在不增加模板数量的情况下，利用绑定功能，设置某些栏目调用特别指定的代码片段。
+		比如标签{king:block name="test"/}，默认调用的内容为“内容1”，但因为栏目ID为12的栏目上有特殊要求，需要在{king:block name="test"/}的位置上调用另一个内容。
+		为实现这个，我们完全可以多创建一个模板，但这样会增加维护上的工作量。
+		这个时候可以用标签绑定功能来增加新绑定。
+		换句话说，绑定功能是标签调用的个性应用。]]></body>
+	</item>
+
+
+	<item>
+		<title>碎片内容支持KingCMS模板标签吗?</title>
+		<body><![CDATA[支持的，并且也可以继承调用碎片标签的页面的标签。
+		如，调用当前页面所属栏目的最新文章：
+		{king:portal.article type="new" listid="(king:listid/)"}
+		&nbsp; &nbsp; &lt;p&gt;&lt;a href="{king:path/}">{king:title/}&lt;/a&gt;&lt;/p&gt;
+		{/king:portal.article}
+		上例中的(king:listid/)是从页面中继承来的标签中的一个。]]></body>
+	</item>
+
+
+</kingcms>
