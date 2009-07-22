@@ -1,0 +1,97 @@
+<!--{template header}-->
+
+<!--{if $op == 'comment'}-->
+
+	<!--{loop $list $value}-->
+		<!--{template space_comment_li}-->
+	<!--{/loop}-->
+	
+<!--{elseif $op == 'getfriendgroup'}-->
+	$group
+<!--{elseif $op == 'getfriendname'}-->
+	$groupname
+<!--{elseif $op == 'getmtagmember'}-->
+	<!--{if $tagspace[grade]==9}-->群主
+	<!--{elseif $tagspace[grade]==8}-->副群主
+	<!--{elseif $tagspace[grade]==1}-->明星
+	<!--{elseif $tagspace[grade]==-1}-->待审核
+	<!--{elseif $tagspace[grade]==-2}-->禁言
+	<!--{else}-->普通会员
+	<!--{/if}-->
+	
+<!--{elseif $op == 'trace'}-->
+
+	<!--{loop $tracelist $value}-->
+	<li>
+		<div class="avatar48"><a href="space.php?uid=$value[uid]" title="{$_SN[$value[uid]]}" target="_blank"><img src="<!--{avatar($value['uid'], 'small')}-->" alt="{$_SN[$value[uid]]}" class="avatar" /></a></div>
+		<p><a href="space.php?uid=$value[uid]" title="{$_SN[$value[uid]]}" target="_blank">{$_SN[$value[uid]]}</a></p>
+	</li>
+	<!--{/loop}-->
+	
+<!--{elseif $op == 'traceall'}-->
+
+	<ul class="avatar_list" id="trace_ul">
+	<!--{loop $tracelist $value}-->
+	<li>
+		<div class="avatar48"><a href="space.php?uid=$value[uid]" title="{$_SN[$value[uid]]}" target="_blank"><img src="<!--{avatar($value[uid],small)}-->" alt="{$_SN[$value[uid]]}" class="avatar" /></a></div>
+		<p><a href="space.php?uid=$value[uid]" title="{$_SN[$value[uid]]}" target="_blank">{$_SN[$value[uid]]}</a></p>
+	</li>
+	<!--{/loop}-->
+	</ul>
+	<!--{if $multi}--><div class="page">$multi</div><!--{/if}-->
+	
+<!--{elseif $op == 'post'}-->
+
+	<!--{loop $list $value}-->
+		<!--{template space_post_li}-->
+	<!--{/loop}-->
+
+<!--{elseif $op == 'share'}-->
+
+	<!--{loop $list $value}-->
+		<!--{template space_share_li}-->
+	<!--{/loop}-->
+
+<!--{elseif $op == 'credit'}-->
+
+	<div<!--{if !$_SGLOBAL[inajax]}--> class="inpage"<!--{/if}-->>
+	<table>
+	<tr><td style="width:6em;font-weight:bold;">空间概况</td><td align="right"><!--{if $_SGLOBAL[inajax]}--><a href="javascript:;" onclick="hideMenu()">关闭</a><!--{/if}--></td></tr>
+	<tr><th>用户名:</th><td><!--{eval echo stripslashes($space['username']);}--></td></tr>
+	<!--{if $space[name]}--><tr><th>姓名:</th><td><!--{eval echo stripslashes($space['name']);}--></td></tr><!--{/if}-->
+	<tr><th>访问量:</th><td>$space[viewnum]</td></tr>
+	<tr><th>积分数:</th><td>$space[credit] (<a href="cp.php?ac=credit">查看规则</a>)</td></tr>
+	<tr><th>用户组:</th><td>{$_SGLOBAL[usergroup][$space[groupid]][grouptitle]}</td></tr>
+	<!--{if $space[haveattachsize]}--><tr><th>剩余空间:</th><td>$space[haveattachsize]</td></tr><!--{/if}-->
+	<tr><th>创建时间:</th><td><!--{date('Y-m-d',$space[dateline],1)}--></td></tr>
+	<tr><th>上次登录:</th><td><!--{if $space[lastlogin]}--><!--{date('Y-m-d',$space[lastlogin],1)}--><!--{/if}--></td></tr>
+	<tr><th>最后更新:</th><td><!--{if $space[updatetime]}--><!--{date('Y-m-d',$space[updatetime],1)}--><!--{/if}--></td></tr>
+	</table>
+	</div>
+
+<!--{elseif $op == 'album'}-->
+
+	<table cellspacing="2" cellpadding="2">
+	<tr>
+	<!--{loop $piclist $key $value}-->
+	<td><img src="$value[pic]" width="60" onclick="insertImage('$value[bigpic]');" style="cursor:hand;"></td>
+	<!--{if $key%5==4}--></tr><tr><!--{/if}-->
+	<!--{/loop}-->
+	</tr>
+	</table>
+	
+	<div class="page">$multi</div>
+
+<!--{elseif $op == 'getmood'}-->
+
+	<!--{if $space[mood]}--><a href="space.php?do=mood" title="同心情"><img src="image/face/{$space[mood]}.gif" alt="同心情" class="face" /></a><!--{/if}-->
+	<!--{if $space[spacenote]}-->
+		$space[spacenote]
+	<!--{elseif empty($space[mood])}-->
+		您在做什么？
+	<!--{/if}-->
+	&nbsp;(<a href="javascript:;" onclick="mood_from();" title="更新状态">更新状态</a><span class="pipe">|</span><a href="space.php?uid=$space[uid]&do=mood">同心情</a>)
+	
+<!--{/if}-->
+
+<!--{template footer}-->
