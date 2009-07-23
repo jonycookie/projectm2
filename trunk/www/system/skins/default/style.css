@@ -31,15 +31,16 @@ html{
 }/* overflow-x:hidden */
 body{
 	font-size:14px;
-	margin:0 10px;
-	font-family:Verdana,微软雅黑;
+	margin:0;
+	font-family:Verdana;
 	text-align:center;
 	padding:0;
 }
-div,form,textarea,table,tr,th,td,ul,li,dl,dt,dd,ol,img,h1,h2,h3,h4,h5,h6,p,i,em,strong,span,u,hr{
+div,form,textarea,table,tr,th,td,ul,li,dl,dt,dd,ol,img,h1,h2,h3,h4,h5,h6,p,i,em,strong,span,u,hr,a{
 	margin:0;
 	padding:0;
 	border:none;
+	outline:none;
 }
 
 a:link,
@@ -203,6 +204,11 @@ a.help{
 .k_in {
 	font-size:14px;
 	padding:2px;
+	background:#FFFFFF;
+	border-color:#CCCCCC #EEEEEE #EEEEEE #CCCCCC;
+	border-style:solid;
+	border-width:1px;
+	color:#000000;
 }
 
 textarea{
@@ -654,17 +660,15 @@ textarea{
 /* k_table_list 表格列表 */
 .k_table_list{
 	width:100%;
+	padding:10px;
 	clear:both;
-	border-left:1px solid #D5DFE5;
-	border-right:1px solid #D5DFE5;
+	border:1px solid #D5DFE5;
+	background:#FFF;
 }
 .k_table_list th{
 	padding:0px 2px 0px 4px;
 	border-bottom:3px solid #96D9F9;
-	background:#F6F7F9;
-	border-left:1px solid #FAFAFA;
 
-	letter-spacing:2px;
 	color:#1E395B;
 	line-height:26px;
 	font-size:12px;
@@ -674,8 +678,7 @@ textarea{
 .k_table_list td{
 	padding:1px 2px;
 	line-height:26px;
-	border-left:1px solid #FAFAFA;
-	border-top:1px solid #FAFAFA;
+	border-top:1px solid #FFF;
 	border-bottom:1px solid #FFF;
 
 	word-break:break-all;
@@ -690,22 +693,13 @@ textarea{
 .k_table_list * {
 	font-size:12px;
 }
-.k_table_list tr.hover {
-	background:#FF000;
-	font-weight:bold;
-}
 .k_table_list tr.hover td{
-	background:#D0E6FE;
-}
-.k_table_list tr.hover a{
-	font-weight:bold;
-}
-.k_table_list tr td.hover{
-	background:#F6F9FD;
 
 	border-top:1px solid #AECFF7;
 	border-bottom:1px solid #AECFF7;
-	border-left:1px solid #F6F9FD;
+}
+.k_table_list tr.odd td {
+	background:#FAFAFA;
 }
 
 
@@ -779,15 +773,15 @@ textarea{
 /* k_table_form 表单(表格) */
 .k_table_form{
 	width:100%;
+	padding: 10px;
 	clear:both;
 	margin:0px;
-	border-left:1px solid #D5DFE5;
-	border-right:1px solid #D5DFE5;
+	border:1px solid #D5DFE5;
+	background: #FFF;
 }
 .k_table_form tr th{
 	padding:1px 10px;
 	background:#FFF;
-	border-top:1px solid #FAFAFA;
 
 	letter-spacing:2px;
 	color:#14316B;
@@ -802,7 +796,6 @@ textarea{
 	padding:1px 2px;
 	line-height:27px;
 	background:#FFF;
-	border-top:1px solid #FAFAFA;
 }
 .k_table_form td var i{
 	font-size:11px;
@@ -1374,12 +1367,14 @@ input.brow{
 	height:24px;
 	display:block;
 	clear:both;
+	background:#fff;
+	border-bottom:1px solid #999;
 	font-size:12px;
 	line-height:24px;
 }
-	#top a:link,
-	#top a:visited,
-	#top a:active{
+#top a:link,
+#top a:visited,
+#top a:active{
 	line-height:24px;
 }
 #top a#logo {
@@ -1419,8 +1414,7 @@ input.brow{
 
 /* main 主体框架 */
 #main {
-	display:table;
-	width:100%;
+	margin: 30px;
 	text-align:left;
 }
 #main h2 {
@@ -1450,13 +1444,14 @@ input.brow{
 
 	display:block;
 	cursor:pointer;
+	border:1px solid #B0C8E4;
 	float:left;
 	font-family:Verdana;
 	color:#3875D7;
 	text-align:left;
 
-	height:26px;
 	margin:0 0 0 5px;
+	padding:2px;
 	background:#FFF;
 
 	#width:100px;
@@ -1577,7 +1572,7 @@ input.brow{
 
 /* bottom 底部 */
 #bottom{
-	margin:15px 0 0 0;
+	margin:30px;
 	line-height:24px;
 	clear:both;
 	text-align:center;
