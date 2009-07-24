@@ -783,7 +783,6 @@ textarea{
 	padding:1px 10px;
 	background:#FFF;
 
-	letter-spacing:2px;
 	color:#14316B;
 	line-height:27px;
 	font-size:12px;
@@ -1533,7 +1532,7 @@ input.brow{
 
 	line-height:20px;
 	height:20px;
-	margin:12px 0 0 0;
+	margin:12px 0;
 	text-indent:3px;
 }
 
@@ -1891,7 +1890,6 @@ color:#999;
 	border:1px solid;
 	border-color:#FFF #C6C6C6 #C6C6C6 #FEFEFE;
 	padding:0 2px 0 4px;
-	letter-spacing:2px;
 	color:#14316B;
 	line-height:23px;
 	font-size:12px;
