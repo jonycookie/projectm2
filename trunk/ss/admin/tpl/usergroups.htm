@@ -1,0 +1,456 @@
+<table summary="" id="pagehead" cellpadding="0" cellspacing="0" border="0" width="100%">
+			<tr>
+				<td><h1>用户组</h1></td>
+				<td class="actions">
+					<table summary="" cellpadding="0" cellspacing="0" border="0" align="right">
+						<tr>
+							<!--{if $_GET['op'] == 'add'}-->
+							<td><a href="$s_url/admincp.php?action=usergroups">浏览</a></td>
+							<td class="active"><a href="$s_url/admincp.php?action=usergroups&op=add">添加</a></td>
+							<!--{else}-->
+							<td class="active"><a href="$s_url/admincp.php?action=usergroups">浏览</a></td>
+							<td><a href="$s_url/admincp.php?action=usergroups&op=add">添加</a></td>
+							<!--{/if}-->
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>		
+<!--{if $_GET['op'] == 'add' || $_GET['op'] == 'edit' }-->
+<form method="post" action="$s_url/admincp.php?action=usergroups&groupid={$thevalue[groupid]}">
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+
+	<h2>信息管理</h2>
+	<table cellspacing="0" cellpadding="0" class="maintable">
+	<tr><th style="width:18em;">名称</th><td><input type="text" name="set[grouptitle]" value="$thevalue[grouptitle]"></td></tr>
+	<tr>
+		<th>发布资讯</th>
+		<td>
+			<input type="radio" name="set[managespacenews]" value="1"{$thevalue['managespacenews'][1]}> 许可
+			<input type="radio" name="set[managespacenews]" value="0"{$thevalue['managespacenews'][0]}> 不许可
+		</td>
+	</tr>
+	<tr>
+		<th>资讯需要审核</th>
+		<td>
+			<input type="radio" name="set[needcheck]" value="1"{$thevalue['needcheck'][1]}> 需要
+			<input type="radio" name="set[needcheck]" value="0"{$thevalue['needcheck'][0]}> 不需要
+		</td>
+	</tr>
+	<tr>
+		<th>允许资讯垃圾箱重新发布</th>
+		<td>
+			<input type="radio" name="set[allowundelete]" value="1"{$thevalue['allowundelete'][1]}> 许可
+			<input type="radio" name="set[allowundelete]" value="0"{$thevalue['allowundelete'][0]}> 不许可
+		</td>
+	</tr>
+	<tr>
+		<th>模型信息发布</th>
+		<td>
+			<input type="radio" name="set[managemodelmanages]" value="1"{$thevalue['managemodelmanages'][1]}> 许可
+			<input type="radio" name="set[managemodelmanages]" value="0"{$thevalue['managemodelmanages'][0]}> 不许可
+		</td>
+	</tr>
+	<tr>
+		<th>模型信息需要审核</th>
+		<td>
+			<input type="radio" name="set[modelneedcheck]" value="1"{$thevalue['modelneedcheck'][1]}> 需要
+			<input type="radio" name="set[modelneedcheck]" value="0"{$thevalue['modelneedcheck'][0]}> 不需要
+		</td>
+	</tr>
+	<tr>
+		<th>允许模型废件箱重新发布</th>
+		<td>
+			<input type="radio" name="set[allowmodelundelete]" value="1"{$thevalue['allowmodelundelete'][1]}> 许可
+			<input type="radio" name="set[allowmodelundelete]" value="0"{$thevalue['allowmodelundelete'][0]}> 不许可
+		</td>
+	</tr>
+	<tr>
+		<th style="width:18em;">资讯分类</th>
+		<td>
+			<input type="radio" name="set[managecategories]" value="1"{$thevalue['managecategories'][1]}> 可管理
+			<input type="radio" name="set[managecategories]" value="0"{$thevalue['managecategories'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>资讯等级审核、精华、置顶</th>
+		<td>
+			<input type="radio" name="set[managecheck]" value="1"{$thevalue['managecheck'][1]}> 可管理
+			<input type="radio" name="set[managecheck]" value="0"{$thevalue['managecheck'][0]}> 禁止
+		</td>
+	</tr>
+	</table>
+
+	<h2>系统管理</h2>
+	<table cellspacing="0" cellpadding="0" class="maintable">
+	<tr>
+		<th>系统设置</th>
+		<td>
+			<input type="radio" name="set[managesettings]" value="1"{$thevalue['managesettings'][1]}> 可管理
+			<input type="radio" name="set[managesettings]" value="0"{$thevalue['managesettings'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>频道管理</th>
+		<td>
+			<input type="radio" name="set[managechannel]" value="1"{$thevalue['managechannel'][1]}> 可管理
+			<input type="radio" name="set[managechannel]" value="0"{$thevalue['managechannel'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>HTML静态配置</th>
+		<td>
+			<input type="radio" name="set[managehtml]" value="1"{$thevalue['managehtml'][1]}> 可管理
+			<input type="radio" name="set[managehtml]" value="0"{$thevalue['managehtml'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>模板编辑</th>
+		<td>
+			<input type="radio" name="set[managetpl]" value="1"{$thevalue['managetpl'][1]}> 可管理
+			<input type="radio" name="set[managetpl]" value="0"{$thevalue['managetpl'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>站点样式</th>
+		<td>
+			<input type="radio" name="set[managecss]" value="1"{$thevalue['managecss'][1]}> 可管理
+			<input type="radio" name="set[managecss]" value="0"{$thevalue['managecss'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>计划任务</th>
+		<td>
+			<input type="radio" name="set[managecrons]" value="1"{$thevalue['managecrons'][1]}> 可管理
+			<input type="radio" name="set[managecrons]" value="0"{$thevalue['managecrons'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>数据库操作</th>
+		<td>
+			<input type="radio" name="set[managedatabase]" value="1"{$thevalue['managedatabase'][1]}> 可管理
+			<input type="radio" name="set[managedatabase]" value="0"{$thevalue['managedatabase'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>词语过滤</th>
+		<td>
+			<input type="radio" name="set[managewords]" value="1"{$thevalue['managewords'][1]}> 可管理
+			<input type="radio" name="set[managewords]" value="0"{$thevalue['managewords'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>附件类型</th>
+		<td>
+			<input type="radio" name="set[manageattachmenttypes]" value="1"{$thevalue['manageattachmenttypes'][1]}> 可管理
+			<input type="radio" name="set[manageattachmenttypes]" value="0"{$thevalue['manageattachmenttypes'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>预先值</th>
+		<td>
+			<input type="radio" name="set[manageprefields]" value="1"{$thevalue['manageprefields'][1]}> 可管理
+			<input type="radio" name="set[manageprefields]" value="0"{$thevalue['manageprefields'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>sitemap地图文件</th>
+		<td>
+			<input type="radio" name="set[managesitemap]" value="1"{$thevalue['managesitemap'][1]}> 可管理
+			<input type="radio" name="set[managesitemap]" value="0"{$thevalue['managesitemap'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>投票管理</th>
+		<td>
+			<input type="radio" name="set[managepolls]" value="1"{$thevalue['managepolls'][1]}> 可管理
+			<input type="radio" name="set[managepolls]" value="0"{$thevalue['managepolls'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>资讯自定义信息</th>
+		<td>
+			<input type="radio" name="set[managecustomfields]" value="1"{$thevalue['managecustomfields'][1]}> 可管理
+			<input type="radio" name="set[managecustomfields]" value="0"{$thevalue['managecustomfields'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>公告管理</th>
+		<td>
+			<input type="radio" name="set[manageannouncements]" value="1"{$thevalue['manageannouncements'][1]}> 可管理
+			<input type="radio" name="set[manageannouncements]" value="0"{$thevalue['manageannouncements'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>广告管理</th>
+		<td>
+			<input type="radio" name="set[managead]" value="1"{$thevalue['managead'][1]}> 可管理
+			<input type="radio" name="set[managead]" value="0"{$thevalue['managead'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>友情链接管理</th>
+		<td>
+			<input type="radio" name="set[managefriendlinks]" value="1"{$thevalue['managefriendlinks'][1]}> 可管理
+			<input type="radio" name="set[managefriendlinks]" value="0"{$thevalue['managefriendlinks'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>缓存更新</th>
+		<td>
+			<input type="radio" name="set[managecache]" value="1"{$thevalue['managecache'][1]}> 可管理
+			<input type="radio" name="set[managecache]" value="0"{$thevalue['managecache'][0]}> 禁止
+		</td>
+	</tr>
+	</table>
+	
+	<h2>用户管理</h2>
+	<table cellspacing="0" cellpadding="0" class="maintable">
+	<tr>
+		<th>用户管理</th>
+		<td>
+			<input type="radio" name="set[managemember]" value="1"{$thevalue['managemember'][1]}> 可管理
+			<input type="radio" name="set[managemember]" value="0"{$thevalue['managemember'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>用户组</th>
+		<td>
+			<input type="radio" name="set[manageusergroups]" value="1"{$thevalue['manageusergroups'][1]}> 可管理
+			<input type="radio" name="set[manageusergroups]" value="0"{$thevalue['manageusergroups'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>恢复被禁用户</th>
+		<td>
+			<input type="radio" name="set[managedelmembers]" value="1"{$thevalue['managedelmembers'][1]}> 可管理
+			<input type="radio" name="set[managedelmembers]" value="0"{$thevalue['managedelmembers'][0]}> 禁止
+		</td>
+	</tr>
+	</table>
+	
+	<h2>模块管理</h2>
+	<table cellspacing="0" cellpadding="0" class="maintable">
+	<tr>
+		<th>数据模块管理</th>
+		<td>
+			<input type="radio" name="set[manageblocks]" value="1"{$thevalue['manageblocks'][1]}> 可管理
+			<input type="radio" name="set[manageblocks]" value="0"{$thevalue['manageblocks'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>模块风格</th>
+		<td>
+			<input type="radio" name="set[managestyles]" value="1"{$thevalue['managestyles'][1]}> 可管理
+			<input type="radio" name="set[managestyles]" value="0"{$thevalue['managestyles'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>模块风格文件</th>
+		<td>
+			<input type="radio" name="set[managestyletpl]" value="1"{$thevalue['managestyletpl'][1]}> 可管理
+			<input type="radio" name="set[managestyletpl]" value="0"{$thevalue['managestyletpl'][0]}> 禁止
+		</td>
+	</tr>
+	</table>
+	
+	<h2>批量维护</h2>
+	<table cellspacing="0" cellpadding="0" class="maintable">
+	<tr>
+		<th>批量主题管理</th>
+		<td>
+			<input type="radio" name="set[manageitems]" value="1"{$thevalue['manageitems'][1]}> 可管理
+			<input type="radio" name="set[manageitems]" value="0"{$thevalue['manageitems'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>评论管理</th>
+		<td>
+			<input type="radio" name="set[managecomments]" value="1"{$thevalue['managecomments'][1]}> 可管理
+			<input type="radio" name="set[managecomments]" value="0"{$thevalue['managecomments'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>批量附件管理</th>
+		<td>
+			<input type="radio" name="set[manageattachments]" value="1"{$thevalue['manageattachments'][1]}> 可管理
+			<input type="radio" name="set[manageattachments]" value="0"{$thevalue['manageattachments'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>TAG管理</th>
+		<td>
+			<input type="radio" name="set[managetags]" value="1"{$thevalue['managetags'][1]}> 可管理
+			<input type="radio" name="set[managetags]" value="0"{$thevalue['managetags'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>举报信息管理</th>
+		<td>
+			<input type="radio" name="set[managereports]" value="1"{$thevalue['managereports'][1]}> 可管理
+			<input type="radio" name="set[managereports]" value="0"{$thevalue['managereports'][0]}> 禁止
+		</td>
+	</tr>
+	</table>
+	
+	<h2>采集管理</h2>
+	<table cellspacing="0" cellpadding="0" class="maintable">
+	<tr>
+		<th>资讯采集器</th>
+		<td>
+			<input type="radio" name="set[managerobots]" value="1"{$thevalue['managerobots'][1]}> 可管理
+			<input type="radio" name="set[managerobots]" value="0"{$thevalue['managerobots'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>采集文章管理</th>
+		<td>
+			<input type="radio" name="set[managerobotmessages]" value="1"{$thevalue['managerobotmessages'][1]}> 可管理
+			<input type="radio" name="set[managerobotmessages]" value="0"{$thevalue['managerobotmessages'][0]}> 禁止
+		</td>
+	</tr>
+	</table>
+	
+	<h2>模型管理</h2>
+	<table cellspacing="0" cellpadding="0" class="maintable">
+	<tr>
+		<th>模型分类管理</th>
+		<td>
+			<input type="radio" name="set[managemodelcategories]" value="1"{$thevalue['managemodelcategories'][1]}> 可管理
+			<input type="radio" name="set[managemodelcategories]" value="0"{$thevalue['managemodelcategories'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>模型信息审核</th>
+		<td>
+			<input type="radio" name="set[managemodelfolders]" value="1"{$thevalue['managemodelfolders'][1]}> 可管理
+			<input type="radio" name="set[managemodelfolders]" value="0"{$thevalue['managemodelfolders'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>自定义模型管理</th>
+		<td>
+			<input type="radio" name="set[managemodels]" value="1"{$thevalue['managemodels'][1]}> 可管理
+			<input type="radio" name="set[managemodels]" value="0"{$thevalue['managemodels'][0]}> 禁止
+		</td>
+	</tr>
+	</table>
+	
+	<h2>聚合设置</h2>
+	<table cellspacing="0" cellpadding="0" class="maintable">
+	<tr>
+		<th>论坛参数设置</th>
+		<td>
+			<input type="radio" name="set[managebbs]" value="1"{$thevalue['managebbs'][1]}> 可管理
+			<input type="radio" name="set[managebbs]" value="0"{$thevalue['managebbs'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>UCHome参数设置</th>
+		<td>
+			<input type="radio" name="set[manageuchome]" value="1"{$thevalue['manageuchome'][1]}> 可管理
+			<input type="radio" name="set[manageuchome]" value="0"{$thevalue['manageuchome'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>论坛版块设置</th>
+		<td>
+			<input type="radio" name="set[managebbsforums]" value="1"{$thevalue['managebbsforums'][1]}> 可管理
+			<input type="radio" name="set[managebbsforums]" value="0"{$thevalue['managebbsforums'][0]}> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>论坛主题手工收录</th>
+		<td>
+			<input type="radio" name="set[managethreads]" value="1"{$thevalue['managethreads'][1]}> 可管理
+			<input type="radio" name="set[managethreads]" value="0"{$thevalue['managethreads'][0]}> 禁止
+		</td>
+	</tr>
+	</table>
+
+	<div class="buttons">
+	<input type="hidden" name="set[groupid]" value="$thevalue[groupid]">
+	<input type="submit" name="thevaluesubmit" value="提交保存" class="submit">
+	</div>
+	
+	</form>
+	
+	
+	
+<!--{elseif $_GET['op'] == 'copy'}-->
+	<table cellspacing="2" cellpadding="2" class="helptable">
+		<tr><td><ul>
+			<li>这里可以把目标用户组权限应用给选中的用户组</li>
+		</ul></td></tr>
+	</table>
+<form method="post" action="$s_url/admincp.php?action=usergroups&groupid=$groupid">
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+	<table cellspacing="0" cellpadding="0" class="maintable">
+		<tr>
+			<th style="width:15em;">源用户组</th>
+			<td>$from</td>
+		</tr>
+		<tr>
+			<th>目标用户组</th>
+			<td>
+				<select name="aimgroup[]" size="10" multiple="multiple" style="width: 80%">
+					$groupstr
+				</select>
+				<p>选择要将源用户组权限复制到哪些目标用户组，可以按住 CTRL 多选</p>
+			</td>
+		</tr>
+	</table>
+
+	<div class="buttons">
+	<input type="hidden" name="groupid" value="$groupid">
+	<input type="submit" name="copysubmit" value="提交" class="submit">
+	</div>
+
+	</form>
+<!--{else}-->
+		<table cellspacing="2" cellpadding="2" class="helptable">
+			<tr><td><ul>
+				<li>SupeSite通过用户组对用户的权限进行控制。</li>
+				<li>通过权限控制，您可以指定归属于该用户组的会员是否可以拥有能否发布资讯，能否进行信息审核等权限。</li>
+			</ul></td></tr>
+		</table>
+	<!--{if $list[1]}-->
+<h2>系统用户组</h2>
+<table cellspacing="0" cellpadding="0" class="listtable">
+	<tr><th>名称</th><th style="width:15em;">操作</th></tr>
+	<!--{loop $list[1] $value}-->
+		<tr>
+		<td>$value[grouptitle]</td>
+		<td width="100">
+		<a href="$s_url/admincp.php?action=usergroups&op=edit&groupid=$value[groupid]">编辑</a>
+		<a href="$s_url/admincp.php?action=usergroups&op=copy&groupid=$value[groupid]">复制</a>
+		</td>
+		</tr>
+	<!--{/loop}-->
+</table>
+	<!--{else}-->
+	<table cellspacing="0" cellpadding="0" class="listtable">
+		<tr><td>没有检测到任何系统用户组。</td></tr>
+		</table>
+	<!--{/if}-->
+	<h2>自定义用户组</h2>
+	<!--{if $list[0]}-->
+<table cellspacing="0" cellpadding="0" class="listtable">
+	<tr><th>名称</th><th style="width:15em;">操作</th></tr>
+	<!--{loop $list[0] $value}-->
+		<tr>
+		<td>$value[grouptitle]</td>
+		<td width="100">
+		<a href="$s_url/admincp.php?action=usergroups&op=edit&groupid=$value[groupid]">编辑</a>
+		<a href="$s_url/admincp.php?action=usergroups&op=copy&groupid=$value[groupid]">复制</a>
+		<a href="$s_url/admincp.php?action=usergroups&op=delete&groupid=$value[groupid]">删除</a>
+		</td>
+		</tr>
+	<!--{/loop}-->
+</table>
+	<!--{else}-->
+	<table cellspacing="0" cellpadding="0" class="listtable">
+		<tr><td>没有检测到任何自定义用户组。</td></tr>
+		</table>
+	<!--{/if}-->
+<!--{/if}-->
