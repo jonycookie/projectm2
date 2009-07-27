@@ -1,0 +1,5 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^(.*)(/(list|page)(/[0-9]+)+\.html)$ $1/index.php$2
+RewriteRule ^(.*)(/tag/.+?(/[0-9]+)?\.html)$ $1/index.php$2
+</IfModule>
