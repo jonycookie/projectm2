@@ -599,7 +599,7 @@ textarea{
 	display:none;
 	list-style-type:none;
 	zoom:1;
-	background:#F5F5F5;
+	background:#FFFFFF;
 
 	margin:0px;
 	padding:1px;
@@ -616,7 +616,7 @@ textarea{
 	margin:0px;
 	padding:2px;
 	height:26px;
-	background:#F0F0F0;
+	background:none;
 }
 
 .k_menu li ul li img{

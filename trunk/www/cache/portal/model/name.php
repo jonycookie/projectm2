@@ -1,0 +1,1 @@
+<?php exit('No direct script access allowed'); ?>a:6:{i:0;s:6:"单页";i:-1;s:9:"超链接";i:6;s:6:"文章";i:7;s:6:"产品";i:8;s:6:"商城";i:9;s:6:"论坛";}
