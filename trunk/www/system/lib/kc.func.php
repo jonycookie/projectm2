@@ -1538,6 +1538,36 @@ function kc_htm_setvalue($name,$array,$width=100,$is=0){
 	$s.='<a class="k_setvalue" rel="{ID:\''.$name.'\',width:\''.$width.'\',IS:'.$is.'}"><img src="../system/images/white.gif" class="os m4"/></a>';
 	return $s;
 }
+
+function kc_htm_complete($name,$array,$width=100,$is=0){
+/**
+	global $king;
+	$_array=array(''=>$king->lang->get('system/common/setvalue'));
+	foreach($array as $key => $val){//key为数字类型的时候，不能用array_push方式合并，注意，不要简化这段代码
+		$_array[$key]=$val;
+	}
+	$s='<span class="setvalue">'.kc_htm_select("{$name}_val",$_array,$default,'onChange="this.options[this.selectedIndex].value.length?$(\''.$name.'\').value=this.options[this.selectedIndex].value:void(0)"').'</span>';
+*/
+	$i=1;
+	$value=$is? '<p>':'<span>';
+	foreach($array as $key => $val){
+		$value.='<a rel="{value:\''.addslashes($key).'\'}" >';//onclick="$(\''.$name.'\').value=\''.$key.'\'"
+		$value.=$is? '<i>'.($i++).'.</i>':'';
+		$value.=htmlspecialchars($val).'</a>';
+	}
+	$value.=$is? '</p>':'</span>';
+
+	$s=kc_htm_hidden(array($name.'_setvalue'=>$value));
+	/**
+	$s.='<a href="javascript:;" onclick="kc_setvalue(\''.$name.'\');">'.kc_icon('m4').'</a>';
+	$s.='<table id="'.$name.'_table" class="k_setvalue" onblur="kc_display(\''.$name.'_table\')" style="width:'.$width.'px;height='.$height.'px;visibility:hidden"><tr><td id="'.$name.'_fly"></td></tr></table>';
+	*/
+	//$s.='<script>kc_setvalue(\''.$name.'\',\''.$width.'\',\''.$is.'\')</script>';
+	$s.='<a class="k_setvalue" rel="{ID:\''.$name.'\',width:\''.$width.'\',IS:'.$is.'}"><img src="../system/images/white.gif" class="os m4"/></a>';
+	return $s;
+}
+
+
 /**
 文本转换为数组并调用kc_htm_setvalue
 即为换行拆分多个预置的值

@@ -1,0 +1,1 @@
+<?php exit('No direct script access allowed'); ?>s:105:"$('#k_brow_obj_template').after(lll('template/','inside',1,1));$.kc_ready('#k_brow_obj_template_inside');";
