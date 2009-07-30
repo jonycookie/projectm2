@@ -1,1 +1,0 @@
-<?php exit('No direct script access allowed'); ?>a:1:{s:0:"";s:1:"1";}
