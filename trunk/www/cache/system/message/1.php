@@ -1,1 +1,0 @@
-<?php exit('No direct script access allowed'); ?>s:200:"<table cellspacing="0"><tr><th class="red w100">Sin.CS:</th><td><span><a target="_blank" href="http://www.kingcms.com/">感谢您选择使用KingCMS!</a><i>[7-24, 3:52 AM]</i></span></td></tr></table>";
