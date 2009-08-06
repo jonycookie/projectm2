@@ -1,0 +1,15 @@
+<p><a href="{king:add/}">添加主题</a></p>
+
+{king:portal.bbs type="list"}
+	<h4><a href="{king:path/}">{king:title/}</a></h4>
+	<p>
+	{king:user.info userid="(king:userid/)"}
+		{king:username/} - {king:usermail/} - {king:nickname/}
+	{/king:user.info}
+	</p>
+	<hr/>
+{/king:portal.bbs}
+
+
+
+{king:pagelist/}

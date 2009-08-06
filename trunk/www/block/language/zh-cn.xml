@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kingcms>
+	<name>碎片</name>
+	<ACCESS>
+		<block>访问</block>
+		<block_edt>创建/编辑</block_edt>
+		<block_delete>删除</block_delete>
+		<block_updown>排序</block_updown>
+	</ACCESS>
+
+	<CHANNEL>
+		<center access="block" href="../block/manage.php" img="p7">碎片管理</center>
+		<add access="block_edt" href="../block/manage.php?action=edt" img="p8">添加碎片</add>
+	</CHANNEL>
+
+	<const>
+	</const>
+
+	<common>
+		<list>栏目</list>
+		<model>模型</model>
+		<site>网站</site>
+	</common>
+
+	<th>
+		<add>添加新碎片</add>
+		<edt>编辑碎片</edt>
+		<bind>绑定</bind>
+		<default>默认碎片</default>
+		<bindadd>添加新绑定</bindadd>
+	</th>
+
+	<list>
+		<name>碎片名称</name>
+		<tag>调用标签</tag>
+	</list>
+
+	<label>
+		<name>碎片名称</name>
+		<content>碎片内容</content>
+		<bid>绑定的ID</bid>
+		<bind>绑定</bind>
+	</label>
+
+	<title>
+		<center>碎片管理</center>
+	</title>
+
+	<error>
+		<name>碎片名称不能为空!</name>
+		<name>碎片名称中不能包含单引号或双引号!</name>
+		<name>碎片名称不能重复!</name>
+		<name>内容不能为空!</name>
+		<name>name属性值不能为空</name>
+		<name>调用了一个不存在的标签!</name>
+		<bid>绑定ID不能为空!</bid>
+		<bid>绑定ID必须为数字</bid>
+		<bind>有重复的绑定项!</bind>
+	</error>
+
+	<ok>
+		<add>成功添加碎片 </add>
+		<edt>成功更新碎片 </edt>
+	</ok>
+
+	<help>
+		<bind><![CDATA[默认碎片是在没有匹配的栏目、模型
+		或绑定的域名的时候默认调用的内容。
+
+		现增加的碎片是，绑定栏目或模型等的时候，
+		仅在这些指定的地方调用的碎片内容。
+
+		绑定的ID为，当选择栏目的时候是栏目ID
+		选择模型的时候是模型对应的ID
+		依次类推。
+		]]></bind>
+	</help>
+
+</kingcms>
