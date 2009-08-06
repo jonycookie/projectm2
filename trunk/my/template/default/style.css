@@ -6,7 +6,7 @@ h1, h2, h3, h4, h5, h6 { font-size: 1em; }
 ul li { list-style: none; }
 select { margin-right: 2px; }
 
-a { color: #2C629E; text-decoration: none; }
+a { color: #06c; text-decoration: none; }
 a:hover { text-decoration: underline; }
 a img { border: none; }
 
@@ -71,7 +71,10 @@ a.c_link { position: absolute; width: 16px; height: 16px; background: url(image/
 #div_main { clear: both; }
 
 body { background: #FFF; }
-#wrap, .wrap { margin: 0 auto; width: 970px; }
+#wrap {
+	padding-top: 20px;
+	background: #FFF url(image/wrap_bg.gif) repeat-x top;
+}
 #ad_header { margin: 0 auto; padding: 1px; width: 966px; background: #FCF9E6; border: 1px solid #FF8E00; line-height:150%; }
     #ad_header a{ color: #000; }
 #ad_contenttop { margin: 0 0 10px 0; padding: 0 0 10px 0; width: 100%; border-bottom: 1px solid #EBE6C9; overflow: hidden; }
@@ -79,9 +82,8 @@ body { background: #FFF; }
 
 
 /*************************************************HEADER***/
-#header { margin: 0 0 20px; }
-  .headerwarp { margin: 0 auto; padding: 0 20px; width: 930px; height: 40px; background: #FF8E00 url(image/header_bg.gif); color: #FFF; }
-    .headerwarp a { color: #FFF; }
+#header {}
+  .headerwarp { margin: 0 auto; padding: 0 20px; width: 930px;}
       .headerwarp .logo { float: left; margin: 0 30px 0 0; }
 
 .menu { float: left; height: 40px; font-size: 14px; font-weight: bold; }
@@ -95,16 +97,37 @@ body { background: #FFF; }
 .menu li.dropmenu { margin: 0 10px 0 0; padding: 10px 15px 10px 10px; height: 20px; background: url(image/triangle.gif) no-repeat right center; overflow: hidden; }
   .menu li.dropmenu a { vertical-align: super;}
   .dropmenu_drop { margin: -1px 0 0; padding: 0 10px 10px; width: 150px; border: 1px solid #EBE6C9; background: #FFF; z-index: 200; }
-      .dropmenu_drop li { padding: 5px 10px; border-bottom: 1px solid #EEE; }
-        .dropmenu_drop li a { color: #2C629E; font-size: 12px; font-weight: normal; }
+      .dropmenu_drop li { padding: 5px 0; border-bottom: 1px solid #EEE; }
+        .dropmenu_drop li a { font-size: 12px; font-weight: normal; }
 		.dropmenu_drop .active { font-weight: bold; }
 
-#main { margin: 0 0 20px; width: 100%; background: url(image/appSidebar_bg.gif) repeat-y 0 0; overflow: hidden; }
+#main { margin: 0 auto; width: 970px; }
+
+#header:after,#main:after,#toolbar:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+
+.DragBox {
+	 height:20px;padding: 7px; z-index:9999; border-bottom:1px dotted #CDCDCD; width:500px;padding-left:30px;background:url(image/drag.gif) no-repeat 7px 8px;
+}
+.l_option{float:left;}
+
+.OverDragBox {
+	height:20px;padding: 7px;  cursor: move;border-bottom:1px dotted #CDCDCD;width:500px;padding-left:30px;background:#efefef url(image/drag.gif) no-repeat 7px 8px;
+}
+
+.DragDragBox {
+	height:20px;padding: 7px; cursor:move; opacity: 0.5;filter: alpha(opacity=50); border:1px dashed #BDD6FB;width:500px; color:#666; padding-left:30px;background:#efefef url(image/drag.gif) no-repeat 7px 8px;
+}
+
 
 /*************************************************APP SIDEBAR***/
-#app_sidebar { float: left; margin: 0 20px 0 0; padding: 10px 0 0; width: 140px; background: url(image/appSidebar_top_bg.gif) no-repeat 0 0; font-size: 14px; }
+#app_sidebar { margin: 0 20px 0 0; padding: 10px 0 0; font-size: 14px; }
   .app_list { margin: 0 10px 0 10px; padding: 5px 5px 0 5px; overflow: hidden; }
-    .app_list li { position: relative; margin: 0 0 12px; width: 110px; height: 20px; line-height: 21px; overflow: hidden; }
+    .app_list li { float:left; position: relative; margin: 0 0 12px; width: 110px; height: 20px; line-height: 21px; overflow: hidden; }
       .app_list li img { margin: 0 5px 0 0; vertical-align: middle; }
       .app_list em { position: absolute; font-size: 12px; font-style: normal; font-weight: normal; right: 0px; }
       .app_list em a { color: #999; }
@@ -116,7 +139,7 @@ body { background: #FFF; }
       .app_more a.on { background-position: -100px 50%; }
   #app_sidebar .t_input{ width: 110px; }
   #my_userapp { border-top: 1px solid #F2F2F2; }
-  #mainarea { float: left; width: 810px; overflow: hidden; }
+  #mainarea {}
 
   .chostlp img{ float: right; padding: 5px; border: 1px solid #FFF; border-top: none; vertical-align: middle; }
      .chostlp img.hover{ background: #FFF; border-color: #CCC;  }
@@ -1232,3 +1255,62 @@ a#i_rss { float: right; margin: 5px 10px 0 0; padding: 0 0 0 20px; height: 20px;
 	.search_table td { padding:0 0 10px 5px; }
 	
 #uchome_face_bg { filter:alpha(opacity=0); -moz-opacity:0; opacity: 0; }
+
+
+
+#toolbar {
+	line-height: 33px;
+	padding-bottom: 4px;
+	background: #343b47 url(image/toolbar_bg.gif) repeat-x;
+}
+#toolbar .toolbarwarp {
+	margin: 0 auto;
+	width: 970px;
+}
+#toolbar .logo {
+	float: left;
+	display: none;
+}
+#toolbar .s_nav {
+	float: left;
+	font-weight: bold;
+}
+
+#toolbar .s_nav li {
+	float: left;
+	padding: 0 5px 0 10px;
+	margin: 0 5px 0 0;
+}
+#toolbar .s_nav a {
+	color: #a1a9b9;
+}
+#toolbar .s_nav .dropmenu {
+	position: relative;
+	display: block;
+	padding: 0 23px 0 10px;
+	margin: 0 5px 0 0;
+	background: url(image/arrow.gif) no-repeat right;
+	color: #000;
+	z-index: 100;
+}
+#toolbar .s_nav .dropmenu img {
+	vertical-align: middle;
+}
+#toolbar .s_nav .dropmenu.hover {
+	background: url(image/arrow_hover.gif) no-repeat right;
+}
+#toolbar .dropmenu_drop {
+	border: 1px solid #262b35;
+	border-top: none;
+	background: #353c49 url(image/dropmenu_bg.gif) repeat-x top;
+}
+#toolbar .dropmenu_drop a {
+	color: #a1a9b9;
+}
+#toolbar .dropmenu_drop li { float:left; position: relative; margin: 0; width: 110px; height: 20px; line-height: 21px; overflow: hidden; border-bottom: 1px dashed #5b616e;}
+#toolbar .dropmenu_drop li img { margin: 0 5px 0 0; vertical-align: middle; }
+#toolbar .dropmenu_drop em { position: absolute; font-size: 12px; font-style: normal; font-weight: normal; right: 0px; }
+
+
+
+
