@@ -57,6 +57,12 @@ $_SGLOBAL[space_css]
 			<li><a href="cp.php?ac=sendmail">邮件提醒</a></li>
 			<!--{/if}-->
 			<li><a href="cp.php?ac=privacy">隐私筛选</a></li>
+			<!--{if checkperm('admin')}-->
+			<li><a href="admincp.php">站点管理</a></li>
+			<!--{/if}-->
+			<!--{if checkperm('allowstat')}-->
+			<li><a href="do.php?ac=stat">趋势统计</a></li>
+			<!--{/if}-->
 		</ul>
 
 		<ul id="m_my_menu" class="dropmenu_drop" style="display:none;">
