@@ -42,7 +42,7 @@
 	define('KC_DB_USER','root');
 	define('KC_DB_PASS','');
 
-	define('KC_DB_SQLITE','634anpd3y15q.db3');
+	define('KC_DB_SQLITE','fx6i9chs9u63.db3');
 
 /* ------>>> 参数设置 <<<---------------------------- */
 
