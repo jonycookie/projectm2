@@ -1,7 +1,58 @@
 <div id="mood_mystatus">
 	<!--{if $space[spacenote]}-->$space[spacenote]<!--{/if}-->
 </div>
-	
+
+
+
+<form method="post" id="doingform" action="cp.php?ac=doing&view=$_GET[view]" class="post_doing">
+<div class="r_option">还可输入 <strong id="maxlimit">200</strong> 个字符</div>
+<a href="###" id="doingface" onclick="showFace(this.id, 'message');"><img src="image/facelist.gif" align="absmiddle" /></a>
+<textarea id="message" name="message" onkeyup="textCounter(this, 'maxlimit', 200)" onkeydown="ctrlEnter(event, 'add');" rows="4" style="width:338px; height: 72px;"></textarea>
+<input type="hidden" name="addsubmit" value="true" />
+<button type="submit" id="add" name="add" class="post_button">发布</button>
+<input type="hidden" name="refer" value="$theurl" />
+<input type="hidden" name="topicid" value="$topicid" />
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+</form>
+
+
+
+	<form method="post" action="cp.php?ac=blog&blogid=$blog[blogid]" enctype="multipart/form-data">
+		<table cellspacing="4" cellpadding="4" width="100%" class="infotable">
+			<tr>
+				<td>
+					<select name="classid" id="classid" onchange="addSort(this)">
+						<option value="0">选择分类</option>
+						<!--{loop $classarr $value}-->
+						<!--{if $value['classid'] == $blog['classid']}-->
+						<option value="$value[classid]" selected>$value[classname]</option>
+						<!--{else}-->
+						<option value="$value[classid]">$value[classname]</option>
+						<!--{/if}-->
+						<!--{/loop}-->
+						<!--{if !$blog['uid'] || $blog['uid']==$_SGLOBAL['supe_uid']}--><option value="addoption" style="color:red;">+新建分类</option><!--{/if}-->
+					</select>
+					<input type="text" class="t_input" id="subject" name="subject" value="$blog[subject]" size="60" onblur="relatekw();" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<a id="doodleBox" href="magic.php?mid=doodle&showid=blog_doodle&target=uchome-ttHtmlEditor&from=editor" style="display:none"></a>
+				<textarea id="message" name="message">$blog[message]</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>标签：<input type="text" class="t_input" size="40" id="tag" name="tag" value="$blog[tag]"></td>
+			</tr>
+			<tr>
+				<td>
+		<input type="button" id="issuance" onclick="document.getElementById('blogbutton').click();" value="保存发布" class="submit" />
+				</td>
+			</tr>
+		</table>
+	</form>
+
+<!--
 <div id="mood_form">
 	<form method="post" action="cp.php?ac=doing" id="mood_addform">
 		<div id="mood_statusinput" class="statusinput"><textarea name="message" id="mood_message" onclick="statusFace();" onkeyup="if(event.keyCode == 13 ){ ajaxpost('mood_addform', 'reloadMood'); };" >你可以更新状态, 让好友们知道你在做什么...</textarea></div>
@@ -95,3 +146,5 @@
 		hiddenstatus();
 	}
 </script>
+
+-->
