@@ -98,6 +98,68 @@ body { background: #FFF; }
 #ad_contenttop { margin: 0 0 10px 0; padding: 0 0 10px 0; width: 100%; border-bottom: 1px solid #EBE6C9; overflow: hidden; }
 #ad_contentbottom { margin: 10px 0 0 0; padding: 10px 0 0 0; width: 100%; border-top: 1px solid #EBE6C9; overflow: hidden; }
 
+
+
+
+/*************************************************TOOLBAR***/
+
+#toolbar {
+	line-height: 33px;
+	padding-bottom: 4px;
+	background: #343b47 url(image/toolbar_bg.gif) repeat-x;
+}
+#toolbar .toolbarwarp {
+	margin: 0 auto;
+	width: 970px;
+}
+#toolbar .logo {
+	float: left;
+	display: none;
+}
+#toolbar .s_nav {
+	float: left;
+	font-weight: bold;
+}
+
+#toolbar .s_nav li {
+	float: left;
+	padding: 0 5px 0 10px;
+	margin: 0 5px 0 0;
+}
+#toolbar .s_nav a {
+	color: #a1a9b9;
+}
+#toolbar .s_nav .dropmenu {
+	position: relative;
+	display: block;
+	padding: 0 23px 0 10px;
+	margin: 0 5px 0 0;
+	background: url(image/arrow.gif) no-repeat right;
+	color: #000;
+	z-index: 100;
+}
+#toolbar .s_nav .dropmenu img {
+	vertical-align: middle;
+}
+#toolbar .s_nav .dropmenu.hover {
+	background: url(image/arrow_hover.gif) no-repeat right;
+}
+#toolbar .dropmenu_drop {
+	border: 1px solid #262b35;
+	border-top: none;
+	background: #353c49 url(image/dropmenu_bg.gif) repeat-x top;
+}
+#toolbar .dropmenu_drop a {
+	color: #a1a9b9;
+}
+#toolbar .dropmenu_drop li { float:left; position: relative; margin: 0; width: 110px; height: 20px; line-height: 21px; overflow: hidden; border-bottom: 1px dashed #5b616e;}
+#toolbar .dropmenu_drop li img { margin: 0 5px 0 0; vertical-align: middle; }
+#toolbar .dropmenu_drop em { position: absolute; font-size: 12px; font-style: normal; font-weight: normal; right: 0px; }
+
+
+
+
+
 /*************************************************HEADER***/
 #header { margin: 0 0 20px; }
   .headerwarp { margin: 0 auto; padding: 0 20px; width: 930px; height: 40px; background: #FF8E00 url(image/header_bg.gif); color: #FFF; }
@@ -120,6 +182,12 @@ body { background: #FFF; }
 		.dropmenu_drop .active { font-weight: bold; }
 
 #main { margin: 0 0 20px; width: 100%; background: url(image/appSidebar_bg.gif) repeat-y 0 0; overflow: hidden; }
+
+#header:after,#main:after,#toolbar:after {
+	content: "";
+	display: block;
+	clear: both;
+}
 
 /*************************************************APP SIDEBAR***/
 #app_sidebar { float: left; margin: 0 20px 0 0; padding: 10px 0 0; width: 140px; background: url(image/appSidebar_top_bg.gif) no-repeat 0 0; font-size: 14px; }
