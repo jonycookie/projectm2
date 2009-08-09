@@ -145,6 +145,7 @@ body { background: #FFF; }
 	background: url(image/arrow_hover.gif) no-repeat right;
 }
 #toolbar .dropmenu_drop {
+	color: #a1a9b9;
 	border: 1px solid #262b35;
 	border-top: none;
 	background: #353c49 url(image/dropmenu_bg.gif) repeat-x top;
@@ -152,7 +153,7 @@ body { background: #FFF; }
 #toolbar .dropmenu_drop a {
 	color: #a1a9b9;
 }
-#toolbar .dropmenu_drop li { float:left; position: relative; margin: 0; width: 110px; height: 20px; line-height: 21px; overflow: hidden; border-bottom: 1px dashed #5b616e;}
+#toolbar .dropmenu_drop li { position: relative; margin: 0; width: 110px; height: 20px; line-height: 21px; overflow: hidden; border-bottom: 1px dashed #5b616e;}
 #toolbar .dropmenu_drop li img { margin: 0 5px 0 0; vertical-align: middle; }
 #toolbar .dropmenu_drop em { position: absolute; font-size: 12px; font-style: normal; font-weight: normal; right: 0px; }
 
@@ -171,17 +172,17 @@ body { background: #FFF; }
     .menu .edit { padding-left: 4px; color: #FFF; font-size: 12px; font-weight: normal; }
 
 .nav_account { float: right; width: 200px; white-space:nowrap; overflow: hidden; }
-  .login_thumb { float: left; margin: 6px 6px 0 0; padding: 3px 0 0 3px; width: 24px; height: 24px; background: url(image/thumb20bg.gif) no-repeat; display: block; }
-  .login_thumb img{ width: 20px; height: 20px; }
+  .login_thumb { width: 14px; height: 14px; }
+  .login_thumb img{ width: 14px; height: 14px; }
     li.notify { margin: 9px 0 0; padding: 0 0 0 18px; width: 72px; height: 20px; background: url(image/notify_bg.gif); color: #FFF; font-size: 12px; font-weight: normal; }
 
 .menu li.dropmenu { margin: 0 10px 0 0; padding: 10px 15px 10px 10px; height: 20px; background: url(image/triangle.gif) no-repeat right center; overflow: hidden; }
-  .dropmenu_drop { margin: -1px 0 0; padding: 0 10px 10px; width: 150px; border: 1px solid #EBE6C9; background: #FFF; z-index: 200; }
-      .dropmenu_drop li { padding: 5px 10px; border-bottom: 1px solid #EEE; }
+  .dropmenu_drop { margin: -1px 0 0; padding: 0 10px 0; border: 1px solid #EBE6C9; background: #FFF; z-index: 200; }
+      .dropmenu_drop li { padding: 5px 0; border-bottom: 1px solid #EEE; }
         .dropmenu_drop li a { color: #2C629E; font-size: 12px; font-weight: normal; }
 		.dropmenu_drop .active { font-weight: bold; }
 
-#main { margin: 0 0 20px; width: 100%; background: url(image/appSidebar_bg.gif) repeat-y 0 0; overflow: hidden; }
+#main { margin: 0 0 20px; width: 100%;}
 
 #header:after,#main:after,#toolbar:after {
 	content: "";
@@ -204,7 +205,7 @@ body { background: #FFF; }
       .app_more a.on { background-position: -100px 50%; }
   #app_sidebar .t_input{ width: 110px; }
   #my_userapp { border-top: 1px solid #F2F2F2; }
-  #mainarea { float: left; width: 810px; overflow: hidden; }
+  #mainarea {}
 
   .chostlp img{ float: right; padding: 5px; border: 1px solid #FFF; border-top: none; vertical-align: middle; }
      .chostlp img.hover{ background: #FFF; border-color: #CCC;  }
@@ -212,7 +213,7 @@ body { background: #FFF; }
             .chostlp_drop { border: 1px solid #CCC; border-bottom: none; }
                 .chostlp_drop li{ padding: 5px; width: 16px; height: 16px; }
 
-#content { float: left; margin: 0 20px 0 0; width: 540px; overflow: hidden; }
+#content { float: left; margin: 0 20px 0 0; overflow: hidden; }
 
 /*************************************************COMPOSER***/
 .index_name { font-size: 14px; line-height: 30px; border-bottom: 1px solid #EBE6C9; }
@@ -468,7 +469,7 @@ a.button { padding: 5px; }
         .topic_list p { padding-top: 6px; }
 
 /*************************************************CP SIDEBAR***/
-#sidebar { float: right; padding: 0; width: 250px; overflow: hidden; }
+#sidebar { float: right; padding: 0; overflow: hidden; }
     #sidebar .ye_r_t { margin: 0 0 20px; }
 .task_notice { position: relative; padding: 5px; background: #FCF9E6; }
     .task_notice a.float_cancel { position: absolute; width: 16px; height: 16px; background: url(image/cancel.gif) no-repeat; line-height: 200px; top: 5px; right: -8px; overflow: hidden; display: block; }
@@ -480,7 +481,7 @@ a.button { padding: 5px; }
         .task_notice p span.num { color: #F60; font-size: 20px; }
 
 .sidebox { margin: 0 0 10px; }
-  .sidebox h2.title { margin: 0 0 10px; padding: 6px 10px; height: 18px; background: url(image/sidebar_title.gif) no-repeat; color: #333; font-size: 12px; line-height: 18px; }
+  .sidebox h2.title { margin: 0 0 10px; padding: 6px 10px; height: 18px; color: #333; font-size: 12px; line-height: 18px; }
   .sidebox h3.title { padding: 5px; border-bottom: 1px solid #EBE6C9; background: #FCF9E6; }
         .sidebox div.more { text-align: right; }
         .sidebox ul.friendbox li { height: 90px; }
