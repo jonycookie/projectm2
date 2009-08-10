@@ -74,27 +74,25 @@
 	<!--{/if}-->
 
 	<!--{if $isnewer && $task}-->
-	<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
-		<div class="task_notice">
-			<div class="task_notice_body">
-				<div class="notice">您好，{$_SN[$space[uid]]}，欢迎加入我们。有新任务等着您，挺简单的，赶快来参加吧</div>
-				<img src="$task[image]" alt="" class="icon" />
-				<h3><a href="cp.php?ac=task&op=do&taskid=$task[taskid]">$task[name]</a></h3>
-				<p>可获得 <span class="num">$task[credit]</span> 积分</p>
-			</div>
+	<div class="task_notice">
+		<div class="task_notice_body">
+			<div class="notice">您好，{$_SN[$space[uid]]}，欢迎加入我们。有新任务等着您，挺简单的，赶快来参加吧</div>
+			<img src="$task[image]" alt="" class="icon" />
+			<h3><a href="cp.php?ac=task&op=do&taskid=$task[taskid]">$task[name]</a></h3>
+			<p>可获得 <span class="num">$task[credit]</span> 积分</p>
 		</div>
-	</div></div></div></div><br>
+	</div>
 	<!--{/if}-->
 
 	<!--{if empty($_SCOOKIE['closefeedbox']) && $_SGLOBAL['ad']['feedbox']}-->
-	<div id="feed_box" class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
+	<div id="feed_box">
 		<div class="task_notice">
 			<a title="忽略" class="float_cancel" href="javascript:;" onclick="close_feedbox();">忽略</a>
 			<div class="task_notice_body">
 			<!--{ad/feedbox}-->
 			</div>
 		</div>
-	</div></div></div></div>
+	</div>
 	<!--{/if}-->
 
 	<div class="tabs_header" style="padding-top:10px;">
@@ -192,35 +190,31 @@
 
 <div id="sidebar">
 	<!--{if !$isnewer && $task}-->
-	<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
-		<div class="task_notice" style="width:230px;">
-			<a title="忽略" class="float_cancel" href="cp.php?ac=task&taskid=$task[taskid]&op=ignore">忽略</a>
-			<div class="task_notice_body">
-				<img src="$task[image]" alt="" class="icon" />
-				<h3><a href="cp.php?ac=task&op=do&taskid=$task[taskid]">$task[name]</a></h3>
-				<p>可获得 <span class="num">$task[credit]</span> 积分</p>
-			</div>
+	<div class="task_notice" style="width:230px;">
+		<a title="忽略" class="float_cancel" href="cp.php?ac=task&taskid=$task[taskid]&op=ignore">忽略</a>
+		<div class="task_notice_body">
+			<img src="$task[image]" alt="" class="icon" />
+			<h3><a href="cp.php?ac=task&op=do&taskid=$task[taskid]">$task[name]</a></h3>
+			<p>可获得 <span class="num">$task[credit]</span> 积分</p>
 		</div>
-	</div></div></div></div>
+	</div>
 	<!--{/if}-->
 	
 	<!--{if $topiclist}-->
-	<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
-		<div class="task_notice" style="width:230px;">
-			<!--{loop $topiclist $key $value}-->
-			<div class="task_notice_body">
-				<!--{if $value[pic]}-->
-				<a href="space.php?do=topic&topicid=$value[topicid]"><img src="$value[pic]" alt="" class="icon" /></a>
-				<!--{/if}-->
-				<h3>
-					<img src="image/app/topic.gif" align="absmiddle">
-					<a href="space.php?do=topic&topicid=$value[topicid]">$value[subject]</a>
-				</h3>
-				<div class="gray">已有 <span class="num">$value[joinnum]</span> 人参与</div>
-			</div>
-			<!--{/loop}-->
+	<div class="task_notice" style="width:230px;">
+		<!--{loop $topiclist $key $value}-->
+		<div class="task_notice_body">
+			<!--{if $value[pic]}-->
+			<a href="space.php?do=topic&topicid=$value[topicid]"><img src="$value[pic]" alt="" class="icon" /></a>
+			<!--{/if}-->
+			<h3>
+				<img src="image/app/topic.gif" align="absmiddle">
+				<a href="space.php?do=topic&topicid=$value[topicid]">$value[subject]</a>
+			</h3>
+			<div class="gray">已有 <span class="num">$value[joinnum]</span> 人参与</div>
 		</div>
-	</div></div></div></div>
+		<!--{/loop}-->
+	</div>
 	<!--{/if}-->
 
 	<!--{if $newspacelist}-->
@@ -297,45 +291,42 @@
 
 	<!--{if $birthlist}-->
 	<div class="searchfriend">
-		<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
-			<h3>好友生日提醒</h3>
-			<div class="box">
-			<table cellpadding="2" cellspacing="4">
-			<!--{loop $birthlist $key $values}-->
-			<tr>
-				<td align="right" valign="top" style="padding-left:10px;">
-				<!--{if $values[0]['istoday']}-->今天<!--{else}-->{$values[0][birthmonth]}-{$values[0][birthday]}<!--{/if}-->
-				</td>
-				<td style="padding-left:10px;">
-				<ul>
-				<!--{loop $values $value}-->
-				<li><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></li>
-				<!--{/loop}-->
-				</ul>
-				</td>
-			</tr>
+		<h3>好友生日提醒</h3>
+		<div class="box">
+		<table cellpadding="2" cellspacing="4">
+		<!--{loop $birthlist $key $values}-->
+		<tr>
+			<td align="right" valign="top" style="padding-left:10px;">
+			<!--{if $values[0]['istoday']}-->今天<!--{else}-->{$values[0][birthmonth]}-{$values[0][birthday]}<!--{/if}-->
+			</td>
+			<td style="padding-left:10px;">
+			<ul>
+			<!--{loop $values $value}-->
+			<li><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></li>
 			<!--{/loop}-->
-			</table>
-			</div>
-		</div></div></div></div>
+			</ul>
+			</td>
+		</tr>
+		<!--{/loop}-->
+		</table>
+		</div>
 	</div>
 	<!--{/if}-->
 
 	<div class="searchfriend">
-		<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
-			<h3>搜索用户</h3>
-			<form method="get" action="cp.php" style="padding:10px 0 5px 0;">
-				<input name="searchkey" value="" size="20" class="t_input" type="text">
-				<input name="searchsubmit" value="找人" class="submit" type="submit">
-				<input type="hidden" name="searchmode" value="1" />
-				<input type="hidden" name="ac" value="friend" />
-				<input type="hidden" name="op" value="search" />
-			</form>
-			<p>
-				<a href="cp.php?ac=friend&op=search">高级搜索</a><span class="pipe">|</span>
-				<a href="cp.php?ac=friend&op=find">可能认识的人</a><span class="pipe">|</span>
-				<a href="cp.php?ac=invite">邀请好友</a></p>
-		</div></div></div></div>
+		<h3>搜索用户</h3>
+		<form method="get" action="cp.php" style="padding:10px 0 5px 0;">
+			<input name="searchkey" value="" size="20" class="t_input" type="text">
+			<input name="searchsubmit" value="找人" class="submit" type="submit">
+			<input type="hidden" name="searchmode" value="1" />
+			<input type="hidden" name="ac" value="friend" />
+			<input type="hidden" name="op" value="search" />
+		</form>
+		<p>
+			<a href="cp.php?ac=friend&op=search">高级搜索</a><span class="pipe">|</span>
+			<a href="cp.php?ac=friend&op=find">可能认识的人</a><span class="pipe">|</span>
+			<a href="cp.php?ac=invite">邀请好友</a>
+		</p>
 	</div>
 
 </div>

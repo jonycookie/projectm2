@@ -281,15 +281,15 @@
 				</div>
 				<div class="event_content">
 					<dl>
-						<dt class="gray">发起者:</dt>
+						<dt class="gray">发起者：</dt>
 						<dd><a href="space.php?uid=$event[uid]">{$_SN[$event[uid]]}</a></dd>
-						<dt class="gray">活动类型:</dt>
+						<dt class="gray">活动类型：</dt>
 						<dd>$_SGLOBAL[eventclass][$event[classid]][classname]</dd>
-						<dt class="gray">活动地点:</dt>
+						<dt class="gray">活动地点：</dt>
 						<dd>$event[province] $event[city] $event[location]</dd>
-						<dt class="gray">活动时间:</dt>
+						<dt class="gray">活动时间：</dt>
 						<dd><!--{eval echo sgmdate("m月d日 H:i", $event[starttime])}--> - <!--{eval echo sgmdate("m月d日 H:i", $event[endtime])}--></dd>
-						<dt class="gray">截止报名:</dt>
+						<dt class="gray">截止报名：</dt>
 						<dd>
 							<!--{if $event[deadline]>=$_SGLOBAL[timestamp]}-->
 							<!--{eval echo sgmdate("m月d日 H:i", $event[deadline])}-->
@@ -297,9 +297,9 @@
 							报名结束
 							<!--{/if}-->
 						</dd>
-						<dt class="gray">活动人数:</dt>
+						<dt class="gray">活动人数：</dt>
 						<dd><!--{if $event[limitnum]}-->$event[limitnum] （还剩 <!--{eval echo $event[limitnum] - $event[membernum]}--> 个名额）<!--{else}-->不限<!--{/if}--></dd>
-						<dt class="gray">需要审核:</dt>
+						<dt class="gray">需要审核：</dt>
 						<dd><!--{if $event[verify] == 0}-->不<!--{/if}-->需要</dd>
 					</dl>
 					<ul>
@@ -397,7 +397,6 @@
 		</div>
 
 		<div class="m_box">
-			<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
 			<h2 class="atitle">
 			<div class="r_option">
 				<!--{if $event[grade]>0 && (($event[allowpic] && $_SGLOBAL[supe_userevent][status]>1) || $_SGLOBAL[supe_userevent][status]>=3)}-->
@@ -421,7 +420,6 @@
 			<!--{else}-->
 			<p class="event_albs_p">还没有活动照片。<!--{if $event[grade]>0 && (($event[allowpic] && $_SGLOBAL[supe_userevent][status]>1) || $_SGLOBAL[supe_userevent][status]>=3)}--><a href="cp.php?ac=upload&eventid=$eventid">我来上传</a> <!--{/if}--></p>
 			<!--{/if}-->
-			</div></div></div></div>
 		</div>
 
 		<!--{if $event[tagid]}-->

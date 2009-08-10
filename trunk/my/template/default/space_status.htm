@@ -4,13 +4,16 @@
 	
 <div id="mood_form">
 	<form method="post" action="cp.php?ac=doing" id="mood_addform">
-		<div id="mood_statusinput" class="statusinput"><textarea name="message" id="mood_message" onclick="statusFace();" onkeydown="if(event.keyCode == 13 ){ event.returnValue=false;event.cancel = true;$('mood_add').click();$('mood_message').value='';this.blur(); };" >你可以更新状态, 让好友们知道你在做什么...</textarea></div>
+		<div id="mood_statusinput" class="statusinput">
+			<textarea name="message" id="mood_message" onclick="statusFace();" onkeyup="textCounter(this, 'maxlimit', 200)" onkeydown="if(event.keyCode == 13 ){ event.returnValue=false;event.cancel = true;$('mood_add').click();$('mood_message').value='';this.blur(); };" >你可以更新状态, 让好友们知道你在做什么...</textarea>
+		</div>
 		<div class="statussubmit">
 			<input type="button" id="mood_add" name="add" value="更新" class="submit" style="display:none;" onclick="ajaxpost('mood_addform', 'reloadMood');$('mood_message').value='';" />
 			<input type="hidden" name="addsubmit" value="true" />
 			<input type="hidden" name="spacenote" value="true" />
 			<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 		</div>
+		<div class="r_option">还可输入 <strong id="maxlimit">200</strong> 个字符</div>
 		
 	</form>
 </div>

@@ -1,4 +1,4 @@
-<!--{template header}-->
+<!--{template cp_header}-->
 
 <!--{if $_GET['op']=='edit' || $_GET['op']=='editpic'}-->
 <h2 class="title"><img src="image/app/album.gif" />相册<!--{if $album[albumname]}--> - $album[albumname]<!--{/if}--></h2>
@@ -53,7 +53,7 @@
 				<option value="3"$friendarr[3]>仅自己可见</option>
 				<option value="4"$friendarr[4]>凭密码查看</option>
 			</select>
-			<span id="span_password" style="$passwordstyle">密码:<input type="text" name="password" value="$album[password]" size="10"></span>
+			<span id="span_password" style="$passwordstyle">密码：<input type="text" name="password" value="$album[password]" size="10"></span>
 		</td>
 	</tr>
 	<tbody id="tb_selectgroup" style="$selectgroupstyle">

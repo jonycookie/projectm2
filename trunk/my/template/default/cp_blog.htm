@@ -1,4 +1,4 @@
-<!--{template header}-->
+<!--{template cp_header}-->
 
 <!--{if $_GET[op] == 'delete'}-->
 
@@ -106,7 +106,7 @@
 						<option value="3"$friendarr[3]>仅自己可见</option>
 						<option value="4"$friendarr[4]>凭密码查看</option>
 					</select>
-					<span id="span_password" style="$passwordstyle">密码:<input type="text" name="password" value="$blog[password]" size="10" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"></span>
+					<span id="span_password" style="$passwordstyle">密码：<input type="text" name="password" value="$blog[password]" size="10" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"></span>
 					<input type="checkbox" name="noreply" value="1"<!--{if $blog[noreply]}--> checked<!--{/if}-->> 不允许评论
 				</td>
 			</tr>
