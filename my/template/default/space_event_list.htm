@@ -23,8 +23,8 @@
 				</p>
 				<h4><a href="space.php?do=event&id=$event[eventid]" target="_blank">$event[title]</a><span class="gray">[<!--{$_SGLOBAL[eventclass][$event[classid]][classname]}-->]</span></h4>
 	
-				<p><span class="gray">活动时间:</span> 	<!--{eval echo sgmdate("m月d日 H:i", $event[starttime])}--> - <!--{eval echo sgmdate("m月d日 H:i", $event[endtime])}--></p>
-				<p><span class="gray">活动地点:</span> 	$event[province] $event[city] $event[location]</p>
+				<p><span class="gray">活动时间：</span> 	<!--{eval echo sgmdate("m月d日 H:i", $event[starttime])}--> - <!--{eval echo sgmdate("m月d日 H:i", $event[endtime])}--></p>
+				<p><span class="gray">活动地点：</span> 	$event[province] $event[city] $event[location]</p>
 			</li>
 		<!--{/loop}-->
 		</ul>
@@ -163,7 +163,7 @@
 					<h4 class="event_title"><a href="space.php?do=event&id=$event[eventid]">$event[title]</a><span class="gray">[<!--{$_SGLOBAL[eventclass][$event[classid]][classname]}-->]</span></h4>
 					<ul>
 						<li>
-							<span class="gray">活动时间:</span> 	<!--{eval echo sgmdate("m月d日 H:i", $event[starttime])}--> - <!--{eval echo sgmdate("m月d日 H:i", $event[endtime])}-->
+							<span class="gray">活动时间：</span> 	<!--{eval echo sgmdate("m月d日 H:i", $event[starttime])}--> - <!--{eval echo sgmdate("m月d日 H:i", $event[endtime])}-->
 							<!--{if $event[grade] == 0}-->
 							<span class="event_state"> 待审核</span>
 							<!--{/if}-->
@@ -173,14 +173,14 @@
 							<span class="event_state"> 报名截止</span>
 							<!--{/if}-->						
 						</li>
-						<li><span class="gray">活动地点:</span>
+						<li><span class="gray">活动地点：</span>
 							<a href="space.php?uid=$_GET[uid]&do=event&view=$view&type=$type&classid=$_GET[classid]&province=$event[province]&date=$_GET[date]">$event[province]</a>
 							<a href="space.php?uid=$_GET[uid]&do=event&view=$view&type=$type&classid=$_GET[classid]&province=$event[province]&city=$event[city]&date=$_GET[date]">$event[city]</a>
 							$event[location]
 						</li>
-						<li><span class="gray">发起人:</span> <a href="space.php?uid=$event[uid]">$_SN[$event[uid]]</a></li>
+						<li><span class="gray">发起人：</span> <a href="space.php?uid=$event[uid]">$_SN[$event[uid]]</a></li>
 						<!--{if $fevents[$event[eventid]]}-->
-						<li><span class="gray">好友:</span> 
+						<li><span class="gray">好友：</span> 
 							<!--{loop $fevents[$event[eventid]] $value}-->
 							<a href="space.php?uid=$value[fuid]">$_SN[$value[fuid]]</a>
 							<!--{if $value[status] == 2}--><span class="gray">参加</span>

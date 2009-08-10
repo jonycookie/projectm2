@@ -69,7 +69,7 @@
 		<div id="space_mymenu">
 			<h2>个人菜单</h2>
 			<ul class="line_list">
-				<li><img src="image/icon/profile.gif"><a href="javascript:;" onclick="getindex('info');">个人资料</a></li>
+				<li><img src="image/icon/profile.gif"><a href="space.php?uid=$space[uid]&do=info&view=me" onclick="getindex('info');">个人资料</a></li>
 				<li><img src="image/icon/doing.gif"><a href="javascript:;" onclick="getindex('doing');">记录</a><!--{if $space[doingnum]}--><em>($space[doingnum])</em><!--{/if}--></li>
 				<li><img src="image/icon/blog.gif"><a href="javascript:;" onclick="getindex('blog');">日志</a><!--{if $space[blognum]}--><em>($space[blognum])</em><!--{/if}--></li>
 				<li><img src="image/icon/album.gif"><a href="javascript:;" onclick="getindex('album');">相册</a><!--{if $space[albumnum]}--><em>($space[albumnum])</em><!--{/if}--></li>
@@ -180,37 +180,37 @@
 				个人资料
 			</h3>
 			<ul class="spacemenu_list">
-				<li><em>创建:</em><!--{date('Y-m-d',$space[dateline],1)}--></li>
-				<li><em>登录:</em><!--{if $space[lastlogin]}--><!--{date('Y-m-d',$space[lastlogin],1)}--><!--{/if}--></li>
+				<li><em>创建：</em><!--{date('Y-m-d',$space[dateline],1)}--></li>
+				<li><em>登录：</em><!--{if $space[lastlogin]}--><!--{date('Y-m-d',$space[lastlogin],1)}--><!--{/if}--></li>
 				<!--{if $isonline}-->
-				<li><em>活跃:</em>$isonline (当前在线)</li>
+				<li><em>活跃：</em>$isonline (当前在线)</li>
 				<!--{/if}-->
 			<!--{if $space[sex]}-->
-				<li><em>性别:</em>$space[sex]</li>
+				<li><em>性别：</em>$space[sex]</li>
 			<!--{/if}-->
 			<!--{if $space[birth]}-->
-				<li><em>生日:</em>$space[birth]</li>
+				<li><em>生日：</em>$space[birth]</li>
 			<!--{/if}-->
 			<!--{if $space[blood]}-->
-				<li><em>血型:</em>$space[blood]</li>
+				<li><em>血型：</em>$space[blood]</li>
 			<!--{/if}-->
 			<!--{if $space[marry]}-->
-				<li><em>婚恋:</em>$space[marry]</li>
+				<li><em>婚恋：</em>$space[marry]</li>
 			<!--{/if}-->
 			<!--{if $space[residecity]}-->
-				<li><em>居住:</em>$space[residecity]</li>
+				<li><em>居住：</em>$space[residecity]</li>
 			<!--{/if}-->
 			<!--{if $space[birthcity]}-->
-				<li><em>家乡:</em>$space[birthcity]</li>
+				<li><em>家乡：</em>$space[birthcity]</li>
 			<!--{/if}-->
 			<!--{if $space[mobile]}-->
-				<li><em>手机:</em>$space[mobile]</li>
+				<li><em>手机：</em>$space[mobile]</li>
 			<!--{/if}-->
 			<!--{if $space[qq]}-->
-				<li><em>QQ:</em>$space[qq]</li>
+				<li><em>QQ：</em>$space[qq]</li>
 			<!--{/if}-->
 			<!--{if $space[msn]}-->
-				<li><em>MSN:</em>$space[msn]</li>
+				<li><em>MSN：</em>$space[msn]</li>
 			<!--{/if}-->
 			</ul>
 			<p class="info_more"><a href="javascript:;" onclick="getindex('info');">&raquo; 查看全部个人资料</a></p>

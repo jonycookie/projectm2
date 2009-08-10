@@ -75,7 +75,7 @@ function scrollShowNav(e, Width, Price, Speed) {
 }
 function getUserTip(obj) {
 	var tipBox = $('usertip_box');
-	tipBox.childNodes[0].innerHTML = '<strong>' + obj.rel + ':<\/strong> ' + obj.rev + '...';
+	tipBox.childNodes[0].innerHTML = '<strong>' + obj.rel + '：<\/strong> ' + obj.rev + '...';
 	
 	var showLeft;
 	if(obj.parentNode.offsetLeft > 730) {
@@ -310,12 +310,10 @@ scrollShowNav($('spics'), 903, 7, 43);
 		</ul>
 	</div>
 	<div class="susb">
-		<div class="ye_r_t"><div class="ye_l_t"><div class="ye_r_b"><div class="ye_l_b">
-			<div class="appmo">
-				<p>共有 <span>$myappcount</span> 个游戏</p>
-				<p class="appmobutton"><a href="cp.php?ac=userapp&my_suffix=%2Fapp%2Flist">查看更多应用</a></p>
-			</div>
-		</div></div></div></div>	
+		<div class="appmo">
+			<p>共有 <span>$myappcount</span> 个游戏</p>
+			<p class="appmobutton"><a href="cp.php?ac=userapp&my_suffix=%2Fapp%2Flist">查看更多应用</a></p>
+		</div>
 	</div>
 </div>
 <!--{/if}-->
@@ -332,9 +330,9 @@ scrollShowNav($('spics'), 903, 7, 43);
 			<li>
 				<h3><a href="space.php?do=event&id=$value[eventid]" target="_blank">$value[title]</a></h3>
 				<p class="eimage"><a href="space.php?do=event&id=$value[eventid]" target="_blank"><img src="$value[pic]" alt=""/></a></p>
-				<p><span class="gray">时间:</span> <!--{date('n-j H:i',$value[starttime])}--> - <!--{date('n-j H:i',$value[endtime])}--></p>
-				<p><span class="gray">地点:</span> $value[province] $value[city] $value[location]</p>
-				<p><span class="gray">发起:</span> <a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></p>
+				<p><span class="gray">时间：</span> <!--{date('n-j H:i',$value[starttime])}--> - <!--{date('n-j H:i',$value[endtime])}--></p>
+				<p><span class="gray">地点：</span> $value[province] $value[city] $value[location]</p>
+				<p><span class="gray">发起：</span> <a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></p>
 				<p class="egz">$value[membernum] 人参加<span class="pipe">|</span>$value[follownum] 人关注</p>
 			</li>
 		<!--{/loop}-->

@@ -1,8 +1,27 @@
-<!--{template header}-->
+<!--{template cp_header}-->
 <!--{if $_SGLOBAL['guidemode']}-->
 <!--{template space_guide}-->
 <!--{else}-->
-<!--{template cp_header}-->
+<h2 class="title"><img src="image/icon/profile.gif">个人设置</h2>
+<div class="tabs_header">
+	<a href="cp.php?ac=advance" class="r_option">&raquo; 高级管理</a>
+	<ul class="tabs">
+		<li$actives[profile]><a href="cp.php?ac=profile"><span>个人资料</span></a></li>
+		<li$actives[avatar]><a href="cp.php?ac=avatar"><span>我的头像</span></a></li>
+		<!--{if $_SCONFIG['videophoto']}-->
+		<li$actives[videophoto]><a href="cp.php?ac=videophoto"><span>视频认证</span></a></li>
+		<!--{/if}-->
+		<li$actives[credit]><a href="cp.php?ac=credit"><span>我的积分</span></a></li>
+		<!--{if $_SCONFIG['allowdomain'] && $_SCONFIG['domainroot'] && checkperm('domainlength')}-->
+		<li$actives[domain]><a href="cp.php?ac=domain"><span>我的域名</span></a></li>
+		<!--{/if}-->
+		<!--{if $_SCONFIG[sendmailday]}-->
+		<li$actives[sendmail]><a href="cp.php?ac=sendmail"><span>邮件提醒</span></a></li>
+		<!--{/if}-->
+		<li$actives[privacy]><a href="cp.php?ac=privacy"><span>隐私筛选</span></a></li>
+		<li$actives[theme]><a href="cp.php?ac=theme"><span>个性化设置</span></a></li>
+	</ul>
+</div>
 <!--{/if}-->
 
 <div class="l_status c_form">
@@ -21,7 +40,7 @@
 <table cellspacing="0" cellpadding="0" class="formtable">
 
 <tr>
-	<th style="width:10em;">您的登录用户名:</th>
+	<th style="width:10em;">您的登录用户名：</th>
 	<td>
 		<!--{eval echo stripslashes($space['username']);}--> (<a href="cp.php?ac=password">修改登录密码</a>)
 	</td>
@@ -29,7 +48,7 @@
 </tr>
 <!--{if !$_SCONFIG['realname']}-->
 <tr>
-	<th style="width:10em;">真实姓名:</th>
+	<th style="width:10em;">真实姓名：</th>
 	<td>
 		<input type="text" id="name" name="name" value="<!--{eval echo stripslashes($space['name']);}-->" class="t_input" />
 	</td>
@@ -37,7 +56,7 @@
 </tr>
 <!--{else}-->
 <tr>
-	<th style="width:10em;">真实姓名:</th>
+	<th style="width:10em;">真实姓名：</th>
 	<td>
 	<!--{if $space[name] && empty($_GET['namechange'])}-->
 	<span style="font-weight:bold;"><!--{eval echo stripslashes($space['name']);}--></span>
@@ -55,7 +74,7 @@
 </tr>
 <!--{/if}-->
 <tr>
-	<th style="width:10em;">性别:</th>
+	<th style="width:10em;">性别：</th>
 	<td>
 	<!--{if empty($space[sex])}-->
 		<label for="sexm"><input id="sexm" type="radio" value="1" name="sex"$sexarr[1] />男</label> 
@@ -68,7 +87,7 @@
 	<td>&nbsp;</td>
 </tr>
 <tr>
-	<th style="width:10em;">婚恋状态:</th>
+	<th style="width:10em;">婚恋状态：</th>
 	<td>
 		<select id="marry" name="marry">
 			<option value="0">&nbsp;</option>
@@ -86,7 +105,7 @@
 	</td>
 </tr>
 <tr>
-	<th>生日:</th>
+	<th>生日：</th>
 	<td>
 		<select id="birthyear" name="birthyear" onchange="showbirthday();">
 			<option value="0">&nbsp;</option>
@@ -111,7 +130,7 @@
 	</td>
 </tr>
 <tr>
-	<th>血型:</th>
+	<th>血型：</th>
 	<td>
 		<select id="blood" name="blood">
 			<option value="">&nbsp;</option>
@@ -127,7 +146,7 @@
 	</td>
 </tr>
 <tr>
-	<th>家乡:</th>
+	<th>家乡：</th>
 	<td id="birthcitybox">
 		<script type="text/javascript" src="source/script_city.js"></script>
 		<script type="text/javascript">
@@ -148,7 +167,7 @@
 	</td>
 </tr>
 <tr>
-	<th>居住地:</th>
+	<th>居住地：</th>
 	<td id="residecitybox">
 		<script type="text/javascript">
 		<!--
@@ -168,7 +187,7 @@
 </tr>
 <!--{loop $profilefields $value}-->
 <tr>
-	<th>$value[title]<!--{if $value[required]}-->*<!--{/if}-->:</th>
+	<th>$value[title]<!--{if $value[required]}-->*<!--{/if}-->：</th>
 	<td>
 		$value[formhtml]
 		<!--{if $value[note]}--> <span class="gray">$value[note]</span><!--{/if}-->
@@ -205,7 +224,7 @@
 <table cellspacing="0" cellpadding="0" class="formtable">
 <tbody>
 <tr>
-	<th style="width:10em;">本网站的登录密码:</th>
+	<th style="width:10em;">本网站的登录密码：</th>
 	<td>
 		<input type="password" id="password" name="password" value="" class="t_input" />
 		<br>为了您的账号安全，更换新邮箱的时候，需要输入您在本网站的密码。
@@ -213,7 +232,7 @@
 	<td></td>
 </tr>
 <tr>
-	<th style="width:10em;">新邮箱:</th>
+	<th style="width:10em;">新邮箱：</th>
 	<td>
 		<input type="text" id="email" class="t_input" name="email" value="$space[email]" />
 		<!--{if $space['emailcheck']}-->
@@ -230,7 +249,7 @@
 <!--{else}-->
 <!--{if !$space[email]}-->
 <tr>
-	<th style="width:10em;">本网站的登录密码:</th>
+	<th style="width:10em;">本网站的登录密码：</th>
 	<td>
 		<input type="password" id="password" name="password" value="" class="t_input" />
 		<br>为了您的账号安全，填写邮箱的时候，需要输入您在本网站的密码。
@@ -239,7 +258,7 @@
 </tr>
 <!--{/if}-->
 <tr>
-	<th style="width:10em;">常用邮箱:</th>
+	<th style="width:10em;">常用邮箱：</th>
 	<td>
 		<!--{if $space[email]}-->
 			$space[email]<br>
@@ -264,7 +283,7 @@
 </tr>
 <!--{/if}-->
 <tr>
-	<th style="width:10em;">手机:</th>
+	<th style="width:10em;">手机：</th>
 	<td>
 		<input type="text" class="t_input" name="mobile" value="$space[mobile]" /> 
 	</td>
@@ -277,7 +296,7 @@
 	</td>
 </tr>
 <tr>
-	<th style="width:10em;">QQ:</th>
+	<th style="width:10em;">QQ：</th>
 	<td>
 		<input type="text" class="t_input" name="qq" value="$space[qq]" /> 
 	</td>
@@ -290,7 +309,7 @@
 	</td>
 </tr>
 <tr>
-	<th>MSN:</th>
+	<th>MSN：</th>
 	<td>
 		<input type="text" class="t_input" name="msn" value="$space[msn]" /> 
 	</td>
@@ -344,19 +363,19 @@
 <!--{/if}-->
 <tbody id="oldtbody">
 <tr>
-	<th style="width:10em;">学校名称:</th>
+	<th style="width:10em;">学校名称：</th>
 	<td>
 		<input type="text" name="title[]" value="">
 	</td>
 </tr>
 <tr>
-	<th>班级或院系:</th>
+	<th>班级或院系：</th>
 	<td>
 		<input type="text" name="subtitle[]" value="">
 	</td>
 </tr>
 <tr>
-	<th>入学年份:</th>
+	<th>入学年份：</th>
 	<td>
 		<select name="startyear[]">
 		$yearhtml
@@ -364,7 +383,7 @@
 	</td>
 </tr>
 <tr>
-	<th>隐私设置:</th>
+	<th>隐私设置：</th>
 	<td>
 		<select name="friend[]">
 			<option value="0">全用户可见</option>
@@ -427,19 +446,19 @@
 <!--{/if}-->
 <tbody id="oldtbody">
 <tr>
-	<th style="width:10em;">公司或机构:</th>
+	<th style="width:10em;">公司或机构：</th>
 	<td>
 		<input type="text" name="title[]" value="">
 	</td>
 </tr>
 <tr>
-	<th>部门:</th>
+	<th>部门：</th>
 	<td>
 		<input type="text" name="subtitle[]" value="">
 	</td>
 </tr>
 <tr>
-	<th>工作时间:</th>
+	<th>工作时间：</th>
 	<td>
 		<select name="startyear[]">
 		$yearhtml
@@ -458,7 +477,7 @@
 	</td>
 </tr>
 <tr>
-	<th>隐私设置:</th>
+	<th>隐私设置：</th>
 	<td>
 		<select name="friend[]">
 			<option value="0">全用户可见</option>
@@ -512,7 +531,7 @@ $infoarr = array(
 
 <!--{loop $infoarr $key $value}-->
 <tr>
-	<th>{$value}:</th>
+	<th>{$value}：</th>
 	<td>
 		<textarea name="info[$key]" rows="3" cols="50">{$list[$key][title]}</textarea>
 	</td>
