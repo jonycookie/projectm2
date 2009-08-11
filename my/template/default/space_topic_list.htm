@@ -1,6 +1,8 @@
 <!--{eval $_TPL['titles'] = array('热闹');}-->
 <!--{template header}-->
 
+
+<!--{if $space[self]}-->
 <h2 class="title"><img src="image/app/topic.gif" />热闹</h2>
 <div class="tabs_header">
 	<ul class="tabs">
@@ -17,6 +19,14 @@
 	</div>
 	<!--{/if}-->
 </div>
+<!--{else}-->
+<!--{eval
+	$_TPL['spacetitle'] = "热闹";
+	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=topic\">TA的所有热闹</a>";
+}-->
+<!--{template space_menu}-->
+<!--{/if}-->
+
 
 <!--{if $list}-->
 <div class="event_list">

@@ -273,37 +273,39 @@
 		<p>您现在不能给好友发送邀请，因为活动人数已满。</p>
 	</div>
 	<!--{else}-->
-	<div id="content" style="width: 640px;">
-		<form id="edit_form" name="edit_form" class="c_form" method="post" action="cp.php?ac=event&op=invite&id=$event[eventid]&group=$_GET[group]&page=$page">
-			<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
-			<div class="h_status">
-				您可以给未加入本活动的好友们发送邀请。
-			</div>
-			<div class="h_status">
-				<!--{if $list}-->
-				<ul class="avatar_list">
-				<!--{loop $list $value}-->
-					<li><div class="avatar48"><a href="space.php?uid=$value[fuid]" title="{$_SN[$value[fuid]]}"><!--{avatar($value[fuid],small)}--></a></div>
-						<p>
-						<a href="space.php?uid=$value[fuid]" title="{$_SN[$value[fuid]]}">{$_SN[$value[fuid]]}</a>
-						</p>
-						<p><!--{if empty($joins[$value[fuid]])}--><input type="hidden" name="names[]" value="$value[fusername]"><input type="checkbox" name="ids[]" value="$value[fuid]">选定<!--{else}-->已邀请<!--{/if}--></p>
-					</li>
-				<!--{/loop}-->
-				</ul>
-				<div class="page">$multi</div>
-				<!--{else}-->
-				<div class="c_form">还没有好友。</div>
-				<!--{/if}-->
-			</div>
-			<p>
-				<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')"><label for="chkall">全选</label> &nbsp;
-				<input type="hidden" name="invitesubmit" value="1" />
-				<input type="submit" name="bnt_invitesubmit" value="邀请" class="submit" />
-			</p>
-		</form>
+	<div id="content">
+		<div class="content_inner">
+			<form id="edit_form" name="edit_form" class="c_form" method="post" action="cp.php?ac=event&op=invite&id=$event[eventid]&group=$_GET[group]&page=$page">
+				<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+				<div class="h_status">
+					您可以给未加入本活动的好友们发送邀请。
+				</div>
+				<div class="h_status">
+					<!--{if $list}-->
+					<ul class="avatar_list">
+					<!--{loop $list $value}-->
+						<li><div class="avatar48"><a href="space.php?uid=$value[fuid]" title="{$_SN[$value[fuid]]}"><!--{avatar($value[fuid],small)}--></a></div>
+							<p>
+							<a href="space.php?uid=$value[fuid]" title="{$_SN[$value[fuid]]}">{$_SN[$value[fuid]]}</a>
+							</p>
+							<p><!--{if empty($joins[$value[fuid]])}--><input type="hidden" name="names[]" value="$value[fusername]"><input type="checkbox" name="ids[]" value="$value[fuid]">选定<!--{else}-->已邀请<!--{/if}--></p>
+						</li>
+					<!--{/loop}-->
+					</ul>
+					<div class="page">$multi</div>
+					<!--{else}-->
+					<div class="c_form">还没有好友。</div>
+					<!--{/if}-->
+				</div>
+				<p>
+					<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')"><label for="chkall">全选</label> &nbsp;
+					<input type="hidden" name="invitesubmit" value="1" />
+					<input type="submit" name="bnt_invitesubmit" value="邀请" class="submit" />
+				</p>
+			</form>
+		</div>
 	</div>
-	<div id="sidebar" style="width: 150px;">
+	<div id="sidebar">
 		<div class="cat">
 			<h3>好友分类</h3>
 			<ul class="post_list line_list">
@@ -316,59 +318,61 @@
 	</div>
 	<!--{/if}-->
 <!--{elseif $op == "members"}-->
-	<div id="content" style="width: 640px;">
-		<form id="edit_form" name="edit_form" class="c_form" method="post" action="cp.php?ac=event&op=members&status=$_GET[status]&id=$event[eventid]">
-			<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />	
-			<div class="h_status">
-				选择相应的用户进行用户状态变更。
-				<!--{if $event[limitnum]}--><span style="color:#f00">剩余 <!--{eval echo $event[limitnum]-$event[membernum]}-->  个活动成员名额</span><!--{/if}-->
-			</div>	
-			<div class="h_status">
-				<!--{if $list}-->
-				<table >
-					<tbody>
-					<!--{loop $list $value}-->
-					<tr>
-						<td width="40"><input type="checkbox" name="ids[]" value="$value[uid]"></td>
-						<td width="80">
-							<div><a href="space.php?uid=$value[uid]" target="_blank"><!--{avatar($value[uid],small)}--></a></div>
-							<p><a href="space.php?uid=$value[uid]">$_SN[$value[uid]]</a></p>
-						</td>
-						<td>
-							<!--{if $event[allowfellow]}--><h2>携带人数：<!--{eval echo intval($value[fellow])}--></h2><!--{/if}-->
-							<!--{if $event[template]}-->
-							<h2>报名信息：</h2>
-							<p><!--{eval echo nl2br(htmlspecialchars($value[template]))}--></p>
-							<!--{/if}-->
-						</td>
-					</tr>
-					<!--{/loop}-->
-					</tbody>
-				</table>
-				<div class="page">$multi</div>
-				<!--{else}-->
-				<div class="c_form">还没有相关成员。</div>
-				<!--{/if}-->
-			</div>
-			<p>
-				<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')"><label for="chkall">全选</label> &nbsp;
-				设为：
-				<select name="status">
-					<option value="2">普通成员</option>
-					<!--{if $_SGLOBAL[supe_uid]==$event[uid]}-->
-					<option value="3">组织者</option>
+	<div id="content">
+		<div class="content_inner">
+			<form id="edit_form" name="edit_form" class="c_form" method="post" action="cp.php?ac=event&op=members&status=$_GET[status]&id=$event[eventid]">
+				<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />	
+				<div class="h_status">
+					选择相应的用户进行用户状态变更。
+					<!--{if $event[limitnum]}--><span style="color:#f00">剩余 <!--{eval echo $event[limitnum]-$event[membernum]}-->  个活动成员名额</span><!--{/if}-->
+				</div>	
+				<div class="h_status">
+					<!--{if $list}-->
+					<table >
+						<tbody>
+						<!--{loop $list $value}-->
+						<tr>
+							<td width="40"><input type="checkbox" name="ids[]" value="$value[uid]"></td>
+							<td width="80">
+								<div><a href="space.php?uid=$value[uid]" target="_blank"><!--{avatar($value[uid],small)}--></a></div>
+								<p><a href="space.php?uid=$value[uid]">$_SN[$value[uid]]</a></p>
+							</td>
+							<td>
+								<!--{if $event[allowfellow]}--><h2>携带人数：<!--{eval echo intval($value[fellow])}--></h2><!--{/if}-->
+								<!--{if $event[template]}-->
+								<h2>报名信息：</h2>
+								<p><!--{eval echo nl2br(htmlspecialchars($value[template]))}--></p>
+								<!--{/if}-->
+							</td>
+						</tr>
+						<!--{/loop}-->
+						</tbody>
+					</table>
+					<div class="page">$multi</div>
+					<!--{else}-->
+					<div class="c_form">还没有相关成员。</div>
 					<!--{/if}-->
-					<!--{if $event[verify]}-->
-					<option value="0">待审核</option>
-					<!--{/if}-->
-					<option value="-1">踢出成员</option>
-				</select>
-				<input type="submit" name="memberssubmit" value="提交" class="submit" />
-			</p>
-		</form>
+				</div>
+				<p>
+					<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')"><label for="chkall">全选</label> &nbsp;
+					设为：
+					<select name="status">
+						<option value="2">普通成员</option>
+						<!--{if $_SGLOBAL[supe_uid]==$event[uid]}-->
+						<option value="3">组织者</option>
+						<!--{/if}-->
+						<!--{if $event[verify]}-->
+						<option value="0">待审核</option>
+						<!--{/if}-->
+						<option value="-1">踢出成员</option>
+					</select>
+					<input type="submit" name="memberssubmit" value="提交" class="submit" />
+				</p>
+			</form>
+		</div>
 	</div>
 	
-	<div id="sidebar" style="width: 150px;">
+	<div id="sidebar">
 		<div class="cat">
 			<h3>成员状态</h3>
 			<ul class="post_list line_list">

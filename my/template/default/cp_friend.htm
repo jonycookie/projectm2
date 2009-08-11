@@ -570,38 +570,40 @@ function showtbody(id) {
 
 <!--{elseif $op=='group'}-->
 
-<div id="content" style="width: 640px;">
-	<form method="post" action="cp.php?ac=friend&op=group&ref">
-<!--{if $list}-->
-	<div class="thumb_list" id="friend_ul">
-		<ul>
-		<!--{loop $list $key $value}-->
-			<li>
-				<div class="avatar48"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],small)}--></a></div>
-				<div class="thumbTitle"><input type="checkbox" name="fuids[]" value="$value[uid]" /><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></div>
-				<div class="gray">$value[group]</div>
-			</li>
-		<!--{/loop}-->
-		</ul>
-	</div>
-	<div class="page">$multi</div>
-	<div style="padding:20px 0 0 0;">
-		<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'fuids')" /><label for="chkall">全选</label></td>
-		设置用户组：<select name="group">
-			<!--{loop $groups $key $value}-->
-				<option value="$key">$value</option>
+<div id="content">
+	<div class="content_inner">
+		<form method="post" action="cp.php?ac=friend&op=group&ref">
+	<!--{if $list}-->
+		<div class="thumb_list" id="friend_ul">
+			<ul>
+			<!--{loop $list $key $value}-->
+				<li>
+					<div class="avatar48"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],small)}--></a></div>
+					<div class="thumbTitle"><input type="checkbox" name="fuids[]" value="$value[uid]" /><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></div>
+					<div class="gray">$value[group]</div>
+				</li>
 			<!--{/loop}-->
-			</select>
-			<input type="submit" name="btnsubmit" value="确定" class="submit" />
+			</ul>
+		</div>
+		<div class="page">$multi</div>
+		<div style="padding:20px 0 0 0;">
+			<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'fuids')" /><label for="chkall">全选</label></td>
+			设置用户组：<select name="group">
+				<!--{loop $groups $key $value}-->
+					<option value="$key">$value</option>
+				<!--{/loop}-->
+				</select>
+				<input type="submit" name="btnsubmit" value="确定" class="submit" />
+		</div>
+	<!--{else}-->
+		<div class="c_form">
+			没有相关用户列表。
+		</div>
+	<!--{/if}-->
+		<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+		<input type="hidden" name="groupsubmin" value="true" />
+		</form>
 	</div>
-<!--{else}-->
-	<div class="c_form">
-		没有相关用户列表。
-	</div>
-<!--{/if}-->
-	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
-	<input type="hidden" name="groupsubmin" value="true" />
-	</form>
 </div>
 
 <div id="sidebar" style="width: 150px;">

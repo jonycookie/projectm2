@@ -34,7 +34,7 @@
 <!--{else}-->
 <!--{eval
 	$_TPL['spacetitle'] = "分享";
-	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=share&view=me\">TA的所有分享</a>";
+	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=share\">TA的所有分享</a>";
 }-->
 <!--{template space_menu}-->
 <!--{/if}-->
@@ -58,17 +58,18 @@
 </div>
 
 <div id="content">
-	<ul id="share_ul">
-		<!--{if $list}-->
-			<!--{loop $list $value}-->
-				<!--{template space_share_li}-->
-			<!--{/loop}-->
-			<div class="page">$multi</div>
-		<!--{else}-->
-			<li><div class="c_form">现在还没有分享。</div></li>
-		<!--{/if}-->
-	</ul>
-
+	<div class="content_inner">
+		<ul id="share_ul">
+			<!--{if $list}-->
+				<!--{loop $list $value}-->
+					<!--{template space_share_li}-->
+				<!--{/loop}-->
+				<div class="page">$multi</div>
+			<!--{else}-->
+				<li><div class="c_form">现在还没有分享。</div></li>
+			<!--{/if}-->
+		</ul>
+	</div>
 </div>
 
 

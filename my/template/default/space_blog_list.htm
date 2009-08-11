@@ -55,78 +55,79 @@
 <!--{else}-->
 <!--{eval 
 	$_TPL['spacetitle'] = "日志";
-	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=$do&view=me\">TA的所有日志</a>";
+	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=$do\">TA的所有日志</a>";
 }-->
 <!--{template space_menu}-->
 <div class="h_status">按照发布时间排序</div>
 <!--{/if}-->
 		
-<div id="content" style="width:640px;">
-	<!--{if $_GET['orderby'] && $_GET['orderby'] != 'dateline'}-->
-	<div class="h_status">
-		排行时间范围：
-		<a href="space.php?do=blog&view=all&orderby=$_GET[orderby]"{$day_actives[0]}>全部</a><span class="pipe">|</span>
-		<a href="space.php?do=blog&view=all&orderby=$_GET[orderby]&day=1"{$day_actives[1]}>最近一天</a><span class="pipe">|</span>
-		<a href="space.php?do=blog&view=all&orderby=$_GET[orderby]&day=2"{$day_actives[2]}>最近两天</a><span class="pipe">|</span>
-		<a href="space.php?do=blog&view=all&orderby=$_GET[orderby]&day=7"{$day_actives[7]}>最近七天</a><span class="pipe">|</span>
-		<a href="space.php?do=blog&view=all&orderby=$_GET[orderby]&day=30"{$day_actives[30]}>最近三十天</a><span class="pipe">|</span>
-		<a href="space.php?do=blog&view=all&orderby=$_GET[orderby]&day=90"{$day_actives[90]}>最近三个月</a><span class="pipe">|</span>
-		<a href="space.php?do=blog&view=all&orderby=$_GET[orderby]&day=120"{$day_actives[120]}>最近六个月</a>
-	</div>
-	<!--{/if}-->
-	
-	<!--{if $searchkey}-->
-	<div class="h_status">以下是搜索日志 <span style="color:red;font-weight:bold;">$searchkey</span> 结果列表</div>
-	<!--{/if}-->
-	
-	<!--{if $count}-->
-	<div class="entry_list">
-		<ul>
-		<!--{loop $list $value}-->
-			<li>
-				<div class="avatardiv">
-					<div class="avatar48"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],small)}--></a></div>
-					<!--{if $value['hot']}--><div class="digb">$value[hot]</div><!--{/if}-->
-				</div>
-				
-				<div class="title">
-					<a href="cp.php?ac=share&type=blog&id=$value[blogid]" id="a_share_$value[blogid]" onclick="ajaxmenu(event, this.id, 1)" class="a_share">分享</a>
-					<h4><a href="space.php?uid=$value[uid]&do=$do&id=$value[blogid]" <!--{if $value[magiccolor]}--> class="magiccolor$value[magiccolor]"<!--{/if}-->>$value[subject]</a></h4>
-					<div>
-					<!--{if $value['friend']}-->
-					<span class="r_option locked gray"><a href="$theurl&friend=$value[friend]" class="gray">{$friendsname[$value[friend]]}</a></span>
-					<!--{/if}-->
-					<a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a> <span class="gray"><!--{date('Y-m-d H:i',$value[dateline],1)}--></span>
-					</div>
-				</div>
-				<div class="detail image_right l_text s_clear" id="blog_article_$value[blogid]">
-					<!--{if $value[pic]}--><p class="image"><a href="space.php?uid=$value[uid]&do=blog&id=$value[blogid]"><img src="$value[pic]" alt="$value[subject]" /></a></p><!--{/if}-->
-					$value[message]
-				</div>
-				<div class="gray">
-					<!--{if $classarr[$value[classid]]}-->分类: <a href="space.php?uid=$value[uid]&do=blog&classid=$value[classid]">{$classarr[$value[classid]]}</a><span class="pipe">|</span><!--{/if}-->
-					<!--{if $value[viewnum]}--><a href="space.php?uid=$value[uid]&do=$do&id=$value[blogid]">$value[viewnum] 次阅读</a><span class="pipe">|</span><!--{/if}-->
-					<!--{if $value[replynum]}--><a href="space.php?uid=$value[uid]&do=$do&id=$value[blogid]#comment">$value[replynum] 个评论</a><!--{else}-->没有评论<!--{/if}-->
-				</div>
-			</li>
-		<!--{/loop}-->
-		<!--{if $pricount}-->
-			<li>
-				<div class="title">本页有 $pricount 篇日志因作者的隐私设置而隐藏</div>
-			</li>
+<div id="content">
+	<div class="content_inner">
+		<!--{if $_GET['orderby'] && $_GET['orderby'] != 'dateline'}-->
+		<div class="h_status">
+			排行时间范围：
+			<a href="space.php?do=blog&view=all&orderby=$_GET[orderby]"{$day_actives[0]}>全部</a><span class="pipe">|</span>
+			<a href="space.php?do=blog&view=all&orderby=$_GET[orderby]&day=1"{$day_actives[1]}>最近一天</a><span class="pipe">|</span>
+			<a href="space.php?do=blog&view=all&orderby=$_GET[orderby]&day=2"{$day_actives[2]}>最近两天</a><span class="pipe">|</span>
+			<a href="space.php?do=blog&view=all&orderby=$_GET[orderby]&day=7"{$day_actives[7]}>最近七天</a><span class="pipe">|</span>
+			<a href="space.php?do=blog&view=all&orderby=$_GET[orderby]&day=30"{$day_actives[30]}>最近三十天</a><span class="pipe">|</span>
+			<a href="space.php?do=blog&view=all&orderby=$_GET[orderby]&day=90"{$day_actives[90]}>最近三个月</a><span class="pipe">|</span>
+			<a href="space.php?do=blog&view=all&orderby=$_GET[orderby]&day=120"{$day_actives[120]}>最近六个月</a>
+		</div>
 		<!--{/if}-->
-		</ul>
+		
+		<!--{if $searchkey}-->
+		<div class="h_status">以下是搜索日志 <span style="color:red;font-weight:bold;">$searchkey</span> 结果列表</div>
+		<!--{/if}-->
+		
+		<!--{if $count}-->
+		<div class="entry_list">
+			<ul>
+			<!--{loop $list $value}-->
+				<li>
+					<div class="avatardiv">
+						<div class="avatar48"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],small)}--></a></div>
+						<!--{if $value['hot']}--><div class="digb">$value[hot]</div><!--{/if}-->
+					</div>
+					
+					<div class="title">
+						<a href="cp.php?ac=share&type=blog&id=$value[blogid]" id="a_share_$value[blogid]" onclick="ajaxmenu(event, this.id, 1)" class="a_share">分享</a>
+						<h4><a href="space.php?uid=$value[uid]&do=$do&id=$value[blogid]" <!--{if $value[magiccolor]}--> class="magiccolor$value[magiccolor]"<!--{/if}-->>$value[subject]</a></h4>
+						<div>
+						<!--{if $value['friend']}-->
+						<span class="r_option locked gray"><a href="$theurl&friend=$value[friend]" class="gray">{$friendsname[$value[friend]]}</a></span>
+						<!--{/if}-->
+						<a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a> <span class="gray"><!--{date('Y-m-d H:i',$value[dateline],1)}--></span>
+						</div>
+					</div>
+					<div class="detail image_right l_text s_clear" id="blog_article_$value[blogid]">
+						<!--{if $value[pic]}--><p class="image"><a href="space.php?uid=$value[uid]&do=blog&id=$value[blogid]"><img src="$value[pic]" alt="$value[subject]" /></a></p><!--{/if}-->
+						$value[message]
+					</div>
+					<div class="gray">
+						<!--{if $classarr[$value[classid]]}-->分类: <a href="space.php?uid=$value[uid]&do=blog&classid=$value[classid]">{$classarr[$value[classid]]}</a><span class="pipe">|</span><!--{/if}-->
+						<!--{if $value[viewnum]}--><a href="space.php?uid=$value[uid]&do=$do&id=$value[blogid]">$value[viewnum] 次阅读</a><span class="pipe">|</span><!--{/if}-->
+						<!--{if $value[replynum]}--><a href="space.php?uid=$value[uid]&do=$do&id=$value[blogid]#comment">$value[replynum] 个评论</a><!--{else}-->没有评论<!--{/if}-->
+					</div>
+				</li>
+			<!--{/loop}-->
+			<!--{if $pricount}-->
+				<li>
+					<div class="title">本页有 $pricount 篇日志因作者的隐私设置而隐藏</div>
+				</li>
+			<!--{/if}-->
+			</ul>
+		</div>
+		
+		<div class="page">$multi</div>
+		
+		<!--{else}-->
+		<div class="c_form">还没有相关的日志。</div>
+		<!--{/if}-->
 	</div>
-	
-	<div class="page">$multi</div>
-	
-	<!--{else}-->
-	<div class="c_form">还没有相关的日志。</div>
-	<!--{/if}-->
-
 </div>
 
-<div id="sidebar" style="width:150px;">
+<div id="sidebar">
 
 <!--{if $userlist}-->
 	<div class="cat">

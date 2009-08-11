@@ -36,43 +36,45 @@
 	</script>
 	
 	<div id="content">
+		<div class="content_inner">
 
-		<style>
-			.topicList table{width:100%;margin:10px 0 5px 0;}
-			.topicList td{color:#333;}
-		</style>
-		<!--{if $list}-->
-		<div class="m_box">
-		<!--{loop $list $key $invite}-->
-			<h3 class="feed_header">
-				<a href="space.php?do=notice&view=userapp&op=del&appid=$invite[0][appid]" class="r_option">忽略该应用的所有邀请</a>
-				<a href="userapp.php?id=$invite[0][appid]&uid=$space[uid]" title="$apparr[$invite[0][appid]]"><img src="http://appicon.manyou.com/icons/$invite[0][appid]" alt="$apparr[$invite[0][appid]]" align="absmiddle" /></a> 
-				您有 <!--{eval echo count($invite);}--> 个 $invite[0][typename] <!--{if $invite[0][type]}-->请求<!--{else}-->邀请<!--{/if}-->
-			</h3>
-			<table cellpadding="0" cellspacing="0" width="100%" class="topic_list">
-			<!--{loop $invite $value}-->
-				<tbody>
-				<tr>
-					<td width="60" valign="top">
-						<div class="avatar48">
-							<a href="space.php?uid=$value[fromuid]" class="avatarlink"><!--{avatar($value[fromuid],small)}--></a>
-						</div>
-					</td>
-					<td id="$value[hash]">
-						$value[myml]
-					</td>
-				</tr>
-				</tbody>
+			<style>
+				.topicList table{width:100%;margin:10px 0 5px 0;}
+				.topicList td{color:#333;}
+			</style>
+			<!--{if $list}-->
+			<div class="m_box">
+			<!--{loop $list $key $invite}-->
+				<h3 class="feed_header">
+					<a href="space.php?do=notice&view=userapp&op=del&appid=$invite[0][appid]" class="r_option">忽略该应用的所有邀请</a>
+					<a href="userapp.php?id=$invite[0][appid]&uid=$space[uid]" title="$apparr[$invite[0][appid]]"><img src="http://appicon.manyou.com/icons/$invite[0][appid]" alt="$apparr[$invite[0][appid]]" align="absmiddle" /></a> 
+					您有 <!--{eval echo count($invite);}--> 个 $invite[0][typename] <!--{if $invite[0][type]}-->请求<!--{else}-->邀请<!--{/if}-->
+				</h3>
+				<table cellpadding="0" cellspacing="0" width="100%" class="topic_list">
+				<!--{loop $invite $value}-->
+					<tbody>
+					<tr>
+						<td width="60" valign="top">
+							<div class="avatar48">
+								<a href="space.php?uid=$value[fromuid]" class="avatarlink"><!--{avatar($value[fromuid],small)}--></a>
+							</div>
+						</td>
+						<td id="$value[hash]">
+							$value[myml]
+						</td>
+					</tr>
+					</tbody>
+				<!--{/loop}-->
+				</table>
 			<!--{/loop}-->
-			</table>
-		<!--{/loop}-->
+			</div>
+			<div class="page">$multi</div>
+			<!--{else}-->
+			<div class="c_form">
+				没有新的应用请求或邀请
+			</div>
+			<!--{/if}-->
 		</div>
-		<div class="page">$multi</div>
-		<!--{else}-->
-		<div class="c_form">
-			没有新的应用请求或邀请
-		</div>
-		<!--{/if}-->
 	</div>
 	
 	<div id="sidebar">

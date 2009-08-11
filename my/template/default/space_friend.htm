@@ -78,112 +78,112 @@
 		<li><a href="space.php?do=top"><span>排行榜</span></a></li>
 	</ul>
 </div>
-<div id="content" style="width: 640px;">
+<div id="content">
+	<div class="content_inner">
+		<div class="c_mgs">
+			<!--{if $_GET['view']=='blacklist'}-->
+				加入到黑名单的用户，将会从您的好友列表中删除。同时，对方将不能进行与您相关的打招呼、踩日志、加好友、评论、留言、短消息等互动行为。
+			<!--{elseif $_GET['view']=='me'}-->
 
-	<div class="c_mgs">
-		<!--{if $_GET['view']=='blacklist'}-->
-			加入到黑名单的用户，将会从您的好友列表中删除。同时，对方将不能进行与您相关的打招呼、踩日志、加好友、评论、留言、短消息等互动行为。
-		<!--{elseif $_GET['view']=='me'}-->
-
-			当前共有 $space[friendnum] 个好友。
+				当前共有 $space[friendnum] 个好友。
 
 
-			<!--{if $maxfriendnum}-->
-			(最多可以添加 $maxfriendnum 个好友)
-			<p>
-				<!--{if $_SGLOBAL[magic][friendnum]}-->
-				<img src="image/magic/friendnum.small.gif" class="magicicon" />
-				<a id="a_magic_friendnum" href="magic.php?mid=friendnum" onclick="ajaxmenu(event, this.id, 1)">我要扩容好友数</a>
-				(您可以购买道具“{$_SGLOBAL[magic][friendnum]}”来扩容，让自己可以添加更多的好友。)
+				<!--{if $maxfriendnum}-->
+				(最多可以添加 $maxfriendnum 个好友)
+				<p>
+					<!--{if $_SGLOBAL[magic][friendnum]}-->
+					<img src="image/magic/friendnum.small.gif" class="magicicon" />
+					<a id="a_magic_friendnum" href="magic.php?mid=friendnum" onclick="ajaxmenu(event, this.id, 1)">我要扩容好友数</a>
+					(您可以购买道具“{$_SGLOBAL[magic][friendnum]}”来扩容，让自己可以添加更多的好友。)
+					<!--{/if}-->
+				</p>
 				<!--{/if}-->
-			</p>
-			<!--{/if}-->
 
-			<p style="padding-top:10px;">
-			好友列表按照好友热度高低排序<br>
-			好友热度是系统根据您与好友之间交互的动作自动累计的一个参考值，数值越大，表示您与这位好友互动越频繁。
-			</p>
-		<!--{elseif $_GET['view']=='online'}-->
-			<!--{if $_GET['type'] == 'friend'}-->
-			这些好友当前在线，赶快去拜访一下吧
-			<!--{elseif $_GET['type']=='near'}-->
-			通过系统匹配，这些朋友就在您附近，您可能认识他们
-			<!--{else}-->
-			显示当前全部在线的用户
+				<p style="padding-top:10px;">
+				好友列表按照好友热度高低排序<br>
+				好友热度是系统根据您与好友之间交互的动作自动累计的一个参考值，数值越大，表示您与这位好友互动越频繁。
+				</p>
+			<!--{elseif $_GET['view']=='online'}-->
+				<!--{if $_GET['type'] == 'friend'}-->
+				这些好友当前在线，赶快去拜访一下吧
+				<!--{elseif $_GET['type']=='near'}-->
+				通过系统匹配，这些朋友就在您附近，您可能认识他们
+				<!--{else}-->
+				显示当前全部在线的用户
+				<!--{/if}-->
+			<!--{elseif $_GET['view']=='visitor'}-->
+				他们拜访过您，回访一下吧
+			<!--{elseif $_GET['view']=='trace'}-->
+				您曾经拜访过的用户列表
 			<!--{/if}-->
-		<!--{elseif $_GET['view']=='visitor'}-->
-			他们拜访过您，回访一下吧
-		<!--{elseif $_GET['view']=='trace'}-->
-			您曾经拜访过的用户列表
+		</div>
+
+		<!--{if $_GET['view']=='blacklist'}-->
+		<div class="h_status">
+			<h2>添加新黑名单用户</h2>
+			<form method="post" name="blackform" action="cp.php?ac=friend&op=blacklist&start=$_GET[start]">
+				用户名：<input type="text" name="username" value="" size="15" class="t_input">
+				<input type="submit" name="blacklistsubmit_btn" id="moodsubmit_btn" value="添加" class="submit">
+				<input type="hidden" name="blacklistsubmit" value="true" />
+			<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+			</form>
+		</div>
+		<!--{/if}-->
+
+		<!--{if $list}-->
+		<div class="thumb_list" id="friend_ul">
+			<ul>
+			<!--{loop $list $key $value}-->
+				<li id="friend_{$value[uid]}_li">
+					<!--{if $value[username] == ''}-->
+					<div class="avatar48"><img src="image/magic/hidden.gif" alt="匿名" /></div>
+					<div class="thumbTitle"><p>匿名</p></div>
+					<!--{else}-->
+					<div class="avatar48"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],small)}--></a></div>
+					<div class="thumbTitle">
+					<p<!--{if $ols[$value[uid]]}--> class="online_icon_p"<!--{/if}-->>
+						<a href="space.php?uid=$value[uid]"<!--{eval g_color($value[groupid]);}-->>{$_SN[$value[uid]]}</a> 
+						<!--{eval g_icon($value[groupid]);}-->
+						<!--{if $value['videostatus']}-->
+						<img src="image/videophoto.gif" align="absmiddle">
+						<!--{/if}-->
+					</p></div>
+					<!--{if $value[note]}--><div>$value[note]</div><!--{/if}-->
+					<!--{/if}-->
+
+					<!--{if $_GET['view']=='blacklist'}-->
+						<div class="gray"><a href="cp.php?ac=friend&op=blacklist&subop=delete&uid=$value[uid]&start=$_GET[start]">黑名单除名</a></div>
+					<!--{elseif $_GET['view']=='visitor' || $_GET['view'] == 'trace'}-->
+						<div class="gray"><!--{date('n月j号',$value[dateline],1)}--></div>
+					<!--{elseif $_GET['view']=='online'}-->
+						<div class="gray"><!--{date('H:i',$ols[$value[uid]],1)}--></div>
+					<!--{else}-->
+						<!--{if $ols[$value[uid]]}--><div class="gray"><!--{date('H:i',$ols[$value[uid]],1)}--></div><!--{/if}-->
+						<div class="gray">
+						<!--{if $value['num']}--><a href="cp.php?ac=friend&op=changenum&uid=$value[uid]" id="friendnum_$value[uid]" onclick="ajaxmenu(event, this.id)">热度(<span id="spannum_$value[uid]">$value[num]</span>)</a><span class="pipe">|</span><!--{/if}-->
+						<!--{if !$value['isfriend']}-->
+						<a href="cp.php?ac=friend&op=add&uid=$value[uid]" id="a_friend_$key" onclick="ajaxmenu(event, this.id, 1)">加为好友</a>
+						<!--{else}-->
+						<a href="cp.php?ac=friend&op=changegroup&uid=$value[uid]" id="friend_group_$value[uid]" onclick="ajaxmenu(event, this.id)">分组</a><span class="pipe">|</span>
+						<a href="cp.php?ac=friend&op=ignore&uid=$value[uid]" id="a_ignore_$key" onclick="ajaxmenu(event, this.id)">删除</a>
+						<!--{/if}-->
+						</div>
+					<!--{/if}-->
+				</li>
+			<!--{/loop}-->
+			</ul>
+		</div>
+		<div class="page">$multi</div>
+
+		<!--{else}-->
+		<div class="c_form">
+			没有相关用户列表。
+		</div>
 		<!--{/if}-->
 	</div>
-
-	<!--{if $_GET['view']=='blacklist'}-->
-	<div class="h_status">
-		<h2>添加新黑名单用户</h2>
-		<form method="post" name="blackform" action="cp.php?ac=friend&op=blacklist&start=$_GET[start]">
-			用户名：<input type="text" name="username" value="" size="15" class="t_input">
-			<input type="submit" name="blacklistsubmit_btn" id="moodsubmit_btn" value="添加" class="submit">
-			<input type="hidden" name="blacklistsubmit" value="true" />
-		<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
-		</form>
-	</div>
-	<!--{/if}-->
-
-	<!--{if $list}-->
-	<div class="thumb_list" id="friend_ul">
-		<ul>
-		<!--{loop $list $key $value}-->
-			<li id="friend_{$value[uid]}_li">
-				<!--{if $value[username] == ''}-->
-				<div class="avatar48"><img src="image/magic/hidden.gif" alt="匿名" /></div>
-				<div class="thumbTitle"><p>匿名</p></div>
-				<!--{else}-->
-				<div class="avatar48"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],small)}--></a></div>
-				<div class="thumbTitle">
-				<p<!--{if $ols[$value[uid]]}--> class="online_icon_p"<!--{/if}-->>
-					<a href="space.php?uid=$value[uid]"<!--{eval g_color($value[groupid]);}-->>{$_SN[$value[uid]]}</a> 
-					<!--{eval g_icon($value[groupid]);}-->
-					<!--{if $value['videostatus']}-->
-					<img src="image/videophoto.gif" align="absmiddle">
-					<!--{/if}-->
-				</p></div>
-				<!--{if $value[note]}--><div>$value[note]</div><!--{/if}-->
-				<!--{/if}-->
-
-				<!--{if $_GET['view']=='blacklist'}-->
-					<div class="gray"><a href="cp.php?ac=friend&op=blacklist&subop=delete&uid=$value[uid]&start=$_GET[start]">黑名单除名</a></div>
-				<!--{elseif $_GET['view']=='visitor' || $_GET['view'] == 'trace'}-->
-					<div class="gray"><!--{date('n月j号',$value[dateline],1)}--></div>
-				<!--{elseif $_GET['view']=='online'}-->
-					<div class="gray"><!--{date('H:i',$ols[$value[uid]],1)}--></div>
-				<!--{else}-->
-					<!--{if $ols[$value[uid]]}--><div class="gray"><!--{date('H:i',$ols[$value[uid]],1)}--></div><!--{/if}-->
-					<div class="gray">
-					<!--{if $value['num']}--><a href="cp.php?ac=friend&op=changenum&uid=$value[uid]" id="friendnum_$value[uid]" onclick="ajaxmenu(event, this.id)">热度(<span id="spannum_$value[uid]">$value[num]</span>)</a><span class="pipe">|</span><!--{/if}-->
-					<!--{if !$value['isfriend']}-->
-					<a href="cp.php?ac=friend&op=add&uid=$value[uid]" id="a_friend_$key" onclick="ajaxmenu(event, this.id, 1)">加为好友</a>
-					<!--{else}-->
-					<a href="cp.php?ac=friend&op=changegroup&uid=$value[uid]" id="friend_group_$value[uid]" onclick="ajaxmenu(event, this.id)">分组</a><span class="pipe">|</span>
-					<a href="cp.php?ac=friend&op=ignore&uid=$value[uid]" id="a_ignore_$key" onclick="ajaxmenu(event, this.id)">删除</a>
-					<!--{/if}-->
-					</div>
-				<!--{/if}-->
-			</li>
-		<!--{/loop}-->
-		</ul>
-	</div>
-	<div class="page">$multi</div>
-
-	<!--{else}-->
-	<div class="c_form">
-		没有相关用户列表。
-	</div>
-	<!--{/if}-->
-
 </div>
 
-<div id="sidebar" style="width: 150px;">
+<div id="sidebar">
 	<!--{if $_SCONFIG['my_status']}-->
 	<!-- 同步好友至Manyou 开始 -->
 	<script type="text/javascript">
@@ -257,7 +257,7 @@
 <!--{else}-->
 <!--{eval
 	$_TPL['spacetitle'] = "好友";
-	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=friend&view=me\">TA的好友列表</a>";
+	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=friend\">TA的好友列表</a>";
 }-->
 	<!--{template space_menu}-->
 	<div class="h_status">共有 $space[friendnum] 个好友</div>

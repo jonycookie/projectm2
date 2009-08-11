@@ -53,51 +53,52 @@
 <!--{else}-->
 <!--{eval 
 	$_TPL['spacetitle'] = "记录";
-	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=doing&view=me\">TA的所有记录</a>";
+	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=doing\">TA的所有记录</a>";
 }-->
 <!--{template space_menu}-->
 <div class="h_status">按照发布时间排序</div>
 <!--{/if}-->
 
 <div id="content">	
+	<div class="content_inner">
 
-	<!--{if $space[self]}-->
-	<!--{template space_doing_form}-->
-	<br>
-	<!--{/if}-->
-	
+		<!--{if $space[self]}-->
+		<!--{template space_doing_form}-->
+		<br>
+		<!--{/if}-->
+		
 
-	<!--{if $dolist}-->
-	<div class="doing_list">
-		<ol>
-		<!--{loop $dolist $dv}-->
-		<!--{eval $doid = $dv[doid];}-->
-			<li id="dl{$doid}">
-				<div class="avatar48"><a href="space.php?uid=$dv[uid]"><!--{avatar($dv[uid],small)}--></a></div>
-				<div class="doing">
-					<div class="doingcontent"><a href="space.php?uid=$dv[uid]">{$_SN[$dv[uid]]}</a>: <span>$dv[message]</span>
-					<span class="gray">(<!--{date('m-d H:i',$dv[dateline],1)}-->)</span>
-					<!--{if $dv[uid]==$_SGLOBAL[supe_uid]}--> <a href="cp.php?ac=doing&op=delete&doid=$doid&id=$dv[id]" id="doing_delete_{$doid}_{$dv[id]}" onclick="ajaxmenu(event, this.id)" class="re gray">删除</a> &nbsp;<!--{/if}-->
-					<a href="javascript:;" onclick="docomment_form($doid, 0);">回复</a>
+		<!--{if $dolist}-->
+		<div class="doing_list">
+			<ol>
+			<!--{loop $dolist $dv}-->
+			<!--{eval $doid = $dv[doid];}-->
+				<li id="dl{$doid}">
+					<div class="avatar48"><a href="space.php?uid=$dv[uid]"><!--{avatar($dv[uid],small)}--></a></div>
+					<div class="doing">
+						<div class="doingcontent"><a href="space.php?uid=$dv[uid]">{$_SN[$dv[uid]]}</a>: <span>$dv[message]</span>
+						<span class="gray">(<!--{date('m-d H:i',$dv[dateline],1)}-->)</span>
+						<!--{if $dv[uid]==$_SGLOBAL[supe_uid]}--> <a href="cp.php?ac=doing&op=delete&doid=$doid&id=$dv[id]" id="doing_delete_{$doid}_{$dv[id]}" onclick="ajaxmenu(event, this.id)" class="re gray">删除</a> &nbsp;<!--{/if}-->
+						<a href="javascript:;" onclick="docomment_form($doid, 0);">回复</a>
+						</div>
+						
+						<!--{eval $list = $clist[$doid];}-->
+						<div class="sub_doing" id="docomment_$doid"<!--{if !$list}--> style="display:none;"<!--{/if}-->>
+							<span id="docomment_form_{$doid}_0"></span>
+							<!--{template space_doing_li}-->
+						</div>
+						
 					</div>
-					
-					<!--{eval $list = $clist[$doid];}-->
-					<div class="sub_doing" id="docomment_$doid"<!--{if !$list}--> style="display:none;"<!--{/if}-->>
-						<span id="docomment_form_{$doid}_0"></span>
-						<!--{template space_doing_li}-->
-					</div>
-					
-				</div>
-			</li>
-		<!--{/loop}-->
-		</ol>
-		<div class="page">$multi</div>
+				</li>
+			<!--{/loop}-->
+			</ol>
+			<div class="page">$multi</div>
+		</div>
+		
+		<!--{else}-->
+		<div class="c_form">现在还没有记录。<!--{if $space[self]}-->你可以用一句话记录下这一刻在做什么。<!--{/if}--></div>
+		<!--{/if}-->
 	</div>
-	
-	<!--{else}-->
-	<div class="c_form">现在还没有记录。<!--{if $space[self]}-->你可以用一句话记录下这一刻在做什么。<!--{/if}--></div>
-	<!--{/if}-->
-	
 </div>
 
 <div id="sidebar">

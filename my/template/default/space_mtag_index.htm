@@ -31,71 +31,72 @@
 </div>
 
 <div id="content">
+	<div class="content_inner">
 
-	<div class="affiche">
-		<div id="space_avatar" class="floatleft"><img src="$mtag[pic]" alt="$mtag[tagname]" width="48" /></div>
-		<h3>公告</h3>
-		<div class="article">
-			<!--{if $mtag[announcement]}-->$mtag[announcement]<!--{else}-->还没有公告<!--{/if}-->
+		<div class="affiche">
+			<div id="space_avatar" class="floatleft"><img src="$mtag[pic]" alt="$mtag[tagname]" width="48" /></div>
+			<h3>公告</h3>
+			<div class="article">
+				<!--{if $mtag[announcement]}-->$mtag[announcement]<!--{else}-->还没有公告<!--{/if}-->
+			</div>
+		</div>
+
+		<div class="topic_list">
+		<!--{if $list}-->
+			<table cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<td class="subject">主题</td>
+						<td class="author"><!--{if $_GET[view]!='me'}-->作者 <!--{/if}-->(回应/阅读)</td>
+						<td class="lastpost">最后更新</td>
+					</tr>
+				</thead>
+				<tbody>
+					<!--{loop $list $key $value}-->
+						<!--{eval $magicegg = ""}-->							
+						<!--{eval if($value[magicegg]) for($i=0; $i<$value[magicegg]; $i++) $magicegg .= '<img src="image/magic/egg/'.mt_rand(1,6).'.gif" />';}-->
+					<tr <!--{if $key%2==1}--> class="alt"<!--{/if}-->>
+						<td class="subject">
+						<div style="width:290px;word-break:break-all;">
+						<!--{if $value[displayorder]}--> [顶] <!--{/if}-->
+						<!--{if $value[digest]}--> [精] <!--{/if}-->
+						<!--{if $value[eventid]}--> [活] <!--{/if}-->
+						$magicegg
+						<a href="space.php?uid=$value[uid]&do=thread&id=$value[tid]" <!--{if $value[magiccolor]}--> class="magiccolor$value[magiccolor]"<!--{/if}-->>$value[subject]</a>
+						<!--{if $value[hot]}-->
+						<br><span class="gray">$value[hot] 人推荐</span>
+						<!--{/if}-->
+						</div>
+						</td>
+						<td class="author"><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a><br>$value[replynum]/$value[viewnum]</td>
+						<td class="lastpost"><a href="space.php?uid=$value[lastauthorid]" title="{$_SN[$value[lastauthorid]]}">{$_SN[$value[lastauthorid]]}</a><br><!--{date('m-d H:i',$value[lastpost],1)}--></td>
+					</tr>
+					<!--{/loop}-->
+				</tbody>
+			</table>
+			<div class="r_option">
+			<a href="space.php?do=mtag&tagid=$mtag[tagid]&view=list">查看全部话题列表</a>
+			</div>
+		<!--{else}-->
+			<div class="c_form">
+			<!--{if empty($mtag[allowview])}-->
+				本群组目前不是公开状态，只对内部成员开放。<br>
+			<!--{if $mtag['grade'] == -2}-->
+				您的加入申请审核中。请等候。
+			<!--{elseif $mtag[joinperm]==1}-->
+				您可以<a href="cp.php?ac=mtag&op=join&tagid=$mtag[tagid]" id="a_mtag_join_$mtag[tagid]" onclick="ajaxmenu(event, this.id)">选择加入该群组</a>，但你的申请需要经群主审核后才有效。
+			<!--{elseif $mtag[joinperm]==2}-->
+				您需要在收到群主的邀请后才能加入该群组。
+			<!--{else}-->
+				您可以立即<a href="cp.php?ac=mtag&op=join&tagid=$mtag[tagid]" id="a_mtag_join_$mtag[tagid]" onclick="ajaxmenu(event, this.id)">选择加入该群组</a>。
+			<!--{/if}-->
+			<!--{else}-->
+				还没有话题。
+			<!--{/if}-->
+			</div>
+		<!--{/if}-->
 		</div>
 	</div>
-
-	<div class="topic_list">
-	<!--{if $list}-->
-		<table cellspacing="0" cellpadding="0">
-			<thead>
-				<tr>
-					<td class="subject">主题</td>
-					<td class="author"><!--{if $_GET[view]!='me'}-->作者 <!--{/if}-->(回应/阅读)</td>
-					<td class="lastpost">最后更新</td>
-				</tr>
-			</thead>
-			<tbody>
-				<!--{loop $list $key $value}-->
-					<!--{eval $magicegg = ""}-->							
-					<!--{eval if($value[magicegg]) for($i=0; $i<$value[magicegg]; $i++) $magicegg .= '<img src="image/magic/egg/'.mt_rand(1,6).'.gif" />';}-->
-				<tr <!--{if $key%2==1}--> class="alt"<!--{/if}-->>
-					<td class="subject">
-					<div style="width:290px;word-break:break-all;">
-					<!--{if $value[displayorder]}--> [顶] <!--{/if}-->
-					<!--{if $value[digest]}--> [精] <!--{/if}-->
-					<!--{if $value[eventid]}--> [活] <!--{/if}-->
-					$magicegg
-					<a href="space.php?uid=$value[uid]&do=thread&id=$value[tid]" <!--{if $value[magiccolor]}--> class="magiccolor$value[magiccolor]"<!--{/if}-->>$value[subject]</a>
-					<!--{if $value[hot]}-->
-					<br><span class="gray">$value[hot] 人推荐</span>
-					<!--{/if}-->
-					</div>
-					</td>
-					<td class="author"><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a><br>$value[replynum]/$value[viewnum]</td>
-					<td class="lastpost"><a href="space.php?uid=$value[lastauthorid]" title="{$_SN[$value[lastauthorid]]}">{$_SN[$value[lastauthorid]]}</a><br><!--{date('m-d H:i',$value[lastpost],1)}--></td>
-				</tr>
-				<!--{/loop}-->
-			</tbody>
-		</table>
-		<div class="r_option">
-		<a href="space.php?do=mtag&tagid=$mtag[tagid]&view=list">查看全部话题列表</a>
-		</div>
-	<!--{else}-->
-		<div class="c_form">
-		<!--{if empty($mtag[allowview])}-->
-			本群组目前不是公开状态，只对内部成员开放。<br>
-		<!--{if $mtag['grade'] == -2}-->
-			您的加入申请审核中。请等候。
-		<!--{elseif $mtag[joinperm]==1}-->
-			您可以<a href="cp.php?ac=mtag&op=join&tagid=$mtag[tagid]" id="a_mtag_join_$mtag[tagid]" onclick="ajaxmenu(event, this.id)">选择加入该群组</a>，但你的申请需要经群主审核后才有效。
-		<!--{elseif $mtag[joinperm]==2}-->
-			您需要在收到群主的邀请后才能加入该群组。
-		<!--{else}-->
-			您可以立即<a href="cp.php?ac=mtag&op=join&tagid=$mtag[tagid]" id="a_mtag_join_$mtag[tagid]" onclick="ajaxmenu(event, this.id)">选择加入该群组</a>。
-		<!--{/if}-->
-		<!--{else}-->
-			还没有话题。
-		<!--{/if}-->
-		</div>
-	<!--{/if}-->
-	</div>
-	
 </div>
 
 <div id="sidebar">
