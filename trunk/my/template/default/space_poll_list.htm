@@ -52,7 +52,7 @@
 <!--{else}-->
 <!--{eval 
 	$_TPL['spacetitle'] = "投票";
-	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=$do&view=me\">TA的所有投票</a>";
+	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=$do\">TA的所有投票</a>";
 }-->
 <!--{template space_menu}-->
 <div class="h_status">按照投票发起时间排序</div>
@@ -78,55 +78,53 @@
 <div class="h_status">以下是搜索投票 <span style="color:red;font-weight:bold;">$searchkey</span> 结果列表</div>
 <!--{/if}-->
 	
-<div id="content" style="width:100%;">
-	<!--{if $count}-->
-	<div class="poll_list">
-		<ul>
-		<!--{loop $list $value}-->
-			<li>
-				<div class="poll_user">
-				<div class="avatar48"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],small)}--></a></div>
-				<p><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></p>
-				</div>
-				<div class="poll_content">
+<!--{if $count}-->
+<div class="poll_list">
+	<ul>
+	<!--{loop $list $value}-->
+		<li>
+			<div class="poll_user">
+			<div class="avatar48"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],small)}--></a></div>
+			<p><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></p>
+			</div>
+			<div class="poll_content">
 
-					<h4>
-						<!--{if $value[percredit]}--><span class="poll_reward">+$value[percredit]</span><!--{/if}--><a href="space.php?uid=$value[uid]&do=$do&pid=$value[pid]">$value[subject]</a>
-					</h4>
-					<div class="poll_options">
-						<ol>
-						 <!--{loop $value['option'] $val}-->
-							<li><input type="<!--{if $value[multiple]}-->checkbox<!--{else}-->radio<!--{/if}-->" disabled name="poll_$value[pid]"/> $val</li>
-						 <!--{/loop}-->
-							<li>……</li>
-						 </ol>
-						 <p>
-						 	<span class="gray"><!--{date('Y-m-d H:i',$value[dateline],1)}--></span>
-						 	<span class="pipe">|</span>
-						 	<a href="space.php?uid=$value[uid]&do=$do&pid=$value[pid]#comment">评论($value[replynum])</a>
-						 	<!--{if $_GET[view]=='me'&&$value[expiration]&&$value[expiration]<$_SGLOBAL[timestamp]}-->
-						 	<span class="pipe">|</span>
-						 	<span class="gray">投票已结束</span><!--{if empty($value[summary])}-->&nbsp;<a class="green" href="space.php?uid=$value[uid]&do=$do&pid=$value[pid]">去写写投票总结</a><!--{/if}-->
-						 	<!--{/if}-->
-						 </p>
-					</div>
+				<h4>
+					<!--{if $value[percredit]}--><span class="poll_reward">+$value[percredit]</span><!--{/if}--><a href="space.php?uid=$value[uid]&do=$do&pid=$value[pid]">$value[subject]</a>
+				</h4>
+				<div class="poll_options">
+					<ol>
+					 <!--{loop $value['option'] $val}-->
+						<li><input type="<!--{if $value[multiple]}-->checkbox<!--{else}-->radio<!--{/if}-->" disabled name="poll_$value[pid]"/> $val</li>
+					 <!--{/loop}-->
+						<li>……</li>
+					 </ol>
+					 <p>
+					 	<span class="gray"><!--{date('Y-m-d H:i',$value[dateline],1)}--></span>
+					 	<span class="pipe">|</span>
+					 	<a href="space.php?uid=$value[uid]&do=$do&pid=$value[pid]#comment">评论($value[replynum])</a>
+					 	<!--{if $_GET[view]=='me'&&$value[expiration]&&$value[expiration]<$_SGLOBAL[timestamp]}-->
+					 	<span class="pipe">|</span>
+					 	<span class="gray">投票已结束</span><!--{if empty($value[summary])}-->&nbsp;<a class="green" href="space.php?uid=$value[uid]&do=$do&pid=$value[pid]">去写写投票总结</a><!--{/if}-->
+					 	<!--{/if}-->
+					 </p>
 				</div>
-				<div class="poll_status">
-					<a href="space.php?uid=$value[uid]&do=$do&pid=$value[pid]" class="poll_joins pj_<!--{eval echo random(1, 1)}-->"><span>$value[voternum]</span>人参与</a> <a href="space.php?uid=$value[uid]&do=$do&pid=$value[pid]" class="go2_poll">去投票</a>
-				</div>
-			</li>
-		<!--{/loop}-->
-			
-		</ul>
-	</div>
-	
-	<div class="page">$multi</div>
-	
-	<!--{else}-->
-	<div class="c_form">还没有相关的投票。</div>
-	<!--{/if}-->
-
+			</div>
+			<div class="poll_status">
+				<a href="space.php?uid=$value[uid]&do=$do&pid=$value[pid]" class="poll_joins pj_<!--{eval echo random(1, 1)}-->"><span>$value[voternum]</span>人参与</a> <a href="space.php?uid=$value[uid]&do=$do&pid=$value[pid]" class="go2_poll">去投票</a>
+			</div>
+		</li>
+	<!--{/loop}-->
+		
+	</ul>
 </div>
+
+<div class="page">$multi</div>
+
+<!--{else}-->
+<div class="c_form">还没有相关的投票。</div>
+<!--{/if}-->
+
 <!--{/if}-->
 
 <!--{template footer}-->

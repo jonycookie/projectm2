@@ -12,92 +12,94 @@
 </div>
 
 <div id="content">
-<style type="text/css">
-.DragBox {
-	 height:20px;padding: 7px; z-index:9999; border-bottom:1px dotted #CDCDCD; width:500px;padding-left:30px;background:url(image/drag.gif) no-repeat 7px 8px;
-}
-.l_option{float:left;}
+	<div class="content_inner">
+		<style type="text/css">
+		.DragBox {
+			 height:20px;padding: 7px; z-index:9999; border-bottom:1px dotted #CDCDCD; width:500px;padding-left:30px;background:url(image/drag.gif) no-repeat 7px 8px;
+		}
+		.l_option{float:left;}
 
-.OverDragBox {
-	height:20px;padding: 7px;  cursor: move;border-bottom:1px dotted #CDCDCD;width:500px;padding-left:30px;background:#efefef url(image/drag.gif) no-repeat 7px 8px;
-}
+		.OverDragBox {
+			height:20px;padding: 7px;  cursor: move;border-bottom:1px dotted #CDCDCD;width:500px;padding-left:30px;background:#efefef url(image/drag.gif) no-repeat 7px 8px;
+		}
 
-.DragDragBox {
-	height:20px;padding: 7px; cursor:move; opacity: 0.5;filter: alpha(opacity=50); border:1px dashed #BDD6FB;width:500px; color:#666; padding-left:30px;background:#efefef url(image/drag.gif) no-repeat 7px 8px;
-}
+		.DragDragBox {
+			height:20px;padding: 7px; cursor:move; opacity: 0.5;filter: alpha(opacity=50); border:1px dashed #BDD6FB;width:500px; color:#666; padding-left:30px;background:#efefef url(image/drag.gif) no-repeat 7px 8px;
+		}
 
-</style>
-<!--{if $my_default_userapp}-->
-<div class="DragBox mt15" style="padding-left:30px;padding-bottom:0px;background:none;">
-	<div class="l_option" style="width:350px;">默认应用</div>
-	<div class="l_option" style="width:100px;">&nbsp;</div>
-	<div class="l_option" style="width:50px;">&nbsp;</div>
-</div>
-<div>
-	<!--{loop $my_default_userapp $value}-->
-	<div class="DragBox mt15" style="padding-left:30px;padding-bottom:0px;background:none;">
-		<div class="l_option" style="width:350px;"><img src="http://appicon.manyou.com/icons/$value[appid]"> <a href="userapp.php?id=$value[appid]">$value[appname]</a></div>
-		<div class="l_option" style="width:100px;"><a href="cp.php?ac=userapp&amp;my_suffix=%2Fuserapp%2FmodifyPrivacy%3FappId%3D$value[appid]">编辑设置</a></div>
-		<div class="l_option" style="width:50px;">
-			<a href="cp.php?ac=userapp&op=deleteapp&appid=$value[appid]" id="del_default_app_$value[appid]" onclick="ajaxmenu(event, this.id)">移除</a>
+		</style>
+		<!--{if $my_default_userapp}-->
+		<div class="DragBox mt15" style="padding-left:30px;padding-bottom:0px;background:none;">
+			<div class="l_option" style="width:350px;">默认应用</div>
+			<div class="l_option" style="width:100px;">&nbsp;</div>
+			<div class="l_option" style="width:50px;">&nbsp;</div>
 		</div>
-	</div>
-	<!--{/loop}-->
-</div>
-<br />
-<!--{/if}-->
-
-<!--{if $my_userapp}-->
-
-	<script language="javascript" type="text/javascript" src="source/script_drag.js"></script>
-	
-	
-	<div class="DragBox mt15" style="padding-left:30px;padding-bottom:0px;background:none;">
-		<div class="l_option" style="width:350px;">我的应用</div>
-		<div class="l_option" style="width:100px;">&nbsp;</div>
-		<div class="l_option" style="width:50px;">&nbsp;</div>
-	</div>
-	
-	<form id="userappform" name="userappform" method="post" action="cp.php?ac=userapp&op=menu">
-		<fieldset id="Drags0" style="border:none;">
-			<div id="DragContainer0">
-				<!--{loop $my_userapp $key $value}-->
-					<div class="DragBox" overclass="OverDragBox"  dragclass="DragDragBox" id="$key" style="padding-bottom:0;">
-						<div class="l_option" style="width:350px;">
-							<img src="http://appicon.manyou.com/icons/$value[appid]"> <a href="userapp.php?id=$value[appid]">$value[appname]</a>(<a href="cp.php?ac=userapp&my_suffix=%2Fuserapp%2Fabout%3FappId%3D$value[appid]" target="_blank">介绍</a>)
-							<input type="hidden" name="order[]" value="$value[appid]">
-						</div>
-						<div class="l_option" style="width:100px;">
-							<a href="cp.php?ac=userapp&amp;my_suffix=%2Fuserapp%2FmodifyPrivacy%3FappId%3D$value[appid]">编辑设置</a>
-						</div>
-						<div class="l_option" style="width:50px;">
-							<a href="cp.php?ac=userapp&op=deleteapp&appid=$value[appid]" id="del_app_$value[appid]" onclick="ajaxmenu(event, this.id)">移除</a>
-						</div>
-					</div>
-				<!--{/loop}-->
+		<div>
+			<!--{loop $my_default_userapp $value}-->
+			<div class="DragBox mt15" style="padding-left:30px;padding-bottom:0px;background:none;">
+				<div class="l_option" style="width:350px;"><img src="http://appicon.manyou.com/icons/$value[appid]"> <a href="userapp.php?id=$value[appid]">$value[appname]</a></div>
+				<div class="l_option" style="width:100px;"><a href="cp.php?ac=userapp&amp;my_suffix=%2Fuserapp%2FmodifyPrivacy%3FappId%3D$value[appid]">编辑设置</a></div>
+				<div class="l_option" style="width:50px;">
+					<a href="cp.php?ac=userapp&op=deleteapp&appid=$value[appid]" id="del_default_app_$value[appid]" onclick="ajaxmenu(event, this.id)">移除</a>
+				</div>
 			</div>
-		</fieldset>
-		<script type="text/javascript">init_drag2();</script>
+			<!--{/loop}-->
+		</div>
+		<br />
+		<!--{/if}-->
 
-		
-	<center>
-	<br>
-	左侧菜单显示个性应用的数量
-	<select name="menunum">
-		<option value="5"$menunum[5]>5</option>
-		<option value="10"$menunum[10]>10</option>
-		<option value="15"$menunum[15]>15</option>
-		<option value="20"$menunum[20]>20</option>
-		<option value="25"$menunum[25]>25</option>
-		<option value="30"$menunum[30]>30</option>
-		<option value="999"$menunum[999]>全部</option>
-	</select> &nbsp;
-	<input type="submit" name="ordersubmit" value="保存设置" class="submit" /></center>
-	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
-	</form>
-<!--{else}-->
-	<div class="c_form">还没有可以自定义的应用菜单，请先<a href="cp.php?ac=userapp&my_suffix=%2Fapp%2Flist">添加新应用</a></div>
-<!--{/if}-->
+		<!--{if $my_userapp}-->
+
+			<script language="javascript" type="text/javascript" src="source/script_drag.js"></script>
+			
+			
+			<div class="DragBox mt15" style="padding-left:30px;padding-bottom:0px;background:none;">
+				<div class="l_option" style="width:350px;">我的应用</div>
+				<div class="l_option" style="width:100px;">&nbsp;</div>
+				<div class="l_option" style="width:50px;">&nbsp;</div>
+			</div>
+			
+			<form id="userappform" name="userappform" method="post" action="cp.php?ac=userapp&op=menu">
+				<fieldset id="Drags0" style="border:none;">
+					<div id="DragContainer0">
+						<!--{loop $my_userapp $key $value}-->
+							<div class="DragBox" overclass="OverDragBox"  dragclass="DragDragBox" id="$key" style="padding-bottom:0;">
+								<div class="l_option" style="width:350px;">
+									<img src="http://appicon.manyou.com/icons/$value[appid]"> <a href="userapp.php?id=$value[appid]">$value[appname]</a>(<a href="cp.php?ac=userapp&my_suffix=%2Fuserapp%2Fabout%3FappId%3D$value[appid]" target="_blank">介绍</a>)
+									<input type="hidden" name="order[]" value="$value[appid]">
+								</div>
+								<div class="l_option" style="width:100px;">
+									<a href="cp.php?ac=userapp&amp;my_suffix=%2Fuserapp%2FmodifyPrivacy%3FappId%3D$value[appid]">编辑设置</a>
+								</div>
+								<div class="l_option" style="width:50px;">
+									<a href="cp.php?ac=userapp&op=deleteapp&appid=$value[appid]" id="del_app_$value[appid]" onclick="ajaxmenu(event, this.id)">移除</a>
+								</div>
+							</div>
+						<!--{/loop}-->
+					</div>
+				</fieldset>
+				<script type="text/javascript">init_drag2();</script>
+
+				
+			<center>
+			<br>
+			左侧菜单显示个性应用的数量
+			<select name="menunum">
+				<option value="5"$menunum[5]>5</option>
+				<option value="10"$menunum[10]>10</option>
+				<option value="15"$menunum[15]>15</option>
+				<option value="20"$menunum[20]>20</option>
+				<option value="25"$menunum[25]>25</option>
+				<option value="30"$menunum[30]>30</option>
+				<option value="999"$menunum[999]>全部</option>
+			</select> &nbsp;
+			<input type="submit" name="ordersubmit" value="保存设置" class="submit" /></center>
+			<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+			</form>
+		<!--{else}-->
+			<div class="c_form">还没有可以自定义的应用菜单，请先<a href="cp.php?ac=userapp&my_suffix=%2Fapp%2Flist">添加新应用</a></div>
+		<!--{/if}-->
+	</div>
 </div>
 
 <div id="sidebar">

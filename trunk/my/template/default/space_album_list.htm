@@ -55,7 +55,7 @@
 <!--{else}-->
 <!--{eval 
 	$_TPL['spacetitle'] = "相册";
-	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=album&view=me\">TA的所有相册</a>";
+	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=album\">TA的所有相册</a>";
 }-->
 <!--{template space_menu}-->
 <!--{/if}-->
@@ -63,7 +63,8 @@
 <!--{if $_GET['view'] == 'me'}-->
 <div>
 <!--{else}-->
-<div id="content" style="width:640px;">
+<div id="content">
+	<div class="content_inner">
 <!--{/if}-->
 
 
@@ -144,10 +145,15 @@
 	
 <!--{/if}-->
 
+<!--{if $_GET['view'] == 'me'}-->
 </div>
+<!--{else}-->
+	</div>
+</div>
+<!--{/if}-->
 
 <!--{if $_GET['view'] != 'me'}-->
-<div id="sidebar" style="width:150px;">
+<div id="sidebar">
 	
 <!--{if $userlist}-->
 	<div class="cat">

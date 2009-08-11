@@ -1,7 +1,8 @@
 <!--{eval $_TPL['titles'] = array('帮助');}-->
 <!--{template header}-->
 
-	<div id="content">
+<div id="content">
+	<div class="content_inner">
 		<table cellpadding="0" cellspacing="0" class="formtable">
 		
 <!--{if $_GET['ac']=='register'}-->
@@ -101,23 +102,23 @@
 <!--{/if}-->
 		</table>
 	</div>
-	
-	<div id="sidebar">
-		<div class="sidebox">
-		<h2 class="title">帮助</h2>
-		<ul class="line_list">
-			<li$actives[register]><a href="help.php?ac=register">注册</a></li>
-			<li$actives[home]><a href="help.php?ac=home">我的首页</a></li>
-			<li$actives[space]><a href="help.php?ac=space">我的主页</a></li>
-			<li$actives[doing]><a href="help.php?ac=doing">记录</a></li>
-			<li$actives[blog]><a href="help.php?ac=blog">日志</a></li>
-			<li$actives[album]><a href="help.php?ac=album">相册</a></li>
-			<li$actives[share]><a href="help.php?ac=share">分享</a></li>
-			<li$actives[mtag]><a href="help.php?ac=mtag">群组</a></li>
-			<li$actives[cp]><a href="help.php?ac=cp">空间设置</a></li>
-		</ul>
-		</div>
+</div>	
+<div id="sidebar">
+	<div class="sidebox">
+	<h2 class="title">帮助</h2>
+	<ul class="line_list">
+		<li$actives[register]><a href="help.php?ac=register">注册</a></li>
+		<li$actives[home]><a href="help.php?ac=home">我的首页</a></li>
+		<li$actives[space]><a href="help.php?ac=space">我的主页</a></li>
+		<li$actives[doing]><a href="help.php?ac=doing">记录</a></li>
+		<li$actives[blog]><a href="help.php?ac=blog">日志</a></li>
+		<li$actives[album]><a href="help.php?ac=album">相册</a></li>
+		<li$actives[share]><a href="help.php?ac=share">分享</a></li>
+		<li$actives[mtag]><a href="help.php?ac=mtag">群组</a></li>
+		<li$actives[cp]><a href="help.php?ac=cp">空间设置</a></li>
+	</ul>
 	</div>
+</div>
 
 
 <!--{template footer}-->

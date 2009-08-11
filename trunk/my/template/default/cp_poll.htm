@@ -204,35 +204,37 @@
 		<li><a href="space.php?uid=$poll[uid]&do=poll&pid=$poll[pid]"><span>返回投票</span></a></li>
 	</ul>
 </div>
-<div id="content" style="width: 640px;">
-	<div class="h_status">
-		您可以邀请下列好友来参与<a href="space.php?uid=$poll[uid]&do=poll&pid=$poll[pid]">《$poll[subject]》</a>投票
+<div id="content">
+	<div class="content_inner">
+		<div class="h_status">
+			您可以邀请下列好友来参与<a href="space.php?uid=$poll[uid]&do=poll&pid=$poll[pid]">《$poll[subject]》</a>投票
+		</div>
+		
+		<div class="h_status">
+			<!--{if $list}-->
+			<ul class="avatar_list">
+			<!--{loop $list $value}-->
+				<li><div class="avatar48"><a href="space.php?uid=$value[fuid]" title="{$_SN[$value[fuid]]}"><!--{avatar($value[fuid],small)}--></a></div>
+					<p>
+					<a href="space.php?uid=$value[fuid]" title="{$_SN[$value[fuid]]}">{$_SN[$value[fuid]]}</a>
+					</p>
+					<p><!--{if empty($invitearr[$value[fuid]])}--><input type="checkbox" name="ids[]" value="$value[fuid]">选定<!--{else}-->已邀请<!--{/if}--></p>
+				</li>
+			<!--{/loop}-->
+			</ul>
+			<div class="page">$multi</div>
+			<!--{else}-->
+			<div class="c_form">还没有好友。</div>
+			<!--{/if}-->
+		</div>
+		<p>
+			<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')">全选 &nbsp;
+			<input type="submit" name="invitesubmit" value="邀请" class="submit" />
+		</p>
 	</div>
-	
-	<div class="h_status">
-		<!--{if $list}-->
-		<ul class="avatar_list">
-		<!--{loop $list $value}-->
-			<li><div class="avatar48"><a href="space.php?uid=$value[fuid]" title="{$_SN[$value[fuid]]}"><!--{avatar($value[fuid],small)}--></a></div>
-				<p>
-				<a href="space.php?uid=$value[fuid]" title="{$_SN[$value[fuid]]}">{$_SN[$value[fuid]]}</a>
-				</p>
-				<p><!--{if empty($invitearr[$value[fuid]])}--><input type="checkbox" name="ids[]" value="$value[fuid]">选定<!--{else}-->已邀请<!--{/if}--></p>
-			</li>
-		<!--{/loop}-->
-		</ul>
-		<div class="page">$multi</div>
-		<!--{else}-->
-		<div class="c_form">还没有好友。</div>
-		<!--{/if}-->
-	</div>
-	<p>
-		<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')">全选 &nbsp;
-		<input type="submit" name="invitesubmit" value="邀请" class="submit" />
-	</p>
 </div>
 
-<div id="sidebar" style="width: 150px;">
+<div id="sidebar">
 	<div class="cat">
 		<h3>好友分类</h3>
 		<ul class="post_list line_list">

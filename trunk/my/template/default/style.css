@@ -361,7 +361,6 @@ body {
 	padding: 0 20px;
 	width: 930px;
 	height: 40px;
-	color: #FFF;
 }
 .headerwarp a {
 }
@@ -540,8 +539,11 @@ li.notify {
 }
 #content {
 	float: left;
-	margin: 0 20px 0 0;
-	overflow: hidden;
+	width: 100%;
+	margin: 0 -200px 0 0;
+}
+#content .content_inner {
+	margin: 0 210px 0 0;
 }
 /*************************************************COMPOSER***/
 .index_name {
@@ -1484,7 +1486,7 @@ a.button {
 #sidebar {
 	float: right;
 	padding: 0;
-	overflow: hidden;
+	width: 200px;
 }
 .task_notice {
 	position: relative;
@@ -1529,6 +1531,7 @@ a.button {
 	font-size: 20px;
 }
 .sidebox {
+	border: 1px solid #eee;
 	margin: 0 0 10px;
 }
 .sidebox h2.title {
@@ -1594,7 +1597,6 @@ a.button {
 }
 .menu_list {
 	padding: 0 10px;
-	width: 230px;
 	overflow: hidden;
 }
 .menu_list li {
@@ -1833,6 +1835,7 @@ a.button {
 	width: 100%;
 	overflow: hidden;
 }
+
 .news_list, .task {
 	line-height: 190%;
 }
@@ -1923,10 +1926,9 @@ li.news_title {
 /*************************************************FEED***/
 .feed_header {
 	position: relative;
-	padding: 5px 10px 0 15px;
-	height: 30px;
-	background: url(image/c_title.gif) no-repeat;
-	line-height: 20px;
+	padding: 5px;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 10px;
 }
 .feed_header .active {
 	font-weight: bold;

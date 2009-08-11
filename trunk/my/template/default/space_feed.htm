@@ -3,190 +3,191 @@
 <!--{template header}-->
 
 <div id="content">
+	<div class="content_inner">
 
-<!--{if $space['uid'] && $space[self]}-->
-	<table cellpadding="0" cellspacing="0" border="0" width="100%">
-		<tr>
-			<td valign="top" width="150">
-				<div class="ar_r_t"><div class="ar_l_t"><div class="ar_r_b"><div class="ar_l_b"><!--{avatar($_SGLOBAL[supe_uid],middle)}--></div></div></div></div>
+	<!--{if $space['uid'] && $space[self]}-->
+		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+			<tr>
+				<td valign="top" width="150">
+					<div class="ar_r_t"><div class="ar_l_t"><div class="ar_r_b"><div class="ar_l_b"><!--{avatar($_SGLOBAL[supe_uid],middle)}--></div></div></div></div>
 
-				<ul class="u_setting">
-					<li class="dropmenu" id="usettingli" onmouseover="showMenu(this.id)"><a href="cp.php">个人设置 <img src="image/more.gif" align="absmiddle"></a></li>
-				</ul>
-				<ul id="usettingli_menu" class="dropmenu_drop" style="display:none;">
-					<li><a href="cp.php?ac=avatar">我的头像</a></li>
-					<li><a href="cp.php?ac=profile">个人资料</a></li>
-					<li><a href="cp.php?ac=theme">主页风格</a></li>
-					<li><a href="cp.php?ac=credit">我的积分</a></li>
-					<!--{if $_SCONFIG[sendmailday]}-->
-					<li><a href="cp.php?ac=sendmail">邮件提醒</a></li>
-					<!--{/if}-->
-					<li><a href="cp.php?ac=privacy">隐私筛选</a></li>
-					<!--{if checkperm('admin')}-->
-					<li><a href="admincp.php">站点管理</a></li>
-					<!--{/if}-->
-					<!--{if checkperm('allowstat')}-->
-					<li><a href="do.php?ac=stat">趋势统计</a></li>
-					<!--{/if}-->
-				</ul>
-			</td>
-			<td valign="top">
-				<h3 class="index_name">
-					<div class="r_option">
-						<!--{if $_SGLOBAL[session][magichidden]}-->当前隐身<!--{else}-->当前在线<!--{/if}-->
-
-						<!--{if $_SGLOBAL[magic][invisible]}-->
-							<!--{if $_SGLOBAL[session][magichidden]}-->
-							<img src="image/magic/invisible.small.gif" class="magicicon"><a id="a_magic_appear" href="cp.php?ac=magic&op=appear" onclick="ajaxmenu(event,this.id)" class="gray">我要在线</a>
-							<!--{else}-->
-							<img src="image/magic/invisible.small.gif" alt="{$_SGLOBAL[magic][invisible]}" class="magicicon"><a id="a_magic_invisible" href="magic.php?mid=invisible" onclick="ajaxmenu(event,this.id,1)" class="gray">我要隐身</a>
-							<!--{/if}-->
+					<ul class="u_setting">
+						<li class="dropmenu" id="usettingli" onmouseover="showMenu(this.id)"><a href="cp.php">个人设置 <img src="image/more.gif" align="absmiddle"></a></li>
+					</ul>
+					<ul id="usettingli_menu" class="dropmenu_drop" style="display:none;">
+						<li><a href="cp.php?ac=avatar">我的头像</a></li>
+						<li><a href="cp.php?ac=profile">个人资料</a></li>
+						<li><a href="cp.php?ac=theme">主页风格</a></li>
+						<li><a href="cp.php?ac=credit">我的积分</a></li>
+						<!--{if $_SCONFIG[sendmailday]}-->
+						<li><a href="cp.php?ac=sendmail">邮件提醒</a></li>
 						<!--{/if}-->
+						<li><a href="cp.php?ac=privacy">隐私筛选</a></li>
+						<!--{if checkperm('admin')}-->
+						<li><a href="admincp.php">站点管理</a></li>
+						<!--{/if}-->
+						<!--{if checkperm('allowstat')}-->
+						<li><a href="do.php?ac=stat">趋势统计</a></li>
+						<!--{/if}-->
+					</ul>
+				</td>
+				<td valign="top">
+					<h3 class="index_name">
+						<div class="r_option">
+							<!--{if $_SGLOBAL[session][magichidden]}-->当前隐身<!--{else}-->当前在线<!--{/if}-->
+
+							<!--{if $_SGLOBAL[magic][invisible]}-->
+								<!--{if $_SGLOBAL[session][magichidden]}-->
+								<img src="image/magic/invisible.small.gif" class="magicicon"><a id="a_magic_appear" href="cp.php?ac=magic&op=appear" onclick="ajaxmenu(event,this.id)" class="gray">我要在线</a>
+								<!--{else}-->
+								<img src="image/magic/invisible.small.gif" alt="{$_SGLOBAL[magic][invisible]}" class="magicicon"><a id="a_magic_invisible" href="magic.php?mid=invisible" onclick="ajaxmenu(event,this.id,1)" class="gray">我要隐身</a>
+								<!--{/if}-->
+							<!--{/if}-->
+						</div>
+
+						<a href="space.php?uid=$space[uid]"<!--{eval g_color($space[groupid]);}-->>{$_SN[$space[uid]]}</a>
+						<!--{eval g_icon($space[groupid]);}-->
+						<a href="cp.php?ac=credit">$space[star]</a>
+					</h3>
+					
+					<div class="index_note">
+						已有 $space[viewnum] 人次访问, $space[credit] 个积分, $space[experience] 个经验
 					</div>
 
-					<a href="space.php?uid=$space[uid]"<!--{eval g_color($space[groupid]);}-->>{$_SN[$space[uid]]}</a>
-					<!--{eval g_icon($space[groupid]);}-->
-					<a href="cp.php?ac=credit">$space[star]</a>
-				</h3>
-				
-				<div class="index_note">
-					已有 $space[viewnum] 人次访问, $space[credit] 个积分, $space[experience] 个经验
-				</div>
+					<!--{template space_status}-->
+				</td>
+			</tr>
+		</table>
 
-				<!--{template space_status}-->
-			</td>
-		</tr>
-	</table>
-
-	<!--{if $space[allnum]}-->
-	<div class="mgs_list">
-		<!--{if $space[notenum]}--><div><img src="image/icon/notice.gif"><a href="space.php?do=notice"><strong>$space[notenum]</strong> 条新通知</a></div><!--{/if}-->
-		<!--{if $space[addfriendnum]}--><div><img src="image/icon/friend.gif" alt="" /><a href="cp.php?ac=friend&op=request"><strong>$space[addfriendnum]</strong> 个好友请求</a></div><!--{/if}-->
-		<!--{if $space[mtaginvitenum]}--><div><img src="image/icon/mtag.gif" alt="" /><a href="cp.php?ac=mtag&op=mtaginvite"><strong>$space[mtaginvitenum]</strong> 个群组邀请</a></div><!--{/if}-->
-		<!--{if $space[eventinvitenum]}--><div><img src="image/icon/event.gif" alt="" /><a href="cp.php?ac=event&op=eventinvite"><strong>$space[eventinvitenum]</strong> 个活动邀请</a></div><!--{/if}-->
-		<!--{if $space[myinvitenum]}--><div><img src="image/icon/userapp.gif" alt="" /><a href="space.php?do=notice&view=userapp"><strong>$space[myinvitenum]</strong> 个应用消息</a></div><!--{/if}-->
-		<!--{if $space[pmnum]}--><div><img src="image/icon/pm.gif" alt="" /><a href="space.php?do=pm"><strong>$space[pmnum]</strong> 条新短消息</a></div><!--{/if}-->
-		<!--{if $space[pokenum]}--><div><img src="image/icon/poke.gif" alt="" /><a href="cp.php?ac=poke"><strong> $space[pokenum]</strong> 个新招呼</a></div><!--{/if}-->
-		<!--{if $space[reportnum]}--><div><img src="image/icon/report.gif" alt="" /><a href="admincp.php?ac=report"><strong>$space[reportnum]</strong> 个举报</a></div><!--{/if}-->
-		<!--{if $space[namestatusnum]}--><div><img src="image/icon/profile.gif" alt="" /><a href="admincp.php?ac=space&perpage=20&namestatus=0&searchsubmit=1"><strong>$space[namestatusnum]</strong> 个待认证用户</a></div><!--{/if}-->
-		<!--{if $space[eventverifynum]}--><div><img src="image/icon/event.gif" alt="" /><a href="admincp.php?ac=event&perpage=20&grade=0&searchsubmit=1"><strong>$space[eventverifynum]</strong> 个待审核活动</a></div><!--{/if}-->
-	</div>
-	<!--{/if}-->
-
-	<!--{if $isnewer && $task}-->
-	<div class="task_notice">
-		<div class="task_notice_body">
-			<div class="notice">您好，{$_SN[$space[uid]]}，欢迎加入我们。有新任务等着您，挺简单的，赶快来参加吧</div>
-			<img src="$task[image]" alt="" class="icon" />
-			<h3><a href="cp.php?ac=task&op=do&taskid=$task[taskid]">$task[name]</a></h3>
-			<p>可获得 <span class="num">$task[credit]</span> 积分</p>
+		<!--{if $space[allnum]}-->
+		<div class="mgs_list">
+			<!--{if $space[notenum]}--><div><img src="image/icon/notice.gif"><a href="space.php?do=notice"><strong>$space[notenum]</strong> 条新通知</a></div><!--{/if}-->
+			<!--{if $space[addfriendnum]}--><div><img src="image/icon/friend.gif" alt="" /><a href="cp.php?ac=friend&op=request"><strong>$space[addfriendnum]</strong> 个好友请求</a></div><!--{/if}-->
+			<!--{if $space[mtaginvitenum]}--><div><img src="image/icon/mtag.gif" alt="" /><a href="cp.php?ac=mtag&op=mtaginvite"><strong>$space[mtaginvitenum]</strong> 个群组邀请</a></div><!--{/if}-->
+			<!--{if $space[eventinvitenum]}--><div><img src="image/icon/event.gif" alt="" /><a href="cp.php?ac=event&op=eventinvite"><strong>$space[eventinvitenum]</strong> 个活动邀请</a></div><!--{/if}-->
+			<!--{if $space[myinvitenum]}--><div><img src="image/icon/userapp.gif" alt="" /><a href="space.php?do=notice&view=userapp"><strong>$space[myinvitenum]</strong> 个应用消息</a></div><!--{/if}-->
+			<!--{if $space[pmnum]}--><div><img src="image/icon/pm.gif" alt="" /><a href="space.php?do=pm"><strong>$space[pmnum]</strong> 条新短消息</a></div><!--{/if}-->
+			<!--{if $space[pokenum]}--><div><img src="image/icon/poke.gif" alt="" /><a href="cp.php?ac=poke"><strong> $space[pokenum]</strong> 个新招呼</a></div><!--{/if}-->
+			<!--{if $space[reportnum]}--><div><img src="image/icon/report.gif" alt="" /><a href="admincp.php?ac=report"><strong>$space[reportnum]</strong> 个举报</a></div><!--{/if}-->
+			<!--{if $space[namestatusnum]}--><div><img src="image/icon/profile.gif" alt="" /><a href="admincp.php?ac=space&perpage=20&namestatus=0&searchsubmit=1"><strong>$space[namestatusnum]</strong> 个待认证用户</a></div><!--{/if}-->
+			<!--{if $space[eventverifynum]}--><div><img src="image/icon/event.gif" alt="" /><a href="admincp.php?ac=event&perpage=20&grade=0&searchsubmit=1"><strong>$space[eventverifynum]</strong> 个待审核活动</a></div><!--{/if}-->
 		</div>
-	</div>
-	<!--{/if}-->
+		<!--{/if}-->
 
-	<!--{if empty($_SCOOKIE['closefeedbox']) && $_SGLOBAL['ad']['feedbox']}-->
-	<div id="feed_box">
+		<!--{if $isnewer && $task}-->
 		<div class="task_notice">
-			<a title="忽略" class="float_cancel" href="javascript:;" onclick="close_feedbox();">忽略</a>
 			<div class="task_notice_body">
-			<!--{ad/feedbox}-->
+				<div class="notice">您好，{$_SN[$space[uid]]}，欢迎加入我们。有新任务等着您，挺简单的，赶快来参加吧</div>
+				<img src="$task[image]" alt="" class="icon" />
+				<h3><a href="cp.php?ac=task&op=do&taskid=$task[taskid]">$task[name]</a></h3>
+				<p>可获得 <span class="num">$task[credit]</span> 积分</p>
 			</div>
 		</div>
-	</div>
-	<!--{/if}-->
-
-	<div class="tabs_header" style="padding-top:10px;">
-
-		<!--{if $_SGLOBAL[magic][thunder]}-->
-		<a id="a_magic_thunder" href="magic.php?mid=thunder" onclick="ajaxmenu(event,this.id, 1)" class="r_option gray"><img src="image/magic/thunder.small.gif" alt="{$_SGLOBAL[magic][thunder]}" class="magicicon">{$_SGLOBAL[magic][thunder]}</a>
 		<!--{/if}-->
 
-		<ul class="tabs">
-			<!--{if $space[friendnum]}--><li$actives[we]><a href="space.php?do=home&view=we"><span>好友动态</span></a></li><!--{/if}-->
-			<li$actives[hot]><a href="space.php?do=home&view=hot"><span>热门推荐</span></a></li>
-			<li$actives[me]><a href="space.php?do=home&view=me"><span>我的动态</span></a></li>
-			<li$actives[all]><a href="space.php?do=home&view=all"><span>全站动态</span></a></li>
-		</ul>
-	</div>
-<!--{elseif $space[uid]}-->
+		<!--{if empty($_SCOOKIE['closefeedbox']) && $_SGLOBAL['ad']['feedbox']}-->
+		<div id="feed_box">
+			<div class="task_notice">
+				<a title="忽略" class="float_cancel" href="javascript:;" onclick="close_feedbox();">忽略</a>
+				<div class="task_notice_body">
+				<!--{ad/feedbox}-->
+				</div>
+			</div>
+		</div>
+		<!--{/if}-->
 
-<!--{eval
-	$_TPL['spacetitle'] = "动态";
-	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=feed&view=me\">TA的近期动态</a>";
-}-->
-	<!--{template space_menu}-->
-<!--{/if}-->
+		<div class="tabs_header" style="padding-top:10px;">
 
-	<div class="feed">
-	<div id="feed_div" class="enter-content">
-	
-	<!--{if $hotlist}-->
-		<a href="space.php?do=home&view=hot" class="r_option">&raquo; 查看更多热点</a>
-		<h4 class="feedtime" style="margin-top:5px;">近期热点推荐</h4>
-		<ul>
-		<!--{loop $hotlist $value}-->
-		<!--{eval $value = mkfeed($value);}-->
-		<!--{template space_feed_li}-->
-		<!--{/loop}-->
-		</ul>
-	<!--{/if}-->
-		
-<!--{/if}-->	
-
-	<!--{if $list}-->
-	<!--{loop $list $day $values}-->
-		<!--{if $_GET['view']!='hot'}-->
-		<h4 class="feedtime">
-			<!--{if $day=='yesterday'}-->昨天
-			<!--{elseif $day=='today'}-->今天
-			<!--{elseif $day=='app'}-->看看大家都在玩什么
-			<!--{else}-->$day
+			<!--{if $_SGLOBAL[magic][thunder]}-->
+			<a id="a_magic_thunder" href="magic.php?mid=thunder" onclick="ajaxmenu(event,this.id, 1)" class="r_option gray"><img src="image/magic/thunder.small.gif" alt="{$_SGLOBAL[magic][thunder]}" class="magicicon">{$_SGLOBAL[magic][thunder]}</a>
 			<!--{/if}-->
-		</h4>
-		<!--{/if}-->
-		<ul>
-		<!--{loop $values $value}-->
+
+			<ul class="tabs">
+				<!--{if $space[friendnum]}--><li$actives[we]><a href="space.php?do=home&view=we"><span>好友动态</span></a></li><!--{/if}-->
+				<li$actives[hot]><a href="space.php?do=home&view=hot"><span>热门推荐</span></a></li>
+				<li$actives[me]><a href="space.php?do=home&view=me"><span>我的动态</span></a></li>
+				<li$actives[all]><a href="space.php?do=home&view=all"><span>全站动态</span></a></li>
+			</ul>
+		</div>
+	<!--{elseif $space[uid]}-->
+
+	<!--{eval
+		$_TPL['spacetitle'] = "动态";
+		$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=feed\">TA的近期动态</a>";
+	}-->
+		<!--{template space_menu}-->
+	<!--{/if}-->
+
+		<div class="feed">
+		<div id="feed_div" class="enter-content">
+		
+		<!--{if $hotlist}-->
+			<a href="space.php?do=home&view=hot" class="r_option">&raquo; 查看更多热点</a>
+			<h4 class="feedtime" style="margin-top:5px;">近期热点推荐</h4>
+			<ul>
+			<!--{loop $hotlist $value}-->
+			<!--{eval $value = mkfeed($value);}-->
 			<!--{template space_feed_li}-->
+			<!--{/loop}-->
+			</ul>
+		<!--{/if}-->
+			
+	<!--{/if}-->	
+
+		<!--{if $list}-->
+		<!--{loop $list $day $values}-->
+			<!--{if $_GET['view']!='hot'}-->
+			<h4 class="feedtime">
+				<!--{if $day=='yesterday'}-->昨天
+				<!--{elseif $day=='today'}-->今天
+				<!--{elseif $day=='app'}-->看看大家都在玩什么
+				<!--{else}-->$day
+				<!--{/if}-->
+			</h4>
+			<!--{/if}-->
+			<ul>
+			<!--{loop $values $value}-->
+				<!--{template space_feed_li}-->
+			<!--{/loop}-->
+			</ul>
 		<!--{/loop}-->
-		</ul>
-	<!--{/loop}-->
-	
-	<!--{else}-->
-		<ul>
-			<li>没有相关动态</li>
-		</ul>
-	<!--{/if}-->
-	
-	<!--{if $filtercount}-->
-	<div class="notice" id="feed_filter_notice_{$start}">
-		根据您的<a href="cp.php?ac=privacy&op=view">筛选设置</a>，有 $filtercount 条动态被屏蔽 (<a href="javascript:;" onclick="filter_more($start);" id="a_feed_privacy_more">点击查看</a>)
-	</div>
-	<div id="feed_filter_div_{$start}" class="enter-content" style="display:none;">
-		<h4 class="feedtime">以下是被屏蔽的动态</h4>
-		<ul>
-		<!--{loop $filter_list $value}-->
-		<!--{eval $value = mkfeed($value);}-->
-		<!--{template space_feed_li}-->
-		<!--{/loop}-->
-		<li><a href="javascript:;" onclick="filter_more($start);">&laquo; 收起</a></li>
-		</ul>
-	</div>
-	<!--{/if}-->
-	
-<!--{if empty($_TPL['getmore'])}-->	
-	</div>
+		
+		<!--{else}-->
+			<ul>
+				<li>没有相关动态</li>
+			</ul>
+		<!--{/if}-->
+		
+		<!--{if $filtercount}-->
+		<div class="notice" id="feed_filter_notice_{$start}">
+			根据您的<a href="cp.php?ac=privacy&op=view">筛选设置</a>，有 $filtercount 条动态被屏蔽 (<a href="javascript:;" onclick="filter_more($start);" id="a_feed_privacy_more">点击查看</a>)
+		</div>
+		<div id="feed_filter_div_{$start}" class="enter-content" style="display:none;">
+			<h4 class="feedtime">以下是被屏蔽的动态</h4>
+			<ul>
+			<!--{loop $filter_list $value}-->
+			<!--{eval $value = mkfeed($value);}-->
+			<!--{template space_feed_li}-->
+			<!--{/loop}-->
+			<li><a href="javascript:;" onclick="filter_more($start);">&laquo; 收起</a></li>
+			</ul>
+		</div>
+		<!--{/if}-->
+		
+	<!--{if empty($_TPL['getmore'])}-->	
+		</div>
 
-	<!--{if $count==$perpage}-->
-	<div class="page" style="padding-top:20px;">
-		<a href="javascript:;" onclick="feed_more();" id="a_feed_more">查看更多动态</a>
-	</div>
-	<!--{/if}-->
+		<!--{if $count==$perpage}-->
+		<div class="page" style="padding-top:20px;">
+			<a href="javascript:;" onclick="feed_more();" id="a_feed_more">查看更多动态</a>
+		</div>
+		<!--{/if}-->
 
-	<div id="ajax_wait"></div>
+		<div id="ajax_wait"></div>
 
+		</div>
 	</div>
 </div>
-<!--/content-->
 
 <div id="sidebar">
 	<!--{if !$isnewer && $task}-->
@@ -330,7 +331,6 @@
 	</div>
 
 </div>
-<!--/sidebar-->
 
 <script type="text/javascript">
 
