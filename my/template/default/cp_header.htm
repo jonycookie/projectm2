@@ -12,17 +12,9 @@
 <script type="text/javascript" src="script/face.js"></script>
 <script type="text/javascript" src="script/manage.js"></script>
 <style type="text/css">
-@import url(template/default/style.css);
+@import url(style/style.css);
 <!--{if $_TPL['css']}-->
-@import url(template/default/{$_TPL[css]}.css);
-<!--{/if}-->
-<!--{if !empty($_SGLOBAL['space_theme'])}-->
-@import url(theme/$_SGLOBAL[space_theme]/style.css);
-<!--{elseif $_SCONFIG[template] != 'default'}-->
-@import url(template/$_SCONFIG[template]/style.css);
-<!--{/if}-->
-<!--{if !empty($_SGLOBAL['space_css'])}-->
-$_SGLOBAL[space_css]
+@import url(style/{$_TPL[css]}.css);
 <!--{/if}-->
 </style>
 <link rel="shortcut icon" href="image/favicon.ico" />
