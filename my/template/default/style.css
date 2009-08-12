@@ -182,8 +182,8 @@ a.c_link {
 	float: right;
 	margin: 0 10px 0 0;
 	padding: 0;
-	width: 16px;
-	height: 16px;
+	width: 13px;
+	height: 13px;
 	background: url(image/settingicon.gif) no-repeat;
 	color: #DABAA9;
 	line-height: 200px;
@@ -199,7 +199,7 @@ a.c_link {
 .float_more {
 	position: absolute;
 	margin: 5px 0 0 505px;
-	background: url(image/feedmoreicon.gif) no-repeat 0 0;
+	background: url(image/delete.gif) no-repeat 0 0;
 	color: #DABAA9;
 }
 /*avatar bg*/
