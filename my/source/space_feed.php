@@ -421,7 +421,7 @@ function ckicon_uid($feed) {
 function my_showgift() {
 	global $_SGLOBAL, $space, $_SCONFIG;
 	if($_SCONFIG['my_showgift'] && $_SGLOBAL['my_userapp'][$_SGLOBAL['gift_appid']]) {
-		echo '<script language="javascript" type="text/javascript" src="http://gift.nohyes.cn/recommend.js"></script>';
+		echo '<script type="text/javascript" src="http://gift.nohyes.cn/recommend.js"></script>';
 	}
 }
 

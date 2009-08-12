@@ -537,7 +537,7 @@
 					<tr>
 						<th>活动城市 *</th>
 						<td id="citybox">
-							<script type="text/javascript" src="source/script_city.js" charset="$_SC[charset]"></script>
+							<script type="text/javascript" src="script/city.js" charset="$_SC[charset]"></script>
                             <script type="text/javascript" charset="$_SC[charset]">
 								showprovince('province', 'city', '$event[province]', 'citybox');
                                 showcity('city', '$event[city]', 'province', 'citybox');
@@ -553,7 +553,7 @@
 					<tr>
 						<th>活动时间 *</th>
 						<td>
-							<script type="text/javascript" src="source/script_calendar.js" charset="$_SC[charset]"></script>
+							<script type="text/javascript" src="script/calendar.js" charset="$_SC[charset]"></script>
 							<input type="text" name="starttime" id="starttime" value="<!--{eval echo sgmdate('Y-m-d H:i', $event[starttime])}-->"  onclick="showcalendar(event,this,1,'<!--{eval echo sgmdate('Y-m-d H:i', $_SGLOBAL[timestamp])}-->', '<!--{eval echo sgmdate('Y-m-d H:i', $_SGLOBAL[timestamp] + 3600 * 24 * 60)}-->')" />
 						 至
 							<input type="text" name="endtime" id="endtime" value="<!--{eval echo sgmdate('Y-m-d H:i', $event[endtime])}-->"  onclick="showcalendar(event,this,1,'<!--{eval echo sgmdate('Y-m-d H:i', $_SGLOBAL[timestamp])}-->', '<!--{eval echo sgmdate('Y-m-d H:i', $_SGLOBAL[timestamp] + 3600 * 24 * 60)}-->')" />
