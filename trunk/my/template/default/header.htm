@@ -5,21 +5,16 @@
 <meta http-equiv="content-type" content="text/html; charset=$_SC[charset]" />
 <meta http-equiv="x-ua-compatible" content="ie=7" />
 <title><!--{if $_TPL['titles']}--><!--{loop $_TPL['titles'] $value}--><!--{if $value}-->$value - <!--{/if}--><!--{/loop}--><!--{/if}--><!--{if $space}-->{$_SN[$space[uid]]} - <!--{/if}-->$_SCONFIG[sitename] - Powered by UCenter Home</title>
-<script language="javascript" type="text/javascript" src="source/script_cookie.js"></script>
-<script language="javascript" type="text/javascript" src="source/script_common.js"></script>
-<script language="javascript" type="text/javascript" src="source/script_menu.js"></script>
-<script language="javascript" type="text/javascript" src="source/script_ajax.js"></script>
-<script language="javascript" type="text/javascript" src="source/script_face.js"></script>
-<script language="javascript" type="text/javascript" src="source/script_manage.js"></script>
+<script type="text/javascript" src="script/cookie.js"></script>
+<script type="text/javascript" src="script/common.js"></script>
+<script type="text/javascript" src="script/menu.js"></script>
+<script type="text/javascript" src="script/ajax.js"></script>
+<script type="text/javascript" src="script/face.js"></script>
+<script type="text/javascript" src="script/manage.js"></script>
 <style type="text/css">
-@import url(template/default/style.css);
+@import url(style/style.css);
 <!--{if $_TPL['css']}-->
-@import url(template/default/{$_TPL[css]}.css);
-<!--{/if}-->
-<!--{if !empty($_SGLOBAL['space_theme'])}-->
-@import url(theme/$_SGLOBAL[space_theme]/style.css);
-<!--{elseif $_SCONFIG[template] != 'default'}-->
-@import url(template/$_SCONFIG[template]/style.css);
+@import url(style/{$_TPL[css]}.css);
 <!--{/if}-->
 <!--{if !empty($_SGLOBAL['space_css'])}-->
 $_SGLOBAL[space_css]
@@ -53,7 +48,6 @@ $_SGLOBAL[space_css]
 			<!--{if $_SCONFIG['videophoto']}-->
 			<li><a href="cp.php?ac=videophoto">视频认证</a></li>
 			<!--{/if}-->
-			<li><a href="cp.php?ac=theme">主页风格</a></li>
 			<li><a href="cp.php?ac=credit">我的积分</a></li>
 			<!--{if $_SCONFIG['allowdomain'] && $_SCONFIG['domainroot'] && checkperm('domainlength')}-->
 			<li><a href="cp.php?ac=domain">我的域名</a></li>
@@ -62,6 +56,7 @@ $_SGLOBAL[space_css]
 			<li><a href="cp.php?ac=sendmail">邮件提醒</a></li>
 			<!--{/if}-->
 			<li><a href="cp.php?ac=privacy">隐私筛选</a></li>
+			<li><a href="cp.php?ac=theme">个性化设置</a></li>
 			<!--{if checkperm('admin')}-->
 			<li><a href="admincp.php">站点管理</a></li>
 			<!--{/if}-->
