@@ -4,6 +4,7 @@
 }
 body, th, td, input, select, textarea, button {
 	font: 12px/1.5em Verdana, "Lucida Grande", Arial, Helvetica, sans-serif;
+	color: #333333;
 }
 body, h1, h2, h3, h4, h5, h6, p, ul, dl, dt, dd, form, fieldset {
 	margin: 0;
@@ -1085,14 +1086,14 @@ a.button {
 }
 .listtable td, .listtable th {
 	padding: 5px;
-	border-bottom: 1px dashed #ECF1F3;
+	border-bottom: 1px solid #efefef;
 }
 .listtable .title td, .listtable .title th {
-	border-bottom: 1px solid #CCC;
+	border-bottom: 1px solid #dddddd;
 	font-weight: bold;
 }
 .listtable .line td {
-	background: #FCFCFC;
+	background: #fafafa;
 }
 .moodform {
 	padding-left: 12px;
@@ -1459,6 +1460,10 @@ a.button {
 	margin: 0 3px 0 0;
 	vertical-align: middle;
 }
+.topic_list td.subject em {
+	color: #639933;
+	font-style: normal;
+}
 .topic_list td.mtag {
 	width: 120px;
 }
@@ -1727,15 +1732,14 @@ a.button {
 	background-image: url(image/delete2.gif);
 }
 .popupmenu_centerbox {
-	border: 8px solid #FFAE4A;
-	background: #FCF9E6;
+	border: 8px solid #48aec7;
+	background: #FFF;
 	text-align: left;
 	min-width:250px;
 	max-width:550px;
 }
 .popupmenu_centerbox h1 {
 	padding: 0 10px;
-	color: #FF9919;
 	font-size: 14px;
 	line-height: 26px;
 	cursor: move;

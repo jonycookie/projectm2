@@ -15,15 +15,15 @@
 		<thead>
 			<tr>
 				<td class="subject">标题</td>
-				<td class="author">作者(回复数)</td>
-				<td class="lastpost">发布时间</td>
+				<td class="author">作者</td>
+				<td class="time">&nbsp;</td>
 			</tr>
 		</thead>
 		<!--{loop $list $key $value}-->
 		<tr<!--{if $key%2==1}--> class="alt"<!--{/if}-->>
-			<td class="subject"><a href="space.php?uid=$value[uid]&do=blog&id=$value[blogid]" target="_blank">$value[subject]</a></td>
-			<td class="author"><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a><em>($value[replynum])</em></td>
-			<td class="lastpost"><!--{date('m-d H:i',$value[dateline],1)}--></td>
+			<td class="subject"><a href="space.php?uid=$value[uid]&do=blog&id=$value[blogid]" target="_blank">$value[subject]</a><em>($value[replynum])</em></td>
+			<td class="author"><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></td>
+			<td class="time"><!--{date('m-d H:i',$value[dateline],1)}--></td>
 		</tr>
 		<!--{/loop}-->
 	</table>

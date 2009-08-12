@@ -14,7 +14,6 @@
 		<!--{/if}-->
 		<!--{if $mtag['grade'] >= 8}-->
 			<li$actives[members]><a href="cp.php?ac=mtag&op=manage&tagid=$mtag[tagid]&subop=members"><span>成员管理</span></a></li>
-			<li$actives[thread]><a href="cp.php?ac=mtag&op=manage&tagid=$mtag[tagid]&subop=thread"><span>话题批量管理</span></a></li>
 		<!--{/if}-->
 		<li><a href="space.php?do=mtag&tagid=$mtag[tagid]"><span>返回群组首页</span></a></li>
 		</ul>
@@ -128,18 +127,6 @@
 		<th>&nbsp;</th>
 		<td>
 		<input type="submit" name="basesubmit" value="提交保存" class="submit" />&nbsp;
-		</td>
-	</tr>
-	</table>
-	
-	<!--{elseif $_GET['subop'] == 'thread'}-->
-	
-	<table cellspacing="0" cellpadding="0" class="formtable">
-	<tr>
-		<td>
-		请登录管理平台，来对群组的话题、回帖进行批量删除、精华、置顶等操作。<br />
-		<br><a href="admincp.php?ac=thread&&perpage=20&tagid=$mtag[tagid]&searchsubmit=1" class="submit">话题管理</a> &nbsp; 
-		<a href="admincp.php?ac=post&&perpage=20&tagid=$mtag[tagid]&searchsubmit=1" class="submit">回帖管理</a>
 		</td>
 	</tr>
 	</table>

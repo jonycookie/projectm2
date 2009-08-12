@@ -37,9 +37,9 @@
 		<thead>
 			<tr>
 				<td class="subject">主题</td>
-				<!--{if !$mtag}--><td class="mtag">群组</td><!--{/if}-->
-				<td class="author">作者 (回应/阅读)</td>
+				<td class="author">作者</td>
 				<td class="lastpost">最后更新</td>
+				<td class="time">&nbsp;</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -52,14 +52,14 @@
 				<!--{if $value[digest]}--> [精] <!--{/if}-->
 				<!--{if $value[eventid]}--> [活] <!--{/if}-->
 				$magicegg
-				<a href="space.php?uid=$value[uid]&do=thread&id=$value[tid]" <!--{if $value[magiccolor]}--> class="magiccolor$value[magiccolor]"<!--{/if}-->>$value[subject]</a>
+				<!--{if !$mtag}-->[<a href="space.php?do=mtag&tagid=$value[tagid]">$value[tagname]</a>]<!--{/if}--> <a href="space.php?uid=$value[uid]&do=thread&id=$value[tid]" <!--{if $value[magiccolor]}--> class="magiccolor$value[magiccolor]"<!--{/if}-->>$value[subject]</a> <em>$value[replynum]/$value[viewnum]</em>
 				<!--{if $value[hot]}-->
 				<br><span class="gray">$value[hot] 人推荐</span>
 				<!--{/if}-->
 				</td>
-				<!--{if !$mtag}--><td class="mtag"><a href="space.php?do=mtag&tagid=$value[tagid]">$value[tagname]</a></td><!--{/if}-->
-				<td class="author"><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a><br><em>$value[replynum]/$value[viewnum]</em></td>
-				<td class="lastpost"><a href="space.php?uid=$value[lastauthorid]" title="{$_SN[$value[lastauthorid]]}">{$_SN[$value[lastauthorid]]}</a><br><!--{date('m-d H:i',$value[lastpost],1)}--></td>
+				<td class="author"><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></td>
+				<td class="lastpost"><a href="space.php?uid=$value[lastauthorid]" title="{$_SN[$value[lastauthorid]]}">{$_SN[$value[lastauthorid]]}</a></td>
+				<td><!--{date('m-d H:i',$value[lastpost],1)}--></td>
 			</tr>
 			<!--{/loop}-->
 		</tbody>
