@@ -1,6 +1,6 @@
 <!--{if empty($_TPL['getmore'])}-->	
 <!--{eval $_TPL['titles'] = array('首页');}-->
-<!--{template header}-->
+<!--{template cp_header}-->
 
 <div id="content">
 	<div class="content_inner">
@@ -8,28 +8,8 @@
 	<!--{if $space['uid'] && $space[self]}-->
 		<table cellpadding="0" cellspacing="0" border="0" width="100%">
 			<tr>
-				<td valign="top" width="150">
-					<div class="ar_r_t"><div class="ar_l_t"><div class="ar_r_b"><div class="ar_l_b"><!--{avatar($_SGLOBAL[supe_uid],middle)}--></div></div></div></div>
-
-					<ul class="u_setting">
-						<li class="dropmenu" id="usettingli" onmouseover="showMenu(this.id)"><a href="cp.php">个人设置 <img src="image/more.gif" align="absmiddle"></a></li>
-					</ul>
-					<ul id="usettingli_menu" class="dropmenu_drop" style="display:none;">
-						<li><a href="cp.php?ac=avatar">我的头像</a></li>
-						<li><a href="cp.php?ac=profile">个人资料</a></li>
-						<li><a href="cp.php?ac=theme">主页风格</a></li>
-						<li><a href="cp.php?ac=credit">我的积分</a></li>
-						<!--{if $_SCONFIG[sendmailday]}-->
-						<li><a href="cp.php?ac=sendmail">邮件提醒</a></li>
-						<!--{/if}-->
-						<li><a href="cp.php?ac=privacy">隐私筛选</a></li>
-						<!--{if checkperm('admin')}-->
-						<li><a href="admincp.php">站点管理</a></li>
-						<!--{/if}-->
-						<!--{if checkperm('allowstat')}-->
-						<li><a href="do.php?ac=stat">趋势统计</a></li>
-						<!--{/if}-->
-					</ul>
+				<td valign="top">
+					<div class="avatar"><!--{avatar($_SGLOBAL[supe_uid],small)}--></div>
 				</td>
 				<td valign="top">
 					<h3 class="index_name">
@@ -190,6 +170,23 @@
 </div>
 
 <div id="sidebar">
+
+	<div class="sidebox">
+		<h2 class="title">搜索用户</h2>
+		<form method="get" action="cp.php" style="padding:10px 0 5px 0;">
+			<input name="searchkey" value="" size="20" class="t_input" type="text">
+			<input name="searchsubmit" value="找人" class="submit" type="submit">
+			<input type="hidden" name="searchmode" value="1" />
+			<input type="hidden" name="ac" value="friend" />
+			<input type="hidden" name="op" value="search" />
+		</form>
+		<p>
+			<a href="cp.php?ac=friend&op=search">高级搜索</a><span class="pipe">|</span>
+			<a href="cp.php?ac=friend&op=find">可能认识的人</a><span class="pipe">|</span>
+			<a href="cp.php?ac=invite">邀请好友</a>
+		</p>
+	</div>
+
 	<!--{if !$isnewer && $task}-->
 	<div class="task_notice" style="width:230px;">
 		<a title="忽略" class="float_cancel" href="cp.php?ac=task&taskid=$task[taskid]&op=ignore">忽略</a>
@@ -313,22 +310,6 @@
 		</div>
 	</div>
 	<!--{/if}-->
-
-	<div class="searchfriend">
-		<h3>搜索用户</h3>
-		<form method="get" action="cp.php" style="padding:10px 0 5px 0;">
-			<input name="searchkey" value="" size="20" class="t_input" type="text">
-			<input name="searchsubmit" value="找人" class="submit" type="submit">
-			<input type="hidden" name="searchmode" value="1" />
-			<input type="hidden" name="ac" value="friend" />
-			<input type="hidden" name="op" value="search" />
-		</form>
-		<p>
-			<a href="cp.php?ac=friend&op=search">高级搜索</a><span class="pipe">|</span>
-			<a href="cp.php?ac=friend&op=find">可能认识的人</a><span class="pipe">|</span>
-			<a href="cp.php?ac=invite">邀请好友</a>
-		</p>
-	</div>
 
 </div>
 

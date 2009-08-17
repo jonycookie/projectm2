@@ -199,7 +199,7 @@ a.c_link {
 }
 .float_more {
 	position: absolute;
-	margin: 5px 0 0 505px;
+	margin: 5px 0 0 550px;
 	background: url(image/delete.gif) no-repeat 0 0;
 	color: #DABAA9;
 }
@@ -226,7 +226,7 @@ a.c_link {
 .ybg {
 	margin-bottom: 2px;
 	padding: 10px;
-	border: 1px solid #EBE6C9;
+	border: 1px solid #DDD;
 	background: #FCF9E6;
 }
 .ybg table {
@@ -272,14 +272,14 @@ body {
 	margin: 0 0 10px 0;
 	padding: 0 0 10px 0;
 	width: 100%;
-	border-bottom: 1px solid #EBE6C9;
+	border-bottom: 1px solid #DDD;
 	overflow: hidden;
 }
 #ad_contentbottom {
 	margin: 10px 0 0 0;
 	padding: 10px 0 0 0;
 	width: 100%;
-	border-top: 1px solid #EBE6C9;
+	border-top: 1px solid #DDD;
 	overflow: hidden;
 }
 /*************************************************TOOLBAR***/
@@ -421,7 +421,7 @@ li.notify {
 .dropmenu_drop {
 	margin: -1px 0 0;
 	padding: 0 10px 0;
-	border: 1px solid #EBE6C9;
+	border: 1px solid #DDD;
 	background: #FFF;
 	z-index: 200;
 }
@@ -446,14 +446,23 @@ li.notify {
 	display: block;
 	clear: both;
 }
+
+
+#main.cp #mainarea {
+	float: right;
+	width: 800px;
+}
+#main.cp #mainarea:after {
+	content: "";
+	display: block;
+	clear: both;
+}
 /*************************************************APP SIDEBAR***/
 #app_sidebar {
 	float: left;
-	margin: 0 20px 0 0;
-	padding: 10px 0 0;
 	width: 140px;
-	background: url(image/appSidebar_top_bg.gif) no-repeat 0 0;
-	font-size: 14px;
+	padding: 10px;
+	border: 1px solid #ddd;
 }
 .app_list {
 	margin: 0 10px 0 10px;
@@ -550,7 +559,7 @@ li.notify {
 .index_name {
 	font-size: 14px;
 	line-height: 30px;
-	border-bottom: 1px solid #EBE6C9;
+	border-bottom: 1px solid #DDD;
 }
 .index_note {
 	padding-bottom: 15px;
@@ -645,7 +654,7 @@ li.notify {
 	margin: 0 10px 5px 0;
 	padding: 5px 10px 5px 10px;
 	width: 140px;
-	border: 1px solid #EBE6C9;
+	border: 1px solid #DDD;
 	line-height: 20px;
 }
 .mgs_list img {
@@ -666,16 +675,13 @@ li.notify {
 .tabs_header {
 	margin-bottom: 15px;
 	height: 25px;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #ddd;
 	clear: both;
 	overflow: hidden;
 }
-.tabs_header ul.tabs li a {
-	text-decoration: none;
-	border: 1px solid #eee;
-}
 .tabs_header ul.tabs {
 	position: absolute;
+	border-left: 1px solid #ddd;
 	z-index: 10;
 }
 .tabs_header ul.tabs li {
@@ -687,8 +693,8 @@ li.notify {
 	height: 24px;
 	line-height: 24px;
 	padding: 0 10px;
-	margin-right: 5px;
-	background: #fafafa;
+	border: 1px solid #ddd;
+	border-left: none;
 }
 .tabs_header ul.tabs li a span {
 }
@@ -697,6 +703,8 @@ li.notify {
 }
 .tabs_header ul.tabs li.active a {
 	color: #000;
+	font-weight: bold;
+	text-decoration: none;
 	border-bottom: 1px solid #fff;
 	background: #fff;
 }
@@ -780,7 +788,7 @@ h2.title img {
 }
 .comments h2 {
 	padding: 0 0 10px;
-	border-bottom: 1px solid #EBE6C9;
+	border-bottom: 1px solid #DDD;
 }
 .comments_list .avatar48 {
 	position: absolute;
@@ -789,7 +797,7 @@ h2.title img {
 }
 .comments_list li {
 	padding: 10px 10px 10px 63px;
-	border-bottom: 1px solid #EBE6C9;
+	border-bottom: 1px solid #DDD;
 	font-size: 12px;
 	line-height: 200%;
 	overflow: hidden;
@@ -802,7 +810,7 @@ h2.title img {
 }
 .comments_list .quote {
 	padding: 10px;
-	border: 1px solid #EBE6C9;
+	border: 1px solid #DDD;
 	background: #FCF9E6 none repeat scroll 0 0;
 	font-size: 12px;
 }
@@ -814,7 +822,7 @@ h2.title img {
 	margin: 0 5px 0 0;
 }
 .space_list table {
-	border: 1px solid #EBE6C9;
+	border: 1px solid #DDD;
 	margin:10px 0;
 }
 .space_list td {
@@ -839,14 +847,14 @@ h2.title img {
 .affiche {
 	margin: 0 0 10px 0;
 	padding: 10px;
-	border: 1px solid #EBE6C9;
+	border: 1px solid #DDD;
 	background: #FCF9E6;
 	overflow: hidden;
 }
 .affiche #space_avatar img {
 	margin: 0 10px 10px 0;
 	padding: 3px;
-	border: 1px solid #EBE6C9;
+	border: 1px solid #DDD;
 	background: #FFF;
 }
 .affiche .article {
@@ -877,7 +885,7 @@ h2.title img {
 .space_task {
 	margin: 0 0 10px;
 	padding: 10px;
-	border: 1px solid #EBE6C9;
+	border: 1px solid #DDD;
 	background: #FCF9E6;
 }
 .task_done {
@@ -897,14 +905,14 @@ h2.title img {
 }
 #share_ul {
 	padding-bottom: 10px;
-	border-bottom: 1px solid #EBE6C9;
+	border-bottom: 1px solid #DDD;
 }
 #share_ul li {
 	overflow: hidden;
 }
 #share_ul .title {
 	padding: 5px;
-	border-bottom: 1px solid #EBE6C9;
+	border-bottom: 1px solid #DDD;
 	background: #FCF9E6;
 }
 .page {
@@ -915,7 +923,7 @@ h2.title img {
 .page * {
 	margin: 0 3px 0 0;
 	padding: 3px 5px;
-	border: 1px solid #EBE6C9;
+	border: 1px solid #DDD;
 	background: #FCF9E6;
 	color: #999;
 }
@@ -939,10 +947,13 @@ textarea {
 	border: 1px solid #ddd;
 	overflow: auto;
 }
-.t_input, select {
+.t_input {
 	padding: 3px 2px;
 	border: 1px solid #ddd;
 	line-height: 16px;
+}
+select {
+	border: 1px solid #ddd;
 }
 .button {
 	padding: 0 5px;
@@ -1423,7 +1434,7 @@ a.button {
 .l_status {
 	margin: 5px 0;
 	padding-bottom: 5px;
-	border-bottom: 1px solid #EBE6C9;
+	border-bottom: 1px solid #DDD;
 }
 .l_status .active {
 	font-weight:bold;
@@ -1453,7 +1464,7 @@ a.button {
 	overflow: hidden;
 }
 .topic_list thead td {
-	border-bottom: 1px solid #EBE6C9;
+	border-bottom: 1px solid #DDD;
 	color: #333;
 }
 .topic_list td.subject img {
@@ -1479,7 +1490,7 @@ a.button {
 	text-align: right;
 }
 .topic_list tbody tr td {
-	border-bottom: 1px solid #EBE6C9;
+	border-bottom: 1px solid #DDD;
 }
 .topic_list tbody tr.alt td {
 	background: #FCF9E6;
@@ -1536,7 +1547,7 @@ a.button {
 	font-size: 20px;
 }
 .sidebox {
-	border: 1px solid #eee;
+	border: 1px solid #999;
 	margin: 0 0 10px;
 }
 .sidebox h2.title {
@@ -1549,7 +1560,7 @@ a.button {
 }
 .sidebox h3.title {
 	padding: 5px;
-	border-bottom: 1px solid #EBE6C9;
+	border-bottom: 1px solid #DDD;
 	background: #FCF9E6;
 }
 .sidebox div.more {
@@ -1631,7 +1642,7 @@ a.button {
 }
 #footer {
 	padding: 10px 0 10px 0;
-	border-top: 1px solid #EBE6C9;
+	border-top: 1px solid #DDD;
 	color: #333;
 	text-align: center;
 }
@@ -1687,7 +1698,7 @@ a.button {
 .notice {
 	margin-bottom: 2px;
 	padding: 8px;
-	border-bottom: 1px solid #EBE6C9;
+	border-bottom: 1px solid #DDD;
 	background: #FCF9E6;
 }
 .ajax_selector {
@@ -1753,7 +1764,7 @@ a.button {
 }
 .popupmenu_centerbox .popupmenu_inner .t_input, .popupmenu_centerbox .popupmenu_inner textarea {
 	margin: 5px 0;
-	border-color: #EBE6C9;
+	border-color: #DDD;
 }
 .popupmenu_centerbox .float_del {
 	background-image: url(image/delete2.gif);
@@ -1872,7 +1883,7 @@ li.news_title {
 	color: #999;
 }
 .searchfriend .t_input {
-	border-color: #EBE6C9;
+	border-color: #DDD;
 }
 .showmessage {
 	margin: 50px auto;
@@ -1949,7 +1960,7 @@ li.news_title {
 }
 .feed li {
 	padding: 10px 20px;
-	border-bottom: 1px solid #EBE6C9;
+	border-bottom: 1px solid #DDD;
 }
 .feed .type {
 	position: absolute;
@@ -2193,7 +2204,7 @@ li.news_title {
 }
 .showflash {
 	background: #FCF9E6;
-	border: 1px solid #EBE6C9;
+	border: 1px solid #DDD;
 }
 .searchfriend .avatar_list li {
 	padding: 7px;
