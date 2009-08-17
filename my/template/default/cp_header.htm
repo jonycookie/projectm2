@@ -130,9 +130,25 @@
 
 	<div id="wrap">
 
-	<div id="main">
+	<div id="main" class="cp">
 		<div id="app_sidebar">
-			123123
+			<a href="cp.php">个人设置</a>
+			<ul>
+				<li><a href="cp.php?ac=avatar">我的头像</a></li>
+				<li><a href="cp.php?ac=profile">个人资料</a></li>
+				<li><a href="cp.php?ac=theme">主页风格</a></li>
+				<li><a href="cp.php?ac=credit">我的积分</a></li>
+				<!--{if $_SCONFIG[sendmailday]}-->
+				<li><a href="cp.php?ac=sendmail">邮件提醒</a></li>
+				<!--{/if}-->
+				<li><a href="cp.php?ac=privacy">隐私筛选</a></li>
+				<!--{if checkperm('admin')}-->
+				<li><a href="admincp.php">站点管理</a></li>
+				<!--{/if}-->
+				<!--{if checkperm('allowstat')}-->
+				<li><a href="do.php?ac=stat">趋势统计</a></li>
+				<!--{/if}-->
+			</ul>
 		</div>
 		<div id="mainarea">
 		
