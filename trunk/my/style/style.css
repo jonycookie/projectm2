@@ -3,7 +3,7 @@
 	word-wrap: break-word;
 }
 body, th, td, input, select, textarea, button {
-	font: 12px/1.5em Verdana, "Lucida Grande", Arial, Helvetica, sans-serif;
+	font: 12px/16px Verdana, "Lucida Grande", Arial, Helvetica, sans-serif;
 	color: #333333;
 }
 body, h1, h2, h3, h4, h5, h6, p, ul, dl, dt, dd, form, fieldset {
@@ -57,7 +57,7 @@ caption p {
 	width: 48px;
 	height: 48px;
 	padding: 2px;
-	border: 1px solid #eee;
+	border: 1px solid #e8ecf2;
 }
 .avatar48 img {
 	width: 48px;
@@ -226,7 +226,7 @@ a.c_link {
 .ybg {
 	margin-bottom: 2px;
 	padding: 10px;
-	border: 1px solid #DDD;
+	border: 1px solid #e8ecf2;
 	background: #FCF9E6;
 }
 .ybg table {
@@ -255,7 +255,7 @@ body {
 }
 #wrap, .wrap {
 	margin: 0 auto;
-	width: 970px;
+	width: 960px;
 }
 #ad_header {
 	margin: 0 auto;
@@ -272,14 +272,14 @@ body {
 	margin: 0 0 10px 0;
 	padding: 0 0 10px 0;
 	width: 100%;
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px solid #e8ecf2;
 	overflow: hidden;
 }
 #ad_contentbottom {
 	margin: 10px 0 0 0;
 	padding: 10px 0 0 0;
 	width: 100%;
-	border-top: 1px solid #DDD;
+	border-top: 1px solid #e8ecf2;
 	overflow: hidden;
 }
 /*************************************************TOOLBAR***/
@@ -291,7 +291,7 @@ body {
 }
 #toolbar .toolbarwarp {
 	margin: 0 auto;
-	width: 970px;
+	width: 960px;
 }
 #toolbar .logo {
 	float: left;
@@ -359,15 +359,10 @@ body {
 }
 .headerwarp {
 	margin: 0 auto;
-	padding: 0 20px;
-	width: 930px;
+	width: 960px;
 	height: 40px;
 }
 .headerwarp a {
-}
-.headerwarp .logo {
-	float: left;
-	margin: 0 30px 0 0;
 }
 .menu {
 	float: left;
@@ -421,13 +416,13 @@ li.notify {
 .dropmenu_drop {
 	margin: -1px 0 0;
 	padding: 0 10px 0;
-	border: 1px solid #DDD;
+	border: 1px solid #e8ecf2;
 	background: #FFF;
 	z-index: 200;
 }
 .dropmenu_drop li {
 	padding: 5px 0;
-	border-bottom: 1px solid #EEE;
+	border-bottom: 1px solid #e8ecf2;
 }
 .dropmenu_drop li a {
 	color: #2C629E;
@@ -450,19 +445,30 @@ li.notify {
 
 #main.cp #mainarea {
 	float: right;
-	width: 800px;
+	width: 790px;
 }
 #main.cp #mainarea:after {
 	content: "";
 	display: block;
 	clear: both;
 }
+#nav {
+}
+#nav li {
+	float: left;
+	display: inline;
+}
+#nav a {
+	border: 1px solid #e8ecf2;
+	padding: 5px 20px;
+}
+
 /*************************************************APP SIDEBAR***/
 #app_sidebar {
 	float: left;
 	width: 140px;
 	padding: 10px;
-	border: 1px solid #ddd;
+	border: 1px solid #e8ecf2;
 }
 .app_list {
 	margin: 0 10px 0 10px;
@@ -559,7 +565,7 @@ li.notify {
 .index_name {
 	font-size: 14px;
 	line-height: 30px;
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px solid #e8ecf2;
 }
 .index_note {
 	padding-bottom: 15px;
@@ -586,7 +592,7 @@ li.notify {
 #mood_statusinput {
 	margin: 0 0 0 -4px;
 	height: 50px;
-	border: 1px solid #eee;
+	border: 1px solid #e8ecf2;
 }
 .statusinput, .statusinput2 {
 }
@@ -654,7 +660,7 @@ li.notify {
 	margin: 0 10px 5px 0;
 	padding: 5px 10px 5px 10px;
 	width: 140px;
-	border: 1px solid #DDD;
+	border: 1px solid #e8ecf2;
 	line-height: 20px;
 }
 .mgs_list img {
@@ -675,13 +681,12 @@ li.notify {
 .tabs_header {
 	margin-bottom: 15px;
 	height: 25px;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #e8ecf2;
 	clear: both;
 	overflow: hidden;
 }
 .tabs_header ul.tabs {
 	position: absolute;
-	border-left: 1px solid #ddd;
 	z-index: 10;
 }
 .tabs_header ul.tabs li {
@@ -690,11 +695,13 @@ li.notify {
 }
 .tabs_header ul.tabs li a {
 	float: left;
-	height: 24px;
 	line-height: 24px;
+	text-decoration: none;
 	padding: 0 10px;
-	border: 1px solid #ddd;
-	border-left: none;
+	border: 1px solid #e8ecf2;
+	background: #e8ecf2;
+	margin-left: 5px;
+	outline: none;
 }
 .tabs_header ul.tabs li a span {
 }
@@ -703,8 +710,6 @@ li.notify {
 }
 .tabs_header ul.tabs li.active a {
 	color: #000;
-	font-weight: bold;
-	text-decoration: none;
 	border-bottom: 1px solid #fff;
 	background: #fff;
 }
@@ -718,6 +723,7 @@ li.notify {
 	line-height: 24px;
 }
 .tabs_header ul.tabs li.null a {
+	border: none;
 	padding: 0 10px 0 0;
 	height: 25px;
 	background: url(image/add_button.gif) no-repeat right top;
@@ -735,7 +741,6 @@ li.notify {
 	margin: 0 10px 0 0;
 }
 h2.title {
-	margin: 0 0 20px;
 	font-size: 14px;
 }
 h2.title img {
@@ -758,7 +763,6 @@ h2.title img {
 	background: #EFEFEF url(image/cat_bottom.gif) no-repeat left bottom;
 }
 .cat ul li {
-	position: relative;
 	padding: 5px 10px;
 }
 .cat ul li.current {
@@ -788,7 +792,7 @@ h2.title img {
 }
 .comments h2 {
 	padding: 0 0 10px;
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px solid #e8ecf2;
 }
 .comments_list .avatar48 {
 	position: absolute;
@@ -797,7 +801,7 @@ h2.title img {
 }
 .comments_list li {
 	padding: 10px 10px 10px 63px;
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px solid #e8ecf2;
 	font-size: 12px;
 	line-height: 200%;
 	overflow: hidden;
@@ -810,7 +814,7 @@ h2.title img {
 }
 .comments_list .quote {
 	padding: 10px;
-	border: 1px solid #DDD;
+	border: 1px solid #e8ecf2;
 	background: #FCF9E6 none repeat scroll 0 0;
 	font-size: 12px;
 }
@@ -822,7 +826,7 @@ h2.title img {
 	margin: 0 5px 0 0;
 }
 .space_list table {
-	border: 1px solid #DDD;
+	border: 1px solid #e8ecf2;
 	margin:10px 0;
 }
 .space_list td {
@@ -847,14 +851,14 @@ h2.title img {
 .affiche {
 	margin: 0 0 10px 0;
 	padding: 10px;
-	border: 1px solid #DDD;
+	border: 1px solid #e8ecf2;
 	background: #FCF9E6;
 	overflow: hidden;
 }
 .affiche #space_avatar img {
 	margin: 0 10px 10px 0;
 	padding: 3px;
-	border: 1px solid #DDD;
+	border: 1px solid #e8ecf2;
 	background: #FFF;
 }
 .affiche .article {
@@ -885,7 +889,7 @@ h2.title img {
 .space_task {
 	margin: 0 0 10px;
 	padding: 10px;
-	border: 1px solid #DDD;
+	border: 1px solid #e8ecf2;
 	background: #FCF9E6;
 }
 .task_done {
@@ -905,14 +909,14 @@ h2.title img {
 }
 #share_ul {
 	padding-bottom: 10px;
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px solid #e8ecf2;
 }
 #share_ul li {
 	overflow: hidden;
 }
 #share_ul .title {
 	padding: 5px;
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px solid #e8ecf2;
 	background: #FCF9E6;
 }
 .page {
@@ -923,7 +927,7 @@ h2.title img {
 .page * {
 	margin: 0 3px 0 0;
 	padding: 3px 5px;
-	border: 1px solid #DDD;
+	border: 1px solid #e8ecf2;
 	background: #FCF9E6;
 	color: #999;
 }
@@ -944,23 +948,23 @@ h2.title img {
 	text-decoration: none;
 }
 textarea {
-	border: 1px solid #ddd;
+	border: 1px solid #e8ecf2;
 	overflow: auto;
 }
 .t_input {
 	padding: 3px 2px;
-	border: 1px solid #ddd;
+	border: 1px solid #e8ecf2;
 	line-height: 16px;
 }
 select {
-	border: 1px solid #ddd;
+	border: 1px solid #e8ecf2;
 }
 .button {
 	padding: 0 5px;
 	margin: 0 0 0 3px;
 	height: 24px;
 	border: none;
-	background: #DDD;
+	background: #e8ecf2;
 	color: #333;
 	line-height: 20px;
 	letter-spacing: 1px;
@@ -1100,7 +1104,7 @@ a.button {
 	border-bottom: 1px solid #efefef;
 }
 .listtable .title td, .listtable .title th {
-	border-bottom: 1px solid #dddddd;
+	border-bottom: 1px solid #e8ecf2e8ecf2;
 	font-weight: bold;
 }
 .listtable .line td {
@@ -1134,7 +1138,7 @@ a.button {
 }
 .d_content form {
 	padding: 4px 9px;
-	background: #EEE;
+	background: #e8ecf2;
 }
 /*************************************************CP THEME***/
 .themelist {
@@ -1434,7 +1438,7 @@ a.button {
 .l_status {
 	margin: 5px 0;
 	padding-bottom: 5px;
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px solid #e8ecf2;
 }
 .l_status .active {
 	font-weight:bold;
@@ -1464,7 +1468,7 @@ a.button {
 	overflow: hidden;
 }
 .topic_list thead td {
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px solid #e8ecf2;
 	color: #333;
 }
 .topic_list td.subject img {
@@ -1490,7 +1494,7 @@ a.button {
 	text-align: right;
 }
 .topic_list tbody tr td {
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px solid #e8ecf2;
 }
 .topic_list tbody tr.alt td {
 	background: #FCF9E6;
@@ -1547,20 +1551,16 @@ a.button {
 	font-size: 20px;
 }
 .sidebox {
-	border: 1px solid #999;
 	margin: 0 0 10px;
 }
 .sidebox h2.title {
-	margin: 0 0 10px;
 	padding: 6px 10px;
-	height: 18px;
 	color: #333;
 	font-size: 12px;
-	line-height: 18px;
 }
 .sidebox h3.title {
 	padding: 5px;
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px solid #e8ecf2;
 	background: #FCF9E6;
 }
 .sidebox div.more {
@@ -1575,6 +1575,7 @@ a.button {
 	text-align: center;
 }
 .sidebox .content {
+	border: 1px solid #e8ecf2;
 	padding: 5px;
 }
 .threadfriend {
@@ -1642,7 +1643,7 @@ a.button {
 }
 #footer {
 	padding: 10px 0 10px 0;
-	border-top: 1px solid #DDD;
+	border-top: 1px solid #e8ecf2;
 	color: #333;
 	text-align: center;
 }
@@ -1668,7 +1669,7 @@ a.button {
 }
 .pipe {
 	padding: 0 0.4em;
-	color: #DDD;
+	color: #e8ecf2;
 }
 .article {
 	padding: 0.5em;
@@ -1698,7 +1699,7 @@ a.button {
 .notice {
 	margin-bottom: 2px;
 	padding: 8px;
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px solid #e8ecf2;
 	background: #FCF9E6;
 }
 .ajax_selector {
@@ -1764,7 +1765,7 @@ a.button {
 }
 .popupmenu_centerbox .popupmenu_inner .t_input, .popupmenu_centerbox .popupmenu_inner textarea {
 	margin: 5px 0;
-	border-color: #DDD;
+	border-color: #e8ecf2;
 }
 .popupmenu_centerbox .float_del {
 	background-image: url(image/delete2.gif);
@@ -1883,7 +1884,7 @@ li.news_title {
 	color: #999;
 }
 .searchfriend .t_input {
-	border-color: #DDD;
+	border-color: #e8ecf2;
 }
 .showmessage {
 	margin: 50px auto;
@@ -1942,7 +1943,7 @@ li.news_title {
 .feed_header {
 	position: relative;
 	padding: 5px;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #e8ecf2;
 	margin-bottom: 10px;
 }
 .feed_header .active {
@@ -1950,9 +1951,7 @@ li.news_title {
 }
 .feed {
 	margin: 0 0 20px;
-	width: 100%;
 	line-height: 20px;
-	overflow: hidden;
 }
 .feedtime {
 	margin: 20px 0 10px;
@@ -1960,7 +1959,7 @@ li.news_title {
 }
 .feed li {
 	padding: 10px 20px;
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px solid #e8ecf2;
 }
 .feed .type {
 	position: absolute;
@@ -1979,10 +1978,10 @@ li.news_title {
 	float: left;
 	margin: 10px 10px 10px 0;
 	padding: 2px;
-	border: 1px solid #DDD;
+	border: 1px solid #e8ecf2;
 }
 .feed a img.summaryimg:hover {
-	border-color: #DDD;
+	border-color: #e8ecf2;
 }
 .hotspot {
 	float: right;
@@ -2204,7 +2203,7 @@ li.news_title {
 }
 .showflash {
 	background: #FCF9E6;
-	border: 1px solid #DDD;
+	border: 1px solid #e8ecf2;
 }
 .searchfriend .avatar_list li {
 	padding: 7px;
