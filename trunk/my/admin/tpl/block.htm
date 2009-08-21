@@ -1,0 +1,159 @@
+<!--{template admin/tpl/header}-->
+
+<div class="mainarea">
+<div class="maininner">
+
+<!--{if empty($_GET['op'])}-->
+
+	<div class="bdrcontent">
+		<p>数据调用，会将站内的数据，通过你编写的查询SQL语句，进行查询并读取出来，生成一段调用代码。
+		你将调用代码(模板内嵌，或者JS调用都可以)放置到站点页面上便可以将相应的查询结果展示给访客了，
+		从而可以实现站内任意数据的显示调用。</p>
+	</div>
+	
+	<br />
+	<div class="bdrcontent">
+		<div class="topactions">
+			<a href="$turl">浏览</a> | <a href="$turl&op=add">添加</a>
+		</div>
+	
+		<table cellspacing="0" cellpadding="0" class="formtable">
+		<tr>
+			<th>名称</th>
+			<th width="220">调用代码</th>
+			<th width="180">操作</th>
+		</tr>
+		<!--{loop $list $value}-->
+		<tr>
+			<td>$value[blockname]</td>
+			<td><a href="$turl&op=tpl&id=$value[bid]">模块内嵌代码</a> | <a href="$turl&op=js&id=$value[bid]">Javascript调用代码</a></td>
+			<td><a href="$turl&op=blocksql&id=$value[bid]">编辑SQL</a> | 
+			<a href="$turl&op=code&id=$value[bid]">参数设置</a> | 
+			<a href="$turl&op=delete&id=$value[bid]">删除</a></td>
+		</tr>
+		<!--{/loop}-->
+		</table>
+	</div>
+
+<!--{elseif $_GET['op'] == 'add' || $_GET['op'] == 'blocksql'}-->
+
+	<form method="post" action="$turl">
+	<div class="bdrcontent">
+	
+		<table cellspacing="0" cellpadding="0" class="formtable">
+		<tr><th style="width:10em;">数据模块名称</th><td><input type="text" name="blockname" value="$block[blockname]"></td></tr>
+		<tr><th>数据调用SQL</th><td><textarea name="blocksql" style="width:98%;" rows="6">$block[blocksql]</textarea>
+			<br />本功能需要你掌握一定的SQL编写知识。
+			<br />本数据调用只支持编写 SELECT 开头的查询SQL。
+			<br />SQL语句中需要使用完整的表名。如果想调用非本程序数据库中的表，在表名前面增加数据库名即可。例如：
+			<br />1. 查询读取最新的日志 (假如表名前缀为默认的 uchome_)
+			<br />SELECT * FROM uchome_blog ORDER BY dateline DESC
+			<br />2. 查询读取论坛的最新帖子 (假如论坛安装在discuz数据库，表名前缀为 cdb_)
+			<br />SELECT * FROM discuz.cdb_threads ORDER BY dateline DESC
+			</td></tr>
+		</table>
+	</div>
+	
+	<div class="footactions">
+		<input type="hidden" name="bid" value="$block[bid]">
+		<input type="submit" name="valuesubmit" value="提交" class="submit">
+	</div>
+	
+	</form>
+	
+	<br />
+	<div class="bdrcontent">
+		<div class="title">
+			<h3>数据字典参考</h3>
+			<p>以下是本程序的数据库的数据表名以及字段列表，供你编写查询语句的时候参考。每个字段的具体含义，请参考程序包中的《数据字典》文档</p>
+		</div>
+	
+		<!--{loop $tables $key $value}-->
+		<br />
+		<ul class="listcol list4col">
+			<b>$key</b>
+			<!--{loop $value $subkey $subvalue}-->
+			<li>$subvalue</li>
+			<!--{/loop}-->
+		</ul>
+		<!--{/loop}-->
+
+	</div>
+	
+<!--{elseif $_GET['op'] == 'code'}-->
+
+
+	<form method="post" action="$turl">
+	<div class="bdrcontent">
+	
+	<table cellspacing="0" cellpadding="0" class="formtable">
+	<tr><th style="width:10em;">查询SQL语句</th><td>
+	$block[blocksql]
+	<br />[<a href="$turl&op=blocksql&id=$block[bid]">编辑SQL</a>]
+	</td></tr>
+	
+	<tr><th>变量名</th><td>{$phptag}_SBLOCK['<input type="text" name="cachename" value="$block[cachename]" style="width: 60px;">']</td></tr>
+	<tr><th>缓存时间</th><td><input type="text" name="cachetime" value="$block[cachetime]" size="5"> 秒
+		<br />设置一个缓存时间间隔，该模块数据将自动在指定的时间间隔内更新数据。
+		<br />缓存时间设置越大，对服务器的负载就越小，但数据的及时性就不够。
+		<br />设置为0，则不使用缓存，实时更新，这样会严重增加服务器负载。</td></tr>
+	<tr><th>获取数目</th><td>
+		只获取满足条件的前 <input type="text" name="num" value="$block[num]" size="5"> 条数据
+		<br />或者
+		<br />全部获取，分页显示，每页显示 <input type="text" name="perpage" value="$block[perpage]" size="5"> 条(这会覆盖上面获取条目的设置) </td></tr>
+	<tr><th>数据显示HTML代码</th><td>
+		<textarea name="htmlcode" style="width:98%;" rows="10">$block[htmlcode]</textarea>
+		<br />用html语言，编写数据的显示样式。
+		<br />获取到的数据存放在数组 {$phptag}_SBLOCK[变量名] 中(将“变量名”替换为你在上面设定的变量名)，可以使用 loop 语法对该数组变量进行循环展示。请参考程序包中《数据调用》文档。
+	</td></tr>
+	
+	<!--{if $colnames}-->
+	<tr><th>可调用字段实例</th>
+	<td>
+		<table cellspacing="1" cellpadding="0" bgcolor="#CCCCCC">
+		<tr bgcolor="#F3F3F3"><th>&nbsp;字段名 </th><th>&nbsp;数据实例&nbsp;</th></tr>
+		<!--{loop $colnames $key $value}-->
+		<tr><td bgcolor="#F5F5F5">&nbsp;$key&nbsp;</td><td bgcolor="#FFFFFF">&nbsp;$value&nbsp;</td></tr>
+		<!--{/loop}-->
+		</table>
+	</td></tr>
+	<!--{/if}-->
+
+	</table>
+	</div>
+	
+	<div class="footactions">
+		<input type="hidden" name="bid" value="$block[bid]">
+		<input type="submit" name="codesubmit" value="提交" class="submit">
+	</div>
+	
+	</form>
+
+<!--{elseif $_GET['op'] == 'tpl'}-->
+	<div class="bdrcontent">
+	<div class="title"><h3>模版调用代码</h3></div>
+
+	<table cellspacing="0" cellpadding="0" width="100%">
+	<tr><td>请将以下代码复制，放到站点模板的任意页面的指定位置即可。</td></tr>
+	<tr><td><input type="text" name="blockcode" value="$code" size="80"></td></tr>
+	</table>
+	</div>
+
+<!--{elseif $_GET['op'] == 'js'}-->
+
+	<div class="bdrcontent">
+	<div class="title"><h3>Javascript调用代码</h3></div>
+
+	<table cellspacing="0" cellpadding="0" width="100%">
+	<tr><td><textarea name="blockcode" style="width:98%;" rows="5">$code</textarea></td></tr>
+	</table>
+	</div>
+<!--{/if}-->
+</div>
+</div>
+
+<div class="side">
+	<!--{template admin/tpl/side}-->
+</div>
+
+<!--{template admin/tpl/footer}-->

@@ -1,0 +1,52 @@
+<!--{eval $_TPL['titles'] = array('留言');}-->
+<!--{template header}-->
+
+<div class="c_header a_header">
+	<a href="space.php?uid=$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a>
+	<h1>留言板</h1>
+	<a href="space.php?uid=$space[uid]" class="spacelink"><!--{if $space[self]}-->我<!--{else}-->$space[username]<!--{/if}-->的空间</a>
+</div>
+
+<div class="h_status">按最新顺序排序</div>
+
+<div class="side_right">
+	<div class="wide">
+			
+		<div class="post_list a_list" id="comment">
+		
+			<!--{if $cid}-->
+			<div class="notice">
+				当前只显示与你操作相关的单个留言，<a href="space.php?uid=$space[uid]&do=wall">点击此处查看全部留言</a>
+			</div>
+			<!--{/if}-->
+		
+			<ul id="comment_ul">
+			<!--{loop $list $value}-->
+				<!--{template space_comment_li}-->
+			<!--{/loop}-->
+			</ul>
+		</div>
+		<div class="page">$multi[html]</div>
+		
+		<p>留言</p>
+		<form action="cp.php?ac=comment" method="post" class="quickpost">
+			<textarea name="message" rows="5" cols="60"></textarea>
+			<div class="pf-wall-act">
+				<input type="hidden" name="refer" value="space.php?uid=$space[uid]&do=wall" />
+				<input type="hidden" name="id" value="$space[uid]">
+				<input type="hidden" name="idtype" value="uid">
+				<input type="submit" name="commentsubmit" class="submit" value="留言" />
+			</div>
+		</form>
+		<br />
+	</div>
+	
+	<div class="narrow">
+
+	</div>
+	
+</div>
+<div class="f_status f_status_w s_clear">
+	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
+</div>
+<!--{template footer}-->

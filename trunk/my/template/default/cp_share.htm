@@ -1,0 +1,67 @@
+<!--{template header}-->
+
+<!--{if $_GET['op'] == 'delete'}-->
+
+<div id="$sid" <!--{if !$_SGLOBAL[inajax]}-->class="inpage"<!--{/if}-->>
+<form id="shareform" name="shareform" method="post" action="cp.php?ac=share&op=delete&sid=$sid">
+	<h1>确定删除指定的分享吗？</h1>
+	<p class="btn_line">
+		<input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
+		<!--{if $_SGLOBAL[inajax]}-->
+		<input type="hidden" name="deletesubmit" value="true">
+		<input type="button" name="deletesubmit_btn" value="确定" class="submit" onclick="ajaxpost('shareform', '$sid', 'share_delete')" />
+		<input type="button" name="btnclose" value="取消" onclick="hideMenu();" class="button" />
+		<!--{else}-->
+		<input type="submit" name="deletesubmit" value="确定" class="submit" />
+		<!--{/if}-->
+	</p>
+</form>
+</div>
+
+<!--{else}-->
+
+	<form method="post" id="shareform" name="shareform" action="cp.php?ac=share&type=$type&id=$id">
+	
+	<!--{if !$_SGLOBAL[inajax]}-->
+	<div class="h_status"><h1>分享</h1></div>
+	<div id="$id" style="padding:2em;">
+	<table>
+	
+	<!--{else}-->
+	<h1>分享</h1>
+	<a href="javascript: hideMenu();" class="float_del" title="关闭">关闭</a>
+	<div id="$id" class="popupmenu_inner">
+	<table>
+	
+	<!--{/if}-->
+
+	<tr>
+		<td>你的分享说明:
+			<img src="image/zoomin.gif" onmouseover="this.style.cursor='pointer'" onclick="zoomTextarea('general', 1)">
+			<img src="image/zoomout.gif" onmouseover="this.style.cursor='pointer'" onclick="zoomTextarea('general', 0)"><br />
+			<textarea id="general" name="general" cols="72" rows="5" onkeydown="ctrlEnter(event, 'sharesubmit_btn')" onkeyup="showPreview(this.value, 'quote')"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<input type="hidden" name="refer" value="$_SGLOBAL[refer]">
+		<input type="hidden" name="sharesubmit" value="true">
+		<!--{if $_SGLOBAL[inajax]}-->
+		<button name="sharesubmit_btn" id="sharesubmit_btn" type="button" class="submit" value="true" onclick="ajaxpost('shareform', '$id');">确定</button>
+		<!--{else}-->
+		<button name="sharesubmit_btn" id="sharesubmit_btn" type="submit" class="submit" value="true">确定</button>
+		<!--{/if}-->
+		</td>
+	</tr>
+	</table>
+	<br />
+	<ul class="box"">
+	<!--{eval $value = $arr;}-->
+	<!--{template space_share_li}-->
+	</ul>
+	
+	</form>
+	</div>
+<!--{/if}-->
+
+<!--{template footer}-->

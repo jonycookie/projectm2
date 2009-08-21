@@ -1,0 +1,413 @@
+<!--{template admin/tpl/header}-->
+
+<div class="mainarea">
+<div class="maininner">
+
+<!--{if $list}-->
+	<form method="post" action="admincp.php?ac=usergroup">
+	<div class="bdrcontent">
+
+	<div class="topactions"><a href="admincp.php?ac=usergroup">浏览</a> | <a href="admincp.php?ac=usergroup&op=add">添加</a></div>
+	
+	<div class="title">
+	<h3>普通用户组</h3>
+	<p>普通用户组的用户级别，随着其积分的变化而自动升级或者降级</p>
+	</div>
+	
+	<table cellspacing="0" cellpadding="0" class="formtable">
+	<tr>
+	<th>组头衔</th>
+	<td>积分大于</td>
+	<td width="80">操作</td>
+	</tr>
+	<!--{loop $list[0] $value}-->
+	<tr>
+	<th>$value[grouptitle]</th>
+	<!--{if $value['creditlower'] == -999999999}-->
+	<td><input type="text" size="15" value="$value[creditlower]" name="creditlower[{$value[gid]}]" readonly></td>
+	<!--{else}-->
+	<td><input type="text" size="15" value="$value[creditlower]" name="creditlower[{$value[gid]}]"></td>
+	<!--{/if}-->
+	<td width="80">
+	<a href="admincp.php?ac=usergroup&op=edit&gid=$value[gid]">编辑</a>
+	<a href="admincp.php?ac=usergroup&op=delete&gid=$value[gid]">删除</a>
+	</td>
+	</tr>
+	<!--{/loop}-->
+	</table>
+	</div>
+	<div class="footactions">
+		<input type="submit" name="updatesubmit" value="提交更新" class="submit">
+	</div>
+	</form>
+
+	<div class="bdrcontent">
+	<br />
+	<div class="title">
+	<h3>特殊用户组</h3>
+	<p>归属于特殊用户组的用户级别身份，不受积分的影响，始终保持不变</p>
+	</div>
+	
+	<table cellspacing="0" cellpadding="0" class="formtable">
+	<!--{loop $list[1] $value}-->
+	<tr>
+	<th>$value[grouptitle]</th>
+	<td width="80">
+	<a href="admincp.php?ac=usergroup&op=edit&gid=$value[gid]">编辑</a> | 
+	<a href="admincp.php?ac=usergroup&op=delete&gid=$value[gid]">删除</a>
+	</td>
+	</tr>
+	<!--{/loop}-->
+	</table>
+	
+	<br />
+	<div class="title">
+	<h3>系统用户组</h3>
+	<p>系统内置，用户组不能被编辑或删除；用户级别身份，不受积分的变化的影响</p>
+	</div>
+	
+	<table cellspacing="0" cellpadding="0" class="formtable">
+	<!--{loop $list[-1] $value}-->
+	<tr>
+	<th>$value[grouptitle]</th>
+	<td width="80">
+	<a href="admincp.php?ac=usergroup&op=edit&gid=$value[gid]">编辑</a>
+	</td>
+	</tr>
+	<!--{/loop}-->
+	</table>
+	</div>
+
+
+<!--{/if}-->
+
+<!--{if $thevalue}-->
+	<script type="text/javascript">
+	function credisshow(value) {
+		if(value=='0') {
+			document.getElementById('tr_credit').style.display = '';
+		} else {
+			document.getElementById('tr_credit').style.display = 'none';
+		}
+	}
+	</script>
+
+	<form method="post" action="admincp.php?ac=usergroup&gid=$thevalue[gid]">
+	
+	<div class="bdrcontent">
+	
+	<div class="topactions"><a href="admincp.php?ac=usergroup">浏览</a> | <a href="admincp.php?ac=usergroup&op=add">添加</a></div>
+	
+	<div class="title">
+		<h3>$thevalue[grouptitle] 空间权限</h3>
+		<p>这里设置该用户组成员对自己的个人空间的操作权限许可</p>
+	</div>
+
+	<table cellspacing="0" cellpadding="0" class="formtable">
+	<tr><th style="width:12em;">名称</th><td><input type="text" name="set[grouptitle]" value="$thevalue[grouptitle]"></td></tr>
+	
+	<!--{if !isset($thevalue['system'])}-->
+	<tr>
+		<th>用户组类型</th>
+		<td>
+			<input type="radio" name="set[system]" value="0" onclick="credisshow(0)" checked> 普通用户组
+			<input type="radio" name="set[system]" value="1" onclick="credisshow(1)"> 特殊用户组 (不受积分限制)
+		</td>
+	</tr>
+	<!--{/if}-->
+	<!--{if empty($thevalue['system'])}-->
+	<tr id="tr_credit"><th>积分下限</th><td>
+	<!--{if $thevalue['creditlower'] > -999999999}-->
+	<input type="text" name="set[creditlower]" value="$thevalue[creditlower]" size="20">
+	<!--{else}-->
+	<input type="hidden" name="set[creditlower]" value="$thevalue[creditlower]" size="20">
+	$thevalue[creditlower] (系统默认最低分，不能修改)
+	<!--{/if}-->
+	成为本用户组的最低积分</td></tr>
+	<!--{/if}-->
+	<tr><th>上传空间大小</th><td><input type="text" name="set[maxattachsize]" value="$thevalue[maxattachsize]" size="10"> 单位:M, 0为无限</td></tr>
+	<tr><th>最多好友数</th><td><input type="text" name="set[maxfriendnum]" value="$thevalue[maxfriendnum]" size="10"> 0为无限</td></tr>
+	<tr>
+		<th>两次发布操作间隔</th>
+		<td><input type="text" name="set[postinterval]" value="$thevalue[postinterval]" size="10"> 单位:秒 , 0为不限制，包括日志/评论/留言/话题/回帖等发布操作</td>
+	</tr>
+	<tr>
+		<th>两次搜索操作间隔</th>
+		<td><input type="text" name="set[searchinterval]" value="$thevalue[searchinterval]" size="10"> 单位:秒 , 0为不限制</td>
+	</tr>
+	<tr>
+		<th>二级域名最短长度</th>
+		<td><input type="text" name="set[domainlength]" value="$thevalue[domainlength]" size="10"> 0为禁止使用二级域名，在站点开启二级域名时有效</td>
+	</tr>
+	<tr>
+		<th>发表迷你博客</th>
+		<td>
+			<input type="radio" name="set[allowdoing]" value="1"<!--{if $thevalue['allowdoing']==1}--> checked<!--{/if}-->> 是
+			<input type="radio" name="set[allowdoing]" value="0"<!--{if $thevalue['allowdoing']==0}--> checked<!--{/if}-->> 否
+		</td>
+	</tr>
+	<tr>
+		<th>发表日志</th>
+		<td>
+			<input type="radio" name="set[allowblog]" value="1"<!--{if $thevalue['allowblog']==1}--> checked<!--{/if}-->> 是
+			<input type="radio" name="set[allowblog]" value="0"<!--{if $thevalue['allowblog']==0}--> checked<!--{/if}-->> 否
+		</td>
+	</tr>
+	<tr>
+		<th>上传图片</th>
+		<td>
+			<input type="radio" name="set[allowupload]" value="1"<!--{if $thevalue['allowupload']==1}--> checked<!--{/if}-->> 是
+			<input type="radio" name="set[allowupload]" value="0"<!--{if $thevalue['allowupload']==0}--> checked<!--{/if}-->> 否
+		</td>
+	</tr>
+	<tr>
+		<th>发布分享</th>
+		<td>
+			<input type="radio" name="set[allowshare]" value="1"<!--{if $thevalue['allowshare']==1}--> checked<!--{/if}-->> 是
+			<input type="radio" name="set[allowshare]" value="0"<!--{if $thevalue['allowshare']==0}--> checked<!--{/if}-->> 否
+		</td>
+	</tr>
+	<tr>
+		<th>发表留言/评论</th>
+		<td>
+			<input type="radio" name="set[allowcomment]" value="1"<!--{if $thevalue['allowcomment']==1}--> checked<!--{/if}-->> 是
+			<input type="radio" name="set[allowcomment]" value="0"<!--{if $thevalue['allowcomment']==0}--> checked<!--{/if}-->> 否
+		</td>
+	</tr>
+	<tr>
+		<th>发表选吧话题</th>
+		<td>
+			<input type="radio" name="set[allowthread]" value="1"<!--{if $thevalue['allowthread']==1}--> checked<!--{/if}-->> 是
+			<input type="radio" name="set[allowthread]" value="0"<!--{if $thevalue['allowthread']==0}--> checked<!--{/if}-->> 否
+		</td>
+	</tr>
+	<tr>
+		<th>发表选吧回帖</th>
+		<td>
+			<input type="radio" name="set[allowpost]" value="1"<!--{if $thevalue['allowpost']==1}--> checked<!--{/if}-->> 是
+			<input type="radio" name="set[allowpost]" value="0"<!--{if $thevalue['allowpost']==0}--> checked<!--{/if}-->> 否
+		</td>
+	</tr>
+	<tr>
+		<th>日志全HTML标签支持</th>
+		<td>
+			<input type="radio" name="set[allowhtml]" value="1"<!--{if $thevalue['allowhtml']==1}--> checked<!--{/if}-->> 是
+			<input type="radio" name="set[allowhtml]" value="0"<!--{if $thevalue['allowhtml']==0}--> checked<!--{/if}-->> 否
+			&nbsp;谨慎允许，支持所有html标签可能会造成站点不安全因素
+		</td>
+	</tr>
+	<tr>
+		<th>忽略站点关闭和IP屏蔽</th>
+		<td>
+			<input type="radio" name="set[closeignore]" value="1"<!--{if $thevalue['closeignore']==1}--> checked<!--{/if}-->> 是
+			<input type="radio" name="set[closeignore]" value="0"<!--{if $thevalue['closeignore']==0}--> checked<!--{/if}-->> 否
+		</td>
+	</tr>
+	</table>
+
+	<!--{if $thevalue[system]}-->
+	<br />
+	<div class="title">
+	<h3>$thevalue[grouptitle] 管理权限</h3>
+	<p>设置该用户组成员是否拥有站点管理权限，这可能会影响到站点数据安全，请谨慎选择</p>
+	</div>
+	
+	<table cellspacing="0" cellpadding="0" class="formtable">
+	<tr>
+		<th style="width:12em;">标签</th>
+		<td>
+			<input type="radio" name="set[managetag]" value="1"<!--{if $thevalue['managetag']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managetag]" value="0"<!--{if $thevalue['managetag']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>选吧</th>
+		<td>
+			<input type="radio" name="set[managemtag]" value="1"<!--{if $thevalue['managemtag']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managemtag]" value="0"<!--{if $thevalue['managemtag']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>事件</th>
+		<td>
+			<input type="radio" name="set[managefeed]" value="1"<!--{if $thevalue['managefeed']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managefeed]" value="0"<!--{if $thevalue['managefeed']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>迷你博客</th>
+		<td>
+			<input type="radio" name="set[managedoing]" value="1"<!--{if $thevalue['managedoing']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managedoing]" value="0"<!--{if $thevalue['managedoing']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>分享</th>
+		<td>
+			<input type="radio" name="set[manageshare]" value="1"<!--{if $thevalue['manageshare']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[manageshare]" value="0"<!--{if $thevalue['manageshare']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>日志</th>
+		<td>
+			<input type="radio" name="set[manageblog]" value="1"<!--{if $thevalue['manageblog']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[manageblog]" value="0"<!--{if $thevalue['manageblog']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>相册</th>
+		<td>
+			<input type="radio" name="set[managealbum]" value="1"<!--{if $thevalue['managealbum']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managealbum]" value="0"<!--{if $thevalue['managealbum']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>评论</th>
+		<td>
+			<input type="radio" name="set[managecomment]" value="1"<!--{if $thevalue['managecomment']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managecomment]" value="0"<!--{if $thevalue['managecomment']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>话题</th>
+		<td>
+			<input type="radio" name="set[managethread]" value="1"<!--{if $thevalue['managethread']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managethread]" value="0"<!--{if $thevalue['managethread']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>站点设置</th>
+		<td>
+			<input type="radio" name="set[manageconfig]" value="1"<!--{if $thevalue['manageconfig']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[manageconfig]" value="0"<!--{if $thevalue['manageconfig']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>随便看看</th>
+		<td>
+			<input type="radio" name="set[managenetwork]" value="1"<!--{if $thevalue['managenetwork']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managenetwork]" value="0"<!--{if $thevalue['managenetwork']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>用户组</th>
+		<td>
+			<input type="radio" name="set[manageusergroup]" value="1"<!--{if $thevalue['manageusergroup']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[manageusergroup]" value="0"<!--{if $thevalue['manageusergroup']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>积分规则</th>
+		<td>
+			<input type="radio" name="set[managecredit]" value="1"<!--{if $thevalue['managecredit']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managecredit]" value="0"<!--{if $thevalue['managecredit']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>用户栏目</th>
+		<td>
+			<input type="radio" name="set[manageprofilefield]" value="1"<!--{if $thevalue['manageprofilefield']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[manageprofilefield]" value="0"<!--{if $thevalue['manageprofilefield']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>选吧栏目</th>
+		<td>
+			<input type="radio" name="set[manageprofield]" value="1"<!--{if $thevalue['manageprofield']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[manageprofield]" value="0"<!--{if $thevalue['manageprofield']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>词语屏蔽</th>
+		<td>
+			<input type="radio" name="set[managecensor]" value="1"<!--{if $thevalue['managecensor']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managecensor]" value="0"<!--{if $thevalue['managecensor']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>广告设置</th>
+		<td>
+			<input type="radio" name="set[managead]" value="1"<!--{if $thevalue['managead']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managead]" value="0"<!--{if $thevalue['managead']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>缓存更新</th>
+		<td>
+			<input type="radio" name="set[managecache]" value="1"<!--{if $thevalue['managecache']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managecache]" value="0"<!--{if $thevalue['managecache']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>标签模板</th>
+		<td>
+			<input type="radio" name="set[managetagtpl]" value="1"<!--{if $thevalue['managetagtpl']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managetagtpl]" value="0"<!--{if $thevalue['managetagtpl']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>数据调用</th>
+		<td>
+			<input type="radio" name="set[manageblock]" value="1"<!--{if $thevalue['manageblock']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[manageblock]" value="0"<!--{if $thevalue['manageblock']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>模板编辑</th>
+		<td>
+			<input type="radio" name="set[managetemplate]" value="1"<!--{if $thevalue['managetemplate']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managetemplate]" value="0"<!--{if $thevalue['managetemplate']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>数据备份</th>
+		<td>
+			<input type="radio" name="set[managebackup]" value="1"<!--{if $thevalue['managebackup']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managebackup]" value="0"<!--{if $thevalue['managebackup']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>统计更新</th>
+		<td>
+			<input type="radio" name="set[managestat]" value="1"<!--{if $thevalue['managestat']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managestat]" value="0"<!--{if $thevalue['managestat']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>计划任务</th>
+		<td>
+			<input type="radio" name="set[managecron]" value="1"<!--{if $thevalue['managecron']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managecron]" value="0"<!--{if $thevalue['managecron']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+	<tr>
+		<th>用户空间</th>
+		<td>
+			<input type="radio" name="set[managespace]" value="1"<!--{if $thevalue['managespace']==1}--> checked<!--{/if}-->> 可管理
+			<input type="radio" name="set[managespace]" value="0"<!--{if $thevalue['managespace']==0}--> checked<!--{/if}-->> 禁止
+		</td>
+	</tr>
+
+	</table>
+	<!--{/if}-->
+	
+	</div>
+	
+	<div class="footactions">
+	<input type="hidden" name="set[gid]" value="$thevalue[gid]">
+	<input type="submit" name="thevaluesubmit" value="提交" class="submit">
+	</div>
+	
+	</form>
+
+<!--{/if}-->
+
+</div>
+</div>
+
+<div class="side">
+	<!--{template admin/tpl/side}-->
+</div>
+
+<!--{template admin/tpl/footer}-->

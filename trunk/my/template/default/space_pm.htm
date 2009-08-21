@@ -1,0 +1,130 @@
+<!--{eval $_TPL['titles'] = array('私信');}-->
+<!--{template header}-->
+
+<div class="c_header a_header">
+	<a href="space.php?uid=$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a>
+	<h1>私信</h1>
+	<a href="space.php?uid=$space[uid]" class="spacelink">我的空间</a>
+</div>
+
+<div class="tabs_header">
+	<a href="cp.php?ac=pm" class="t_button">发短消息</a>
+	<ul class="tabs">
+		<li$actives[newbox]><a href="space.php?do=pm&view=newbox">未读消息</a></li>
+		<li$actives[inbox]><a href="space.php?do=pm&view=inbox">收件箱</a></li>
+		<li$actives[outbox]><a href="space.php?do=pm&view=outbox">发件箱</a></li>
+		<li$actives[announce]><a href="space.php?do=pm&view=announce">公共消息</a></li>
+		<li$actives[ignore]><a href="space.php?do=pm&view=ignore">忽略列表</a></li>
+		<li><a href="space.php?do=notice">通知</a></li>
+	</ul>
+</div>
+
+<div>
+
+<!--{if $pmid}-->
+
+<div class="h_status"><a href="space.php?do=pm">返回收件箱</a></div>
+
+<ul class="pm_list" id="pm_ul">
+	<!--{loop $list $key $value}-->
+	<li class="s_clear">
+		<a href="space.php?uid=$value[msgfromid]"><img src="<!--{avatar($value[msgfromid],small)}-->" width="48" height="48" alt="$value[msgfrom]" class="avatar" /></a>
+		<cite<!--{if $value['new']}--> style="font-weight:bold;"<!--{/if}-->><a href="space.php?uid=$value[msgfromid]">$value[msgfrom]</a><br /><span class="gray"><!--{date('Y-m-d H:i',$value[dateline],1)}--></span></cite>
+		<div class="pm_content">
+			<h6>$value[subject]</h6>
+			<p>$value[message]</p>
+		</div>
+	</li>
+	<!--{/loop}-->
+</ul>
+
+<!--{if $msgtoid}-->
+<div class="quickpost" style="margin-left: 200px; margin-bottom: 2em;">
+	<h4>回复：</h4>
+	<form id="pmform" name="pmform" method="post" action="cp.php?ac=pm&op=send&uid=$msgfromid&pmid=$pmid">
+		<table cellspacing="0" cellpadding="0">
+			<tr>
+				<td>
+					<p><label for="pm_subject">标题：</label><span class="gray">(可选)</span></p>
+					<input type="text" id="pm_subject" name="subject" value="" size="38" class="t_input" style="width: 360px;" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>
+						<label for="pm_message">内容：</label>
+					</p>
+					<textarea id="pm_message" name="message" cols="40" rows="4" style="width: 360px;" onkeydown="ctrlEnter(event, 'pmsubmit_btn');"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="hidden" name="pmsubmit" value="true" />
+					<input type="button" name="pmsubmit_btn" id="pmsubmit_btn" value="发送" class="submit" onclick="ajaxpost('pmform', 'pm_status', 'pm_add')" />
+					<span id="pm_status"></span>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<!--{/if}-->
+<!--{elseif $_GET['view'] == 'ignore'}-->
+<form id="ignoreform" name="ignoreform" method="post" action="cp.php?ac=pm&op=ignore" class="c_form">
+	<table cellspacing="0" cellpadding="0" class="formtable" width="100%">
+		<caption>
+			<h2>忽略列表</h2>
+			<p>添加到该列表中的用户给您发送短消息时将不予接收<br />
+				添加多个忽略人员名单时用逗号 "," 隔开，如“张三,李四,王五”<br />
+				如需禁止所有用户发来的短消息，请设置为 "&#123;ALL&#125;"</p>
+		</caption>
+		<tr>
+			<td><textarea id="ignorelist" name="ignorelist" cols="40" rows="6" style="width: 98%;" onkeydown="ctrlEnter(event, 'ignoresubmit');">$ignorelist</textarea></td>
+		</tr>
+		<tr>
+			<td><input type="submit" name="ignoresubmit" id="ignoresubmit" value="保存" class="submit" /></td>
+		</tr>
+	</table>
+</form>
+<!--{else}-->
+
+<div class="h_status">有 $count 条</div>
+
+<!--{if $count}-->
+	<table cellspacing="0" cellpadding="0" width="100%" class="linetable" style="margin-bottom: 1em;">
+	<!--{loop $list $value}-->
+	<tbody id="pm_{$value[pmid]}_li">
+	<tr>
+		<td width="20">&nbsp;</td>
+		<!--{if $value[msgto] && $value[msgfromid]==$_SGLOBAL[supe_uid]}-->
+		<td width="58"><a href="space.php?uid=$value[msgtoid]"><img src="<!--{avatar($value[msgtoid],small)}-->" width="48" height="48" alt="$value[msgto]" /></a></td>
+		<td width="100"><span class="gray">给：</span><a href="space.php?uid=$value[msgtoid]">$value[msgto]</a><br /><span class="gray"><!--{date('n-j H:i',$value[dateline],1)}--></span></td>
+		<td><div<!--{if $value['new']==2}--> class="l_text" style="font-weight:bold;"<!--{/if}-->><a href="space.php?do=pm&pmid=$value[pmid]">$value[subject]</a></div><span class="gray">$value[message]</span></td>
+		<td width="30" class="del"><div><a href="cp.php?ac=pm&op=delete&folder=outbox&pmid=$value[pmid]" id="a_delete_$value[pmid]" class="float_del" onclick="ajaxmenu(event, this.id, 99999)">删除</a></div></td>
+		<!--{else}-->
+		<td width="58"><a href="space.php?uid=$value[msgfromid]"><img src="<!--{avatar($value[msgfromid],small)}-->" width="48" height="48" alt="$value[msgfrom]" /></a></td>
+		<td width="100"><a href="space.php?uid=$value[msgfromid]">$value[msgfrom]</a><br /><span class="gray"><!--{date('n-j H:i',$value[dateline],1)}--></span></td>
+		<td><div<!--{if $value['new']==1}--> class="l_text" style="font-weight:bold;"<!--{/if}-->><a href="space.php?do=pm&pmid=$value[pmid]">$value[subject]</a></div><span class="gray">$value[message]</span></td>
+		<td width="30" class="del"><div><a href="cp.php?ac=pm&op=delete&folder=inbox&pmid=$value[pmid]" id="a_delete_$value[pmid]" class="float_del" onclick="ajaxmenu(event, this.id, 99999)">删除</a></div></td>
+		<!--{/if}-->
+	</tr>
+	</tbody>
+	<!--{/loop}-->
+	</table>
+	<!--{if $view=='newbox'}-->
+	<div class="article" style="margin-left:1em;"><a href="space.php?do=pm&view=inbox">本页最多显示 10 条未读，请进入收件箱或发件箱查看更多</a></div>
+	<!--{else}-->
+	<div class="page">$multi[html]</div>
+	<!--{/if}-->
+<!--{else}-->
+<div class="article l_text" style="margin-left:1em;">
+	当前没有相应的短消息。
+</div>
+<!--{/if}-->
+
+<!--{/if}-->
+
+</div>
+<div class="f_status s_clear">
+	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
+</div>
+<!--{template footer}-->

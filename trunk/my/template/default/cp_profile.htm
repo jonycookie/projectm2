@@ -1,0 +1,193 @@
+<!--{template header}-->
+<!--{if $_SGLOBAL['guidemode']}-->
+<!--{template space_guide}-->
+<!--{else}-->
+<!--{template cp_header}-->
+<!--{/if}-->
+
+<script>
+	function avatarshow() {
+		var obj = $('div_avatar');
+		if(obj.style.display=='') {
+			obj.style.display = 'none';
+		} else {
+			obj.style.display = '';
+		}
+	}
+	function updateavatar() {
+		var obj = $('avatar');
+		var objsmall = $('avatarsmall');
+		var objdiv = $('div_avatar');
+		if(obj) {
+			obj.src='{UC_API}/avatar.php?uid=$_SGLOBAL[supe_uid]&random=1'+Math.random();
+		}
+		if(objsmall) {
+			objsmall.src='{UC_API}/avatar.php?uid=$_SGLOBAL[supe_uid]&size=small&random=1'+Math.random();
+		}
+		if(objdiv) {
+			objdiv.innerHTML = '<tr><td>头像保存成功！</td></tr>';
+		}
+	}
+</script>
+<form method="post" action="cp.php?ac=profile&ref" class="c_form">
+	<table cellspacing="0" cellpadding="0" class="formtable">
+		<caption>
+			<h2>头像</h2>
+			<p>请选择您的照片进行上传编辑，并点击“确定”进行头像保存。</p>
+		</caption>
+<!--{if $_SGLOBAL['guidemode']}-->
+		<tbody id="div_avatar">
+		<tr>
+			<td>$uc_avatarflash</td>
+		</tr>
+		</tbody>
+	</table>
+<!--{else}-->
+		<tr>
+			<td width="200"><img src="{UC_API}/avatar.php?uid=$_SGLOBAL[supe_uid]" id="avatar" /></td>
+			<td><input type="button" name="clickbutton[]" value="编辑头像" onclick="avatarshow()" class="button"></td>
+		</tr>
+	</table>
+	<table cellspacing="0" cellpadding="0" class="formtable">
+		<tbody style="display:none;" id="div_avatar">
+		<tr>
+			<td colspan="2">
+			$uc_avatarflash
+			</td>
+		</tr>
+		</tbody>
+	</table>
+<!--{/if}-->
+	
+	<table cellspacing="0" cellpadding="0" class="formtable">
+		<caption>
+			<h2>基本资料</h2>
+		</caption>
+		<tr>
+			<th>帐号</th>
+			<td>$space[username]</td>
+		</tr>
+		<tr>
+			<th>名字(昵称)</th>
+			<td><input type="text" id="spacename" name="spacename" value="$space[spacename]" class="t_input" /></td>
+		</tr>
+		<tr>
+			<th>性别</th>
+			<td>
+				<label for="sexm"><input id="sexm" type="radio" value="1" name="sex"$sexarr[1] />男</label> 
+				<label for="sexw"><input id="sexw" type="radio" value="2" name="sex"$sexarr[2] />女</label>
+			</td>
+		</tr>
+		<tr>
+			<th>婚恋状态</th>
+			<td>
+				<select id="marry" name="marry">
+					<option value="0">无</option>
+					<option value="1"$marryarr[1]>单身</option>
+					<option value="2"$marryarr[2]>非单身</option>
+				</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<th>生日</th>
+			<td>
+				<select id="birthyear" name="birthyear">
+					<option value="0">无</option>
+					$birthyeayhtml
+				</select> 年 
+				<select id="birthmonth" name="birthmonth">
+					<option value="0">无</option>
+					$birthmonthhtml
+				</select> 月 
+				<select id="birthday" name="birthday">
+					<option value="0">无</option>
+					$birthdayhtml
+				</select> 日
+			</td>
+		</tr>
+		<tr>
+			<th>血型</th>
+			<td>
+				<select id="blood" name="blood">
+					<option value="">无</option>
+					$bloodhtml
+				</select>
+			</td>
+		</tr>
+	
+		<tr>
+			<th>出生地</th>
+			<td>
+				<script type="text/javascript" src="source/script_city.js"></script>
+				<script type="text/javascript">
+				<!--
+				showprovince('birthprovince', 'birthcity', '$space[birthprovince]');
+				showcity('birthcity', '$space[birthcity]');
+				//-->
+				</script>
+			</td>
+		</tr>
+		<tr>
+			<th>居住地</th>
+			<td>
+				<script type="text/javascript">
+				<!--
+				showprovince('resideprovince', 'residecity', '$space[resideprovince]');
+				showcity('residecity', '$space[residecity]');
+				//-->
+				</script>
+			</td>
+		</tr>
+		<tr>
+			<th>邮箱</th>
+			<td>
+				<input type="text" class="t_input" name="email" value="$space[email]" /> 
+			</td>
+		</tr>
+		<tr>
+			<th>QQ</th>
+			<td>
+				<input type="text" class="t_input" name="qq" value="$space[qq]" /> 
+			</td>
+		</tr>
+		<tr>
+			<th>MSN</th>
+			<td>
+				<input type="text" class="t_input" name="msn" value="$space[msn]" /> 
+			</td>
+		</tr>
+		
+		<!--{loop $profilefields $value}-->
+		<tr>
+			<th>$value[title]<!--{if $value[required]}-->*<!--{/if}--></th>
+			<td>
+				$value[formhtml]
+				<!--{if $value[note]}--><br>$value[note]<!--{/if}-->
+			</td>
+		</tr>
+		<!--{/loop}-->
+		
+		<!--{if $_SGLOBAL['guidemode']}-->
+		</table>
+		<table cellspacing="0" cellpadding="0" class="formtable">
+		<tr>
+			<td align="center">
+			<input type="hidden" name="guidemode" value="1">
+			<input type="submit" name="profilesubmit" value="下一步" class="submit" />
+			</td>
+			<td align="right"><a href="space.php?do=home&view=guide&step=2">跳过&gt;&gt;</a></td>
+		</tr>
+		<!--{else}-->
+		<tr>
+			<th>&nbsp;</th>
+			<td><input type="submit" name="profilesubmit" value="提交" class="submit" /></td>
+		</tr>
+		<!--{/if}-->
+</table>
+</form>
+<div class="f_status s_clear">
+	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
+</div>
+
+<!--{template footer}-->

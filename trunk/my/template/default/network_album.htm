@@ -1,0 +1,91 @@
+<!--{eval $_TPL['titles'] = array('相册', '随便看看');}-->
+<!--{template header}-->
+<!--{if $space[uid]}-->
+<div class="c_header a_header">
+	<a href="space.php?uid=$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a>
+	<h1>相册</h1>
+	<a href="space.php?uid=$space[uid]" class="spacelink">我的空间</a>
+</div>
+<div class="tabs_header">
+	<ul class="tabs">
+		<!--{if $space[friendnum]}--><li><a href="space.php?uid=$space[uid]&do=album">好友最新相册</a></li><!--{/if}-->
+		<li><a href="space.php?uid=$space[uid]&do=album&view=me">我的相册</a></li>
+		<li class="active"><a href="network.php?ac=album">大家的相册</a></li>
+	</ul>
+</div>
+<div class="h_status">以发布时间先后为序</div>
+<!--{else}-->
+<!--{template network_header}-->
+<!--{/if}-->
+
+<div class="h_status">
+	<div id="m_search"<!--{if !empty($gets)}--> style="display:none;"<!--{/if}-->>
+		<form method="get" action="network.php">
+		<input type="text" name="key" value="$gets[key]" size="26" class="t_input" />
+		<input type="hidden" name="ac" value="$ac" />
+		<input type="hidden" name="searchmode" value="1" />
+		<input type="submit" name="searchsubmit" value="搜索相册" class="submit" />
+		<a href="javascript:;" onclick="document.getElementById('m_search').style.display='none';document.getElementById('adv_search').style.display='block'">高级搜索</a>
+		</form>
+	</div>
+	<form method="get" action="network.php">
+		<table cellspacing="0" cellpadding="0" class="formtable" id="adv_search"<!--{if empty($gets)}--> style="display:none;"<!--{/if}-->>
+			<tr>
+				<th>相册名*</th>
+				<td>
+					<input type="text" name="key" value="$gets[key]" size="26" class="t_input" />
+				</td>
+			</tr>
+			<tr>
+				<th>时间范围</th>
+				<td>
+					<input type="text" name="starttime" value="$gets[starttime]" size="10" class="t_input" /> ~ <input type="text" name="endtime" value="$gets[endtime]" size="10" class="t_input" />
+					格式为 YYYY-MM-DD
+				</td>
+			</tr>
+			<tr>
+				<th>&nbsp;</th>
+				<td>
+				<input type="hidden" name="ac" value="$ac" />
+				<input type="hidden" name="searchmode" value="1" />
+				<input type="submit" name="searchsubmit" value="搜索" class="submit" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+<div class="d_content">
+	<!--{if $list}-->
+	<div class="albums_list">
+		<table cellspacing="6" cellpadding="0" width="100%"><tr>
+			<!--{loop $list $key $value}-->
+			<td>
+				<ul class="image_left">
+					<li>
+						<p class="image"><a href="space.php?uid=$value[uid]&do=album&id=$value[albumid]"><img src="$value[pic]" /></a></p>
+						<table cellspacing="0" cellpadding="0" class="infotable">
+							<caption><a href="space.php?uid=$value[uid]&do=album&id=$value[albumid]">$value[albumname]</a></caption>
+							<tr><td>$value[picnum]张照片</td></tr>
+							<tr><td><a href="space.php?uid=$value[uid]">$value[username]</a></td></tr>
+							<tr><td>更新: <!--{date('Y-m-d H:i', $value[updatetime], 1)}--></td></tr>
+						</table>
+					</li>
+				</ul>
+				</td>
+			<!--{if $key%2==1}--></tr><tr><!--{/if}-->
+			<!--{/loop}-->
+		</tr></table>
+	</div>
+	<div class="page">
+	<!--{if $multi[html]=='networkpage'}-->仅显示最新更新的 $count 个相册<!--{else}-->$multi[html]<!--{/if}-->
+	</div>
+	<!--{else}-->
+	<div class="c_form">没有相应的相册。</div>
+	<!--{/if}-->
+</div>
+
+<div class="f_status f_status_w s_clear">
+	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
+</div>
+<!--{template footer}-->

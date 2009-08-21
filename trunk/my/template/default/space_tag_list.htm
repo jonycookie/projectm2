@@ -1,0 +1,33 @@
+<!--{eval $_TPL['titles'] = array('标签');}-->
+<!--{template header}-->
+
+<div class="c_header a_header">
+	<a href="space.php?uid=$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a>
+	<h1>标签</h1>
+	<a href="space.php?uid=$space[uid]" class="spacelink"><!--{if $space[self]}-->我<!--{else}-->$space[username]<!--{/if}-->的空间</a>
+</div>
+
+<div class="h_status">按照热门程度排序</div>
+
+<div class="d_content">
+	
+	<div class="albums_list">
+		<table cellspacing="6" cellpadding="0" width="100%">
+			<tr>
+			<!--{loop $list $key $value}-->
+			<td>
+				<a href="space.php?uid=$space[uid]&do=tag&id=$value[tagid]">$value[tagname]</a>($value[blognum])
+			</td>
+			<!--{if $key%5==4}--></tr><tr><!--{/if}-->
+			<!--{/loop}-->
+			</tr>
+		</table>
+	</div>
+
+	<div class="page">$multi[html]</div>
+
+</div>
+<div class="f_status f_status_w s_clear">
+	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
+</div>
+<!--{template footer}-->

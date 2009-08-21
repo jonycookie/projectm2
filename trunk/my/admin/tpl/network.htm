@@ -1,0 +1,493 @@
+<!--{template admin/tpl/header}-->
+
+<div class="mainarea">
+	<div class="maininner">
+		<!--{if empty($_GET['module'])}-->
+			<div class="bdrcontent">
+				<div class="title">
+					<h3>随便看看模块列表</h3>
+					<p>设置相应模块的取值条件</p>
+				</div>
+				<table cellspacing="0" cellpadding="0" class="formtable">
+					<tr>
+						<th>模块</th>
+						<th width="80">操作</th>
+					</tr>
+					<tr>
+						<td>成员</td>
+						<td>
+							<a href="admincp.php?ac=network&op=edit&module=space">编辑</a>
+						</td>
+					</tr>
+					<tr>
+						<td>迷您博客</td>
+						<td>
+							<a href="admincp.php?ac=network&op=edit&module=doing">编辑</a>
+						</td>
+					</tr>
+					<tr>
+						<td>日志</td>
+						<td>
+							<a href="admincp.php?ac=network&op=edit&module=blog">编辑</a>
+						</td>
+					</tr>
+					<tr>
+						<td>分享</td>
+						<td>
+							<a href="admincp.php?ac=network&op=edit&module=share">编辑</a>
+						</td>
+					</tr>
+					<tr>
+						<td>相册</td>
+						<td>
+							<a href="admincp.php?ac=network&op=edit&module=album">编辑</a>
+						</td>
+					</tr>
+					<tr>
+						<td>选吧</td>
+						<td>
+							<a href="admincp.php?ac=network&op=edit&module=mtag">编辑</a>
+						</td>
+					</tr>
+					<tr>
+						<td>话题</td>
+						<td>
+							<a href="admincp.php?ac=network&op=edit&module=thread">编辑</a>
+						</td>
+					</tr>
+				</table>
+				
+				
+			</div>
+			<br />
+			<form method="post" action="admincp.php?ac=network&op=settinng">
+				<div class="bdrcontent">
+					<div class="title">
+						<h3>随便看看设置</h3>
+						<p>设置随便看看条件</p>
+					</div>
+					
+						<table cellspacing="0" cellpadding="0" class="formtable">
+							<tr>
+								<th style="width:12em;">随便看看允许分页</th>
+								<td><input type="radio" name="config[networkpage]" value="1"<!--{if $configs[networkpage] == '1'}--> checked<!--{/if}-->>是
+									<input type="radio" name="config[networkpage]" value="0"<!--{if $configs[networkpage] == '0'}--> checked<!--{/if}-->>否
+									<br>允许列表进行分页查看时，可能会对用户的隐私权限造成影响，并会增加服务器负担。
+								</td>
+							</tr>
+							<tr>
+								<th>数据缓存更新时间</th>
+								<td><input type="text" name="config[networkupdate]" value="$configs[networkupdate]" size="10"> 单位:秒 , 默认为300秒,设为0将不使用缓存机制，并会增加服务器负担</td>
+							</tr>
+						</table>
+						<br />
+				</div>
+				<div class="footactions">
+					<input type="submit" name="settingsubmit" value="提交" class="submit">
+				</div>
+			</form>
+			
+		<!--{else}-->
+			<form method="post" action="admincp.php?ac=network">
+				<div class="bdrcontent">
+					<div class="title">
+						<h3>默认设置</h3>
+					</div>
+					<table cellspacing="0" cellpadding="0" class="formtable">
+						<tr>
+							<td style="width:10em;">使用默认设置</td>
+							<td>
+								<input type="radio" name="network[$module][usedefault]" value="1" onclick="showsetting(false);" <!--{if $network[$module][usedefault] == 1}-->checked<!--{/if}-->>是
+								<input type="radio" name="network[$module][usedefault]" value="0" onclick="showsetting(true);" <!--{if $network[$module][usedefault] == 0}-->checked<!--{/if}-->>否
+							</td>
+						</tr>
+					</table>
+					<div id="moreset" style="display:<!--{if $network[$module][usedefault]}-->none<!--{else}-->block<!--{/if}-->">
+					<!--{eval
+						$datearr = array(
+							'0' => '---不限制---',
+							'86400' => '一天以来',
+							'172800' => '两天以来',
+							'604800' => '一周以来',
+							'1209600' => '两周以来',
+							'2592000' => '一个月以来',
+							'7948800' => '三个月以来',
+							'15897600' => '六个月以来',
+							'31536000' => '一年以来'
+						);
+					}-->
+					<!--{eval
+						$scarr = array(
+							'' => '----',
+							'ASC' => '递增',
+							'DESC' => '递减',
+						); 
+					}-->
+					<!--{if $_GET['module']=='space'}-->
+					<div class="title">
+						<h3>成员过滤</h3>
+						<p>可以根据下面提供的条件进行设置成员区块的取值条件</p>
+					</div>
+					<table cellspacing="0" cellpadding="0" class="formtable">
+						<tr>
+							<td style="width:10em;">指定成员uid</td>
+							<td>
+								<input name="network[space][uid]" type="text" id="spaceuid" size="20" value="$network[space][uid]" /> 多个uid用","分隔
+							</td>
+						</tr>
+						<tr>
+							<td>建立时间</td>
+							<td><!--{eval echo getselectstr("network[space][dateline]", $datearr, $network['space']['dateline'])}--></td>
+						</tr>
+						<tr>
+							<td>更新时间</td>
+							<td><!--{eval echo getselectstr("network[space][updatetime]", $datearr, $network['space']['updatetime'])}--></td>
+						</tr>
+						<tr>
+							<td>空间访问数范围</td>
+							<td>
+								<input name="network[space][viewnum][]" type="text" id="sviewnum0" size="10" value="$network[space][viewnum][0]" /> ~ <input name="network[space][viewnum][]" type="text" id="sviewnum1" size="10" value="$network[space][viewnum][1]" />
+							</td>
+						</tr>
+						<tr>
+							<td>空间好友数范围</td>
+							<td>
+								<input name="network[space][friendnum][]" type="text" id="friendnum0" size="10" value="$network[space][friendnum][0]" /> ~ <input name="network[space][friendnum][]" type="text" id="friendnum1" size="10" value="$network[space][friendnum][1]" />
+							</td>
+						</tr>
+						<tr>
+							<td>积分范围</td>
+							<td>
+								<input name="network[space][credit][]" type="text" id="credit0" size="10" value="$network[space][credit][0]" /> ~ <input name="network[space][credit][]" type="text" id="credit1" size="10" value="$network[space][credit][1]" />
+							</td>
+						</tr>
+					</table>
+					<div class="title">
+						<h3>成员排序设置</h3>
+					</div>
+					<table cellspacing="0" cellpadding="0" class="formtable">
+						<tr>
+							<td style="width:10em;">列表排序</td>
+							<td>
+								<!--{eval
+									$spacearr = array(
+										'' => '------',
+										'dateline' => '建立时间',
+										'updatetime' => '更新时间',
+										'viewnum' => '空间访问数',
+										'friendnum' => '空间好友数',
+										'credit' => '积分'
+									);
+								}-->
+								<!--{eval echo getselectstr("network[space][order]", $spacearr, $network['space']['order'])}--> 
+								<!--{eval echo getselectstr("network[space][sc]", $scarr, $network['space']['sc'])}-->
+							</td>
+						</tr>
+					</table>
+					<!--{elseif $_GET['module']=='doing'}-->
+					<div class="title">
+						<h3>迷您博客过滤</h3>
+						<p>可以根据下面提供的条件进行设置迷您博客区块的取值条件</p>
+					</div>
+					<table cellspacing="0" cellpadding="0" class="formtable">
+						<tr>
+							<td style="width:10em;">发布时间</td>
+							<td><!--{eval echo getselectstr("network[doing][dateline]", $datearr, $network['doing']['dateline'])}--></td>
+						</tr>
+						<tr>
+							<td>指定作者uid</td>
+							<td>
+								<input name="network[doing][uid]" type="text" id="doinguid" size="20" value="$network[doing][uid]" /> 多个uid用","分隔
+							</td>
+						</tr>
+					</table>
+					<div class="title">
+						<h3>迷您博客排序设置</h3>
+					</div>
+					<table cellspacing="0" cellpadding="0" class="formtable">
+						<tr>
+							<td style="width:10em;">列表排序</td>
+							<td>
+								<!--{eval
+									$doingarr = array(
+										'' => '------',
+										'dateline' => '发布时间'
+									);
+								}-->
+								<!--{eval echo getselectstr("network[doing][order]", $doingarr, $network['doing']['order'])}--> 
+								<!--{eval echo getselectstr("network[doing][sc]", $scarr, $network['doing']['sc'])}-->
+							</td>
+						</tr>
+					</table>
+					<!--{elseif $_GET['module']=='blog'}-->
+					<div class="title">
+						<h3>日志过滤</h3>
+						<p>可以根据下面提供的条件进行设置日志区块的取值条件</p>
+					</div>
+					<table cellspacing="0" cellpadding="0" class="formtable">
+						<tr>
+							<td style="width:10em;">发布时间</td>
+							<td><!--{eval echo getselectstr("network[blog][dateline]", $datearr, $network['blog']['dateline'])}--></td>
+						</tr>
+						<tr>
+							<td>指定作者uid</td>
+							<td>
+								<input name="network[blog][uid]" type="text" id="bloguid" size="20" value="$network[blog][uid]" /> 多个uid用","分隔
+							</td>
+						</tr>
+						<tr>
+							<td>查看数范围</td>
+							<td>
+								<input name="network[blog][viewnum][]" type="text" id="viewnum0" size="10" value="$network[blog][viewnum][0]" /> ~ <input name="network[blog][viewnum][]" type="text" id="viewnum1" size="10" value="$network[blog][viewnum][1]" />
+							</td>
+						</tr>
+						<tr>
+							<td>回复数范围</td>
+							<td>
+								<input name="network[blog][replynum][]" type="text" id="replynum0" size="10" value="$network[blog][replynum][0]" /> ~ <input name="network[blog][replynum][]" type="text" id="replynum1" size="10" value="$network[blog][replynum][1]" />
+							</td>
+						</tr>
+					</table>
+					<div class="title">
+						<h3>日志排序设置</h3>
+					</div>
+					<table cellspacing="0" cellpadding="0" class="formtable">
+						<tr>
+							<td style="width:10em;">列表排序</td>
+							<td>
+								<!--{eval
+									$blogarr = array(
+										'' => '------',
+										'dateline' => '发布时间',
+										'viewnum' => '查看数',
+										'replynum' => '回复数'
+									);
+								}-->
+								<!--{eval echo getselectstr("network[blog][order]", $blogarr, $network['blog']['order'])}--> 
+								<!--{eval echo getselectstr("network[blog][sc]", $scarr, $network['blog']['sc'])}-->
+							</td>
+						</tr>
+					</table>
+					<!--{elseif $_GET['module']=='share'}-->
+					<div class="title">
+						<h3>分享过滤</h3>
+						<p>可以根据下面提供的条件进行设置分享区块的取值条件</p>
+					</div>
+					<table cellspacing="0" cellpadding="0" class="formtable">
+						<tr>
+							<td style="width:10em;">分享时间</td>
+							<td><!--{eval echo getselectstr("network[share][dateline]", $datearr, $network['share']['dateline'])}--></td>
+						</tr>
+						<tr>
+							<td>指定作者uid</td>
+							<td>
+								<input name="network[share][uid]" type="text" id="shareuid" size="20" value="$network[share][uid]" /> 多个uid用","分隔
+							</td>
+						</tr>
+					</table>
+					<div class="title">
+						<h3>分享排序设置</h3>
+					</div>
+					<table cellspacing="0" cellpadding="0" class="formtable">
+						<tr>
+							<td style="width:10em;">列表排序</td>
+							<td>
+								<!--{eval
+									$sharearr = array(
+										'' => '------',
+										'dateline' => '发布时间'
+									);
+								}-->
+								<!--{eval echo getselectstr("network[share][order]", $sharearr, $network['share']['order'])}--> 
+								<!--{eval echo getselectstr("network[share][sc]", $scarr, $network['share']['sc'])}-->
+							</td>
+						</tr>
+					</table>
+					<!--{elseif $_GET['module']=='album'}-->
+					<div class="title">
+						<h3>相册过滤</h3>
+						<p>可以根据下面提供的条件进行设置相册区块的取值条件</p>
+					</div>
+					<table cellspacing="0" cellpadding="0" class="formtable">
+						<tr>
+							<td style="width:10em;">发布时间</td>
+							<td><!--{eval echo getselectstr("network[album][dateline]", $datearr, $network['album']['dateline'])}--></td>
+						</tr>
+						<tr>
+							<td>更新时间</td>
+							<td><!--{eval echo getselectstr("network[album][updatetime]", $datearr, $network['album']['updatetime'])}--></td>
+						</tr>
+						<tr>
+							<td>指定作者uid</td>
+							<td>
+								<input name="network[album][uid]" type="text" id="albumuid" size="20" value="$network[album][uid]" /> 多个uid用","分隔
+							</td>
+						</tr>
+						<tr>
+							<td>图片数范围</td>
+							<td>
+								<input name="network[album][picnum][]" type="text" id="picnum0" size="10" value="$network[album][picnum][0]" /> ~ <input name="network[album][picnum][]" type="text" id="picnum1" size="10" value="$network[album][picnum][1]" />
+							</td>
+						</tr>
+					</table>
+					<div class="title">
+						<h3>相册排序设置</h3>
+					</div>
+					<table cellspacing="0" cellpadding="0" class="formtable">
+						<tr>
+							<td style="width:10em;">列表排序</td>
+							<td>
+								<!--{eval
+									$albumarr = array(
+										'' => '------',
+										'dateline' => '发布时间',
+										'updatetime' => '更新时间',
+										'picnum' => '图片数'
+									);
+								}-->
+								<!--{eval echo getselectstr("network[album][order]", $albumarr, $network['album']['order'])}--> 
+								<!--{eval echo getselectstr("network[album][sc]", $scarr, $network['album']['sc'])}-->
+							</td>
+						</tr>
+					</table>
+					<!--{elseif $_GET['module']=='mtag'}-->
+					<div class="title">
+						<h3>选吧过滤</h3>
+						<p>可以根据下面提供的条件进行设置选吧区块的取值条件</p>
+					</div>
+					<table cellspacing="0" cellpadding="0" class="formtable">
+						<tr>
+							<td style="width:10em;">指定选吧tagid</td>
+							<td>
+								<input name="network[mtag][tagid]" type="text" id="mtag" size="20" value="$network[mtag][tagid]" /> 多个tagid用","分隔
+							</td>
+						</tr>
+						<tr>
+							<td>选吧人数范围</td>
+							<td>
+								<input name="network[mtag][membernum][]" type="text" id="membernum0" size="10" value="$network[mtag][membernum][0]" /> ~ <input name="network[mtag][membernum][]" type="text" id="membernum1" size="10" value="$network[mtag][membernum][1]" />
+							</td>
+						</tr>
+						<tr>
+							<td>选吧所属分类</td>
+							<td>
+								<select name="network[mtag][fieldid][]" size="10" multiple="multiple" id="select">
+									<!--{loop $list $value}-->
+									<option value="$value[fieldid]" <!--{if $network[mtag][fieldid] && in_array($value[fieldid], $network[mtag][fieldid])}-->selected<!--{/if}-->>$value[title]</option>
+									<!--{/loop}-->
+								</select>
+							</td>
+						</tr>
+					</table>
+					<div class="title">
+						<h3>选吧排序设置</h3>
+					</div>
+					<table cellspacing="0" cellpadding="0" class="formtable">
+						<tr>
+							<td style="width:10em;">列表排序</td>
+							<td>
+								<!--{eval
+									$mtagarr = array(
+										'' => '------',
+										'membernum' => '选吧人数'
+									);
+								}-->
+								<!--{eval echo getselectstr("network[mtag][order]", $mtagarr, $network['mtag']['order'])}--> 
+								<!--{eval echo getselectstr("network[mtag][sc]", $scarr, $network['mtag']['sc'])}-->
+							</td>
+						</tr>
+					</table>
+					<!--{elseif $_GET['module']=='thread'}-->
+					<div class="title">
+						<h3>话题过滤</h3>
+						<p>可以根据下面提供的条件进行设置日志区块的取值条件</p>
+					</div>
+					<table cellspacing="0" cellpadding="0" class="formtable">
+						<tr>
+							<td style="width:10em;">发布时间</td>
+							<td><!--{eval echo getselectstr("network[thread][dateline]", $datearr, $network['thread']['dateline'])}--></td>
+						</tr>
+						<tr>
+							<td>回复时间</td>
+							<td><!--{eval echo getselectstr("network[thread][lastpost]", $datearr, $network['thread']['lastpost'])}--></td>
+						</tr>
+						<tr>
+							<td>指定作者uid</td>
+							<td>
+								<input name="network[thread][uid]" type="text" id="threaduid" size="20" value="$network[thread][uid]" /> 多个uid用","分隔
+							</td>
+						</tr>
+						<tr>
+							<td>查看数范围</td>
+							<td>
+								<input name="network[thread][viewnum][]" type="text" id="viewnum0" size="10" value="$network[thread][viewnum][0]" /> ~ <input name="network[thread][viewnum][]" type="text" id="viewnum1" size="10" value="$network[thread][viewnum][1]" />
+							</td>
+						</tr>
+						<tr>
+							<td>回复数范围</td>
+							<td>
+								<input name="network[thread][replynum][]" type="text" id="replynum0" size="10" value="$network[thread][replynum][0]" /> ~ <input name="network[thread][replynum][]" type="text" id="replynum1" size="10" value="$network[thread][replynum][1]" />
+							</td>
+						</tr>
+					</table>
+					<div class="title">
+						<h3>话题排序设置</h3>
+					</div>
+					<table cellspacing="0" cellpadding="0" class="formtable">
+						<tr>
+							<td style="width:10em;">列表排序</td>
+							<td>
+								<!--{eval
+									$threadarr = array(
+										'' => '------',
+										'dateline' => '发布时间',
+										'lastpost' => '回复时间',
+										'viewnum' => '查看数',
+										'replynum' => '回复数'
+									);
+								}-->
+								<!--{eval echo getselectstr("network[thread][order]", $threadarr, $network['thread']['order'])}--> 
+								<!--{eval echo getselectstr("network[thread][sc]", $scarr, $network['thread']['sc'])}-->
+							</td>
+						</tr>
+					</table>
+					<!--{/if}-->
+					<div class="title">
+						<h3>数据设置</h3>
+					</div>
+					<table cellspacing="0" cellpadding="0" class="formtable">
+						<tr>
+							<td style="width:10em;">起始数据行数</td>
+							<td>
+								<input type="text" name="network[$module][start]" value="$network[$module][start]" size="10"> 
+							</td>
+						</tr>
+						<tr>
+							<td>显示数据条数</td>
+							<td>
+								<input type="text" name="network[$module][limit]" value="$network[$module][limit]" size="10">
+							</td>
+						</tr>
+					</table>
+					</div>
+					<br />
+					<input type="submit" name="thevaluesubmit" value="提交" class="submit">
+				</div>
+			</form>
+			<script type="text/javascript">
+				function showsetting(stat) {
+					if(stat) {
+						$('moreset').style.display = "block";
+					} else {
+						$('moreset').style.display = "none";
+					}
+				}
+			</script>
+		<!--{/if}-->
+	</div>
+</div>
+<div class="side">
+	<!--{template admin/tpl/side}-->
+</div>
+
+<!--{template admin/tpl/footer}-->

@@ -1,0 +1,18 @@
+<!--{template admin/tpl/header}-->
+
+<div class="bdrcontent">
+	<div class="title"><h3>操作消息</h3></div>
+	<p>
+	<!--{if $url_forward}-->
+	<a href="$url_forward">$message</a>
+	<!--{else}-->
+	$message
+	<!--{/if}-->
+	</p>
+</div>
+
+<div class="footactions">
+	&nbsp; <!--{if $url_forward}--><a href="$url_forward">确定</a> &nbsp; <!--{/if}--><a href="javascript:history.back(-1)">返回上一页</a> &nbsp; <a href="index.php">首页</a>
+</div>
+
+<!--{template admin/tpl/footer}-->

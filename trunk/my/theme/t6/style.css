@@ -1,0 +1,50 @@
+/*
+[name]暗夜思索[/name]
+Powered by Ucenter Home
+*/
+
+body { background: #000 url(image/body_bg.jpg) no-repeat 0 100%; color: #666; text-align: left; }
+	a { color: #333; }
+
+#wrap { margin: 0; width: 846px; background: url(image/fireworks.jpg) no-repeat 0 0; }
+
+#header { width: 720px; height: 132px; border: none; background: transparent url(image/thinker.jpg) no-repeat 100% 100%; }
+	#header h2 { left: 136px; top: 0; width: 224px; height: 132px; border: none; background: url(image/logo.gif) no-repeat 0 60px; }
+		#header h2 a { display: block; width: 200px; height: 120px; text-indent: -9999px; }
+		#menu { position: absolute; left: 138px; bottom: 5px; line-height: 20px; font-size: 12px; }
+			#menu a { padding: 0 10px 0 0; }
+				#menu a:hover { background: transparent; text-decoration: underline; }
+			#menu a.edit { color: #666; }
+		#op { position: absolute; right: 0; top: 0; padding-right: 0; }
+			#op a { color: #666; }
+				#op a:hover { color: #FFF; }
+			#op .pipe { color: #333; }
+
+#content { margin-left: 116px; background: url(image/content_top.gif) no-repeat 0 0; }
+
+#side { float: right; padding: 23px 0 0; width: 114px; background: transparent; }
+	#side .app_list { padding: 0; border: none; }
+		#side .app_list li { height: 31px; background: url(image/side.gif) no-repeat 0 0; !important; }
+			#side .app_list li a { display: inline; padding-left: 12px; color: #333; font-size: 12px; text-indent: 0;  }
+			#side .app_list li em { height: 0; right: 8px; }
+				#side .app_list li em a { padding-left: 0; color: #7E7500; }
+
+#mainarea { float: left; margin: 23px 0 0; width: 616px; border: none; }
+	.r_content { padding: 0 8px; }
+
+.box { background: url(image/box.gif) no-repeat 100% 0; zoom: 1; }
+	#space_action, #space_appicon, #space_basicinfo { background: none; }
+	.box h3 { height: 33px; border: none; background: url(image/title.gif) no-repeat 0 0; line-height: 27px; color: #FFF; }
+	.box_action { border: none; background: transparent; color: #999; }
+		.box_action a { color: #999; }
+
+.i_header, .f_status { border: none; background: transparent; }
+	.i_header { padding-left: 225px; }
+	.f_status { background: url(image/footer.gif) no-repeat 0 100%; }
+
+.title { border: none; }
+
+#footer { margin: 0; padding: 0; width: 730px; height: 84px; }
+	#footer a { color: #FFF; }
+
+
