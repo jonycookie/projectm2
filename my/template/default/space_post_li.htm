@@ -1,0 +1,27 @@
+<!--{if empty($ajax_edit)}--><div id="post_$value[pid]_li"><!--{/if}-->
+<table cellspacing="0" cellpadding="0" class="threadlist">
+<tr>
+	<td class="avatar_td">
+	<a href="space.php?uid=$value[uid]"><img src="<!--{avatar($value[uid],small)}-->" alt="$value[username]" class="avatar" /></a>
+	</td>
+	<td class="postcontent">
+	<div class="title">
+		<div class="r_option">
+			<!--{if $value[uid]==$_SGLOBAL[supe_uid]}-->
+			<a href="cp.php?ac=thread&op=edit&pid=$value[pid]" id="p_$value[pid]_edit" onclick="ajaxmenu(event, this.id, 99999,'' , -1)">编辑</a>
+			<!--{/if}-->
+			<!--{if $mtag[allowmanage] || $thread[uid]==$_SGLOBAL[supe_uid]}-->
+			<a href="cp.php?ac=thread&op=delete&pid=$value[pid]" id="p_$value[pid]_delete" onclick="ajaxmenu(event, this.id, 99999)">删除</a>
+			<!--{/if}-->
+			<!--{if $value[uid]!=$_SGLOBAL[supe_uid] && $mtag[ismember]}--><a href="cp.php?ac=thread&op=reply&pid=$value[pid]" id="p_$value[pid]_reply" onclick="ajaxmenu(event, this.id, 99999, '', -1)">回复</a><!--{/if}-->
+		</div>
+		<a href="space.php?uid=$value[uid]">$value[username]</a> <span class="time"><!--{date('Y-m-d H:i',$value[dateline],1)}--></span>
+	</div>
+	<div class="detail" id="detail_$value[pid]">
+		$value[message]
+		<!--{if $value[pic]}--><div><a href="$value[pic]" target="_blank"><img src="$value[pic]" class="resizeimg" /></a></div><!--{/if}-->
+	</div>
+	</td>
+</tr>
+</table>
+<!--{if empty($ajax_edit)}--></div><!--{/if}-->

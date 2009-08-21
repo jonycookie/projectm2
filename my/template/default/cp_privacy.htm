@@ -1,0 +1,239 @@
+<!--{template header}-->
+
+<div class="c_header">
+	<ul class="tabs">
+		<li$actives[push]><a href="cp.php?ac=privacy">个人隐私设置</a>
+		<li$actives[view]><a href="cp.php?ac=privacy&op=view">好友动态筛选</a>
+	</ul>
+</div>
+
+<form method="post" action="cp.php?ac=privacy" class="c_form">
+
+<!--{if $_GET['op']=='push'}-->
+	<table cellspacing="0" cellpadding="0" class="formtable">
+		<caption>
+			<h2>个人隐私设置</h2>
+			<p>你可以完全控制哪些人可以看到你的空间上面的内容</p>
+		</caption>
+		<tr>
+			<th width="100">个人主页</th>
+			<td><select name="privacy[view][index]">
+				<option value="0"$sels[view][index][0]>全站用户可见</option>
+				<option value="1"$sels[view][index][1]>仅好友可见</option>
+				<option value="2"$sels[view][index][2]>仅自己可见</option>
+				</select></td>
+		</tr>
+		<tr>
+			<th width="100">个人基本资料</th>
+			<td><select name="privacy[view][profile]">
+				<option value="0"$sels[view][profile][0]>全站用户可见</option>
+				<option value="1"$sels[view][profile][1]>仅好友可见</option>
+				<option value="2"$sels[view][profile][2]>仅自己可见</option>
+				</select></td>
+		</tr>
+		<tr>
+			<th>好友列表</th>
+			<td><select name="privacy[view][friend]">
+				<option value="0"$sels[view][friend][0]>全站用户可见</option>
+				<option value="1"$sels[view][friend][1]>仅好友可见</option>
+				<option value="2"$sels[view][friend][2]>仅自己可见</option>
+				</select></td>
+		</tr>
+		<tr>
+			<th>留言板</th>
+			<td><select name="privacy[view][wall]">
+				<option value="0"$sels[view][wall][0]>全站用户可见</option>
+				<option value="1"$sels[view][wall][1]>仅好友可见</option>
+				<option value="2"$sels[view][wall][2]>仅自己可见</option>
+				</select></td>
+		</tr>
+		<tr>
+			<th>个人动态</th>
+			<td><select name="privacy[view][feed]">
+				<option value="0"$sels[view][feed][0]>全站用户可见</option>
+				<option value="1"$sels[view][feed][1]>仅好友可见</option>
+				</select></td>
+		</tr>
+		<tr>
+			<th>迷你博客</th>
+			<td><select name="privacy[view][doing]">
+				<option value="0"$sels[view][doing][0]>全站用户可见</option>
+				<option value="1"$sels[view][doing][1]>仅好友可见</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td class="gray">
+				本隐私设置仅在其他用户查看您空间时有效；
+				<br>在全站的迷你博客列表中可能会出现您的迷你博客更新。
+			</td>
+		</tr>
+		<tr>
+			<th>日志</th>
+			<td><select name="privacy[view][blog]">
+				<option value="0"$sels[view][blog][0]>全站用户可见</option>
+				<option value="1"$sels[view][blog][1]>仅好友可见</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td class="gray">本隐私设置仅在其他用户查看您空间时有效；
+				<br>相关浏览权限需要在每篇日志中单独设置方可完全生效。
+				</td>
+		</tr>
+		<tr>
+			<th>相册</th>
+			<td><select name="privacy[view][album]">
+				<option value="0"$sels[view][album][0]>全站用户可见</option>
+				<option value="1"$sels[view][album][1]>仅好友可见</option>
+				</select>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td class="gray">本隐私设置仅在其他用户查看您空间时有效；
+				<br>相关浏览权限需要在每个相册中单独设置方可完全生效。</td>
+		</tr>
+		<tr>
+			<th>分享</th>
+			<td><select name="privacy[view][share]">
+				<option value="0"$sels[view][share][0]>全站用户可见</option>
+				<option value="1"$sels[view][share][1]>仅好友可见</option>
+				</select></td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td class="gray">
+				本隐私设置仅在其他用户查看您空间时有效；
+				<br>在全站的分享列表中可能会出现您的分享。
+			</td>
+		</tr>
+		<tr>
+			<th>选吧</th>
+			<td><select name="privacy[view][mtag]">
+				<option value="0"$sels[view][mtag][0]>全站用户可见</option>
+				<option value="1"$sels[view][mtag][1]>仅好友可见</option>
+				<option value="2"$sels[view][mtag][2]>仅自己可见</option>
+				</select></td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td><input type="submit" name="privacysubmit" value="保存设置" class="submit"></td>
+		</tr>
+	</table>
+	
+	<table cellspacing="0" cellpadding="0" class="formtable">
+		<caption>
+			<h2>个人动态发布设置</h2>
+			<p>系统会将您的各项动作反映到个人动态里，方便朋友了解你的动态。<br>你可以控制是否在下列动作发生时，在个人动态里发布相关信息</p>
+		</caption>
+		<tr>
+			<th width="100">&nbsp;</th>
+			<td><input type="checkbox" name="privacy[feed][doing]" value="1"$sels[feed][doing]>迷你博客</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td><input type="checkbox" name="privacy[feed][blog]" value="1"$sels[feed][blog]>撰写日志</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td><input type="checkbox" name="privacy[feed][album]" value="1"$sels[feed][album]>创建相册</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td><input type="checkbox" name="privacy[feed][upload]" value="1"$sels[feed][upload]>上传图片</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td><input type="checkbox" name="privacy[feed][share]" value="1"$sels[feed][share]>添加分享</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td><input type="checkbox" name="privacy[feed][thread]" value="1"$sels[feed][thread]>发起话题</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td><input type="checkbox" name="privacy[feed][post]" value="1"$sels[feed][post]>对话题回复</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td><input type="checkbox" name="privacy[feed][mtag]" value="1"$sels[feed][mtag]>加入选吧</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td><input type="checkbox" name="privacy[feed][friend]" value="1"$sels[feed][friend]>添加好友</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td><input type="checkbox" name="privacy[feed][comment]" value="1"$sels[feed][comment]>发表评论/留言</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td><input type="submit" name="privacysubmit" value="保存设置" class="submit"></td>
+		</tr>
+	</table>
+	
+<!--{else}-->
+	<table cellspacing="0" cellpadding="0" class="formtable">
+		<caption>
+			<h2>筛选规则一：屏蔽指定用户组的动态</h2>
+			<p>你可以决定屏蔽哪些用户组的动态，屏蔽用户组内的组员所发布的动态都将被屏蔽掉。</p>
+		</caption>
+		<!--{loop $groups $key $value}-->
+		<tr>
+			<th>&nbsp;</th>
+			<td><input type="checkbox" name="privacy[filter_gid][$key]" value="$key"<!--{if isset($space['privacy']['filter_gid'][$key])}--> checked<!--{/if}-->>
+				$value</td>
+		</tr>
+		<!--{/loop}-->
+		<tr>
+			<th>&nbsp;</th>
+			<td>
+			<input type="submit" name="privacy2submit" value="保存设置" class="submit"></td>
+		</tr>
+	</table>
+	<br>
+	<table cellspacing="0" cellpadding="0" class="formtable">
+		<caption>
+			<h2>筛选规则二：屏蔽指定好友指定类型的动态</h2>
+			<p>点击一下首页好友动态列表后面的屏蔽标志，就可以屏蔽指定好友指定类型的动态了。<br>下面列出的是您已经屏蔽的动态类型识别名和好友名，你可以选择是否取消屏蔽。</p>
+		</caption>
+		<!--{if $icons}-->
+		<tr>
+			<th width="100">&nbsp;</th>
+			<td>
+			<div class="feed">
+			<ul>
+			<!--{loop $icons $key $icon}-->
+			<!--{eval $uid = $uids[$key];$icon_uid="$icon|$uid";}-->
+			<li class="type_$icon">
+				<a class="type">$icon</a>
+				<input type="checkbox" name="privacy[filter_icon][$icon_uid]" value="1" checked> 
+				<span class="type_$icon">$icon (<!--{if $users[$uid]}--><a href="space.php?uid=$uid" target="_blank">$users[$uid]</a><!--{else}-->所有好友<!--{/if}-->)</span>
+			</li>
+			<!--{/loop}-->
+			</ul></div>
+			</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td>
+			<input type="submit" name="privacy2submit" value="保存设置" class="submit">
+			</td>
+		</tr>
+		<!--{else}-->
+		<tr>
+			<th width="100">&nbsp;</th>
+			<td>现在还没有屏蔽的动态类型</td>
+		</tr>
+		<!--{/if}-->
+	</table>
+
+<!--{/if}-->
+
+</form>
+<div class="f_status s_clear">
+	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
+</div>
+<!--{template footer}-->

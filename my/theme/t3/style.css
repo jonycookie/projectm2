@@ -1,0 +1,47 @@
+/*
+[name]放松心情[/name]
+Powered by Ucenter Home
+*/
+
+#wrap {  }
+
+#header { width: auto; height: 101px; border: none; background: #FFF url(image/header.jpg) no-repeat 0 30px; }
+	#header h2, #header h2 a { border: none; width: 150px; height: 70px; }
+		#header h2 { top: 30px; }
+		#header h2 a { display: block; text-indent: -9999px; overflow: hidden; }
+	#menu { position: absolute; left: 180px; bottom: 10px; line-height: 20px; }
+			#menu a:hover { background: transparent; text-decoration: underline; }
+		#op { position: absolute; right: 0px; top: 7px; float: none; line-height: 20px; }
+			#op a { color: #6F83C0; }
+			#op .pipe { color: #EEE; }
+
+#content { background: url(image/content_bg.gif) repeat-y 165px 0;  }
+
+#side { padding: 0; width: 160px; background: transparent; overflow: hidden; }
+	.app_list { border-bottom: none; }
+		#side .app_list { padding: 1em 0.5em 2em 0; }
+			#side .app_list li { border-bottom: 1px solid #EEE; }
+
+#mainarea { margin-top: 0; border: none; width: 613px; background: transparent; }
+	.r_content { padding: 0 0 10px 0; }
+	.narrow { width: 200px; }
+		.narrow .box h3 { margin: 0 1px; }
+	.wide { width: 405px; }
+
+
+.i_header { background: transparent; border: none; padding: 20px 0 5px 210px; }
+	.i_header h1 { padding-top: 10px; border-bottom: 1px solid #DDD; }
+
+.box {}
+	.box h3 { border-top: none; border-bottom: 1px solid #B7E4FE; background: #D8F0FF; line-height: 26px; }
+	.box_action { border: none; background: transparent; }
+	.wide .box_content { padding: 0; }
+
+#space_avatar { margin: 0 2px; width: 196px; overflow: hidden; }
+#space_appicon { padding: 0 5px 10px; }
+
+.f_status { padding-right: 0; border: none; background: transparent; }
+
+.title { border-top: none; border-bottom: 1px solid #B7E4FE; background: #D8F0FF; }
+
+#footer { margin: 0; border-top: 1px solid #DDD; text-align: center; }

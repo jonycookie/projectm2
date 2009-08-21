@@ -1,0 +1,120 @@
+<!--{eval $_TPL['titles'] = array($thread['subject'], $mtag['tagname'], $mtag['title'], '话题');}-->
+<!--{template header}-->
+
+<div class="c_header a_header">
+	<a href="space.php?do=mtag&tagid=$mtag[tagid]"><img src="$mtag[pic]" alt="$mtag[tagname]" class="avatar" /></a>
+	<h1>{$mtag[title]}<em>&nbsp;- 话题</em></h1>
+	<a href="space.php?do=mtag&tagid=$mtag[tagid]" class="spacelink">{$mtag[tagname]}</a>
+</div>
+
+<div class="tabs_header">
+	<a href="cp.php?ac=thread&tagid=$tagid" class="t_button">发起新话题</a>
+	<ul class="tabs">
+		<li><a href="space.php?do=mtag&tagid=$thread[tagid]&view=list">返回讨论区</a></li>
+	</ul>
+</div>
+
+<div class="h_status">
+	<!--{if $multi[html]}--><div class="page r_option">$multi[html]</div><!--{/if}-->
+	<span id="post_replynum">$thread[replynum]</span> 个回复 / $thread[viewnum]</span> 个查看
+</div>
+				
+<div class="d_content" id="div_post">
+	<div class="board">
+		<h1 class="t_subject">$thread[subject]</h1>
+		
+		<!--{if $thread[content]}-->
+		<div id="post_$thread[content][pid]_li">
+			<table cellspacing="0" cellpadding="0" class="threadlist">
+				<tr>
+					<td class="avatar_td">
+						<a href="space.php?uid=$thread[uid]"><img src="<!--{avatar($thread[uid],small)}-->" alt="$thread[username]" class="avatar" /></a>
+					</td>
+					<td class="postcontent">
+						<div class="title">
+							<div class="r_option">
+								<!--{if $thread[uid]==$_SGLOBAL[supe_uid]}-->
+								<a href="cp.php?ac=thread&op=edit&pid=$thread[content][pid]" id="p_$thread[content][pid]_edit" onclick="ajaxmenu(event, this.id, 99999,'' , -1)">编辑</a>
+								<!--{/if}-->
+								<!--{if $mtag[allowmanage] || $thread[uid]==$_SGLOBAL[supe_uid]}-->
+								<a href="cp.php?ac=thread&op=delete&pid=$thread[content][pid]" id="p_$thread[content][pid]_delete" onclick="ajaxmenu(event, this.id, 99999)">删除</a>
+								<!--{/if}-->
+								<!--{if $mtag[ismember]}--><a href="#postform">回复</a><!--{/if}--> 
+								<!--{if $mtag[allowmanage]}-->
+									<!--{if $thread[displayorder]}-->
+									<a href="cp.php?ac=thread&op=top&tid=$thread[tid]&cancel" id="t_$thread[tid]_top" onclick="ajaxmenu(event, this.id, 2000)">取消置顶</a>
+									<!--{else}-->
+									<a href="cp.php?ac=thread&op=top&tid=$thread[tid]" id="t_$thread[tid]_top" onclick="ajaxmenu(event, this.id, 2000)">置顶</a>
+									<!--{/if}-->
+									<!--{if $thread[digest]}-->
+									<a href="cp.php?ac=thread&op=digest&tid=$thread[tid]&cancel" id="t_$thread[tid]_digest" onclick="ajaxmenu(event, this.id, 2000)">取消精华</a>
+									<!--{else}-->
+									<a href="cp.php?ac=thread&op=digest&tid=$thread[tid]" id="t_$thread[tid]_digest" onclick="ajaxmenu(event, this.id, 2000)">精华</a>
+									<!--{/if}-->
+								<!--{/if}-->
+							</div>
+							<a href="space.php?uid=$thread[uid]">$thread[username]</a>
+							<span class="time"><!--{date('Y-m-d H:i',$thread[dateline],1)}--></span>
+						</div>
+						<div class="detail" id="detail_0">
+							$thread[content][message]
+							<!--{if $thread[content][pic]}--><div><a href="$thread[content][pic]" target="_blank"><img src="$thread[content][pic]" alt="" class="resizeimg" /></a></div><!--{/if}-->
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<!--{/if}-->
+		
+		<div id="post_ul">
+		
+			<!--{if $pid}-->
+			<div class="notice">
+				当前只显示与你操作相关的单个帖子，<a href="space.php?uid=$thread[uid]&do=thread&id=$thread[tid]">点击此处查看全部回帖</a>
+			</div>
+			<!--{/if}-->
+
+			<!--{loop $list $value}-->
+			<!--{template space_post_li}-->
+			<!--{/loop}-->
+		</div>
+		
+		<div class="page">$multi[html]</div>
+		
+		<!--{if $mtag[ismember]}-->
+		<div class="quickpost">
+			<form method="post" action="cp.php?ac=thread" class="quickpost" id="postform" name="postform">
+				<h4>回复主题</h4>
+				<table>
+					<tr>
+						<td><textarea id="post_message" name="message" onkeydown="ctrlEnter(event, 'postsubmit_btn');" rows="6"></textarea></td>
+					</tr>
+					<tr>
+						<td>图片链接 <span class="gray">（选添，只支持 .jpg、.gif、.png为结尾的URL地址）</span></td>
+					</tr>
+					<tr>
+						<td><input id="post_pic" type="text" name="pic" class="t_input" value="http://" size="40" /></td>
+					</tr>
+					<tr>
+						<td>
+							<input type="hidden" name="tid" value="$thread[tid]" />
+
+							<input type="hidden" name="postsubmit" value="true" />
+							<input type="button" id="postsubmit_btn" name="postsubmit_btn" value="回复" class="submit" onclick="ajaxpost('postform', 'post_status', 'post_add')" />
+							<div id="post_status"></div>
+						</td>
+					</tr>
+				</table>
+			</form>
+			</div>
+		<!--{else}-->
+		<div class="article quickpost">你还不是该选吧成员，不能参与讨论。<a href="cp.php?ac=mtag&op=join&tagid=$mtag[tagid]" id="mtag_join_$mtag[tagid]" onclick="ajaxmenu(event, this.id, 99999)">现在就加入</a>。</div>
+		<!--{/if}-->
+	</div>
+</div>
+
+<div class="f_status f_status_w s_clear">
+	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
+	<a href="cp.php?ac=share&type=thread&id=$thread[tid]" id="a_share" onclick="ajaxmenu(event, this.id, 99999, '', -1)">分享</a>
+</div>						
+<!--{template footer}-->

@@ -1,0 +1,96 @@
+<!--{template header}-->
+
+<form id="loginform" name="loginform" action="do.php?ac=login&uid=$invitearr[uid]&invite=$invitearr[code]&ref" method="post" class="c_form">
+<table cellpadding="0" cellspacing="0" class="formtable">
+	<caption>
+		<h2>请登录</h2>
+	</caption>
+	<!--{if $invitearr}-->
+	<tr>
+		<th width="100">好友邀请</th>
+		<td>
+		<a href="space.php?uid=$invitearr[uid]&invite=$invitearr[code]" target="_blank"><strong>$invitearr[username]</strong></a>
+		</td>
+	</tr>
+	<!--{/if}-->
+	<!--{if $_SCONFIG['seccode_login']}-->
+	<!--{if $_SGLOBAL['input_seccode']}-->
+	<tr>
+		<th>&nbsp;</th>
+		<td>
+		请正确填写下面的验证码后，再提交登录
+		</td>
+	</tr>
+	<!--{/if}-->
+	<tr>
+		<th style="vertical-align: top;">验证码</th>
+		<td>
+			<script>seccode();</script>
+			<p>请输入上面的4位字母或数字，看不清可<a href="javascript:updateseccode()">更换一张</a></p>
+			<input type="text" id="seccode" name="seccode" value="" size="15" tabindex="1" class="t_input"<!--{if empty($_SGLOBAL['input_seccode'])}--> onBlur="checkSeccode()"<!--{/if}--> />&nbsp;<span id="checkseccode">&nbsp;</span>
+			<script type="text/javascript">
+				var lastSecCode = '';
+				function checkSeccode() {
+					var seccodeVerify = $('seccode').value;
+					if(seccodeVerify == lastSecCode) {
+						return;
+					} else {
+						lastSecCode = seccodeVerify;
+					}
+					ajaxresponse('checkseccode', 'op=checkseccode&seccode=' + (is_ie && document.charset == 'utf-8' ? encodeURIComponent(seccodeVerify) : seccodeVerify));
+				}
+				function ajaxresponse(objname, data) {
+					var x = new Ajax('XML', objname);
+					x.get('do.php?ac=register&' + data, function(s){
+						var obj = $(objname);
+						if(trim(s) == 'succeed') {
+							obj.style.display = '';
+							obj.innerHTML = '<img src="image/check_right.gif" width="13" height="13">';
+							obj.className = "warning";
+						} else {
+							warning(obj, s);
+						}
+					});
+				}
+				function warning(obj, msg) {
+					if((ton = obj.id.substr(5, obj.id.length)) != 'password2') {
+						$(ton).select();
+					}
+					obj.style.display = '';
+					obj.innerHTML = '<img src="image/check_error.gif" width="13" height="13"> &nbsp; ' + msg;
+					obj.className = "warning";
+				}
+				function trim(str) {
+					return str.replace(/^\s*(.*?)[\s\n]*$/g, '$1');
+				}
+			</script>
+		</td>
+	</tr>
+	<!--{/if}-->
+	<tbody style="display:<!--{if $_SGLOBAL['input_seccode']}-->none<!--{/if}-->;">
+	<tr><th width="100"><label for="username">用户名</label></th><td><input type="text" name="username" id="username" class="t_input" value="$membername" tabindex="2" /></td></tr>
+	<tr><th><label for="password">密　码</label></th><td><input type="password" name="password" id="password" class="t_input" tabindex="3" value="$password" /> (<a href="do.php?ac=lostpasswd">忘记密码?</a>)</td></tr>
+	<tr>
+		<th>&nbsp;</th>
+		<td>
+			<input type="checkbox" id="cookietime" name="cookietime" value="315360000" tabindex="4"$cookiecheck> 下次自动登录
+		</td>
+	</tr>
+	</tbody>
+	<tr><th>&nbsp;</th><td>
+		<input type="hidden" name="refer" value="$refer" />
+		<input type="submit" id="loginsubmit" name="loginsubmit" value="登录" class="submit" tabindex="5" />
+	</td></tr>
+</table>
+</form>
+
+<!--{if $_SGLOBAL['input_seccode']}-->
+<script>
+$('seccode').style.background = '#FFFFCC';
+$('seccode').focus();
+</script>
+<!--{else}-->
+<script>$('username').focus();</script>
+<!--{/if}-->
+
+<!--{template footer}-->

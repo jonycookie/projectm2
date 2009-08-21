@@ -1,0 +1,87 @@
+<!--{template header}-->
+
+<!--{if $op == 'comment'}-->
+
+	<!--{loop $list $value}-->
+		<!--{template space_comment_li}-->
+	<!--{/loop}-->
+	
+<!--{elseif $op == 'getfriendgroup'}-->
+	$group
+<!--{elseif $op == 'pm'}-->
+
+	<!--{loop $list $value}-->
+	<li class="s_clear">
+		<a href="space.php?uid=$value[msgfromid]"><img src="<!--{avatar($value[msgfromid],small)}-->" width="48" height="48" alt="$value[msgfrom]" class="avatar" /></a>
+		<cite><a href="space.php?uid=$value[msgfromid]">$value[msgfrom]</a><br /><span class="gray"><!--{date('Y-m-d H:i',$value[dateline],1)}--></span></cite>
+		<div class="pm_content">
+			<h6>$value[subject]</h6>
+			<p>$value[message]</p>
+		</div>
+	</li>
+	<!--{/loop}-->
+	
+<!--{elseif $op == 'trace'}-->
+
+	<!--{loop $tracelist $value}-->
+	<li>
+		<a href="space.php?uid=$value[uid]" title="$value[username]" target="_blank"><img src="<!--{avatar($value[uid],small)}-->" alt="$value[username]" class="avatar" /></a>
+		<p><a href="space.php?uid=$value[uid]" title="$value[username]" target="_blank">$value[username]</a></p>
+	</li>
+	<!--{/loop}-->
+	
+<!--{elseif $op == 'traceall'}-->
+
+	<ul class="avatar_list" id="trace_ul">
+	<!--{loop $tracelist $value}-->
+	<li>
+		<a href="space.php?uid=$value[uid]" title="$value[username]" target="_blank"><img src="<!--{avatar($value[uid],small)}-->" alt="$value[username]" class="avatar" /></a>
+		<p><a href="space.php?uid=$value[uid]" title="$value[username]" target="_blank">$value[username]</a></p>
+	</li>
+	<!--{/loop}-->
+	</ul>
+	<!--{if $multi[html]}--><div class="page">$multi[html]</div><!--{/if}-->
+	
+<!--{elseif $op == 'post'}-->
+
+	<!--{loop $list $value}-->
+		<!--{template space_post_li}-->
+	<!--{/loop}-->
+
+<!--{elseif $op == 'share'}-->
+
+	<!--{loop $list $value}-->
+		<!--{template space_share_li}-->
+	<!--{/loop}-->
+
+<!--{elseif $op == 'credit'}-->
+
+	<div<!--{if !$_SGLOBAL[inajax]}--> class="inpage"<!--{/if}-->>
+	<table>
+	<tr><td style="width:6em;font-weight:bold;">空间概况</td><td align="right"><!--{if $_SGLOBAL[inajax]}--><a href="javascript:;" onclick="hideMenu()">关闭</a><!--{/if}--></td></tr>
+	<tr><th>用户名:</th><td>$space[username]</td></tr>
+	<tr><th>积分数:</th><td>$space[credit]</td></tr>
+	<tr><th>用户组:</th><td>{$_SGLOBAL[usergroup][$space[groupid]][grouptitle]}</td></tr>
+	<tr><th>访问量:</th><td>$space[viewnum]</td></tr>
+	<tr><th>空间占用:</th><td>$space[attachsize]</td></tr>
+	<tr><th>创建时间:</th><td><!--{date('Y-m-d',$space[dateline],1)}--></td></tr>
+	<tr><th>最后更新:</th><td><!--{date('Y-m-d',$space[updatetime],1)}--></td></tr>
+	</table>
+	</div>
+
+<!--{elseif $op == 'album'}-->
+
+	<table cellspacing="2" cellpadding="2">
+	<tr>
+	<!--{loop $piclist $key $value}-->
+	<td><img src="$value[pic]" width="60" onclick="insertImage('$value[bigpic]');" style="cursor:hand;"></td>
+	<!--{if $key%5==4}--></tr><tr><!--{/if}-->
+	<!--{/loop}-->
+	</tr>
+	</table>
+	
+	$multi[html]
+	
+<!--{/if}-->
+
+<!--{template footer}-->
