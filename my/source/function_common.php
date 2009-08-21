@@ -594,7 +594,7 @@ function template($name) {
 
 	$tpl = strexists($name,'/')?$name:"template/$_SC[template]/$name";
 	$objfile = S_ROOT.'./data/tpl_cache/'.str_replace('/','_',$tpl).'.php';
-	if(!file_exists($objfile)) {
+	if(!file_exists($objfile)||filemtime($objfile)<filemtime(S_ROOT.'./'.$tpl.'.htm')) {
 		include_once(S_ROOT.'./source/function_template.php');
 		parse_template($tpl);
 	}
