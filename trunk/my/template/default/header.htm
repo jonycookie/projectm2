@@ -74,17 +74,19 @@ $space[css]
 		<div id="side">
 <!--{if $_SGLOBAL[supe_uid]}-->
 			<ul id="app" class="app_list">
-				<li class="app-doing"><a href="space.php?do=doing">迷你博客</a></li>
-				<li class="app-blog"><a href="space.php?do=blog">日志</a><em><a href="cp.php?ac=blog">发表</a></em></li>
-				<li class="app-photo"><a href="space.php?do=album">相册</a><em><a href="cp.php?ac=upload">上传</a></em></li>
-				<li class="app-mtag"><a href="space.php?do=thread">话题</a><em><a href="cp.php?ac=thread">发起</a></em></li>
-				<li class="app-share"><a href="space.php?do=share">分享</a></li>
-				
-				<!--{loop $_SGLOBAL['app'] $key $value}-->
-				<!--{if $key != UC_APPID && $value[open]}-->
-				<li class="app-$value[type]"><a href="space.php?do=app&appid=$key" title="$value[name]">$value[name]</a></li>
-				<!--{/if}-->
-				<!--{/loop}-->
+				<li class="app-doing"><a href="space.php?do=doing">迷你博客</a><span>迷你博客迷你博客迷你博客</span></li>
+				<li class="app-blog"><a href="space.php?do=blog">日志</a><span>迷你博客迷你博客迷你博客</span></li>
+				<li class="app-photo"><a href="space.php?do=album">相册</a><span>迷你博客迷你博客迷你博客</span></li>
+				<li class="app-mtag"><a href="space.php?do=thread">话题</a><span>迷你博客迷你博客迷你博客</span></li>
+				<li class="app-share"><a href="space.php?do=share">分享</a><span>迷你博客迷你博客迷你博客</span></li>
+			</ul>
+			<ul class="set_list">
+				<li><a href="index.php">首页</a></li>
+				<li><a href="space.php?do=pm">私信</a></li>
+				<li><a href="space.php?do=friend">好友</a></li>
+				<li><a href="cp.php">设置</a></li>
+				<li><a href="cp.php?ac=privacy">策略</a></li>
+				<li><a href="help.php">帮助</a></li>
 			</ul>
 <!--{else}-->
 <!--{if empty($space['theme']) && empty($space['css'])}-->
