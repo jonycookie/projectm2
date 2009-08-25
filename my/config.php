@@ -36,7 +36,7 @@ define('UC_DBCHARSET', 'utf8'); // UCenter 数据库字符集
 define('UC_DBTABLEPRE', '`id`.id_'); // UCenter 数据库表前缀
 define('UC_DBCONNECT', '0'); // UCenter 数据库持久连接 0=关闭, 1=打开
 //通信相关
-define('UC_KEY', 'v6rdj2R9lbWdwfDeg1Ef03l1N3m0X9W871taKezem1P7ueR9Vaw8F2Z0n4s4obEc'); // 与 UCenter 的通信密钥, 要与 UCenter 保持一致
+define('UC_KEY', 'OeZ9x3a5I0V3D7QbS3w4U4Eby9zbE75bm9yaP0j2B2l9Q428Gffbo3B88bofK9P6'); // 与 UCenter 的通信密钥, 要与 UCenter 保持一致
 define('UC_API', 'http://id.m2.com'); // UCenter 的 URL 地址, 在调用头像时依赖此常量
 define('UC_CHARSET', 'utf-8'); // UCenter 的字符集
 define('UC_IP', '127.0.0.1'); // UCenter 的 IP, 当 UC_CONNECT 为非 mysql 方式时, 并且当前应用服务器解析域名有问题时, 请设置此值
