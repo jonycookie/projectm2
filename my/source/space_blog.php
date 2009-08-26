@@ -131,7 +131,7 @@ if($id) {
 	}
 	
 	//ÆÀÂÛ
-	$perpage = 100;
+	$perpage = 20;
 	$page = empty($_GET['page'])?1:intval($_GET['page']);
 	if($page < 1) $page = 1;
 	$start = ($page-1)*$perpage;
