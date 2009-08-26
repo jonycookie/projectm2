@@ -165,6 +165,14 @@ if($id) {
 		}
 	}
 
+	//日志分类
+	$classarr = array();
+	$query = $_SGLOBAL['db']->query("SELECT classid, classname FROM ".tname('class')." WHERE uid='$space[uid]'");
+	while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+		$classarr[$value['classid']] = $value['classname'];
+	}
+
+
 	//访问统计
 	inserttable('log', array('id'=>$blog['blogid'], 'idtype'=>'blogid'));
 	
