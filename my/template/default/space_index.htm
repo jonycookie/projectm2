@@ -84,11 +84,11 @@
 				<p>最新迷你博客</p>
 				<p class="action"><a href="space.php?uid=$space[uid]&do=doing&view=me">全部</a></p>
 			</div>		
-			<ul class="post_list line_list" id="doing_ul">
+			<ol class="post_list line_list" id="doing_ol">
 			<!--{loop $doinglist $value}-->
 				<li>$value[message] <span class="time"><!--{date('m-d H:i',$value[dateline],1)}--></span></li>
 			<!--{/loop}-->
-			</ul>
+			</ol>
 		</div>
 		<!--{/if}-->
 
@@ -310,7 +310,7 @@
 				</form>
 			</div>
 			<div class="box_content">
-				<ul class="post_list a_list" id="comment_ul">
+				<ul class="post_list a_list" id="comment_list">
 				<!--{loop $walllist $value}-->
 					<!--{template space_comment_li}-->
 				<!--{/loop}-->

@@ -15,14 +15,14 @@ body {
 body, th, td, input, select, textarea, button {
 	font: 12px/1.5em Tahoma, Arial, Helvetica, snas-serif;
 }
-body, h1, h2, h3, h4, h5, h6, p, ul, dl, dt, dd, form, fieldset {
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, form, fieldset {
 	margin: 0;
 	padding: 0;
 }
 h1, h2, h3, h4, h5, h6 {
 	font-size: 1em;
 }
-ul li {
+ul li, ol li {
 	list-style: none;
 }
 a {
@@ -68,6 +68,11 @@ caption p {
 }
 .tags {
 	padding: 0.5em;
+}
+.avatar {
+	padding: 3px;
+	border: 1px solid #ddd;
+	background: #fff;
 }
 .float_del, .float_edit {
 	position: absolute;
@@ -718,16 +723,16 @@ height: expression(this.height > 120 ? 120 : true);
 	line-height: 26px;
 	text-align: center;
 }
-.page a, .page em {
-	margin: 0 2px;
-	padding: 1px 5px;
-	border: 1px solid #DDD;
-	background: #FFF;
+.page a, .page strong {
+	padding: 0 8px;
+	border-left: 1px solid #DDD;
+	font-style: normal;
+}
+.page em {
+	padding: 0 8px;
 	font-style: normal;
 }
 .page a:hover {
-	background: #2782D6;
-	color: #FFF;
 }
 .h_status .page {
 	padding-bottom: 0;
@@ -760,7 +765,7 @@ width: expression(this.width > 520 ? 520 : true);
 	font-size: 1.17em;
 	line-height: 1.6em;
 }
-#post_ul {
+#post_ol {
 }
 .photobox {
 	padding: 1em;
@@ -940,11 +945,41 @@ a.type {
 
 .comment {
 	margin: 0 0 5px;
+	padding: 20px;
 	border: 1px solid #ddd;
 }
 .comment .quickpost {
-	background: #fafafa;
-	padding: 5px;
+}
+.comment .quickpost a {
+	display: block;
+	float: left;
+	margin: 0 20px 0 0;
+}
+.comment .quickpost textarea {
+	width: 426px;
+	height: 54px;
+	margin: 0;
+	font-size: 14px;
+}
+.comment .comment_ol li {
+	zoom: 1;
+	padding: 10px 0;
+	border-bottom: 1px solid #eee;
+}
+.comment .comment_ol li:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.comment .comment_ol .writer {
+	display: bolck;
+	float: left;
+}
+.comment .comment_ol .title {
+	margin: 0 0 0 75px;
+}
+.comment .comment_ol .detail {
+	margin: 0 0 0 75px;
 }
 
 
@@ -1059,15 +1094,7 @@ textarea {
 }
 .radio, .checkbox {
 }
-.quickpost {
-}
-.quickpost textarea {
-	width: 426px;
-	height: 90px;
-	font-size: 1.17em;
-}
-.quickpost td {
-}
+
 .user_list {
 	padding: 10px;
 }
@@ -1262,14 +1289,14 @@ textarea {
 	width: 520px;
 	overflow: hidden;
 }
-#post_ul {
+#post_ol {
 	padding-top: 10px;
 	border-bottom: 1px solid #CCC;
 }
-#post_ul .threadlist {
+#post_ol .threadlist {
 	border-bottom: none;
 }
-#post_ul .threadlist .detail {
+#post_ol .threadlist .detail {
 	font-size: 12px;
 	line-height: 1.5em;
 }

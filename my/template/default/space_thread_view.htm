@@ -66,18 +66,19 @@
 		</div>
 		<!--{/if}-->
 		
-		<div id="post_ul">
+		<!--{if $pid}-->
+		<div class="notice">
+			当前只显示与你操作相关的单个帖子，<a href="space.php?uid=$thread[uid]&do=thread&id=$thread[tid]">点击此处查看全部回帖</a>
+		</div>
+		<!--{/if}-->
+
+		<ol id="post_ol">
 		
-			<!--{if $pid}-->
-			<div class="notice">
-				当前只显示与你操作相关的单个帖子，<a href="space.php?uid=$thread[uid]&do=thread&id=$thread[tid]">点击此处查看全部回帖</a>
-			</div>
-			<!--{/if}-->
 
 			<!--{loop $list $value}-->
 			<!--{template space_post_li}-->
 			<!--{/loop}-->
-		</div>
+		</ol>
 		
 		<div class="page">$multi[html]</div>
 		
