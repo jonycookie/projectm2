@@ -1,7 +1,7 @@
 	<div class="sidebar">
 		<div id="space_action" class="widget">
-			<a href="space.php?uid=$space[uid]" class="avatar" id="u_$space[uid]" onmouseover="showMenu(this.id)">
-				<img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" />
+			<a href="space.php?uid=$space[uid]" id="u_$space[uid]" onmouseover="showMenu(this.id)">
+				<img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" />
 			</a>
 			<!--{if $isonline}-->
 				<p class="online"><a href="space.php?do=friend&view=online">在线($isonline)</a></p>
@@ -59,6 +59,18 @@
 			</div>
 		</div>
 		<!--{/if}-->
+
+		<div class="widget">
+			<h3>空间概况</h3>
+			<div class="widget_content">
+				<table>
+				<tr><th>积分数:</th><td>$space[credit]</td></tr>
+				<tr><th>访问量:</th><td>$space[viewnum]</td></tr>
+				<tr><th>创建时间:</th><td><!--{date('Y-m-d',$space[dateline],1)}--></td></tr>
+				<tr><th>最后更新:</th><td><!--{date('Y-m-d',$space[updatetime],1)}--></td></tr>
+				</table>
+			</div>
+		</div>
 
 		<div class="widget">
 			<h3>订阅</h3>
