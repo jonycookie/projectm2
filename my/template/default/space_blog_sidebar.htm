@@ -1,19 +1,18 @@
 	<div class="sidebar">
 		<div id="space_action" class="widget">
-			<ul class="line_list blocklink">
-			<!--{if $space[self]}-->
-				<li><a href="cp.php?ac=profile">编辑我的资料</a></li>
-			<!--{else}-->
+			<a href="space.php?uid=$space[uid]" class="avatar" id="u_$space[uid]" onmouseover="showMenu(this.id)">
+				<img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" />
+			</a>
+			<!--{if $isonline}-->
+				<p class="online"><a href="space.php?do=friend&view=online">在线($isonline)</a></p>
+			<!--{/if}-->
+			<ul class="ulink">
 				<li><a href="cp.php?ac=pm&uid=$space[uid]" id="a_pm" onclick="ajaxmenu(event, this.id, 99999, '', -1)">发短消息</a></li>
 				<li><a href="cp.php?ac=poke&op=send&uid=$space[uid]" id="a_poke" onclick="ajaxmenu(event, this.id, 99999, '', -1)">打招呼</a></li>
 				<!--{if !$space['isfriend']}-->
 				<li><a href="cp.php?ac=friend&op=add&uid=$space[uid]" id="a_friend" onclick="ajaxmenu(event, this.id, 99999, '', -1)">加为好友</a></li>
 				<!--{/if}-->
-			<!--{/if}-->
 			</ul>
-			<!--{if $isonline}-->
-				<p class="online"><a href="space.php?do=friend&view=online">在线($isonline)</a></p>
-			<!--{/if}-->
 		</div>
 		<div id="space_appicon" class="widget">
 			<ul class="s_clear">
@@ -41,25 +40,25 @@
 		</div>
 		<!--{/if}-->
 
+		<!--{if $classarr}-->
 		<div class="widget">
 			<h3>分类</h3>
 			<div class="widget_content">
-			<!--{if $classarr}-->
-				<ul class="post_list line_list">
-				<li><a href="space.php?uid=$space[uid]&do=blog&view=me">全部日志</a></li>
-				<!--{loop $classarr $classid $classname}-->
-				<li>
-					<a href="space.php?uid=$space[uid]&do=blog&classid=$classid">$classname</a>
-					<!--{if $space[self]}-->
-						<a href="cp.php?ac=class&op=edit&classid=$classid" class="float_del float_edit" id="c_edit_$classid" onclick="ajaxmenu(event, this.id, 99999, '', -1)">编辑</a>
-						<a href="cp.php?ac=class&op=delete&classid=$classid" class="float_del" id="c_delete_$classid" onclick="ajaxmenu(event, this.id, 99999)">删除</a>
-					<!--{/if}-->
-				</li>
-				<!--{/loop}-->
+				<ul class="class_list">
+					<li><a href="space.php?uid=$space[uid]&do=blog&view=me">全部日志</a></li>
+					<!--{loop $classarr $classid $classname}-->
+					<li>
+						<a href="space.php?uid=$space[uid]&do=blog&classid=$classid">$classname</a>
+						<!--{if $space[self]}-->
+							<a href="cp.php?ac=class&op=edit&classid=$classid" class="float_del float_edit" id="c_edit_$classid" onclick="ajaxmenu(event, this.id, 99999, '', -1)">编辑</a>
+							<a href="cp.php?ac=class&op=delete&classid=$classid" class="float_del" id="c_delete_$classid" onclick="ajaxmenu(event, this.id, 99999)">删除</a>
+						<!--{/if}-->
+					</li>
+					<!--{/loop}-->
 				</ul>
-			<!--{/if}-->
 			</div>
 		</div>
+		<!--{/if}-->
 
 		<div class="widget">
 			<h3>订阅</h3>
@@ -67,5 +66,6 @@
 				<a href="rss.php?uid=$space[uid]">RSS 2.0</a>
 			</div>
 		</div>
+		
 		<!--{ad/rightside}--><!-- 右侧栏广告-->
 	</div>

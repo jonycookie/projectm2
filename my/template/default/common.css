@@ -26,13 +26,14 @@ ul li {
 	list-style: none;
 }
 a {
-	color: #06C;
+	color: #333;
 	text-decoration: none;
 }
 .feed a:visited {
 	color: #5181B7;
 }
 a:hover {
+	color: #35b106;
 	text-decoration: underline;
 }
 a img {
@@ -64,14 +65,6 @@ caption p {
 }
 .gray {
 	color: #999;
-}
-.time {
-	margin-left: 9px;
-	color: #999;
-	font-size: 12px;
-}
-.stat .time {
-	margin-left: 0;
 }
 .tags {
 	padding: 0.5em;
@@ -107,7 +100,6 @@ caption p {
 }
 #header {
 	height: 35px;
-	background: #2782D6;
 	position: relative;
 }
 #header h2, #menu, #op {
@@ -115,7 +107,6 @@ caption p {
 }
 #header h2 {
 	width: 132px;
-	border-bottom: 5px solid #7DC3F6;
 }
 #menu {
 	left: 133px;
@@ -128,7 +119,6 @@ caption p {
 	padding-right: 1em;
 }
 #menu a {
-	color: #FFF;
 	padding: 2px 4px;
 }
 #menu a:hover {
@@ -137,7 +127,6 @@ caption p {
 }
 #menu .edit {
 	font-size: 12px;
-	color: #BBE2FF;
 }
 #menu a.edit:hover {
 	background: transparent;
@@ -208,17 +197,11 @@ caption p {
 
 .main {
 	float: left;
-	width: 713px;
-	border:1px solid #DDDDDD;
+	width: 715px;
 }
 .sidebar {
 	float: right;
-	width: 238px;
-	border: 1px solid #ddd;
-	background: #fafafa;
-}
-.sidebar .panel {
-	
+	width: 240px;
 }
 
 .app_list {
@@ -910,6 +893,69 @@ a.type {
 .type_comment .type, .type_wall .type {
 	background-position: 0 -400px;
 }
+
+.blog {
+	padding: 25px 0 0;
+	margin: 0 0 5px;
+	border: 1px solid #ddd;
+}
+.blog .article {
+	padding: 30px;
+	line-height: 3em;
+}
+.blog .time {
+	float: left;
+	background: url(image/bg_time.png) no-repeat;
+	width: 53px;
+	height: 36px;
+	padding: 2px 0 7px;
+	margin: 0 0 0 -5px;
+	color: #fff;
+	text-align: center;
+}
+.blog .time .day {
+	font-size: 18px;
+	line-height: 20px;
+	font-family: tahoma;
+	font-weight: bold;
+}
+.blog .time .month {
+	font-size: 9px;
+	line-height: 12px;
+	font-family: tahoma;
+}
+.blog .title {
+	margin: 0 0 0 60px;
+}
+.blog .title h1, .blog .title h4 {
+	color: #666;
+	font-size: 14px;
+}
+
+.class_list li {
+	padding: 5px 15px 5px 10px;
+	position: relative;
+}
+
+
+.comment {
+	margin: 0 0 5px;
+	border: 1px solid #ddd;
+}
+.comment .quickpost {
+	background: #fafafa;
+	padding: 5px;
+}
+
+
+.widget {
+	border: 1px solid #ddd;
+	padding: 10px;
+	margin: 0 0 5px;
+}
+
+
+
 .quote {
 	zoom: 1;
 	overflow: hidden;
@@ -981,12 +1027,6 @@ a.type {
 	width: 383px;
 	w\idth: 377px;
 }
-.article {
-	padding: 20px;
-}
-.article table {
-	table-layout: fixed;
-}
 .tracebutton {
 	display: block;
 	width: 69px;
@@ -999,17 +1039,6 @@ a.type {
 .l_text {
 	font-size: 1.17em;
 	line-height: 1.6em;
-}
-.title {
-	padding: 0.2em 0.5em;
-}
-.title h1 {
-	font-size: 1.17em;
-	color: #333;
-}
-.title h4 {
-	padding-top: 2px;
-	font-size: 1.17em;
 }
 .locked {
 	padding-left: 15px;
@@ -1038,7 +1067,6 @@ textarea {
 	font-size: 1.17em;
 }
 .quickpost td {
-	padding: 0.2em 0;
 }
 .user_list {
 	padding: 10px;
@@ -1332,14 +1360,14 @@ textarea {
 	margin-left:2px;
 }
 .submit {
-	padding: 0 10px;
-	height: 22px;
-	border: 1px solid;
-	border-color: #DDD #264F6E #264F6E #DDD;
-	background: #2782D6;
+	width: 50px;
+	height: 24px;
+	border: 0;
+	background: url(image/btn_submit.png) no-repeat;
 	color: #FFF;
-	line-height: 20px;
-	letter-spacing: 1px;
+	font-weight: bold;
+	line-height: 24px;
+	text-align: center;
 	cursor: pointer;
 }
 #m_search {
