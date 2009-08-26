@@ -99,19 +99,6 @@ if(submitcheck('thevaluesubmit')) {
 				}
 				$sql['limit'] = getlimit($_POST['network'][$key]['start'], $_POST['network'][$key]['limit']);
 				break;
-			case 'share':
-				$uids = getdotstring($_POST['network'][$key]['uid'], 'int');
-				if($uids) $wherearr[] = 'uid IN ('.$uids.')';
-				if($_POST['network'][$key]['dateline']) {
-					 $wherearr[] = getscopequery('dateline', $_POST['network'][$key]['dateline'], 1);
-				}
-				
-				if($wherearr) $sql['where'] = 'WHERE '.implode(' AND ', $wherearr);
-				if($_POST['network'][$key]['order']) {
-					$sql['order'] = 'ORDER BY '.$_POST['network'][$key]['order'].' '.$_POST['network'][$key]['sc'];
-				}
-				$sql['limit'] = getlimit($_POST['network'][$key]['start'], $_POST['network'][$key]['limit']);
-				break;
 			case 'mtag':
 				$tagids = getdotstring($_POST['network'][$key]['tagid'], 'int');
 				if($tagids) $wherearr[] = 'tagid IN ('.$tagids.')';
@@ -157,7 +144,7 @@ if(submitcheck('thevaluesubmit')) {
 		$network[$key] = array();
 		$network[$key]['usedefault'] = 1;
 	}
-	foreach(array('space', 'doing', 'blog', 'album', 'share', 'mtag', 'thread') as $val) {
+	foreach(array('space', 'doing', 'blog', 'album', 'mtag', 'thread') as $val) {
 		$sql = '';
 		$sql = trim($network[$val]['sql']);
 		$networkcache[$val] = empty($sql) ? '' : $sql;

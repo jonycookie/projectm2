@@ -86,16 +86,6 @@ if($op == 'comment') {
 	if(empty($value['gid'])) $value['gid'] = 0;
 	$group =$groups[$value['gid']];
 	
-} elseif($op == 'share') {
-
-	//ÆÀÂÛ
-	$list = array();
-	$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('share')." WHERE uid='$_SGLOBAL[supe_uid]' ORDER BY dateline DESC LIMIT 0,1");
-	while ($value = $_SGLOBAL['db']->fetch_array($query)) {
-		$value = mkshare($value);
-		$list[] = $value;
-	}
-	
 } elseif($op == 'post') {
 
 	$pid = empty($_GET['pid'])?0:intval($_GET['pid']);

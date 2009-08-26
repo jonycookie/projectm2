@@ -102,20 +102,6 @@ $_SGLOBAL['msglang'] = array(
 	//source/cp_profile.php
 	'update_on_successful_individuals' => '个人资料更新成功了',
 
-	//source/cp_share.php
-	'blog_does_not_exist' => '指定的日志不存在',
-	'logs_can_not_share' => '指定的日志因隐私设置不能够被分享',
-	'album_does_not_exist' => '指定的相册不存在',
-	'album_can_not_share' => '指定的相册因隐私设置不能够被分享',
-	'image_does_not_exist' => '指定的图片不存在',
-	'image_can_not_share' => '指定的图片因隐私设置不能够被分享',
-	'topics_does_not_exist' => '指定的话题不存在',
-	'mtag_does_not_exist' => '指定的选吧不存在',
-	'tag_does_not_exist' => '指定的标签不存在',
-	'url_incorrect_format' => '分享的网址格式不正确',
-	'not_correctly_designated_to_share_information' => '没有正确指定要分享的信息',
-	'description_share_input' => '请输入分享的描述',
-
 	//source/cp_space.php
 	'domain_length_error' => '设置的二级域名长度不能小于\\1个字符',
 	'credits_exchange_invalid' => '兑换的积分方案有错，不能进行兑换，请返回修改。',
@@ -219,9 +205,6 @@ $_SGLOBAL['msglang'] = array(
 	//source/network_album.php
 	'search_short_interval' => '两次搜索间隔太短，请稍后再进行搜索',
 	'set_the_correct_search_content' => '对不起，请设置正确的查找内容',
-
-	//source/space_share.php
-	'share_does_not_exist' => '要查看的分享不存在',
 
 	//source/space_tag.php
 	'tag_locked' => '标签已经被锁定',

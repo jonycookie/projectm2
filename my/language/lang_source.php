@@ -13,7 +13,6 @@ $_SGLOBAL['sourcelang'] = array(
 	'by' => '通过',
 	'album' => '相册',
 	'mtag' => '选吧',
-	'share' => '分享',
 	'delete' => '删除',
 	'add' => '添加',
 	'person' => '人',
@@ -27,7 +26,6 @@ $_SGLOBAL['sourcelang'] = array(
 	'feed_comment_space' => '{actor} 在 {touser} 的留言板留了言',
 	'feed_comment_image' => '{actor} 评论了 {touser} 的图片',
 	'feed_comment_blog' => '{actor} 评论了 {touser} 的日志 {blog}',
-	'feed_comment_share' => '{actor} 评论了 {touser} 的{share}',
 	'feed_invite' => '{actor} 发起邀请，跟 {username} 成为了好友',
 	
 	'note_wall' => '在留言板上给你<a href="\\1" target="_blank">留言</a>',
@@ -37,13 +35,6 @@ $_SGLOBAL['sourcelang'] = array(
 	'note_pic_comment_reply' => '回复了你的<a href="\\1" target="_blank">图片评论</a>',
 	'note_blog_comment' => '评论了你的日志 <a href="\\1" target="_blank">\\2</a>',
 	'note_blog_comment_reply' => '回复了你的<a href="\\1" target="_blank">日志评论</a>',
-	'note_share_comment' => '评论了你的 <a href="\\1" target="_blank">分享</a>',
-	'note_share_comment_reply' => '回复了你的<a href="\\1" target="_blank">分享评论</a>',
-	'note_share_space' => '分享了你的空间',
-	'note_share_blog' => '分享了你的日志 <a href="\\1" target="_blank">\\2</a>',
-	'note_share_album' => '分享了你的相册 <a href="\\1" target="_blank">\\2</a>',
-	'note_share_pic' => '分享了你的相册 \\2 中的<a href="\\1" target="_blank">图片</a>',
-	'note_share_thread' => '分享了你的话题 <a href="\\1" target="_blank">\\2</a>',
 	
 	'note_doing_reply' => '针对你的<a href="\\1" target="_blank">迷你博客</a>进行了<a href="\\2" target="_blank">评论</a>',
 	
@@ -55,17 +46,6 @@ $_SGLOBAL['sourcelang'] = array(
 	'friend_invite_message' => '\\1 在 \\2 站点邀请你为好友。<br />请复制下面的链接到浏览器窗口查看，成为 \\1 的好友：<br />\\3do.php?ac=invite&code=\\4<br /><br />\\2 是属于你自己的空间。<br />在这里，你可以一句话记录生活中的点点滴滴，方便快捷地发布信息和图片，与志同道合的朋友们一起交流与分享。<br />(这是站内自动发送的系统消息，你不需要回复)<br />\\3<br />',
 	
 	'feed_mtag_join' => '{actor} 加入了选吧 {mtag} ({field})',
-	
-	'share_space' => '分享了一个用户',
-	'share_blog' => '分享了一篇日志',
-	'share_album' => '分享了一个相册',
-	'share_image' => '分享了一张图片',
-	'share_thread' => '分享了一个话题',
-	'share_mtag' => '分享了一个选吧',
-	'share_mtag_membernum' => '现有 {membernum} 名成员',
-	'share_tag' => '分享了一个标签',
-	'share_tag_blognum' => '现有 {blognum} 篇日志',
-	'share_link' => '分享了一个网址',
 	
 	'feed_thread' => '<b>{actor} 发起了新话题</b>',
 	'feed_thread_reply' => '{actor} 回复了 {touser} 的话题 {thread}',

@@ -28,7 +28,7 @@ if(empty($_SCONFIG['networkpublic'])) {
 }
 
 //允许的方法
-$acs = array('space', 'doing', 'blog', 'album', 'mtag', 'thread', 'share');
+$acs = array('space', 'doing', 'blog', 'album', 'mtag', 'thread');
 $ac = (empty($_GET['ac']) || !in_array($_GET['ac'], $acs))?'index':$_GET['ac'];
 $theurl = "network.php?ac=$ac";
 

@@ -96,14 +96,6 @@ if(submitcheck('commentsubmit')) {
 			$fs['target_ids'] = $blog['target_ids'];
 			$fs['friend'] = $blog['friend'];
 			break;
-		case 'sid':
-			//事件
-			$fs['title_template'] = lang('feed_comment_share');
-			$fs['title_data'] = array('touser'=>"<a href=\"space.php?uid=$cspace[uid]\">$cspace[username]</a>", 'share'=>"<a href=\"space.php?uid=$cspace[uid]&do=share&id=$id\">".lang('share')."</a>");
-			$fs['body_template'] = '';
-			$fs['body_data'] = array();
-			$fs['body_general'] = '';
-			break;
 	}
 	
 	$setarr = array(
@@ -147,15 +139,6 @@ if(submitcheck('commentsubmit')) {
 			$note_type = 'blogcomment';
 			$note = lang('note_blog_comment', array($n_url, $blog['subject']));
 			$q_note = lang('note_blog_comment_reply', array($n_url));
-			$msg = 'do_success';
-			$magvalues = array();
-			break;
-		case 'sid':
-			//分享
-			$n_url = "space.php?uid=$cspace[uid]&do=share&id=$id&cid=$cid";
-			$note_type = 'sharecomment';
-			$note = lang('note_share_comment', array($n_url));
-			$q_note = lang('note_share_comment_reply', array($n_url));
 			$msg = 'do_success';
 			$magvalues = array();
 			break;
@@ -293,18 +276,6 @@ function checkcomment($id, $idtype) {
 			}
 			//检索空间
 			$cspace = getspace($blog['uid']);
-			break;
-		case 'sid':
-			//读取日志
-			$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('share')." WHERE sid='$id'");
-			$share = $_SGLOBAL['db']->fetch_array($query);
-			//日志不存在
-			if(empty($share)) {
-				showmessage('sharing_does_not_exist');
-			}
-			
-			//检索空间
-			$cspace = getspace($share['uid']);
 			break;
 		default:
 			showmessage('non_normal_operation');

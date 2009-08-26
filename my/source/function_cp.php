@@ -394,39 +394,6 @@ function feed_add($icon, $title_template='', $title_data='', $body_template='', 
 	inserttable('feed', $feedarr);
 }
 
-//分享发布
-function share_add($type, $title_template, $body_template, $body_data, $body_general, $image='', $image_link='') {
-	global $_SGLOBAL;
-	
-	$sharearr = array(
-		'type' => $type,
-		'uid' => $_SGLOBAL['supe_uid'],
-		'username' => $_SGLOBAL['supe_username'],
-		'dateline' => $_SGLOBAL['timestamp'],
-		'title_template' => $title_template,
-		'body_template' => $body_template,
-		'body_general' => $body_general,
-		'image' => empty($image)?'':$image,
-		'image_link' => empty($image_link)?'':$image_link
-	);
-	$sharearr = sstripslashes($sharearr);//去掉转义
-	$sharearr['body_data'] = serialize(sstripslashes($body_data));//数组转化
-	$sharearr['hash_data'] = md5($sharearr['title_template']."\t".$sharearr['body_template']."\t".$sharearr['body_data']);//合并hash
-	$sharearr = saddslashes($sharearr);//增加转义
-	
-	$sid = inserttable('share', $sharearr, 1);
-	
-	//添加feed
-	$images = empty($image)?array():array($image);
-	$image_links = empty($image_link)?array():array($image_link);
-	if($type == 'link') {
-		$body_data['link'] .= " (<a href=\"space.php?uid=$_SGLOBAL[supe_uid]&do=share&id=$sid\">".lang('comment')."</a>)";
-	}
-	if(ckprivacy('share', 1)) {
-		feed_add('share', "{actor} $title_template", array(), $body_template, $body_data, $body_general, $images, $image_links);
-	}
-}
-
 //通知
 function notification_add($uid, $type, $note) {
 	global $_SGLOBAL;
