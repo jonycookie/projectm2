@@ -6,7 +6,7 @@
 //添加留言
 function wall_add(cid, result) {
 	if(result) {
-		var obj = $('comment_ul');
+		var obj = $('comment_ol');
 		var newli = document.createElement("div");
 		var x = new Ajax();
 		x.get('do.php?ac=ajax&op=comment', function(s){
@@ -21,7 +21,7 @@ function wall_add(cid, result) {
 //短消息发送
 function pm_add(pmid, result) {
 	if(result) {
-		var obj = $('pm_ul');
+		var obj = $('pm_ol');
 		var newli = document.createElement("div");
 		var x = new Ajax();
 		x.get('do.php?ac=ajax&op=pm', function(s){
@@ -53,7 +53,7 @@ function share_add(sid, result) {
 //添加评论
 function comment_add(cid, result) {
 	if(result) {
-		var obj = $('comment_ul');
+		var obj = $('comment_ol');
 		var newli = document.createElement("div");
 		var x = new Ajax();
 		x.get('do.php?ac=ajax&op=comment', function(s){
@@ -133,7 +133,7 @@ function friend_changegroup(uid, result) {
 //添加回帖
 function post_add(pid, result) {
 	if(result) {
-		var obj = $('post_ul');
+		var obj = $('post_ol');
 		var newli = document.createElement("div");
 		var x = new Ajax();
 		x.get('do.php?ac=ajax&op=post', function(s){
