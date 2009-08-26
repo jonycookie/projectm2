@@ -1,0 +1,71 @@
+	<div class="sidebar">
+		<div id="space_action" class="widget">
+			<ul class="line_list blocklink">
+			<!--{if $space[self]}-->
+				<li><a href="cp.php?ac=profile">编辑我的资料</a></li>
+			<!--{else}-->
+				<li><a href="cp.php?ac=pm&uid=$space[uid]" id="a_pm" onclick="ajaxmenu(event, this.id, 99999, '', -1)">发短消息</a></li>
+				<li><a href="cp.php?ac=poke&op=send&uid=$space[uid]" id="a_poke" onclick="ajaxmenu(event, this.id, 99999, '', -1)">打招呼</a></li>
+				<!--{if !$space['isfriend']}-->
+				<li><a href="cp.php?ac=friend&op=add&uid=$space[uid]" id="a_friend" onclick="ajaxmenu(event, this.id, 99999, '', -1)">加为好友</a></li>
+				<!--{/if}-->
+			<!--{/if}-->
+			</ul>
+			<!--{if $isonline}-->
+				<p class="online"><a href="space.php?do=friend&view=online">在线($isonline)</a></p>
+			<!--{/if}-->
+		</div>
+		<div id="space_appicon" class="widget">
+			<ul class="s_clear">
+				<li class="app-doing"><a href="space.php?uid=$space[uid]&do=doing&view=me" title="迷你博客">迷你博客</a></li>
+				<li class="app-blog"><a href="space.php?uid=$space[uid]&do=blog&view=me" title="日志">日志</a></li>
+				<li class="app-photo"><a href="space.php?uid=$space[uid]&do=album&view=me" title="相册">相册</a></li>
+				<li class="app-share"><a href="space.php?uid=$space[uid]&do=share&view=me" title="分享">分享</a></li>
+				<li class="app-thread"><a href="space.php?uid=$space[uid]&do=thread&view=me" title="话题">话题</a></li>
+			</ul>
+		</div>
+
+		<!--{if $blog['related']}-->
+		<div class="widget">
+			<!--{loop $blog['related'] $appid $values}-->
+			<h3><!--{if $_SGLOBAL[app][$appid][name]}-->{$_SGLOBAL[app][$appid][name]}<!--{else}-->相关阅读<!--{/if}--></h3>
+			<table cellspacing="2" cellpadding="2">
+				<!--{loop $values['data'] $value}-->
+				<tr>
+					<!--{if $value[uid]}--><td class="avatar"><a href="space.php?uid=$value[uid]" title="$value[username]"><img src="<!--{avatar($value[uid],small)}-->" alt="$value[username]" /></a></td><!--{/if}-->
+					<td>$value[html]</td>
+				</tr>
+				<!--{/loop}-->
+			</table>
+			<!--{/loop}-->
+		</div>
+		<!--{/if}-->
+
+		<div class="widget">
+			<h3>分类</h3>
+			<div class="widget_content">
+			<!--{if $classarr}-->
+				<ul class="post_list line_list">
+				<li><a href="space.php?uid=$space[uid]&do=blog&view=me">全部日志</a></li>
+				<!--{loop $classarr $classid $classname}-->
+				<li>
+					<a href="space.php?uid=$space[uid]&do=blog&classid=$classid">$classname</a>
+					<!--{if $space[self]}-->
+						<a href="cp.php?ac=class&op=edit&classid=$classid" class="float_del float_edit" id="c_edit_$classid" onclick="ajaxmenu(event, this.id, 99999, '', -1)">编辑</a>
+						<a href="cp.php?ac=class&op=delete&classid=$classid" class="float_del" id="c_delete_$classid" onclick="ajaxmenu(event, this.id, 99999)">删除</a>
+					<!--{/if}-->
+				</li>
+				<!--{/loop}-->
+				</ul>
+			<!--{/if}-->
+			</div>
+		</div>
+
+		<div class="widget">
+			<h3>订阅</h3>
+			<div class="widget_content">
+				<a href="rss.php?uid=$space[uid]">RSS 2.0</a>
+			</div>
+		</div>
+		<!--{ad/rightside}--><!-- 右侧栏广告-->
+	</div>
