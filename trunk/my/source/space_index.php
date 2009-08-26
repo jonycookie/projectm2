@@ -57,16 +57,6 @@ if(ckprivacy('feed')) {
 	$feednum = count($feedlist);
 }
 
-//个人分享
-$sharelist = array();
-if(ckprivacy('share')) {
-	$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('share')." WHERE uid='$space[uid]' ORDER BY dateline DESC LIMIT 0,10");
-	while ($value = $_SGLOBAL['db']->fetch_array($query)) {
-		$value = mkshare($value);
-		$sharelist[] = $value;
-	}
-}
-
 //好友列表
 $friendlist = array();
 if(ckprivacy('friend')) {

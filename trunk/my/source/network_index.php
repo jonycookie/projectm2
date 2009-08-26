@@ -59,19 +59,6 @@ if($cachelost) {
 		$netcache['doinglist'][] = $value;
 	}
 	
-	//个人分享
-	$netcache['sharelist'] = array();
-	if(empty($network['share'])) {
-		$sql = " FORCE INDEX (dateline) ORDER BY dateline DESC LIMIT 0,10";
-	} else {
-		$sql = ' '.trim($network['share']);
-	}
-	$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('share').$sql);
-	while ($value = $_SGLOBAL['db']->fetch_array($query)) {
-		$value = mkshare($value);
-		$netcache['sharelist'][] = $value;
-	}
-	
 	//日志
 	$netcache['bloglist'] = array();
 	if(empty($network['blog'])) {

@@ -32,12 +32,6 @@
 						</td>
 					</tr>
 					<tr>
-						<td>分享</td>
-						<td>
-							<a href="admincp.php?ac=network&op=edit&module=share">编辑</a>
-						</td>
-					</tr>
-					<tr>
 						<td>相册</td>
 						<td>
 							<a href="admincp.php?ac=network&op=edit&module=album">编辑</a>
@@ -265,41 +259,6 @@
 								}-->
 								<!--{eval echo getselectstr("network[blog][order]", $blogarr, $network['blog']['order'])}--> 
 								<!--{eval echo getselectstr("network[blog][sc]", $scarr, $network['blog']['sc'])}-->
-							</td>
-						</tr>
-					</table>
-					<!--{elseif $_GET['module']=='share'}-->
-					<div class="title">
-						<h3>分享过滤</h3>
-						<p>可以根据下面提供的条件进行设置分享区块的取值条件</p>
-					</div>
-					<table cellspacing="0" cellpadding="0" class="formtable">
-						<tr>
-							<td style="width:10em;">分享时间</td>
-							<td><!--{eval echo getselectstr("network[share][dateline]", $datearr, $network['share']['dateline'])}--></td>
-						</tr>
-						<tr>
-							<td>指定作者uid</td>
-							<td>
-								<input name="network[share][uid]" type="text" id="shareuid" size="20" value="$network[share][uid]" /> 多个uid用","分隔
-							</td>
-						</tr>
-					</table>
-					<div class="title">
-						<h3>分享排序设置</h3>
-					</div>
-					<table cellspacing="0" cellpadding="0" class="formtable">
-						<tr>
-							<td style="width:10em;">列表排序</td>
-							<td>
-								<!--{eval
-									$sharearr = array(
-										'' => '------',
-										'dateline' => '发布时间'
-									);
-								}-->
-								<!--{eval echo getselectstr("network[share][order]", $sharearr, $network['share']['order'])}--> 
-								<!--{eval echo getselectstr("network[share][sc]", $scarr, $network['share']['sc'])}-->
 							</td>
 						</tr>
 					</table>

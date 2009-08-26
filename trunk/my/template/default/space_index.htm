@@ -36,7 +36,6 @@
 				<li class="app-doing"><a href="space.php?uid=$space[uid]&do=doing&view=me" title="迷你博客">迷你博客</a></li>
 				<li class="app-blog"><a href="space.php?uid=$space[uid]&do=blog&view=me" title="日志">日志</a></li>
 				<li class="app-photo"><a href="space.php?uid=$space[uid]&do=album&view=me" title="相册">相册</a></li>
-				<li class="app-share"><a href="space.php?uid=$space[uid]&do=share&view=me" title="分享">分享</a></li>
 				<li class="app-thread"><a href="space.php?uid=$space[uid]&do=thread&view=me" title="话题">话题</a></li>
 			</ul>
 		</div>
@@ -103,21 +102,6 @@
 			<!--{loop $threadlist $value}-->
 				<li><a href="space.php?uid=$value[uid]&do=thread&id=$value[tid]">$value[subject]</a> <span class="time"><!--{date('m-d H:i',$value[dateline],1)}--></span>
 				</li>
-			<!--{/loop}-->
-			</ul>
-		</div>
-		<!--{/if}-->
-
-		<!--{if $sharelist}-->
-		<div id="space_share" class="box">
-			<h3>分享</h3>
-			<div class="box_action">
-				<p>最新分享</p>
-				<p class="action"><a href="space.php?uid=$space[uid]&do=share&view=me">全部</a></p>
-			</div>
-			<ul class="post_list line_list">
-			<!--{loop $sharelist $value}-->
-				<li><!--{if $value[image]}--><a href="$value[image_link]"><img src="$value[image]" width="70" align="left" style="margin-right:5px;margin-bottom:5px;"></a><!--{/if}--> $value[body_template]</li>
 			<!--{/loop}-->
 			</ul>
 		</div>
@@ -323,7 +307,6 @@
 
 <div class="f_status s_clear">
 	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
-	<a href="cp.php?ac=share&type=space&id=$space[uid]" id="a_share" onclick="ajaxmenu(event, this.id, 99999, '', -1)">分享</a>
 	<a href="rss.php?uid=$space[uid]" id="a_rss" title="订阅 RSS">订阅</a>
 	<!--{if $space['isfriend'] && !$space['self']}-->
 	<a href="cp.php?ac=friend&op=ignore&uid=$space[uid]" id="a_ignore" onclick="ajaxmenu(event, this.id, 99999)">解除好友关系</a>

@@ -110,28 +110,6 @@ function deletefeeds($feedids) {
 }
 
 
-//删除分享
-function deleteshares($sids) {
-	global $_SGLOBAL;
-	
-	$allowmanage = checkperm('manageshare');
-
-	$shares = $newsids = array();
-	$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('share')." WHERE sid IN (".simplode($sids).")");
-	while ($value = $_SGLOBAL['db']->fetch_array($query)) {
-		if($allowmanage || $value['uid'] == $_SGLOBAL['supe_uid']) {//管理员/作者
-			$newsids[] = $value['sid'];
-			$shares[] = $value;
-		}
-	}
-	if(empty($newsids)) return array();
-	
-	$_SGLOBAL['db']->query("DELETE FROM ".tname('share')." WHERE sid IN (".simplode($newsids).")");
-
-	return $shares;
-}
-
-
 //删除迷你博客
 function deletedoings($ids) {
 	global $_SGLOBAL;

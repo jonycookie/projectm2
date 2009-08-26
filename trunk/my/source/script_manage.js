@@ -36,20 +36,6 @@ function pm_add(pmid, result) {
 		}
 	}
 }
-//添加分享
-function share_add(sid, result) {
-	if(result) {
-		var obj = $('share_ul');
-		var newli = document.createElement("div");
-		var x = new Ajax();
-		x.get('do.php?ac=ajax&op=share', function(s){
-			newli.innerHTML = s;
-		});
-		obj.insertBefore(newli, obj.firstChild);
-		$('share_link').value = 'http://';
-		$('share_general').value = '';
-	}
-}
 //添加评论
 function comment_add(cid, result) {
 	if(result) {
@@ -103,13 +89,6 @@ function feed_delete(feedid, result) {
 function pm_delete(pmid, result) {
 	if(result) {
 		var obj = $('pm_'+ pmid +'_li');
-		obj.style.display = "none";
-	}
-}
-//删除分享
-function share_delete(sid, result) {
-	if(result) {
-		var obj = $('share_'+ sid +'_li');
 		obj.style.display = "none";
 	}
 }

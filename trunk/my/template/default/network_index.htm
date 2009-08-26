@@ -14,7 +14,7 @@
 		<div class="l_text" style="margin-top:5px;">
 		您可以用<a href="help.php?ac=doing">迷你博客</a>一句话记录生活中的点点滴滴；<br />
 		方便快捷地<a href="help.php?ac=blog">发布日志</a>、<a href="help.php?ac=album">上传图片</a>；<br />
-		与好友们一起<a href="help.php?ac=share">分享信息</a>、<a href="help.php?ac=mtag">讨论感兴趣的话题</a>；<br />
+		与好友们一起<a href="help.php?ac=mtag">讨论感兴趣的话题</a>；<br />
 		更可轻松快捷了解<a href="help.php?ac=home">好友最新动态</a>。
 		</div>
 		</div>
@@ -73,21 +73,6 @@
 							<!--{if $value[replynum]}--><a href="space.php?uid=$value[uid]&do=blog&id=$value[blogid]#comment">$value[replynum] 个评论</a><!--{else}-->没有评论<!--{/if}-->
 						</div>
 					</li>
-				<!--{/loop}-->
-				</ul>
-			</div>
-		</div>
-		
-		<div class="box">
-			<h3><a href="network.php?ac=share">分享</a></h3>
-			<div class="box_action">
-				<p>显示 <!--{eval echo count($netcache['sharelist']);}--> 个分享</p>
-				<p class="action"><a href="network.php?ac=share">查看全部</a></p>
-			</div>
-			<div class="post_list">
-				<ul>
-				<!--{loop $netcache['sharelist'] $value}-->
-					<!--{template space_share_li}-->
 				<!--{/loop}-->
 				</ul>
 			</div>

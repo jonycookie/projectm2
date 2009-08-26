@@ -502,30 +502,6 @@ CREATE TABLE uchome_session (
 -- --------------------------------------------------------
 
 -- 
--- 表的结构 'uchome_share'
--- 
-
-CREATE TABLE uchome_share (
-  sid mediumint(8) unsigned NOT NULL auto_increment,
-  type varchar(30) NOT NULL default '',
-  uid mediumint(8) unsigned NOT NULL default '0',
-  username varchar(15) NOT NULL default '',
-  dateline int(10) unsigned NOT NULL default '0',
-  hash_data varchar(32) NOT NULL default '',
-  title_template text NOT NULL,
-  body_template text NOT NULL,
-  body_data text NOT NULL,
-  body_general text NOT NULL,
-  image varchar(255) NOT NULL default '',
-  image_link varchar(255) NOT NULL default '',
-  PRIMARY KEY  (sid),
-  KEY uid (uid,dateline),
-  KEY dateline (dateline)
-) ENGINE=MyISAM;
-
--- --------------------------------------------------------
-
--- 
 -- 表的结构 'uchome_space'
 -- 
 
@@ -688,7 +664,6 @@ CREATE TABLE uchome_usergroup (
   allowblog tinyint(1) NOT NULL default '0',
   allowdoing tinyint(1) NOT NULL default '0',
   allowupload tinyint(1) NOT NULL default '0',
-  allowshare tinyint(1) NOT NULL default '0',
   allowthread tinyint(1) NOT NULL default '0',
   allowpost tinyint(1) NOT NULL default '0',
   domainlength smallint(6) unsigned NOT NULL default '0',
@@ -699,7 +674,6 @@ CREATE TABLE uchome_usergroup (
   manageprofield tinyint(1) NOT NULL default '0',
   manageusergroup tinyint(1) NOT NULL default '0',
   managefeed tinyint(1) NOT NULL default '0',
-  manageshare tinyint(1) NOT NULL default '0',
   managedoing tinyint(1) NOT NULL default '0',
   manageblog tinyint(1) NOT NULL default '0',
   managetag tinyint(1) NOT NULL default '0',

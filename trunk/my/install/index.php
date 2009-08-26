@@ -633,7 +633,7 @@ END;
 		"('manualmoderator', '1')",
 		"('linkguide', '1')",
 		"('uc_tagrelatedtime', '86400')",
-		'(\'privacy\', \'a:2:{s:4:"view";a:10:{s:5:"index";i:0;s:7:"profile";i:0;s:6:"friend";i:0;s:4:"wall";i:0;s:4:"feed";i:0;s:5:"doing";i:0;s:4:"blog";i:0;s:5:"album";i:0;s:5:"share";i:0;s:4:"mtag";i:0;}s:4:"feed";a:10:{s:5:"doing";i:1;s:4:"blog";i:1;s:5:"album";i:1;s:6:"upload";i:1;s:5:"share";i:1;s:6:"thread";i:1;s:4:"post";i:1;s:4:"mtag";i:1;s:6:"friend";i:1;s:7:"comment";i:1;}}\')',
+		'(\'privacy\', \'a:2:{s:4:"view";a:10:{s:5:"index";i:0;s:7:"profile";i:0;s:6:"friend";i:0;s:4:"wall";i:0;s:4:"feed";i:0;s:5:"doing";i:0;s:4:"blog";i:0;s:5:"album";i:0;s:4:"mtag";i:0;}s:4:"feed";a:10:{s:5:"doing";i:1;s:4:"blog";i:1;s:5:"album";i:1;s:6:"upload";i:1;s:6:"thread";i:1;s:4:"post";i:1;s:4:"mtag";i:1;s:6:"friend";i:1;s:7:"comment";i:1;}}\')',
 		"('cronnextrun', '$_SGLOBAL[timestamp]')"
 	);
 	$_SGLOBAL['db']->query("TRUNCATE TABLE ".tname('config'));
@@ -671,7 +671,6 @@ END;
 	$datas['allowblog'] = array(1, 1, 1, 1, 1, 1, 1);
 	$datas['allowdoing'] = array(1, 1, 1, 1, 1, 1, 1);
 	$datas['allowupload'] = array(1, 1, 1, 1, 1, 1, 1);
-	$datas['allowshare'] = array(1, 1, 1, 1, 1, 1, 1);
 	$datas['allowthread'] = array(1, 1, 1, 1, 1, 1, 1);
 	$datas['allowpost'] = array(1, 1, 1, 0, 1, 1, 1);
 
@@ -685,7 +684,7 @@ END;
 	}
 
 	//信息管理
-	foreach (array('tag','mtag','feed','share','doing', 'blog','album','comment','thread') as $value) {
+	foreach (array('tag','mtag','feed','doing', 'blog','album','comment','thread') as $value) {
 		$datas['manage'.$value] = array(1, 1, 0, 0, 0, 0, 0);
 	}
 

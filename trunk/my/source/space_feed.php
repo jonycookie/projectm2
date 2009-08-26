@@ -28,7 +28,7 @@ if($space['self'] && empty($space['friendnum']) && empty($_GET['view'])) {
 	$_GET['view'] = 'all';
 }
 if($_GET['view'] == 'all') {
-	$wheresql = "appid='".UC_APPID."' AND friend='0' AND icon IN ('doing','blog','album','thread','share')";
+	$wheresql = "appid='".UC_APPID."' AND friend='0' AND icon IN ('doing','blog','album','thread')";
 	$theurl = "space.php?uid=$space[uid]&do=$do&view=all";
 	$f_index = '';
 	$actives = array('all'=>' class="active"');
@@ -156,8 +156,6 @@ if($notices) {
 		'wall' => mlang('wall'),
 		'piccomment' => mlang('pic_comment'),
 		'blogcomment' => mlang('blog_comment'),
-		'sharecomment' => mlang('share_comment'),
-		'sharenotice' => mlang('share_notice'),
 		'doing' => mlang('doing_comment'),
 		'friend' => mlang('friend_notice'),
 		'post' => mlang('thread_comment')

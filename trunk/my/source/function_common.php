@@ -1232,23 +1232,6 @@ function mkfeed($feed, $actors=array()) {
 }
 
 
-//整理分享
-function mkshare($share) {
-	$share['body_data'] = unserialize($share['body_data']);
-	
-	//body
-	$searchs = $replaces = array();
-	if($share['body_data']) {
-		foreach (array_keys($share['body_data']) as $key) {
-			$searchs[] = '{'.$key.'}';
-			$replaces[] = $share['body_data'][$key];
-		}
-	}
-	$share['body_template'] = str_replace($searchs, $replaces, $share['body_template']);
-	
-	return $share;
-}
-
 //ip访问允许
 function ipaccess($ipaccess) {
 	return empty($ipaccess)?true:preg_match("/^(".str_replace(array("\r\n", ' '), array('|', ''), preg_quote($ipaccess, '/')).")/", getonlineip());

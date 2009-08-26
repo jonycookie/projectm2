@@ -95,9 +95,6 @@ $_SGLOBAL['cplang'] = array(
 	'there_is_no_designated_users_columns' => '指定操作的选吧栏目不存在',
 	'choose_to_delete_the_columns' => '请正确选择要删除的栏目',
 
-	//admin/admincp_share.php
-	'please_delete_the_correct_choice_to_share' => '请正确选择要删除的分享',
-
 	//admin/admincp_space.php
 	'designated_users_do_not_exist' => '您指定的用户不存在',
 	'choose_to_delete_the_space' => '请正确选择要删除的空间',

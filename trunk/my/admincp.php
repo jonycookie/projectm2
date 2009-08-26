@@ -24,7 +24,7 @@ $acs = array(
 	array('config', 'privacy', 'network', 'usergroup', 'credit', 'profilefield', 'profield', 'tagtpl'),
 	array('space', 'tag', 'mtag'),
 	array('ad', 'censor', 'template', 'cache', 'backup', 'stat', 'block', 'cron'),
-	array('blog', 'album', 'pic', 'comment', 'thread', 'post', 'doing', 'feed', 'share')
+	array('blog', 'album', 'pic', 'comment', 'thread', 'post', 'doing', 'feed')
 );
 if(empty($_GET['ac']) || (!in_array($_GET['ac'], $acs[0]) && !in_array($_GET['ac'], $acs[1]) && !in_array($_GET['ac'], $acs[2]) && !in_array($_GET['ac'], $acs[3]))) {
 	$ac = 'index';
