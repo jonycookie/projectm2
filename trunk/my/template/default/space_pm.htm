@@ -25,7 +25,7 @@
 
 <div class="h_status"><a href="space.php?do=pm">返回收件箱</a></div>
 
-<ul class="pm_list" id="pm_ul">
+<ol class="pm_list" id="pm_ol">
 	<!--{loop $list $key $value}-->
 	<li class="s_clear">
 		<a href="space.php?uid=$value[msgfromid]"><img src="<!--{avatar($value[msgfromid],small)}-->" width="48" height="48" alt="$value[msgfrom]" class="avatar" /></a>
@@ -36,7 +36,7 @@
 		</div>
 	</li>
 	<!--{/loop}-->
-</ul>
+</ol>
 
 <!--{if $msgtoid}-->
 <div class="quickpost" style="margin-left: 200px; margin-bottom: 2em;">
