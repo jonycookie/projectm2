@@ -10,127 +10,46 @@
 
 <div class="side_right">
 	<div class="main">
-		<div class="post_list <!--{if !empty($space[friend]) || $_GET['view'] == 'trace'}-->a_list<!--{/if}-->">
 		<!--{if $list}-->
-			<ul>
-			<!--{loop $list $value}-->
-				<li>
-					<!--{if !empty($space[friend]) || $_GET['view'] == 'trace'}--><a href="space.php?uid=$value[uid]"><img src="<!--{avatar($value[uid],small)}-->" alt="$value[username]" class="avatar" /></a><!--{/if}-->
-					<div class="title">
-						<h4><a href="space.php?uid=$value[uid]&do=$do&id=$value[blogid]">$value[subject]</a></h4>
-						<a href="space.php?uid=$value[uid]">$value[username]</a> <span class="time"><!--{date('Y-m-d H:i',$value[dateline],1)}--></span>
-					</div>
-					<div class="detail image_right l_text s_clear" id="blog_article_$value[blogid]">
-						<!--{if $value[pic]}--><p class="image"><a href="space.php?uid=$value[uid]&do=blog&id=$value[blogid]"><img src="$value[pic]" alt="$value[subject]" /></a></p><!--{/if}-->
-						$value[message]
-					</div>
-					<div class="status">
-						<!--{if $classarr[$value[classid]]}-->分类: <a href="space.php?uid=$value[uid]&do=blog&classid=$value[classid]">{$classarr[$value[classid]]}</a><span class="pipe">|</span><!--{/if}-->
-						<!--{if $value[viewnum]}--><a href="space.php?uid=$value[uid]&do=$do&id=$value[blogid]">$value[viewnum] 次阅读</a><span class="pipe">|</span><!--{/if}-->
-						<!--{if $value[replynum]}--><a href="space.php?uid=$value[uid]&do=$do&id=$value[blogid]#comment">$value[replynum] 个评论</a><!--{else}-->没有评论<!--{/if}-->
-					</div>
-				</li>
-			<!--{/loop}-->
-			</ul>
+		<ul>
+		<!--{loop $list $value}-->
+			<li class="blog" id="blog_$value[blogid]">
+				<div class="time"><div class="day"><!--{date('d',$value[dateline],0)}--></div><div class="month"><!--{date('y.m',$value[dateline],0)}--></div></div>
+				<!--{if !empty($space[friend]) || $_GET['view'] == 'trace'}--><a href="space.php?uid=$value[uid]"><img src="<!--{avatar($value[uid],small)}-->" alt="$value[username]" class="avatar" /></a><!--{/if}-->
+				<div class="title">
+					<h4><a href="space.php?uid=$value[uid]&do=$do&id=$value[blogid]">$value[subject]</a></h4>
+					<a href="space.php?uid=$value[uid]">$value[username]</a>
+					<!--{if $classarr[$value[classid]]}-->分类: <a href="space.php?uid=$value[uid]&do=blog&classid=$value[classid]">{$classarr[$value[classid]]}</a><span class="pipe">|</span><!--{/if}-->
+					<!--{if $value[viewnum]}--><a href="space.php?uid=$value[uid]&do=$do&id=$value[blogid]">$value[viewnum] 次阅读</a><span class="pipe">|</span><!--{/if}-->
+					<!--{if $value[replynum]}--><a href="space.php?uid=$value[uid]&do=$do&id=$value[blogid]#comment">$value[replynum] 个评论</a><!--{else}-->没有评论<!--{/if}-->
+				</div>
+				<div class="article">
+					<!--{if $value[pic]}--><p class="image"><a href="space.php?uid=$value[uid]&do=blog&id=$value[blogid]"><img src="$value[pic]" alt="$value[subject]" /></a></p><!--{/if}-->
+					$value[message]
+				</div>
+				<!--{if $value[tag]}-->
+				<div class="tags">
+					<a href="space.php?uid=$value[uid]&do=tag">标签</a>:&nbsp;
+					<ul class="tags_list">
+						<!--{loop $value[tag] $tagid $tagname}-->
+						<li><a href="space.php?uid=$value[uid]&do=tag&id=$tagid">$tagname</a></li>
+						<!--{/loop}-->
+					</ul>
+				</div>
+				<!--{/if}-->
+			</li>
+		<!--{/loop}-->
+		</ul>
 		<!--{else}-->
-			<div class="article c_form">
-			还没有相关的日志。
-			<!--{if $space[self]}-->您可以<a href="cp.php?ac=blog">发表自己的日志</a>。<!--{/if}-->
-			</div>
-		<!--{/if}-->
+		<div class="article c_form">
+		还没有相关的日志。
+		<!--{if $space[self]}-->您可以<a href="cp.php?ac=blog">发表自己的日志</a>。<!--{/if}-->
 		</div>
+		<!--{/if}-->
 		<div class="page">$multi[html]</div>
 	</div>
 
-	<div class="sidebar">
-		<div id="space_action" class="box">
-			<ul class="line_list blocklink">
-			<!--{if $space[self]}-->
-				<li><a href="cp.php?ac=profile">编辑我的资料</a></li>
-			<!--{else}-->
-				<li><a href="cp.php?ac=pm&uid=$space[uid]" id="a_pm" onclick="ajaxmenu(event, this.id, 99999, '', -1)">发短消息</a></li>
-				<li><a href="cp.php?ac=poke&op=send&uid=$space[uid]" id="a_poke" onclick="ajaxmenu(event, this.id, 99999, '', -1)">打招呼</a></li>
-				<!--{if !$space['isfriend']}-->
-				<li><a href="cp.php?ac=friend&op=add&uid=$space[uid]" id="a_friend" onclick="ajaxmenu(event, this.id, 99999, '', -1)">加为好友</a></li>
-				<!--{/if}-->
-			<!--{/if}-->
-			
-			<!--{loop $applist $value}-->
-				<li><a href="$value[url]" target="_blank" title="活动次数：$value[num]，最后活动时间：<!--{date('m-d H:i',$value[updatetime],1)}-->">我的$value[appname]($value[num])</a></li>
-			<!--{/loop}-->
-			
-			</ul>
-			<!--{if $isonline}-->
-				<p class="online"><a href="space.php?do=friend&view=online">在线($isonline)</a></p>
-			<!--{/if}-->
-		</div>
-		<div id="space_appicon" class="box">
-			<ul class="s_clear">
-				<li class="app-doing"><a href="space.php?uid=$space[uid]&do=doing&view=me" title="迷你博客">迷你博客</a></li>
-				<li class="app-blog"><a href="space.php?uid=$space[uid]&do=blog&view=me" title="日志">日志</a></li>
-				<li class="app-photo"><a href="space.php?uid=$space[uid]&do=album&view=me" title="相册">相册</a></li>
-				<li class="app-share"><a href="space.php?uid=$space[uid]&do=share&view=me" title="分享">分享</a></li>
-				<li class="app-thread"><a href="space.php?uid=$space[uid]&do=thread&view=me" title="话题">话题</a></li>
-			</ul>
-		</div>
-		
-		<!--{if $visitorlist}-->
-		<div id="space_friend" class="box">
-			<h3>访客</h3>
-			<div class="box_action">
-				<p>最新访客</p>
-				<p class="action"><a href="space.php?uid=$space[uid]&do=friend&view=visitor">全部</a></p>
-			</div>
-			<ul class="avatar_list">
-			<!--{loop $visitorlist $value}-->
-				<li><a href="space.php?uid=$value[vuid]"><img src="<!--{avatar($value[vuid],small)}-->" alt="访问时间：<!--{date('m-d H:i',$value[dateline],1)}-->" /></a><p><a href="space.php?uid=$value[vuid]">$value[vusername]</a></p></li>
-			<!--{/loop}-->
-			</ul>
-		</div>
-		<!--{/if}-->
-		
-		<div id="space_friend" class="box">
-		<!--{if $friendlist}-->
-			<h3>好友</h3>
-			<div class="box_action">
-				<p>$space[friendnum] 个好友</p>
-				<p class="action"><a href="space.php?uid=$space[uid]&do=friend&view=me">全部</a></p>
-			</div>
-			<div id="ajaxtradelist"></div>
-			<ul class="avatar_list">
-			<!--{loop $friendlist $value}-->
-				<li><a href="space.php?uid=$value[fuid]"><img src="<!--{avatar($value[fuid],small)}-->" alt="$value[fusername]" /></a><p><a href="space.php?uid=$value[fuid]">$value[fusername]</a></p></li>
-			<!--{/loop}-->
-			</ul>
-		<!--{elseif $space[self]}-->
-			<h3>这是一个好友网络</h3>
-			<div class="box_content">
-				<p><a href="cp.php?ac=friend&op=find">把你的好友加入进来</a><br>你可以非常方便的跟踪好友动态<br>与好友分享自己的点点滴滴。</p>
-			</div>
-		<!--{/if}-->
-		</div>
-
-		<div class="panel">
-			<div class="title"><h3>分类</h3></div>
-			<div class="content">
-			<!--{if $classarr}-->
-				<ul class="post_list line_list">
-				<li><a href="space.php?uid=$space[uid]&do=blog&view=me">全部日志</a></li>
-				<!--{loop $classarr $classid $classname}-->
-				<li>
-					<a href="space.php?uid=$space[uid]&do=blog&classid=$classid">$classname</a>
-					<!--{if $space[self]}-->
-						<a href="cp.php?ac=class&op=edit&classid=$classid" class="float_del float_edit" id="c_edit_$classid" onclick="ajaxmenu(event, this.id, 99999, '', -1)">编辑</a>
-						<a href="cp.php?ac=class&op=delete&classid=$classid" class="float_del" id="c_delete_$classid" onclick="ajaxmenu(event, this.id, 99999)">删除</a>
-					<!--{/if}-->
-				</li>
-				<!--{/loop}-->
-				</ul>
-			<!--{/if}-->
-			</div>
-		</div>
-		<!--{ad/rightside}--><!-- 右侧栏广告-->
-	</div>
+	<!--{template space_blog_sidebar}-->
 </div>
 <div class="f_status f_status_w s_clear">
 	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
