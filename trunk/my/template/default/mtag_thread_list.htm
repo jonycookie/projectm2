@@ -1,12 +1,6 @@
 <!--{eval $_TPL['titles'] = array($mtag['tagname'], $mtag['title'], '讨论区');}-->
 <!--{template header}-->
 
-<div class="c_header a_header">
-	<a href="space.php?do=mtag&tagid=$mtag[tagid]"><img src="$mtag[pic]" alt="$mtag[tagname]" class="avatar" /></a>
-	<h1>{$mtag[title]}<em>&nbsp;- 讨论区</em></h1>
-	<a href="space.php?do=mtag&tagid=$mtag[tagid]" class="spacelink">{$mtag[tagname]}</a>
-</div>
-
 <div class="tabs_header">
 	<!--{if $mtag['ismember']}-->
 	<a href="cp.php?ac=thread&tagid=$tagid" class="t_button">发起新话题</a>
@@ -41,9 +35,9 @@
 				<td class="subject">
 				<!--{if $value[displayorder]}--> [顶] <!--{/if}-->
 				<!--{if $value[digest]}--> [精] <!--{/if}-->
-				<a href="space.php?uid=$value[uid]&do=thread&id=$value[tid]">$value[subject]</a>
+				<a href="mtag.php?tagid=$mtag[tagid]&do=thread&id=$value[tid]">$value[subject]</a>
 				</td>
-				<!--{if !$mtag}--><td class="mtag"><a href="space.php?do=mtag&tagid=$value[tagid]">$value[tagname]</a></td><!--{/if}-->
+				<!--{if !$mtag}--><td class="mtag"><a href="mtag.php?tagid=$value[tagid]">$value[tagname]</a></td><!--{/if}-->
 				<td class="author"><a href="space.php?uid=$value[uid]">$value[username]</a><em>$value[replynum]/$value[viewnum]</em></td>
 				<td class="lastpost"><a href="space.php?uid=$value[lastauthorid]">$value[lastauthor]</a><em><!--{date('m-d H:i',$value[lastpost],1)}--></em></td>
 			</tr>

@@ -33,8 +33,8 @@
 		</thead>
 		<!--{loop $list $value}-->
 		<tr>
-			<td class="subject"><a href="space.php?uid=$value[uid]&do=thread&id=$value[tid]">$value[subject]</a></td>
-			<!--{if !$mtag}--><td class="mtag"><a href="space.php?do=mtag&tagid=$value[tagid]">$value[tagname]</a></td><!--{/if}-->
+			<td class="subject"><a href="mtag.php?tagid=$value[tagid]&do=thread&id=$value[tid]">$value[subject]</a></td>
+			<!--{if !$mtag}--><td class="mtag"><a href="mtag.php?tagid=$value[tagid]">$value[tagname]</a></td><!--{/if}-->
 			<td class="author"><a href="space.php?uid=$value[uid]">$value[username]</a><em>$value[replynum]/$value[viewnum]</em></td>
 			<td class="lastpost"><a href="space.php?uid=$value[lastauthorid]">$value[lastauthor]</a><em><!--{date('m-d H:i',$value[lastpost],1)}--></em></td>
 		</tr>

@@ -32,9 +32,9 @@
 		<td width="50%">
 			<table cellspacing="0" cellpadding="0" width="100%">
 				<tr>
-					<td width="55"><a href="space.php?do=mtag&tagid=$value[tagid]"><img src="$value[pic]" style="width: 48px;" /></a></td>
+					<td width="55"><a href="mtag.php?tagid=$value[tagid]"><img src="$value[pic]" style="width: 48px;" /></a></td>
 					<td>
-						<h2 style="font-size: 14px;"><a href="space.php?do=mtag&tagid=$value[tagid]">$value[tagname]</a><a href="space.php?do=mtag&tagid=$value[tagid]&view=member" class="gray" style="font-size: 12px; font-weight: normal;">({$value[membernum]}人)</a></h2>
+						<h2 style="font-size: 14px;"><a href="mtag.php?tagid=$value[tagid]">$value[tagname]</a><a href="mtag.php?tagid=$value[tagid]&do=member" class="gray" style="font-size: 12px; font-weight: normal;">({$value[membernum]}人)</a></h2>
 						<!--{if $value[moderator]}--><p class="gray">吧主: $value[moderator]</p><!--{/if}-->
 					</td>
 				</tr>
