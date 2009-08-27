@@ -4,7 +4,7 @@
 	function register(show_id, result) {
 		if(result) {
 			$('registersubmit').disabled = true;
-			window.location.href = "space.php?do=home";
+			window.location.href = "cp.php?ac=home";
 		} else {
 			updateseccode();
 		}
@@ -71,7 +71,7 @@
 	
 	<tr><th>&nbsp;</th>
 		<td>
-		<input type="hidden" name="refer" value="space.php?do=home" />
+		<input type="hidden" name="refer" value="cp.php?ac=home" />
 		<input type="submit" id="registersubmit" name="registersubmit" value="注册新用户" class="submit" onclick="ajaxpost('registerform', 'registerstatus', 'register')" tabindex="6" />
 		</td>
 	</tr>

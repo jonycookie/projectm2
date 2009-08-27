@@ -11,7 +11,7 @@ if(!defined('IN_UCHOME')) {
 $op = $_GET['op'] ? trim($_GET['op']) : '';
 
 if($_SGLOBAL['supe_uid']) {
-	showmessage('do_success', 'space.php?do=home', 0);
+	showmessage('do_success', 'cp.php?ac=home', 0);
 }
 
 //没有登录表单
@@ -111,7 +111,7 @@ if(empty($op)) {
 				invite_update($invitearr['id'], $setarr['uid'], $setarr['username'], $invitearr['uid'], $invitearr['username']);
 			}
 	
-			showmessage('registered', 'space.php?do=home');
+			showmessage('registered', 'cp.php?ac=home');
 		}
 	
 	}

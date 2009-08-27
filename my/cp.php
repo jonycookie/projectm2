@@ -9,7 +9,7 @@ include_once('./common.php');
 include_once(S_ROOT.'./source/function_cp.php');
 
 //允许的方法
-$acs = array('space', 'doing', 'upload', 'comment', 'blog', 'album', 'relatekw', 'common', 'class',
+$acs = array('space', 'doing', 'upload', 'comment', 'blog', 'album', 'relatekw', 'common', 'class', 'home', 'pm',
 	'swfupload', 'thread', 'mtag', 'poke', 'friend',
 	'profile', 'theme', 'import', 'feed', 'privacy', 'pm', 'advance', 'invite');
 $ac = (empty($_GET['ac']) || !in_array($_GET['ac'], $acs))?'profile':$_GET['ac'];

@@ -33,7 +33,7 @@ if($step == 1) {
 } elseif($step == 4) {
 	//¹Ø±ÕÏòµ¼
 	updatetable('space', array('updatetime'=>$_SGLOBAL['timestamp']), array('uid'=>$_SGLOBAL['supe_uid']));
-	showmessage('do_success', 'space.php?do=home&view=all&shownotice=yes', 0);
+	showmessage('do_success', 'cp.php?ac=home&view=all&shownotice=yes', 0);
 }
 
 ?>

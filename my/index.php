@@ -20,7 +20,7 @@ if(!isset($_GET['do']) && $_SCONFIG['allowdomain']) {
 
 if($_SGLOBAL['supe_uid']) {
 	//已登录，直接跳转个人首页
-	showmessage('enter_the_space', 'space.php?do=home', 0);
+	showmessage('enter_the_space', 'cp.php?ac=home', 0);
 }
 
 //已有空间数
