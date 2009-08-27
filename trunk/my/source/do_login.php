@@ -13,7 +13,7 @@ if(preg_match("/(cp.php|admincp.php|do.php)/i", $refer)) {
 	$refer = '';
 }
 if(empty($refer)) {
-	$refer = 'space.php?do=home';
+	$refer = 'cp.php?ac=home';
 }
 
 //ºÃÓÑÑûÇë

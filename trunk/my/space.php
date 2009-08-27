@@ -27,7 +27,7 @@ if($_SCONFIG['allowrewrite'] && isset($_GET['rewrite'])) {
 }
 
 //允许动作
-$dos = array('feed', 'doing', 'blog', 'album', 'thread', 'mtag', 'friend', 'wall', 'tag', 'notice', 'home', 'pm', 'app');
+$dos = array('feed', 'doing', 'blog', 'album', 'thread', 'mtag', 'friend', 'wall', 'tag', 'notice', 'app');
 
 //获取变量
 $isinvite = 0;
@@ -35,9 +35,7 @@ $uid = empty($_GET['uid'])?0:intval($_GET['uid']);
 $username = empty($_GET['username'])?'':$_GET['username'];
 $domain = empty($_GET['domain'])?'':$_GET['domain'];
 $do = (!empty($_GET['do']) && in_array($_GET['do'], $dos))?$_GET['do']:'index';
-if($do == 'home') {
-	$do = 'feed';
-} elseif ($do == 'index') {
+if ($do == 'index') {
 	$_SGLOBAL['do_index'] = 1;
 	//邀请好友
 	$invite = empty($_GET['invite'])?'':$_GET['invite'];

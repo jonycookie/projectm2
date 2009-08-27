@@ -6,7 +6,7 @@
 
 include_once('./common.php');
 
-$refer = empty($_SGLOBAL['refer'])?"space.php?do=home":$_SGLOBAL['refer'];
+$refer = empty($_SGLOBAL['refer'])?"cp.php?ac=home":$_SGLOBAL['refer'];
 
 if(empty($_GET['url'])) {
 	showmessage('do_success', $refer, 0);

@@ -10,7 +10,7 @@ http://www.comsenz.com
 }
 body {
 	text-align: center;
-	color: #666;
+	color: #7d7d7d;
 }
 body, th, td, input, select, textarea, button {
 	font: 12px/1.5em Tahoma, Arial, Helvetica, snas-serif;
@@ -26,14 +26,14 @@ ul li, ol li {
 	list-style: none;
 }
 a {
-	color: #333;
+	color: #7d7d7d;
 	text-decoration: none;
 }
 .feed a:visited {
-	color: #5181B7;
+	color: #999;
 }
 a:hover {
-	color: #35b106;
+	color: #358f0b;
 	text-decoration: underline;
 }
 a img {
@@ -928,6 +928,7 @@ a.type {
 
 .class_list li {
 	padding: 5px 15px 5px 10px;
+	background: url(image/arrow_0.png) no-repeat left center;
 	position: relative;
 }
 
@@ -960,17 +961,21 @@ a.type {
 	display: block;
 	clear: both;
 }
-.comment .comment_ol .writer {
+.comment .comment_ol .author {
 	display: bolck;
 	float: left;
 }
 .comment .comment_ol .title {
-	margin: 0 0 0 75px;
+	margin: 5px 0 5px 75px;
 }
 .comment .comment_ol .detail {
 	margin: 0 0 0 75px;
 }
-
+.comment .comment_ol .time {
+	font-size: 9px;
+	font-family: Tahoma;
+	color: #999;
+}
 
 .widget {
 	border: 1px solid #ddd;
@@ -1365,25 +1370,25 @@ textarea {
 	text-align: right;
 }
 .button {
-	padding: 0 10px;
-	height: 22px;
+	padding: 0 15px;
+	height: 26px;
 	border: 1px solid;
-	border-color: #EEE #999 #999 #EEE;
-	background: #DDD;
+	border-color: #eee;
+	background: #ddd;
 	color: #333;
 	line-height: 20px;
 	cursor: pointer;
 	margin-left:2px;
 }
 .submit {
-	width: 50px;
-	height: 24px;
-	border: 0;
-	background: url(image/btn_submit.png) no-repeat;
-	color: #FFF;
+	padding: 0 15px;
+	height: 26px;
+	border: 1px solid;
+	border-color: #358f0b;
+	background: #92d15d;
+	color: #fff;
 	font-weight: bold;
-	line-height: 24px;
-	text-align: center;
+	line-height: 20px;
 	cursor: pointer;
 }
 #m_search {

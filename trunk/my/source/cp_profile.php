@@ -51,7 +51,7 @@ if(submitcheck('profilesubmit')) {
 	updatetable('spacefield', $setarr, array('uid'=>$_SGLOBAL['supe_uid']));
 
 	if($_POST['guidemode']) {
-		showmessage('update_on_successful_individuals', 'space.php?do=home&view=guide&step=2', 0);
+		showmessage('update_on_successful_individuals', 'cp.php?ac=home&view=guide&step=2', 0);
 	} else {
 		showmessage('update_on_successful_individuals', 'cp.php?ac=profile');
 	}
