@@ -1,18 +1,5 @@
 <!--{eval $_TPL['titles'] = array($thread['subject'], $mtag['tagname'], $mtag['title'], '话题');}-->
-<!--{template header}-->
-
-<div class="c_header a_header">
-	<a href="space.php?do=mtag&tagid=$mtag[tagid]"><img src="$mtag[pic]" alt="$mtag[tagname]" class="avatar" /></a>
-	<h1>{$mtag[title]}<em>&nbsp;- 话题</em></h1>
-	<a href="space.php?do=mtag&tagid=$mtag[tagid]" class="spacelink">{$mtag[tagname]}</a>
-</div>
-
-<div class="tabs_header">
-	<a href="cp.php?ac=thread&tagid=$tagid" class="t_button">发起新话题</a>
-	<ul class="tabs">
-		<li><a href="space.php?do=mtag&tagid=$thread[tagid]&view=list">返回讨论区</a></li>
-	</ul>
-</div>
+<!--{template mtag_header}-->
 
 <div class="h_status">
 	<!--{if $multi[html]}--><div class="page r_option">$multi[html]</div><!--{/if}-->

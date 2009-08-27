@@ -1,28 +1,5 @@
 <!--{eval $_TPL['titles'] = array($mtag['tagname'], $mtag['title'], '成员');}-->
-<!--{template header}-->
-
-<div class="c_header a_header">
-	<a href="space.php?do=mtag&tagid=$mtag[tagid]"><img src="$mtag[pic]" alt="$mtag[tagname]" class="avatar" /></a>
-	<h1>{$mtag[title]}<em>&nbsp;- 成员</em></h1>
-	<a href="space.php?do=mtag&tagid=$mtag[tagid]" class="spacelink">{$mtag[tagname]}</a>
-</div>
-
-<div class="tabs_header">
-	<!--{if $mtag['ismember']}-->
-	<a href="cp.php?ac=thread&tagid=$tagid" class="t_button">发起新话题</a>
-	<!--{else}-->
-	<a href="cp.php?ac=mtag&op=join&tagid=$mtag[tagid]" class="t_button" id="mtag_join_$mtag[tagid]" onclick="ajaxmenu(event, this.id, 99999)">选择加入该选吧</a>
-	<!--{/if}-->
-	<ul class="tabs">
-		<li><a href="space.php?do=mtag&tagid=$mtag[tagid]&view=list">讨论区</a></li>
-		<li><a href="space.php?do=mtag&tagid=$mtag[tagid]&view=digest">精华区</a></li>
-		<li class="active"><a href="space.php?do=mtag&tagid=$mtag[tagid]&view=member">成员列表</a></li>
-	</ul>
-</div>
-
-<div class="h_status">
-	成员列表<span class="pipe">|</span><a href="space.php?do=mtag&tagid=$mtag[tagid]">返回选吧首页</a>
-</div>
+<!--{template mtag_header}-->
 
 <div class="d_content">
 
