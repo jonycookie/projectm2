@@ -12,6 +12,31 @@
 
 <!--{if empty($_GET['op'])}-->
 	<form method="post" action="cp.php?ac=space&op=" class="c_form">
+
+		<table cellspacing="0" cellpadding="0" class="formtable">
+			<caption>
+				<h2>空间名称</h2>
+			</caption>
+			<tr>
+				<th width="100">空间名称</th>
+				<td><input type="text" id="spacename" name="spacename" value="$space[spacename]" class="t_input" /></td>
+			</tr>
+		<!--{if $_SCONFIG['allowdomain'] && $_SCONFIG['domainroot'] && $domainlength}-->
+			<tr>
+				<th>空间域名</th>
+				<td>http://<input type="text" name="domain" value="$space[domain]" size="10" />.{$_SCONFIG[domainroot]}</td>
+			</tr>
+			<tr>
+				<th>&nbsp;</th>
+				<td class="gray">域名可使用最少 $domainlength 个英数字，最多 30 个英数字，且必须字母开头。</td>
+			</tr>
+		<!--{/if}-->
+			<tr>
+				<th>&nbsp;</th>
+				<td><input type="submit" name="spacesubmit" value="修改空间名" class="submit" /></td>
+			</tr>
+		</table>
+
 		<table cellspacing="0" cellpadding="0" class="formtable">
 			<caption>
 				<h2>修改密码</h2>
@@ -33,23 +58,6 @@
 				<td><input type="submit" name="pwdsubmit" value="修改密码" class="submit" /></td>
 			</tr>
 		</table>
-		
-		<!--{if $_SCONFIG['allowdomain'] && $_SCONFIG['domainroot'] && $domainlength}-->
-		<table cellspacing="0" cellpadding="0" class="formtable">
-			<caption>
-				<h2>空间域名</h2>
-				<p>域名可使用最少 $domainlength 个英数字，最多 30 个英数字，且必须字母开头。</p>
-			</caption>
-			<tr>
-				<th width="100">空间域名</th>
-				<td>http://<input type="text" name="domain" value="$space[domain]" size="10" />.{$_SCONFIG[domainroot]}</td>
-			</tr>
-			<tr>
-				<th>&nbsp;</th>
-				<td><input type="submit" name="spacesubmit" value="修改空间名" class="submit" /></td>
-			</tr>
-		</table>
-		<!--{/if}-->
 		
 		<table cellspacing="0" cellpadding="0" class="formtable">
 			<caption>

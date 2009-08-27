@@ -1,13 +1,5 @@
 <!--{eval $_TPL['titles'] = array('留言');}-->
-<!--{template header}-->
-
-<div class="c_header a_header">
-	<a href="space.php?uid=$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a>
-	<h1>留言板</h1>
-	<a href="space.php?uid=$space[uid]" class="spacelink"><!--{if $space[self]}-->我<!--{else}-->$space[username]<!--{/if}-->的空间</a>
-</div>
-
-<div class="h_status">按最新顺序排序</div>
+<!--{template space_header}-->
 
 <div class="side_right">
 	<div class="wide">

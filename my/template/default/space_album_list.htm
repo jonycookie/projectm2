@@ -1,11 +1,5 @@
 <!--{eval $_TPL['titles'] = array('相册');}-->
-<!--{template header}-->
-
-<div class="c_header a_header">
-	<a href="space.php?uid=$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a>
-	<h1>相册</h1>
-	<a href="space.php?uid=$space[uid]" class="spacelink"><!--{if $space[self]}-->我<!--{else}-->$space[username]<!--{/if}-->的空间</a>
-</div>
+<!--{template space_header}-->
 
 <!--{if $space[self]}-->
 <div class="tabs_header">

@@ -67,6 +67,18 @@ if($uid) {
 		$space = getspace($_SGLOBAL['supe_uid']);
 	}
 }
+
+//”Ú√˚
+if($space['domain'] && $_SCONFIG['allowdomain'] && $_SCONFIG['domainroot']) {
+	$space['domainurl'] = 'http://'.$space['domain'].'.'.$_SCONFIG['domainroot'];
+} else {
+	if($_SCONFIG['allowrewrite']) {
+		$space['domainurl'] = getsiteurl().$space[uid];
+	} else {
+		$space['domainurl'] = getsiteurl()."?$space[uid]";
+	}
+}
+
 if(empty($space)) {
 	if($do != 'mtag') {
 		showmessage('space_does_not_exist', 'index.php?do', 0);

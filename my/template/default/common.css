@@ -106,18 +106,19 @@ caption p {
 	text-align: left;
 }
 #header {
-	height: 35px;
-	position: relative;
+	zoom: 1;
 }
-#header h2, #menu, #op {
-	position: absolute;
+#header:after {
+	content: "";
+	display: block;
+	clear: both;
 }
 #header h2 {
+	float: left;
 	width: 132px;
 }
 #menu {
-	left: 133px;
-	bottom: 2px;
+	float: left;
 	line-height: 25px;
 	font-size: 1.17em;
 }
@@ -169,7 +170,7 @@ caption p {
 	border-top: 1px solid #F5F5F5;
 }
 #op {
-	right: 1em;
+	float: right;
 	line-height: 35px;
 }
 #op a {

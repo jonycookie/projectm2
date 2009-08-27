@@ -168,7 +168,7 @@ if(!$space['self'] || $space['friendnum']) {
 	$shownotice_style = '';
 }
 
-include_once template("space_feed");
+include_once template("cp_home");
 
 //ɸѡ
 function ckicon_uid($feed) {

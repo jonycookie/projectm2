@@ -14,6 +14,13 @@ $domainlength = checkperm('domainlength');
 if(submitcheck('spacesubmit')) {
 
 	$setarr = array();
+
+	//主表
+	$setarr = array(
+		'spacename' => getstr($_POST['spacename'], 30, 1, 1, 1)
+	);
+	updatetable('space', $setarr, array('uid'=>$_SGLOBAL['supe_uid']));
+
 	//二级域名
 	$_POST['domain'] = strtolower(trim($_POST['domain']));
 	if($_POST['domain'] != $space['domain']) {

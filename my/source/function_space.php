@@ -8,7 +8,7 @@ if(!defined('IN_UCHOME')) {
 	exit('Access Denied');
 }
 
-//¿ªÍ¨¿Õ¼ä
+//å¼€é€šç©ºé—´
 function space_open($uid, $username, $gid=0, $email='') {
 	global $_SGLOBAL;
 
@@ -19,7 +19,8 @@ function space_open($uid, $username, $gid=0, $email='') {
 		'username' => $username,
 		'dateline' => $_SGLOBAL['timestamp'],
 		'updatetime' => $_SGLOBAL['timestamp'],
-		'groupid' => $gid
+		'groupid' => $gid,
+		'spacename' => $username.'çš„ç©ºé—´'
 	);
 	inserttable('space', $space, 0, true);
 	inserttable('spacefield', array('uid'=>$uid, 'email'=>$email), 0, true);
@@ -27,7 +28,7 @@ function space_open($uid, $username, $gid=0, $email='') {
 	return $space;
 }
 
-//Ñ¡°ÉĞÅÏ¢
+//é€‰å§ä¿¡æ¯
 function getmtag($id, $ckmanage=0) {
 	global $_SGLOBAL;
 	
@@ -36,22 +37,22 @@ function getmtag($id, $ckmanage=0) {
 		showmessage('designated_election_it_does_not_exist');
 	}
 	
-	//´¦Àí
+	//å¤„ç†
 	$mtag['title'] = $_SGLOBAL['profield'][$mtag['fieldid']]['title'];
 	if(empty($mtag['pic'])) {
 		$mtag['pic'] = 'image/nologo.jpg';
 	}
 
-	//ÊÇ·ñ³ÉÔ±
+	//æ˜¯å¦æˆå‘˜
 	$query = $_SGLOBAL['db']->query("SELECT COUNT(*) FROM ".tname('tagspace')." WHERE tagid='$id' AND uid='$_SGLOBAL[supe_uid]' LIMIT 1");
 	$mtag['ismember'] = $_SGLOBAL['db']->result($query, 0);
 	
-	//È¨ÏŞ
+	//æƒé™
 	$mtag['allowmanage'] = 0;
 	if($ckmanage) {
 		$mtag['isadmin'] = $mtag['allowmanage'] = checkperm('managemtag');
 		if(!$mtag['allowmanage'] && $mtag['ismember']) {
-			//ÅĞ¶ÏÊÇ·ñ°ÉÖ÷
+			//åˆ¤æ–­æ˜¯å¦å§ä¸»
 			if($_SGLOBAL['supe_username'] && !empty($mtag['moderator'])) {
 				$marr = explode("\t", $mtag['moderator']);
 				if(in_array($_SGLOBAL['supe_username'], $marr)) {
@@ -60,7 +61,7 @@ function getmtag($id, $ckmanage=0) {
 						$mtag['isadmin'] = 1;
 					}
 				}
-				//²»ÊÇ»áÔ±¡¢È´ÊÇ°æÖ÷
+				//ä¸æ˜¯ä¼šå‘˜ã€å´æ˜¯ç‰ˆä¸»
 				if(empty($mtag['ismember']) && $mtag['allowmanage']) {
 					$setusername = preg_quote($_SGLOBAL['supe_username'], '/');
 					$setmoderator = preg_replace("/(\t$setusername|$setusername\t|$setusername)/", '', $mtag['moderator']);
