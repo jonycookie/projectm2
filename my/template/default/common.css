@@ -70,7 +70,9 @@ caption p {
 	padding: 0.5em;
 }
 .avatar {
-	padding: 3px;
+}
+.avatar img {
+	padding: 2px;
 	border: 1px solid #ddd;
 	background: #fff;
 }
@@ -208,6 +210,14 @@ caption p {
 	float: right;
 	width: 240px;
 }
+.user_menu {
+	border: 1px solid #ddd;
+}
+
+
+
+.author {
+}
 
 .app_list {
 	padding: 1em 0;
@@ -325,18 +335,6 @@ caption p {
 .i_header span {
 	float: right;
 	padding-right: 5px;
-}
-.c_header {
-	padding: 0 1em;
-	height: 40px;
-	background: #F5F5F5;
-	border-bottom: 1px solid #888;
-	position: relative;
-}
-.c_header h1 {
-	font-size: 1.17em;
-	color: #333;
-	line-height: 40px;
 }
 .a_header {
 	margin-bottom: 40px;

@@ -1,12 +1,12 @@
 	<div class="sidebar">
 		<div id="space_action" class="widget">
-			<a href="space.php?uid=$space[uid]" class="avatar" id="u_$space[uid]" onmouseover="showMenu(this.id)">
+			<a href="space.php?uid=$space[uid]" class="avatar" id="user_$space[uid]" onmouseover="showMenu(this.id)">
 				<img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" />
 			</a>
 			<!--{if $isonline}-->
 				<p class="online"><a href="space.php?do=friend&view=online">在线($isonline)</a></p>
 			<!--{/if}-->
-			<ul class="ulink">
+			<ul id="user_$space[uid]_menu" class="ulink" style="display:none;">
 				<li><a href="cp.php?ac=pm&uid=$space[uid]" id="a_pm" onclick="ajaxmenu(event, this.id, 99999, '', -1)">发短消息</a></li>
 				<li><a href="cp.php?ac=poke&op=send&uid=$space[uid]" id="a_poke" onclick="ajaxmenu(event, this.id, 99999, '', -1)">打招呼</a></li>
 				<!--{if !$space['isfriend']}-->
