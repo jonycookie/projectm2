@@ -17,12 +17,6 @@ if(submitcheck('profilesubmit')) {
 		profilefield_cache();
 	}
 	$profilefields = empty($_SGLOBAL['profilefield'])?array():$_SGLOBAL['profilefield'];
-
-	//主表
-	$setarr = array(
-		'spacename' => getstr($_POST['spacename'], 30, 1, 1, 1)
-	);
-	updatetable('space', $setarr, array('uid'=>$_SGLOBAL['supe_uid']));
 	
 	//提交检查
 	$setarr = array(

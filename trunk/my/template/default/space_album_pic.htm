@@ -1,11 +1,5 @@
 <!--{eval $_TPL['titles'] = array(getstr($pic['title'], 60, 0, 0, 0, 0, -1), $album['albumname'], '相册');}-->
-<!--{template header}-->
-
-<div class="c_header a_header">
-	<a href="space.php?uid=$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a>
-	<h1>相册<em> &nbsp;- $album[albumname]</em></h1>
-	<a href="space.php?uid=$space[uid]" class="spacelink"><!--{if $space[self]}-->我<!--{else}-->$space[username]<!--{/if}-->的空间</a>
-</div>
+<!--{template space_header}-->
 
 <div class="h_status">
 	<div class="r_option"><a href="space.php?uid=$pic[uid]&do=album&picid=$pic[picid]&goto=up">上一张</a><span class="pipe">|</span><a href="space.php?uid=$pic[uid]&do=album&picid=$pic[picid]&goto=down" id="nextlink">下一张</a><span class="pipe">|</span><!--{if $_GET['play']}--><a href="javascript:;" id="playid" onclick="playNextPic(false);">停止播放</a><!--{else}--><a href="javascript:;" id="playid" onclick="playNextPic(true);">幻灯播放</a><!--{/if}--><span id="displayNum"></span></div>

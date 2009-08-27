@@ -28,7 +28,7 @@ if(empty($space)) {
 	$space['lastupdate'] = sgmdate($rssdateformat);
 	$space['privacy']['blog'] = 1;
 } else {
-	$space['username'] = $space['username'].'@'.$_SCONFIG['sitename'];
+	$space['spacename'] = $space['spacename'].'@'.$_SCONFIG['sitename'];
 	$space['space_url'] = $siteurl."space.php?uid=$space[uid]";
 	$space['lastupdate'] = sgmdate($rssdateformat, $space['lastupdate']);
 }

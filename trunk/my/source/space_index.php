@@ -33,17 +33,6 @@ if(ckprivacy('profile')) {//隐私
 }
 $space['creditstar'] = getstar($space['credit']);
 
-//域名
-if($space['domain'] && $_SCONFIG['allowdomain'] && $_SCONFIG['domainroot']) {
-	$space['domainurl'] = 'http://'.$space['domain'].'.'.$_SCONFIG['domainroot'];
-} else {
-	if($_SCONFIG['allowrewrite']) {
-		$space['domainurl'] = getsiteurl().$space[uid];
-	} else {
-		$space['domainurl'] = getsiteurl()."?$space[uid]";
-	}
-}
-
 //个人动态
 $feedlist = array();
 if(ckprivacy('feed')) {
