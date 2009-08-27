@@ -2,7 +2,7 @@
 <!--{template header}-->
 
 <div class="c_header">
-	<h1><a href="space.php?do=mtag&id=$mtag[fieldid]">$mtag[title]</a> - <a href="space.php?do=mtag&tagid=$mtag[tagid]">$mtag[tagname]</a></h1>
+	<h1><a href="mtag.php?id=$mtag[fieldid]">$mtag[title]</a> - <a href="mtag.php?tagid=$mtag[tagid]">$mtag[tagname]</a></h1>
 </div>
 
 <div class="l_content">
@@ -15,8 +15,8 @@
 		</div>
 
 		<div class="box">
-			<h3><a href="space.php?do=mtag&tagid=$mtag[tagid]&view=list">讨论区</a>&nbsp;
-			<a href="space.php?do=mtag&tagid=$mtag[tagid]&view=digest">精华区</a>&nbsp;
+			<h3><a href="mtag.php?do=thread&tagid=$mtag[tagid]">讨论区</a>&nbsp;
+			<a href="mtag.php?do=thread&tagid=$mtag[tagid]&view=digest">精华区</a>&nbsp;
 			<!--{if $mtag['ismember']}--><a href="cp.php?ac=thread&tagid=$mtag[tagid]">＋发起新话题</a><!--{/if}--></h3>
 			<!--{if $list}-->
 			<div class="thread_list">
@@ -34,14 +34,14 @@
 						<td class="subject">
 						<!--{if $value[displayorder]}--> [顶] <!--{/if}-->
 						<!--{if $value[digest]}--> [精] <!--{/if}-->
-						<a href="space.php?uid=$value[uid]&do=thread&id=$value[tid]">$value[subject]</a></td>
-						<!--{if !$mtag}--><td class="mtag"><a href="space.php?do=mtag&tagid=$value[tagid]">$value[tagname]</a></td><!--{/if}-->
+						<a href="mtag.php?tagid=$mtag[tagid]&do=thread&id=$value[tid]">$value[subject]</a></td>
+						<!--{if !$mtag}--><td class="mtag"><a href="mtag.php?tagid=$value[tagid]">$value[tagname]</a></td><!--{/if}-->
 						<td class="author"><a href="space.php?uid=$value[uid]">$value[username]</a><em>$value[replynum]/$value[viewnum]</em></td>
 						<td class="lastpost"><a href="space.php?uid=$value[lastauthorid]">$value[lastauthor]</a><em><!--{date('m-d H:i',$value[lastpost],1)}--></em></td>
 					</tr>
 					<!--{/loop}-->
 					<tr>
-						<td class="subject"><a href="space.php?do=mtag&tagid=$mtag[tagid]&view=list">&raquo; 所有话题</a></td>
+						<td class="subject"><a href="mtag.php?tagid=$mtag[tagid]&do=thread">&raquo; 所有话题</a></td>
 						<td>&nbsp;<br>&nbsp;</td><td></td>
 					</tr>
 				</table>
@@ -67,11 +67,11 @@
 			</ul>
 		</div>
 		<div class="box">
-			<h3><a href="space.php?do=mtag&tagid=$mtag[tagid]&view=member">成员</a></h3>
+			<h3><a href="mtag.php?do=memver&tagid=$mtag[tagid]">成员</a></h3>
 			<!--{if $mtag[membernum]}-->
 			<div class="box_action">
 				<p>$mtag[membernum] 个成员</p>
-				<p class="action"><a href="space.php?do=mtag&tagid=$mtag[tagid]&view=member">全部</a></p>
+				<p class="action"><a href="mtag.php?do=member&tagid=$mtag[tagid]">全部</a></p>
 			</div>
 			<ul class="avatar_list">
 			<!--{loop $memberlist $value}-->
