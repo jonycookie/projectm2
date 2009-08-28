@@ -1333,4 +1333,9 @@ function sub_url($url, $length) {
 	return $url;
 }
 
+//检查邮箱是否有效
+function isemail($email) {
+	return strlen($email) > 6 && preg_match("/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/", $email);
+}
+
 ?>
