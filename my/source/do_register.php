@@ -66,8 +66,18 @@ if(empty($op)) {
 		}
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		$email = $_POST['email'];
+		$email = isemail($_POST['email'])?$_POST['email']:'';
 		
+		//¼ì²éÓÊ¼ş
+		if(empty($email)) {
+			showmessage('email_format_is_wrong');
+		}
+		
+		if($count = getcount('spacefield', array('email'=>$email))) {
+			showmessage('email_has_been_registered');
+		}
+
+
 		$newuid = uc_user_register($username, $password, $email);
 		if($newuid <= 0) {
 			if($newuid == -1) {
