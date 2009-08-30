@@ -25,71 +25,26 @@ $space[css]
 <div id="append_parent"></div>
 <div id="ajaxwaitid"></div>
 <div id="wrap">
+
 	<div id="header">
-		<h2><a href="index.php"><img src="$_SCONFIG[sitelogo]" alt="$_SCONFIG[sitename]" /></a></h2>
-		<!--{if $_SGLOBAL[supe_uid]}-->
-		<ul id="menu">
-			<li><a href="cp.php?ac=home">首页</a><!--{if $space[self] && $space[credit]<10}--><a href="cp.php?ac=home&view=guide" class="edit">向导</a><!--{/if}--></li>
-			<li><a href="space.php">个人主页</a></li>
-			<li><a href="space.php?do=friend">好友</a><a href="javascript:;" onclick="openSub(this,'friend');" class="drop">&nbsp;</a></li>
-			<li><a href="network.php">随便看看</a><!--{if empty($_SCONFIG['showall'])}--><a href="cp.php?ac=home&view=all" class="edit">近况</a><!--{/if}--></li>
-			<li><a href="space.php?do=pm"><span id="span_newpm">私信</span><!--{if !empty($_SGLOBAL['member']['newpm'])}--><script>newpm();</script><!--{/if}--></a><a href="javascript:;" onclick="openSub(this,'pm');" class="drop">&nbsp;</a></li>
-		</ul>
-		<div id="op">
-			<a href="cp.php">设置</a><span class="pipe">|</span>
-			<a href="cp.php?ac=privacy">策略</a><span class="pipe">|</span>
-			<!--{if $space[self] && $space[credit]>=10}--><a href="cp.php?ac=home&view=guide">向导</a><span class="pipe">|</span><!--{/if}-->
-			<a href="cp.php?ac=common&op=logout">退出</a>
-		</div>
-		<!--{else}-->
-		<div id="op">
-			<a href="index.php">首页</a><span class="pipe">|</span>
-			<a href="space.php">我的空间</a><span class="pipe">|</span>
-			<a href="help.php">帮助</a>
-		</div>
-		<!--{/if}-->
+		<h1>$mtag[tagname]</h1>
+		<a href="mtag.php?id=$mtag[fieldid]">$mtag[title]</a>
 	</div>
-	<div id="submenu">
-		<div id="subfriend" class="submenu">
-			<ul>
-				<li><a href="space.php?do=friend">好友列表</a></li>
-				<li><a href="space.php?do=friend&view=visitor">我的访客</a></li>
-				<li><a href="space.php?do=friend&view=trace">我的足迹</a></li>
-				<li><a href="space.php?do=friend&view=online">在线用户</a></li>
-				<li class="line"><a href="cp.php?ac=friend&op=find">寻找好友</a></li>
-				<li><a href="cp.php?ac=invite">邀请好友</a></li>
-			</ul>
-		</div>
-		<div id="subpm" class="submenu">
-			<ul>
-				<li><a href="space.php?do=pm">查看未读</a></li>
-				<li><a href="space.php?do=pm&view=inbox">收件箱</a></li>
-				<li><a href="space.php?do=pm&view=outbox">发件箱</a></li>
-				<li><a href="space.php?do=notice">通知</a></li>
-				<li class="line"><a href="cp.php?ac=pm">发送私信</a></li>
-			</ul>
-		</div>
+	<div class="space_nav">
+		<ol>
+			<li><a href="mtag.php?tagid=$mtag[tagid]">首页</a></li>
+			<li><a href="mtag.php?tagid=$mtag[tagid]&do=thread">列表</a></li>
+			<li><a href="mtag.php?tagid=$mtag[tagid]&do=member">成员</a></li>
+			<li>
+				<!--{if $mtag['ismember']}-->
+				<a href="cp.php?ac=thread&tagid=$tagid">发起新话题</a>
+				<!--{else}-->
+				<a href="cp.php?ac=mtag&op=join&tagid=$mtag[tagid]" id="mtag_join_$mtag[tagid]" onclick="ajaxmenu(event, this.id, 99999)">加入该选吧</a>
+				<!--{/if}-->
+			</li>
+		</ol>
 	</div>
 	<div id="container">
-
-		<div id="s_header">
-			<h1>$mtag[tagname]</h1>
-			<a href="mtag.php?id=$mtag[fieldid]">$mtag[title]</a>
-		</div>
-		<div class="space_nav">
-			<ol>
-				<li><a href="mtag.php?tagid=$mtag[tagid]">首页</a></li>
-				<li><a href="mtag.php?tagid=$mtag[tagid]&do=thread">列表</a></li>
-				<li><a href="mtag.php?tagid=$mtag[tagid]&do=member">成员</a></li>
-				<li>
-					<!--{if $mtag['ismember']}-->
-					<a href="cp.php?ac=thread&tagid=$tagid">发起新话题</a>
-					<!--{else}-->
-					<a href="cp.php?ac=mtag&op=join&tagid=$mtag[tagid]" id="mtag_join_$mtag[tagid]" onclick="ajaxmenu(event, this.id, 99999)">加入该选吧</a>
-					<!--{/if}-->
-				</li>
-			</ol>
-		</div>
 		<div id="mainarea">
 <!--{else}-->
 <!--{eval 

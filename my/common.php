@@ -9,7 +9,7 @@ define('X_VER', '1.2');
 define('X_RELEASE', '20080612');
 define('D_BUG', '0');
 
-D_BUG?error_reporting(7):error_reporting(0);
+//D_BUG?error_reporting(7):error_reporting(0);
 $_SGLOBAL = $_SCONFIG = $_SBLOCK = $_TPL = $_SCOOKIE = $space = array();
 
 //程序目录

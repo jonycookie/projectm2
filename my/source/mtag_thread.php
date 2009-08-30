@@ -29,7 +29,7 @@ if($id) {
 	$mtag = getmtag($tagid, 1);
 	
 	//Ìû×ÓÁĞ±í
-	$perpage = 30;
+	$perpage = 10;
 
 	$page = empty($_GET['page'])?1:intval($_GET['page']);
 	if($page < 1) $page = 1;

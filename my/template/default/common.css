@@ -746,7 +746,8 @@ height: expression(this.height > 120 ? 120 : true);
 	line-height: 20px;
 }
 .board {
-	padding: 1em;
+	border: 1px solid #ddd;
+	padding: 25px 0 0;
 }
 .board .t_subject {
 	padding: 4px 5px;
@@ -766,14 +767,72 @@ height: expression(this.height > 120 ? 120 : true);
 }
 .board .resizeimg {
 	max-width: 520px;
-width: expression(this.width > 520 ? 520 : true);
+	width: expression(this.width > 520 ? 520 : true);
 }
-.thread .detail {
-	font-size: 1.17em;
-	line-height: 1.6em;
+.board .replynum {
+	float: left;
+	background: url(image/bg_time.png) no-repeat;
+	width: 53px;
+	height: 36px;
+	padding: 2px 0 7px;
+	margin: 0 0 0 -5px;
+	color: #fff;
+	text-align: center;
 }
+.board .replynum .num {
+	font-size: 18px;
+	line-height: 20px;
+	font-family: tahoma;
+	font-weight: bold;
+}
+.board .replynum .note {
+	font-size: 9px;
+	line-height: 12px;
+	font-family: tahoma;
+}
+.board .title {
+	margin: 0 0 0 60px;
+}
+.board .title h1, .blog .title h4 {
+	color: #666;
+	font-size: 14px;
+}
+
 #post_ol {
+	padding-top: 10px;
 }
+#post_ol li {
+	clear: both;
+	margin: 15px;
+	border-bottom: 1px dotted #ddd;;
+}
+#post_ol li:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+#post_ol li .time {
+	color: #CCC;
+	font-size: 9px;
+	line-height: 30px;
+	font-family: tahoma;
+}
+#post_ol li .detail {
+	float: left;
+	line-height:3em;
+	padding:30px;
+	margin: 15px;
+}
+.userbox {
+	float: left;
+}
+.userbox a {
+	display: block;
+	text-align: center;
+}
+
+
+
 .photobox {
 	padding: 1em;
 	text-align: center;
@@ -953,19 +1012,6 @@ a.type {
 	padding: 20px;
 	border: 1px solid #ddd;
 }
-.comment .quickpost {
-}
-.comment .quickpost a {
-	display: block;
-	float: left;
-	margin: 0 20px 0 0;
-}
-.comment .quickpost textarea {
-	width: 426px;
-	height: 54px;
-	margin: 0;
-	font-size: 14px;
-}
 .comment .comment_ol li {
 	zoom: 1;
 	padding: 10px 0;
@@ -991,6 +1037,34 @@ a.type {
 	font-family: Tahoma;
 	color: #999;
 }
+.quickpost {
+}
+.quickpost a {
+	display: block;
+	float: left;
+	margin: 0 20px 0 0;
+}
+.quickpost textarea {
+	width: 426px;
+	height: 54px;
+	margin: 0;
+	font-size: 14px;
+}
+
+.doingpost {
+}
+.doingpost a {
+	display: block;
+	float: left;
+	margin: 0 20px 0 0;
+}
+.doingpost textarea {
+	width: 426px;
+	height: 54px;
+	margin: 0;
+	font-size: 14px;
+}
+
 
 .widget {
 	border: 1px solid #ddd;
@@ -1288,26 +1362,12 @@ textarea {
 	width: 48px;
 	height: 48px;
 }
-.threadlist .postcontent {
-	padding: 10px 20px 0 0;
-}
 .threadlist .detail {
 	padding: 10px 0 20px;
 	font-size: 14px;
 	line-height: 1.5em;
 	width: 520px;
 	overflow: hidden;
-}
-#post_ol {
-	padding-top: 10px;
-	border-bottom: 1px solid #CCC;
-}
-#post_ol .threadlist {
-	border-bottom: none;
-}
-#post_ol .threadlist .detail {
-	font-size: 12px;
-	line-height: 1.5em;
 }
 .guide {
 }
