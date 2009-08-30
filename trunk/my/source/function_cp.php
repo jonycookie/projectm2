@@ -8,31 +8,31 @@ if(!defined('IN_UCHOME')) {
 	exit('Access Denied');
 }
 
-//±£´æÍ¼Æ¬
+//ä¿å­˜å›¾ç‰‡
 function pic_save($FILE, $albumid, $title) {
 	global $_SGLOBAL, $_SCONFIG, $space, $_SC;
 
-	//ÔÊĞíÉÏ´«ÀàĞÍ
+	//å…è®¸ä¸Šä¼ ç±»å‹
 	$allowpictype = array('jpg','gif','png');
 
-	//¼ì²é
+	//æ£€æŸ¥
 	$FILE['size'] = intval($FILE['size']);
 	if(empty($FILE['size']) || empty($FILE['tmp_name']) || !empty($FILE['error'])) {
 		return lang('lack_of_access_to_upload_file_size');
 	}
 
-	//ÅĞ¶Ïºó×º
+	//åˆ¤æ–­åç¼€
 	$fileext = fileext($FILE['name']);
 	if(!in_array($fileext, $allowpictype)) {
 		return lang('only_allows_upload_file_types');
 	}
 
-	//»ñÈ¡Ä¿Â¼
+	//è·å–ç›®å½•
 	if(!$filepath = getfilepath($fileext, true)) {
 		return lang('unable_to_create_upload_directory_server');
 	}
 	
-	//¼ì²é¿Õ¼ä´óĞ¡
+	//æ£€æŸ¥ç©ºé—´å¤§å°
 	if(empty($space)) {
 		$query = $_SGLOBAL['db']->query("SELECT username, credit, groupid, attachsize, addsize FROM ".tname('space')." WHERE uid='$_SGLOBAL[supe_uid]'");
 		$space = $_SGLOBAL['db']->fetch_array($query);
@@ -40,14 +40,14 @@ function pic_save($FILE, $albumid, $title) {
 	}
 	$_SGLOBAL['member'] = $space;
 			
-	$maxattachsize = intval(checkperm('maxattachsize'));//µ¥Î»MB
-	if($maxattachsize) {//0Îª²»ÏŞÖÆ
+	$maxattachsize = intval(checkperm('maxattachsize'));//å•ä½MB
+	if($maxattachsize) {//0ä¸ºä¸é™åˆ¶
 		if($space['attachsize'] + $FILE['size'] > $maxattachsize + $space['addsize']) {
 			return lang('inadequate_capacity_space');
 		}
 	}
 
-	//Ïà²áÑ¡Ôñ
+	//ç›¸å†Œé€‰æ‹©
 	$albumfriend = 0;
 	if($albumid) {
 		preg_match("/^new\:(.+)$/i", $albumid, $matchs);
@@ -69,7 +69,7 @@ function pic_save($FILE, $albumid, $title) {
 		}
 	}
 
-	//±¾µØÉÏ´«
+	//æœ¬åœ°ä¸Šä¼ 
 	$new_name = $_SC['attachdir'].'./'.$filepath;
 	$tmp_name = $FILE['tmp_name'];
 	if(@copy($tmp_name, $new_name)) {
@@ -80,26 +80,26 @@ function pic_save($FILE, $albumid, $title) {
 		return lang('mobile_picture_temporary_failure');
 	}
 	
-	//ËõÂÔÍ¼
+	//ç¼©ç•¥å›¾
 	include_once(S_ROOT.'./source/function_image.php');
 	$thumbpath = makethumb($new_name);
 	$thumb = empty($thumbpath)?0:1;
 	
-	//ÊÇ·ñÑ¹Ëõ
-	//»ñÈ¡ÉÏ´«ºóÍ¼Æ¬´óĞ¡
+	//æ˜¯å¦å‹ç¼©
+	//è·å–ä¸Šä¼ åå›¾ç‰‡å¤§å°
 	if(@$newfilesize = filesize($new_name)) {
 		$FILE['size'] = $newfilesize;
 	}
 
-	//Ë®Ó¡
+	//æ°´å°
 	if($_SCONFIG['allowwatermark']) {
 		makewatermark($new_name);
 	}
 
-	//Èë¿â
+	//å…¥åº“
 	$title = getstr($title, 150, 1, 1, 1);
 	
-	//Èë¿â
+	//å…¥åº“
 	$setarr = array(
 		'albumid' => $albumid,
 		'uid' => $_SGLOBAL['supe_uid'],
@@ -113,10 +113,10 @@ function pic_save($FILE, $albumid, $title) {
 	);
 	$setarr['picid'] = inserttable('pic', $setarr, 1);
 
-	//¸üĞÂ¸½¼ş´óĞ¡
+	//æ›´æ–°é™„ä»¶å¤§å°
 	$_SGLOBAL['db']->query("UPDATE ".tname('space')." SET attachsize=attachsize+'$FILE[size]', updatetime='$_SGLOBAL[timestamp]' WHERE uid='$_SGLOBAL[supe_uid]'");
 
-	//Ïà²á¸üĞÂ
+	//ç›¸å†Œæ›´æ–°
 	$setarr['picflag'] = 1;
 	if($albumid) {
 		$file = $filepath.($thumb?'.thumb.jpg':'');
@@ -125,7 +125,7 @@ function pic_save($FILE, $albumid, $title) {
 			WHERE albumid='$albumid'");
 	}
 
-	//×îºó½øĞĞftpÉÏ´«,·ÀÖ¹À¬»ø²úÉú
+	//æœ€åè¿›è¡Œftpä¸Šä¼ ,é˜²æ­¢åƒåœ¾äº§ç”Ÿ
 	if($_SCONFIG['allowftp']) {
 		include_once(S_ROOT.'./source/function_ftp.php');
 		if(ftpupload($new_name, $filepath)) {
@@ -139,7 +139,7 @@ function pic_save($FILE, $albumid, $title) {
 	return $setarr;
 }
 
-//Êı¾İÁ÷±£´æ£¬ËùÓĞÊı¾İ¾ùÎª´æ·ÅÏà²áµÄËùÒÔĞ´ÈëµÄÊı¾İÒ»¶¨Ö»ÄÜÊÇÍ¼Æ¬
+//æ•°æ®æµä¿å­˜ï¼Œæ‰€æœ‰æ•°æ®å‡ä¸ºå­˜æ”¾ç›¸å†Œçš„æ‰€ä»¥å†™å…¥çš„æ•°æ®ä¸€å®šåªèƒ½æ˜¯å›¾ç‰‡
 function stream_save($strdata, $albumid = 0, $fileext = 'jpg') {
 	global $_SGLOBAL, $space, $_SCONFIG, $_SC;
 
@@ -151,7 +151,7 @@ function stream_save($strdata, $albumid = 0, $fileext = 'jpg') {
 		if(fwrite($handle, $strdata) !== FALSE) {
 			fclose($handle);
 			$size = filesize($newfilename);
-			//¼ì²é¿Õ¼ä´óĞ¡
+			//æ£€æŸ¥ç©ºé—´å¤§å°
 			
 			if(empty($space)) {
 				$query = $_SGLOBAL['db']->query("SELECT username, credit, groupid, attachsize, addsize FROM ".tname('space')." WHERE uid='$_SGLOBAL[supe_uid]'");
@@ -160,25 +160,25 @@ function stream_save($strdata, $albumid = 0, $fileext = 'jpg') {
 			}
 			$_SGLOBAL['member'] = $space;
 				
-			$maxattachsize = intval(checkperm('maxattachsize'));//µ¥Î»MB
-			if($maxattachsize) {//0Îª²»ÏŞÖÆ
+			$maxattachsize = intval(checkperm('maxattachsize'));//å•ä½MB
+			if($maxattachsize) {//0ä¸ºä¸é™åˆ¶
 				if($space['attachsize'] + $size > $maxattachsize + $space['addsize']) {
 					@unlink($newfilename);
 					return false;
 				}
 			}
 
-			//ËõÂÔÍ¼
+			//ç¼©ç•¥å›¾
 			include_once(S_ROOT.'./source/function_image.php');
 			$thumbpath = makethumb($newfilename);
 			$thumb = empty($thumbpath)?0:1;
 		
-			//´óÍ·Ìû²»Ìí¼ÓË®Ó¡
+			//å¤§å¤´å¸–ä¸æ·»åŠ æ°´å°
 			if($_SCONFIG['allowwatermark']) {
 				makewatermark($newfilename);
 			}
 
-			//Èë¿â
+			//å…¥åº“
 			$filename = addslashes(substr(strrchr($filepath, '/'), 1));
 			$title = '';
 			if($albumid) {
@@ -213,10 +213,10 @@ function stream_save($strdata, $albumid = 0, $fileext = 'jpg') {
 			);
 			$setarr['picid'] = inserttable('pic', $setarr, 1);
 		
-			//¸üĞÂ¸½¼ş´óĞ¡
+			//æ›´æ–°é™„ä»¶å¤§å°
 			$_SGLOBAL['db']->query("UPDATE ".tname('space')." SET attachsize=attachsize+'$size', updatetime='$_SGLOBAL[timestamp]' WHERE uid='$_SGLOBAL[supe_uid]'");
 		
-			//Ïà²á¸üĞÂ
+			//ç›¸å†Œæ›´æ–°
 			if($albumid) {
 				$file = $filepath.($thumb?'.thumb.jpg':'');
 				$_SGLOBAL['db']->query("UPDATE ".tname('album')." 
@@ -224,7 +224,7 @@ function stream_save($strdata, $albumid = 0, $fileext = 'jpg') {
 					WHERE albumid='$albumid'");
 			}
 			
-			//×îºó½øĞĞftpÉÏ´«,·ÀÖ¹À¬»ø²úÉú
+			//æœ€åè¿›è¡Œftpä¸Šä¼ ,é˜²æ­¢åƒåœ¾äº§ç”Ÿ
 			if($_SCONFIG['allowftp']) {
 				include_once(S_ROOT.'./source/function_ftp.php');
 				if(ftpupload($newfilename, $filepath)) {
@@ -242,10 +242,10 @@ function stream_save($strdata, $albumid = 0, $fileext = 'jpg') {
 	return false;
 }
 
-//´´½¨Ïà²á
+//åˆ›å»ºç›¸å†Œ
 function album_creat($arr) {
 	global $_SGLOBAL;
-	//¼ì²éÏà²áÊÇ·ñ´æÔÚ
+	//æ£€æŸ¥ç›¸å†Œæ˜¯å¦å­˜åœ¨
 	$albumid = getcount('album', array('albumname'=>$arr['albumname'], 'uid'=>$_SGLOBAL['supe_uid']), 'albumid');
 	if($albumid) {
 		return $albumid;
@@ -255,7 +255,7 @@ function album_creat($arr) {
 		$arr['dateline'] = $arr['updatetime'] = $_SGLOBAL['timestamp'];
 		$albumid = inserttable('album', $arr, 1);
 		
-		//ÊÂ¼ş
+		//äº‹ä»¶
 		$fs = array();
 		$fs['icon'] = 'album';
 	
@@ -273,7 +273,7 @@ function album_creat($arr) {
 	}
 }
 
-//»ñÈ¡ÉÏ´«Â·¾¶
+//è·å–ä¸Šä¼ è·¯å¾„
 function getfilepath($fileext, $mkdir=false) {
 	global $_SGLOBAL, $_SC;
 
@@ -300,7 +300,7 @@ function getfilepath($fileext, $mkdir=false) {
 	return $name1.'/'.$name2.'/'.$filepath;
 }
 
-//»ñÈ¡Ä¿Â¼
+//è·å–ç›®å½•
 function sreaddir($dir, $extarr=array()) {
 	$dirs = array();
 	if($dh = opendir($dir)) {
@@ -318,12 +318,12 @@ function sreaddir($dir, $extarr=array()) {
 	return $dirs;
 }
 
-//¼ì²éÓÊÏäÊÇ·ñÓĞĞ§
+//æ£€æŸ¥é‚®ç®±æ˜¯å¦æœ‰æ•ˆ
 function isemail($email) {
 	return strlen($email) > 6 && preg_match("/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/", $email);
 }
 
-//»ñÈ¡Ïà²á·âÃæÍ¼Æ¬
+//è·å–ç›¸å†Œå°é¢å›¾ç‰‡
 function getalbumpic($uid, $id) {
 	global $_SGLOBAL;
 	$query = $_SGLOBAL['db']->query("SELECT filepath, thumb FROM ".tname('pic')." WHERE albumid='$id' AND uid='$uid' ORDER BY thumb DESC, dateline DESC LIMIT 0,1");
@@ -334,7 +334,7 @@ function getalbumpic($uid, $id) {
 	}
 }
 
-//»ñÈ¡¸öÈË·ÖÀà
+//è·å–ä¸ªäººåˆ†ç±»
 function getclassarr($uid) {
 	global $_SGLOBAL;
 
@@ -346,7 +346,7 @@ function getclassarr($uid) {
 	return $classarr;
 }
 
-//»ñÈ¡Ïà²á
+//è·å–ç›¸å†Œ
 function getalbums($uid) {
 	global $_SGLOBAL;
 	
@@ -358,14 +358,14 @@ function getalbums($uid) {
 	return $albums;
 }
 
-//ÊÂ¼ş·¢²¼
+//äº‹ä»¶å‘å¸ƒ
 function feed_add($icon, $title_template='', $title_data='', $body_template='', $body_data='', $body_general='', $images=array(), $image_links=array(), $target_ids='', $friend='') {
 	global $_SGLOBAL;
 	
 	if(empty($_SGLOBAL['supe_uid'])) return false;
 	
 	$feedarr = array(
-		'appid' => UC_APPID,//?»ñÈ¡appid
+		'appid' => UC_APPID,//?è·å–appid
 		'icon' => $icon,
 		'uid' => $_SGLOBAL['supe_uid'],
 		'username' => $_SGLOBAL['supe_username'],
@@ -384,17 +384,17 @@ function feed_add($icon, $title_template='', $title_data='', $body_template='', 
 		'target_ids' => $target_ids,
 		'friend' => $friend
 	);
-	$feedarr = sstripslashes($feedarr);//È¥µô×ªÒå
-	$feedarr['title_data'] = serialize(sstripslashes($title_data));//Êı×é×ª»¯
-	$feedarr['body_data'] = serialize(sstripslashes($body_data));//Êı×é×ª»¯
-	$feedarr['hash_template'] = md5($feedarr['title_template']."\t".$feedarr['body_template']);//Ï²ºÃhash
-	$feedarr['hash_data'] = md5($feedarr['title_template']."\t".$feedarr['title_data']."\t".$feedarr['body_template']."\t".$feedarr['body_data']);//ºÏ²¢hash
-	$feedarr = saddslashes($feedarr);//Ôö¼Ó×ªÒå
+	$feedarr = sstripslashes($feedarr);//å»æ‰è½¬ä¹‰
+	$feedarr['title_data'] = serialize(sstripslashes($title_data));//æ•°ç»„è½¬åŒ–
+	$feedarr['body_data'] = serialize(sstripslashes($body_data));//æ•°ç»„è½¬åŒ–
+	$feedarr['hash_template'] = md5($feedarr['title_template']."\t".$feedarr['body_template']);//å–œå¥½hash
+	$feedarr['hash_data'] = md5($feedarr['title_template']."\t".$feedarr['title_data']."\t".$feedarr['body_template']."\t".$feedarr['body_data']);//åˆå¹¶hash
+	$feedarr = saddslashes($feedarr);//å¢åŠ è½¬ä¹‰
 	
 	inserttable('feed', $feedarr);
 }
 
-//Í¨Öª
+//é€šçŸ¥
 function notification_add($uid, $type, $note) {
 	global $_SGLOBAL;
 
@@ -411,42 +411,42 @@ function notification_add($uid, $type, $note) {
 }
 
 
-//¸üĞÂºÃÓÑ×´Ì¬
+//æ›´æ–°å¥½å‹çŠ¶æ€
 function friend_update($uid, $username, $fuid, $fusername, $op='add', $gid=0) {
 	global $_SGLOBAL;
 	
-	//ºÃÓÑ×´Ì¬
+	//å¥½å‹çŠ¶æ€
 	if($op == 'add' || $op == 'invite') {
-		//×Ô¼º
+		//è‡ªå·±
 		if($uid != $fuid) {
 			inserttable('friend', array('uid'=>$uid, 'fuid'=>$fuid, 'fusername'=>$fusername, 'status'=>1, 'gid'=>$gid), 0, true);
-			//¶Ô·½¸üĞÂ
+			//å¯¹æ–¹æ›´æ–°
 			if($op == 'invite') {
-				//ÑûÇëÄ£Ê½
+				//é‚€è¯·æ¨¡å¼
 				inserttable('friend', array('uid'=>$fuid, 'fuid'=>$uid, 'fusername'=>$username, 'status'=>1), 0, true);
 			} else {
 				updatetable('friend', array('status'=>1), array('uid'=>$fuid, 'fuid'=>$uid));
 			}
-			//ÓÃ»§ÖĞĞÄÌí¼Ó
+			//ç”¨æˆ·ä¸­å¿ƒæ·»åŠ 
 			include_once S_ROOT.'./uc_client/client.php';
 			uc_friend_add($uid, $fuid);
 			uc_friend_add($fuid, $uid);
 		}
 	} else {
-		//É¾³ı
+		//åˆ é™¤
 		$_SGLOBAL['db']->query("DELETE FROM ".tname('friend')." WHERE (uid='$uid' AND fuid='$fuid') OR (uid='$fuid' AND fuid='$uid')");
-		//´ÓÓÃ»§ÖĞĞÄÉ¾³ı
+		//ä»ç”¨æˆ·ä¸­å¿ƒåˆ é™¤
 		include_once S_ROOT.'./uc_client/client.php';
 		uc_friend_delete($uid, array($fuid));
 		uc_friend_delete($fuid, array($uid));
 	}
 	
-	//»º´æ
+	//ç¼“å­˜
 	friend_cache($uid);
 	friend_cache($fuid);
 }
 
-//¸üĞÂºÃÓÑ»º´æ
+//æ›´æ–°å¥½å‹ç¼“å­˜
 function friend_cache($uid) {
 	global $_SGLOBAL, $space;
 	
@@ -460,22 +460,22 @@ function friend_cache($uid) {
 	}
 	$groupids = empty($thespace['privacy']['filter_gid'])?array():$thespace['privacy']['filter_gid'];
 	
-	//ºÃÓÑ»º´æ
+	//å¥½å‹ç¼“å­˜
 	$friendlist = $feedfriendlist = array();
 
 	$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('friend')." WHERE uid='$uid' AND status='1'");
 	while ($value = $_SGLOBAL['db']->fetch_array($query)) {
 		$friendlist[] = $value['fuid'];
 		if(empty($groupids) || !in_array($value['gid'], $groupids)) {
-			$feedfriendlist[] = $value['fuid'];//feedÏÔÊ¾
+			$feedfriendlist[] = $value['fuid'];//feedæ˜¾ç¤º
 		}
 	}
 	updatetable('spacefield', array('friend'=>implode(',',$friendlist), 'feedfriend'=>implode(',',$feedfriendlist)), array('uid'=>$uid));
-	//ÊıÁ¿
+	//æ•°é‡
 	updatetable('space', array('friendnum'=>count($friendlist)), array('uid'=>$uid));
 }
 
-//¼ì²éÑéÖ¤Âë
+//æ£€æŸ¥éªŒè¯ç 
 function ckseccode($seccode) {
 	global $_SCOOKIE;
 	
@@ -487,17 +487,17 @@ function ckseccode($seccode) {
 	return $check;
 }
 
-//Ïà²á²úÉúfeed
+//ç›¸å†Œäº§ç”Ÿfeed
 function album_feed($albumid) {
 	global $_SGLOBAL, $space;
 	
 	if($albumid > 0) {
-		//µÃµ½×îĞÂµÄ4ÕÅÍ¼Æ¬
+		//å¾—åˆ°æœ€æ–°çš„4å¼ å›¾ç‰‡
 		$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('album')." WHERE albumid='$albumid' AND uid='$_SGLOBAL[supe_uid]'");
 		if(!$album = $_SGLOBAL['db']->fetch_array($query)) {
 			return false;
 		}
-		if($album['friend']>2) return false;//ÒşË½ÉèÖÃ
+		if($album['friend']>2) return false;//éšç§è®¾ç½®
 	} else {
 		$picnum = $_SGLOBAL['db']->result($_SGLOBAL['db']->query("SELECT COUNT(*) FROM ".tname('pic')." WHERE uid='$_SGLOBAL[supe_uid]' AND albumid='0'"), 0);
 		if($picnum<1) return false;
@@ -511,10 +511,10 @@ function album_feed($albumid) {
 		return false;
 	}
 
-	//Í¼Æ¬
+	//å›¾ç‰‡
 	$fs = array();
 	
-	$nowdateline = $_SGLOBAL['timestamp']-600;//10·ÖÖÓÄÚÉÏ´«µÄÍ¼Æ¬
+	$nowdateline = $_SGLOBAL['timestamp']-600;//10åˆ†é’Ÿå†…ä¸Šä¼ çš„å›¾ç‰‡
 	$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('pic')." WHERE albumid='$albumid' AND uid='$_SGLOBAL[supe_uid]' AND dateline>'$nowdateline' ORDER BY dateline DESC LIMIT 0,4");
 	while ($value = $_SGLOBAL['db']->fetch_array($query)) {
 		$fs['images'][] = mkpicurl($value);
@@ -539,13 +539,13 @@ function album_feed($albumid) {
 	}
 }
 
-//¸üĞÂÒşË½ÉèÖÃ
+//æ›´æ–°éšç§è®¾ç½®
 function privacy_update() {
 	global $_SGLOBAL, $space;
 	updatetable('spacefield', array('privacy'=>addslashes(serialize(sstripslashes($space['privacy'])))), array('uid'=>$_SGLOBAL['supe_uid']));
 }
 
-//ÑûÇëºÃÓÑ
+//é‚€è¯·å¥½å‹
 function invite_update($inviteid, $uid, $username, $fuid, $fusername) {
 	global $_SGLOBAL;
 	
@@ -553,9 +553,9 @@ function invite_update($inviteid, $uid, $username, $fuid, $fusername) {
 		$friendstatus = getfriendstatus($uid, $fuid);
 		if($friendstatus < 1) {
 			friend_update($uid, $username, $fuid, $fusername, 'invite');
-			//¸üĞÂÑûÇë
+			//æ›´æ–°é‚€è¯·
 			updatetable('invite', array('fuid'=>$uid, 'fusername'=>$username), array('id'=>$inviteid));
-			//¸üĞÂ»ı·Ö
+			//æ›´æ–°ç§¯åˆ†
 			$getcredit = creditrule('get', 'invite');
 			if($getcredit) {
 				$_SGLOBAL['db']->query("UPDATE ".tname('space')." SET credit=credit+$getcredit WHERE uid='$fuid'");
@@ -567,7 +567,7 @@ function invite_update($inviteid, $uid, $username, $fuid, $fusername) {
 			$title_template = lang('feed_invite');
 			$tite_data = array('username'=>'<a href="space.php?uid='.$uid.'">'.stripslashes($username).'</a>');
 			feed_add('friend', $title_template, $tite_data);
-			//Í¨Öª
+			//é€šçŸ¥
 			$_SGLOBAL['supe_uid'] = $uid;
 			$_SGLOBAL['supe_username'] = $username;
 			notification_add($fuid, 'friend', lang('note_invite'));
@@ -575,7 +575,7 @@ function invite_update($inviteid, $uid, $username, $fuid, $fusername) {
 	}
 }
 
-//»ñµÃÑûÇë
+//è·å¾—é‚€è¯·
 function invite_get($uid, $code) {
 	global $_SGLOBAL;
 	

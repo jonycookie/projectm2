@@ -12,36 +12,36 @@ define('D_BUG', '0');
 D_BUG?error_reporting(7):error_reporting(0);
 $_SGLOBAL = $_SCONFIG = $_SBLOCK = $_TPL = $_SCOOKIE = $space = array();
 
-//³ÌĞòÄ¿Â¼
+//ç¨‹åºç›®å½•
 define('S_ROOT', dirname(__FILE__).DIRECTORY_SEPARATOR);
 
-//»ñÈ¡Ê±¼ä
+//è·å–æ—¶é—´
 $mtime = explode(' ', microtime());
 $_SGLOBAL['timestamp'] = $mtime[1];
 $_SGLOBAL['supe_starttime'] = $_SGLOBAL['timestamp'] + $mtime[0];
 
-//»ù±¾ÎÄ¼ş
+//åŸºæœ¬æ–‡ä»¶
 if(!@include_once(S_ROOT.'./config.php')) {
 	header("Location: install/index.php");
 	exit();
 }
 include_once(S_ROOT.'./source/function_common.php');
 
-//Á´½ÓÊı¾İ¿â
+//é“¾æ¥æ•°æ®åº“
 dbconnect();
 
-//ÅäÖÃÎÄ¼ş
+//é…ç½®æ–‡ä»¶
 if(!@include_once(S_ROOT.'./data/data_config.php')) {
 	include_once(S_ROOT.'./source/function_cache.php');
 	config_cache();
 }
 
-//Ç¿ÖÆÊ¹ÓÃ×Ö·û¼¯
+//å¼ºåˆ¶ä½¿ç”¨å­—ç¬¦é›†
 if($_SCONFIG['headercharset']) {
 	@header('Content-Type: text/html; charset='.$_SC['charset']);
 }
 
-//GPC¹ıÂË
+//GPCè¿‡æ»¤
 $magic_quote = get_magic_quotes_gpc();
 if(empty($magic_quote)) {
 	$_GET = saddslashes($_GET);
@@ -56,24 +56,24 @@ foreach($_COOKIE as $key => $val) {
 	}
 }
 
-//ÆôÓÃGIP
+//å¯ç”¨GIP
 if ($_SC['gzipcompress'] && function_exists('ob_gzhandler')) {
 	ob_start('ob_gzhandler');
 } else {
 	ob_start();
 }
 
-//³õÊ¼»¯
+//åˆå§‹åŒ–
 $_SGLOBAL['supe_uid'] = 0;
 $_SGLOBAL['supe_username'] = '';
 $_SGLOBAL['inajax'] = empty($_GET['inajax'])?0:intval($_GET['inajax']);
 $_SGLOBAL['ajaxmenuid'] = empty($_GET['ajaxmenuid'])?'':$_GET['ajaxmenuid'];
 $_SGLOBAL['refer'] = empty($_SERVER['HTTP_REFERER'])?'':$_SERVER['HTTP_REFERER'];
 
-//»ñÈ¡ÓÃ»§ĞÅÏ¢
+//è·å–ç”¨æˆ·ä¿¡æ¯
 getuser();
 
-//Ó¦ÓÃÁĞ±í
+//åº”ç”¨åˆ—è¡¨
 @include_once(S_ROOT.'./data/data_app.php');
 if(empty($_SGLOBAL['app'])) {
 	include_once(S_ROOT.'./source/function_cache.php');

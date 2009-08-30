@@ -11,10 +11,10 @@ if(!defined('IN_UCHOME')) {
 $op = empty($_GET['op'])?'':trim($_GET['op']);
 
 if($op == 'logout') {
-	//删除session
+	//鍒犻櫎session
 	if($_SGLOBAL['supe_uid']) {
 		$_SGLOBAL['db']->query("DELETE FROM ".tname('session')." WHERE uid='$_SGLOBAL[supe_uid]'");
-		$_SGLOBAL['db']->query("DELETE FROM ".tname('adminsession')." WHERE uid='$_SGLOBAL[supe_uid]'");//管理平台
+		$_SGLOBAL['db']->query("DELETE FROM ".tname('adminsession')." WHERE uid='$_SGLOBAL[supe_uid]'");//绠＄悊骞冲彴
 	}
 
 	include_once S_ROOT.'./uc_client/client.php';
