@@ -14,10 +14,10 @@ if($_SGLOBAL['supe_uid']) {
 	showmessage('do_success', 'cp.php?ac=home', 0);
 }
 
-//Ã»ÓĞµÇÂ¼±íµ¥
+//æ²¡æœ‰ç™»å½•è¡¨å•
 $_SGLOBAL['nologinform'] = 1;
 
-//ºÃÓÑÑûÇë
+//å¥½å‹é‚€è¯·
 $uid = empty($_GET['uid'])?0:intval($_GET['uid']);
 $invite = empty($_GET['invite'])?'':$_GET['invite'];
 $invitearr = array();
@@ -36,12 +36,12 @@ if(empty($op)) {
 		}
 	}
 	
-	//ÊÇ·ñ¹Ø±ÕÕ¾µã
+	//æ˜¯å¦å…³é—­ç«™ç‚¹
 	checkclose();
 	
 	if(submitcheck('registersubmit')) {
 	
-		//ÒÑ¾­×¢²áÓÃ»§
+		//å·²ç»æ³¨å†Œç”¨æˆ·
 		if($_SGLOBAL['supe_uid']) {
 			showmessage('registered', 'space.php');
 		}
@@ -68,7 +68,7 @@ if(empty($op)) {
 		$password = $_POST['password'];
 		$email = isemail($_POST['email'])?$_POST['email']:'';
 		
-		//¼ì²éÓÊ¼ş
+		//æ£€æŸ¥é‚®ä»¶
 		if(empty($email)) {
 			showmessage('email_format_is_wrong');
 		}
@@ -99,24 +99,24 @@ if(empty($op)) {
 			$setarr = array(
 				'uid' => $newuid,
 				'username' => $username,
-				'password' => md5("$newuid|$_SGLOBAL[timestamp]")//±¾µØÃÜÂëËæ»úÉú³É
+				'password' => md5("$newuid|$_SGLOBAL[timestamp]")//æœ¬åœ°å¯†ç éšæœºç”Ÿæˆ
 			);
-			//¸üĞÂ±¾µØÓÃ»§¿â
+			//æ›´æ–°æœ¬åœ°ç”¨æˆ·åº“
 			inserttable('member', $setarr, 0, true);
 			
-			//¿ªÍ¨¿Õ¼ä
+			//å¼€é€šç©ºé—´
 			include_once(S_ROOT.'./source/function_space.php');
 			$space = space_open($newuid, $username, 0, $email);
 	
-			//ÔÚÏßsession
+			//åœ¨çº¿session
 			insertsession($setarr);
 			
-			//ÉèÖÃcookie
+			//è®¾ç½®cookie
 			ssetcookie('auth', authcode("$setarr[password]\t$setarr[uid]", 'ENCODE'), 2592000);
 			ssetcookie('loginuser', $username, 31536000);
 			ssetcookie('_refer', '');
 	
-			//ºÃÓÑÑûÇë
+			//å¥½å‹é‚€è¯·
 			if($invitearr) {
 				invite_update($invitearr['id'], $setarr['uid'], $setarr['username'], $invitearr['uid'], $invitearr['username']);
 			}

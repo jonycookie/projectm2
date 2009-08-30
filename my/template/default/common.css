@@ -180,6 +180,20 @@ caption p {
 	padding: 0 0.6em;
 	color: #57A7F1;
 }
+.space_nav {
+	border: 1px solid #ddd;
+	padding: 5px 10px;
+	margin: 0 0 5px;
+}
+.space_nav ol:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.space_nav li {
+	float: left;
+	margin: 0 10px 0 0;
+}
 #container {
 }
 #side {

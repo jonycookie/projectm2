@@ -6,10 +6,10 @@
 
 include_once('./common.php');
 
-//ÊÇ·ñ¹Ø±ÕÕ¾µã
+//æ˜¯å¦å…³é—­ç«™ç‚¹
 checkclose();
 
-//´¦Àírewrite
+//å¤„ç†rewrite
 if($_SCONFIG['allowrewrite'] && isset($_GET['rewrite'])) {
 	$rws = explode('-', $_GET['rewrite']);
 	if($rw_uid = intval($rws[0])) {
@@ -26,10 +26,10 @@ if($_SCONFIG['allowrewrite'] && isset($_GET['rewrite'])) {
 	unset($_GET['rewrite']);
 }
 
-//ÔÊĞí¶¯×÷
+//å…è®¸åŠ¨ä½œ
 $dos = array('feed', 'doing', 'blog', 'album', 'thread', 'mtag', 'friend', 'wall', 'tag', 'notice', 'pm', 'app');
 
-//»ñÈ¡±äÁ¿
+//è·å–å˜é‡
 $isinvite = 0;
 $uid = empty($_GET['uid'])?0:intval($_GET['uid']);
 $username = empty($_GET['username'])?'':$_GET['username'];
@@ -37,19 +37,19 @@ $domain = empty($_GET['domain'])?'':$_GET['domain'];
 $do = (!empty($_GET['do']) && in_array($_GET['do'], $dos))?$_GET['do']:'index';
 if ($do == 'index') {
 	$_SGLOBAL['do_index'] = 1;
-	//ÑûÇëºÃÓÑ
+	//é‚€è¯·å¥½å‹
 	$invite = empty($_GET['invite'])?'':$_GET['invite'];
 	if($invite) {
 		$isinvite = $_SGLOBAL['db']->result($_SGLOBAL['db']->query("SELECT id FROM ".tname('invite')." WHERE uid='$uid' AND code='$invite' AND fuid='0'"), 0);
 	}
 }
 
-//ÊÇ·ñ¹«¿ª
+//æ˜¯å¦å…¬å¼€
 if(empty($isinvite) && empty($_SCONFIG['networkpublic'])) {
-	checklogin();//ĞèÒªµÇÂ¼
+	checklogin();//éœ€è¦ç™»å½•
 }
 
-//»ñÈ¡¿Õ¼ä
+//è·å–ç©ºé—´
 $space = array();
 if($uid) {
 	$space = getspace($uid);
@@ -68,7 +68,7 @@ if($uid) {
 	}
 }
 
-//ÓòÃû
+//åŸŸå
 if($space['domain'] && $_SCONFIG['allowdomain'] && $_SCONFIG['domainroot']) {
 	$space['domainurl'] = 'http://'.$space['domain'].'.'.$_SCONFIG['domainroot'];
 } else {
@@ -84,7 +84,7 @@ if(empty($space)) {
 		showmessage('space_does_not_exist', 'index.php?do', 0);
 	}
 } else {
-	//±ğÈËÖ»²é¿´×Ô¼º
+	//åˆ«äººåªæŸ¥çœ‹è‡ªå·±
 	if(!$space['self']) {
 		$_GET['view'] = 'me';
 		$space['friend'] = $space['feedfriend'] = '';
@@ -93,30 +93,30 @@ if(empty($space)) {
 	}
 }
 
-//ÒşË½¼ì²é
+//éšç§æ£€æŸ¥
 if(empty($isinvite) && !ckprivacy($do)) {
 	$space['css'] = $space['theme'] = '';
 	include template('space_privacy');
 	exit();
 }
 
-//¸üĞÂ»î¶¯session
+//æ›´æ–°æ´»åŠ¨session
 if($_SGLOBAL['supe_uid']) {
 	updatetable('session', array('lastactivity' => $_SGLOBAL['timestamp']), array('uid'=>$_SGLOBAL['supe_uid']));
 }
 
-//¿Õ¼ä·ÃÎÊÍ³¼Æ
+//ç©ºé—´è®¿é—®ç»Ÿè®¡
 if(!$space['self'] && $space['uid']) {
-	inserttable('log', array('id'=>$space['uid'], 'idtype'=>'uid'));//·Ç±¾ÈË
+	inserttable('log', array('id'=>$space['uid'], 'idtype'=>'uid'));//éæœ¬äºº
 }
 
-//¼Æ»®ÈÎÎñ
+//è®¡åˆ’ä»»åŠ¡
 if(!empty($_SCONFIG['cronnextrun']) && $_SCONFIG['cronnextrun'] <= $_SGLOBAL['timestamp']) {
 	include_once S_ROOT.'./source/function_cron.php';
 	runcron();
 }
 
-//´¦Àí
+//å¤„ç†
 include_once(S_ROOT."./source/space_{$do}.php");
 
 ?>
