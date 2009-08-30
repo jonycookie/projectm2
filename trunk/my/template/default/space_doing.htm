@@ -1,38 +1,19 @@
 <!--{eval $_TPL['titles'] = array('迷你博客');}-->
 <!--{template space_header}-->
 
-<!--{if $space[self]}-->
-<div class="tabs_header">
-	<ul class="tabs">
-		<!--{if $space[friendnum]}--><li$actives[we]><a href="space.php?uid=$space[uid]&do=$do">最新迷你博客</a></li><!--{/if}-->
-		<li$actives[me]><a href="space.php?uid=$space[uid]&do=$do&view=me">我的迷你博客</a></li>
-		<!--{if $_SCONFIG['showall']}--><li$actives[all]><a href="network.php?ac=doing">大家的迷你博客</a></li><!--{/if}-->
-	</ul>
-</div>
-<!--{/if}-->
-
 <div class="side_right">
 	<div class="main">
 
 <!--{if $space[self]}-->
-		<form method="post" action="cp.php?ac=doing" class="quickpost">
-			<table cellspacing="0" cellpadding="0">
-				<tr>
-					<td colspan="2">
-						<textarea id="message" name="message" onkeyup="textCounter(this, 'maxlimit', 200)" onkeydown="ctrlEnter(event, 'add');" rows="4"></textarea>
-					</td>
-				</tr>	
-				<tr>
-					<td>
-						<input type="hidden" name="addsubmit" value="true" />
-						<input type="hidden" name="refer" value="$theurl" />
-						<input type="submit" id="add" name="add" value="发布" class="submit" />
-					</td>
-					<td align="right">还可输入 <strong id="maxlimit">200</strong> 字节 </td>
-				</tr>
-			</table>
+		<form method="post" action="cp.php?ac=doing" class="doingpost">
+				<a href="space.php?uid=$_SGLOBAL[supe_uid]"><img src="<!--{avatar($_SGLOBAL[supe_uid],small)}-->" alt="$_SGLOBAL[supe_username]" class="avatar" /></a>
+				<div class="username">$_SGLOBAL[supe_username]</div>
+				<textarea id="message" name="message" onkeyup="textCounter(this, 'maxlimit', 200)" onkeydown="ctrlEnter(event, 'add');" rows="4"></textarea>
+				<input type="hidden" name="addsubmit" value="true" />
+				<input type="hidden" name="refer" value="$theurl" />
+				<input type="submit" id="add" name="add" value="发布" class="submit" />
+				还可输入 <strong id="maxlimit">200</strong> 字节 
 		</form>
-		<br />
 <!--{/if}-->
 		
 		<div class="post_list line_list l_text <!--{if !empty($space[friend])}-->a_list<!--{/if}-->">
@@ -70,10 +51,7 @@
 		<div class="page">$multi[html]</div>
 	</div>
 
-	<div class="sidebar">
-		<!--{ad/rightside}--><!-- 右侧栏广告-->
-	</div>
-
+	<!--{template space_doing_sidebar}-->
 </div>
 
 
