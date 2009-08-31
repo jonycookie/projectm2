@@ -2,15 +2,6 @@
 
 <!--{if $op == 'syn' || $op == 'find' || $op == 'group' || $op == 'groupname' || $op == 'request'}-->
 
-<!--{if $_SGLOBAL['guidemode']}-->
-<!--{template space_guide}-->
-<!--{else}-->
-<div class="c_header a_header">
-	<a href="space.php?uid=$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a>
-	<h1>好友</h1>
-	<a href="space.php?uid=$space[uid]" class="spacelink">我的空间</a>
-</div>
-
 <div class="tabs_header">
 	<ul class="tabs">
 		<li$actives[groupname]><a href="space.php?uid=$space[uid]&do=friend">好友列表</a></li>
@@ -24,7 +15,6 @@
 		<!--{if $op=='request'}--><li$actives[request]><a href="cp.php?ac=friend&op=request">好友请求</a></li><!--{/if}-->
 	</ul>
 </div>
-<!--{/if}-->
 <!--{/if}-->
 
 <!--{if $op == 'group' || $op == 'groupname'}-->
@@ -148,7 +138,7 @@
 		</table>
 </div>
 
-<form method="get" action="network.php" class="c_form"<!--{if $_SGLOBAL['guidemode']}--> target="_blank"<!--{/if}-->>
+<form method="get" action="network.php" class="c_form">
 	<table cellspacing="0" cellpadding="0" class="formtable">
 		<caption>
 			<h2>自己找好友</h2>
@@ -273,33 +263,6 @@
 		<!--{/if}-->
 		<!--{/loop}-->
 
-		<!--{if $_SGLOBAL['guidemode']}-->
-		</table>
-		<table cellspacing="0" cellpadding="0" class="formtable">
-		<tr>
-			<th width="23%">&nbsp;</th>
-			<td>
-			<input type="hidden" name="guidemode" value="1">
-			<input type="hidden" name="ac" value="space" />
-			<input type="hidden" name="searchmode" value="1" />
-			<input type="submit" name="findsubmit" value="寻找好友" class="submit" />
-			</td>
-		</tr>
-		</table>
-		
-		<table cellspacing="0" cellpadding="0" class="formtable">
-		<caption>
-			<h2>安家完成</h2>
-			<p>您可以点击下面的按钮，结束安家过程</p>
-		</caption>
-		<tr>
-			<th width="23%">&nbsp;</th>
-			<td>
-				<input type="button" name="closeguide" value="结束向导" class="submit" onclick="window.location='cp.php?ac=home&view=guide&step=4';" />
-				<br>结束向导后，您还可以在导航菜单中重新找到向导入口
-			</td>
-		</tr>
-		<!--{else}-->
 		<tr>
 			<th>&nbsp;</th>
 			<td>
@@ -308,7 +271,6 @@
 			<input type="submit" name="findsubmit" value="寻找好友" class="submit" />
 			</td>
 		</tr>
-		<!--{/if}-->
 	</table>
 </form>
 

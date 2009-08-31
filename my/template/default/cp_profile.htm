@@ -1,8 +1,5 @@
 <!--{template cp_header}-->
-<!--{if $_SGLOBAL['guidemode']}-->
-<!--{template space_guide}-->
-<!--{else}-->
-<div class="c_header">
+<div class="tabs_menu">
 	<ul class="tabs">
 		<li$actives[profile]><a href="cp.php?ac=profile">个人资料</a></li>
 		<li$actives[mtag]><a href="cp.php?ac=mtag">我的选吧</a></li>
@@ -11,7 +8,6 @@
 		<li$actives[advance]><a href="cp.php?ac=advance">高级管理</a></li>
 	</ul>
 </div>
-<!--{/if}-->
 
 <script>
 	function avatarshow() {
@@ -43,14 +39,6 @@
 			<h2>头像</h2>
 			<p>请选择您的照片进行上传编辑，并点击“确定”进行头像保存。</p>
 		</caption>
-<!--{if $_SGLOBAL['guidemode']}-->
-		<tbody id="div_avatar">
-		<tr>
-			<td>$uc_avatarflash</td>
-		</tr>
-		</tbody>
-	</table>
-<!--{else}-->
 		<tr>
 			<td width="200"><img src="{UC_API}/avatar.php?uid=$_SGLOBAL[supe_uid]" id="avatar" /></td>
 			<td><input type="button" name="clickbutton[]" value="编辑头像" onclick="avatarshow()" class="button"></td>
@@ -65,7 +53,6 @@
 		</tr>
 		</tbody>
 	</table>
-<!--{/if}-->
 	
 	<table cellspacing="0" cellpadding="0" class="formtable">
 		<caption>
@@ -172,22 +159,10 @@
 		</tr>
 		<!--{/loop}-->
 		
-		<!--{if $_SGLOBAL['guidemode']}-->
-		</table>
-		<table cellspacing="0" cellpadding="0" class="formtable">
-		<tr>
-			<td align="center">
-			<input type="hidden" name="guidemode" value="1">
-			<input type="submit" name="profilesubmit" value="下一步" class="submit" />
-			</td>
-			<td align="right"><a href="cp.php?ac=home&view=guide&step=2">跳过&gt;&gt;</a></td>
-		</tr>
-		<!--{else}-->
 		<tr>
 			<th>&nbsp;</th>
 			<td><input type="submit" name="profilesubmit" value="提交" class="submit" /></td>
 		</tr>
-		<!--{/if}-->
 </table>
 </form>
 <div class="f_status s_clear">
