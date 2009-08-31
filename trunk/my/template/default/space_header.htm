@@ -29,7 +29,7 @@ $space[css]
 		<h2><a href="index.php"><img src="$_SCONFIG[sitelogo]" alt="$_SCONFIG[sitename]" /></a></h2>
 		<!--{if $_SGLOBAL[supe_uid]}-->
 		<ul id="menu">
-			<li><a href="cp.php?ac=home">首页</a><!--{if $space[self] && $space[credit]<10}--><a href="cp.php?ac=home&view=guide" class="edit">向导</a><!--{/if}--></li>
+			<li><a href="cp.php?ac=home">首页</a></li>
 			<li><a href="space.php">个人主页</a></li>
 			<li><a href="space.php?do=friend">好友</a><a href="javascript:;" onclick="openSub(this,'friend');" class="drop">&nbsp;</a></li>
 			<li><a href="network.php">随便看看</a><!--{if empty($_SCONFIG['showall'])}--><a href="cp.php?ac=home&view=all" class="edit">近况</a><!--{/if}--></li>
@@ -38,7 +38,6 @@ $space[css]
 		<div id="op">
 			<a href="cp.php">设置</a><span class="pipe">|</span>
 			<a href="cp.php?ac=privacy">策略</a><span class="pipe">|</span>
-			<!--{if $space[self] && $space[credit]>=10}--><a href="cp.php?ac=home&view=guide">向导</a><span class="pipe">|</span><!--{/if}-->
 			<a href="cp.php?ac=common&op=logout">退出</a>
 		</div>
 		<!--{else}-->

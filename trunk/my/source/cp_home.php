@@ -8,12 +8,6 @@ if(!defined('IN_UCHOME')) {
 	exit('Access Denied');
 }
 
-//向导页面
-if((!empty($_GET['view']) && $_GET['view'] == 'guide') || ($space['self'] && $space['updatetime'] == $space['dateline'])) {
-	include_once(S_ROOT.'./source/space_guide.php');
-	exit();
-}
-
 //分页
 $perpage = $_SCONFIG['feedmaxnum']<50?50:$_SCONFIG['feedmaxnum'];
 $start = empty($_GET['start'])?0:intval($_GET['start']);

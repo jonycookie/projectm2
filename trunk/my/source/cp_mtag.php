@@ -116,7 +116,7 @@ if(submitcheck('mtagsubmit')) {
 		}
 	}
 
-	showmessage('update_on_successful_individuals', $_POST['guidemode']?'cp.php?ac=home&view=guide&step=3':'space.php?do=mtag', 0);
+	showmessage('update_on_successful_individuals', 'space.php?do=mtag', 0);
 }
 
 //œ‘ æ

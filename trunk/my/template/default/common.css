@@ -1369,54 +1369,6 @@ textarea {
 	width: 520px;
 	overflow: hidden;
 }
-.guide {
-}
-.guide fieldset {
-	margin: 15px 0;
-	padding: 20px 8px 8px 17px;
-	border: 1px solid #DDD;
-}
-.guide fieldset.step1 {
-	background: url(image/guidestep.gif) no-repeat 5px 0;
-}
-.guide fieldset.step2 {
-	background: url(image/guidestep.gif) no-repeat 5px -300px;
-}
-.guide fieldset.step3 {
-	background: url(image/guidestep.gif) no-repeat 5px -600px;
-}
-.guide legend {
-	display: none;
-}
-.guide fieldset a {
-	display: block;
-	padding: 10px 0 10px 20px;
-	background: url(image/guidedot.gif) no-repeat 5px 14px;
-	color: #666;
-}
-.guide fieldset a:visited {
-	background-position: 5px -177px
-}
-.guide fieldset a:hover {
-	text-decoration: none;
-}
-.guide fieldset a strong {
-	display: block;
-	color: #06C;
-	font-size: 14px;
-	font-weight: normal;
-}
-.guide fieldset a:hover strong {
-	text-decoration: underline;
-}
-.guide fieldset a em {
-	color: #BBB;
-	float: right;
-	font-style: normal;
-}
-.guide fieldset a:hover em {
-	color: #06C;
-}
 .c_form {
 	padding: 1em 5em;
 }

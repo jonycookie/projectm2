@@ -88,9 +88,6 @@
 </div>
 <!--{else}-->
 
-<!--{if $_SGLOBAL['guidemode']}-->
-<!--{template space_guide}-->
-<!--{else}-->
 <div class="c_header">
 	<ul class="tabs">
 		<li$actives[profile]><a href="cp.php?ac=profile">个人资料</a></li>
@@ -100,7 +97,6 @@
 		<li$actives[advance]><a href="cp.php?ac=advance">高级管理</a></li>
 	</ul>
 </div>
-<!--{/if}-->
 
 <form method="post" action="cp.php?ac=mtag&op=" class="c_form" onsubmit="closeMsg();">
 	<table cellspacing="0" cellpadding="0" class="formtable" width="100%">
@@ -128,9 +124,7 @@
 					<li class="gray">请在右侧选择或添加选吧 &raquo;</li>
 				<!--{/if}-->
 				</ul>
-				<!--{if !$_SGLOBAL['guidemode']}-->
 				<button type="button" class="submit" onclick="document.getElementById('mtagsubmit').click();">保存</button>
-				<!--{/if}-->
 			</td>
 			<td style="padding-right: 0; padding-top: 0; vertical-align: top;">
 				<div style="float: right; padding: 8px; background: #F9F9F9;">
@@ -163,29 +157,14 @@
 			<td>
 				<div id="mtagresult_$fieldid"></div>
 				$fvalue[formhtml]
-				<!--{if !$_SGLOBAL['guidemode']}-->
 				&nbsp; <button type="button" class="submit" onclick="document.getElementById('mtagsubmit').click();">保存</button>
-				<!--{/if}-->
 			</td>
 			<!--{/if}-->
 		</tr>
 	</table>
 	<!--{/loop}-->
 	<br>
-	<!--{if $_SGLOBAL['guidemode']}-->
-	<table cellspacing="0" cellpadding="0" class="formtable">
-		<tr>
-		<td><a href="cp.php?ac=home&view=guide&step=1">返回</a></td>
-		<td align="center">
-		<input type="hidden" name="guidemode" value="1">
-		<input type="submit" id="mtagsubmit" name="mtagsubmit" value="下一步" class="submit" />
-		 </td>
-		 <td align="right"><a href="cp.php?ac=home&view=guide&step=3">跳过&gt;&gt;</a></td>
-		 </tr>
-	</table>
-	<!--{else}-->
 	<div style="display: none;"><input type="submit" id="mtagsubmit" name="mtagsubmit" value="提交保存"></div>
-	<!--{/if}-->
 </form>
 
 <div class="f_status s_clear">
