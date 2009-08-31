@@ -1,5 +1,5 @@
 <!--{eval $_TPL['titles'] = array('动态');}-->
-<!--{template header}-->
+<!--{template cp_header}-->
 
 <script>
 	function notice_show() {
@@ -20,9 +20,9 @@
 <!--{if $space[self]}-->
 <div class="tabs_header">
 	<ul class="tabs">
-		<!--{if $space[friendnum]}--><li$actives[we]><a href="space.php?uid=$space[uid]&do=home">好友动态</a></li><!--{/if}-->
-		<li$actives[all]><a href="space.php?uid=$space[uid]&do=home&view=all">网站近况</a></li>
-		<li$actives[me]><a href="space.php?uid=$space[uid]&do=home&view=me">我的动态</a></li>
+		<!--{if $space[friendnum]}--><li$actives[we]><a href="cp.php?ac=home">好友动态</a></li><!--{/if}-->
+		<li$actives[all]><a href="cp.php?ac=home&view=all">网站近况</a></li>
+		<li$actives[me]><a href="cp.php?ac=home&view=me">我的动态</a></li>
 	</ul>
 </div>
 
