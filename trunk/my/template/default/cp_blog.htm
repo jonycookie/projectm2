@@ -16,7 +16,7 @@
 
 <!--{else}-->
 
-<script language="javascript" src="image/editor/editor_function.js"></script>
+<script language="javascript" src="image/editor/editor.js"></script>
 <script type="text/javascript">
 	function validate(obj) {
 	    var subject = $('subject');
@@ -119,8 +119,7 @@
 			</tr>
 			<tr>
 				<td>
-				<textarea class="userData" name="message" id="uchome-ttHtmlEditor" style="height:100%;width:100%;display:none;border:0px">$blog[message]</textarea>
-				<iframe src="editor.php?charset=$_SC[charset]&allowhtml=$allowhtml" name="uchome-ifrHtmlEditor" id="uchome-ifrHtmlEditor" scrolling="no" border="0" frameborder="0" style="width:100%;border: 1px solid #C5C5C5;" height="400"></iframe>
+				<textarea class="editor" name="message" id="message" rows="12" cols="80">$blog[message]</textarea>
 				</td>
 			</tr>
 		</table>
