@@ -7,7 +7,7 @@
 	<div class="block style4">
 		
 		<table cellspacing="3" cellpadding="3">
-		<tr><th>选吧名*</th><td><input type="text" name="tagname" value="$_GET[tagname]"></td>
+		<tr><th>群组名*</th><td><input type="text" name="tagname" value="$_GET[tagname]"></td>
 			<th>是否锁定</th><td>
 			<select name="close">
 			<option value="">不限制</option>
@@ -61,10 +61,10 @@
 	<div class="bdrcontent">
 	<table cellspacing="0" cellpadding="0" class="formtable">
 	<tr>
-		<th>选吧名</th>
+		<th>群组名</th>
 		<th>归属栏目</th>
 		<th>用户数</th>
-		<th>吧主</th>
+		<th>群主</th>
 	</tr>
 	<!--{loop $list $value}-->
 	<tr>
@@ -72,7 +72,7 @@
 		<a href="space.php?do=mtag&tagid=$value[tagid]" target="_blank">$value[tagname]</a><!--{if $value[close]}-->(<a href="admincp.php?ac=mtag&close=$value[close]">锁定</a>)<!--{/if}--></td>
 		<td><a href="admincp.php?ac=mtag&fieldid=$value[fieldid]">{$_SGLOBAL[profield][$value[fieldid]][title]}</a></td>
 		<td>$value[membernum]</td>
-		<td>$value[moderator] [<a href="admincp.php?ac=mtag&op=moderator&tagid=$value[tagid]">吧主</a>]</td>
+		<td>$value[moderator] [<a href="admincp.php?ac=mtag&op=moderator&tagid=$value[tagid]">群主</a>]</td>
 	</tr>
 	<!--{/loop}-->
 	</table>
@@ -82,7 +82,7 @@
 		<input type="hidden" name="mpurl" value="$mpurl">
 		<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')">全选
 		<input type="radio" name="optype" value="delete"> 删除
-		<input type="radio" name="optype" value="merge"> 合并到其他选吧:
+		<input type="radio" name="optype" value="merge"> 合并到其他群组:
 			<select name="newfieldid">
 			<!--{loop $_SGLOBAL[profield] $value}-->
 			<option value="$value[fieldid]">$value[title]</option>

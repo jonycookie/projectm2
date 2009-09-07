@@ -37,8 +37,8 @@
 		<td><input type="text" name="config[starlevelnum]" value="$configs[starlevelnum]" size="5"> (默认为 5)<br>星星数在达到此阀值时，会升级为高级别的图标。最小为2，否则此项功能无效，始终以星星显示</td>
 	</tr>
 	<tr>
-		<th>选吧讨论区人数下限</th>
-		<td><input type="text" name="config[mtagminnum]" value="$configs[mtagminnum]" size="5"> (默认为 5)<br>当一个选吧的成员数达到该数目时，才允许成员在选吧内发话题和回帖，这可以避免太多垃圾信息的产生。</td>
+		<th>群组讨论区人数下限</th>
+		<td><input type="text" name="config[mtagminnum]" value="$configs[mtagminnum]" size="5"> (默认为 5)<br>当一个群组的成员数达到该数目时，才允许成员在群组内发话题和回帖，这可以避免太多垃圾信息的产生。</td>
 	</tr>
 	<tr>
 		<th>好友用户组个数</th>
@@ -82,11 +82,11 @@
 		</td>
 	</tr>
 	<tr>
-		<th>选吧吧主手工指定</th>
+		<th>群组群主手工指定</th>
 		<td>
 			<input type="radio" name="config[manualmoderator]" value="1"<!--{if $configs[manualmoderator] == 1}--> checked<!--{/if}-->>是
 			<input type="radio" name="config[manualmoderator]" value="0"<!--{if $configs[manualmoderator] == 0}--> checked<!--{/if}-->>否
-			<br>如果选择不手工指定，则系统会自动将第一次使用某个选吧的用户作为吧主。</td>
+			<br>如果选择不手工指定，则系统会自动将第一次使用某个群组的用户作为群主。</td>
 	</tr>
 
 	<tr>

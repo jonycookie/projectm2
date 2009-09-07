@@ -284,7 +284,7 @@ function deletespace($uid) {
 	//session
 	$_SGLOBAL['db']->query("DELETE FROM ".tname('session')." WHERE uid='$uid'");
 	
-	//Ñ¡°É
+	//Èº×é
 	$mtagids = array();
 	$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('tagspace')." WHERE uid='$uid'");
 	while ($value = $_SGLOBAL['db']->fetch_array($query)) {

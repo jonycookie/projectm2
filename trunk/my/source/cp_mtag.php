@@ -170,9 +170,9 @@ if($_GET['op'] == 'edit') {
 			showmessage('you_are_already_a_member');
 		}
 		
-		//加入选吧
+		//加入群组
 		$field = $_SGLOBAL['profield'][$mtag['fieldid']];
-		//自己在当前栏目下面的选吧
+		//自己在当前栏目下面的群组
 		$maxinputnum = 0;
 		if($field['formtype'] == 'text') {
 			$maxinputnum = intval($field['inputnum']);
@@ -189,7 +189,7 @@ if($_GET['op'] == 'edit') {
 			}
 		}
 		
-		//加入选吧
+		//加入群组
 		$_SGLOBAL['db']->query("UPDATE ".tname('mtag')." SET membernum=membernum+1 WHERE tagid='$tagid'");
 		$_SGLOBAL['db']->query("INSERT INTO ".tname('tagspace')." (tagid,uid,username) VALUES ('$tagid', '$_SGLOBAL[supe_uid]', '$_SGLOBAL[supe_username]')");
 		
@@ -261,7 +261,7 @@ if($_GET['op'] == 'edit') {
 		$mtags[$value['fieldid']]['membernum'][] = $value['membernum'];
 	}
 	
-	//选吧栏目表单
+	//群组栏目表单
 	$fields = array();
 	$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('profield')." ORDER BY displayorder");
 	while ($value = $_SGLOBAL['db']->fetch_array($query)) {

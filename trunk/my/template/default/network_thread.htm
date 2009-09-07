@@ -11,8 +11,8 @@
 		<li><a href="space.php?uid=$space[uid]&do=thread">最新话题</a></li>
 		<li><a href="space.php?uid=$space[uid]&do=thread&view=me">我的话题</a></li>
 		<!--{if $_SCONFIG['showall']}--><li class="active"><a href="network.php?ac=thread">大家的话题</a></li><!--{/if}-->
-		<li><a href="space.php?do=mtag">我的选吧</a></li>
-		<li><a href="network.php?ac=mtag">热门选吧</a></li>
+		<li><a href="space.php?do=mtag">我的群组</a></li>
+		<li><a href="network.php?ac=mtag">热门群组</a></li>
 	</ul>
 </div>
 <div class="h_status">以发布时间先后为序</div>
@@ -64,7 +64,7 @@
 		<thead>
 			<tr>
 				<td class="subject">主题</td>
-				<!--{if !$mtag}--><td class="mtag">选吧</td><!--{/if}-->
+				<!--{if !$mtag}--><td class="mtag">群组</td><!--{/if}-->
 				<td class="author">作者<em>回复数</em></td>
 			</tr>
 		</thead>

@@ -76,7 +76,7 @@ function space_friend_stat($start, $perpage) {
 	return $next;
 }
 
-//选吧用户数
+//群组用户数
 function mtag_membernum_stat($start, $perpage) {
 	global $_SGLOBAL;
 	

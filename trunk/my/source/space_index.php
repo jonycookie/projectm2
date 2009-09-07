@@ -99,7 +99,7 @@ if(ckprivacy('album')) {
 	}
 }
 
-//个人选吧
+//个人群组
 $mtaglist = array();
 if(ckprivacy('mtag')) {
 	$query = $_SGLOBAL['db']->query("SELECT field.* FROM ".tname('tagspace')." main 

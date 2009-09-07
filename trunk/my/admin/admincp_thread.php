@@ -39,7 +39,7 @@ $allowmanage = 0;
 if(checkperm('managethread')) {
 	$allowmanage = 1;
 } else {
-	//°ÉÖ÷
+	//ÈºÖ÷
 	$_GET['tagid'] = empty($_GET['tagid'])?'':intval($_GET['tagid']);
 	if($_GET['tagid']) {
 		$moderator = getcount('mtag', array('tagid'=>$_GET['tagid']), 'moderator');

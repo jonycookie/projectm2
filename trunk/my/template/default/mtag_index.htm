@@ -20,7 +20,7 @@
 					<thead>
 						<tr>
 							<td class="subject">主题</td>
-							<!--{if !$mtag}--><td class="mtag">选吧</td><!--{/if}-->
+							<!--{if !$mtag}--><td class="mtag">群组</td><!--{/if}-->
 							<td class="author">作者<em>回复/查看数</em></td>
 							<td class="lastpost">最后回复<em>回复时间</em></td>
 						</tr>
@@ -52,7 +52,7 @@
 <div class="f_status s_clear">
 	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
 	<!--{if $mtag['ismember']}-->
-	<a href="cp.php?ac=mtag&op=out&tagid=$mtag[tagid]" id="a_ignore" onclick="ajaxmenu(event, this.id, 99999)">退出选吧</a>
+	<a href="cp.php?ac=mtag&op=out&tagid=$mtag[tagid]" id="a_ignore" onclick="ajaxmenu(event, this.id, 99999)">退出群组</a>
 	<!--{/if}-->
 </div>
 <!--{template footer}-->

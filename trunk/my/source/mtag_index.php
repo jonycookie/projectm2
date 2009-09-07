@@ -15,7 +15,7 @@ $tagid = empty($_GET['tagid'])?0:intval($_GET['tagid']);
 
 $actives = array($_GET['view'] => ' class="active"');
 
-//指定的选吧
+//指定的群组
 include_once(S_ROOT.'./source/function_space.php');
 $mtag = getmtag($tagid, 1);
 

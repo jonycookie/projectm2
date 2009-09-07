@@ -1,21 +1,21 @@
-<!--{eval $_TPL['titles'] = array('选吧');}-->
+<!--{eval $_TPL['titles'] = array('群组');}-->
 <!--{template space_header}-->
 
 <!--{if $space[self]}-->
 <div class="tabs_header">
-	<a href="cp.php?ac=mtag" class="t_button">选择我的选吧</a>
+	<a href="cp.php?ac=mtag" class="t_button">选择我的群组</a>
 	<ul class="tabs">
 		<li><a href="space.php?uid=$space[uid]&do=thread">最新话题</a></li>
 		<li><a href="space.php?uid=$space[uid]&do=thread&view=me">我的话题</a></li>
 		<!--{if $_SCONFIG['showall']}--><li><a href="network.php?ac=thread">大家的话题</a></li><!--{/if}-->
-		<li$actives[me]><a href="space.php?do=mtag">我的选吧</a></li>
-		<li><a href="network.php?ac=mtag">热门选吧</a></li>
+		<li$actives[me]><a href="space.php?do=mtag">我的群组</a></li>
+		<li><a href="network.php?ac=mtag">热门群组</a></li>
 	</ul>
 </div>
 <!--{/if}-->
 
 <div class="h_status">
-	选吧列表
+	群组列表
 </div>
 
 <!--{if $list}-->
@@ -35,7 +35,7 @@
 					<td width="55"><a href="mtag.php?tagid=$value[tagid]"><img src="$value[pic]" style="width: 48px;" /></a></td>
 					<td>
 						<h2 style="font-size: 14px;"><a href="mtag.php?tagid=$value[tagid]">$value[tagname]</a><a href="mtag.php?tagid=$value[tagid]&do=member" class="gray" style="font-size: 12px; font-weight: normal;">({$value[membernum]}人)</a></h2>
-						<!--{if $value[moderator]}--><p class="gray">吧主: $value[moderator]</p><!--{/if}-->
+						<!--{if $value[moderator]}--><p class="gray">群主: $value[moderator]</p><!--{/if}-->
 					</td>
 				</tr>
 			</table>
@@ -53,7 +53,7 @@
 
 
 <!--{else}-->
-<div class="article c_form">还没有选吧。您可以<a href="cp.php?ac=mtag">设置一下你的选吧</a>。</div>
+<div class="article c_form">还没有群组。您可以<a href="cp.php?ac=mtag">设置一下你的群组</a>。</div>
 <!--{/if}-->
 <div class="f_status s_clear">
 	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>

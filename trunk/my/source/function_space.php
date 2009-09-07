@@ -28,7 +28,7 @@ function space_open($uid, $username, $gid=0, $email='') {
 	return $space;
 }
 
-//选吧信息
+//群组信息
 function getmtag($id, $ckmanage=0) {
 	global $_SGLOBAL;
 	
@@ -52,7 +52,7 @@ function getmtag($id, $ckmanage=0) {
 	if($ckmanage) {
 		$mtag['isadmin'] = $mtag['allowmanage'] = checkperm('managemtag');
 		if(!$mtag['allowmanage'] && $mtag['ismember']) {
-			//判断是否吧主
+			//判断是否群主
 			if($_SGLOBAL['supe_username'] && !empty($mtag['moderator'])) {
 				$marr = explode("\t", $mtag['moderator']);
 				if(in_array($_SGLOBAL['supe_username'], $marr)) {

@@ -22,7 +22,7 @@ if($id) {
 		showmessage('topic_does_not_exist');
 	}
 	
-	//选吧信息
+	//群组信息
 	$tagid = $thread['tagid'];
 	
 	include_once(S_ROOT.'./source/function_space.php');
@@ -68,7 +68,7 @@ if($id) {
 	
 } else {
 
-		//指定的选吧
+		//指定的群组
 		include_once(S_ROOT.'./source/function_space.php');
 		$mtag = getmtag($tagid, 1);
 		

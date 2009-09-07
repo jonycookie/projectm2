@@ -116,7 +116,7 @@
 <table cellspacing="4" cellpadding="4" width="100%">
 <!--{if !$tagid}-->
 	<tr>
-		<th><label for="subject">选吧：</label></th>
+		<th><label for="subject">群组：</label></th>
 		<td>
 		<select name="tagid" id="tagid">
 		<!--{loop $mtaglist $fieldid $values}-->
@@ -130,7 +130,7 @@
 		<!--
 			function validate() {
 				if($('tagid').value == '') {
-					alert('请选择话题对应的选吧名称');
+					alert('请选择话题对应的群组名称');
 					return false;
 				}
 				return true;
@@ -141,7 +141,7 @@
 	</tr>
 <!--{else}-->
 	<tr>
-		<th><label for="subject">选吧：</label></th>
+		<th><label for="subject">群组：</label></th>
 		<td>$mtag[tagname] [<a href="cp.php?ac=thread">切换</a>]</td>
 	</tr>
 <!--{/if}-->

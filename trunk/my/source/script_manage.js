@@ -166,7 +166,7 @@ function myfriend_post(uid, result) {
 		$('friend_'+uid).style.display = "none";
 	}
 }
-//加入选吧
+//加入群组
 function mtag_join(tagid, result) {
 	if(result) {
 		location.reload();

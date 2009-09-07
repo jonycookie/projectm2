@@ -71,7 +71,7 @@ function profilefield_cache() {
 	cache_write('profilefield', "_SGLOBAL['profilefield']", $_SGLOBAL['profilefield']);
 }
 
-//更新选吧栏目缓存
+//更新群组栏目缓存
 function profield_cache() {
 	global $_SGLOBAL;
 	

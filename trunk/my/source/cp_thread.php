@@ -272,7 +272,7 @@ if($_GET['op'] == 'edit') {
 		
 		$tagid = 0;
 		
-		//我的选吧列表
+		//我的群组列表
 		$mtaglist = array();
 		$query = $_SGLOBAL['db']->query("SELECT main.*,field.tagname,field.membernum,field.fieldid,field.close FROM ".tname('tagspace')." main 
 			LEFT JOIN ".tname('mtag')." field ON field.tagid=main.tagid 
