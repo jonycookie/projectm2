@@ -5,10 +5,10 @@
 				<!--{if $mtag['ismember']}-->
 				<li><a href="cp.php?ac=thread&tagid=$mtag[tagid]" style="font-weight:bold;">＋发起新话题</a></li>
 				<!--{else}-->
-				<li><a href="cp.php?ac=mtag&op=join&tagid=$mtag[tagid]" id="mtag_join_$mtag[tagid]" onclick="ajaxmenu(event, this.id, 99999)">选择加入该选吧</a></li>
+				<li><a href="cp.php?ac=mtag&op=join&tagid=$mtag[tagid]" id="mtag_join_$mtag[tagid]" onclick="ajaxmenu(event, this.id, 99999)">选择加入该群组</a></li>
 				<!--{/if}-->
 				<!--{if $mtag['allowmanage']}-->
-				<li><a href="cp.php?ac=mtag&op=edit&tagid=$mtag[tagid]" id="mtag_edit_$mtag[tagid]" onclick="ajaxmenu(event, this.id, 99999, '', -1)">设置选吧信息</a></li>
+				<li><a href="cp.php?ac=mtag&op=edit&tagid=$mtag[tagid]" id="mtag_edit_$mtag[tagid]" onclick="ajaxmenu(event, this.id, 99999, '', -1)">设置群组信息</a></li>
 				<li><a href="admincp.php?ac=thread&tagid=$mtag[tagid]" target="_blank">批量管理话题</a></li>
 				<!--{/if}-->
 			</ul>
@@ -33,7 +33,7 @@
 		</div>
 		<!--{if $musers}-->
 		<div class="box">
-			<h3>吧主</h3>
+			<h3>群主</h3>
 			<div class="article">
 			<!--{eval $dot='';}-->
 			<!--{loop $musers $value}-->

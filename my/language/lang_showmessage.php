@@ -15,7 +15,7 @@ $_SGLOBAL['msglang'] = array(
 	'no_privilege' => '您没有权限进行此操作',
 
 	//mt.php
-	'designated_election_it_does_not_exist' => '指定的选吧不存在',
+	'designated_election_it_does_not_exist' => '指定的群组不存在',
 
 	//do.php
 	'enter_the_space' => '进入个人空间页面',
@@ -84,12 +84,12 @@ $_SGLOBAL['msglang'] = array(
 	'specified_user_is_not_your_friend' => '指定的用户还不是您的好友',
 
 	//source/cp_mtag.php
-	'mtag_max_inputnum' => '无法加入，您在栏目 "\\1" 中的选吧数目已达到 \\2 个限制数目',
-	'you_are_already_a_member' => '您已经是该选吧的成员了',
-	'join_success' => '加入成功，您现在是该选吧的成员了',
+	'mtag_max_inputnum' => '无法加入，您在栏目 "\\1" 中的群组数目已达到 \\2 个限制数目',
+	'you_are_already_a_member' => '您已经是该群组的成员了',
+	'join_success' => '加入成功，您现在是该群组的成员了',
 	'the_discussion_topic_does_not_exist' => '对不起，参与讨论的话题不存在',
 	'content_is_not_less_than_four_characters' => '对不起，内容不能少于4个字符',
-	'you_are_not_a_member_of' => '您不是该选吧的成员',
+	'you_are_not_a_member_of' => '您不是该群组的成员',
 
 	//source/cp_pm.php
 	'this_message_could_not_be_deleted' => '指定的短消息不能被删除',
@@ -131,10 +131,10 @@ $_SGLOBAL['msglang'] = array(
 	'to_login' => '请先登录再进行本操作',
 	'title_not_too_little' => '标题不能少于4个字符',
 	'posting_does_not_exist' => '指定的话题不存在',
-	'settings_of_your_mtag' => '有了选吧才能发话题，你需要先选吧一下你的选吧。<br>选吧，就是自己选择的志同道合的交流圈。<br>在吧内，不仅可以结识与你有相同选择的朋友，更可以一起交流话题。<br><br><a href="cp.php?ac=mtag" class="submit">设置我的选吧</a>',
-	'first_select_a_mtag' => '你至少应该选择一个选吧才能发话题。<br><br><a href="cp.php?ac=mtag" class="submit">设置我的选吧</a>',
-	'no_mtag_allow_thread' => '当前你参与的选吧加入人数不足，还不能进行发话题操作。<br><br><a href="cp.php?ac=mtag" class="submit">设置我的选吧</a>',
-	'mtag_close' => '选择的选吧已经被锁定，不能进行本操作',
+	'settings_of_your_mtag' => '有了群组才能发话题，你需要先群组一下你的群组。<br>群组，就是自己选择的志同道合的交流圈。<br>在吧内，不仅可以结识与你有相同选择的朋友，更可以一起交流话题。<br><br><a href="cp.php?ac=mtag" class="submit">设置我的群组</a>',
+	'first_select_a_mtag' => '你至少应该选择一个群组才能发话题。<br><br><a href="cp.php?ac=mtag" class="submit">设置我的群组</a>',
+	'no_mtag_allow_thread' => '当前你参与的群组加入人数不足，还不能进行发话题操作。<br><br><a href="cp.php?ac=mtag" class="submit">设置我的群组</a>',
+	'mtag_close' => '选择的群组已经被锁定，不能进行本操作',
 
 	//source/space_album.php
 	'to_view_the_photo_does_not_exist' => '出问题了，您要查看的相册不存在',
@@ -187,8 +187,8 @@ $_SGLOBAL['msglang'] = array(
 
 	//cp_poke.php
 	'poke_success' => '已经发送，\\1下次访问时会收到通知',
-	'mtag_minnum_erro' => '本选吧成员数不足 \\1 个，还不能进行本操作',
-	'mtag_no_manage' => '你不是本选吧成员，不能进行本操作<br />你可以进行如下设置:<br /><a href="\\1">设置你的选吧</a>，并在 " \\2 " 选项中填写(或选择) " \\3 "',
+	'mtag_minnum_erro' => '本群组成员数不足 \\1 个，还不能进行本操作',
+	'mtag_no_manage' => '你不是本群组成员，不能进行本操作<br />你可以进行如下设置:<br /><a href="\\1">设置你的群组</a>，并在 " \\2 " 选项中填写(或选择) " \\3 "',
 
 	//source/function_common.php
 	'information_contains_the_shielding_text' => '对不起，发布的信息中包含站点屏蔽的文字',

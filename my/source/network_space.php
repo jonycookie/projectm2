@@ -200,7 +200,7 @@ foreach (array('A','B','O','AB') as $value) {
 //婚姻
 $marryarr = array($gets['marry']=>' selected');
 
-//选吧
+//群组
 $fieldids = array($gets['fieldid']=>' selected');
 
 //自定义

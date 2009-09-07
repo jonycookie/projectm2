@@ -38,7 +38,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>选吧</td>
+						<td>群组</td>
 						<td>
 							<a href="admincp.php?ac=network&op=edit&module=mtag">编辑</a>
 						</td>
@@ -311,24 +311,24 @@
 					</table>
 					<!--{elseif $_GET['module']=='mtag'}-->
 					<div class="title">
-						<h3>选吧过滤</h3>
-						<p>可以根据下面提供的条件进行设置选吧区块的取值条件</p>
+						<h3>群组过滤</h3>
+						<p>可以根据下面提供的条件进行设置群组区块的取值条件</p>
 					</div>
 					<table cellspacing="0" cellpadding="0" class="formtable">
 						<tr>
-							<td style="width:10em;">指定选吧tagid</td>
+							<td style="width:10em;">指定群组tagid</td>
 							<td>
 								<input name="network[mtag][tagid]" type="text" id="mtag" size="20" value="$network[mtag][tagid]" /> 多个tagid用","分隔
 							</td>
 						</tr>
 						<tr>
-							<td>选吧人数范围</td>
+							<td>群组人数范围</td>
 							<td>
 								<input name="network[mtag][membernum][]" type="text" id="membernum0" size="10" value="$network[mtag][membernum][0]" /> ~ <input name="network[mtag][membernum][]" type="text" id="membernum1" size="10" value="$network[mtag][membernum][1]" />
 							</td>
 						</tr>
 						<tr>
-							<td>选吧所属分类</td>
+							<td>群组所属分类</td>
 							<td>
 								<select name="network[mtag][fieldid][]" size="10" multiple="multiple" id="select">
 									<!--{loop $list $value}-->
@@ -339,7 +339,7 @@
 						</tr>
 					</table>
 					<div class="title">
-						<h3>选吧排序设置</h3>
+						<h3>群组排序设置</h3>
 					</div>
 					<table cellspacing="0" cellpadding="0" class="formtable">
 						<tr>
@@ -348,7 +348,7 @@
 								<!--{eval
 									$mtagarr = array(
 										'' => '------',
-										'membernum' => '选吧人数'
+										'membernum' => '群组人数'
 									);
 								}-->
 								<!--{eval echo getselectstr("network[mtag][order]", $mtagarr, $network['mtag']['order'])}--> 

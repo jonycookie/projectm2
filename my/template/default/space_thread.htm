@@ -14,8 +14,8 @@
 		<li$actives[we]><a href="space.php?uid=$space[uid]&do=thread">最新话题</a></li>
 		<li$actives[me]><a href="space.php?uid=$space[uid]&do=thread&view=me">我的话题</a></li>
 		<!--{if $_SCONFIG['showall']}--><li><a href="network.php?ac=thread">大家的话题</a></li><!--{/if}-->
-		<li><a href="space.php?do=mtag">我的选吧</a></li>
-		<li><a href="network.php?ac=mtag">热门选吧</a></li>
+		<li><a href="space.php?do=mtag">我的群组</a></li>
+		<li><a href="network.php?ac=mtag">热门群组</a></li>
 	</ul>
 </div>
 <!--{/if}-->
@@ -26,7 +26,7 @@
 		<thead>
 			<tr>
 				<td class="subject">主题</td>
-				<!--{if !$mtag}--><td class="mtag">选吧</td><!--{/if}-->
+				<!--{if !$mtag}--><td class="mtag">群组</td><!--{/if}-->
 				<td class="author">作者<em>回复/查看数</em></td>
 				<td class="lastpost">最后回复<em>回复时间</em></td>
 			</tr>

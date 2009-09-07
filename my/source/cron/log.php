@@ -36,7 +36,7 @@ if($logs['uid']) {
 	}
 }
 
-//选吧话题查看数
+//群组话题查看数
 if($logs['tid']) {
 	$nums = renum($logs['tid']);
 	foreach ($nums[0] as $num) {

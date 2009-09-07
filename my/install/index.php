@@ -761,8 +761,8 @@ END;
 	
 	config_cache();//缓存
 	usergroup_cache();//用户组
-	profilefield_cache();//选吧栏目
-	profield_cache();//选吧栏目
+	profilefield_cache();//群组栏目
+	profield_cache();//群组栏目
 	creditrule_cache();//积分
 	
 	$msg = <<<EOF

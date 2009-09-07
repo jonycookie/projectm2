@@ -20,14 +20,14 @@ ckstart($start, $perpage);
 //话题列表
 $wheresql = '';
 if(empty($_GET['view'])) {
-	//我加入的选吧
+	//我加入的群组
 	$tagids = array();
 	$query = $_SGLOBAL['db']->query("SELECT tagid FROM ".tname('tagspace')." WHERE uid='$space[uid]'");
 	while ($value = $_SGLOBAL['db']->fetch_array($query)) {
 		$tagids[$value['tagid']] = $value['tagid'];
 	}
 	if($tagids) {
-		//加入的选吧
+		//加入的群组
 		$wheresql = "main.tagid IN (".simplode($tagids).")";
 		$theurl = "space.php?uid=$space[uid]&do=$do";
 		$f_index = 'FORCE INDEX(lastpost)';

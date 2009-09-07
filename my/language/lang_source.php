@@ -12,7 +12,7 @@ $_SGLOBAL['sourcelang'] = array(
 
 	'by' => '通过',
 	'album' => '相册',
-	'mtag' => '选吧',
+	'mtag' => '群组',
 	'delete' => '删除',
 	'add' => '添加',
 	'person' => '人',
@@ -45,7 +45,7 @@ $_SGLOBAL['sourcelang'] = array(
 	'friend_invite_subject' => '\\1在\\2邀请你为好友',
 	'friend_invite_message' => '\\1 在 \\2 站点邀请你为好友。<br />请复制下面的链接到浏览器窗口查看，成为 \\1 的好友：<br />\\3do.php?ac=invite&code=\\4<br /><br />\\2 是属于你自己的空间。<br />在这里，你可以一句话记录生活中的点点滴滴，方便快捷地发布信息和图片，与志同道合的朋友们一起交流与分享。<br />(这是站内自动发送的系统消息，你不需要回复)<br />\\3<br />',
 	
-	'feed_mtag_join' => '{actor} 加入了选吧 {mtag} ({field})',
+	'feed_mtag_join' => '{actor} 加入了群组 {mtag} ({field})',
 	
 	'feed_thread' => '<b>{actor} 发起了新话题</b>',
 	'feed_thread_reply' => '{actor} 回复了 {touser} 的话题 {thread}',

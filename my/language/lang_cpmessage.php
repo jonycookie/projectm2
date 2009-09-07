@@ -83,7 +83,7 @@ $_SGLOBAL['cplang'] = array(
 	'columns_option_to_merge_the_tag' => '请至少正确选择一个要合并的栏目',
 	'lock_open_designated_columns_tag_success' => '锁定/开放指定的栏目成功了',
 	'choose_to_operate_columns_tag' => '请至少正确选择一个要操作的栏目',
-	'moderator_choice_to_set_up_the_election_it' => '请正确选择要设置版主的选吧',
+	'moderator_choice_to_set_up_the_election_it' => '请正确选择要设置版主的群组',
 
 	//admin/admincp_pic.php
 	'choose_to_delete_pictures' => '请至少正确选择一个要删除的图片',
@@ -92,7 +92,7 @@ $_SGLOBAL['cplang'] = array(
 	'choose_to_delete_the_topic' => '请至少正确选择一个要删除的话题',
 
 	//admin/admincp_profield.php
-	'there_is_no_designated_users_columns' => '指定操作的选吧栏目不存在',
+	'there_is_no_designated_users_columns' => '指定操作的群组栏目不存在',
 	'choose_to_delete_the_columns' => '请正确选择要删除的栏目',
 
 	//admin/admincp_space.php

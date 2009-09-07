@@ -852,7 +852,7 @@ function checkclose() {
 	}
 }
 
-//是否选吧版主
+//是否群组版主
 function ismoderator($moderator) {
 	global $_SGLOBAL;
 	

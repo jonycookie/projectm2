@@ -92,7 +92,7 @@ if($cachelost) {
 		}
 	}
 	
-	//个人选吧
+	//个人群组
 	$netcache['mtaglist'] = array();
 	if(empty($network['mtag'])) {
 		$sql = " FORCE INDEX (membernum) ORDER BY membernum DESC LIMIT 0,30";

@@ -4,7 +4,7 @@
 
 <form method="post" action="cp.php?ac=mtag&op=edit&tagid=$mtag[tagid]">
 <!--{if $_SGLOBAL[inajax]}-->
-	<h1>设置选吧</h1>
+	<h1>设置群组</h1>
 	<a href="javascript:hideMenu();" class="float_del" title="关闭">关闭</a>
 	<div class="popupmenu_inner">
 <!--{/if}-->
@@ -22,7 +22,7 @@
 	</tr>
 	<!--{if $mtag['isadmin']}-->
 	<tr>
-		<th>吧主：</th>
+		<th>群主：</th>
 		<td>
 		<!--{if $moderator[0]}-->
 		<input type="text" name="moderator[0]" value="$moderator[0]" size="10" readonly="true">
@@ -57,7 +57,7 @@
 
 <div id="$mtag[tagid]" <!--{if !$_SGLOBAL[inajax]}-->class="inpage"<!--{/if}-->>
 <form id="joinform" name="joinform" method="post" action="cp.php?ac=mtag&op=join&tagid=$mtag[tagid]">
-	<h1>确定加入该选吧吗？</h1>
+	<h1>确定加入该群组吗？</h1>
 	<p class="btn_line">
 		<input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
 		<!--{if $_SGLOBAL[inajax]}-->
@@ -73,7 +73,7 @@
 <!--{elseif $_GET[op]=='out'}-->
 <div id="$mtag[tagid]" <!--{if !$_SGLOBAL[inajax]}-->class="inpage"<!--{/if}-->>
 <form id="outform" name="outform" method="post" action="cp.php?ac=mtag&op=out&tagid=$mtag[tagid]">
-	<h1>确定要退出该选吧吗？</h1>
+	<h1>确定要退出该群组吗？</h1>
 	<p class="btn_line">
 		<input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
 		<!--{if $_SGLOBAL[inajax]}-->
@@ -91,7 +91,7 @@
 <div class="tabs_menu">
 	<ul class="tabs">
 		<li$actives[profile]><a href="cp.php?ac=profile">个人资料</a></li>
-		<li$actives[mtag]><a href="cp.php?ac=mtag">我的选吧</a></li>
+		<li$actives[mtag]><a href="cp.php?ac=mtag">我的群组</a></li>
 		<li$actives[space]><a href="cp.php?ac=space">空间属性</a></li>
 		<li$actives[theme]><a href="cp.php?ac=theme">主页风格</a></li>
 	</ul>
@@ -100,8 +100,8 @@
 <form method="post" action="cp.php?ac=mtag&op=" class="c_form" onsubmit="closeMsg();">
 	<table cellspacing="0" cellpadding="0" class="formtable" width="100%">
 		<caption style="padding-bottom: 0; width: 100%;">
-			<h2>我的选吧</h2>
-			<p>选吧，就是自己选择的志同道合的交流圈。<br />在吧内，不仅可以结识与你有相同选择的朋友，更可以一起交流话题。</p>
+			<h2>我的群组</h2>
+			<p>群组，就是自己选择的志同道合的交流圈。<br />在吧内，不仅可以结识与你有相同选择的朋友，更可以一起交流话题。</p>
 		</caption>
 	</table>
 	<!--{eval $divjs = '';}-->
@@ -120,7 +120,7 @@
 					<li>$rowvalue</li>
 				<!--{/loop}-->
 				<!--{else}-->
-					<li class="gray">请在右侧选择或添加选吧 &raquo;</li>
+					<li class="gray">请在右侧选择或添加群组 &raquo;</li>
 				<!--{/if}-->
 				</ul>
 				<button type="button" class="submit" onclick="document.getElementById('mtagsubmit').click();">保存</button>
@@ -128,7 +128,7 @@
 			<td style="padding-right: 0; padding-top: 0; vertical-align: top;">
 				<div style="float: right; padding: 8px; background: #F9F9F9;">
 					<!--{if $hotlist[$fieldid]}-->
-					<p style="padding: 4px 0;" class="gray">加入现有的选吧：</p>
+					<p style="padding: 4px 0;" class="gray">加入现有的群组：</p>
 					<select name="hot_mtag_$fieldid" onchange="mtagAdd('$fieldid', '$fvalue[inputnum]', this.value);">
 					<option value="">--- 成员数排行 ---</option>
 					<!--{loop $hotlist[$fieldid] $hotvalue}-->
@@ -136,11 +136,11 @@
 					<!--{/loop}-->
 					</select>					
 					<!--{/if}-->
-					<p style="padding: 4px 0;" class="gray">创建新的选吧：</p>
+					<p style="padding: 4px 0;" class="gray">创建新的群组：</p>
 					<table cellspacing="0" cellpadding="0">
 						<tr>
 							<td style="padding: 0;"><input type="text" name="mtag_{$fieldid}_name" id="mtag_{$fieldid}_name" value="" class="t_input" style="width: 160px; border-right: none;" /></td>
-							<td style="padding: 0;"><a href="javascript:;" onclick="mtagSearch('$fieldid', '$fvalue[inputnum]');"><img src="image/search_btn.gif" alt="搜索" title="从现有的选吧中搜索"/></a></td>
+							<td style="padding: 0;"><a href="javascript:;" onclick="mtagSearch('$fieldid', '$fvalue[inputnum]');"><img src="image/search_btn.gif" alt="搜索" title="从现有的群组中搜索"/></a></td>
 							<td style="padding: 0 0 0 3px;"><input class="button" type="button" value="添加" onclick="mtagAdd('$fieldid', '$fvalue[inputnum]');" /></td>
 						</tr>
 					</table>
@@ -284,7 +284,7 @@
 		setTimeout(function(){obj.innerHTML=''}, 3000);
 	}
 	function showUnload() {
-		return '选吧还没有提交保存!';
+		return '群组还没有提交保存!';
 	}
 	function closeMsg() {
 		window.onbeforeunload = null;

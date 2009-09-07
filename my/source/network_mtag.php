@@ -92,7 +92,7 @@ if(!empty($_GET['searchmode'])) {
 	$multi = empty($_SCONFIG['networkpage'])?array('html'=>'networkpage'):smulti($start, $perpage, $count, $theurl);
 }
 
-//Ñ¡°É
+//Èº×é
 $fieldids = array($gets['fieldid']=>' selected');
 
 ?>
