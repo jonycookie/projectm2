@@ -16,7 +16,7 @@
 
 <!--{else}-->
 
-<script language="javascript" src="image/editor/editor.js"></script>
+<script language="javascript" src="image/editor/editor_function.js"></script>
 <script type="text/javascript">
 	function validate(obj) {
 	    var subject = $('subject');
@@ -30,19 +30,6 @@
 	    }
 		uploadEdit(obj);
 		return true;
-	}
-	function relatekw() {
-		edit_save();
-		var subject = cnCode($('subject').value);
-		var message = cnCode($('uchome-ttHtmlEditor').value);
-		if(message) {
-			message = message.substr(0, 500);
-			message = message.replace(/&/ig, '', message);
-		}
-		var x = new Ajax();
-		x.get('cp.php?ac=relatekw&subjectenc=' + subject + '&messageenc=' + message, function(s){
-			$('tag').value = s;
-		});
 	}
 	function picView(albumid) {
 		if(albumid == 'none') {
@@ -114,19 +101,20 @@
 						<!--{/loop}-->
 						<!--{if !$blog['uid'] || $blog['uid']==$_SGLOBAL['supe_uid']}--><option value="addoption" style="color:red;">+新建分类</option><!--{/if}-->
 					</select>
-					<input type="text" class="t_input" id="subject" name="subject" value="$blog[subject]" size="60" onblur="relatekw();" />
+					<input type="text" class="t_input" id="subject" name="subject" value="$blog[subject]" size="60" />
 				</td>
 			</tr>
 			<tr>
 				<td>
-				<textarea class="editor" name="message" id="message" rows="12" cols="80">$blog[message]</textarea>
+				<textarea class="userData" name="message" id="uchome-ttHtmlEditor" style="height:100%;width:100%;display:none;border:0px">$blog[message]</textarea>
+				<iframe src="editor.php?charset=$_SC[charset]&allowhtml=$allowhtml" name="uchome-ifrHtmlEditor" id="uchome-ifrHtmlEditor" scrolling="no" border="0" frameborder="0" style="width:100%;border: 1px solid #C5C5C5;" height="400"></iframe>
 				</td>
 			</tr>
 		</table>
 		<table cellspacing="4" cellpadding="4" width="100%" class="infotable">
 			<tr>
 				<th width="60">标签</th>
-				<td><input type="text" class="t_input" size="40" id="tag" name="tag" value="$blog[tag]"> <input type="button" name="clickbutton[]" value="自动获取" class="button" onclick="relatekw();"></td>
+				<td><input type="text" class="t_input" size="40" id="tag" name="tag" value="$blog[tag]"></td>
 			</tr>
 			<!--{if $blog['uid'] && $blog['uid']!=$_SGLOBAL['supe_uid']}-->
 			<!--{eval $selectgroupstyle='display:none';}-->
