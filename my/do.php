@@ -11,7 +11,7 @@ $ac = empty($_GET['ac'])?'':$_GET['ac'];
 
 //允许的方法
 $acs = array('login', 'comment', 'wall', 'register', 'lostpasswd', 'swfupload', 'inputpwd',
-	'sns', 'viewspace', 'relatekw', 'ajax', 'seccode');
+	'sns', 'viewspace', 'ajax', 'seccode');
 if(empty($_GET['ac']) || !in_array($_GET['ac'], $acs)) {
 	showmessage('enter_the_space', 'space.php', 0);
 } else {
