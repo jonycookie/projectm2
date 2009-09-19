@@ -33,7 +33,7 @@ $space[css]
 			<li><a href="space.php">个人主页</a></li>
 			<li><a href="space.php?do=friend">好友</a><a href="javascript:;" onclick="openSub(this,'friend');" class="drop">&nbsp;</a></li>
 			<li><a href="network.php">随便看看</a><!--{if empty($_SCONFIG['showall'])}--><a href="cp.php?ac=home&view=all" class="edit">近况</a><!--{/if}--></li>
-			<li><a href="space.php?do=pm"><span id="span_newpm">私信</span><!--{if !empty($_SGLOBAL['member']['newpm'])}--><script>newpm();</script><!--{/if}--></a><a href="javascript:;" onclick="openSub(this,'pm');" class="drop">&nbsp;</a></li>
+			<li><a href="cp.php?ac=pm"><span id="span_newpm">私信</span><!--{if !empty($_SGLOBAL['member']['newpm'])}--><script>newpm();</script><!--{/if}--></a><a href="javascript:;" onclick="openSub(this,'pm');" class="drop">&nbsp;</a></li>
 		</ul>
 		<div id="op">
 			<a href="cp.php">设置</a><span class="pipe">|</span>
@@ -61,11 +61,11 @@ $space[css]
 		</div>
 		<div id="subpm" class="submenu">
 			<ul>
-				<li><a href="space.php?do=pm">查看未读</a></li>
-				<li><a href="space.php?do=pm&view=inbox">收件箱</a></li>
-				<li><a href="space.php?do=pm&view=outbox">发件箱</a></li>
+				<li><a href="cp.php?ac=pm">查看未读</a></li>
+				<li><a href="cp.php?ac=pm&view=inbox">收件箱</a></li>
+				<li><a href="cp.php?ac=pm&view=outbox">发件箱</a></li>
 				<li><a href="space.php?do=notice">通知</a></li>
-				<li class="line"><a href="cp.php?ac=pm">发送私信</a></li>
+				<li class="line"><a href="cp.php?ac=pm&op=post">发送私信</a></li>
 			</ul>
 		</div>
 	</div>

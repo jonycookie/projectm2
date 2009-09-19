@@ -8,13 +8,13 @@
 </div>
 
 <div class="tabs_header">
-	<a href="cp.php?ac=pm" class="t_button">发短消息</a>
+	<a href="cp.php?ac=pm&op=post" class="t_button">发短消息</a>
 	<ul class="tabs">
-		<li$actives[newbox]><a href="space.php?do=pm&view=newbox">未读消息</a></li>
-		<li$actives[inbox]><a href="space.php?do=pm&view=inbox">收件箱</a></li>
-		<li$actives[outbox]><a href="space.php?do=pm&view=outbox">发件箱</a></li>
-		<li$actives[announce]><a href="space.php?do=pm&view=announce">公共消息</a></li>
-		<li$actives[ignore]><a href="space.php?do=pm&view=ignore">忽略列表</a></li>
+		<li$actives[newbox]><a href="cp.php?ac=pm&view=newbox">未读消息</a></li>
+		<li$actives[inbox]><a href="cp.php?ac=pm&view=inbox">收件箱</a></li>
+		<li$actives[outbox]><a href="cp.php?ac=pm&view=outbox">发件箱</a></li>
+		<li$actives[announce]><a href="cp.php?ac=pm&view=announce">公共消息</a></li>
+		<li$actives[ignore]><a href="cp.php?ac=pm&view=ignore">忽略列表</a></li>
 		<li><a href="space.php?do=notice">通知</a></li>
 	</ul>
 </div>
@@ -23,7 +23,7 @@
 
 <!--{if $pmid}-->
 
-<div class="h_status"><a href="space.php?do=pm">返回收件箱</a></div>
+<div class="h_status"><a href="cp.php?ac=pm">返回收件箱</a></div>
 
 <ol class="pm_list" id="pm_ol">
 	<!--{loop $list $key $value}-->
@@ -98,12 +98,12 @@
 		<!--{if $value[msgto] && $value[msgfromid]==$_SGLOBAL[supe_uid]}-->
 		<td width="58"><a href="space.php?uid=$value[msgtoid]"><img src="<!--{avatar($value[msgtoid],small)}-->" width="48" height="48" alt="$value[msgto]" /></a></td>
 		<td width="100"><span class="gray">给：</span><a href="space.php?uid=$value[msgtoid]">$value[msgto]</a><br /><span class="gray"><!--{date('n-j H:i',$value[dateline],1)}--></span></td>
-		<td><div<!--{if $value['new']==2}--> class="l_text" style="font-weight:bold;"<!--{/if}-->><a href="space.php?do=pm&pmid=$value[pmid]">$value[subject]</a></div><span class="gray">$value[message]</span></td>
+		<td><div<!--{if $value['new']==2}--> class="l_text" style="font-weight:bold;"<!--{/if}-->><a href="cp.php?ac=pm&pmid=$value[pmid]">$value[subject]</a></div><span class="gray">$value[message]</span></td>
 		<td width="30" class="del"><div><a href="cp.php?ac=pm&op=delete&folder=outbox&pmid=$value[pmid]" id="a_delete_$value[pmid]" class="float_del" onclick="ajaxmenu(event, this.id, 99999)">删除</a></div></td>
 		<!--{else}-->
 		<td width="58"><a href="space.php?uid=$value[msgfromid]"><img src="<!--{avatar($value[msgfromid],small)}-->" width="48" height="48" alt="$value[msgfrom]" /></a></td>
 		<td width="100"><a href="space.php?uid=$value[msgfromid]">$value[msgfrom]</a><br /><span class="gray"><!--{date('n-j H:i',$value[dateline],1)}--></span></td>
-		<td><div<!--{if $value['new']==1}--> class="l_text" style="font-weight:bold;"<!--{/if}-->><a href="space.php?do=pm&pmid=$value[pmid]">$value[subject]</a></div><span class="gray">$value[message]</span></td>
+		<td><div<!--{if $value['new']==1}--> class="l_text" style="font-weight:bold;"<!--{/if}-->><a href="cp.php?ac=pm&pmid=$value[pmid]">$value[subject]</a></div><span class="gray">$value[message]</span></td>
 		<td width="30" class="del"><div><a href="cp.php?ac=pm&op=delete&folder=inbox&pmid=$value[pmid]" id="a_delete_$value[pmid]" class="float_del" onclick="ajaxmenu(event, this.id, 99999)">删除</a></div></td>
 		<!--{/if}-->
 	</tr>
@@ -111,7 +111,7 @@
 	<!--{/loop}-->
 	</table>
 	<!--{if $view=='newbox'}-->
-	<div class="article" style="margin-left:1em;"><a href="space.php?do=pm&view=inbox">本页最多显示 10 条未读，请进入收件箱或发件箱查看更多</a></div>
+	<div class="article" style="margin-left:1em;"><a href="cp.php?ac=pm&view=inbox">本页最多显示 10 条未读，请进入收件箱或发件箱查看更多</a></div>
 	<!--{else}-->
 	<div class="page">$multi[html]</div>
 	<!--{/if}-->

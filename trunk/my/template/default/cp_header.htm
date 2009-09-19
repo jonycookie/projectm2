@@ -31,14 +31,40 @@ $space[css]
 			<li><a href="cp.php?ac=home">首页</a></li>
 			<li><a href="cp.php">设置</a></li>
 			<li><a href="cp.php?ac=privacy">策略</a></li>
-			<li><a href="cp.php?ac=blog">博客</a></li>
-			<li><a href="cp.php?ac=album">相册</a></li>
-			<li><a href="cp.php?ac=thread">话题</a></li>
-			<li><a href="cp.php?ac=pm">发送私信</a></li>
+			<li><a href="cp.php?ac=blog">发布</a><a href="javascript:;" onclick="openSub(this,'post');" class="drop">&nbsp;</a></li>
+			<li><a href="cp.php?ac=pm"><span id="span_newpm">私信</span><!--{if !empty($_SGLOBAL['member']['newpm'])}--><script>newpm();</script><!--{/if}--></a><a href="javascript:;" onclick="openSub(this,'pm');" class="drop">&nbsp;</a></li>
 			<li><a href="cp.php?ac=invite">邀请好友</a></li>
 			<li><a href="cp.php?ac=friend&op=find">寻找好友</a></li>
 			<li><a href="cp.php?ac=common&op=logout">退出</a></li>
 		</ul>
+	</div>
+	<div id="submenu">
+		<div id="subpost" class="submenu">
+			<ul>
+				<li><a href="cp.php?ac=blog">发布日志</a></li>
+				<li><a href="cp.php?ac=upload">上传图片</a></li>
+				<li><a href="cp.php?ac=thread">发布话题</a></li>
+			</ul>
+		</div>
+		<div id="subpm" class="submenu">
+			<ul>
+				<li><a href="cp.php?ac=pm">查看未读</a></li>
+				<li><a href="cp.php?ac=pm&view=inbox">收件箱</a></li>
+				<li><a href="cp.php?ac=pm&view=outbox">发件箱</a></li>
+				<li><a href="space.php?do=notice">通知</a></li>
+				<li class="line"><a href="cp.php?ac=pm&op=post">发送私信</a></li>
+			</ul>
+		</div>
+		<div id="subfriend" class="submenu">
+			<ul>
+				<li><a href="space.php?do=friend">好友列表</a></li>
+				<li><a href="space.php?do=friend&view=visitor">我的访客</a></li>
+				<li><a href="space.php?do=friend&view=trace">我的足迹</a></li>
+				<li><a href="space.php?do=friend&view=online">在线用户</a></li>
+				<li class="line"><a href="cp.php?ac=friend&op=find">寻找好友</a></li>
+				<li><a href="cp.php?ac=invite">邀请好友</a></li>
+			</ul>
+		</div>
 	</div>
 	<div id="container">
 		<div id="mainarea">

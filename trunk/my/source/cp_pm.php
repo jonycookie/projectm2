@@ -78,7 +78,7 @@ if($_GET['op'] == 'checknewpm') {
 		if($return > 0) {
 			//更新最后发布时间
 			$_SGLOBAL['db']->query("UPDATE ".tname('space')." SET lastpost='$_SGLOBAL[timestamp]' WHERE uid='$_SGLOBAL[supe_uid]'");
-			showmessage('do_success', "space.php?do=pm&pmid=$return", 0);
+			showmessage('do_success', "cp.php?ac=pm&pmid=$return", 0);
 		} else {
 			showmessage('message_can_not_send');
 		}
@@ -87,9 +87,9 @@ if($_GET['op'] == 'checknewpm') {
 } elseif($_GET['op'] == 'ignore') {
 	if(submitcheck('ignoresubmit')) {
 		uc_pm_blackls_set($_SGLOBAL['supe_uid'], $_POST['ignorelist']);
-		showmessage('do_success', 'space.php?do=pm&view=ignore');
+		showmessage('do_success', 'cp.php?ac=pm&view=ignore');
 	}
-} else {
+} elseif($_GET['op'] == 'post') {
 	//发送
 	$friends = array();
 	if($space['frienduid']) {
@@ -99,7 +99,49 @@ if($_GET['op'] == 'checknewpm') {
 			$friends[] = $value;
 		}
 	}
-	
+} else {
+	if($pmid) {
+		
+		$list = uc_pm_view($_SGLOBAL['supe_uid'], $pmid);
+
+		$msgfromid = $list[0]['msgfromid'];
+		$msgtoid = $list[0]['msgtoid'];
+
+	} else {
+		$view = (!empty($_GET['view']) && in_array($_GET['view'], array('inbox', 'outbox', 'newbox', 'announce', 'ignore')))?$_GET['view']:'newbox';
+		$actives = array($view=>' class="active"');
+			
+		if($_GET['view'] == 'ignore') {
+			$ignorelist = uc_pm_blackls_get($_SGLOBAL['supe_uid']);
+		} else {
+			//分页
+			$perpage = 10;
+			$page = empty($_GET['page'])?0:intval($_GET['page']);
+			if($page<1) $page = 1;
+			$start = ($page-1)*$perpage;
+			
+			if($view == 'announce') {
+				$result = uc_pm_list($_SGLOBAL['supe_uid'], $page, $perpage, 'inbox', 'announcepm', 100);
+			} else {
+				$result = uc_pm_list($_SGLOBAL['supe_uid'], $page, $perpage, $view, '', 100);
+			}
+			
+			$count = $result['count'];
+			$list = $result['data'];
+		
+			$multi = array();
+			if($view != 'newbox') {
+				$multi['html'] = multi($count, $perpage, $page, "cp.php?ac=pm&view=$view");
+			}
+			
+			if($_SGLOBAL['member']['newpm']) {
+				//取消新短消息提示
+				updatetable('session', array('newpm'=>0), array('uid'=>$_SGLOBAL['supe_uid']));
+				//UCenter
+				uc_pm_ignore($_SGLOBAL['supe_uid']);
+			}
+		}
+	}
 }
 
 include_once template("cp_pm");
