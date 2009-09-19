@@ -17,92 +17,209 @@
 	</p>
 </form>
 </div>
+<!--{elseif $_GET['op'] == 'post'}-->
 
-<!--{else}-->
+	<form id="pmform" name="pmform" method="post" action="cp.php?ac=pm&op=send&uid=$uid&pmid=$pmid" class="ajaxshowdiv">
 
-<form id="pmform" name="pmform" method="post" action="cp.php?ac=pm&op=send&uid=$uid&pmid=$pmid" class="ajaxshowdiv">
+	<!--{if !$_SGLOBAL[inajax]}-->
 
-<!--{if !$_SGLOBAL[inajax]}-->
+	<div class="h_status"><h1>发短消息</h1></div>
 
-<div class="h_status"><h1>发短消息</h1></div>
+	<div id="$uid" class="d_content">
+	<br />
+	<table cellspacing="0" cellpadding="0" class="formtable">
 
-<div id="$uid" class="d_content">
-<br />
-<table cellspacing="0" cellpadding="0" class="formtable">
+	<!--{else}-->
+	<h1>发短消息</h1>
+	<a href="javascript:hideMenu();" title="关闭" class="float_del">关闭</a>
+	<div id="$uid" class="popupmenu_inner">
 
-<!--{else}-->
-<h1>发短消息</h1>
-<a href="javascript:hideMenu();" title="关闭" class="float_del">关闭</a>
-<div id="$uid" class="popupmenu_inner">
-
-<table cellspacing="0" cellpadding="3">
-
-<!--{/if}-->
-
-	<!--{if !$uid}-->
-	<tr>
-		<th><label for="username">收件人：</label></th>
-		<td>
-			<script type="text/javascript" src="source/script_autocomplete.js"></script>
-			<input type="text" id="username" name="username" value="" style="width: 396px;" class="t_input" tabindex="1" <!--{if $friends}--> onclick="auc.handleEvent(this.value ,event);" onkeyup="auc.handleEvent(this.value ,event);" onkeydown="closeOpt(username,event);inputKeyDown(event);" autocomplete="off" <!--{/if}--> />
-			<!--{if $friends}-->
-			<div id="username_menu" class="ajax_selector" onclick="$('username_menu').style.display='none';" style="display:none">
-				<div class="ajax_selector_option" style="width: 396px; height: 100px;">
-					<a href="javascript:;" onclick="$('username_menu').style.display='none';" class="float_del" style="margin-right: 5px;">a</a>
-					<ul id="friendlist" class="blocklink">
-						<!--{loop $friends $key $value}-->
-							<!--{eval $fs[] = $value['username'];}-->
-							<li>$value[username]</li>
-						<!--{/loop}-->
-					</ul>
-				</div>
-			</div>
-			<!--{eval $friendstr = implode(',', $fs);}-->
-			<script type="text/javascript">
-				var close = true;
-				var auc = new sAutoComplete("auc", "username_menu", "friendlist", "username");
-				auc.addItem('$friendstr');
-				function closeOpt(key,evt) {
-					if(evt.keyCode==9) {
-						$('username_menu').style.display='none';
-					}
-				}
-				function inputKeyDown(event) {
-					if(event.keyCode == 13){
-						doane(event);
-					}
-				}
-			</script>
-
-			<!--{/if}-->
-		</td>
-	</tr>
+	<table cellspacing="0" cellpadding="3">
 
 	<!--{/if}-->
-	<tr>
-		<th><label for="subject">标题：</label></th>
-		<td><input type="text" id="subject" name="subject" value="" size="38" tabindex="2" class="t_input" style="width: 396px;" /></td>
-	</tr>
-	<tr>
-		<th style="vertical-align: top;"><label for="message">内容：</label></th>
-		<td><textarea id="message" name="message" cols="40" rows="4" tabindex="3" style="width: 400px; height: 150px;" onkeydown="ctrlEnter(event, 'pmsubmit_btn');"></textarea></td>
-	</tr>
-	<tr>
-		<th>&nbsp;</th>
-		<td>
-		<input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
-		<input type="hidden" name="pmsubmit" value="true" />
-		<!--{if $_SGLOBAL[inajax]}-->
-		<input type="button" name="pmsubmit_btn" id="pmsubmit_btn" value="发送" tabindex="4" class="submit" onclick="ajaxpost('pmform', '$uid')" />
-		<!--{else}-->
-		<input type="submit" name="pmsubmit_btn" id="pmsubmit_btn" value="发送" tabindex="4" class="submit" /><br /><br />
-		<!--{/if}-->
-		</td>
-	</tr>
-</table>
-</div>
 
-</form>
+		<!--{if !$uid}-->
+		<tr>
+			<th><label for="username">收件人：</label></th>
+			<td>
+				<script type="text/javascript" src="source/script_autocomplete.js"></script>
+				<input type="text" id="username" name="username" value="" style="width: 396px;" class="t_input" tabindex="1" <!--{if $friends}--> onclick="auc.handleEvent(this.value ,event);" onkeyup="auc.handleEvent(this.value ,event);" onkeydown="closeOpt(username,event);inputKeyDown(event);" autocomplete="off" <!--{/if}--> />
+				<!--{if $friends}-->
+				<div id="username_menu" class="ajax_selector" onclick="$('username_menu').style.display='none';" style="display:none">
+					<div class="ajax_selector_option" style="width: 396px; height: 100px;">
+						<a href="javascript:;" onclick="$('username_menu').style.display='none';" class="float_del" style="margin-right: 5px;">a</a>
+						<ul id="friendlist" class="blocklink">
+							<!--{loop $friends $key $value}-->
+								<!--{eval $fs[] = $value['username'];}-->
+								<li>$value[username]</li>
+							<!--{/loop}-->
+						</ul>
+					</div>
+				</div>
+				<!--{eval $friendstr = implode(',', $fs);}-->
+				<script type="text/javascript">
+					var close = true;
+					var auc = new sAutoComplete("auc", "username_menu", "friendlist", "username");
+					auc.addItem('$friendstr');
+					function closeOpt(key,evt) {
+						if(evt.keyCode==9) {
+							$('username_menu').style.display='none';
+						}
+					}
+					function inputKeyDown(event) {
+						if(event.keyCode == 13){
+							doane(event);
+						}
+					}
+				</script>
+
+				<!--{/if}-->
+			</td>
+		</tr>
+
+		<!--{/if}-->
+		<tr>
+			<th><label for="subject">标题：</label></th>
+			<td><input type="text" id="subject" name="subject" value="" size="38" tabindex="2" class="t_input" style="width: 396px;" /></td>
+		</tr>
+		<tr>
+			<th style="vertical-align: top;"><label for="message">内容：</label></th>
+			<td><textarea id="message" name="message" cols="40" rows="4" tabindex="3" style="width: 400px; height: 150px;" onkeydown="ctrlEnter(event, 'pmsubmit_btn');"></textarea></td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td>
+			<input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
+			<input type="hidden" name="pmsubmit" value="true" />
+			<!--{if $_SGLOBAL[inajax]}-->
+			<input type="button" name="pmsubmit_btn" id="pmsubmit_btn" value="发送" tabindex="4" class="submit" onclick="ajaxpost('pmform', '$uid')" />
+			<!--{else}-->
+			<input type="submit" name="pmsubmit_btn" id="pmsubmit_btn" value="发送" tabindex="4" class="submit" /><br /><br />
+			<!--{/if}-->
+			</td>
+		</tr>
+	</table>
+	</div>
+
+	</form>
+
+
+<!--{else}-->
+
+	<div class="tabs_header">
+		<a href="cp.php?ac=pm&op=post" class="t_button">发短消息</a>
+		<ul class="tabs">
+			<li$actives[newbox]><a href="cp.php?ac=pm&view=newbox">未读消息</a></li>
+			<li$actives[inbox]><a href="cp.php?ac=pm&view=inbox">收件箱</a></li>
+			<li$actives[outbox]><a href="cp.php?ac=pm&view=outbox">发件箱</a></li>
+			<li$actives[announce]><a href="cp.php?ac=pm&view=announce">公共消息</a></li>
+			<li$actives[ignore]><a href="cp.php?ac=pm&view=ignore">忽略列表</a></li>
+			<li><a href="space.php?do=notice">通知</a></li>
+		</ul>
+	</div>
+
+	<!--{if $pmid}-->
+
+	<div class="h_status"><a href="cp.php?ac=pm">返回收件箱</a></div>
+
+	<ol class="pm_list" id="pm_ol">
+		<!--{loop $list $key $value}-->
+		<li class="s_clear">
+			<a href="space.php?uid=$value[msgfromid]"><img src="<!--{avatar($value[msgfromid],small)}-->" width="48" height="48" alt="$value[msgfrom]" class="avatar" /></a>
+			<cite<!--{if $value['new']}--> style="font-weight:bold;"<!--{/if}-->><a href="space.php?uid=$value[msgfromid]">$value[msgfrom]</a><br /><span class="gray"><!--{date('Y-m-d H:i',$value[dateline],1)}--></span></cite>
+			<div class="pm_content">
+				<h6>$value[subject]</h6>
+				<p>$value[message]</p>
+			</div>
+		</li>
+		<!--{/loop}-->
+	</ol>
+
+	<!--{if $msgtoid}-->
+	<div class="quickpost" style="margin-left: 200px; margin-bottom: 2em;">
+		<h4>回复：</h4>
+		<form id="pmform" name="pmform" method="post" action="cp.php?ac=pm&op=send&uid=$msgfromid&pmid=$pmid">
+			<table cellspacing="0" cellpadding="0">
+				<tr>
+					<td>
+						<p><label for="pm_subject">标题：</label><span class="gray">(可选)</span></p>
+						<input type="text" id="pm_subject" name="subject" value="" size="38" class="t_input" style="width: 360px;" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>
+							<label for="pm_message">内容：</label>
+						</p>
+						<textarea id="pm_message" name="message" cols="40" rows="4" style="width: 360px;" onkeydown="ctrlEnter(event, 'pmsubmit_btn');"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="hidden" name="pmsubmit" value="true" />
+						<input type="button" name="pmsubmit_btn" id="pmsubmit_btn" value="发送" class="submit" onclick="ajaxpost('pmform', 'pm_status', 'pm_add')" />
+						<span id="pm_status"></span>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<!--{/if}-->
+	<!--{elseif $_GET['view'] == 'ignore'}-->
+	<form id="ignoreform" name="ignoreform" method="post" action="cp.php?ac=pm&op=ignore" class="c_form">
+		<table cellspacing="0" cellpadding="0" class="formtable" width="100%">
+			<caption>
+				<h2>忽略列表</h2>
+				<p>添加到该列表中的用户给您发送短消息时将不予接收<br />
+					添加多个忽略人员名单时用逗号 "," 隔开，如“张三,李四,王五”<br />
+					如需禁止所有用户发来的短消息，请设置为 "&#123;ALL&#125;"</p>
+			</caption>
+			<tr>
+				<td><textarea id="ignorelist" name="ignorelist" cols="40" rows="6" style="width: 98%;" onkeydown="ctrlEnter(event, 'ignoresubmit');">$ignorelist</textarea></td>
+			</tr>
+			<tr>
+				<td><input type="submit" name="ignoresubmit" id="ignoresubmit" value="保存" class="submit" /></td>
+			</tr>
+		</table>
+	</form>
+	<!--{else}-->
+
+	<div class="h_status">有 $count 条</div>
+
+	<!--{if $count}-->
+		<table cellspacing="0" cellpadding="0" width="100%" class="linetable" style="margin-bottom: 1em;">
+		<!--{loop $list $value}-->
+		<tbody id="pm_{$value[pmid]}_li">
+		<tr>
+			<td width="20">&nbsp;</td>
+			<!--{if $value[msgto] && $value[msgfromid]==$_SGLOBAL[supe_uid]}-->
+			<td width="58"><a href="space.php?uid=$value[msgtoid]"><img src="<!--{avatar($value[msgtoid],small)}-->" width="48" height="48" alt="$value[msgto]" /></a></td>
+			<td width="100"><span class="gray">给：</span><a href="space.php?uid=$value[msgtoid]">$value[msgto]</a><br /><span class="gray"><!--{date('n-j H:i',$value[dateline],1)}--></span></td>
+			<td><div<!--{if $value['new']==2}--> class="l_text" style="font-weight:bold;"<!--{/if}-->><a href="cp.php?ac=pm&pmid=$value[pmid]">$value[subject]</a></div><span class="gray">$value[message]</span></td>
+			<td width="30" class="del"><div><a href="cp.php?ac=pm&op=delete&folder=outbox&pmid=$value[pmid]" id="a_delete_$value[pmid]" class="float_del" onclick="ajaxmenu(event, this.id, 99999)">删除</a></div></td>
+			<!--{else}-->
+			<td width="58"><a href="space.php?uid=$value[msgfromid]"><img src="<!--{avatar($value[msgfromid],small)}-->" width="48" height="48" alt="$value[msgfrom]" /></a></td>
+			<td width="100"><a href="space.php?uid=$value[msgfromid]">$value[msgfrom]</a><br /><span class="gray"><!--{date('n-j H:i',$value[dateline],1)}--></span></td>
+			<td><div<!--{if $value['new']==1}--> class="l_text" style="font-weight:bold;"<!--{/if}-->><a href="cp.php?ac=pm&pmid=$value[pmid]">$value[subject]</a></div><span class="gray">$value[message]</span></td>
+			<td width="30" class="del"><div><a href="cp.php?ac=pm&op=delete&folder=inbox&pmid=$value[pmid]" id="a_delete_$value[pmid]" class="float_del" onclick="ajaxmenu(event, this.id, 99999)">删除</a></div></td>
+			<!--{/if}-->
+		</tr>
+		</tbody>
+		<!--{/loop}-->
+		</table>
+		<!--{if $view=='newbox'}-->
+		<div class="article" style="margin-left:1em;"><a href="cp.php?ac=pm&view=inbox">本页最多显示 10 条未读，请进入收件箱或发件箱查看更多</a></div>
+		<!--{else}-->
+		<div class="page">$multi[html]</div>
+		<!--{/if}-->
+	<!--{else}-->
+	<div class="article l_text" style="margin-left:1em;">
+		当前没有相应的短消息。
+	</div>
+	<!--{/if}-->
+
+	<!--{/if}-->
+
 
 <!--{/if}-->
 <!--{template cp_footer}-->
