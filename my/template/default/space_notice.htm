@@ -15,7 +15,7 @@
 		<li><a href="cp.php?ac=pm&view=outbox">发件箱</a></li>
 		<li><a href="cp.php?ac=pm&view=announce">公共消息</a></li>
 		<li><a href="cp.php?ac=pm&view=ignore">忽略列表</a></li>
-		<li class="active"><a href="space.php?do=notice">通知</a></li>
+		<li class="active"><a href="cp.php?ac=pm&view=notice">通知</a></li>
 	</ul>
 </div>
 
@@ -43,9 +43,9 @@
 	<div class="narrow">
 		
 		<ul class="post_list line_list">
-			<li><a href="space.php?do=notice" style="font-weight:bold;">查看全部通知</a></li>
+			<li><a href="cp.php?ac=pm&view=notice" style="font-weight:bold;">查看全部通知</a></li>
 		<!--{loop $noticetypes $type $name}-->
-			<li><a href="space.php?do=notice&type=$type">$name</a></li>
+			<li><a href="cp.php?ac=pm&view=notice&type=$type">$name</a></li>
 		<!--{/loop}-->
 		</ul>
 		<br />

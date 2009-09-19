@@ -61,10 +61,10 @@
 	
 		<!--{if $notices}-->
 		<div class="inbox_notice">
-			<h2>通知 <a href="space.php?do=notice" class="title_action">查看全部</a></h2>
+			<h2>通知 <a href="cp.php?ac=pm&view=notice" class="title_action">查看全部</a></h2>
 			<ul>
 			<!--{loop $notices $type $count}-->
-				<li><a href="space.php?do=notice&type=$type"><strong>$count</strong> 条新$noticetypes[$type]</a></li>
+				<li><a href="cp.php?ac=pm&view=notice&type=$type"><strong>$count</strong> 条新$noticetypes[$type]</a></li>
 			<!--{/loop}-->
 			</ul>
 		</div>
