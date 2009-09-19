@@ -104,6 +104,41 @@
 	</form>
 
 
+<!--{elseif $_GET['op'] == 'notice'}-->
+
+	<div class="h_status">最近的通知</div>
+
+	<div class="side_right">
+		<!--{if $list}-->
+		<div class="wide feed">
+			<ul>
+			<!--{loop $list $value}-->
+			<li class="type_$value[type]">
+				<a class="type">&nbsp;</a>
+				<h6><a href="space.php?uid=$value[authorid]">$value[author]</a> <!--{if $value[new]}--><span style="font-weight:bold;">$value[note]</span><!--{else}-->$value[note]<!--{/if}--><span class="time"><!--{date('m-d H:i',$value[dateline],1)}--></span></h6>
+			</li>
+			<!--{/loop}-->
+			</ul>
+			<div class="page">$multi[html]</div>
+		</div>
+		<!--{else}-->
+		<div class="wide article l_text">
+			没有新的通知。
+		</div>
+		<!--{/if}-->
+		
+		<div class="narrow">
+			
+			<ul class="post_list line_list">
+				<li><a href="cp.php?ac=pm&view=notice" style="font-weight:bold;">查看全部通知</a></li>
+			<!--{loop $noticetypes $type $name}-->
+				<li><a href="cp.php?ac=pm&view=notice&type=$type">$name</a></li>
+			<!--{/loop}-->
+			</ul>
+			<br />
+		</div>
+	</div>
+
 <!--{else}-->
 
 	<div class="tabs_header">
@@ -114,7 +149,7 @@
 			<li$actives[outbox]><a href="cp.php?ac=pm&view=outbox">发件箱</a></li>
 			<li$actives[announce]><a href="cp.php?ac=pm&view=announce">公共消息</a></li>
 			<li$actives[ignore]><a href="cp.php?ac=pm&view=ignore">忽略列表</a></li>
-			<li><a href="space.php?do=notice">通知</a></li>
+			<li$actives[notice]><a href="cp.php?ac=pm&view=notice">通知</a></li>
 		</ul>
 	</div>
 

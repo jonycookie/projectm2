@@ -108,11 +108,49 @@ if($_GET['op'] == 'checknewpm') {
 		$msgtoid = $list[0]['msgtoid'];
 
 	} else {
-		$view = (!empty($_GET['view']) && in_array($_GET['view'], array('inbox', 'outbox', 'newbox', 'announce', 'ignore')))?$_GET['view']:'newbox';
+		$view = (!empty($_GET['view']) && in_array($_GET['view'], array('inbox', 'outbox', 'newbox', 'announce', 'ignore', 'notice')))?$_GET['view']:'newbox';
 		$actives = array($view=>' class="active"');
 			
 		if($_GET['view'] == 'ignore') {
 			$ignorelist = uc_pm_blackls_get($_SGLOBAL['supe_uid']);
+		} elseif($_GET['view'] == 'notice') {
+			//分页
+			$perpage = 100;
+			$start = empty($_GET['start'])?0:intval($_GET['start']);
+			//检查开始数
+			ckstart($start, $perpage);
+
+			//通知类型
+			$noticetypes = array(
+				'wall' => mlang('wall'),
+				'piccomment' => mlang('pic_comment'),
+				'blogcomment' => mlang('blog_comment'),
+				'doing' => mlang('doing_comment'),
+				'friend' => mlang('friend_notice'),
+				'post' => mlang('thread_comment')
+			);
+
+			$type = !empty($_GET['type']) && $noticetypes[$_GET['type']]?$_GET['type']:'';
+			$typesql = $type?"AND type='$type'":'';
+
+			$list = array();
+			$count = 0;
+			//处理查询
+			$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('notification')." WHERE uid='$_SGLOBAL[supe_uid]' $typesql ORDER BY dateline DESC LIMIT $start,$perpage");
+			while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+				$list[] = $value;
+				$count++;
+			}
+
+			//分页
+			$multi = smulti($start, $perpage, $count, "space.php?do=$do");
+
+			//设置本次查看时间
+			$wherearr = array('uid'=>$_SGLOBAL['supe_uid'], 'new'=>1);
+			if($type) {
+				$wherearr['type'] = $type;
+			}
+			updatetable('notification', array('new'=>0), $wherearr);
 		} else {
 			//分页
 			$perpage = 10;
