@@ -8,9 +8,6 @@ if(!defined('IN_UCHOME')) {
 	exit('Access Denied');
 }
 
-$space['oldcss'] = $space['css'];
-$space['theme'] = $space['css'] = '';
-
 $op = empty($_GET['op'])?'':$_GET['op'];
 $dir = empty($_GET['dir'])?'':preg_replace("/[^0-9a-z]/i", '', $_GET['dir']);
 

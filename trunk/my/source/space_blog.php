@@ -23,7 +23,6 @@ if($id) {
 	//检查好友权限
 	if(!ckfriend($blog)) {
 		//没有权限
-		$space['css'] = $space['theme'] = '';
 		include template('space_privacy');
 		exit();
 	} elseif(!$space['self'] && $blog['friend'] == 4) {

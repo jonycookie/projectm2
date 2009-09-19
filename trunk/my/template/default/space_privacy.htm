@@ -23,7 +23,7 @@
 			<ul class="actions">
 				<li><a href="cp.php?ac=pm&uid=$space[uid]" id="a_pm" onclick="ajaxmenu(event, this.id, 99999, '', -1)">发短消息</a></li>
 				<li><a href="cp.php?ac=poke&op=send&uid=$space[uid]" id="a_poke" onclick="ajaxmenu(event, this.id, 99999, '', -1)">打招呼</a></li>
-				<li><a href="space.php?uid=$space[uid]&do=friend">查看好友列表</a></li>
+				<li><a href="cp.php?ac=friend">查看好友列表</a></li>
 				<!--{if $space['isfriend']}-->
 				<li><a href="cp.php?ac=friend&op=ignore&uid=$space[uid]" id="a_ignore" onclick="ajaxmenu(event, this.id, 99999)">解除好友关系</a></li>
 				<!--{else}-->

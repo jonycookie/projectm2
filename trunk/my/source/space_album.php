@@ -220,7 +220,6 @@ function ckfriend_album($album) {
 	
 	if(!ckfriend($album)) {
 		//没有权限
-		$space['css'] = $space['theme'] = '';
 		include template('space_privacy');
 		exit();
 	} elseif(!$space['self'] && $album['friend'] == 4) {

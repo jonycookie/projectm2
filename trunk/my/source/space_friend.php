@@ -18,7 +18,7 @@ if($_GET['view'] == 'online') {
 	//检查开始数
 	ckstart($start, $perpage);
 	
-	$theurl = "space.php?uid=$space[uid]&do=friend&view=online";
+	$theurl = "cp.php?ac=friend&view=online";
 	$actives = array('ol'=>' class="active"');
 	
 	$query = $_SGLOBAL['db']->query("SELECT f.resideprovince, f.residecity, f.note, main.uid, main.username, main.lastactivity 
@@ -38,7 +38,7 @@ if($_GET['view'] == 'online') {
 	//检查开始数
 	ckstart($start, $perpage);
 		
-	$theurl = "space.php?uid=$space[uid]&do=friend&view=$_GET[view]";
+	$theurl = "cp.php?ac=friend&view=$_GET[view]";
 	$actives = array($_GET['view']=>' class="active"');
 	
 	if($_GET['view'] == 'visitor') {//访客

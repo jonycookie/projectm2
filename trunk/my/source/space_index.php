@@ -177,22 +177,6 @@ if($_SGLOBAL['app']) {
 	}
 }
 
-//风格
-$theme = empty($_GET['theme'])?'':preg_replace("/[^0-9a-z]/i", '', $_GET['theme']);
-if($theme == 'uchomedefault') {
-	$space['theme'] = $space['css'] = '';
-} elseif($theme) {
-	$cssfile = S_ROOT.'./theme/'.$theme.'/style.css';
-	if(file_exists($cssfile)) {
-		$space['theme'] = $theme;
-		$space['css'] = '';
-	}
-} else {
-	if(!$space['self'] && $_SGLOBAL['member']['nocss']) {
-		$space['theme'] = $space['css'] = '';
-	}
-}
-
 //最近访客记录
 if(!$space['self'] && $_SGLOBAL['supe_uid']) {
 	$setarr = array(
