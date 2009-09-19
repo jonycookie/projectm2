@@ -27,7 +27,7 @@ if($_SCONFIG['allowrewrite'] && isset($_GET['rewrite'])) {
 }
 
 //允许动作
-$dos = array('feed', 'doing', 'blog', 'album', 'thread', 'mtag', 'friend', 'wall', 'tag', 'notice', 'pm', 'app');
+$dos = array('feed', 'doing', 'blog', 'album', 'thread', 'mtag', 'wall', 'tag', 'notice', 'pm', 'app');
 
 //获取变量
 $isinvite = 0;
