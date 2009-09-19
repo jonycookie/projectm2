@@ -8,8 +8,6 @@ if(!defined('IN_UCHOME')) {
 	exit('Access Denied');
 }
 
-$space['theme'] = $space['css'] = '';
-
 if(submitcheck('profilesubmit')) {
 
 	if(!@include_once(S_ROOT.'./data/data_profilefield.php')) {
