@@ -1,6 +1,14 @@
 <!--{template cp_header}-->
 
 <div class="c_header">
+	<h2>上传图片</h2>
+	<ul class="tabs">
+		<!--{if $album[albumname]}--><li><a href="cp.php?ac=album&op=edit&albumid=$albumid">编辑相册信息</a></li><!--{/if}-->
+		<li><a href="cp.php?ac=album&op=editpic&albumid=$albumid">编辑图片</a></li>
+		<li class="active"><a href="cp.php?ac=upload&albumid=$albumid">上传新图片</a></li>
+	</ul>
+</div>
+<div class="tabs_header">
 	<ul class="tabs">
 		<li$actives[js]><a href="cp.php?ac=upload&albumid=$albumid">批量上传</a></li>
 		<li$actives[flash]><a href="cp.php?ac=upload&op=flash&albumid=$albumid">多选上传</a></li>
