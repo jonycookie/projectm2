@@ -26,6 +26,7 @@
 </script>
 
 <div class="c_header">
+	<h2>编辑相册信息</h2>
 	<ul class="tabs">
 		<li class="active"><a href="cp.php?ac=album&op=edit&albumid=$albumid">编辑相册信息</a></li>
 		<li><a href="cp.php?ac=album&op=editpic&albumid=$albumid">编辑图片</a></li>
@@ -92,6 +93,7 @@
 <!--{elseif $_GET['op'] == 'editpic'}-->
 
 <div class="c_header">
+	<h2>编辑图片</h2>
 	<ul class="tabs">
 		<!--{if $album[albumname]}--><li><a href="cp.php?ac=album&op=edit&albumid=$albumid">编辑相册信息</a></li><!--{/if}-->
 		<li class="active"><a href="cp.php?ac=album&op=editpic&albumid=$albumid">编辑图片</a></li>
