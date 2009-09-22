@@ -74,17 +74,12 @@
 	}
 </script>
 
-<div class="h_status">
-<table width="100%">
-<tr><td>
-<h1><!--{if $blog[blogid]}-->编辑日志<!--{else}-->写新日志<!--{/if}--></h1>
-</td><td align="right">
-您也可以进行<a href="cp.php?ac=import">日志导入</a>
-</td></tr></table>
+<div class="c_header">
+	<h2><!--{if $blog[blogid]}-->编辑日志<!--{else}-->写新日志<!--{/if}--></h2>
+	<ul class="tabs">
+		<li><a href="cp.php?ac=import">日志导入</a></li>
+	</ul>
 </div>
-<STYLE>
-.userData {behavior:url(#default#userdata);}
-</STYLE>
 <div class="d_content">
 	<form method="post" action="cp.php?ac=blog&blogid=$blog[blogid]" enctype="multipart/form-data">
 		<table cellspacing="4" cellpadding="4" width="100%" class="infotable">
