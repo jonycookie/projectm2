@@ -1,12 +1,8 @@
 <!--{template cp_header}-->
 
-<div class="tabs_header">
-	<a href="cp.php?ac=blog" class="t_button">发表新日志</a>
+<div class="c_header">
+	<h2>日志导入</h2>
 	<ul class="tabs">
-		<!--{if $space[friendnum]}--><li><a href="space.php?uid=$space[uid]&do=blog">好友最新日志</a></li><!--{/if}-->
-		<li><a href="space.php?uid=$space[uid]&do=blog&view=me">我的日志</a></li>
-		<li><a href="space.php?uid=$space[uid]&do=blog&view=trace">我踩过的日志</a></li>
-		<li><a href="network.php?ac=blog">大家的日志</a></li>
 		<li class="active"><a href="cp.php?ac=import">日志导入</a></li>
 	</ul>
 </div>
@@ -70,7 +66,4 @@
 	
 
 <!--{/if}-->
-<div class="f_status f_status_w s_clear">
-	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
-</div>
 <!--{template cp_footer}-->
