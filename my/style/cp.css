@@ -219,17 +219,14 @@ caption p {
 }
 #side {
 	float: left;
-	width: 130px;
-	border: 1px solid #ddd;
-	background: #fff;
+	width: 160px;
 }
 #mainarea {
 	float: right;
-	width: 700px;
+	width: 800px;
 }
 #footer {
 	clear: both;
-	margin-left: 130px;
 	padding-bottom: 1em;
 	text-align: right;
 	line-height: 3em;
@@ -497,7 +494,6 @@ caption p {
 	padding: 10px 20px;
 }
 .d_content {
-	background-color: #F5F5F5;
 }
 #space_avatar {
 	padding-bottom: 1em;
@@ -1277,17 +1273,14 @@ textarea {
 .side_right .narrow {
 	float: right;
 	margin-top: 10px;
-	margin-right: 10px;
 	padding: 0;
 	width: 240px;
 }
 .side_right .wide {
 	float: left;
 	margin-top: 10px;
-	margin-left: 10px;
 	padding: 0;
-	width: 655px;
-	border: 1px solid #ddd;
+	width: 550px;
 }
 .side_right_close {
 	background-image: none;
@@ -1296,7 +1289,6 @@ textarea {
 	display: none;
 }
 .side_right_close .wide {
-	width: 96%;
 }
 .msg_list {
 }
@@ -1323,7 +1315,7 @@ textarea {
 .narrow h2 {
 	margin: 8px 0;
 	padding-left: 5px;
-	background: #E5E5E5;
+	border-bottom: 1px solid #ddd;
 	line-height: 2em;
 	font-weight: bold;
 }
