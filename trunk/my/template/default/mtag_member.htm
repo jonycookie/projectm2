@@ -9,7 +9,7 @@
 		<!--{loop $list $value}-->
 		<li>
 			<a href="space.php?uid=$value[uid]"><img src="<!--{avatar($value[uid],big)}-->" alt="$value[username]" class="avatar" /></a>
-			<table cellspacing="0" cellpadding="0" class="infotable"">
+			<table cellspacing="0" cellpadding="0" class="infotable">
 				<caption <!--{if $ols[$value[uid]]}-->class="online" title="在线"<!--{/if}-->>
 				<a href="space.php?uid=$value[uid]">$value[username]</a>
 				</caption>
@@ -44,8 +44,5 @@
 
 <div class="page">$multi[html]</div>
 
-</div>
-<div class="f_status f_status_w s_clear">
-	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
 </div>
 <!--{template footer}-->
