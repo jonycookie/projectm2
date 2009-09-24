@@ -221,9 +221,22 @@ caption p {
 	float: left;
 	width: 160px;
 }
+#side h3 {
+	line-height: 26px;
+	padding: 5px 0 0;
+	margin: 0 10px;
+	border-bottom: 1px solid #eee;
+}
+#side li {
+	padding: 5px 15px 5px 10px;
+	margin: 0 10px;
+	background: url(image/arrow_0.png) no-repeat left center;
+}
 #mainarea {
 	float: right;
-	width: 800px;
+	border-left: 1px solid #ddd;
+	padding-left: 9px;
+	width: 790px;
 }
 #footer {
 	clear: both;
