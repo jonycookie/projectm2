@@ -21,6 +21,7 @@ body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, form, fieldset {
 	padding: 0;
 }
 h1, h2, h3, h4, h5, h6 {
+	color: #000;
 	font-size: 1em;
 }
 ul li, ol li {
@@ -216,6 +217,13 @@ caption p {
 }
 #container {
 	margin: 20px 0;
+	background: url(image/side_bg.gif) repeat-y 160px 0;
+	zoom: 1;
+}
+#container:after {
+	content: "";
+	display: block;
+	clear: both;
 }
 #side {
 	float: left;
@@ -227,15 +235,19 @@ caption p {
 	margin: 0 10px;
 	border-bottom: 1px solid #eee;
 }
-#side li {
+#side li a {
+	display: block;
 	padding: 5px 15px 5px 10px;
 	margin: 0 10px;
-	background: url(image/arrow_0.png) no-repeat left center;
+	background: url(image/arrow_g_0.png) no-repeat right center;
+	outline: none;
+}
+#side li a:hover {
+	background: url(image/arrow_0.png) no-repeat right center;
 }
 #mainarea {
 	float: right;
-	border-left: 1px solid #ddd;
-	padding-left: 9px;
+	padding-left: 10px;
 	width: 790px;
 }
 #footer {
@@ -438,9 +450,9 @@ caption p {
 	line-height: 20px;
 }
 .c_header {
-	border: 1px solid #ddd;
+	border: 1px solid #bbb;
 	clear: both;
-	line-height: 28px;
+	line-height: 30px;
 	padding: 0 10px;
 	zoom: 1;
 }
@@ -450,6 +462,7 @@ caption p {
 	clear: both;
 }
 .c_header h2 {
+	font-size: 14px;
 	float: left;
 }
 .c_header .tabs {
@@ -903,7 +916,7 @@ width: expression(this.width > 620 ? 620 : true);
 }
 .feed li.type_blog, .feed li.type_album, .feed li.type_thread, .feed li.type_doing {
 	padding-bottom: 0.5em;
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px dashed #DDD;
 	zoom: 1;
 }
 .feed li:after {
@@ -1441,8 +1454,8 @@ textarea {
 	padding: 0 15px;
 	height: 26px;
 	border: 1px solid;
-	border-color: #eee;
-	background: #ddd;
+	border-color: #ddd;
+	background: #eee;
 	color: #333;
 	line-height: 20px;
 	cursor: pointer;
