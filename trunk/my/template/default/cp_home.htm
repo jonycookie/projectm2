@@ -1,16 +1,6 @@
 <!--{eval $_TPL['titles'] = array('动态');}-->
 <!--{template cp_header}-->
 
-<script>
-	function notice_show() {
-		if($('help_notice').style.display=='') {
-			$('help_notice').style.display='none';
-		} else {
-			$('help_notice').style.display='';
-		}
-	}
-</script>
-
 <!--{if $space[self]}-->
 <div class="c_header">
 	<h2>动态</h2>
@@ -20,24 +10,14 @@
 		<li$actives[me]><a href="cp.php?ac=home&view=me">我的动态</a></li>
 	</ul>
 </div>
-
-<div class="h_status">
-	<table width="100%"><tr><td>以时间排序</td><td align="right"><a href="javascript:;" onclick="notice_show();">帮助提示</a></td></tr></table>
-</div>
 <!--{/if}-->
 
 <div class="side_right">
 	<div class="wide">
 	
 		<!--{if empty($_SCONFIG['showall'])}-->
-		<table width="100%"><tr><td><h1 class="l_text"><!--{if $_GET['view']=='me'}-->个人动态<!--{elseif $_GET['view']=='all'}-->网站近况<!--{else}-->好友动态<!--{/if}--></h1></td><td align="right"><!--{if $space[self]}--><a href="javascript:;" onclick="notice_show();">帮助提示</a><!--{/if}--></td></tr></table>
+		<h1 class="l_text"><!--{if $_GET['view']=='me'}-->个人动态<!--{elseif $_GET['view']=='all'}-->网站近况<!--{else}-->好友动态<!--{/if}--></h1>
 		<!--{/if}-->
-		
-		<div class="notice" id="help_notice" style="display:$shownotice_style;">
-			<p><strong>欢迎您，$space[username]，这里就是您的家。</strong><br>
-			您可以在这里可以<a href="space.php?do=doing" target="_blank">写迷你博客</a>、<a href="cp.php?ac=blog" target="_blank">发表日志</a>、<a href="cp.php?ac=upload" target="_blank">上传图片</a>，与志同道合的人一起<a href="cp.php?ac=thread" target="_blank">讨论话题</a>。<br>
-			在<a href="cp.php?ac=friend&op=find" target="_blank">寻找熟悉的用户并加为好友</a>后，您发表的点点滴滴才会及时的通知到好友而被分享或评论，同时，您的首页也只显示您的好友们的动态了。<br>通过策略中的<a href="cp.php?ac=privacy" target="_blank">隐私设置</a>，您完全可以决定自己的信息能够被哪些用户看到。</p>
-		</div>
 		
 		<div class="box feed">
 		<!--{if $list}-->
