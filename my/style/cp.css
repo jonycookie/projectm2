@@ -35,8 +35,6 @@ a {
 	color: #999;
 }
 a:hover {
-	color: #358f0b;
-	text-decoration: underline;
 }
 a img {
 	border: none;
@@ -216,8 +214,8 @@ caption p {
 	margin: 0 10px 0 0;
 }
 #container {
-	margin: 20px 0;
-	background: url(image/side_bg.gif) repeat-y 160px 0;
+	margin: 20px 0 0;
+	background: url(image/side_bg.png) repeat-y 155px 0;
 	zoom: 1;
 }
 #container:after {
@@ -230,21 +228,38 @@ caption p {
 	width: 160px;
 }
 #side h3 {
-	line-height: 26px;
-	padding: 5px 0 0;
-	margin: 0 10px;
-	border-bottom: 1px solid #eee;
+	line-height: 36px;
+	margin: 0 0 -1px;
+	background: url(image/side_title.png) no-repeat right bottom;
+}
+#side li {
+	position: relative;
 }
 #side li a {
 	display: block;
-	padding: 5px 15px 5px 10px;
-	margin: 0 10px;
-	background: url(image/arrow_g_0.png) no-repeat right center;
+	padding: 0 15px;
+	line-height: 36px;
+	margin: 0 0 -1px;
 	outline: none;
 }
 #side li a:hover {
-	background: url(image/arrow_0.png) no-repeat right center;
+	background: url(image/side_item_hover.png) no-repeat right center;
 }
+#side li em {
+	position: absolute;
+	right: 0;
+	top: 0;
+	font-style: normal;
+	font-size: 12px;
+}
+#side li em a {
+	display: inline;
+	color: #666;
+}
+#side li em a:hover {
+	background-image: none;
+}
+
 #mainarea {
 	float: right;
 	padding-left: 10px;
@@ -256,6 +271,7 @@ caption p {
 	text-align: right;
 	line-height: 3em;
 	color: #666;
+	border-top: 1px solid #aaa;
 }
 #footer .copyright {
 	float: none;
@@ -450,10 +466,11 @@ caption p {
 	line-height: 20px;
 }
 .c_header {
-	border: 1px solid #bbb;
+	border: 1px solid #aaa;
 	clear: both;
 	line-height: 30px;
 	padding: 0 10px;
+	margin: 0 0 20px;
 	zoom: 1;
 }
 .c_header:after {
@@ -461,42 +478,42 @@ caption p {
 	display: block;
 	clear: both;
 }
-.c_header h2 {
-	font-size: 14px;
-	float: left;
-}
-.c_header .tabs {
-	float: right;
-}
-.c_header .tabs li {
-	float: left;
+.c_header em {
 	margin: 0 0 0 10px;
+	font-style: normal;
+}
+.c_header h2 {
+	display: inline;
+	font-size: 14px;
 }
 .tabs_header {
 	clear: both;
 	position: relative;
-	height: 20px;
-	border: 1px solid #ddd;
-	border-width: 1px 0;
+	height: 26px;
+	border-bottom: 1px solid #aaa;
 }
 .tabs_header .tabs li {
 	float: left;
-	border: 1px solid #ddd;
-	border-width: 0 1px 0 0;
+	margin-right: -1px;
+	border: 1px solid #ccc;
+	border-bottom: 1px solid #aaa;
 }
 .tabs_header .tabs a {
 	float: left;
-	padding: 0 10px;
-	height: 20px;
-	background: #fafafa;
-	line-height: 20px;
+	padding: 0 30px;
+	height: 25px;
+	line-height: 25px;
+	background: url(image/tab_bg.gif) repeat-x bottom;
+	outline: none;
 }
 .tabs_header .tabs li.active {
-	border-bottom-color: #FFF;
+	position: relative;
+	border-color: #aaa;
+	border-bottom-color: #fff;
 }
-.tabs_header tabs li.active a {
-	background: #FFF;
-	color: #333;
+.tabs_header .tabs li.active a {
+	background: #fff;
+	color: #1c8000;
 }
 .narrow, .wide {
 	overflow: hidden;
@@ -1424,7 +1441,7 @@ textarea {
 	overflow: hidden;
 }
 .c_form {
-	padding: 1em 5em;
+	padding: 2em 5em;
 }
 .formtable {
 	width: 100%;
@@ -1438,7 +1455,6 @@ textarea {
 	padding-bottom: 8px;
 	border-bottom: 1px solid #CCC;
 	color: #333;
-	font-size: 14px;
 }
 .formtable caption p {
 	margin-top: 8px;
