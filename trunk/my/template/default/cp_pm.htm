@@ -23,7 +23,9 @@
 
 	<!--{if !$_SGLOBAL[inajax]}-->
 
-	<div class="h_status"><h1>发短消息</h1></div>
+	<div class="c_header">
+		<h2>发短消息</h2>
+	</div>
 
 	<div id="$uid" class="d_content">
 	<br />
@@ -143,7 +145,8 @@
 
 	<div class="c_header">
 		<h2>我的私信</h2>
-		<a href="cp.php?ac=pm&op=post" class="t_button">发短消息</a>
+	</div>
+	<div class="tabs_header">
 		<ul class="tabs">
 			<li$actives[newbox]><a href="cp.php?ac=pm&view=newbox">未读消息</a></li>
 			<li$actives[inbox]><a href="cp.php?ac=pm&view=inbox">收件箱</a></li>

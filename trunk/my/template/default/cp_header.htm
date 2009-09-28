@@ -22,10 +22,10 @@
 	<div id="header">
 		<h2><a href="index.php">$_SCONFIG[sitename]</a></h2>
 		<ul id="menu">
-			<li id="menuhome" onmouseover="openSub(this,'home');"><a href="cp.php?ac=home">首页</a></li>
-			<li id="menublog" onmouseover="openSub(this,'blog');"><a href="cp.php?ac=blog">博客</a></li>
-			<li id="menumtag" onmouseover="openSub(this,'mtag');"><a href="cp.php?ac=mtag">圈子</a></li>
-			<li id="menufriend" onmouseover="openSub(this,'friend');"><a href="cp.php?ac=friend">好友</a></li>
+			<li id="menuhome"><a href="space.php?do=home">首页</a></li>
+			<li id="menublog"><a href="space.php?do=blog">博客</a></li>
+			<li id="menumtag"><a href="space.php?do=mtag">圈子</a></li>
+			<li id="menufriend"><a href="cp.php?ac=friend">好友</a></li>
 			<li id="menupm" onmouseover="openSub(this,'pm');"><a href="cp.php?ac=pm">私信</a></li>
 		</ul>
 		<div id="submenu">
@@ -90,25 +90,13 @@
 			</ul>
 			<h3>我的</h3>
 			<ul>
-				<li><a href="cp.php?ac=friend">我的好友</a></li>
-				<li><a href="cp.php?ac=pm">我的私信</a></li>
+				<li><a href="cp.php?ac=friend">我的好友</a><em><a href="cp.php?ac=invite">邀请</a></em></li>
+				<li><a href="cp.php?ac=pm">我的私信</a><em><a href="cp.php?ac=pm&op=post">发送</a></em></li>
 			</ul>
 			<h3>设置</h3>
 			<ul>
 				<li><a href="cp.php?ac=profile">设置</a></li>
 				<li><a href="cp.php?ac=privacy">隐私策略</a></li>
-			</ul>
-			<h3>发布</h3>
-			<ul>
-				<li><a href="cp.php?ac=blog">发布日志</a></li>
-				<li><a href="cp.php?ac=upload">上传图片</a></li>
-				<li><a href="cp.php?ac=thread">发布话题</a></li>
-			</ul>
-			<h3>发布</h3>
-			<ul>
-				<li><a href="cp.php?ac=blog">发布日志</a></li>
-				<li><a href="cp.php?ac=upload">上传图片</a></li>
-				<li><a href="cp.php?ac=thread">发布话题</a></li>
 			</ul>
 		
 		</div>

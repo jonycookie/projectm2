@@ -1,16 +1,16 @@
 <!--{template cp_header}-->
 
 <div class="c_header">
-	<h2>上传图片</h2>
+	<h2>上传图片</h2><em><!--{if $maxattachsize}--><a href="cp.php?ac=space&op=addsize">空间容量</a> $maxattachsize, <!--{/if}-->已用空间 $space[attachsize]</em>
+</div>
+
+<div class="tabs_header">
 	<ul class="tabs">
 		<li$actives[js]><a href="cp.php?ac=upload&albumid=$albumid">批量上传</a></li>
 		<li$actives[flash]><a href="cp.php?ac=upload&op=flash&albumid=$albumid">多选上传</a></li>
 		<li$actives[cam]><a href="cp.php?ac=upload&op=cam&albumid=$albumid">大头帖</a></li>
 	</ul>
 </div>
-
-<div class="h_status"><!--{if $maxattachsize}--><a href="cp.php?ac=space&op=addsize">空间容量</a> $maxattachsize, <!--{/if}-->已用空间 $space[attachsize]<span class="pipe">|</span><a href="space.php?uid=$space[uid]&do=album&view=me">返回我的相册</a></div>
-
 <div class="d_content">
 
 <!--{if empty($_GET['op'])}-->
