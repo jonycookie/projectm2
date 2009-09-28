@@ -8,13 +8,7 @@
 <script language="javascript" type="text/javascript" src="source/script_menu.js"></script>
 <script language="javascript" type="text/javascript" src="source/script_ajax.js"></script>
 <style type="text/css">
-@import url(template/$_SC[template]/common.css);
-<!--{if !empty($space['theme'])}-->
-@import url(theme/$space[theme]/style.css);
-<!--{/if}-->
-<!--{if !empty($space['css'])}-->
-$space[css]
-<!--{/if}-->
+@import url(style/space.css);
 </style>
 <!--{if $space[uid]}-->
 <link rel="alternate" type="application/rss+xml" href="rss.php?uid=$space[uid]" title="$space[username]" />

@@ -14,7 +14,7 @@
 	</tr>
 	<tr>
 		<th><label for="pic">封面图片：</label></th>
-		<td><input id="pic" type="text" name="pic" value="$mtag[pic]" size="30" /><br />http:// 开头的图片地址</td>
+		<td><input id="pic" type="text" class="t_input" name="pic" value="$mtag[pic]" size="30" /><br />http:// 开头的图片地址</td>
 	</tr>
 	<tr>
 		<th><label for="announcement">公告：</label></th>
@@ -25,19 +25,19 @@
 		<th>群主：</th>
 		<td>
 		<!--{if $moderator[0]}-->
-		<input type="text" name="moderator[0]" value="$moderator[0]" size="10" readonly="true">
+		<input type="text" class="t_input" name="moderator[0]" value="$moderator[0]" size="10" readonly="true">
 		<!--{else}-->
-		<input type="text" name="moderator[0]" value="$moderator[0]" size="10">
+		<input type="text" class="t_input" name="moderator[0]" value="$moderator[0]" size="10">
 		<!--{/if}-->
-		<input type="text" name="moderator[1]" value="$moderator[1]" size="10">
-		<input type="text" name="moderator[2]" value="$moderator[2]" size="10">
-		<input type="text" name="moderator[3]" value="$moderator[3]" size="10">
-		<input type="text" name="moderator[4]" value="$moderator[4]" size="10"><br>
-		<input type="text" name="moderator[5]" value="$moderator[5]" size="10">
-		<input type="text" name="moderator[6]" value="$moderator[6]" size="10">
-		<input type="text" name="moderator[7]" value="$moderator[7]" size="10">
-		<input type="text" name="moderator[8]" value="$moderator[8]" size="10">
-		<input type="text" name="moderator[9]" value="$moderator[9]" size="10"><br>
+		<input type="text" class="t_input" name="moderator[1]" value="$moderator[1]" size="10">
+		<input type="text" class="t_input" name="moderator[2]" value="$moderator[2]" size="10">
+		<input type="text" class="t_input" name="moderator[3]" value="$moderator[3]" size="10">
+		<input type="text" class="t_input" name="moderator[4]" value="$moderator[4]" size="10"><br>
+		<input type="text" class="t_input" name="moderator[5]" value="$moderator[5]" size="10">
+		<input type="text" class="t_input" name="moderator[6]" value="$moderator[6]" size="10">
+		<input type="text" class="t_input" name="moderator[7]" value="$moderator[7]" size="10">
+		<input type="text" class="t_input" name="moderator[8]" value="$moderator[8]" size="10">
+		<input type="text" class="t_input" name="moderator[9]" value="$moderator[9]" size="10"><br>
 		只能从成员列表中选，最多10个，第1位为主版主，不能被更改
 		</td>
 	</tr>
@@ -90,6 +90,8 @@
 
 <div class="c_header">
 	<h2>我的群组</h2>
+</div>
+<div class="tabs_header">
 	<ul class="tabs">
 		<li$actives[profile]><a href="cp.php?ac=profile">个人资料</a></li>
 		<li$actives[mtag]><a href="cp.php?ac=mtag">我的群组</a></li>
