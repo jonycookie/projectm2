@@ -10,7 +10,7 @@ http://www.comsenz.com
 }
 body {
 	text-align: center;
-	color: #7d7d7d;
+	color: #000;
 	background: #fff url(image/space_bg.gif) repeat-x top;
 }
 body, th, td, input, select, textarea, button {
@@ -833,10 +833,8 @@ height: expression(this.height > 120 ? 120 : true);
 	clear: both;
 }
 #post_ol li .time {
-	color: #CCC;
-	font-size: 9px;
+	color: #7d7d7d;
 	line-height: 30px;
-	font-family: tahoma;
 }
 #post_ol li .userbox {
 	float: left;
