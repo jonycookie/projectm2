@@ -71,11 +71,8 @@ caption p {
 	padding: 0.5em;
 }
 .avatar {
-}
-.avatar img {
-	padding: 2px;
-	border: 1px solid #ddd;
-	background: #fff;
+	background: url(image/avatar_bg.gif) no-repeat;
+	padding: 4px 4px 5px;
 }
 .float_del, .float_edit {
 	position: absolute;
@@ -825,8 +822,10 @@ height: expression(this.height > 120 ? 120 : true);
 }
 #post_ol li {
 	clear: both;
-	margin: 15px;
-	border-bottom: 1px dotted #ddd;;
+	margin: 0 15px;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	border-bottom: 1px dotted #ddd;
 }
 #post_ol li:after {
 	content: "";
@@ -839,12 +838,15 @@ height: expression(this.height > 120 ? 120 : true);
 	line-height: 30px;
 	font-family: tahoma;
 }
-#post_ol li .detail {
+#post_ol li .userbox {
 	float: left;
-	line-height:3em;
-	padding:30px;
-	margin: 15px;
 }
+#post_ol li .detail {
+	float: right;
+	padding: 0 10px;
+	width: 600px;
+}
+
 .userbox {
 	float: left;
 }
