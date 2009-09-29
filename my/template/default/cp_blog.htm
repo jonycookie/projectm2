@@ -76,11 +76,7 @@
 
 <div class="c_header">
 	<h2><!--{if $blog[blogid]}-->编辑日志<!--{else}-->写新日志<!--{/if}--></h2>
-</div>
-<div class="tabs_header">
-	<ul class="tabs">
-		<li><a href="cp.php?ac=import">日志导入</a></li>
-	</ul>
+	<em><a href="cp.php?ac=import">日志导入</a></em>
 </div>
 <div class="d_content">
 	<form method="post" action="cp.php?ac=blog&blogid=$blog[blogid]" enctype="multipart/form-data">
@@ -127,7 +123,7 @@
 						<option value="3"$friendarr[3]>仅自己可见</option>
 						<option value="4"$friendarr[4]>凭密码查看</option>
 					</select>
-					<span id="span_password" style="$passwordstyle">密码:<input type="text" class="t_input" name="password" value="$blog[password]" size="10"></span>
+					<span id="span_password" style="$passwordstyle">密码：<input type="text" class="t_input" name="password" value="$blog[password]" size="10"></span>
 					<input type="checkbox" name="noreply" value="1"<!--{if $blog[noreply]}--> checked<!--{/if}-->> 不允许评论
 				</td>
 			</tr>
