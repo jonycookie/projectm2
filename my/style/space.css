@@ -194,9 +194,6 @@ caption p {
 }
 #s_avatar {
 	float: left;
-	border: 1px solid #ddd;
-	background: #fff;
-	padding: 3px;
 	margin: 0 10px 0 0;
 }
 #s_nav {
@@ -458,26 +455,11 @@ caption p {
 	background: #FFF;
 	color: #333;
 }
-.narrow, .wide {
-	overflow: hidden;
-}
-.narrow {
-	width: 240px;
-}
-#i_narrow {
-	margin-top: -40px;
-}
-.wide {
-	width: 595px;
-}
-.r_content .narrow, .l_content .wide {
+.r_content .sidebar, .l_content .main {
 	float: left;
 }
-.r_content .wide, .l_content .narrow {
+.r_content .main, .l_content .sidebar {
 	float: right;
-}
-.r_content, .l_content {
-	padding: 10px 20px;
 }
 .d_content {
 	background-color: #F5F5F5;
@@ -521,23 +503,19 @@ caption p {
 .box {
 	padding-bottom: 1em;
 }
-.box_action {
+.widget_action {
 	position: relative;
 	height: 1.8em;
 	border-top: 1px solid #DDD;
-	background: #EEE;
 	color: #666;
 	line-height: 1.8em;
-	text-indent: 0.8em;
 }
-.box_action .action {
+.widget_action .action {
 	position: absolute;
 	top: 0;
-	right: 0.8em;
+	right: 0;
 }
 .box h3 {
-	border-top: 1px solid #1461A9;
-	background: #C9DFF4;
 	font-size: 1em;
 	text-indent: 0.8em;
 	line-height: 1.8em;

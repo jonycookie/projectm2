@@ -12,7 +12,7 @@ include_once(S_ROOT.'./source/function_cp.php');
 $acs = array('space', 'doing', 'upload', 'comment', 'blog', 'album', 'common', 'class', 'home',
 	'swfupload', 'thread', 'mtag', 'poke', 'friend',
 	'profile', 'theme', 'import', 'feed', 'privacy', 'pm', 'invite');
-$ac = (empty($_GET['ac']) || !in_array($_GET['ac'], $acs))?'profile':$_GET['ac'];
+$ac = (empty($_GET['ac']) || !in_array($_GET['ac'], $acs))?'home':$_GET['ac'];
 $op = empty($_GET['op'])?'':$_GET['op'];
 
 //权限判断
