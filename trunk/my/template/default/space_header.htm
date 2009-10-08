@@ -45,16 +45,17 @@
 	<div id="container">
 
 		<div id="s_header">
-			<div id="s_avatar"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" /></div>
+			<div id="s_avatar"><img class="avatar" src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" /></div>
 			<h1>$space[spacename]</h1>
 			<a href="$space[domainurl]" onclick="javascript:setCopy('$space[domainurl]');return false;">$space[domainurl]</a>
+			<a href="do.php?ac=ajax&op=credit&uid=$space[uid]" id="a_space_view" onclick="ajaxmenu(event, this.id, 99999)">$space[creditstar]</a>
 		</div>
 		<div id="s_nav">
 			<ol>
 				<li><a href="space.php?uid=$space[uid]">首页</a></li>
 				<li><a href="space.php?uid=$space[uid]&do=blog">博客</a></li>
 				<li><a href="space.php?uid=$space[uid]&do=album">相册</a></li>
-				<li><a href="space.php?uid=$space[uid]&do=mtag">圈子</a></li>
+				<!--li><a href="space.php?uid=$space[uid]&do=mtag">圈子</a></li-->
 				<li><a href="space.php?uid=$space[uid]&do=doing">嘀咕</a></li>
 				<li><a href="space.php?uid=$space[uid]&do=wall">留言</a></li>
 			</ol>
