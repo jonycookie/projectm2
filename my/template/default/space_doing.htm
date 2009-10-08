@@ -12,7 +12,7 @@
 				<input type="hidden" name="addsubmit" value="true" />
 				<input type="hidden" name="refer" value="$theurl" />
 				<input type="submit" id="add" name="add" value="发布" class="submit" />
-				还可输入 <strong id="maxlimit">200</strong> 字节 
+				<span id="maxlimit"></span>
 		</form>
 <!--{/if}-->
 		
@@ -70,7 +70,7 @@
 			obj.value = getStrbylen(obj.value, maxlimit);
 			showobj.innerHTML = '0';
 		} else {
-			showobj.innerHTML = maxlimit - len;
+			showobj.innerHTML = maxlimit - len + '/' + maxlimit;
 		}
 		if(maxlimit - len > 0) {
 			showobj.parentNode.style.color = "";
