@@ -71,7 +71,7 @@
 	<a href="javascript:hideMenu();" class="float_del" title="关闭">关闭</a>
 	<div class="popupmenu_inner">
 <!--{/if}-->
-<form id="postform" name="postform" method="post" action="cp.php?ac=thread">
+<form id="postform" name="postform" method="post" action="cp.php?ac=thread&op=post">
 	<table>
 		<tr>
 			<th><label for="message">内容：</label></th>
@@ -108,7 +108,7 @@
 <!--{if $_SGLOBAL[inajax]}--></div><!--{/if}-->
 </div>
 
-<!--{else}-->
+<!--{elseif $_GET['op'] == 'post'}-->
 <div class="c_header">
 	<h2>发起新话题</h2>
 </div>
@@ -143,7 +143,7 @@
 <!--{else}-->
 	<tr>
 		<th><label for="subject">群组：</label></th>
-		<td>$mtag[tagname] [<a href="cp.php?ac=thread">切换</a>]</td>
+		<td>$mtag[tagname] [<a href="cp.php?ac=thread&op=post">切换</a>]</td>
 	</tr>
 <!--{/if}-->
 	<tr>
@@ -167,6 +167,49 @@
 </table>
 </form>
 </div>
+
+<!--{else}-->
+
+	<div class="tabs_header">
+		<a href="cp.php?ac=thread&tagid=$tagid" class="t_button">发起新话题</a>
+		<ul class="tabs">
+			<li$actives[we]><a href="cp.php?ac=thread&op=post">最新话题</a></li>
+			<li$actives[me]><a href="cp.php?ac=thread&view=me">我的话题</a></li>
+			<!--{if $_SCONFIG['showall']}--><li><a href="network.php?ac=thread&op=post">大家的话题</a></li><!--{/if}-->
+			<li><a href="space.php?do=mtag">我的群组</a></li>
+			<li><a href="network.php?ac=mtag">热门群组</a></li>
+		</ul>
+	</div>
+	<!--{if $list}-->
+	<div class="thread_list">
+		<table cellspacing="0" cellpadding="0" class="infotable">
+			<thead>
+				<tr>
+					<td class="subject">主题</td>
+					<!--{if !$mtag}--><td class="mtag">群组</td><!--{/if}-->
+					<td class="author">作者<em>回复/查看数</em></td>
+					<td class="lastpost">最后回复<em>回复时间</em></td>
+				</tr>
+			</thead>
+			<!--{loop $list $value}-->
+			<tr>
+				<td class="subject"><a href="mtag.php?tagid=$value[tagid]&do=thread&id=$value[tid]">$value[subject]</a></td>
+				<!--{if !$mtag}--><td class="mtag"><a href="mtag.php?tagid=$value[tagid]">$value[tagname]</a></td><!--{/if}-->
+				<td class="author"><a href="space.php?uid=$value[uid]">$value[username]</a><em>$value[replynum]/$value[viewnum]</em></td>
+				<td class="lastpost"><a href="space.php?uid=$value[lastauthorid]">$value[lastauthor]</a><em><!--{date('m-d H:i',$value[lastpost],1)}--></em></td>
+			</tr>
+			<!--{/loop}-->
+		</table>
+	</div>
+
+	<div class="page">$multi[html]</div>
+
+	<!--{else}-->
+		<div class="h_status">话题列表</div>
+		<div class="c_form">
+		还没有相关话题。<!--{if $space[self]}-->您可以<a href="cp.php?ac=thread&op=post">发起一个话题</a><!--{/if}-->
+		</div>
+	<!--{/if}-->
 
 <!--{/if}-->
 <!--{template cp_footer}-->
