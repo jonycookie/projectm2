@@ -1,0 +1,258 @@
+/* Imports ----------------------------------------*/
+@import url("reset.css");
+@import url("system.css");
+/* Elements ----------------------------------------*/
+body {
+	background-color:#FFFFFF;
+	text-align: center;
+}
+
+body, p, td, th, li {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#808080;
+}
+
+p {
+	margin: 0 0 1em 0;
+}
+
+/*--- Link Styles ---*/
+a:link, a:visited {
+	color:#808080;
+}
+
+a:hover, a:active {
+	color:#37b306;
+	text-decoration:none;
+}
+
+h1 {
+	color:#5C8127;
+	margin:.825em 0 .5em 0;
+	font-size:2.125em;
+}
+
+h2 {
+	color:#5C8127;
+	margin:.825em 0 .5em 0;
+	font-size:1.75em;
+}
+
+h3 {
+	color:#5C8127;
+	margin:.825em 0 .5em 0;
+	font-size:1.5em;
+}
+
+h4 {
+	color:#5C8127;
+	margin:.825em 0 .5em 0;
+	font-size:1.25em;
+}
+
+h5 {
+	color:#5C8127;
+	margin:.825em 0 .5em 0;
+	font-size:1.125em;
+}
+
+h6 {
+	color:#5C8127;
+	margin:.825em 0 .5em 0;
+	font-size:1em;
+}
+
+ul {
+	margin-left:25px;
+	list-style-type:none;
+}
+
+ol {
+	margin-left:25px;
+	
+}
+
+blockquote	{margin: 0 0 18px 18px; color:#666666; font-style: italic;}
+strong		{font-weight:bold;}
+
+/* Standard Definitions ----------------------------------------*/
+.left 		{float:left;}
+.right 		{float:right;}
+.clearThis 	{clear:both;}
+.small		{font-size:.625em;}
+.large		{font-size:1em;}
+.soft		{color:#D3D3D3;}
+.hide		{display:none;}
+.pipe		{margin: 0 5px; color:#bbb;}
+
+/* Toolbar  ----------------------------------------*/
+#toolbar {
+	background: url(image/toolbar_bg.png) repeat-x;
+	line-height: 26px;
+}
+#toolbar:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+#toolbar .inner {
+	width: 960px;
+	margin: 0 auto;
+}
+#toolbar a {
+	text-decoration: none;
+}
+#toolbar em {
+	color: #37b306;
+}
+#toolbar .pipe {
+	color: #ccc;
+}
+#wrap {
+	width: 960px;
+	text-align: left;
+	margin: 0 auto;
+}
+/* Header ----------------------------------------*/
+#header {
+}
+#header h1 {
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+#header .search {
+	float: left;
+	margin: 30px 0 0 100px;
+}
+#header .search .search_txt {
+	font-size: 14px;
+	width: 300px;
+	padding: 5px;
+	border: 3px solid #37b306;
+	color: #666;
+	vertical-align: middle;
+}
+#header .search .search_btn {
+	width: 62px;
+	height: 32px;
+	text-indent: -9999px;
+	background: url(image/search_btn.png) no-repeat;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: middle;
+}
+#header .banner {
+	float: right;
+}
+
+/* Navigation ----------------------------------------*/
+#navigation {
+	background: url(image/navigation_bg.png) no-repeat;
+	line-height: 36px;
+	padding: 0 0 3px;
+	clear: both;
+}
+#navigation:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+#navigation .main {
+	float: left;
+	margin: 6px;
+}
+#navigation .main li {
+	float: left;
+}
+#navigation .main a {
+	display: block;
+	float: left;
+	text-indent: -9999px;
+	overflow: hidden;
+	width: 64px;
+	height: 24px;
+}
+#navigation .blog a {
+	background: url(image/navigation_blog.png) no-repeat;
+}
+#navigation .photo a {
+	background: url(image/navigation_photo.png) no-repeat;
+}
+#navigation .group a {
+	background: url(image/navigation_group.png) no-repeat;
+}
+#navigation .doing a {
+	background: url(image/navigation_doing.png) no-repeat;
+}
+#navigation .channel {
+	float: right;
+	line-height: 24px;
+	margin: 6px;
+	padding-left: 10px;
+	background: url(image/navigation_channel_bg.png) no-repeat;
+}
+#navigation .channel li {
+	float: left;
+	padding: 0 7px 0 5px;
+	background: url(image/navigation_channel_pipe.png) no-repeat right;
+}
+#navigation .channel li.last {
+	background: url(image/navigation_channel_bg.png) no-repeat right;
+	padding-right: 15px;
+}
+#navigation .channel a {
+	color: #fff;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+ul#nav li {float:left; list-style-type:none; margin-left:10px;}
+
+/* Image Replacement  ----------------------------------------*/
+ul#nav li a {/*Set to height of image*/ height:20px; display:block; text-indent:-9999px; outline:none;}
+
+/*Include all of your links with unique IDs. Use the correct path to the image and set the width of each image*/
+li#navHome a		{background-image: url(/images/nav/home.png); width:75px;}
+li#navWork a		{background-image: url(/images/nav/work.png); width:70px;}
+li#navServices a	{background-image: url(/images/nav/services.png); width:68px;}
+li#navContact a		{background-image: url(/images/nav/contact.png); width:55px;}
+
+/* CSS Rollover (Sprites) - Advanced Users! ----------------------------------------*/
+
+/*Each link must have a unique ID - Include all of your links here - Remove if not using!*/
+li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:hover {background-position:0 -20px; /*Set to height of image !must be negative!*/}
+		
+/* Main Content ----------------------------------------*/
+#mainContent
+{
+	width:900px;
+	background-color:#D8ECB3;
+}
+
+
+
+
+
+
+
+
+/* Footer ----------------------------------------*/
+#footer
+{
+	width:900px;
+	height:30px;
+	background-color:#6A8900;
+}
+
+#footer p {
+	font-size:.625em;
+}
+
+
+
+
+
+
