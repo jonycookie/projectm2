@@ -83,7 +83,7 @@ strong		{font-weight:bold;}
 .small		{font-size:.625em;}
 .large		{font-size:1em;}
 .soft		{color:#D3D3D3;}
-.hide		{display:none;}
+.hide,.none	{display:none;}
 .pipe		{margin: 0 5px; color:#bbb;}
 
 /* Toolbar  ----------------------------------------*/
