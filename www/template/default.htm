@@ -5,43 +5,79 @@
 <meta name="keywords" content="{king:keywords/}" />
 <meta name="description" content="{king:description/}" />
 <title>{king:title/} - Powered by KingCMS for PHP</title>
-<link href="../images/style.css" rel="stylesheet" type="text/css" />
+<link href="../style/global.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
-<div id="top">
-
-	<span class="block fl w500 left">
-		<a href="{const:system.siteurl/}{const:system.inst/}"><img src="../images/logo.png"/></a>
-	</span>
-
-	<span class="block fl w500 right">
-		<strong>
-			<a href="{const:system.siteurl/}en/">English</a>
-			|
-			<a href="{const:system.siteurl/}">Chinese</a>
-		</strong>
-	</span>
+<div id="toolbar">
+	<div class="inner">
+		<div class="left">
+				{king:portal.menu3}
+				<a href="{king:listpath/}">{king:listname/}</a>
+				{/king:portal.menu3}
+		</div>
+		<div class="right">
+				{king:user.state id="userstat"}
+				<a href="#" class="k_user_login">登录</a>
+				<a href="#" class="k_user_register">注册</a>
+				{?king:user.state}
+				你好，<em title="{king:userid/}">{king:username/}</em><span class="pipe">|</span><a href="{const:system.inst/}user/index.php">用户中心</a><span class="pipe">|</span><a href="#" class="k_user_logout">退出</a>
+				{/king:user.state}
+		</div>
+	</div>
 </div>
+<div id="wrap">
+	<div id="header">
+		<h1><a href="{const:system.siteurl/}{const:system.inst/}"><img src="../images/logo.png"/></a></h1>
 
-<div id="topbanner">
-	<a href="/download/" class="download">下载使用</a>
-	<a href="/license/" class="license">许可协议</a>
-	<span class="version">当前最新版本是：{config:system.version/} (PHP)</span>
-	<a href="http://help.kingcms.com/" class="help">OnLine帮助文档</a>
-	<a href="" class="club" target="_blank">社区交流</a>
-</div>
+		<div class="search">
+			<form>
+			<input class="search_txt" type="text" />
+			<input class="search_btn" type="submit" />
+			</form>
+		</div>
+		<div class="banner"><a href="#"><img src="../images/banner.png"/></a></div>
+
+		<div id="navigation">
+			<ul class="main">
+				<li class="blog"><a href="#">博客</a></li>
+				<li class="photo"><a href="#">图片</a></li>
+				<li class="group"><a href="#">圈子</a></li>
+				<li class="doing"><a href="#">嘀咕</a></li>
+			</ul>
+			<ul class="channel">
+				<li><a href="#">电影</a></li>
+				<li><a href="#">娱乐</a></li>
+				<li><a href="#">音乐</a></li>
+				<li><a href="#">游戏</a></li>
+				<li><a href="#">读书</a></li>
+				<li><a href="#">时尚</a></li>
+				<li><a href="#">旅游</a></li>
+				<li><a href="#">汽车</a></li>
+				<li><a href="#">科技</a></li>
+				<li><a href="#">体育</a></li>
+				<li><a href="#">游戏</a></li>
+				<li><a href="#">动漫</a></li>
+				<li><a href="#">女人</a></li>
+				<li><a href="#">教育</a></li>
+				<li class="last"><a href="#">电影</a></li>
+			</ul>
+		</div>
+	</div>
+
+
+
 
 <div id="nav">
 	<a href="{config:system.siteurl/}{config:system.inst/}">{config:system.sitename/}</a> / {king:nav line="/" /}
 </div>
 
-<div id="main">
+<div id="container">
 	<h4 class="title">{king:title/}</h4>
 	{king:inside/}
 </div>
 
-<div id="bottom">
+<div id="footer">
 	<span class="block fl w500 left">
 		<a href="#">栏目1</a>
 		<a href="#">栏目1</a>
