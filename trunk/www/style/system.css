@@ -9,15 +9,14 @@
 #k_ajax h5{margin:10px 0 5px 0;padding:0px;font-size:14px;border-bottom:1px solid #CCC;}
 
 #k_ajax #k_ajaxBg{position:absolute;display:block;width:100%;height:100%;left:0;margin:0px;padding:0px;background:#21282E;
--ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";filter:alpha(opacity=10);/*IE*/opacity:0.1;}
+-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";filter:alpha(opacity=0);/*IE*/opacity:0.0;}
 
-#k_ajax #k_ajaxBox{display:block;margin:0px;
-	border:1px solid;border-color:#888 #666 #666 #888;background:#FFF;padding:1px;position:fixed;z-index:999;}
-#k_ajax #k_ajaxBox #k_ajaxTitle{display:table;clear:both;line-height:28px;height:28px;margin:0px;padding:0px;text-align:right;background:url(../images/ajax.png) repeat-x 0px 0px;}
-	#k_ajax #k_ajaxBox #k_ajaxTitle strong{font-size:12px;display:block;float:left;text-align:left;background:url(../images/ajax.png) no-repeat 0px -120px;text-indent:30px;color:#FFF;height:28px;}
+#k_ajax #k_ajaxBox{display:block;margin:0px;border:4px solid #eee;background:#FFF;padding:1px;position:fixed;z-index:999;}
+#k_ajax #k_ajaxBox #k_ajaxTitle{display:table;clear:both;line-height:28px;height:28px;margin:0px;padding:0px;text-align:right;}
+	#k_ajax #k_ajaxBox #k_ajaxTitle strong{font-size:12px;display:block;float:left;text-align:left;text-indent:30px;height:28px;}
 	#k_ajax #k_ajaxBox #k_ajaxTitle a{font-size:10px;display:block;float:left;width:40px;text-align:left;background:url(../images/ajax.png) no-repeat 0px -40px;color:#FFF;text-indent:4px;height:20px;}
 	#k_ajax #k_ajaxBox #k_ajaxTitle a:hover{color:#000;text-decoration :none;background:url(../images/ajax.png) no-repeat 0px -80px;color:#FFF;}
-#k_ajax #k_ajaxBox #k_ajaxMain{display:block;overflow-y:auto;font-size:12px;text-align:left;padding:0px;line-height:20px;background:url(../images/ajax.png) repeat-x 0px -280px;}
+#k_ajax #k_ajaxBox #k_ajaxMain{display:block;overflow-y:auto;font-size:12px;text-align:left;padding:0px;line-height:20px;}
 
 #k_ajax #k_ajaxBox #k_ajaxMain #k_ajaxContent{padding:30px;}
 #k_ajax #k_ajaxBox #k_ajaxMain #k_ajaxContent tt{margin-left:5px;}
@@ -30,13 +29,13 @@
 #k_ajax #k_ajaxBox #k_ajaxMain table.k_tip th{width:80px;text-align:center;}
 #k_ajax #k_ajaxBox #k_ajaxMain table.k_tip td{text-align:left;}
 
-#k_ajax #k_ajaxBox #k_ajaxSubmit{height:32px;clear:both;display:block;background:url(../images/ajax.png) repeat-x 0px -160px;padding-right:5px;}
+#k_ajax #k_ajaxBox #k_ajaxSubmit{height:32px;clear:both;display:block;padding-right:5px;}
 #k_ajax #k_ajaxBox #k_ajaxSubmit p{float:right;display:block;height:32px;padding:0px;margin:0px;}
 #k_ajax #k_ajaxBox #k_ajaxSubmit p a{display:block;float:left;line-height:19px;height:19px;color:#000;padding:0px 15px;
 	border:1px solid #7DAACC;margin:6px 0px 0px 3px;background:url(../images/ajax.png) repeat-x 0px -200px;}
 #k_ajax #k_ajaxBox #k_ajaxSubmit a:hover{text-decoration:none;border:1px solid #99FFFF;background:url(../images/ajax.png) repeat-x 0px -240px;}
 
-#k_ajax #k_ajaxFly{padding:3px 10px;display:block;text-align:left;background:#3875D7;color:#FFF;}
+#k_ajax #k_ajaxFly{padding:3px 10px;display:block;text-align:left;background:#3875D7;color:#FFF;display:none;}
 
 #k_ajax #k_ajaxBox #k_ajaxContent p.help{font-size:14px;font-family:Verdana;line-height:25px;margin:10px 0px;}
 
