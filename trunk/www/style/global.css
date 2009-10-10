@@ -187,6 +187,18 @@ strong		{font-weight:bold;}
 #navigation .doing a {
 	background: url(image/navigation_doing.png) no-repeat;
 }
+#navigation .blog a:hover {
+	background: url(image/navigation_blog_active.png) no-repeat;
+}
+#navigation .photo a:hover {
+	background: url(image/navigation_photo_active.png) no-repeat;
+}
+#navigation .group a:hover {
+	background: url(image/navigation_group_active.png) no-repeat;
+}
+#navigation .doing a:hover {
+	background: url(image/navigation_doing_active.png) no-repeat;
+}
 #navigation .channel {
 	float: right;
 	line-height: 24px;
