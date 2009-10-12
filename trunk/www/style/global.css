@@ -3,14 +3,14 @@
 @import url("system.css");
 /* Elements ----------------------------------------*/
 body {
-	background-color:#FFFFFF;
+	background-color: #FFFFFF;
 	text-align: center;
 }
 
 body, p, td, th, li {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size:12px;
-	color:#808080;
+	font-size: 12px;
+	color: #808080;
 }
 
 p {
@@ -19,12 +19,12 @@ p {
 
 /*--- Link Styles ---*/
 a:link, a:visited {
-	color:#808080;
+	color: #808080;
 }
 
 a:hover, a:active {
-	color:#37b306;
-	text-decoration:none;
+	color: #37b306;
+	text-decoration: none;
 }
 
 h1 {
@@ -237,11 +237,9 @@ li#navContact a		{background-image: url(/images/nav/contact.png); width:55px;}
 /*Each link must have a unique ID - Include all of your links here - Remove if not using!*/
 li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:hover {background-position:0 -20px; /*Set to height of image !must be negative!*/}
 		
-/* Main Content ----------------------------------------*/
-#mainContent
+/* Container ----------------------------------------*/
+#container
 {
-	width:900px;
-	background-color:#D8ECB3;
 }
 
 
@@ -254,13 +252,14 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 /* Footer ----------------------------------------*/
 #footer
 {
-	width:900px;
-	height:30px;
-	background-color:#6A8900;
+	border-top: 1px solid #eee;
+	line-height: 100px;
+	text-align: center;
 }
 
-#footer p {
-	font-size:.625em;
+#footer em {
+	color: #37b306;
+	font-weight: bold;
 }
 
 
