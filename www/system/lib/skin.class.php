@@ -67,7 +67,6 @@ public function output($title,$leftmenu=array(),$rightmenu=array(),$inside=null)
 		$tmp->assign('adminskins',$king->admin['adminskins']);
 		$tmp->assign('faq','<a href="javascript:;" class="k_ajax" rel="{CMD:\'faq\',URL:\'../system/manage.php\'}" title="'.$king->lang->get('system/common/faq').'">'.kc_icon('l9').'</a>');
 	}
-	$tmp->assign('copyright','Copyright &copy; <a href="http://www.kingcms.com/" target="_blank"><strong>King</strong>CMS<i>.com</i></a> All Rights Reserved.');
 	$tmp->assign('runtime',kc_formattime(kc_script_runtime()));
 	$output=$tmp->output()."\n<!--\n";
 	foreach($GLOBALS['KC_RUNTIME'] as $key => $val){

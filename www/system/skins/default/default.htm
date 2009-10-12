@@ -3,58 +3,57 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>{king:title/} KingCMS Administrator Panel.</title>
-<link href="../system/skins/default/style.css" rel="stylesheet" type="text/css" />
+<link href="../style/manage.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../system/skins/default/fun.js"></script>
 </head>
 
 <body>
 {king:skin.float/}
-<div id="top">
-	<a id="logo" href="../system/manage.php" title="{lang:system.home.welcome/}"><img src="../system/skins/{king:adminskins/}/logo.gif"/></a>
-	<a href="../" target="_blank" class="menu">{lang:system.common.home/}</a>
+<div id="wrap">
+	<div id="header">
+		<h1><a id="logo" href="../system/manage.php" title="{lang:system.home.welcome/}"><img src="../system/skins/{king:adminskins/}/logo.gif"/></a></h1>
+		<ul class="k_menu">
+			<li class="home"><a href="../" target="_blank">{lang:system.common.home/}</a></li>
+			{king:skin.module}
+			<li><a href="javascript:;">{king:name/}</a>
+					<ul>
+					{king:skin.menu module="(king:path/)"}
+						<li class="{king:class/}"{king:rel/}><a href="{king:href/}"{king:onclick/}{king:target/}><img src="../system/images/white.gif" class="os {king:img/}"/>{king:name/}</a></li>
+					{/king:skin.menu}
+					</ul>
+			</li>
+			{/king:skin.module}
+		</ul>
 
-	<ul class="k_menu">
-		{king:skin.module}
-		<li><a href="javascript:;">{king:name/}</a>
+		{king:skin.mainMenu/}
 
-				<ul>
-				{king:skin.menu module="(king:path/)"}
-					<li class="{king:class/}"{king:rel/}><a href="{king:href/}"{king:onclick/}{king:target/}><img src="../system/images/white.gif" class="os {king:img/}"/>{king:name/}</a></li>
-				{/king:skin.menu}
-				</ul>
-		</li>
-		{/king:skin.module}
-	</ul>
+		<div class="fr">Hi, {king:adminname/} &nbsp;[ {king:resetpwd/} | {king:logout/} ] {king:faq/}</div>
 
-	{king:skin.mainMenu/}
+	</div>
 
-	<div class="fr">Hi, {king:adminname/} &nbsp;[ {king:resetpwd/} | {king:logout/} ] {king:faq/}</div>
+	<div id="container">
 
+		<h2>
+			<strong>{king:title size="20"/}</strong>
+			<span class="left">
+				{king:leftmenu}
+					<a href="{king:href/}" class="{king:class/}" rel="{king:rel/}"><img src="../system/images/white.gif" class="os {king:ico/}"/>{king:title/}</a>
+				{/king:leftmenu}
+			</span>
+			<span class="right">
+				{king:rightmenu}
+					<a href="{king:href/}" class="{king:class/}" rel="{king:rel/}" target="{king:target/}"><img src="../system/images/white.gif" class="os {king:ico/}"/>{king:title/}</a>
+				{/king:rightmenu}
+			</span>
+		</h2>
+
+
+		{king:inside/}
+	</div>
+
+	<div id="footer">
+		&copy; 2009 <em>LUDOU</em> - {king:runtime/}
+	</div>
 </div>
-
-<div id="main">
-
-	<h2>
-		<strong>{king:title size="20"/}</strong>
-		<span class="left">
-			{king:leftmenu}
-				<a href="{king:href/}" class="{king:class/}" rel="{king:rel/}"><img src="../system/images/white.gif" class="os {king:ico/}"/>{king:title/}</a>
-			{/king:leftmenu}
-		</span>
-		<span class="right">
-			{king:rightmenu}
-				<a href="{king:href/}" class="{king:class/}" rel="{king:rel/}" target="{king:target/}"><img src="../system/images/white.gif" class="os {king:ico/}"/>{king:title/}</a>
-			{/king:rightmenu}
-		</span>
-	</h2>
-
-
-	{king:inside/}
-</div>
-
-<div id="bottom">
-	{king:copyright/} ~ {king:runtime/}
-</div>
-
 </body>
 </html>
