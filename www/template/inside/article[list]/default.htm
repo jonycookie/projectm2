@@ -1,5 +1,72 @@
+﻿<div class="article_main">
+	<div class="article_main_list">
+		<dl>
+		{king:portal.article type='list'}
+				<dt><a href="{king:path/}">{king:title/}</a></dt>
+				<dd>{king:description/} {king:tag/}</dd>
+		{/king:portal.article}
+		</dl>
+		<div class="pagelist">
+		{king:pagelist}
+		    {king:First replace='&lt;&lt; First|首页' /}
+		    {king:Previous replace='&lt; Previous|上一页' /}
+		    {king:Next replace='Next &gt;|下一页'/}
+		    {king:Last replace='Last &gt;&gt;|末页' /}
+		{/king:pagelist}
+		</div>
+	</div>
+	<div class="article_main_side">
+		<div class="panel" id="focus">
+			<h3>焦点新闻</h3>
+			<div class="content">
+				上的弗兰克
+			</div>
+		</div>
 
-{king:portal.article type='list'}
-		<p><a href="{king:path/}">{king:title/}</a></p>
-{/king:portal.article}
-{king:pagelist/}
+		<div class="panel" id="scroll">
+			<h3>焦点新闻</h3>
+			<div class="content">
+				上的弗兰克
+			</div>
+		</div>
+
+		<div class="panel" id="photos">
+			<h3>图片</h3>
+			<div class="content">
+				{king:portal.article type="new" number="5"}
+					<a href="{king:path/}">
+						<img src="{king:image border='fillet' border-color='666666' empty='fillet' Empty-Color='#FFFFFF' Empty-R='5' width='160' height='160'/}"/>
+					</a>
+					<a href="{king:path/}">{king:title/}</a>
+				{/king:portal.article}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="article_side">
+	<div class="ad">
+	1
+	</div>
+	<div class="panel" id="special">
+			<h3>专题</h3>
+			<div class="content">
+				sadfsdf
+			</div>
+	</div>
+	<div class="panel" id="blogger">
+			<h3>博客</h3>
+			<div class="content">
+				sdfsdf
+			</div>
+	</div>
+	<div class="panel" id="ranking">
+		<h3>最近热门</h3>
+		<div class="content">
+		<ul>
+			{king:portal.article type='lately'}
+			<li><a href="{king:path/}">{king:title/}</a> - {king:hit/}</li>
+			{/king:portal.article}
+		</ul>
+		</div>
+	</div>
+</div>

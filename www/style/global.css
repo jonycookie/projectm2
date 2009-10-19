@@ -20,11 +20,12 @@ p {
 /*--- Link Styles ---*/
 a:link, a:visited {
 	color: #808080;
+	text-decoration: none;
 }
 
 a:hover, a:active {
 	color: #37b306;
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 h1 {
@@ -61,16 +62,6 @@ h6 {
 	color:#5C8127;
 	margin:.825em 0 .5em 0;
 	font-size:1em;
-}
-
-ul {
-	margin-left:25px;
-	list-style-type:none;
-}
-
-ol {
-	margin-left:25px;
-	
 }
 
 blockquote	{margin: 0 0 18px 18px; color:#666666; font-style: italic;}
@@ -238,8 +229,14 @@ li#navContact a		{background-image: url(/images/nav/contact.png); width:55px;}
 li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:hover {background-position:0 -20px; /*Set to height of image !must be negative!*/}
 		
 /* Container ----------------------------------------*/
-#container
-{
+#container {
+	border-top: 1px solid #eee;
+	background: #fff url(image/side_250.gif) repeat-y right;
+}
+#container:after {
+	content: "";
+	display: block;
+	clear: both;
 }
 
 
@@ -265,5 +262,59 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 
 
 
+
+/* article_main ----------------------------------------*/
+.article_main {
+	width: 680px;
+	float: left;
+}
+.article_main_list {
+	width: 460px;
+	float: left;
+}
+.article_main_list .pagelist {
+	text-align: center;
+	padding: 0 0 10px;
+}
+.article_main_side {
+	width: 210px;
+	float: right;
+}
+.article_main_side .panel h3 {
+	border-bottom: 1px solid #eee;
+	padding: 10px 0;
+	font-size: 12px;
+	font-weight: bold;
+}
+.article_side {
+	width: 250px;
+	float: right;
+}
+.article_side .panel {
+	margin: 10px;
+}
+.article_side .panel h3 {
+	border-top: 3px solid #eee;
+	border-bottom: 1px solid #eee;
+	padding: 10px 0;
+	margin: 0;
+	font-size: 12px;
+	font-weight: bold;
+}
+.article_side .panel .content {
+	border-top: 1px solid #fff;
+	padding: 10px 0;
+}
+.article_main_list dt a {
+	color: #284e85;
+	font-size: 14px;
+	line-height: 30px;
+	font-weight: bold;
+}
+.article_main_list dd {
+	border-bottom: 1px solid #eee;
+	padding: 0 0 10px;
+	margin: 0 0 10px;
+}
 
 

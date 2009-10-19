@@ -45,7 +45,6 @@ jQuery(function($){
 
 	$('.k_menu li ul li.hr').prepend("<i/>");
 
-	$('.k_table_form , .k_table_list').before("<i class=\"y1_table yc_top\"/><i class=y2_table><b/></i>").after("<i class=y2_table><b/></i><i class=\"y1_table yc_bottom\"/>");
 
 	//IE6
 	if($.browser.msie && $.browser.version<7){
