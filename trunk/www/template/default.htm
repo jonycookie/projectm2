@@ -59,39 +59,26 @@
 				<li><a href="#">游戏</a></li>
 				<li><a href="#">动漫</a></li>
 				<li><a href="#">女人</a></li>
-				<li><a href="#">教育</a></li>
-				<li class="last"><a href="#">电影</a></li>
+				<li class="last"><a href="#">教育</a></li>
 			</ul>
 		</div>
 	</div>
 
+	<div id="nav">
+		<a href="{config:system.siteurl/}{config:system.inst/}">{config:system.sitename/}</a> / {king:nav line="/" /}
+	</div>
 
+	<div id="container">
+		{king:inside/}
+	</div>
 
-
-<div id="nav">
-	<a href="{config:system.siteurl/}{config:system.inst/}">{config:system.sitename/}</a> / {king:nav line="/" /}
+	<div id="footer">
+			&copy; 2009 <em>LUDOU</em>
+			{king:portal.menu3 line="<span class='pipe'>|</span>"}
+				<a href="{king:listpath/}">{king:listname/}</a>
+			{/king:portal.menu3}
+	</div>
 </div>
-
-<div id="container">
-	<h4 class="title">{king:title/}</h4>
-	{king:inside/}
-</div>
-
-<div id="footer">
-	<span class="block fl w500 left">
-		<a href="#">栏目1</a>
-		<a href="#">栏目1</a>
-		<a href="#">栏目1</a>
-		{king:menu3 line="|"/}
-
-		{king:menu/}
-	</span>
-	<span class="block fl right">
-		&copy 2004-2009 KingCMS.com All rights reserved.<br/>
-		{config:system.info/} {config:system.beian/}
-	</span>
-</div>
-
 
 </body>
 </html>
