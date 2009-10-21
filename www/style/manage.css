@@ -1320,6 +1320,7 @@ input.brow{
 /* top 顶部 */
 #header {
 	line-height: 36px;
+	height: 33px;
 	padding: 0 0 3px;
 	background: url(image/system/header_bg.png) repeat-x;
 }
