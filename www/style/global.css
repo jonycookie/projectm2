@@ -252,7 +252,6 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 /* Footer ----------------------------------------*/
 #footer
 {
-	border-top: 1px solid #eee;
 	line-height: 100px;
 	text-align: center;
 }
@@ -267,30 +266,50 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 
 
 /* article_main ----------------------------------------*/
+.article {
+	background: url(image/side_310.png) repeat-y right;
+	border-bottom: 3px solid #5e6366;
+}
+.article:after {
+	content: "";
+	display: block;
+	clear: both;
+}
 .article_list {
-	width: 620px;
+	width: 630px;
 	float: left;
 }
 .article_list_main {
-	width: 400px;
-	float: left;
+	width: 450px;
+	float: right;
 }
 .article_list_main .pagelist {
 	text-align: center;
 	padding: 0 0 10px;
 }
 .article_list_side {
-	width: 210px;
-	float: right;
+	width: 160px;
+	float: left;
 }
-.article_list_side .panel h3 {
-	border-bottom: 1px solid #eee;
-	padding: 10px 0;
-	font-size: 12px;
-	font-weight: bold;
+.article_list_side h2 {
+	margin: 0;
+	padding: 0;
+}
+.article_list_side ul.categorys {
+	padding: 40px 0 0;
+	background: url(image/list_cates_title.png) top no-repeat;
+}
+.article_list_side ul.tags {
+	padding: 40px 0 0;
+	background: url(image/list_tags_title.png) top no-repeat;
+}
+.article_list_side .panel {
+	margin: 0 0 10px;
+	border: 1px solid #eee;
 }
 .article_side {
 	width: 310px;
+	border-top: 1px solid #eee;
 	float: right;
 }
 .article_side .panel {
@@ -318,6 +337,14 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 	border-bottom: 1px solid #eee;
 	padding: 0 0 10px;
 	margin: 0 0 10px;
+}
+.article_list_main dd .image {
+	float: left;
+	margin: 0 20px 0 0;
+}
+.article_list_main dd .description {
+}
+.article_list_main dd .tag {
 }
 
 
