@@ -267,7 +267,7 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 
 /* article_main ----------------------------------------*/
 .article {
-	background: url(image/side_310.png) repeat-y right;
+	background: url(image/side_300.png) repeat-y right;
 	border-bottom: 3px solid #5e6366;
 }
 .article:after {
@@ -287,6 +287,19 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 	text-align: center;
 	padding: 0 0 10px;
 }
+.article_list_main .pagelist strong {
+	color: #ff6600;
+	border-left: 1px solid #ddd;
+	padding: 3px 10px;
+}
+.article_list_main .pagelist a {
+	border-left: 1px solid #ddd;
+	padding: 3px 10px;
+	font-weight: bold;
+}
+.article_list_main .pagelist a:hover {
+	background: #fafafa;
+}
 .article_list_side {
 	width: 160px;
 	float: left;
@@ -300,66 +313,58 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 	background: url(image/list_cates_title.png) top no-repeat;
 }
 .article_list_side ul.tags {
-	padding: 40px 0 0;
+	padding: 40px 0 10px;
 	background: url(image/list_tags_title.png) top no-repeat;
+}
+.article_list_side ul.tags li {
+	margin: 0 0 0 30px;
 }
 .article_list_side .panel {
 	margin: 0 0 10px;
-	border: 1px solid #eee;
-}
-.article_side {
-	width: 310px;
-	border-top: 1px solid #eee;
-	float: right;
-}
-.article_side .panel {
-	margin: 10px;
-}
-.article_side .panel h3 {
-	border-top: 3px solid #eee;
-	border-bottom: 1px solid #eee;
-	padding: 10px 0;
-	margin: 0;
-	font-size: 12px;
-	font-weight: bold;
-}
-.article_side .panel .content {
-	border-top: 1px solid #fff;
-	padding: 10px 0;
+	border: 1px solid #ddd;
 }
 .article_list_main dt a {
-	color: #284e85;
+	color: #37b306;
 	font-size: 14px;
 	line-height: 30px;
 	font-weight: bold;
 }
+.article_list_main dt .subtitle {
+	color: #808080;
+}
 .article_list_main dd {
-	border-bottom: 1px solid #eee;
-	padding: 0 0 10px;
-	margin: 0 0 10px;
+	border-bottom: 1px dashed #ddd;
+	padding: 0 0 15px;
+	margin: 0 0 15px;
 }
 .article_list_main dd .image {
-	float: left;
-	margin: 0 20px 0 0;
+	float: right;
+	margin: 0 0 0 20px;
 }
 .article_list_main dd .description {
+	color: #999;
 }
 .article_list_main dd .tag {
+	background: url(image/ico_tag.gif) no-repeat left center;
+	padding: 0 0 0 35px;
+	height: 20px;
+	line-height: 20px;
+}
+.article_list_main dd .tag a {
+	color: #808080;
+}
+.article_list_main dd .relate a {
+	color: #568e1a;
 }
 
-
-
 .article_content {
-	border-left: 1px solid #eee;
-	border-right: 1px solid #eee;
-	padding: 0 30px;
-	width: 570px;
+	width: 630px;
 	float: left;
 }
 .article_content .toolbar {
 	color: #999;
 	line-height: 30px;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #ddd;
 }
 .article_content h1 {
 	padding: 15px 0 0;
@@ -374,7 +379,36 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 	line-height: 26px;
 }
 .article_content .content {
-	border-top: 1px solid #eee;
+	border-top: 1px dashed #ddd;
 	padding: 30px 0;
-	font-size: 16px;
+	font-size: 14px;
+	line-height: 30px;
 }
+.article_content .content p {
+	font-size: 14px;
+}
+.article_side {
+	width: 300px;
+	border-top: 1px solid #ddd;
+	float: right;
+}
+.article_side .ad {
+	text-align: center;
+	padding: 10px 0;
+}
+.article_side .panel {
+	margin: 10px;
+}
+.article_side .panel h3 {
+	border-top: 3px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	padding: 10px 0;
+	margin: 0;
+	font-size: 12px;
+	font-weight: bold;
+}
+.article_side .panel .content {
+	border-top: 1px solid #fff;
+	padding: 10px 0;
+}
+

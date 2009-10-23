@@ -2,13 +2,12 @@
 	<div class="article_list">
 		<div class="article_list_side">
 			<div class="panel" id="channel_info">
-				<h2><a href="{king:listpath/}"><img src="/images/channel_logo_{king:listid/}.gif" alt="{king:listname/}" /></a></h2>
-				<div class="output_time">{king:updatepage/}</div>
-				<ul class="categorys">
+				<h2><img src="/images/channel_logo_{king:listid/}.gif" alt="{king:listname/}" /></h2>
+				<!--ul class="categorys">
 			        {king:portal.list listid1='(king:listid/)'}
 				        <li><a href="{king:listpath/}">{king:listname/}</a></li>
 			        {/king:portal.list}
-				</ul>
+				</ul-->
 				<ul class="tags">
 					{king:portal.tag number='50' iscommend='1'}
 						<li><a href="{king:path/}" style="font-size:{king:size/}px;color:{king:color/}" class="bold_{king:bold/}">{king:title/}</a> - {king:hit/}</li>
@@ -22,39 +21,29 @@
 		<div class="article_list_main">
 			<dl>
 			{king:portal.article type='list'}
-					<dt><a href="{king:path/}">{king:title/}</a></dt>
+					<dt><a href="{king:path/}">{king:title/}</a> <span class="subtitle">{king:subtitle/}</span>{king:date formatdate="m.d G:i"/}</dt>
 					<dd>
-						<div class="image"><img src="{king:image border='rectangle' border-size='1' border-color='eeeeee' empty='rectangle' empty-size='4' empty-color='ffffff' width='80' height='80'/}"/></div>				
-						<div class="description">{king:description/}</div>
-						<div class="tag">{king:tag/}</div>
+						<div class="image"><img src="{king:image txt='' border='rectangle' border-size='1' border-color='eeeeee' empty='rectangle' empty-size='4' empty-color='ffffff' width='80' height='80'/}"/></div>				
+						<div class="description">{king:description/} <a href="{king:path/}">[详细]</a></div>
+						<div class="tag">
+						{king:tag explode=','}
+							<a href="{king:root/}index.php/tag-{king:tag fun='urlencode'/}{config:system.rewriteend/}">{king:tag/}</a>
+						{/king:tag}
+						</div>
+						<div class="relate">{king:relate/}</div>
 					</dd>
 			{/king:portal.article}
 			</dl>
 			<div class="pagelist">
 			{king:pagelist}
-			    {king:First replace='&lt;&lt; First|首页' /}
-			    {king:Previous replace='&lt; Previous|上一页' /}
-			    {king:Next replace='Next &gt;|下一页'/}
-			    {king:Last replace='Last &gt;&gt;|末页' /}
+				{king:standard /}
 			{/king:pagelist}
 			</div>
 		</div>
 	</div>
 	<div class="article_side">
 		<div class="ad">
-		1
-		</div>
-		<div class="panel" id="special">
-				<h3>专题</h3>
-				<div class="content">
-					sadfsdf
-				</div>
-		</div>
-		<div class="panel" id="blogger">
-				<h3>博客</h3>
-				<div class="content">
-					sdfsdf
-				</div>
+			<a href="#"><img src="/images/ads_280_210.jpg" /></a>
 		</div>
 		<div class="panel" id="ranking">
 			<h3>最近热门</h3>
