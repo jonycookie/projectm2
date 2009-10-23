@@ -309,8 +309,11 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 	padding: 0;
 }
 .article_list_side ul.categorys {
-	padding: 40px 0 0;
+	padding: 40px 0 10px;
 	background: url(image/list_cates_title.png) top no-repeat;
+}
+.article_list_side ul.categorys li {
+	margin: 0 0 0 30px;
 }
 .article_list_side ul.tags {
 	padding: 40px 0 10px;
