@@ -31,6 +31,11 @@
 
 		</div>
 		<div class="content">{king:content/}</div>
+		<div class="tag">
+		{king:tag explode=','}
+			<a href="{king:root/}index.php/tag-{king:tag fun='urlencode'/}{config:system.rewriteend/}">{king:tag/}</a>
+		{/king:tag}
+		</div>
 
 
 
@@ -39,13 +44,7 @@
 		<p>编辑：<a href="{king:edit/}">编辑主题</a></p>
 
 
-		<p>Tag:{king:tag/}</p>
 
-		<p>
-		{king:tag explode=','}
-			<a href="{king:root/}index.php/tag-{king:tag fun='urlencode'/}{config:system.rewriteend/}">{king:tag/}</a>
-		{/king:tag}
-		</p>
 
 
 		<hr/>
