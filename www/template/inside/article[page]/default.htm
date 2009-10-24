@@ -1,6 +1,23 @@
-<div class="article">
-	<div class="article_content">
-		<div class="toolbar">
+<div class="article_content">
+	<div class="article_content_side">
+		<div class="panel" id="tags">
+			<dl class="tags">
+				{king:portal.tag number='50' iscommend='1'}
+					<dt><a href="{king:path/}" title="{king:title/} - {king:hit/}">{king:title size="8" /}</a></dt>
+					<dd>
+						<ul>
+						{king:portal number='3' modelid="(king:modelid/)" type="tag"}
+							<li><a href="{king:path/}">{king:title/}</a></li>
+						{/king:portal}
+						</ul>
+					</dd>
+				{/king:portal.tag}
+			</dl>
+		</div>
+		{king:block name='文章_内容_左侧' /}
+	</div>
+	<div class="article_content_main">
+		<div class="navbar">
 			<a href="{config:system.siteurl/}{config:system.inst/}">{config:system.sitename/}</a> &gt; {king:nav line=" &gt; " /}
 		</div>
 
@@ -39,28 +56,10 @@
 
 
 
-		<p>添加：<a href="{king:add/}">添加主题</a></p>
-		<p>回复：<a href="{king:reply/}">回复主题</a></p>
-		<p>编辑：<a href="{king:edit/}">编辑主题</a></p>
-
-
-
-
-
-		<hr/>
-		{king:page/}
-		<!-- 当每页显示数为1的时候用这个分页 -->
-		<ol>
-		{king:portal.article type="pagelist"}
-			<li><?php echo {king:this/}==1 ? '&gt;' : ' '; ?><a href="{king:path/}">{king:title/}</a> - {king:this/}</li>
-		{/king:portal.article}
-		</ol>
+		<div class="toolbar"><a href="{king:add/}">添加主题</a> | <a href="{king:reply/}">回复主题</a> | <a href="{king:edit/}">编辑主题</a></div>
 	</div>
-
 	<div class="article_side">
-		<div class="ad">
-		1
-		</div>
+		{king:block name='文章_内容_右侧_广告' /}
 		<div class="panel" id="special">
 				<h3>专题</h3>
 				<div class="content">
@@ -78,10 +77,11 @@
 			<div class="content">
 			<ul>
 				{king:portal.article type='lately'}
-				<li><a href="{king:path/}">{king:title/}</a> - {king:hit/}</li>
+				<li>[{king:listname/}] <a href="{king:path/}">{king:title/}</a> - {king:hit/}</li>
 				{/king:portal.article}
 			</ul>
 			</div>
 		</div>
+		{king:block name='文章_内容_右侧' /}
 	</div>
 </div>
