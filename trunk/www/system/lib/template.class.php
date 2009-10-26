@@ -33,7 +33,6 @@ public function KC_Template_class($outTmp='',$inTmp=''){//读取模板 并 合�
 		?$s_in=kc_f_get_contents(strtolower($inTmp))
 		:$s_in='{king:inside/}';
 	$s=preg_replace('/{king:inside\s*\/}/i',$s_in,$s,1);
-	$s=preg_replace('%(</title[^>]*>)%s',"\${1}\n<meta name=\"generator\" content=\"KingCMS\"/>\n<script type=\"text/javascript\" src=\"".$king->config('inst')."system/js/jquery.js\"></script>\n<script type=\"text/javascript\" src=\"".$king->config('inst')."system/js/jquery.kc.js\"></script>",$s);
 	$s=preg_replace('%(\<(script|link|img|input|embed|object|base|area|map|table|td|th|tr|param) [^>]*(src|href|background|value)=(["\']))((\.\.\/)+)(images\/[^>]+\4[^>]*\>)%s',"\${1}".$king->config('siteurl').$king->config('inst')."\${7}",$s);
 	//过滤HTML注释<!--  -->
 	if($king->config('templatefiternote')){

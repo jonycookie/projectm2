@@ -18,7 +18,12 @@
 	</div>
 	<div class="article_content_main">
 		<div class="navbar">
-			<a href="{config:system.siteurl/}{config:system.inst/}">{config:system.sitename/}</a> &gt; {king:nav line=" &gt; " /}
+			<div class="article_path"><a href="{config:system.siteurl/}{config:system.inst/}">{config:system.sitename/}</a> &gt; {king:nav line=" &gt; " /}</div>
+
+			<div class="fontResizer">
+				<a href="javascript:resizeFont(1);" id="addsize">A</a><a href="javascript:resizeFont(1);" id="decsize">A</a>
+			</div>
+
 		</div>
 
 
@@ -29,25 +34,12 @@
 		{king:_source split="|"}
 			<a href="{king:_source_2/}" target="_blank">{king:_source_1/}</a>
 		{/king:_source}
-
+		时间：{king:date formatdate="Y-m-d G:i"/}
 		作者：{king:_author/}
-
-		热度：{king:hit/}
-
-		<?php
-
-
-			if('{king:title fun="addslashes"/}'){//当标题中有单引号的时候，会出错，所以需要转换一下单引号
-				echo "有标题";
-			}else{
-				echo "标题呢？";
-			}
-
-		 
-		?>
+		点击：{king:hit/}
 
 		</div>
-		<div class="content">{king:content/}</div>
+		<div class="content" id="content">{king:content/}</div>
 		<div class="tag">
 		{king:tag explode=','}
 			<a href="{king:root/}index.php/tag-{king:tag fun='urlencode'/}{config:system.rewriteend/}">{king:tag/}</a>
@@ -56,7 +48,12 @@
 
 
 
-		<div class="toolbar"><a href="{king:add/}">添加主题</a> | <a href="{king:reply/}">回复主题</a> | <a href="{king:edit/}">编辑主题</a></div>
+		<div class="toolbar">
+			<ul class="tool_list">
+				<li><a href="javascript" id="tool_print">打印</a></li>
+				<li><a href="#" id="tool_top">顶部</a></li>
+			</ul>
+		</div>
 	</div>
 	<div class="article_side">
 		{king:block name='文章_内容_右侧_广告' /}
@@ -76,8 +73,8 @@
 			<h3>最近热门</h3>
 			<div class="content">
 			<ul>
-				{king:portal.article type='lately'}
-				<li>[{king:listname/}] <a href="{king:path/}">{king:title/}</a> - {king:hit/}</li>
+				{king:portal.article type='lately' zebra="2"}
+				<li class='no_{king:i/} zebra_{king:zebra/}'>[{king:listname/}] <a href="{king:path/}">{king:title/}</a> - {king:hit/}</li>
 				{/king:portal.article}
 			</ul>
 			</div>
