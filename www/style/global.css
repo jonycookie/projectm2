@@ -76,7 +76,7 @@ strong		{font-weight:bold;}
 .soft		{color:#D3D3D3;}
 .hide,.none	{display:none;}
 .pipe		{margin: 0 5px; color:#bbb;}
-
+.zebra_0, .zebra_1	{}
 /* Toolbar  ----------------------------------------*/
 #toolbar {
 	background: url(image/toolbar_bg.png) repeat-x;
@@ -367,6 +367,7 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 	clear: both;
 }
 .article_content_side {
+	display: none;
 	float: left;
 	width: 75px;
 	padding-right: 15px;
@@ -389,8 +390,7 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 }
 .article_content_main {
 	float: left;
-	width: 550px;
-	padding: 0 0 0 20px;
+	width: 650px;
 }
 .article_content_main .navbar {
 	color: #999;
@@ -427,8 +427,33 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 .article_content_main .toolbar {
 	color: #999;
 	padding: 5px;
-	border: 1px solid #eee;
+	border-top: 1px solid #eee;
 	background: #fafafa;
+}
+.tool_list {
+	line-height: 14px;
+}
+.tool_list:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.tool_list li {
+	float: left;
+}
+.tool_list li a {
+	display: bolck;
+	float: left;
+	border-right: 1px solid #eee;
+	padding-right: 5px;
+	margin-right: 5px;
+	padding-left: 16px;
+}
+.tool_list li a#tool_print {
+	background: url(image/toolbar.png) no-repeat left center;
+}
+.tool_list li a#tool_top {
+	background: url(image/toolbar.png) no-repeat left center;
 }
 .article_side {
 	width: 280px;
@@ -454,3 +479,14 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 	background: #fff;
 }
 
+#ranking.panel .content{
+	border: 0;
+	padding: 0;
+	background: transparent;
+}
+#ranking.panel .zebra_0 {
+	background: #fff;
+}
+#ranking.panel li {
+	border-bottom: 1px dashed #ddd;
+}
