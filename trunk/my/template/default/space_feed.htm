@@ -1,0 +1,153 @@
+<!--{eval $_TPL['titles'] = array('动态');}-->
+<!--{template header}-->
+
+<script>
+	function notice_show() {
+		if($('help_notice').style.display=='') {
+			$('help_notice').style.display='none';
+		} else {
+			$('help_notice').style.display='';
+		}
+	}
+</script>
+
+<!--{if $_SCONFIG['showall']}-->
+<div class="c_header a_header">
+	<a href="space.php?uid=$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a>
+	<h1><!--{if $space[self]}-->首页<!--{else}-->个人动态<!--{/if}--></h1>
+	<a href="space.php?uid=$space[uid]" class="spacelink"><!--{if $space[self]}-->我<!--{else}-->$space[username]<!--{/if}-->的空间</a>
+</div>
+
+<!--{if $space[self]}-->
+<div class="tabs_header">
+	<ul class="tabs">
+		<!--{if $space[friendnum]}--><li$actives[we]><a href="space.php?uid=$space[uid]&do=home">好友动态</a></li><!--{/if}-->
+		<li$actives[all]><a href="space.php?uid=$space[uid]&do=home&view=all">网站近况</a></li>
+		<li$actives[me]><a href="space.php?uid=$space[uid]&do=home&view=me">我的动态</a></li>
+	</ul>
+</div>
+<!--{/if}-->
+
+<div class="h_status">
+	<table width="100%"><tr><td>以时间排序</td><td align="right"><a href="javascript:;" onclick="notice_show();">帮助提示</a></td></tr></table>
+</div>
+<!--{/if}-->
+
+<div class="side_right">
+	<div class="wide">
+	
+		<!--{if empty($_SCONFIG['showall'])}-->
+		<table width="100%"><tr><td><h1 class="l_text"><!--{if $_GET['view']=='me'}-->个人动态<!--{elseif $_GET['view']=='all'}-->网站近况<!--{else}-->好友动态<!--{/if}--></h1></td><td align="right"><!--{if $space[self]}--><a href="javascript:;" onclick="notice_show();">帮助提示</a><!--{/if}--></td></tr></table>
+		<!--{/if}-->
+		
+		<div class="notice" id="help_notice" style="display:$shownotice_style;">
+			<p><strong>欢迎您，$space[username]，这里就是您的家。</strong><br>
+			您可以在这里可以<a href="space.php?do=doing" target="_blank">写迷你博客</a>、<a href="cp.php?ac=blog" target="_blank">发表日志</a>、<a href="cp.php?ac=upload" target="_blank">上传图片</a>，与志同道合的人一起<a href="cp.php?ac=thread" target="_blank">讨论话题</a>。<br>
+			在<a href="cp.php?ac=friend&op=find" target="_blank">寻找熟悉的用户并加为好友</a>后，您发表的点点滴滴才会及时的通知到好友而被分享或评论，同时，您的首页也只显示您的好友们的动态了。<br>通过策略中的<a href="cp.php?ac=privacy" target="_blank">隐私设置</a>，您完全可以决定自己的信息能够被哪些用户看到。</p>
+		</div>
+		
+		<div class="box feed">
+		<!--{if $list}-->
+			<!--{loop $list $day $values}-->
+			<h4><!--{if $day=='today'}-->今天<!--{elseif $day=='yesterday'}-->昨天<!--{else}-->$day<!--{/if}--></h4>
+			<ul id="feed_ul">
+			<!--{loop $values $value}-->
+				<!--{template space_feed_li}-->
+			<!--{/loop}-->
+			</ul>
+			<!--{/loop}-->
+		<!--{else}-->
+			<h4>今天</h4>
+			<ul id="feed_ul">
+				<li>还没有动态。</li>
+			</ul>
+		<!--{/if}-->
+		</div>
+		<div class="page">$multi[html]</div>
+	</div>
+	<div class="narrow">
+	
+		<!--{if $notices}-->
+		<div class="inbox_notice">
+			<h2>通知 <a href="space.php?do=notice" class="title_action">查看全部</a></h2>
+			<ul>
+			<!--{loop $notices $type $count}-->
+				<li><a href="space.php?do=notice&type=$type"><strong>$count</strong> 条新$noticetypes[$type]</a></li>
+			<!--{/loop}-->
+			</ul>
+		</div>
+		<!--{/if}-->
+		
+		<!--{if $addfriendlist}-->
+		<script>
+			function myfriend(id) {
+				var liid = id.substr(6);
+				$('friend_'+liid).style.display = "none";
+			}
+		</script>
+		<div class="f_request">
+			<h2>好友 <a href="cp.php?ac=friend&op=request" class="title_action">查看全部</a></h2>
+			<ul>
+				<!--{loop $addfriendlist $value}-->
+				<li id="friend_$value[uid]">
+					<strong><a href="space.php?uid=$value[uid]">$value[username]</a></strong>
+					<!--{if $value[note]}-->$value[note]<!--{else}-->申请好友<!--{/if}-->
+					<p><a href="cp.php?ac=friend&op=add&uid=$value[uid]" id="a_f_r_$value[uid]" onclick="ajaxmenu(event, this.id, 99999, '', -1)">批准</a><span class="pipe">|</span>
+					<a href="cp.php?ac=friend&op=ignore&uid=$value[uid]&confirm=1" id="a_f_i_$value[uid]" onclick="ajaxmenu(event, this.id, 1, 'myfriend')">拒绝</a></p>
+				</li>
+				<!--{/loop}-->
+			</ul>
+		</div>
+		<!--{/if}-->
+		
+		<!--{if $pokelist}-->
+		<script>
+			function mypoke(id) {
+				var liid = id.substr(6);
+				$('poke_'+liid).style.display = "none";
+			}
+			function mypoke_all(id) {
+				$('poke_ul').style.display = "none";
+			}
+		</script>
+		<div class="poke">
+			<h2>招呼 <a href="cp.php?ac=poke&op=ignore" id="a_poke" onclick="ajaxmenu(event, this.id, 1000, 'mypoke_all')" class="title_action">全部忽略</a></h2>
+			<ul id="poke_ul">
+				<!--{loop $pokelist $value}-->
+				<li id="poke_$value[uid]">
+					<strong><a href="space.php?uid=$value[uid]">$value[username]</a></strong>
+					<!--{if $value[note]}-->$value[note]<!--{else}-->打个招呼<!--{/if}-->
+					<p>
+						<a href="cp.php?ac=poke&op=reply&uid=$value[uid]" id="a_p_r_$value[uid]" onclick="ajaxmenu(event, this.id, 99999, '', -1)">回复</a><span class="pipe">|</span>
+						<a href="cp.php?ac=poke&op=ignore&uid=$value[uid]" id="a_p_i_$value[uid]" onclick="ajaxmenu(event, this.id, 1, 'mypoke')">忽略</a></p>
+				</li>
+				<!--{/loop}-->
+			</ul>
+		</div>
+		<!--{/if}-->
+		
+		<!--{if $space[self]}-->
+		<!--{if empty($_SCONFIG['closeinvite'])}-->
+		<div>
+			<h2>邀请好友</h2>
+			<ul>
+				<li>邀请好友一起加入进来，分享点点滴滴。<a href="cp.php?ac=invite">邀请好友</a></li>
+			</ul>
+		</div>
+		<!--{/if}-->
+		<div>
+			<h2>寻找好友</h2>
+			<ul>
+				<li>找找站内有更多志同道合的朋友吗？<a href="cp.php?ac=friend&op=find">立即找找看</a></li>
+			</ul>
+		</div>
+		<!--{/if}-->
+		
+		<!--{ad/rightside}--><!-- 右侧栏广告-->
+		<br>
+	</div>
+</div>
+<div class="f_status f_status_w s_clear">
+	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
+</div>
+<!--{template footer}-->

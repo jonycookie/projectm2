@@ -1,0 +1,153 @@
+<!--{eval $_TPL['titles'] = array('迷你博客');}-->
+<!--{template header}-->
+
+<div class="c_header a_header">
+	<a href="space.php?uid=$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a>
+	<h1>迷你博客</h1>
+	<a href="space.php?uid=$space[uid]" class="spacelink"><!--{if $space[self]}-->我<!--{else}-->$space[username]<!--{/if}-->的空间</a>
+</div>
+
+<!--{if $space[self]}-->
+<div class="tabs_header">
+	<ul class="tabs">
+		<!--{if $space[friendnum]}--><li$actives[we]><a href="space.php?uid=$space[uid]&do=$do">最新迷你博客</a></li><!--{/if}-->
+		<li$actives[me]><a href="space.php?uid=$space[uid]&do=$do&view=me">我的迷你博客</a></li>
+		<!--{if $_SCONFIG['showall']}--><li$actives[all]><a href="network.php?ac=doing">大家的迷你博客</a></li><!--{/if}-->
+	</ul>
+</div>
+<!--{/if}-->
+
+<div class="h_status">以发布时间为序</div>
+
+<div class="side_right">
+	<div class="wide">
+
+<!--{if $space[self]}-->
+		<form method="post" action="cp.php?ac=doing" class="quickpost">
+			<table cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="2">
+						<textarea id="message" name="message" onkeyup="textCounter(this, 'maxlimit', 200)" onkeydown="ctrlEnter(event, 'add');" rows="4"></textarea>
+					</td>
+				</tr>	
+				<tr>
+					<td>
+						<input type="hidden" name="addsubmit" value="true" />
+						<input type="hidden" name="refer" value="$theurl" />
+						<input type="submit" id="add" name="add" value="发布" class="submit" />
+					</td>
+					<td align="right">还可输入 <strong id="maxlimit">200</strong> 字节 </td>
+				</tr>
+			</table>
+		</form>
+		<br />
+<!--{/if}-->
+		
+		<div class="post_list line_list l_text <!--{if !empty($space[friend])}-->a_list<!--{/if}-->">
+		
+			<!--{if $doid}-->
+			<div class="notice">
+				当前只显示与你操作相关的单个迷你博客，<a href="$theurl">点击此处查看全部</a>
+			</div>
+			<!--{/if}-->
+		
+			<!--{if $list}-->
+			<ul id="doing_ul">
+				<!--{loop $list $value}-->
+				<li id="doing_$value[doid]_li">
+					<!--{if !empty($space[friend])}-->
+					<a href="space.php?uid=$value[uid]"><img src="<!--{avatar($value[uid],small)}-->" alt="$value[username]" class="avatar" /></a>
+					<a href="space.php?uid=$value[uid]">$value[username]</a>&nbsp;
+					<!--{/if}-->
+					$value[message]
+					<!--{if $value[uid]!=$_SGLOBAL[supe_uid]}-->
+					&nbsp; <a href="cp.php?ac=doing&op=reply&doid=$value[doid]" id="doing_reply_$value[doid]" onclick="ajaxmenu(event, this.id, 99999, '', -1)">评论</a>
+					<!--{/if}-->
+					&nbsp; <span class="time"><!--{date('m-d H:i',$value[dateline],1)}--></span>
+					<!--{if $value[uid]==$_SGLOBAL[supe_uid]}-->
+					<a href="cp.php?ac=doing&op=delete&doid=$value[doid]" id="doing_delete_$value[doid]" onclick="ajaxmenu(event, this.id, 99999)" class="float_del">删除</a>
+					<!--{/if}-->
+				</li>
+				<!--{/loop}-->
+			</ul>
+			<!--{else}-->
+			<div class="article">现在还没有迷你博客。<!--{if $space[self]}-->你可以用一句话记录生活中的点点滴滴<!--{/if}--></div>
+			<!--{/if}-->
+		</div>
+
+		<div class="page">$multi[html]</div>
+	</div>
+
+	<div class="narrow">
+		<!--{ad/rightside}--><!-- 右侧栏广告-->
+	</div>
+
+</div>
+
+
+<script>
+	//删除
+	function doing_delete(doid, result) {
+		if(result) {
+			var obj = $('doing_'+ doid +'_li');
+			obj.style.display = "none";
+		}
+	}
+	function textCounter(obj, showid, maxlimit) {
+		var len = strLen(obj.value);
+		var showobj = $(showid);
+		if(len > maxlimit) {
+			obj.value = getStrbylen(obj.value, maxlimit);
+			showobj.innerHTML = '0';
+		} else {
+			showobj.innerHTML = maxlimit - len;
+		}
+		if(maxlimit - len > 0) {
+			showobj.parentNode.style.color = "";
+		} else {
+			showobj.parentNode.style.color = "red";
+		}
+		
+	}
+	function getStrbylen(str, len) {
+		var num = 0;
+		var strlen = 0;
+		var newstr = "";
+		var obj_value_arr = str.split("");
+		for(var i = 0; i < obj_value_arr.length; i ++) {
+			if(i < len && num + byteLength(obj_value_arr[i]) <= len) {
+				num += byteLength(obj_value_arr[i]);
+				strlen = i + 1;
+			}
+		}
+		if(str.length > strlen) {
+			newstr = str.substr(0, strlen);
+		} else {
+			newstr = str;
+		}
+		return newstr;
+	}
+	function byteLength (sStr) {
+		aMatch = sStr.match(/[^\x00-\x80]/g);
+		return (sStr.length + (! aMatch ? 0 : aMatch.length));
+	}
+	function strLen(str) {
+		var charset = document.charset; 
+		var len = 0;
+		for(var i = 0; i < str.length; i++) {
+			len += str.charCodeAt(i) < 0 || str.charCodeAt(i) > 255 ? (charset == "utf-8" ? 3 : 2) : 1;
+		}
+		return len;
+	}
+	//添加迷你博客的评论
+	function doing_add(doid, result) {
+		if(result) {
+			window.location.href = "space.php?do=doing";
+		}
+	}
+</script>
+
+<div class="f_status f_status_w s_clear">
+	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
+</div>
+<!--{template footer}-->

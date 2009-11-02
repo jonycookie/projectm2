@@ -1,0 +1,49 @@
+<?php
+/*
+	[UCenter Home] (C) 2007-2008 Comsenz Inc.
+	$Id: admincp_tagtpl.php 6680 2008-03-21 02:30:32Z liguode $
+*/
+
+if(!defined('IN_UCHOME')) {
+	exit('Access Denied');
+}
+
+//权限
+if(!checkperm('managetagtpl')) {
+	cpmessage('no_authority_management_operation');
+}
+
+if(submitcheck('tagtplsubmit')) {
+	include_once S_ROOT.'./source/function_cache.php';
+	$value = serialize($_POST['relatedtag']);
+	data_set('relatedtag', addslashes($value));
+	tagtpl_cache();
+	app_cache();//应用列表缓存
+	cpmessage('do_success', 'admincp.php?ac=tagtpl');
+}
+
+if(empty($_GET['op'])) {
+	include_once S_ROOT.'./uc_client/client.php';
+	$applist = uc_app_ls();
+	$relatedtag = data_get('relatedtag');
+	$relatedtag = unserialize($relatedtag);
+	if(empty($relatedtag)) $relatedtag = array();
+}
+
+//更新tag模板文件
+function tagtpl_cache() {
+	$relatedtag = unserialize(data_get('relatedtag'));
+	if(empty($relatedtag)) $relatedtag = array();
+	
+	foreach($relatedtag['data'] as $appid => $data) {
+		$relatedtag['limit'][$appid] = empty($relatedtag['limit'][$appid])?0:intval($relatedtag['limit'][$appid]);
+		$data['template'] = trim($data['template']);
+		if(empty($relatedtag['limit'][$appid]) || empty($data['template'])) {
+			unset($relatedtag['data'][$appid]);
+			unset($relatedtag['limit'][$appid]);
+		}
+	}
+	cache_write('tagtpl', "_SGLOBAL['tagtpl']", $relatedtag);
+}
+
+?>

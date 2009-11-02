@@ -1,0 +1,39 @@
+<!--{eval $_TPL['titles'] = array($tag['tagname'], '标签');}-->
+<!--{template header}-->
+
+<div class="c_header a_header">
+	<a href="space.php?uid=$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a>
+	<h1>标签<em>&nbsp;- $tag[tagname]</em></h1>
+	<a href="space.php?uid=$space[uid]" class="spacelink"><!--{if $space[self]}-->我<!--{else}-->$space[username]<!--{/if}-->的空间</a>
+</div>
+
+<div class="h_status">
+	共 $tag[blognum] 篇日志<span class="pipe">|</span>
+	<a href="space.php?do=tag">返回标签列表</a>
+</div>
+
+<div class="thread_list">
+	<table cellspacing="0" cellpadding="0" class="infotable">
+		<thead>
+			<tr>
+				<td class="subject">$tag[tagname]</td>
+				<td class="author">作者<em>回复数</em></td>
+				<td class="lastpost">发布时间</td>
+			</tr>
+		</thead>
+		<!--{loop $list $value}-->
+		<tr>
+			<td class="subject"><a href="space.php?uid=$value[uid]&do=blog&id=$value[blogid]" target="_blank">$value[subject]</a></td>
+			<td class="author"><a href="space.php?uid=$value[uid]">$value[username]</a><em>$value[replynum]</em></td>
+			<td class="lastpost"><!--{date('m-d H:i',$value[dateline],1)}--></td>
+		</tr>
+		<!--{/loop}-->
+	</table>
+	
+	<div class="page">$multi[html]</div>
+</div>
+<div class="f_status s_clear">
+	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
+	<a href="cp.php?ac=share&type=tag&id=$tag[tagid]" id="a_share" onclick="ajaxmenu(event, this.id, 99999,'' , -1)">分享</a>
+</div>
+<!--{template footer}-->
