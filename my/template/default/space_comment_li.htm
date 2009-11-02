@@ -1,0 +1,18 @@
+<!--{if empty($ajax_edit)}--><li id="comment_$value[cid]_li"><!--{/if}-->
+	<a href="space.php?uid=$value[authorid]"><img src="<!--{avatar($value[authorid],small)}-->" alt="$value[author]" class="avatar" /></a>
+	<div class="title">
+		<div class="r_option">
+			<!--{if $value[authorid]==$_SGLOBAL[supe_uid]}-->
+			<a href="cp.php?ac=comment&op=edit&cid=$value[cid]" id="c_$value[cid]_edit" onclick="ajaxmenu(event, this.id, 99999, '', -1)">编辑</a>
+			<!--{/if}-->
+			<!--{if $value[authorid]==$_SGLOBAL[supe_uid] || $value[uid]==$_SGLOBAL[supe_uid]}-->
+			<a href="cp.php?ac=comment&op=delete&cid=$value[cid]" id="c_$value[cid]_delete" onclick="ajaxmenu(event, this.id, 99999)">删除</a>
+			<!--{/if}-->
+			<!--{if $value[authorid]!=$_SGLOBAL[supe_uid] && ($value['idtype'] != 'uid' || $space[self])}-->
+			<a href="cp.php?ac=comment&op=reply&cid=$value[cid]" id="c_$value[cid]_reply" onclick="ajaxmenu(event, this.id, 99999, '', -1)">回复</a>
+			<!--{/if}-->
+		</div>
+		<a href="space.php?uid=$value[authorid]" id="author_$value[cid]">$value[author]</a> <span class="time"><!--{date('Y-m-d H:i',$value[dateline],1)}--></span>
+	</div>
+	<div class="detail" id="comment_$value[cid]">$value[message]</div>
+<!--{if empty($ajax_edit)}--></li><!--{/if}-->

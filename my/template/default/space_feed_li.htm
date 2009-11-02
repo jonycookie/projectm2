@@ -1,0 +1,31 @@
+<li class="type_$value[icon]" id="feed_$value[feedid]_li">
+	<!--{if $notime}-->
+	<a href="space.php?do=feed&icon=$value[icon]&view=$_GET[view]" class="type">$value[icon]</a>
+	<!--{else}-->
+	<a href="space.php?uid=$value[uid]&do=feed&appid=$value[appid]&icon=$value[icon]&view=me" class="type">$value[icon]</a>
+	<!--{/if}-->
+	<h6>$value[title_template]<!--{if empty($notime)}--> <span class="time"><!--{date('m-d H:i',$value[dateline],1)}--></span><!--{/if}--></h6>
+	<!--{if $value['image_1']}-->
+	<a href="$value[image_1_link]"><img src="$value[image_1]" class="summaryimg" /></a>
+	<!--{/if}-->
+	<!--{if $value['image_2']}-->
+	<a href="$value[image_2_link]"><img src="$value[image_2]" class="summaryimg" /></a>
+	<!--{/if}-->
+	<!--{if $value['image_3']}-->
+	<a href="$value[image_3_link]"><img src="$value[image_3]" class="summaryimg" /></a>
+	<!--{/if}-->
+	<!--{if $value['image_4']}-->
+	<a href="$value[image_4_link]"><img src="$value[image_4]" class="summaryimg" /></a>
+	<!--{/if}-->
+	<!--{if $value['body_template']}-->
+	<div class="detail" <!--{if $value['image_3']}-->style="clear: both;"<!--{/if}-->>$value[body_template]</div>
+	<!--{/if}-->
+	<!--{if $value['body_general']}-->
+	<div class="quote"><span class="q">$value[body_general]</span></div>
+	<!--{/if}-->
+	<!--{if $value[uid]==$_SGLOBAL[supe_uid]}-->
+	<a href="cp.php?ac=feed&op=delete&feedid=$value[feedid]" class="float_del" id="a_feed_$value[feedid]" onclick="ajaxmenu(event, this.id, 99999)">删除</a>
+	<!--{elseif $space[self] && empty($_GET['view'])}-->
+	<a href="cp.php?ac=feed&op=ignore&icon=$value[icon]&uid=$value[uid]&feedid=$value[feedid]" id="a_feedicon_$value[feedid]" onclick="ajaxmenu(event, this.id, 99999)" class="float_del float_block">屏蔽</a>
+	<!--{/if}-->
+</li>

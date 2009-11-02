@@ -1,0 +1,40 @@
+<!--{eval $_TPL['titles'] = array('分享', '随便看看');}-->
+<!--{template header}-->
+<!--{if $space[uid]}-->
+<div class="c_header a_header">
+	<a href="space.php?uid=$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a>
+	<h1>分享</h1>
+	<a href="space.php?uid=$space[uid]" class="spacelink">我的空间</a>
+</div>
+<div class="tabs_header">
+	<ul class="tabs">
+		<!--{if $space[friendnum]}--><li><a href="space.php?uid=$space[uid]&do=share">好友的分享</a></li><!--{/if}-->
+		<li><a href="space.php?uid=$space[uid]&do=share&view=me">我的分享</a></li>
+		<li class="active"><a href="network.php?ac=share">大家的分享</a></li>
+	</ul>
+</div>
+<div class="h_status">以发布时间为序</div>
+<!--{else}-->
+<!--{template network_header}-->
+<!--{/if}-->
+
+<div style="padding: 1em;">
+	<!--{if $list}-->
+	<div class="post_list">
+		<ul>
+			<!--{loop $list $value}-->
+			<!--{template space_share_li}-->
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<div class="page">
+	<!--{if $multi[html]=='networkpage'}-->仅显示最新更新的 $count 个分享<!--{else}-->$multi[html]<!--{/if}-->
+	</div>
+	<!--{else}-->
+	<div class="c_form">没有相应的分享。</div>
+	<!--{/if}-->
+</div>
+<div class="f_status f_status_w s_clear">
+	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
+</div>
+<!--{template footer}-->

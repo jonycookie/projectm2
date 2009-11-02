@@ -1,0 +1,69 @@
+<!--{eval $_TPL['titles'] = array('分享');}-->
+<!--{template header}-->
+
+<div class="c_header a_header">
+	<a href="space.php?uid=$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a>
+	<h1>分享</h1>
+	<a href="space.php?uid=$space[uid]" class="spacelink"><!--{if $space[self]}-->我<!--{else}-->$space[username]<!--{/if}-->的空间</a>
+</div>
+
+<!--{if $space[self]}-->
+<div class="tabs_header">
+	<ul class="tabs">
+		<!--{if $space[friendnum]}--><li$actives[we]><a href="space.php?uid=$space[uid]&do=share">好友的分享</a></li><!--{/if}-->
+		<li$actives[me]><a href="space.php?uid=$space[uid]&do=share&view=me">我的分享</a></li>
+		<!--{if $_SCONFIG['showall']}--><li><a href="network.php?ac=share">大家的分享</a></li><!--{/if}-->
+	</ul>
+</div>
+<!--{/if}-->
+
+<div class="h_status">以分享时间为序</div>
+
+<div class="side_right">
+	<div class="wide">
+		<div class="post_list">
+			<ul id="share_ul">
+	<!--{if $list}-->
+			<!--{loop $list $value}-->
+				<!--{template space_share_li}-->
+			<!--{/loop}-->
+	<!--{else}-->
+			<li>现在还没有分享。</li>
+	<!--{/if}-->
+			</ul>
+		</div>
+		<div class="page">$multi[html]</div>
+	</div>
+
+	<div class="narrow">
+		<!--{if $space[self]}-->
+		<form id="shareform" name="shareform" action="cp.php?ac=share&type=link" method="post">
+		<table cellspacing="2" cellpadding="2" width="100%">
+			<tr><td><strong>分享网址:</strong></td></tr>
+			<tr><td><input type="text" class="t_input" name="link" id="share_link" style="width:98%;" value="http://" /></td></tr>
+			<tr><td><strong>描述:</strong></td></tr>
+			<tr>
+
+				<td>
+
+					<textarea id="share_general" name="general" style="width:98%;" rows="3" onkeydown="ctrlEnter(event, 'sharesubmit_btn')"></textarea>
+
+				</td>
+
+			</tr>
+			<tr><td>
+			<input type="hidden" name="refer" value="space.php?uid=$space[uid]&do=share&view=me" />
+			<input type="hidden" name="sharesubmit" value="true" />
+			<input type="button" id="sharesubmit_btn" name="sharesubmit_btn" value="分享" class="submit" onclick="ajaxpost('shareform', 'sharestatus', 'share_add')" /></td></tr>
+			<tr><td id="sharestatus"></td></tr>
+		</table>
+		</form>
+		<!--{/if}-->
+		
+	</div>
+
+</div>
+<div class="f_status s_clear">
+	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
+</div>
+<!--{template footer}-->

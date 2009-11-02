@@ -1,0 +1,43 @@
+<!--{template admin/tpl/header}-->
+
+<div class="mainarea">
+<div class="maininner">
+
+	<form method="post" action="admincp.php?ac=credit">
+	<div class="bdrcontent">
+	
+	<table cellspacing="0" cellpadding="0" class="formtable">
+	<tr><th>增加积分操作</th><th>增加(+)</th><th>减少积分操作</th><th>减少(-)</th></tr>
+	<tr><td>发布日志</td><td><input type="text" name="get[blog]" value="$get[blog]" size="5"></td>
+		<td>日志被删除</td><td><input type="text" name="pay[blog]" value="$pay[blog]" size="5"></td></tr>
+	<tr><td>发布评论/留言</td><td><input type="text" name="get[comment]" value="$get[comment]" size="5"></td>
+		<td>评论/留言被删除</td><td><input type="text" name="pay[comment]" value="$pay[comment]" size="5"></td></tr>
+	<tr><td>发起话题</td><td><input type="text" name="get[thread]" value="$get[thread]" size="5"></td>
+		<td>话题被删除</td><td><input type="text" name="pay[thread]" value="$pay[thread]" size="5"></td></tr>
+	<tr><td>发布回帖</td><td><input type="text" name="get[post]" value="$get[post]" size="5"></td>
+		<td>回帖被删除</td><td><input type="text" name="pay[post]" value="$pay[post]" size="5"></td></tr>
+	<tr><td>邀请好友注册成功</td><td><input type="text" name="get[invite]" value="$get[invite]" size="5"></td>
+		<td>获取注册邀请码</td><td><input type="text" name="pay[invite]" value="$pay[invite]" size="5"></td></tr>
+	<tr><td>&nbsp;</td><td>&nbsp;</td>
+		<td>搜索一次</td><td><input type="text" name="pay[search]" value="$pay[search]" size="5"></td></tr>
+	<tr><td>&nbsp;</td><td>&nbsp;</td>
+		<td>兑换1M的上传空间</td><td><input type="text" name="pay[attach]" value="$pay[attach]" size="5"></td></tr>
+	<tr><td>&nbsp;</td><td>&nbsp;</td>
+		<td>日志导入</td><td><input type="text" name="pay[xmlrpc]" value="$pay[xmlrpc]" size="5"></td></tr>
+	</table>
+	
+	</div>
+	
+	<div class="footactions">
+		<input type="submit" name="creditsubmit" value="提交" class="submit">
+	</div>
+	
+	</form>
+</div>
+</div>
+
+<div class="side">
+	<!--{template admin/tpl/side}-->
+</div>
+
+<!--{template admin/tpl/footer}-->

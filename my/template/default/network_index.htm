@@ -1,0 +1,149 @@
+<!--{eval $_TPL['titles'] = array('随便看看');}-->
+<!--{template header}-->
+
+<div class="c_header">
+	<h1>随便看看</h1>
+</div>
+<div class="l_content">	
+	<div class="wide">
+	
+		<!--{if empty($_SGLOBAL['supe_uid'])}-->
+		<div class="box">
+		<h3>欢迎您</h3>
+		<div class="box_action">这是您和好友们的网络家园</div>
+		<div class="l_text" style="margin-top:5px;">
+		您可以用<a href="help.php?ac=doing">迷你博客</a>一句话记录生活中的点点滴滴；<br />
+		方便快捷地<a href="help.php?ac=blog">发布日志</a>、<a href="help.php?ac=album">上传图片</a>；<br />
+		与好友们一起<a href="help.php?ac=share">分享信息</a>、<a href="help.php?ac=mtag">讨论感兴趣的话题</a>；<br />
+		更可轻松快捷了解<a href="help.php?ac=home">好友最新动态</a>。
+		</div>
+		</div>
+		<!--{/if}-->
+		
+		<div class="box">
+			<h3><a href="network.php?ac=space">成员</a></h3>
+			<div class="box_action">
+				<p>显示 <!--{eval echo count($netcache['spacelist']);}--> 名会员</p>
+				<p class="action"><a href="network.php?ac=space">查看全部</a></p>
+			</div>
+			<ul class="avatar_list" style="margin-left:-10px;">
+				<!--{loop $netcache['spacelist'] $value}-->
+				<li><a href="space.php?uid=$value[uid]"><img src="<!--{avatar($value[uid],small)}-->" alt="$value[username]" /></a><p><a href="space.php?uid=$value[uid]">$value[username]</a></p></li>
+				<!--{/loop}-->
+			</ul>
+		</div>
+	
+		<div class="box">
+			<h3><a href="network.php?ac=doing">迷你博客</a></h3>
+			<div class="box_action">
+				<p>显示 <!--{eval echo count($netcache['doinglist']);}--> 条</p>
+				<p class="action"><a href="network.php?ac=doing">查看全部</a></p>
+			</div>
+			<div class="post_list line_list l_text a_list">
+				<ul>
+					<!--{loop $netcache['doinglist'] $value}-->
+					<li>
+						<a href="space.php?uid=$value[uid]"><img src="<!--{avatar($value[uid],small)}-->" alt="$value[username]" class="avatar" /></a>
+						<a href="space.php?uid=$value[uid]">$value[username]</a>&nbsp;
+						$value[message]<span class="time"><!--{date('m-d H:i',$value[dateline],1)}--></span>
+					</li>
+					<!--{/loop}-->
+				</ul>
+			</div>
+		</div>
+
+		<div class="box">
+			<h3><a href="network.php?ac=blog">日志</a></h3>
+			<div class="box_action">
+				<p>显示 <!--{eval echo count($netcache['bloglist']);}--> 条日志</p>
+				<p class="action"><a href="network.php?ac=blog">查看全部</a></p>
+			</div>
+			<div class="post_list a_list">
+				<ul>
+				<!--{loop $netcache['bloglist'] $value}-->
+					<li>
+						<a href="space.php?uid=$value[uid]"><img src="<!--{avatar($value[uid],small)}-->" alt="$value[username]" class="avatar" /></a>
+						<div class="title">
+							<h4><a href="space.php?uid=$value[uid]&do=blog&id=$value[blogid]">$value[subject]</a></h4>
+							<a href="space.php?uid=$value[uid]">$value[username]</a> <span class="time"><!--{date('Y-m-d H:i',$value[dateline],1)}--></span>
+						</div>
+						<div class="detail l_text">$value[message]</div>
+						<div class="status">
+							<!--{if $value[viewnum]}--><a href="space.php?uid=$value[uid]&do=blog&id=$value[blogid]">$value[viewnum] 次阅读</a> | <!--{/if}-->
+							<!--{if $value[replynum]}--><a href="space.php?uid=$value[uid]&do=blog&id=$value[blogid]#comment">$value[replynum] 个评论</a><!--{else}-->没有评论<!--{/if}-->
+						</div>
+					</li>
+				<!--{/loop}-->
+				</ul>
+			</div>
+		</div>
+		
+		<div class="box">
+			<h3><a href="network.php?ac=share">分享</a></h3>
+			<div class="box_action">
+				<p>显示 <!--{eval echo count($netcache['sharelist']);}--> 个分享</p>
+				<p class="action"><a href="network.php?ac=share">查看全部</a></p>
+			</div>
+			<div class="post_list">
+				<ul>
+				<!--{loop $netcache['sharelist'] $value}-->
+					<!--{template space_share_li}-->
+				<!--{/loop}-->
+				</ul>
+			</div>
+		</div>
+		
+	</div>
+	<div class="narrow">
+		<div class="box">
+			<h3><a href="network.php?ac=album">相册</a></h3>
+			<div class="box_action">
+				<p>显示 <!--{eval echo count($netcache['albumlist']);}--> 个相册</p>
+				<p class="action"><a href="network.php?ac=album">查看全部</a></p>
+			</div>
+			<ul class="line_list image_left">
+				<!--{loop $netcache['albumlist'] $value}-->
+				<li style="padding-top: 4px; padding-bottom: 4px;">
+					<p class="image"><a href="space.php?uid=$value[uid]&do=album&id=$value[albumid]"><img src="$value[pic]" /></a></p>
+					<table cellspacing="0" cellpadding="0" class="infotable">
+						<caption><a href="space.php?uid=$value[uid]&do=album&id=$value[albumid]">$value[albumname]</a></caption>
+						<tr><td><a href="space.php?uid=$value[uid]">$value[username]</a></td></tr>
+						<tr><td>更新: <!--{date('m-d H:i', $value[updatetime], 1)}--></td></tr>
+					</table>
+				</li>
+				<!--{/loop}-->
+			</ul>
+		</div>
+		
+		<!--{loop $_SGLOBAL['profield'] $fieldid $fvalue}-->
+		<!--{if $netcache['mtaglist'][$fieldid]}-->
+		<div class="box">
+			<h3><a href="space.php?do=mtag&id=$fieldid">{$_SGLOBAL[profield][$fieldid][title]}</a></h3>
+			<ul class="post_list line_list">
+				<!--{loop $netcache['mtaglist'][$fieldid] $key $value}-->
+				<li><a href="space.php?do=mtag&tagid=$value[tagid]">$value[tagname]</a><span class="gray">(<a href="space.php?do=mtag&tagid=$value[tagid]&view=member">$value[membernum]人</a>)</span></li>
+				<!--{/loop}-->
+			</ul>
+		</div>
+		<!--{/if}-->
+		<!--{/loop}-->
+		
+		<div class="box">
+			<h3><a href="network.php?ac=thread">话题</a></h3>
+			<div class="box_action">
+				<p>显示 <!--{eval echo count($netcache['threadlist']);}--> 个话题</p>
+				<p class="action"><a href="network.php?ac=thread">查看全部</a></p>
+			</div>
+			<ul class="post_list line_list">
+				<!--{loop $netcache['threadlist'] $value}-->
+				<li><a href="space.php?uid=$value[uid]&do=thread&id=$value[tid]">$value[subject]</a>
+				</li>
+				<!--{/loop}-->
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="f_status s_clear">
+	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
+</div>
+<!--{template footer}-->

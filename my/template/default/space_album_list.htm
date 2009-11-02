@@ -1,0 +1,77 @@
+<!--{eval $_TPL['titles'] = array('相册');}-->
+<!--{template header}-->
+
+<div class="c_header a_header">
+	<a href="space.php?uid=$space[uid]"><img src="<!--{avatar($space[uid],small)}-->" alt="$space[username]" class="avatar" /></a>
+	<h1>相册</h1>
+	<a href="space.php?uid=$space[uid]" class="spacelink"><!--{if $space[self]}-->我<!--{else}-->$space[username]<!--{/if}-->的空间</a>
+</div>
+
+<!--{if $space[self]}-->
+<div class="tabs_header">
+	<a href="cp.php?ac=upload" class="t_button">上传新图片</a>
+	<ul class="tabs">
+		<!--{if $space[friendnum]}--><li$actives[we]><a href="space.php?uid=$space[uid]&do=$do">好友最新相册</a></li><!--{/if}-->
+		<li$actives[me]><a href="space.php?uid=$space[uid]&do=$do&view=me">我的相册</a></li>
+		<!--{if $_SCONFIG['showall']}--><li><a href="network.php?ac=album">大家的相册</a></li><!--{/if}-->
+	</ul>
+</div>
+<!--{/if}-->
+
+<div class="h_status">相册列表</div>
+
+<div class="d_content">
+	<div class="albums_list<!--{if !$space['friend']}--> myalbums<!--{/if}-->">
+		<table cellspacing="6" cellpadding="0" width="100%">
+			<!--{if $default}-->
+			<tr>
+				<td>
+					<ul class="image_left">
+						<li>
+							<p class="image"><a href="space.php?uid=$space[uid]&do=$do&id=-1"><img src="$default[pic]" /></a></p>
+							<table cellspacing="0" cellpadding="0" class="infotable">
+								<caption><a href="space.php?uid=$space[uid]&do=$do&id=-1">默认相册</a></caption>
+								<tr><td>图片默认保存相册</td></tr>
+								<!--{if $space[uid]==$_SGLOBAL[supe_uid]}--><tr><td><a href="cp.php?ac=album&op=editpic">管理图片</a><span class="pipe">|</span><a href="cp.php?ac=upload">上传图片</a></td></tr><!--{/if}-->
+								<tr><td>更新: <!--{date('Y-m-d H:i', $default[dateline], 1)}--></td></tr>
+							</table>
+						</li>
+					</ul>
+				</td>
+			</tr>
+			<!--{/if}-->
+			<!--{if $list}-->
+			<!--{if $space['friend']}--><tr><!--{/if}-->
+			<!--{loop $list $key $value}-->
+			<!--{if empty($space['friend'])}--><tr><!--{/if}-->
+				<td>
+					<ul class="image_left">
+						<li>
+							<p class="image"><a href="space.php?uid=$value[uid]&do=$do&id=$value[albumid]"><img src="$value[pic]" alt="$value[albumname]" /></a></p>
+							<table cellspacing="0" cellpadding="0" class="infotable">
+								<caption><a href="space.php?uid=$value[uid]&do=$do&id=$value[albumid]">$value[albumname]</a></caption>
+								<tr><td>$value[picnum]张照片</td></tr>
+								<!--{if $space[friend]}--><tr><td><a href="space.php?uid=$value[uid]">$value[username]</a></td></tr><!--{/if}-->
+								<!--{if $value[uid]==$_SGLOBAL[supe_uid]}--><tr><td><a href="cp.php?ac=album&op=edit&albumid=$value[albumid]">管理相册</a><span class="pipe">|</span><a href="cp.php?ac=upload&albumid=$value[albumid]">上传图片</a></td></tr><!--{/if}-->
+								<tr><td>更新: <!--{date('Y-m-d H:i', $value[updatetime], 1)}--></td></tr>
+							</table>
+						</li>
+					</ul>
+				</td>
+				<!--{if $space['friend'] && $key%2==1}--></tr><tr><!--{/if}-->
+				<!--{if empty($space['friend'])}--><tr><!--{/if}-->
+			<!--{/loop}-->
+			<!--{if $space['friend']}--><tr><!--{/if}-->
+			<!--{elseif !$default}-->
+			<tr>
+				<td><div class="c_form">还没有相册。<!--{if $space[self]}-->您可以<a href="cp.php?ac=upload">上传自己的图片</a>。<!--{/if}--></div></td>
+			</tr>
+			<!--{/if}-->
+		</table>
+	</div>
+	<div class="page">$multi[html]</div>
+</div>
+<div class="f_status f_status_w s_clear">
+	<a href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
+</div>
+<!--{template footer}-->

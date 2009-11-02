@@ -1,0 +1,86 @@
+<!--{template admin/tpl/header}-->
+
+<div class="mainarea">
+	<div class="maininner">
+		<div class="bdrcontent">
+			<div class="title"><h3>欢迎光临管理平台</h3></div>
+			<p>通过管理平台操作，你可以对发布的信息进行批量管理。</p>
+			
+			<br />
+			<div class="title"><h3>快捷管理菜单</h3></div>
+			<ul class="listcol list2col">
+				<!--{if $menus[1]['space']}--><li><a href="admincp.php?ac=space" style="font-weight:bold;">用户/空间</a><p>编辑用户的积分、用户组、管理空间信息、删除用户</p></li><!--{/if}-->
+				<li><a href="admincp.php?ac=feed" style="font-weight:bold;">事件</a><p>对"我在做什么"进行批量删除</p></li>
+				<li><a href="admincp.php?ac=blog" style="font-weight:bold;">日志</a><p>对日志进行批量删除、编辑</p></li>
+				<li><a href="admincp.php?ac=album" style="font-weight:bold;">相册</a><p>对发布的相册进行批量删除</p></li>
+				<li><a href="admincp.php?ac=pic" style="font-weight:bold;">图片</a><p>对发布的图片进行批量删除</p></li>
+				<li><a href="admincp.php?ac=comment" style="font-weight:bold;">评论</a><p>对发布的评论进行批量删除</p></li>
+				<li><a href="admincp.php?ac=thread" style="font-weight:bold;">话题</a><p>对选吧上面发布的话题进行批量删除、精华、置顶</p></li>
+				<li><a href="admincp.php?ac=post" style="font-weight:bold;">回帖</a><p>对选吧上面发布的回帖进行批量删除</p></li>
+				<!--{if $menus[1]['tag']}--><li><a href="admincp.php?ac=tag" style="font-weight:bold;">标签</a><p>对站点的标签进行删除、关闭、合并</p></li><!--{/if}-->
+				<!--{if $menus[1]['mtag']}--><li><a href="admincp.php?ac=mtag" style="font-weight:bold;">选吧</a><p>对站点的选吧进行删除、关闭、合并</p></li><!--{/if}-->
+				<!--{if $menus[1]['css']}--><li><a href="admincp.php?ac=css" style="font-weight:bold;">模版样式</a><p>对站点共享的模版样式进行批量审核、删除</p></li><!--{/if}-->
+			</ul>
+		</div>
+		
+		<!--{if $menus[0][config]}-->
+		<br />
+		<div class="bdrcontent">
+			<div class="title"><h3>程序版本</h3></div>
+			<ul>
+				<li>您当前使用的程序版本：UCenter Home $statistics[version] ( $statistics[release] )</li>
+			</ul>
+			<div id="customerinfor" style="line-height:1.5em;"></div>
+		</div>
+	
+		<br />
+		<div class="bdrcontent">
+			<div class="title"><h3>系统统计信息</h3></div>
+			<ul class="listcol list2col">
+				<li>操作系统: $os</li>
+				<li>数据库版本: $statistics[mysql]</li>
+				<li>上传许可: $fileupload</li>
+				<li>数据库尺寸: $dbsize</li>
+				<li>附件尺寸: $attachsize</li>
+				<li>空间数: $statistics[spacenum]</li>
+				<li>日志数: $statistics[blognum]</li>
+				<li>相册数: $statistics[albumnum]</li>
+				<li>话题数: $statistics[threadnum]</li>
+				<li>事件数: $statistics[feednum]</li>
+			</ul>
+	
+			<br />
+			<div class="title">
+				<h3>服务链接</h3>
+				<p>如果你在使用中遇到问题，可以访问以下UCenter Home站点需求帮助</p>
+			</div>
+			<ul class="listcol list2col">
+				<li><a href=http://u.discuz.net/ target="_blank">UCenter Home产品网站</a></li>
+				<li><a href=http://u.discuz.net/bbs/ target="_blank">UCenter Home官方论坛</a></li>
+			</ul>
+
+			<br />
+			<div class="title">
+				<h3>开发团队</h3>
+			</div>
+			<table>
+				<tr><td>版权所有</td><td><a  href="http://www.comsenz.com/" target="_blank">康盛创想(北京)科技有限公司 (Comsenz Inc.)</a></td></tr>
+				<tr><td>总策划</td><td><a  href="http://www.discuz.net/space.php?uid=1" target="_blank">Kevin 'Crossday' Day</a>, <a  href="http://www.discuz.net/space.php?uid=174393" target="_blank">Guode 'Sup' Li</a></td></tr>
+				<tr><td>开发与支持团队</td><td><a  href="http://www.discuz.net/space.php?uid=322293" target="_blank">Qingpeng 'Andy' Zheng</a>, <a  href="http://www.discuz.net/space.php?uid=248739" target="_blank">Jing 'Qiezi' Zou</a>, <a  href="http://www.discuz.net/space.php?uid=672953" target="_blank">Fei 'Fengshu' Zhao</a>, <a  href="http://www.discuz.net/space.php?uid=465273" target="_blank">Lijun 'Maple-x' Zhang</a>, <a  href="http://www.discuz.net/space.php?uid=679269" target="_blank">Lei 'Shitou' Zhao</a></td></tr>
+				<tr><td>美工设计</td><td><a  href="http://www.discuz.net/space.php?uid=294092" target="_blank">Fangming 'Lushnis' Li</a>, <a  href="http://www.discuz.net/space.php?uid=174393" target="_blank">Yulong 'Yulong' Li</a></td></tr>
+				<tr><td>公司网站</td><td><a href=http://www.comsenz.com target="_blank">http://www.comsenz.com</a></td></tr>
+				<tr><td>产品网站</td><td><a href=http://u.discuz.net target="_blank">http://u.discuz.net</a></td></tr>
+			</table>
+		</div>
+		<!--{/if}-->
+	</div>
+</div>
+
+<div class="side">
+	<!--{template admin/tpl/side}-->
+</div>
+
+<!--{if $statistics['update']}-->
+<script language="javascript" src="http://u.discuz.net/customer/update.php?get=$statistics[update]"></script>
+<!--{/if}-->
+<!--{template admin/tpl/footer}-->
