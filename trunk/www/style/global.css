@@ -359,7 +359,7 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 }
 
 .article_content {
-	background: url(image/article_content_bg.png) repeat-y right;
+	background: url(image/dot_d.gif) repeat-y 650px 0;
 }
 .article_content:after {
 	content: "";
@@ -390,7 +390,7 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 }
 .article_content_main {
 	float: left;
-	width: 650px;
+	width: 635px;
 }
 .article_content_main .navbar {
 	color: #999;
@@ -456,14 +456,14 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 	background: url(image/toolbar.png) no-repeat left center;
 }
 .article_side {
-	width: 280px;
+	width: 310px;
 	float: right;
 }
 .article_side .ad {
 	text-align: center;
 }
 .article_side .panel {
-	margin: 10px 20px;
+	margin: 10px 15px;
 }
 .article_side .panel h3 {
 	color: #333;
@@ -478,6 +478,7 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 	padding: 10px;
 	background: #fff;
 }
+
 
 #ranking.panel .content{
 	border: 0;
