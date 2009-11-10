@@ -1,0 +1,92 @@
+<table summary="" id="pagehead" cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr>
+		<td><h1>系统日志</h1></td>
+		<td class="actions">
+		<table cellspacing="0" cellpadding="0" border="0" align="right" summary="">
+			<tbody>
+				<tr>
+					<td<!--{if $_GET['type'] == 'sys'}--> class="active" <!--{/if}-->><a href="$cpurl?action=adminlog">后台日志</a></td>
+					<td<!--{if $_GET['type'] == 'post'}--> class="active" <!--{/if}-->><a href="$cpurl?action=adminlog&type=post">推送日志</a></td>
+				</tr>
+			</tbody>
+		</table>
+		</td>
+	</tr>
+</table>
+
+<form action="$cpurl" method="get">
+<input type="hidden" value="adminlog" name="action"/>
+<input type="hidden" value="$_GET[type]" name="type"/>
+<table width="100%" cellspacing="0" cellpadding="0" class="toptable">
+	<tbody>
+		<tr>
+			<td>
+				日志时间范围
+				<input type="text" value="#date('Y-m-d', $starttime)#" size="20" name="starttime"/> ~ <input type="text" value="#date('Y-m-d', $starttime)#" size="20" name="endtime"/>
+				每页:<input type="text" size="2" value="20" id="perpage" name="perpage"/>条
+				<input type="submit" value="GO" name="filtersubmit"/>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</form>
+
+<!--{if $_GET['type'] == 'sys'}-->
+<table width="100%" cellspacing="0" cellpadding="0" class="listtable">
+	<tbody>
+		<tr>
+			<th width="60">用户id</th>
+			<th width="80">用户名</th>
+			<th>操作</th>
+			<th width="70">目标id</th>
+			<th width="180">日期</th>
+		</tr>
+		<!--{loop $list $value}-->
+		<tr>
+			<td width="60">$value[uid]</td>
+			<td width="80">$value[username]</td>
+			<td>$value[action]</td>
+			<td width="70">$value[itemid]</td>
+			<td width="120">#date("Y-m-d H:i:d", $value[dateline])#</td>
+		</tr>
+		<!--{/loop}-->
+		<!--{if $multipage}-->
+		<tr>
+			<td colspan="5">
+			$multipage
+			</td>
+		</tr>
+		<!--{/if}-->
+	</tbody>
+</table>
+<!--{elseif $_GET['type'] == 'post'}-->
+<table width="100%" cellspacing="0" cellpadding="0" class="listtable">
+	<tbody>
+		<tr>
+			<th width="60">用户id</th>
+			<th width="80">用户名</th>
+			<th width="70">文章id</th>
+			<th width="70">推送后的id</th>
+			<th width="70">推送名称</th>
+			<th width="180">日期</th>
+		</tr>
+		<!--{loop $list $value}-->
+		<tr>
+			<td >$value[uid]</td>
+			<td >$value[username]</td>
+			<td >$value[itemid]</td>
+			<td >$value[id]</td>
+			<td >{$_SGLOBAL[postnews_set][$value[setid]][setname]} &nbsp;</td>
+			<td >#date("Y-m-d H:i:d", $value[dateline])#</td>
+		</tr>
+		<!--{/loop}-->
+		<!--{if $multipage}-->
+		<tr>
+			<td colspan="5">
+			$multipage
+			</td>
+		</tr>
+		<!--{/if}-->
+	</tbody>
+</table>
+<!--{/if}-->
