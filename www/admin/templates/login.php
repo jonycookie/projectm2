@@ -53,12 +53,6 @@ $(function(){
       </form>
     </td>
   </tr>
-  <tr>
-    <td colspan="2" class="footer"><div class="copyright">
-	  <p>Powered by <a href="http://www.iDreamSoft.cn" target="_blank">iCMS</a><?=Version?> </p>
-	  <p>&copy;2007-2009, <a href="http://www.iDreamSoft.cn" target="_blank">iDreamSoft</a> Inc.</p>
-      </div></td>
-  </tr>
 </table>
 </body>
 </html>

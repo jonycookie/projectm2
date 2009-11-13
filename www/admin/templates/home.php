@@ -21,13 +21,6 @@ iCMS_admincp_head();
   function dofeedback(){
   	$('#feedback').toggle().floatdiv("middle").draggable();
   }
-	$(function(){
-		$.getJSON("http://www.idreamsoft.cn/cms/getLicense.php?callback=?",{license: '<?=$license?>'},
-			function(o){
-			  	$('#license').html(o.license);
-			}
-		);
-	});
   </script>
   <div class="itemtitle">
     <h3>欢迎进入系统设置</h3>
