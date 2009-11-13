@@ -53,10 +53,6 @@
     <td valign="top" width="100%"class="mask"><iframe src="<?=__SELF__?>?<?php echo $extra;?>" name="main" width="100%" height="100%" frameborder="0"scrolling="yes" style="overflow: visible;"></iframe></td>
   </tr>
 </table>
-<div class="copyright">
-  <p>Powered by:<a href="http://www.iDreamSoft.cn" target="_blank">iCMS</a> <?=Version?></p>
-  <p>&copy;2007-<?=date("Y")?> <a href="http://www.iDreamSoft.cn" target="_blank">iDreamSoft</a>.</p>
-</div>
 <div id="cpmap_menu" class="custom" style="display:none">
   <div class="cside">
     <h3><span class="ctitle1">常用操作</span></h3>

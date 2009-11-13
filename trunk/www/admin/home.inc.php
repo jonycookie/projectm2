@@ -22,7 +22,6 @@ for ($i=0;$i<$_count;$i++){
 }
 $c=$iCMS->db->getValue("SELECT count(*) FROM #iCMS@__catalog");
 $a=$iCMS->db->getValue("SELECT count(*) FROM #iCMS@__article");
-file_exists(iPATH.'license.php') && $license	= include iPATH.'license.php';
 include iCMS_admincp_tpl("home");
 function okorno($o){
 	return $o?'<font color=green>支持<b>√</b></font>':'<font color=red>不支持<b>×</b></font>';

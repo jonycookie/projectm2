@@ -1,9 +1,9 @@
 <?php
 	$config=array(
-		"name"=>"iCMS内容管理系统",
+		"name"=>"泡泡网",
 		"url"=>"http://www.m2.com",
-		"keywords"=>"iCMS内容管理系统",
-		"description"=>"iCMS 是一个采用 PHP 和 MySQL 数据库构建的高效内容管理系统,为中小型网站提供一个完美的解决方案。",
+		"keywords"=>"PCPOP,泡泡网,电脑网,中关村,电脑报价,新闻,行情,导购,装机,攒机,评测,新品,软件,下载,产品,报价,经销商,二手,数码,手机,数码相机,数码摄像机,DC,DV,MP3,MP4,论坛,硬件论坛",
+		"description"=>"泡泡网－第一数字产品互动媒体",
 		"icp"=>"ICP备案号",
 		"masteremail"=>"admin@domain.com",
 		"ishtm"=>"0",
@@ -53,7 +53,7 @@
 		"htmdircreaterule"=>"2",
 		"customhtmdircreaterule"=>"C/Y-m-d",
 		"bbs"=>"a:14:{s:4:\"call\";s:1:\"0\";s:4:\"type\";s:7:\"PHPWind\";s:3:\"url\";s:0:\"\";s:6:\"dbhost\";s:0:\"\";s:6:\"dbuser\";s:0:\"\";s:4:\"dbpw\";s:0:\"\";s:6:\"dbname\";s:0:\"\";s:7:\"charset\";s:0:\"\";s:5:\"dbpre\";s:0:\"\";s:7:\"picpath\";s:0:\"\";s:9:\"attachdir\";s:0:\"\";s:9:\"htmifopen\";s:1:\"0\";s:6:\"htmdir\";s:5:\"-htm-\";s:6:\"htmext\";s:5:\".html\";}",
-		"seotitle"=>"iDreamSoft",
+		"seotitle"=>"第一数字产品互动媒体",
 		"repeatitle"=>"1",
 		"CLsplit"=>",",
 		"iscache"=>"0",
