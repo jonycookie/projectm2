@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>会员注册</title>
+<meta name="description" content="<!--{$site.description|html2txt}-->">
+<meta name="generator" content="iCMS V3.1" />
+<meta name="author" content="iDreamSoft Studio" />
+<meta name="copyright" content="2007-2009 (c) iDreamSoft Studio." />
+<link href="<!--{$site.dir}-->/templates/system/style/iCMS.css" rel="stylesheet" type="text/css" />
+<!--{iCMS:javascript}-->
+<script type="text/javascript">
+$(function(){
+//验证码
+	$("#seccodeimg").click(function(){
+		$(this).attr('src',SiteDir+"/include/seccode.php?"+Math.random())
+	}); 	
+	$("#moreinfo").click(function(){
+		var display=$("#info").css("display");
+		if(display=="none"){
+			$("#info").show();
+		}else{
+			$("#info").hide();
+		}
+	}); 
+	$(".i").focus(function(){
+		var msg=[];
+		msg['username']="不能有空格，可以是中文，长度控制在 3-12 字节以内 不区分大小写";
+		msg['password']="最小长度:6 最大长度:16 ";
+		msg['pwdrepeat']="请再输入一遍您上面填写的密码";
+		msg['email']="请填写真实并且最常用的邮箱";
+		info(this.id,msg[this.id],"Exp");
+	}); 
+//提交事件
+	$("#rForm").submit(function (){
+		var param={
+			"username":$("#username").val(),
+			"password":$("#password").val(),
+			"pwdrepeat":$("#pwdrepeat").val(),
+			"email":$("#email").val(),
+			"seccode":$("#seccode").val(),
+			"nickname":$("#nickname").val(),
+			"icq":$("#icq").val(),
+			"home":$("#home").val(),
+			"gender":$("#gender").val(),
+			"year":$("#year").val(),
+			"month":$("#month").val(),
+			"day":$("#day").val(),
+			"from":$("#from").val(),
+			"signature":$("#signature").val(),
+			"action":"save"
+		}
+		if(param.username==""){
+			info("username","用户名不能为空！","Wrong");
+			return false;
+		}
+//		info("username","填写正确。","Correct");
+		if(param.password==""){
+			info("password","密码设置错误。请填写密码.","Wrong");
+			return false;
+		}
+		if(param.password.length<6){
+			info("password","密码设置错误。密码长度过小。","Wrong");
+			return false;
+		}
+		if(param.password.length>16){
+			info("password","密码设置错误。密码过长。","Wrong");
+			return false;
+		}
+		info("password","填写正确。","Correct");
+		if(param.pwdrepeat==""){
+			info("pwdrepeat","请填写确认密码.","Wrong");
+			return false;
+		}
+		if(param.password!=param.pwdrepeat){
+			info("password","两次输入的密码不一致。请再输入一次您上面输入的密码。","Wrong");
+			return false;
+		}
+		info("pwdrepeat","填写正确。","Correct");
+		var pattern = /^([a-zA-Z0-9._-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+		if(!pattern.test(param.email)){ 
+			info("email","E-mail格式错误.","Wrong");
+			return false; 
+		}else{
+			info("email","填写正确。","Correct");
+		}
+		if(param.seccode==""){
+			info("seccode","请输入验证码。","Wrong");
+			return false;
+		}
+		$.post(SiteDir+"/register.php?do=post",param,
+			function(o){
+				if(o.state=="1"){
+					alert("注册成功,您可以继续在会员中心完善您的个人资料。");
+					//跳转
+					window.location.href="<!--{$site.url}-->/usercp.php";
+				}else{
+					info(o.state,o.msg,"Wrong");
+				}
+			}
+		,"json");
+	  return false;
+	}); 
+});
+function info(e,msg,c){
+	var id="#"+e+"_info";
+	$(id).removeClass().addClass(c);
+	if(msg!="")$(id).text(msg);
+}
+</script>
+<style type="text/css">
+span { margin-left:5px; height:18px; line-height:17px; padding:4px 5px 2px 2em; }
+.Correct { background:#e6ffe6 url(style/register.png) 5px 4px no-repeat; border:1px dashed #00a8ff; color:#008800; }
+.Wrong { background:#fff2e9 url(style/register.png) 5px -76px no-repeat; border:1px dashed #ff6600; color:#8b2b34; }
+.Exp { background:#e2f5ff url(style/register.png) 5px -131px no-repeat; border:1px dashed #00a8ff; color:#006699; }
+.blockquote { background:#FFFFDB none repeat scroll 0 0; border:1px solid #F7E084; color:#000000; line-height:1.3; margin:0 15px; padding:5px 8px; }
+</style>
+</head>
+<body>
+<div id="container"> <!--{include file="./header.htm"}-->
+  <div id="sidebar">
+    <div class="pright-rbox">
+      <div class="title">注册协议</div>
+      <div style="overflow: auto; width: 100%; height: 300px;">当您申请用户时，表示您已经同意遵守本规章。 <br />
+        <br />
+        欢迎您加入本站点参加交流和讨论，为维护网上公共秩序和社会稳定，请您自觉遵守以下条款： <br />
+        <br />
+        一、不得利用本站危害国家安全、泄露国家秘密，不得侵犯国家社会集体的和公民的合法权益，不得利用本站制作、复制和传播下列信息：<br />
+        （一）煽动抗拒、破坏宪法和法律、行政法规实施的； <br />
+        （二）煽动颠覆国家政权，推翻社会主义制度的； <br />
+        （三）煽动分裂国家、破坏国家统一的； <br />
+        （四）煽动民族仇恨、民族歧视，破坏民族团结的； <br />
+        （五）捏造或者歪曲事实，散布谣言，扰乱社会秩序的； <br />
+        （六）宣扬封建迷信、淫秽、色情、赌博、暴力、凶杀、恐怖、教唆犯罪的； <br />
+        （七）公然侮辱他人或者捏造事实诽谤他人的，或者进行其他恶意攻击的； <br />
+        （八）损害国家机关信誉的； <br />
+        （九）其他违反宪法和法律行政法规的； <br />
+        （十）进行商业广告行为的。 <br />
+        <br />
+        二、互相尊重，对自己的言论和行为负责。<br />
+        三、禁止在申请用户时使用相关本站的词汇，或是带有侮辱、毁谤、造谣类的或是有其含义的各种语言进行注册用户，否则我们会将其删除。<br />
+        四、禁止以任何方式对本站进行各种破坏行为。<br />
+        五、如果您有违反国家相关法律法规的行为，本站概不负责，您的登录论坛信息均被记录无疑，必要时，我们会向相关的国家管理部门提供此类信息。 </div>
+    </div>
+  </div>
+  <div id="main">
+    <div class="position">当前位置: <a href="<!--{$site.index}-->">首页</a> → <a href="<!--{$site.dir}-->/register.php">会员注册</a></div>
+    <div class="blockquote" style="width:280px;">带红色*的都是必填项目，若填写不全将无法注册</div>
+    <table width="99%" border="0" align="center" cellpadding="4" cellspacing="1">
+      <form id="rForm" name="rForm" action="<!--{$site.dir}-->/register.php?do=post" method="post">
+        <tr>
+          <td height="22" colspan="2" class="topbg"><h3>个人资料</h3></td>
+        </tr>
+        <tr>
+          <td width="120" height="20">用户名<font color="red">*</font></td>
+          <td><input name="username" type="text" id="username" class="i"/>
+            <span id="username_info">不能有空格，可以是中文，长度控制在 3-12 字节以内 不区分大小写</span></td>
+        </tr>
+        <tr>
+          <td height="20">密码<font color="red">*</font></td>
+          <td><input name="password" type="password" id="password" class="i"/>
+            <span id="password_info" >最小长度:6 最大长度:16 </span></td>
+        </tr>
+        <tr>
+          <td height="20">确认密码<font color="red">*</font></td>
+          <td><input name="pwdrepeat" type="password" id="pwdrepeat" class="i"/>
+            <span id="pwdrepeat_info">请再输入一遍您上面填写的密码</span></td>
+        </tr>
+        <tr>
+          <td>Email<font color="red">*</font></td>
+          <td><input name="email" type="text" id="email" value="" class="i"/>
+            <span id="email_info">请填写真实并且最常用的邮箱</span></td>
+        </tr>
+        <tr>
+          <td height="20">验证码<font color="red">*</font></td>
+          <td><input name="seccode" id="seccode" size="6" maxlength="4" class="i">
+            <img src="<!--{$site.dir}-->/include/seccode.php" align="absmiddle" id="seccodeimg" title="看不清楚，换一张"><span id="seccode_info"></span></td>
+        </tr>
+        <tr>
+          <td colspan="3" class="topbg"><h3>
+              <input id="moreinfo" type="checkbox" class="checkbox"/>
+              更多选项</h3></td>
+        </tr>
+        <tbody id="info" style="display:none;">
+          <tr>
+            <td>昵称:</td>
+            <td colspan="2"><input name="nickname" type="text" id="nickname" value="" maxlength="12" />
+              发表文章时显示的名字,留空显示用户名</td>
+          </tr>
+          <tr>
+            <td>QQ/MSN:</td>
+            <td colspan="2"><input name="icq" type="text" id="icq" value="" maxlength="12" /></td>
+          </tr>
+          <tr>
+            <td>主页/博客:</td>
+            <td colspan="2"><input name="home" type="text" id="home" value="" /></td>
+          </tr>
+          <tr>
+            <td>性别:</td>
+            <td colspan="2"><select id="gender" name="gender">
+                <option value="2" selected>保密</option>
+                <option value="1" >男</option>
+                <option value="0" >女</option>
+              </select></td>
+          </tr>
+          <tr>
+            <td>生日:</td>
+            <td colspan="2"><select name="year" id="year">
+                <option value="" selected>请选择</option>
+                <option value="1970" >1970</option>
+                <option value="1971" >1971</option>
+                <option value="1972" >1972</option>
+                <option value="1973" >1973</option>
+                <option value="1974" >1974</option>
+                <option value="1975" >1975</option>
+                <option value="1976" >1976</option>
+                <option value="1977" >1977</option>
+                <option value="1978" >1978</option>
+                <option value="1979" >1979</option>
+                <option value="1980" >1980</option>
+                <option value="1981" >1981</option>
+                <option value="1982" >1982</option>
+                <option value="1983" >1983</option>
+                <option value="1984" >1984</option>
+                <option value="1985" >1985</option>
+                <option value="1986" >1986</option>
+                <option value="1987" >1987</option>
+                <option value="1988" >1988</option>
+                <option value="1989" >1989</option>
+                <option value="1990" >1990</option>
+                <option value="1991" >1991</option>
+                <option value="1992" >1992</option>
+                <option value="1993" >1993</option>
+                <option value="1994" >1994</option>
+                <option value="1995" >1995</option>
+                <option value="1996" >1996</option>
+                <option value="1997" >1997</option>
+                <option value="1998" >1998</option>
+                <option value="1999" >1999</option>
+                <option value="2000" >2000</option>
+                <option value="2001" >2001</option>
+                <option value="2002" >2002</option>
+                <option value="2003" >2003</option>
+                <option value="2004" >2004</option>
+              </select>
+              年
+              <select name="month" id="month">
+                <option value="" selected>请选择</option>
+                <option value="1" >1</option>
+                <option value="2" >2</option>
+                <option value="3" >3</option>
+                <option value="4" >4</option>
+                <option value="5" >5</option>
+                <option value="6" >6</option>
+                <option value="7" >7</option>
+                <option value="8" >8</option>
+                <option value="9" >9</option>
+                <option value="10" >10</option>
+                <option value="11" >11</option>
+                <option value="12" >12</option>
+              </select>
+              月
+              <select name="day" id="day">
+                <option value="" selected>请选择</option>
+                <option value="1" >1</option>
+                <option value="2" >2</option>
+                <option value="3" >3</option>
+                <option value="4" >4</option>
+                <option value="5" >5</option>
+                <option value="6" >6</option>
+                <option value="7" >7</option>
+                <option value="8" >8</option>
+                <option value="9" >9</option>
+                <option value="10" >10</option>
+                <option value="11" >11</option>
+                <option value="12" >12</option>
+                <option value="13" >13</option>
+                <option value="14" >14</option>
+                <option value="15" >15</option>
+                <option value="16" >16</option>
+                <option value="17" >17</option>
+                <option value="18" >18</option>
+                <option value="19" >19</option>
+                <option value="20" >20</option>
+                <option value="21" >21</option>
+                <option value="22" >22</option>
+                <option value="23" >23</option>
+                <option value="24" >24</option>
+                <option value="25" >25</option>
+                <option value="26" >26</option>
+                <option value="27" >27</option>
+                <option value="28" >28</option>
+                <option value="29" >29</option>
+                <option value="30" >30</option>
+                <option value="31" >31</option>
+              </select>
+              日</td>
+          </tr>
+          <tr>
+            <td>来自:</td>
+            <td colspan="2"><input name="from" type="text" id="from" value="" /></td>
+          </tr>
+          <tr>
+            <td>个性签名:</td>
+            <td colspan="2"><textarea name="signature" id="signature" cols="45" rows="5"></textarea></td>
+          </tr>
+        </tbody>
+        <tr>
+          <td height="20" colspan="3" align="left" bgcolor="#FFFFFF"><input name="rgpermit" type="checkbox" id="rgpermit" value="1" class="checkbox"/>
+            我已阅读并完全同意注册协议内容</td>
+        </tr>
+        <tr>
+          <td height="20" colspan="3" align="left" bgcolor="#FFFFFF"><input type="submit" value="注 册" />
+            <input type="reset" name="button" id="button" value="重置" /></td>
+        </tr>
+      </form>
+    </table>
+  </div>
+</div>
+<!--{include file="./footer.htm"}-->
+</body>
+</html>

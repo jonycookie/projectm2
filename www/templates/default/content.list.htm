@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><!--{$sort.name}-->-<!--{$site.title}--> - Powered by iCMS</title>
+<meta name="keywords" content="<!--{$sort.keywords}-->">
+<meta name="description" content="<!--{$sort.description|html2txt}-->">
+<meta name="generator" content="iCMS V3.1" />
+<meta name="author" content="iDreamSoft Studio" />
+<meta name="copyright" content="2007-2008 iDreamSoft Studio." />
+<link href="style/iCMS.css" rel="stylesheet" type="text/css" />
+<link href="style/global.css" rel="stylesheet" type="text/css" />
+<link href="style/article.css" rel="stylesheet" type="text/css" />
+<!--{iCMS:javascript}-->
+</head>
+<body>
+<div class="container">
+<!--{include file="./header.htm"}-->
+  <div class="main cbody margintop"> <!--左侧-->
+    <div class="pleft"> <!--位置导航-->
+      <div class="thisplace">
+        <div class="title"><!--{$sort.name}--></div>
+        <div class="placenav"> <span>当前位置 :</span><a href="<!--{$site.index}-->">首页</a> → <!--{$sort.nav}--> > 列表 </div>
+      </div>
+      <!--图片新闻-->
+      <div class="picnews margintop">
+        <dl>
+          <!--{iCMS:model loop='true' mid=$sort.mid pic='true' row='4' orderby="pubdate" sortid=$sort.id }-->
+          <dd><a href="<!--{$model.url}-->" class="pimg"><img width="120" height="120" src="<!--{$model.pic|small}-->" /></a> <span><a href="<!--{$model.url}-->"><!--{$model.title|cut:10}--></a></span> </dd>
+          <!--{/iCMS}-->
+        </dl>
+      </div>
+      <!--新闻列表-->
+      <div class="newslist"> <!--{iCMS:model loop='true' mid=$sort.mid page='true' row='1' sortid=$sort.id}-->
+        <dl>
+          <dt><a href="<!--{$model.url}-->" target="_blank"><!--{$model.title}--></a></dt>
+          <dd class="preview"><!--{if $model.pic}--> <a href="<!--{$model.url}-->"><img class="pic" align="left" width="125" height="85" src="<!--{$model.pic|small}-->" /></a> <!--{/if}--><!--{$model.description}-->...</dd>
+          <dd class="info">作者：<span><!--{$model.author}--></span>发表于：<span><!--{$model.pubdate|date:"Y-m-d H:i"}--></span>　点击：<span><!--{$model.hits}--></span>　评论：<span><!--{$model.comments}--></span> <a href="<!--{$model.url}-->">查阅全文...</a></dd>
+        </dl>
+        <!--{/iCMS}--> <!--分页-->
+        <div class="pages">
+          <div class="plist"> <!--{$pagenav}--> </div>
+        </div>
+      </div>
+    </div>
+    <!--右侧-->
+    <div class="pright"> <!--侧边信息列表-->
+      <div class="classbox">
+        <dl>
+          <dt>栏目列表</dt>
+          <dd>
+            <ul>
+              <!--{iCMS:catalog type='self' loop='true' mid=$sort.mid att='list' id=$sort.id}-->
+              <li><a href='<!--{$catalog.url}-->'><!--{$catalog.name}--></a></li>
+              <!--{/iCMS}-->
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      <div class="rlist margintop">
+        <div class="title">随机推荐</div>
+        <div class="rbox">
+          <ul>
+            <!--{iCMS:model loop='true' mid=$sort.mid orderby='digg' row="20" sortid=$sort.id}-->
+             <li><a href='<!--{$model.url}-->'><!--{$model.title|cut:24}--></a></li>
+           <!--{/iCMS}-->
+          </ul>
+        </div>
+      </div>
+      <!--侧边信息列表-->
+      <div class="rlist margintop">
+        <div class="title">热门关注</div>
+        <div class="rbox">
+          <ul>
+            <!--{iCMS:model loop='true' mid=$sort.mid orderby='hot' row="20" sortid=$sort.id}-->
+            <li><a href='<!--{$model.url}-->'><!--{$model.title|cut:24}--></a></li>
+            <!--{/iCMS}-->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="floatclear"><!--清除浮动--></div>
+  </div>
+<!--{include file="./footer.htm"}-->
+</div>
+</body>
+</html>

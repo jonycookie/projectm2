@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>留言板</title>
+<meta name="description" content="<!--{$site.description|html2txt}-->">
+<meta name="generator" content="iCMS V3.1" />
+<meta name="author" content="iDreamSoft Studio" />
+<meta name="copyright" content="2007-2009 (c) iDreamSoft Studio." />
+<link href="<!--{$site.dir}-->/templates/system/style/iCMS.css" rel="stylesheet" type="text/css" />
+<!--{iCMS:javascript}-->
+</head>
+<body>
+<div id="container"> <!--{include file="./header.htm"}-->
+  <div id="main">
+    <div class="position">当前位置: <a href="<!--{$site.index}-->">首页</a> → <a href="<!--{$site.dir}-->/message.php">留言板</a></div>
+    <!--{if !$do}--> <!--{iCMS:message loop='true' row='10'}-->
+    <div class="<!--{if $message.index % 2 == 0}-->one<!--{else}-->two<!--{/if}-->" style="width:520px;">
+      <h3><!--{$message.rownum}-->、 <a href="<!--{if $message.user.homepage}--><!--{$message.user.homepage}--><!--{else}-->#<!--{/if}-->" target="_blank"><em><strong><!--{$message.user.name}--></strong></em></a> 在 <!--{$message.addtime|date:"Y-m-d H:i"}-->的留言</h3>
+      <blockquote class="<!--{if $message.index % 2 == 0}-->two<!--{else}-->one<!--{/if}-->" style="width:80%;"><!--{$message.text}--></blockquote>
+      <!--{if $message.reply}-->
+      <h2><!--{$message.reply}--></h2>
+      <!--{/if}--> </div>
+    <div class="line"></div>
+    <!--{iCMSelse}-->
+    <div class="one" style="width:520px;">
+      <h3>暂无留言</h3>
+    </div>
+    <!--{/iCMS}-->
+    <div class="page"><!--{$pagenav}--></div>
+    <div class="line"></div>
+    <!--{iCMS:message call='form'}--> <!--{/if}--> </div>
+</div>
+<!--{include file="./footer.htm"}-->
+</body>
+</html>

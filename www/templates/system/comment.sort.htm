@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><!--{$sort.title}-->评论</title>
+<meta name="keywords" content="<!--{$site.keywords}-->,iCMS,DreamArticle,iDreamSoft">
+<meta name="description" content="<!--{$site.description|html2txt}-->">
+<meta name="generator" content="iCMS V3.1" />
+<meta name="author" content="iDreamSoft Studio" />
+<meta name="copyright" content="2007-2009 (c) iDreamSoft Studio." />
+<link href="<!--{$site.dir}-->/templates/system/style/iCMS.css" rel="stylesheet" type="text/css" />
+<!--{iCMS:javascript}-->
+<style type="text/css">
+/* 评论列表 */
+.reply { padding-bottom:3px; color:#999999; }
+.quote { border:1px solid #999999; padding: 3px; background-color: #FFFFEE; margin-bottom: 12px; text-align:left; }
+.quote span { color: #990000; font-weight:bold }
+.quote p { margin: 9px 3px; line-height: 20px; text-align: left; color:#000000; }
+</style>
+</head>
+<body>
+<div id="container">
+  <div id="header">
+    <div id="banner"></div>
+    <div id="logo"><img src="<!--{$site.dir}-->/templates/system/style/iCMS.logo.gif" /></div>
+  </div>
+  <div id="menu">
+    <ul id="navCircle">
+      <li><a class="active" href="<!--{$site.index}-->">首页</a></li>
+      <!--{iCMS:catalog type='top' loop='true'}-->
+      <li><a href="<!--{$catalog.url}-->"><!--{$catalog.name}--></a></li>
+      <!--{/iCMS}-->
+    </ul>
+  </div>
+  <div id="sidebar">
+    <div class="pright-rbox">
+      <div class="title">热评文章</div>
+      <ul>
+        <!--{iCMS:list row="10" order='comments' loop='true'}-->
+        <li><img src="<!--{$site.url}-->/templates/system/style/icon1.gif" alt="<!--{$list.title}-->" width="10" height="13" align="absmiddle" /> <a href="<!--{$list.url}-->" target="_blank" title="<!--{$list.title}-->"><!--{$list.title|cut:21}--></a></li>
+        <!--{/iCMS}-->
+      </ul>
+    </div>
+    <div class="pright-rbox">
+      <div class="title">最新评论</div>
+      <ul>
+        <!--{iCMS:comment row="10" loop='true' type="all"}-->
+        <li>·<a href="<!--{$comment.url}-->" target="_blank" title="<!--{$comment.username}-->评论[<!--{$comment.atitle}-->]说:<!--{$comment.content|html2txt}-->"><!--{$comment.content|cut:21}--></a></li>
+        <!--{/iCMS}-->
+      </ul>
+    </div>
+  </div>
+  <div id="main">
+    <div class="position">当前位置: <a href="<!--{$site.index}-->">首页</a> → <!--{$sort.nav}-->评论 共<span class="total"><!--{$total}--></span>条 </div>
+    <div class="title"><!--{$sort.link}--> </div>
+    <h3>最新评论</h3>
+    <div id="comment"> <!--{iCMS:comment row="10" order='new' loop='true' page='true' sortid=$sort.id}-->
+      <table width="100%" border="0" cellspacing="0" cellpadding="0"  style="background:#FAFAFA;height:28px;line-height:28px;border: #CCCCCC 1px dashed;">
+        <tr>
+          <td><span id="lou_<!--{$comment.id}-->" style='color:#990000'><!--{$comment.lou}-->楼</span> <strong><span id="comment_username_<!--{$comment.id}-->"><!--{$comment.username}--></span></strong> 于<span id="comment_time_<!--{$comment.id}-->"><!--{$comment.addtime|date:"Y-m-d"}--></span>评论道： </td>
+          <td align="right"><a href='javascript:digg("up",<!--{$comment.aid}-->,<!--{$comment.id}-->)'><img src='<!--{$site.tplpath}-->/images/good.gif' border='0'>鲜花(<span id='up_<!--{$comment.id}-->'><!--{$comment.up}--></span>)</a> <a href='javascript:digg("against",<!--{$comment.aid}-->,<!--{$comment.id}-->)'><img src='<!--{$site.tplpath}-->/images/bad.gif' border='0'>鸡蛋(<span id='against_<!--{$comment.id}-->'><!--{$comment.against}--></span>)</a> <a href='javascript:quote(<!--{$comment.id}-->)'>引用</a> <a href='javascript:reply(<!--{$comment.id}-->)'>回复</a></td>
+        </tr>
+      </table>
+      <div style="margin:16px;font-size:14px"><span id="comment_contents_<!--{$comment.id}-->"><!--{$comment.contents}--></span><!--{if $comment.reply}-->
+        <blockquote style='background-color:#EDF9FF;border:#66CCFF solid 1px; padding:2px;'><!--{$comment.reply}--></blockquote>
+        <!--{/if}--> </div>
+      <!--{iCMSelse}--> 暂无评论 <!--{/iCMS}-->
+      <div class="page"><!--{$pagenav}--></div>
+    </div>
+    <!--{iCMS:comment editor='no' width='500px' height='120px'}--> </div>
+</div>
+<div id="footer">
+  <table border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tbody>
+      <tr>
+        <td align="center" style="line-height: 18px">Powered by iCMS <!--{$version}--> &copy; 2007-2009 iDreamSoft.cn Inc. All rights reserved.<br /></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

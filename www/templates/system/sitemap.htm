@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>网站地图 - powered by iCMS</title>
+<link href="<!--{$site.dir}-->/templates/system/style/sitemap.css" rel="stylesheet" type="text/css" />
+<style>
+.mdiv {
+	margin:0px;
+	margin-bottom:10px;
+	padding:3px;
+}
+</style>
+</head>
+<body>
+<div class="main mceneter">
+<div class="toplogo">
+  <div class="logo"> <a href="/"><img src="<!--{$site.dir}-->/templates/system/style/iCMS.logo.gif" /></a> </div>
+  <div class="title"> 网站地图 </div>
+</div>
+<div class="cmain">
+  <div class="ctitle">
+    <h1>网站地图</h1>
+    <span></span> </div>
+  <div class="cbox mceneter">
+    <div class="maplist">
+      <div><!--{iCMS:catalog loop="true" type="top" row=100}-->
+        <div><a href='<!--{$catalog.url|gethttpurl}-->'><b><!--{$catalog.name}--></b></a></div>
+        <div style='margin-left:15px'><!--{iCMS:catalog loop="true" type="sub" id=$catalog.id}--><a href='<!--{$catalog.url|gethttpurl}-->'><!--{$catalog.name}--></a> <!--{/iCMS}--></div>
+        <!--{/iCMS}--></div>
+    </div>
+  </div>
+</div>
+<div class="copyright mceneter"> Powered by <a href="http://www.idreamsoft.cn" target="_blank">iCMS V3.1</a> &copy; 2007-2009 <a href="http://www.idreamsoft.cn" target="_blank">iDreamSoft</a>. </div>
+</body>
+</html>

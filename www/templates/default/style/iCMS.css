@@ -1,0 +1,71 @@
+/* 全局CSS定义 */
+body { text-align:center; font-family: "Courier New", Courier, monospace; margin:0; padding:0; background: #fff; font-size:12px; color:#000; }
+div, form, img, ul, ol, li, dl, dt, dd { margin: 0; padding: 0; border:0; }
+h1, h2, h3, h4, h5, h6 { margin:0; padding:0; font-size:12px; font-weight:normal; }
+table, td, tr, th { font-size:12px; }
+li { list-style-type:none; }
+table { margin:0 auto; }
+img { vertical-align:top; border:0; }
+table, div { word-break:break-all; }
+/* 链接颜色 */
+a:link { color: #000; text-decoration:none; }
+a:visited { color: #999999; text-decoration:none; }
+a:hover { color: #333333; text-decoration:underline; }
+a:active { color: #FF0000; }
+/* 颜色属性 [定义规则，小写c加颜色名称] */
+.cRed, a.cRed:link, a.cRed:visited { color:Red; }
+.cBlue, a.cBlue:link, a.cBlue:visited { color:#1f3a87; }
+.cDRed, a.cDRed:link, a.cDRed:visited { color:#bc2931; }
+.cGray, a.cGray:link, a.cGray:visited { color: #4F544D; }
+.cDGray, a.cDGray:link, a.cDGray:visited { color: #666; }
+.cWhite, a.cWhite:link, a.cWhite:visited { color:#fff; }
+.cBlack, a.cBlack:link, a.cBlack:visited { color:#000; }
+a.cBlack:hover { color:#bc2931; }
+.cYellow, a.cYellow:link, a.cYellow:visited { color:#ff0; }
+/* 字体属性 [定义规则，小写f加属性名称] */
+.fB { font-weight: bold; }
+.fI { font-style: italic; }
+/* 字体大小*/
+.f12px { font-size:12px; }
+.f14px { font-size:14px; }
+/* 其他属性 */
+.left { float: left; }
+.right { float: right; }
+.clear { clear: both; font-size:1px; width:1px; height:0px; overflow:hidden; visibility: hidden; }
+.hidden { display: none; }
+.unLine, .unLine a { text-decoration: none; }
+.noBorder { border:none; }
+/* 后载入式广告属性 */
+.ad70 { width: 750px; margin: 0 auto; padding:2px 0 6px; clear: both; }
+.adArc { margin:0 auto; width:750px; padding:2px 0 0; clear:both; }
+.ad750 { width: 750px; margin: 0 auto; padding:9px 0; clear: both; }
+/* 页脚 */
+.foot { margin:0 auto; width:750px; line-height:160%; }
+.foot .text { padding:3px 0 6px; border-bottom:1px solid #000; margin:0 0 5px; }
+.foot a:visited { color:#000; }
+/* 通用空白间距 */
+.blank0 { height:0px; width:100%; clear:both; overflow:hidden; }
+.blank1 { height:1px; font-size:1px; width:100%; clear:both; overflow:hidden; }
+.blank3 { height:3px; font-size:1px; width:100%; clear:both; overflow:hidden; }
+.blank6 { height:6px; font-size:1px; width:100%; clear:both; overflow:hidden; }
+.blank9 { height:9px; font-size:1px; width:100%; clear:both; overflow:hidden; }
+.blank12 { height:12px; font-size:1px; width:100%; clear:both; overflow:hidden; }
+.blank9w { height:9px; font-size:1px; width:100%; clear:both; background:#fff; overflow:hidden; }
+.blank15 { height:15px; font-size:1px; width:100%; clear:both; overflow:hidden; }
+.blank20 { height:20px; font-size:1px; width:100%; clear:both; overflow:hidden; }
+/* 主体 */
+.container { width: 1003px; background: #FFFFFF; margin: 0 auto; text-align: left; }
+.line { height:1px; background:#ccc; overflow:hidden; }
+/* 评论列表 */
+.reply { padding-bottom:3px; color:#999999; }
+.quote { border:1px solid #999999; padding: 3px; background-color: #FFFFEE; margin-bottom: 12px; text-align:left; }
+.quote span { color: #990000; font-weight:bold }
+.quote p { margin: 9px 3px; line-height: 20px; text-align: left; color:#000000; }
+/* 评论框 */
+#commentEditor { margin:10px; }
+#commentEditor #cForm { }
+#commentEditor h4 { font-size:14px; height:20px; padding-top:5px; border:1px dashed #D4D4D4; border-left:none; border-right:none; background-color: #F9F8F4; padding-left: 10px; margin-bottom: 12px; }
+#commentEditor #userinfo { height:25px; padding-top:5px; padding-left: 10px; }
+#commentEditor #seccodeDiv { display:none; height:25px; }
+#commentEditor #seccodeDiv span { margin-left:80px; padding-top:4px; height:20px; }
+#commentEditor #seccodeimg { border:#FFFFEE solid 1px; position:absolute; zIndex:499; }
