@@ -1,0 +1,12 @@
+<div id="header">
+  <div id="banner"></div>
+  <div id="logo"><img src="<!--{$site.dir}-->/templates/system/style/iCMS.logo.gif" /></div>
+</div>
+<div id="menu">
+  <ul id="navCircle">
+    <li><a class="active" href="<!--{$site.index}-->">首页</a></li>
+    <!--{iCMS:catalog type='top' loop='Y'}-->
+    <li><a href="<!--{$catalog.url}-->"> <!--{$catalog.name}--> </a></li>
+    <!--{/iCMS}-->
+  </ul>
+</div>
