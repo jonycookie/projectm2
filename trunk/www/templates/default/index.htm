@@ -8,10 +8,9 @@
 <meta name="generator" content="iCMS V3.1" />
 <meta name="author" content="iDreamSoft Studio" />
 <meta name="copyright" content="2007-2009 (c) iDreamSoft Studio." />
-<link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
-<link href="style/iCMS.css" rel="stylesheet" type="text/css" />
-<link href="style/global.css" rel="stylesheet" type="text/css" />
-<link href="style/index.css" rel="stylesheet" type="text/css" />
+<link href="<!--{$site.url}-->/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+<link href="<!--{$site.url}-->/skin/global.css" rel="stylesheet" type="text/css" />
+<link href="<!--{$site.url}-->/skin/index.css" rel="stylesheet" type="text/css" />
 <!--{iCMS:javascript}-->
 <script type="text/javascript">
 <!--
@@ -47,7 +46,8 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="container"> <!--{include file="./header.htm"}-->
+<!--{include file="./header.htm"}-->
+<div class="container">
   <div class="area1">
     <div class="cleft"> <!--{iCMS:list loop='true' pic='true' row="7"}--> <!--{if $list.first}-->
       <div id="headline" class="btitle2 showpic" picdiv="<!--{$list.index}-->">
@@ -165,6 +165,7 @@ $(function(){
       </ul>
     </div>
   </div>
-  <!--{include file="./footer.htm"}--> </div>
+</div>
+<!--{include file="./footer.htm"}-->
 </body>
 </html>
