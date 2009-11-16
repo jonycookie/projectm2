@@ -10,7 +10,8 @@
 <link href="<!--{$site.dir}-->/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 <link href="<!--{$site.dir}-->/skin/global.css" rel="stylesheet" type="text/css" />
 </head>
-<div class="container" id="cpcontainer">
+<!--{include file="./header.htm"}-->
+<div id="container">
   <div class="infobox">
     <h4 class="infotitle1"><!--{$msg}--></h4>
     <img src="<!--{$site.dir}-->/images/user/ajax_loader.gif" class="marginbot" />
@@ -18,5 +19,6 @@
     <script type="text/JavaScript">setTimeout("window.location.replace('<!--{$url}-->');", <!--{$t}-->*1000);</script>
   </div>
 </div>
+<!--{include file="./footer.htm"}-->
 </body>
 </html>

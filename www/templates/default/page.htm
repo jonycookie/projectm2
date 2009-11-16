@@ -12,9 +12,9 @@
 <!--{iCMS:javascript}-->
 </head>
 <body>
-<div class="container">
 <!--{include file="./header.htm"}-->
-  <div class="main cbody margintop"> <!--左侧-->
+<div id="container">
+  <div id="main"> <!--左侧-->
     <div class="pleft"> <!--位置导航-->
       <div class="thisplace">
         <div class="placenav"> <span>当前位置 :</span><a href="<!--{$site.index}-->">首页</a> → <!--{$sort.nav}--> </div>
@@ -31,19 +31,19 @@
         <div align="center" style="margin:5px 0px;">
           <input type="image" onClick='copyToClipBoard()' src="images/qm.gif" alt="复制本页文章地址，传给QQ/MSN上的好友" align="middle">
         </div>
-<script type="text/javascript">
-function copyToClipBoard(){ 
-	var clipBoardContent=""; 
-	clipBoardContent+=document.title; 
-	clipBoardContent+="\r\n"; 
-	clipBoardContent+=this.location.href; 
-	window.clipboardData.setData("Text",clipBoardContent); 
-	alert("复制成功，请粘贴到你的QQ/MSN上推荐给你的好友"); 
-} 
-document.body.oncopy = function () { 
-	setTimeout(function () { var text = clipboardData.getData("text"); if (text) { text = text + "\r\n参考链接："+location.href; clipboardData.setData("text", text); } }, 100 ); 
-}
-</script>
+		<script type="text/javascript">
+		function copyToClipBoard(){ 
+			var clipBoardContent=""; 
+			clipBoardContent+=document.title; 
+			clipBoardContent+="\r\n"; 
+			clipBoardContent+=this.location.href; 
+			window.clipboardData.setData("Text",clipBoardContent); 
+			alert("复制成功，请粘贴到你的QQ/MSN上推荐给你的好友"); 
+		} 
+		document.body.oncopy = function () { 
+			setTimeout(function () { var text = clipboardData.getData("text"); if (text) { text = text + "\r\n参考链接："+location.href; clipboardData.setData("text", text); } }, 100 ); 
+		}
+		</script>
         <!--操作--> <!--{if $tags}--><!--{/if}-->
         <div class="actbar"> <span>[<a href="<!--{$site.url}-->/comment.php?sortid=<!--{$sort.id}-->">评论</a>]</span> <span>[<a href="#" onClick="window.print();">打印</a>]</span> <span>[<a href="#" onClick="window.close();">关闭</a>]</span> </div>
         <!--上下文-->
@@ -99,9 +99,8 @@ document.body.oncopy = function () {
         </div>
       </div>
     </div>
-    <div class="floatclear"><!--清除浮动--></div>
   </div>
-<!--{include file="./footer.htm"}-->
 </div>
+<!--{include file="./footer.htm"}-->
 </body>
 </html>

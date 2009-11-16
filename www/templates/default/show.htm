@@ -19,8 +19,9 @@
 </style>
 </head>
 <body>
-<div class="container"> <!--{include file="./header.htm"}-->
-  <div class="main cbody margintop"> <!--左侧-->
+<!--{include file="./header.htm"}-->
+<div id="container">
+  <div id="main"> <!--左侧-->
     <div class="pleft"> <!--位置导航-->
       <div class="thisplace">
         <div class="placenav"> <span>当前位置 :</span><a href="<!--{$site.url}-->">首页</a> → <!--{$sort.nav}--> </div>
@@ -116,8 +117,8 @@ document.body.oncopy = function () {
         </div>
       </div>
     </div>
-    <div class="floatclear"><!--清除浮动--></div>
   </div>
-  <!--{include file="./footer.htm"}--> </div>
+</div>
+<!--{include file="./footer.htm"}-->
 </body>
 </html>
