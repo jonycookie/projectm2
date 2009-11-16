@@ -158,7 +158,7 @@ if (empty($step)) {
 	$uncorrect='<font style="color:red;">× 文件不存在请上传此文件</font>';
 	$w_check=array(
 		'cache',
-		'uploadfiles',
+		'files',
 		'admin',
 		'admin/data',
 		'admin/logs',
