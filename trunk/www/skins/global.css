@@ -1,5 +1,6 @@
 /* Imports ----------------------------------------*/
 @import url("reset.css");
+@import url("form.css");
 /* Elements ----------------------------------------*/
 body {
 	background-color: #FFFFFF;
