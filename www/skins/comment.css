@@ -8,6 +8,7 @@
 #commentEditor #cForm { }
 #commentEditor h4 { font-size:14px; height:20px; padding-top:5px; border:1px dashed #D4D4D4; border-left:none; border-right:none; background-color: #F9F8F4; padding-left: 10px; margin-bottom: 12px; }
 #commentEditor #userinfo { height:25px; padding-top:5px; padding-left: 10px; }
+#commentEditor .alert { height:20px; padding-top:5px; padding-left: 10px; }
 #commentEditor #seccodeDiv { display:none; height:25px; }
 #commentEditor #seccodeDiv span { margin-left:80px; padding-top:4px; height:20px; }
 #commentEditor #seccodeimg { border:#FFFFEE solid 1px; position:absolute; zIndex:499; }
