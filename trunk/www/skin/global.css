@@ -77,14 +77,14 @@ strong		{font-weight:bold;}
 .pipe		{margin: 0 5px; color:#bbb;}
 
 /* Toolbar  ----------------------------------------*/
-.toolbar {
+#toolbar {
 	line-height: 20px;
 	padding: 0 5px;
 	text-align: right;
 	background: #fafafa;
 	border-bottom: 1px solid #eee;
 }
-.header, .container, .footer {
+#header, #container, #footer {
 	width: 960px;
 	text-align: left;
 	margin: 0 auto;
@@ -210,6 +210,7 @@ li#navWork a		{background-image: url(/images/nav/work.png); width:70px;}
 li#navServices a	{background-image: url(/images/nav/services.png); width:68px;}
 li#navContact a		{background-image: url(/images/nav/contact.png); width:55px;}
 
+
 /* CSS Rollover (Sprites) - Advanced Users! ----------------------------------------*/
 
 /*Each link must have a unique ID - Include all of your links here - Remove if not using!*/
@@ -217,7 +218,6 @@ li#navHome a:hover, li#navWork a:hover, li#navServices a:hover, li#navContact a:
 		
 /* Container ----------------------------------------*/
 #container {
-	margin: 20px 0;
 	line-height: 20px;
 }
 #container:after {
