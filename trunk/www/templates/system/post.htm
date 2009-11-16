@@ -53,21 +53,8 @@ $(function(){
 </head>
 <body>
 <div align="justify"></div>
+<!--{include file="./header.htm"}-->
 <div id="container">
-  <div id="header">
-    <div id="banner"></div>
-    <div id="logo"><img src="<!--{$site.dir}-->/templates/system/style/iCMS.logo.gif" /></div>
-  </div>
-  <div id="menu">
-    <ul id="navCircle">
-      <li><a class="active" href="<!--{$site.index}-->">首页</a></li>
-      <!--{iCMS:catalog type='top' loop='true'}-->
-      <li><a href="<!--{$catalog.url}-->">
-        <!--{$catalog.name}-->
-        </a></li>
-      <!--{/iCMS}-->
-    </ul>
-  </div>
   <div id="main">
     <div class="position">当前位置: <a href="<!--{$site.index}-->">首页</a> → 发表文章</div>
     <form action="post.php?do=post" method="post" enctype="multipart/form-data" name="postarticle" id="postarticle">
@@ -133,15 +120,6 @@ $(function(){
     </form>
   </div>
 </div>
-<div id="footer">
-  <table border="0" cellspacing="0" cellpadding="0" width="100%">
-    <tbody>
-      <tr>
-        <td width="69%" align="center" style="line-height: 18px">Powered by iCMS V2.0 &copy; 2007-2008 iDreamSoft.cn Inc. All rights reserved.<br /></td>
-        <td width="31%" align="right" style="line-height: 18px"><img src="<!--{$site.dir}-->/templates/system/style/da.gif" alt="" width="300" height="46" /></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<!--{include file="./footer.htm"}-->
 </body>
 </html>

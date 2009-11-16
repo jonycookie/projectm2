@@ -10,18 +10,11 @@
 <link href="<!--{$site.dir}-->/skin/global.css" rel="stylesheet" type="text/css" />
 <link href="<!--{$site.dir}-->/skin/article.css" rel="stylesheet" type="text/css" />
 <!--{iCMS:javascript}-->
-<style type="text/css">
-.context { width:638px; clear:both; }
-.diggArea { padding:0px; margin:0px; background-image:url(images/diggbg2.gif); width:60px; height:58px; line-height:23px; float:left; }
-.diggNum { margin:0px; text-align:center; padding:0px; font-size:12px; font-weight:bold; color:#CC0000; width:58px; height:23px; margin-top:8px; }
-.diggLink { margin:0px; text-align:center; padding:0px; font-size:14px; font-weight:bold; width:58px; height:23px; }
-.diggLink a { font-size:14px; font-weight:bold; }
-</style>
 </head>
 <body>
-<div class="container">
 <!--{include file="./header.htm"}-->
-  <div class="main cbody margintop"> <!--左侧-->
+<div id="container">
+  <div id="main"> <!--左侧-->
     <div class="pleft"> <!--位置导航-->
       <div class="thisplace">
         <div class="placenav"> <span>当前位置 :</span><a href="<!--{$site.index}-->">首页</a> → <!--{$sort.nav}--> </div>
@@ -117,9 +110,8 @@ document.body.oncopy = function () {
         </div>
       </div>
     </div>
-    <div class="floatclear"><!--清除浮动--></div>
   </div>
-<!--{include file="./footer.htm"}-->
 </div>
+<!--{include file="./footer.htm"}-->
 </body>
 </html>

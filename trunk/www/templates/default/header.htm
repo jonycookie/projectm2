@@ -1,13 +1,13 @@
-<div class="toolbar"><a href="<!--{$site.url}-->/register.php" target="_blank">注册</a> <a href="<!--{$site.url}-->/usercp.php" target="_blank">登陆</a></div>
-<div class="header">
-  <div class="r"><!--{iCMS:advertise name="全站顶部广告"}--></div>
-  <div id="logo"><img src="<!--{$site.tplurl}-->/images/logo.gif" /></div>
-	<div class="menu">
+<div id="toolbar"><a href="<!--{$site.url}-->/register.php" target="_blank">注册</a> <a href="<!--{$site.url}-->/usercp.php" target="_blank">登陆</a></div>
+<div id="header">
+	<div class="r"><!--{iCMS:advertise name="全站顶部广告"}--></div>
+	<div id="logo"><img src="<!--{$site.tplurl}-->/images/logo.gif" /></div>
+	<div id="menu">
 	  <ul>
 	    <li><a href="<!--{$site.url}-->">首页</a> | <!--{iCMS:catalog loop='true' type="top"}--><a href="<!--{$catalog.url}-->"><!--{$catalog.name}--></a> <!--{if !$catalog.last}-->|<!--{/if}--> <!--{/iCMS}--></li>
 	  </ul>
 	</div>
-	<div class="search">
+	<div id="search">
 	  <form name="searchForm" method="get" action="<!--{$site.url}-->/search.php" id="searchForm" target="_blank">
 	    <table border="0" align="left" cellpadding="2" cellspacing="1">
 	      <tr>
@@ -22,16 +22,16 @@
 	    </table>
 	  </form>
 	  <script type="text/javascript">
-	$(function(){
-		$("#searchForm").submit( function() {
-			if($("#keyword").val()==""){
-				alert("请填写关键字");
-				$("#keyword").focus();
-				return false;
-			}
+		$(function(){
+			$("#searchForm").submit( function() {
+				if($("#keyword").val()==""){
+					alert("请填写关键字");
+					$("#keyword").focus();
+					return false;
+				}
+			});
 		});
-	});
-	</script>
+	  </script>
 	  <div class="tag"> <!--{iCMS:tag loop='true' row='10' orderby='hot'}--> <a href="<!--{$tag.url}-->" target="_blank"><!--{$tag.name}--></a> <!--{/iCMS}--> </div>
 	</div>
 </div>

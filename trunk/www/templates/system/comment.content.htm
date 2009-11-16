@@ -12,46 +12,27 @@
 <!--{iCMS:javascript}-->
 </head>
 <body>
+<!--{include file="./header.htm"}-->
 <div id="container">
-  <div id="header">
-    <div id="banner"></div>
-    <div id="logo"><img src="<!--{$site.dir}-->/templates/system/style/iCMS.logo.gif" /></div>
-  </div>
-  <div id="menu">
-    <ul id="navCircle">
-      <li><a class="active" href="<!--{$site.index}-->">首页</a></li>
-      <!--{iCMS:catalog type='top' loop='c'}-->
-      <li><a href="<!--{$catalog.url}-->"><!--{$catalog.name}--></a></li>
-      <!--{/iCMS}-->
-    </ul>
-  </div>
   <div id="main">
     <div class="position">当前位置: <a href="<!--{$site.index}-->">首页</a> → <!--{$sort.nav}--> → <!--{$content.link}--> 评论 共<span class="total"><!--{$total}--></span>条 </div>
     <div class="title"><!--{$content.link}--> </div>
     <blockquote><!--{$content.description}--></blockquote>
     <h3>最新评论</h3>
     <!--{iCMS:comment row=5 len=200 order='new' loop='l' page='1' mid=$content.mid}-->
-<table width="100%" border="0" cellspacing="0" cellpadding="0"  style="background:#FAFAFA;height:28px;line-height:28px;border: #CCCCCC 1px dashed;">
-  <tr>
-    <td><span id="lou_<!--{$comment.id}-->" style='color:#990000'><!--{$comment.lou}-->楼</span> <strong><span id="comment_username_<!--{$comment.id}-->"><!--{$comment.username}--></span></strong> 于<span id="comment_time_<!--{$comment.id}-->"><!--{$comment.addtime|date:"Y-m-d"}--></span>评论道： </td>
-    <td align="right"><a href='javascript:digg("up",<!--{$comment.aid}-->,<!--{$comment.id}-->)'><img src='<!--{$site.tplpath}-->/images/good.gif' border='0'>鲜花(<span id='up_<!--{$comment.id}-->'><!--{$comment.up}--></span>)</a> <a href='javascript:digg("against",<!--{$comment.aid}-->,<!--{$comment.id}-->)'><img src='<!--{$site.tplpath}-->/images/bad.gif' border='0'>鸡蛋(<span id='against_<!--{$comment.id}-->'><!--{$comment.against}--></span>)</a> <a href='javascript:quote(<!--{$comment.id}-->)'>引用</a> <a href='javascript:reply(<!--{$comment.id}-->)'>回复</a></td>
-  </tr>
-</table>
-<div style="margin:16px;font-size:14px"><span id="comment_contents_<!--{$comment.id}-->"><!--{$comment.contents}--></span><!--{if $comment.reply}-->
-  <blockquote style='background-color:#EDF9FF;border:#66CCFF solid 1px; padding:2px;'><!--{$comment.reply}--></blockquote><!--{/if}-->
-</div>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0"  style="background:#FAFAFA;height:28px;line-height:28px;border: #CCCCCC 1px dashed;">
+	  <tr>
+	    <td><span id="lou_<!--{$comment.id}-->" style='color:#990000'><!--{$comment.lou}-->楼</span> <strong><span id="comment_username_<!--{$comment.id}-->"><!--{$comment.username}--></span></strong> 于<span id="comment_time_<!--{$comment.id}-->"><!--{$comment.addtime|date:"Y-m-d"}--></span>评论道： </td>
+	    <td align="right"><a href='javascript:digg("up",<!--{$comment.aid}-->,<!--{$comment.id}-->)'><img src='<!--{$site.tplpath}-->/images/good.gif' border='0'>鲜花(<span id='up_<!--{$comment.id}-->'><!--{$comment.up}--></span>)</a> <a href='javascript:digg("against",<!--{$comment.aid}-->,<!--{$comment.id}-->)'><img src='<!--{$site.tplpath}-->/images/bad.gif' border='0'>鸡蛋(<span id='against_<!--{$comment.id}-->'><!--{$comment.against}--></span>)</a> <a href='javascript:quote(<!--{$comment.id}-->)'>引用</a> <a href='javascript:reply(<!--{$comment.id}-->)'>回复</a></td>
+	  </tr>
+	</table>
+	<div style="margin:16px;font-size:14px"><span id="comment_contents_<!--{$comment.id}-->"><!--{$comment.contents}--></span><!--{if $comment.reply}-->
+	  <blockquote style='background-color:#EDF9FF;border:#66CCFF solid 1px; padding:2px;'><!--{$comment.reply}--></blockquote><!--{/if}-->
+	</div>
     <!--{iCMSelse}--> 暂无评论 <!--{/iCMS}-->
     <div class="page"><!--{$pagenav}--></div>
     <!--{iCMS:comment editor='yes' width='500px' height='120px'}--> </div>
 </div>
-<div id="footer">
-  <table border="0" cellspacing="0" cellpadding="0" width="100%">
-    <tbody>
-      <tr>
-        <td align="center" style="line-height: 18px">Powered by iCMS <!--{$version}--> &copy; 2007-2009 iDreamSoft.cn Inc. All rights reserved.<br /></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<!--{include file="./footer.htm"}-->
 </body>
 </html>

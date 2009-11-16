@@ -10,28 +10,10 @@
 <link href="<!--{$site.dir}-->/skin/global.css" rel="stylesheet" type="text/css" />
 <link href="<!--{$site.dir}-->/skin/comment.css" rel="stylesheet" type="text/css" />
 <!--{iCMS:javascript}-->
-<style type="text/css">
-/* 评论列表 */
-.reply { padding-bottom:3px; color:#999999; }
-.quote { border:1px solid #999999; padding: 3px; background-color: #FFFFEE; margin-bottom: 12px; text-align:left; }
-.quote span { color: #990000; font-weight:bold }
-.quote p { margin: 9px 3px; line-height: 20px; text-align: left; color:#000000; }
-</style>
 </head>
 <body>
+<!--{include file="./header.htm"}-->
 <div id="container">
-  <div id="header">
-    <div id="banner"></div>
-    <div id="logo"><img src="<!--{$site.dir}-->/templates/system/style/iCMS.logo.gif" /></div>
-  </div>
-  <div id="menu">
-    <ul id="navCircle">
-      <li><a class="active" href="<!--{$site.index}-->">首页</a></li>
-      <!--{iCMS:catalog type='top' loop='true'}-->
-      <li><a href="<!--{$catalog.url}-->"><!--{$catalog.name}--></a></li>
-      <!--{/iCMS}-->
-    </ul>
-  </div>
   <div id="sidebar">
     <div class="pright-rbox">
       <div class="title">热评文章</div>
@@ -69,14 +51,6 @@
     </div>
     <!--{iCMS:comment editor='no' width='500px' height='120px'}--> </div>
 </div>
-<div id="footer">
-  <table border="0" cellspacing="0" cellpadding="0" width="100%">
-    <tbody>
-      <tr>
-        <td align="center" style="line-height: 18px">Powered by iCMS <!--{$version}--> &copy; 2007-2009 iDreamSoft.cn Inc. All rights reserved.<br /></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<!--{include file="./footer.htm"}-->
 </body>
 </html>
