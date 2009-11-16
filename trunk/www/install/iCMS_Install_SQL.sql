@@ -330,7 +330,7 @@ INSERT INTO #iCMS@__config VALUES('11','permalink_structure','');
 INSERT INTO #iCMS@__config VALUES('12','collect','');
 INSERT INTO #iCMS@__config VALUES('13','iscomment','1');
 INSERT INTO #iCMS@__config VALUES('14','anonymous','1');
-INSERT INTO #iCMS@__config VALUES('15','uploadfiledir','uploadfiles');
+INSERT INTO #iCMS@__config VALUES('15','uploadfiledir','files');
 INSERT INTO #iCMS@__config VALUES('16','savedir','Y-m-d');
 INSERT INTO #iCMS@__config VALUES('17','fileext','gif,jpg,rar,swf');
 INSERT INTO #iCMS@__config VALUES('18','thumbwidth','140');

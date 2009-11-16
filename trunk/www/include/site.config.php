@@ -14,7 +14,7 @@
 		"collect"=>"",
 		"iscomment"=>"1",
 		"anonymous"=>"1",
-		"uploadfiledir"=>"uploadfiles",
+		"uploadfiledir"=>"files",
 		"savedir"=>"Y-m-d",
 		"fileext"=>"gif,jpg,rar,swf",
 		"thumbwidth"=>"140",
