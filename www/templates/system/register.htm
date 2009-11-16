@@ -2,11 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>会员注册-<!--{$site.title}--></title>
+<title>会员注册-<!--{$site.title}-->-<!--{$site.seotitle}--></title>
 <meta name="keywords" content="<!--{$site.keywords}-->">
 <meta name="description" content="<!--{$site.description|html2txt}-->">
-<meta name="copyright" content="2007-2009 (c) iDreamSoft Studio." />
-<link href="<!--{$site.dir}-->/templates/system/style/iCMS.css" rel="stylesheet" type="text/css" />
+<meta name="copyright" content="<!--{$site.title}-->" />
+<link href="<!--{$site.dir}-->/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+<link href="<!--{$site.dir}-->/skin/global.css" rel="stylesheet" type="text/css" />
+<link href="<!--{$site.dir}-->/skin/register.css" rel="stylesheet" type="text/css" />
 <!--{iCMS:javascript}-->
 <script type="text/javascript">
 $(function(){
@@ -107,13 +109,6 @@ function info(e,msg,c){
 	if(msg!="")$(id).text(msg);
 }
 </script>
-<style type="text/css">
-span { margin-left:5px; height:18px; line-height:17px; padding:4px 5px 2px 2em; }
-.Correct { background:#e6ffe6 url(style/register.png) 5px 4px no-repeat; border:1px dashed #00a8ff; color:#008800; }
-.Wrong { background:#fff2e9 url(style/register.png) 5px -76px no-repeat; border:1px dashed #ff6600; color:#8b2b34; }
-.Exp { background:#e2f5ff url(style/register.png) 5px -131px no-repeat; border:1px dashed #00a8ff; color:#006699; }
-.blockquote { background:#FFFFDB none repeat scroll 0 0; border:1px solid #F7E084; color:#000000; line-height:1.3; margin:0 15px; padding:5px 8px; }
-</style>
 </head>
 <body>
 <div id="container"> <!--{include file="./header.htm"}-->
