@@ -81,10 +81,8 @@ function form($A,$rs=array()){
 					$html='<textarea name="mVal['.$id.']" id="'.$id.'" onKeyUp="textareasize(this)" class="tarea">'.$v.'</textarea>';
 				break;
 				case "editor":
-					include(iPATH."include/fckeditor.php");
-					$editor = new FCKeditor('mVal['.$id.']') ;
-					$editor->Value= $v;
-					$html=$editor->CreateHtml();
+					$html='<script type="text/javascript" src="'.$iCMS->dir.'javascript/editor.js"></script>';
+					$html.='<textarea name="mVal['.$id.']" id="'.$id.'" rows="30" cols="80" class="editor">'.$v.'</textarea>';
 				break;
 				case "select":
 					$html='<select name="mVal['.$id.']" id="'.$id.'" style="width:auto;">';

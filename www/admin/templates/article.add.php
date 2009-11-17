@@ -21,11 +21,12 @@ iCMS_admincp_head();
   </table>
 </div>
 <link rel="stylesheet" href="images/style.css" type="text/css" media="all" />
-<script type="text/JavaScript">admincpnav('首页&nbsp;&raquo;&nbsp;文章管理&nbsp;&raquo;&nbsp;<?=empty($id)?'添加':'编辑'?>文章','');</script>
+<script type="text/javaScript">admincpnav('首页&nbsp;&raquo;&nbsp;文章管理&nbsp;&raquo;&nbsp;<?=empty($id)?'添加':'编辑'?>文章','');</script>
 <link rel="stylesheet" href="<?=$iCMS->dir?>admin/images/jquery.function.css" type="text/css" media="all" />
 <script type="text/javascript" src="<?=$iCMS->dir?>javascript/jquery.function.js"></script>
 <script type="text/javascript" src="<?=$iCMS->dir?>javascript/calendar.js"></script>
-<script language="JavaScript" type="text/javascript">
+<script type="text/javascript" src="<?=$iCMS->dir?>javascript/editor.js"></script>
+<script type="text/javascript">
 $(function(){
 	$("#title").focus();
 	$("#savearticle").submit(function(){
@@ -201,8 +202,10 @@ function editContentLink(fieldName){
         <input name="autopic" type="checkbox" class="checkbox" id="autopic" value="1" <?php if($iCMS->config['autopic']=="1")echo 'checked="checked"'?>/>提取第一个图片为缩略图 
         <input name="draft" type="checkbox" class="checkbox" id="draft" value="1" <?php if($rs['visible']=="0")echo 'checked="checked"'?>/>存为草稿 </td>
       </tr>
-      <tr class="nobg" id="editorHtml">
-        <td colspan="4"><?=$editor->CreateHtml()?></td>
+      <tr class="nobg">
+        <td colspan="4">
+        	<textarea name="content" id="content" class="editor-simple" rows="30" cols="80"><?=$rs['body']?></textarea>
+        </td>
       </tr>
       <tr>
         <td class="td27">摘要：</td>

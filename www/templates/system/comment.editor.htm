@@ -7,9 +7,14 @@
       <input id="cPassword" name="password" type="password"/>
       <!--{if $isanonymous}-->(游客发言不需要密码)<!--{/if}--> <a href="<!--{$site.url}-->/register.php" target="_blank">注册</a></div>
       <div class="alert">请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。</div>
-    <div class="textBox"> <!--{if $iseditor}--> <!--{$editor}--> <!--{else}-->
+    <div class="textBox">
+      <!--{if $iseditor}-->
+      <script type="text/javascript" src="<?=$iCMS->dir?>javascript/editor.js"></script>
+      <textarea id="cCommentext" name="commentext" rows="8" class="editor-mini"></textarea>
+      <!--{else}-->
       <textarea id="cCommentext" name="commentext" rows="8" style="width:<!--{$style.width}-->;height:<!--{$style.height}-->"></textarea>
-      <!--{/if}--> </div>
+      <!--{/if}-->
+    </div>
     <div id="seccodeDiv">验证码：
       <input id="cSeccode" name="seccode" type="text" style="width:60px;" />
       <span><a title="换一张验证码图片" onclick="$('#cSeccode').click();return false;" href="#">换一张</a> 把图片上的文字填写到小输入框里 </span></div>

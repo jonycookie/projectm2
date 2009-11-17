@@ -18,15 +18,7 @@ function iCMS_comment($vars,&$iCMS){
 		$width=$vars['width']?$vars['width']:'98%';
 		$height=$vars['height']?$vars['height']:'140';
 		if($vars['editor']=='yes'){
-			include_once(iPATH."include/fckeditor.php");
-			$editor = new FCKeditor('commentext') ;
-			$editor->BasePath	= $iCMS->config['url'];
-			$editor->Width	= $width ;
-			$editor->Height	= $height;
-			$editor->ToolbarSet = 'Basic';
-			$editor->Value="&nbsp;";
 			$iCMS->assign('iseditor',true);
-			$iCMS->assign('editor',$editor->CreateHtml());
 		}else{
 			$iCMS->assign('iseditor',false);
 			$iCMS->assign('style',array('width'=>$width,'height'=>$height));

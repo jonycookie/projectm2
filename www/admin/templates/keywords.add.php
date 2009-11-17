@@ -8,7 +8,8 @@
 !defined('iPATH') && exit('What are you doing?'); 
 iCMS_admincp_head();
 ?><link rel="stylesheet" href="images/style.css" type="text/css" media="all" />
-<script type="text/JavaScript">admincpnav('首页&nbsp;&raquo;&nbsp;关键字管理','');</script>
+<script type="text/javaScript">admincpnav('首页&nbsp;&raquo;&nbsp;关键字管理','');</script>
+<script type="text/javascript" src="<?=$iCMS->dir?>javascript/editor.js"></script>
 <div class="container" id="cpcontainer">
   <div class="itemtitle">
     <h3>关键字管理</h3>
@@ -36,7 +37,9 @@ iCMS_admincp_head();
         <td colspan="2" class="td27">替换:</td>
       </tr>
       <tr>
-        <td colspan="2"><?=$editor->CreateHtml()?></td>
+        <td colspan="2">
+    	<textarea name="replace" id="replace" class="editor-mini" rows="30" cols="80"><?=$rs['replace']?></textarea>
+    	</td>
       </tr>
        <tr class="nobg">
         <td colspan="2"><div class="fixsel">

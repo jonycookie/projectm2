@@ -8,7 +8,8 @@
 !defined('iPATH') && exit('What are you doing?'); 
 iCMS_admincp_head();
 ?><link rel="stylesheet" href="images/style.css" type="text/css" media="all" />
-<script type="text/JavaScript">admincpnav('首页&nbsp;&raquo;&nbsp;独立页面管理&nbsp;&raquo;&nbsp;编辑页面','');</script>
+<script type="text/javaScript">admincpnav('首页&nbsp;&raquo;&nbsp;独立页面管理&nbsp;&raquo;&nbsp;编辑页面','');</script>
+<script type="text/javascript" src="<?=$iCMS->dir?>javascript/editor.js"></script>
 <div class="container" id="cpcontainer">
   <h3>独立页面管理</h3>
   <div id="basic">
@@ -54,7 +55,9 @@ iCMS_admincp_head();
           <td colspan="2" class="td27">代码内容: 支持HTML代码</td>
         </tr>
         <tr>
-          <td colspan="2" class="vtop"><?=$editor->CreateHtml()?></td>
+          <td colspan="2" class="vtop">
+        	<textarea name="body" id="body" class="editor" rows="30" cols="80"><?=$rs['body']?></textarea>
+    	  </td>
         </tr>
         <tr class="nobg">
           <td colspan="2"><div class="fixsel"> <input type="submit" class="btn" name="forumlinksubmit" value="提交"  /> </div></td>
