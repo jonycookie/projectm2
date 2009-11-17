@@ -9,7 +9,8 @@
 <link href="<!--{$site.dir}-->/templates/system/style/iCMS.css" rel="stylesheet" type="text/css" />
 <link href="style/iCMS.css" rel="stylesheet" type="text/css" />
 <!--{iCMS:javascript}-->
-<script language="JavaScript" type="text/javascript">
+<script type="text/javascript" src="<?=$iCMS->dir?>javascript/editor.js"></script>
+<script type="text/javascript">
 $(function(){
 	$("#verify").click(function(){		
 		$(this).attr("src","include/verify.php?t=post&g="+Math.random());	
@@ -107,8 +108,10 @@ $(function(){
           <td class="td27">*内容：</td>
           <td colspan="3" class="vtop rowform" style="width:auto"></td>
         </tr>
-        <tr class="nobg" id="editor">
-          <td colspan="4"><!--{$editorHtml}--></td>
+        <tr class="nobg">
+          <td colspan="4">
+        	<textarea name="content" id="content" class="editor" rows="30" cols="80"><?=$rs['body']?></textarea>
+          </td>
         </tr>
         <tr class="nobg">
           <td colspan="4" align="center"><input name="action" type="hidden" id="action" value="save" />

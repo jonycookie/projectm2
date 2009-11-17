@@ -27,7 +27,6 @@ switch ($operation) {
 		}
 	break;
 	case 'page':
-		include_once(iPATH."include/fckeditor.php") ;
 		$cid=(int)$_GET['cid'];
 		$catalog=$iCMS->db->getRow("SELECT * FROM `#iCMS@__catalog` WHERE id='$cid'");
 		$rs=$iCMS->db->getRow("SELECT * FROM `#iCMS@__page` WHERE cid='$cid'");
@@ -36,9 +35,6 @@ switch ($operation) {
 			$rs->creater=$rs->updater=$administrator;
 			$rs->body='';
 		}
-		$editor = new FCKeditor('body');
-		$editor->Value= $rs->body;
-	//	$editor->CreateHtml()
 		$rs->createtime=get_date($rs->createtime,'Y-m-d H:i:s');
 		$rs->updatetime=get_date($rs->updatetime,'Y-m-d H:i:s');
 		include iCMS_admincp_tpl("file.page");

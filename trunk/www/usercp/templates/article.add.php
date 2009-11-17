@@ -53,7 +53,8 @@
           多个关键字请用,格开 </p>
         <p><span style="float:right;"><img src="<?=$iCMS->dir?>admin/images/add.gif" onclick="setEditorSize('+','content',200)" title="增加编辑器高度"/> <img src="<?=$iCMS->dir?>admin/images/desc.gif" onclick="setEditorSize('-','content',200)" title="减少编辑器高度"/></span>
           <label>内容</label>
-          <?=$editor->CreateHtml()?>
+          <script type="text/javascript" src="<?=$iCMS->dir?>javascript/editor.js"></script>
+          <textarea name="content" id="content" class="editor" rows="30" cols="80"><?=$rs['body']?></textarea>
         </p>
         <p>
           <input name="aid" type="hidden" id="aid" value="<?=$id?>" />

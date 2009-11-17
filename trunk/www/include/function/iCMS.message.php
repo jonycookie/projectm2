@@ -9,15 +9,6 @@
 function iCMS_message($vars,&$iCMS){
 	if(isset($vars['call'])){
 		if($vars['call']=='form'){
-			$width=$vars['width']?$vars['width']:'98%';
-			$height=$vars['height']?$vars['height']:'200';
-			include_once(iPATH."include/fckeditor.php");
-			$editor = new FCKeditor('messagetext') ;
-			$editor->BasePath	= $iCMS->config['url'];
-			$editor->Width	= $width ;
-			$editor->Height	= $height;
-			$editor->ToolbarSet = 'Basic';
-			$iCMS->assign('editor',$editor->CreateHtml());
 			echo $iCMS->iPrint("iSYSTEM","message.form");
 		}
 	}else{

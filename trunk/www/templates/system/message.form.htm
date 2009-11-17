@@ -27,7 +27,10 @@
         悄悄话</td>
     </tr>
     <tr>
-      <td colspan="3" align="center"><!--{$editor}--></td>
+      <td colspan="3" align="center">
+      <script type="text/javascript" src="<?=$iCMS->dir?>javascript/editor.js"></script>
+      <textarea name="messagetext" id="messagetext" rows="8" class="editor-mini"></textarea>
+      </td>
     </tr>
     <tr>
       <td height="22" colspan="3" align="center"><input name="action" type="hidden" id="action" value="save" />

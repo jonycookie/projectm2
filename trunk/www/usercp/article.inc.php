@@ -10,13 +10,9 @@ include iPATH.'include/catalog.class.php';
 switch($operation){
 case 'add':
 	$catalog =new catalog();
-	include(iPATH."include/fckeditor.php");
 	$id=(int)$_GET['id'];
 	$rs=array();
 	$id && $rs=$iCMS->db->getRow("SELECT a.*,ad.tpl,ad.body,ad.subtitle FROM `#iCMS@__article` a LEFT JOIN `#iCMS@__articledata` ad ON a.id=ad.aid WHERE a.id='$id' and a.userid='$member->uId'",ARRAY_A);
-	$editor = new FCKeditor('content') ;
-	$editor->ToolbarSet	= 'User' ;
-	$editor->Value= $rs['body'];
 	$rs['pubdate']=empty($id)?get_date('',"Y-m-d H:i:s"):get_date($rs['pubdate'],'Y-m-d H:i:s');
 	$rootid=empty($rs['cid'])?intval($_GET['cid']):$rs['cid'];
 	$cata_option=user_catalog_select($rootid,0,1,'channel=1&list');

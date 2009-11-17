@@ -8,11 +8,8 @@
 !defined('iPATH') && exit('What are you doing?');
 switch ($operation) {
 	case 'add':
-		include_once(iPATH."include/fckeditor.php");
-		$editor = new FCKeditor('replace') ;
 		if($id=(int)$_GET['id']){
 			$rs	= $iCMS->db->getRow("SELECT * FROM `#iCMS@__keywords` where `id`='$id'");
-			$editor->Value= $rs->replace;
 		}
 		include iCMS_admincp_tpl('keywords.add');
 	break;
