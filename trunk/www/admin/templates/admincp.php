@@ -36,7 +36,6 @@
             <?php if($Admin->MP('header_extend','F')){?><li><em><a href="javascript:void(0);" id="header_extend" onClick="toggleMenu('extend', 'model&operation=manage');"><?=lang('header_extend')?></a></em></li>	<?php }?>
             <?php if($Admin->MP('header_html','F')){?><li><em><a href="javascript:void(0);" id="header_html" onClick="toggleMenu('html', 'html&operation=index');"><?=lang('header_html')?></a></em></li>					<?php }?>
             <?php if($Admin->MP('header_tools','F')){?><li><em><a href="javascript:void(0);" id="header_tools" onClick="toggleMenu('tools', 'link');"><?=lang('header_tools')?></a></em></li>					<?php }?>
-            <li><em><a href="javascript:void(0);" class="diffcolor" onClick="window.open('http://www.idreamsoft.cn/doc/iCMS/index.html')"><?=lang('faq')?></a></em></li>
           </ul>
           <div class="currentloca">
             <p id="admincpnav"></p>
