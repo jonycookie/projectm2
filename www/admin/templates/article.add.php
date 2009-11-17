@@ -204,7 +204,7 @@ function editContentLink(fieldName){
       </tr>
       <tr class="nobg">
         <td colspan="4">
-        	<textarea name="content" id="content" class="editor-simple" rows="30" cols="80"><?=$rs['body']?></textarea>
+        	<textarea name="content" id="content" class="editor" rows="30" cols="80"><?=$rs['body']?></textarea>
         </td>
       </tr>
       <tr>
