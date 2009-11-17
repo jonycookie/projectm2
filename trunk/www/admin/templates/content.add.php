@@ -116,18 +116,17 @@ function editContentLink(fieldName){
   </table>
   <form action="<?=__SELF__?>?do=content&operation=post" method="post" enctype="multipart/form-data" name="savecontent" id="savecontent">
     <input type="hidden" name="action" value="save" />
-     <input name="mid" type="hidden" id="mid" value="<?=$mid?>" />
-     <input name="table" type="hidden" id="table" value="<?=$model->table?>" />
+    <input name="mid" type="hidden" id="mid" value="<?=$mid?>" />
+    <input name="table" type="hidden" id="table" value="<?=$model->table?>" />
     <table class="tb tb2 ">
     <?php for($i=0;$i<$fcount;$i++){if($form[$i]['general']){?>
       <tr>
         <td class="td27" style="width:100px"><?=$form[$i]['general']['label']?>：</td>
         <td class="vtop rowform" style="width:auto"><?=$form[$i]['general']['html']?><?=$form[$i]['general']['description']?></td>
-        <td></td>
       </tr>
       <?php }}?>	  
       <tr class="nobg">
-        <td colspan="3" align="center">
+        <td colspan="2" align="center">
     	 <?php for($i=0;$i<$fcount;$i++){if($form[$i]['hidden']){?><?=$form[$i]['hidden']?><?php }}?>	  
          <input name="id" type="hidden" id="id" value="<?=$id?>" />
          <input name="mVal[userid]" type="hidden" id="userid" value="<?=$rs['userid']?>" />
