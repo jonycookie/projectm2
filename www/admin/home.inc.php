@@ -24,6 +24,6 @@ $c=$iCMS->db->getValue("SELECT count(*) FROM #iCMS@__catalog");
 $a=$iCMS->db->getValue("SELECT count(*) FROM #iCMS@__article");
 include iCMS_admincp_tpl("home");
 function okorno($o){
-	return $o?'<font color=green>支持<b>√</b></font>':'<font color=red>不支持<b>×</b></font>';
+	return $o?'<font color=green>支持</font>':'<font color=red>不支持</font>';
 }
 ?>
