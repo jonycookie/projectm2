@@ -29,7 +29,7 @@ function msgJson($state,$lang,$frame=false,$break=true){
 //警告
 Function alert($str, $url="javascript:"){
 	$A=explode(':',$url);
-	$script='<script type="text/JavaScript">alert("'.$str.'");';
+	$script='<script type="text/javaScript">alert("'.$str.'");';
 	if($A[0]=='javascript'){
 		$script.=empty($A[1])?'history.go(-1);':$A[1];
     }elseif($A[0]=='url'){
