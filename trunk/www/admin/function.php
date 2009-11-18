@@ -12,10 +12,6 @@ function iCMS_admincp_tpl($p){
 function iCMS_admincp_head($title=''){
 	include iCMS_admincp_tpl('header');
 }
-function iCMS_admincp_footer(){
-	global $iCMS,$c,$a;
-	return base64_decode("PHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiIHNyYz0iaHR0cDovL3d3dy5pZHJlYW1zb2Z0LmNuL2Ntcy9pQ01TLnZlci5waHA/bj0=").base64_encode($iCMS->config['name']).base64_decode('JnU9 =').base64_encode($iCMS->config['url']).base64_decode('Jmk9').base64_encode($_SERVER['HTTP_HOST']).base64_decode('JnY9').base64_encode(Version).base64_decode('JmM9').DB_CHARSET.base64_decode('JnM9').base64_encode($c.base64_decode('fA==').$a).base64_decode('Ij48L3NjcmlwdD4=');
-}
 /*
  * @版权信息禁止更改
  * @请见iCMS使用许可协议<http://www.idreamsoft.cn/doc/iCMS.License.html>
