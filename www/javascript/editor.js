@@ -85,6 +85,13 @@ $.editor=function(textarea,options)
 	}
 	if(!_this.settings.tools.match(/(^|,)\s*About\s*(,|$)/i))_this.settings.tools+=',About';
 	_this.settings.tools=_this.settings.tools.split(',');
+
+	//上传初始化
+	_this.settings.upLinkUrl="admincp.php?do=dialog&operation=editor";
+	_this.settings.upImgUrl="admincp.php?do=dialog&operation=editor";
+	_this.settings.upFlashUrl="admincp.php?do=dialog&operation=editor";
+	_this.settings.upMediaUrl="admincp.php?do=dialog&operation=editor";
+
 	
 	//基本控件名
 	var idCSS='EdtCSS_'+_this.settings.skin,idContainer='Edt'+xCount+'_container',idTools='Edt'+xCount+'_Tool',idIframeArea='Edt'+xCount+'_iframearea',idIframe='Edt'+xCount+'_iframe';
