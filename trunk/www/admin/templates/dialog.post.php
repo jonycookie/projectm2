@@ -6,17 +6,12 @@
  * @author coolmoo <idreamsoft@qq.com>
  */
 !defined('iPATH') && exit('What are you doing?');
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title></title>
-<meta http-equiv="Content-Type" content="text/html; charset=<?=iCMS_CHARSET?>">
-<script src="javascript/jquery.js" type="text/javascript"></script>
-<script src="javascript/admin.fun.js" type="text/javascript"></script>
-</head>
-<body>
-<?php
+
 switch ($action) {
+	case 'editor':
+		$F=uploadfile("upload");
+		echo json_encode(array('err'=>'','msg'=>uploadfile("upload")["FilePath"]));
+	break;
 	case 'Aupload':
 		strpos($_POST['savedir'],'.')!==false && alert('目录不能带有.','javascript:void(0);');
 		$F=uploadfile("file");
@@ -81,5 +76,3 @@ switch ($action) {
 	break;
 }
 ?>
-</body>
-</html>
