@@ -9,11 +9,10 @@
 iCMS_admincp_head();
 ?>
 <div class="container" id="cpcontainer">
-  <script type="text/JavaScript">admincpnav('首页');</script>
+  <script type="text/javascript">admincpnav('首页');</script>
   <div class="itemtitle">
     <h3>欢迎进入系统设置</h3>
   </div>
-  <div id="cmsnews"></div>
   <table class="tb tb2 nobdb nobdt fixpadding">
     <tr>
       <th colspan="17" class="partition">数据统计</th>
@@ -40,12 +39,6 @@ iCMS_admincp_head();
   <table class="tb tb2 nobdb nobdt fixpadding">
     <tr>
       <th colspan="17" class="partition">系统信息</th>
-    </tr>
-    <tr>
-      <td width="120" class="vtop td24 lineheight">当前程序版本</td>
-      <td width="300" class="lineheight smallfont">iCMS <?=Version?></td>
-      <td width="120" class="vtop td24 lineheight"><a href="http://www.idreamsoft.cn/thread.php?fid=8" class="lightlink smallfont" target="_blank">最新版本</a></td>
-      <td class="lineheight smallfont"><span id="newversion"><img src="admin/images/ajax_loader.gif" width="16" height="16" align="absmiddle"></span></td>
     </tr>
     <tr>
       <td class="vtop td24 lineheight">服务器操作系统</td>
@@ -102,5 +95,4 @@ iCMS_admincp_head();
     </tr>
   </table>
 </div>
-<?=iCMS_admincp_footer();?>
 </body></html>
