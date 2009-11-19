@@ -1,0 +1,13 @@
+#toolbar {line-height: 20px;padding: 0 5px;text-align: right;background: #fafafa;border-bottom: 1px solid #eee;}
+#header, #advertise, #search, #container, #footer {width: 960px;text-align: left;margin: 0 auto;}
+#header {}
+	#header:after {content:"";display:block;clear:both;}
+	#header h1 {float: left;}
+	#catalogs {float: left;}
+	#catalogs li {float: left;border-right: 1px solid #eee;padding: 0 5px 0 0;margin: 0 5px 0 0;}
+#advertise {border: 1px solid #ddd;padding: 10px;}
+#search {border: 1px solid #ddd;padding: 10px;}
+#container {}
+	#container .col_l {float: left;width: 300px;border: 1px solid #ddd;}
+	#container .col_c (float: left;width: 500px;border: 1px solid #ddd;}
+	#container .col_c (float: left;width: 150px;border: 1px solid #ddd;}
