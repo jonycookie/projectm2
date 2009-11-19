@@ -7,21 +7,12 @@
  */
 !defined('iPATH') && exit('What are you doing?'); 
 iCMS_admincp_head();
-?><script src="javascript/jquery.ui.core.js" type="text/javascript"></script>
+?>
+<script src="javascript/jquery.ui.core.js" type="text/javascript"></script>
 <script src="javascript/jquery.draggable.js" type="text/javascript"></script>
 <script src="javascript/jquery.floatDiv.js" type="text/javascript"></script>
-<script src="javascript/tpleditor.js" type="text/javascript"></script>
 <script type="text/javascript"> 
 $(function(){
-    if($.browser.msie){ 
-        $("#html").click(function(){ 
-          setCaret($(this).get(0)); 
-        }).select(function(){ 
-          setCaret($(this).get(0)); 
-        }).keyup(function(){ 
-          setCaret($(this).get(0)); 
-        }).focus(); 
-    } 
 	$("#tagTip").floatdiv("righttop").draggable();
 	$("#shtag").click(function(){$("#tagTip").toggle();});
 	$("#close").click(function(){$("#tagTip").hide();});
@@ -117,28 +108,28 @@ $(function(){
               </ul>
             </li>
             <li><div class="head">文章列表：<span class="t2">&lt;!--{iCMS:list}--&gt;</span><br />适用范围:所有模板</div>
-<ul class="tag" id="list">
-  <li><span class="t2">&lt;!--{iCMS:list loop='true'}--&gt;</span></li>
-  <li>ID: <span class="t2">&lt;!--{$list.id}--&gt;</span></li>
-  <li>缩略图: <span class="t2">&lt;!--{$list.pic}--&gt;</span></li>
-  <li>标题: <span class="t2">&lt;!--{$list.title}--&gt;</span></li>
-  <li>文章链接: <span class="t2">&lt;!--{$list.url}--&gt;</span></li>
-  <li>文章链接: <span class="t2">&lt;!--{$list.link}--&gt;</span>(带标题)</li>
-  <li>关键字: <span class="t2">&lt;!--{$list.keywords}--&gt;</span></li>
-  <li>简介: <span class="t2">&lt;!--{$list.description}--&gt;</span></li>
-  <li>来源: <span class="t2">&lt;!--{$list.source}--&gt;</span></li>
-  <li>作者: <span class="t2">&lt;!--{$list.author}--&gt;</span></li>
-  <li>发布日期:<span class="t2">&lt;!--{$list.pubdate|date}--&gt;</span></li>
-  <li>点击数: <span class="t2">&lt;!--{$list.hits}--&gt;</span></li>
-  <li>Digg数: <span class="t2">&lt;!--{$list.digg}--&gt;</span></li>
-  <li>评论数: <span class="t2">&lt;!--{$list.comments}--&gt;</span></li>
-  <li>栏目链接: <span class="t2">&lt;!--{$list.sort.url}--&gt;</span></li>
-  <li>栏目名: <span class="t2">&lt;!--{$list.sort.name}--&gt;</span></li>
-  <li>栏目链接: <span class="t2">&lt;!--{$list.sort.link}--&gt;</span></li>
-  <li>当无值时被执行: <span class="t2">&lt;!--{iCMSelse}--&gt;</span> </li>
-  <li> 结束标签: <span class="t2">&lt;!--{/iCMS}--&gt;</span></li>
-  <li>分页:<span class="t2">&lt;!--{$pagenav}--&gt;</span> page='yes'时可用</li>
-</ul>
+			<ul class="tag" id="list">
+			  <li><span class="t2">&lt;!--{iCMS:list loop='true'}--&gt;</span></li>
+			  <li>ID: <span class="t2">&lt;!--{$list.id}--&gt;</span></li>
+			  <li>缩略图: <span class="t2">&lt;!--{$list.pic}--&gt;</span></li>
+			  <li>标题: <span class="t2">&lt;!--{$list.title}--&gt;</span></li>
+			  <li>文章链接: <span class="t2">&lt;!--{$list.url}--&gt;</span></li>
+			  <li>文章链接: <span class="t2">&lt;!--{$list.link}--&gt;</span>(带标题)</li>
+			  <li>关键字: <span class="t2">&lt;!--{$list.keywords}--&gt;</span></li>
+			  <li>简介: <span class="t2">&lt;!--{$list.description}--&gt;</span></li>
+			  <li>来源: <span class="t2">&lt;!--{$list.source}--&gt;</span></li>
+			  <li>作者: <span class="t2">&lt;!--{$list.author}--&gt;</span></li>
+			  <li>发布日期:<span class="t2">&lt;!--{$list.pubdate|date}--&gt;</span></li>
+			  <li>点击数: <span class="t2">&lt;!--{$list.hits}--&gt;</span></li>
+			  <li>Digg数: <span class="t2">&lt;!--{$list.digg}--&gt;</span></li>
+			  <li>评论数: <span class="t2">&lt;!--{$list.comments}--&gt;</span></li>
+			  <li>栏目链接: <span class="t2">&lt;!--{$list.sort.url}--&gt;</span></li>
+			  <li>栏目名: <span class="t2">&lt;!--{$list.sort.name}--&gt;</span></li>
+			  <li>栏目链接: <span class="t2">&lt;!--{$list.sort.link}--&gt;</span></li>
+			  <li>当无值时被执行: <span class="t2">&lt;!--{iCMSelse}--&gt;</span> </li>
+			  <li> 结束标签: <span class="t2">&lt;!--{/iCMS}--&gt;</span></li>
+			  <li>分页:<span class="t2">&lt;!--{$pagenav}--&gt;</span> page='yes'时可用</li>
+			</ul>
             </li>
           </ul></td>
          <tr class="nobg">
