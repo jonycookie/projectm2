@@ -5,8 +5,8 @@
  * @author coolmoo <idreamsoft@qq.com>
 **/
 var settings = {
-	commentURI:SiteDir+"/action.php?do=comment&callback=?&action=",
-	diggURI:SiteDir+"/action.php?do=digg&callback=?&action=do"
+	commentURI:"/action.php?do=comment&callback=?&action=",
+	diggURI:"/action.php?do=digg&callback=?&action=do"
 }
 function digg(act,aid,cid){
 	if(act=='up'||act=='against'){
