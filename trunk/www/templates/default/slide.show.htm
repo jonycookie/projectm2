@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><!--{$show.title}-->-<!--{$site.title}-->-<!--{$site.seotitle}--></title>
+<meta name="keywords" content="<!--{$show.keywords}-->">
+<meta name="description" content="<!--{$show.description|html2txt}-->">
+<meta name="copyright" content="<!--{$site.title}-->" />
+<link href="<!--{$site.dir}-->/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+<link href="<!--{$site.dir}-->/skins/global.css" rel="stylesheet" type="text/css" />
+<link href="<!--{$site.dir}-->/skins/slide.css" rel="stylesheet" type="text/css" />
+<!--{iCMS:javascript}-->
+<style type="text/css">
+.context { width:638px; clear:both; }
+.diggArea { padding:0px; margin:0px; background-image:url(<!--{$site.tplurl}-->/images/diggbg2.gif); width:60px; height:58px; line-height:23px; float:left; }
+.diggNum { margin:0px; text-align:center; padding:0px; font-size:12px; font-weight:bold; color:#CC0000; width:58px; height:23px; margin-top:8px; }
+.diggLink { margin:0px; text-align:center; padding:0px; font-size:14px; font-weight:bold; width:58px; height:23px; }
+.diggLink a { font-size:14px; font-weight:bold; }
+</style>
+</head>
+<body>
+<!--{include file="./header.htm"}-->
+<div id="container">
+  <div id="main"> <!--左侧-->
+    <div class="pleft"> <!--位置导航-->
+      <div class="thisplace">
+        <div class="placenav"> <span>当前位置 :</span><a href="<!--{$site.url}-->">首页</a> → <!--{$sort.nav}--> </div>
+      </div>
+      <!--资讯内容-->
+      <div class="newsview"> <!--资讯标题-->
+        <div class="title">
+          <h1><!--{$show.title}--></h1>
+        </div>
+        <!--相关信息-->
+        <div class="info"> <strong>来源：</strong><!--{$show.source}--> <strong>作者：</strong><!--{$show.author}--> <strong>时间：</strong><!--{$show.pubdate|date:"Y-m-d"}--> <strong>点击：</strong><!--{$show.hits}--> </div>
+        <!--资讯正文-->
+        <div class="content"> <!--{$show.body}--></div>
+        <div class="cupage"> <!--{$show.pagebreak}--> </div>
+        <div align="center" style="margin:5px 0px;">
+          <input type="image" onClick='copyToClipBoard()' src="<!--{$site.tplurl}-->/images/qm.gif" alt="复制本页文章地址，传给QQ/MSN上的好友" align="middle">
+        </div>
+        <script type="text/javascript">
+function copyToClipBoard(){ 
+	var clipBoardContent=""; 
+	clipBoardContent+=document.title; 
+	clipBoardContent+="\r\n"; 
+	clipBoardContent+=this.location.href; 
+	window.clipboardData.setData("Text",clipBoardContent); 
+	alert("复制成功，请粘贴到你的QQ/MSN上推荐给你的好友"); 
+} 
+document.body.oncopy = function () { 
+	setTimeout(function () { var text = clipboardData.getData("text"); if (text) { text = text + "\r\n参考链接："+location.href; clipboardData.setData("text", text); } }, 100 ); 
+}
+</script>
+        <!--操作--> <!--{if $show.tags}-->
+        <div class="actbar"><span><!--{$show.tags}--></span> </div>
+        <!--{/if}-->
+        <div class="actbar"> <span>[<a href="<!--{$site.url}-->/comment.php?aid=<!--{$show.id}-->&sortid=<!--{$sort.id}-->">评论</a>]</span> <span>[<a href="#" onClick="window.print();">打印</a>]</span> <span>[<a href="#" onClick="window.close();">关闭</a>]</span> </div>
+        <!--上下文-->
+        <div class="context">
+          <div class='diggArea'>
+            <div class='diggNum' id='digg_<!--{$show.id}-->'><!--{$show.digg}--></div>
+            <div class="diggLink"><a href="javascript:digg('digg',<!--{$show.id}-->);">顶一下</a></div>
+          </div>
+          <div style="float:left; margin-left:20px;">上一篇： <!--{$show.prev}--> <br />
+            下一篇： <!--{$show.next}--> </div>
+        </div>
+        <div class="floatclear"><!--清除浮动--></div>
+      </div>
+      <!--评论-->
+      <div class="comment"> <!--评论:标题-->
+        <div class="commenttitle">
+          <div class="title"><strong>最新评论</strong>共有 <!--{$show.comments}--> 位网友发表了评论 </div>
+          <div class="gotopost"><a href="<!--{$site.url}-->/comment.php?aid=<!--{$show.id}-->&sortid=<!--{$sort.id}-->">查看所有评论</a></div>
+        </div>
+        <!--评论内容-->
+        <div class="commentbox"> <!--{iCMS:comment call='js'}--> </div>
+        <!--发表评论:标题-->
+        <div class="posttitle"><strong>发表评论</strong></div>
+        <!--发表评论-->
+        <div class="postbox"><!--{iCMS:comment editor='no' width='98%' height='220'}--></div>
+      </div>
+    </div>
+    <!--右侧-->
+    <div class="pright"> <!--侧边信息列表-->
+      <div class="classbox">
+        <dl>
+          <dt>栏目列表</dt>
+          <dd>
+            <ul>
+              <!--{iCMS:catalog type='self' loop='true' att='list' id=$sort.id cache='true' time='3600'}-->
+              <li><a href='<!--{$catalog.url}-->'><!--{$catalog.name}--></a></li>
+              <!--{/iCMS}-->
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      <div class="rlist margintop">
+        <div class="title">热点关注</div>
+        <div class="rbox">
+          <ul>
+            <!--{iCMS:list loop='true' orderby='hot' row="20" sortid=$sort.id cache='true' time='3600'}-->
+            <li><a href='<!--{$list.url}-->'><!--{$list.title|cut:24}--></a></li>
+            <!--{/iCMS}-->
+          </ul>
+        </div>
+      </div>
+      <!--侧边信息列表-->
+      <div class="rlist margintop">
+        <div class="title">相关文章</div>
+        <div class="rbox">
+          <ul>
+            <!--{iCMS:list loop='rel' row="10" aid=$show.rel cache='true' time='3600'}-->
+            <li><a href='<!--{$list.url}-->'><!--{$list.title|cut:24}--></a></li>
+            <!--{/iCMS}-->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--{include file="./footer.htm"}-->
+</body>
+</html>
