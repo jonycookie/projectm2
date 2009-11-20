@@ -137,17 +137,4 @@ function editContentLink(fieldName){
     </table>
   </form>
 </div>
-<!--
-<script language="JavaScript" type="text/javascript">
-var thumbwidth = parseInt(400);
-var thumbheight = parseInt(300);
-var extensions = '<?=$iCMS->config['fileext']?>';
-lang['post_attachment_ext_notallowed']	= '对不起，不支持上传此类扩展名的附件。';
-lang['post_attachment_img_invalid']	= '无效的图片文件。';
-lang['post_attachment_deletelink']	= '删除';
-lang['post_attachment_insert']		= '点击这里将本附件插入帖子内容中当前光标的位置';
-lang['post_attachment_insertlink']	= '插入';
-</script>
-<script src="javascript/post_attach.js" type="text/javascript"></script>
--->
 </body></html>
