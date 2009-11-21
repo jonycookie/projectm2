@@ -48,8 +48,7 @@ iCMS_admincp_head();
         </tr>
         <tr>
           <td class="vtop rowform"><select name="mid" id="mid">
-    		<option value="0"<?php if($rs['mid']=='0') echo ' selected="selected"'?>>文章模型</option>
-    		<option value="-1"<?php if($rs['mid']=='-1') echo ' selected="selected"'?>>通用模型</option>
+    		<option value="0"<?php if($rs['mid']=='0') echo ' selected="selected"'?>>通用模型</option>
 		    <?=getModelselect($rs['mid'])?>
           </select>
            </td>
@@ -260,8 +259,8 @@ $(function(){
 	}); 
 	$("#mid").change( function() {
 	  	if(this.value>0){
-	  		$("#listpl").val('{TPL}/content.list.htm');
-	  		$("#contentpl").val('{TPL}/content.show.htm');
+	  		$("#listpl").val('{TPL}/list.content.htm');
+	  		$("#contentpl").val('{TPL}/show.content.htm');
 	  	}
 	}); 
 });

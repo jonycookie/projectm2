@@ -107,6 +107,6 @@ $language=array(
 	//其它
 	'guest'=>'游客',
 	//导航
-	'navTag'=>' → '
+	'navTag'=>' &gt; '
 );
 ?>
