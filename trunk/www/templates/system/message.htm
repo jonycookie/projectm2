@@ -14,7 +14,7 @@
 <!--{include file="./header.htm"}-->
 <div id="container">
   <div id="main">
-    <div class="position">当前位置: <a href="<!--{$site.index}-->">首页</a> → <a href="<!--{$site.dir}-->/message.php">留言板</a></div>
+    <div class="position">当前位置: <a href="<!--{$site.index}-->">首页</a> &gt; <a href="<!--{$site.dir}-->/message.php">留言板</a></div>
     <!--{if !$do}--> <!--{iCMS:message loop='true' row='10'}-->
     <div class="<!--{if $message.index % 2 == 0}-->one<!--{else}-->two<!--{/if}-->" style="width:520px;">
       <h3><!--{$message.rownum}-->、 <a href="<!--{if $message.user.homepage}--><!--{$message.user.homepage}--><!--{else}-->#<!--{/if}-->" target="_blank"><em><strong><!--{$message.user.name}--></strong></em></a> 在 <!--{$message.addtime|date:"Y-m-d H:i"}-->的留言</h3>

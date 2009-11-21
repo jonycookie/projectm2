@@ -6,7 +6,7 @@
 	  <ul>
 	    <li><a href="<!--{$site.url}-->">首页</a></li>
 	    <!--{iCMS:catalog loop='true' type='top'}-->
-	    <li id="catalog_<!--{$catalog.id}-->"><a href="<!--{$catalog.url}-->"><!--{$catalog.name}--></a></li>
+	    <li id="catalog_<!--{$catalog.id}-->"<!--{if "$sort.id" == "$catalog.id"}--> class="active"<!--{/if}-->><a href="<!--{$catalog.url}-->"><!--{$catalog.name}--></a></li>
 	    <!--{/iCMS}-->
 	  </ul>
 	</div>

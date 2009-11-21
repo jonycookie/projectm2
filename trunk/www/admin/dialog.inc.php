@@ -8,9 +8,6 @@
 !defined('iPATH') && exit('What are you doing?');
 $in=$_GET['in'];
 switch ($operation) {
-	case 'editor':
-		echo json_encode(array('err'=>'????','msg'=>uploadfile("upload")["FilePath"]));
-	break;
 	case in_array($operation,array('file','template')):
 		$dir=trim($_GET["dir"]);
 		$type=$_GET["type"];
