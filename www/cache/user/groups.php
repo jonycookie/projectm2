@@ -1,0 +1,1 @@
+<?php exit('No direct script access allowed'); ?>a:1:{i:0;s:15:"默认会员组";}

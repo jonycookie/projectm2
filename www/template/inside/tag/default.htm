@@ -1,0 +1,13 @@
+<h1>{king:title/}</h1>
+
+
+<p style="color:{king:color/}">{king:title/}</p>
+<p>{king:image width="160" height="90" before='<img src="(king:root/)' after='" alt="(king:title/)" />'/}</p>
+
+
+
+{king:portal modelid="(king:modelid/)" type="tag"}
+	<p><a href="{king:path/}">{king:title/}</a>
+	{king:_author/}</p>
+{/king:portal}
+

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kingcms>
+	<name>用户系统</name>
+
+	<ACCESS>
+		<user>访问</user>
+		<user_begin>用户管理[</user_begin>
+		<user_edt>新建/编辑用户</user_edt>
+		<user_delete>删除用户</user_delete>
+		<user_end>]</user_end>
+
+		<user_group_begin>用户组管理[</user_group_begin>
+		<user_group_edt>添加/编辑</user_group_edt>
+		<user_group_delete>删除</user_group_delete>
+		<user_group_link>关联</user_group_link>
+		<user_group_end>]</user_group_end>
+
+		<user_log>日志管理</user_log>
+	</ACCESS>
+
+	<CHANNEL>
+		<center href="../user/manage.php" access="user" title="用户管理中心" img="a6">用户中心</center>
+		<userlist href="../user/manage.php?action=userlist" access="user" title="用户列表" class="hr">用户列表</userlist>
+		<log href="../user/manage.php?action=log" access="user" title="用户管理中心" img="a6">会员日志</log>
+		<config access="#config" href="../system/manage.php?action=config&amp;kmodule=user" class="hr" img="e7" >参数设置</config>
+	</CHANNEL>
+
+	<const>
+		<templatelogin>登录页面模板</templatelogin>
+		<templateregister>注册页模板</templateregister>
+		<templateuser>用户页模板</templateuser>
+		<isregister>是否开放注册账号</isregister>
+		<reglicense>网站用户注册协议</reglicense>
+		<usercenter>是否整合UCenter</usercenter>
+		<ucpath>UCenter 客户端目录</ucpath>
+		<regtime>注册后发布信息等候时间 (秒)</regtime>
+		<registertip>关闭注册的时候提示信息</registertip>
+		<userpre>Cookie后缀</userpre>
+
+		<uc_connect>链接方式</uc_connect>
+		<uc_dbhost>数据库主机</uc_dbhost>
+		<uc_dbuser>数据库用户名</uc_dbuser>
+		<uc_dbpw>数据库密码</uc_dbpw>
+		<uc_dbname>数据库名称</uc_dbname>
+		<uc_dbcharset>字符集</uc_dbcharset>
+		<uc_dbtablepre>表前缀</uc_dbtablepre>
+		<uc_dbconnect>数据库持久连接</uc_dbconnect>
+		<uc_key>通信密钥</uc_key>
+		<uc_api>服务端的 URL 地址</uc_api>
+		<uc_ip>IP</uc_ip>
+		<uc_charset>字符集</uc_charset>
+		<uc_appid>应用ID</uc_appid>
+
+		<blackuser>禁止注册的字符串</blackuser>
+
+	</const>
+
+	<name>
+		<admin>ADMIN</admin>
+		<nkadmin>管理员</nkadmin>
+		<guest>Guest</guest>
+		<nkguest>过客</nkguest>
+	</name>
+
+	<title>
+		<account>我的帐号</account>
+		<userlist>会员列表</userlist>
+		<center>会员管理首页</center>
+		<log>会员日志</log>
+		<adduser>添加会员</adduser>
+		<edtuser>编辑用户</edtuser>
+		<group>用户组</group>
+		<reguser>填写注册信息</reguser>
+		<register>会员注册页面</register>
+		<login>会员登录页面</login>
+		<center>会员中心</center>
+		<lostpwd>找回密码</lostpwd>
+		<resetpwd>重设密码</resetpwd>
+		<edit>修改个人资料</edit>
+		<safe>安全信息设置</safe>
+		<head>编辑头像</head>
+		<orders>我买到的产品</orders>
+		<regstop>限制注册</regstop>
+	</title>
+
+	<common>
+		<register>注册</register>
+		<login>登录</login>
+		<edtsecure>更改安全问题</edtsecure>
+		<edtpwd>更改密码</edtpwd>
+		<center>会员中心</center>
+		<lostpwd>找回密码</lostpwd>
+		<logout>退出登录</logout>
+		<del>删除会员</del>
+		<adduser>添加会员</adduser>
+		<point>积分</point>
+	</common>
+
+	<caption>
+		<basic>基本配置</basic>
+		<ucenter>UCenter设置</ucenter>
+		<basicinfo>基本信息</basicinfo>
+		<userinfo>用户信息</userinfo>
+		<info>统计信息</info>
+		<def>预置链接</def>
+		<group>会员组</group>
+	</caption>
+
+	<h2>
+		<myinfo>个人信息</myinfo>
+		<authority>我的权限</authority>
+	</h2>
+
+	<list>
+		<todaycount>今日注册</todaycount>
+		<username>用户名</username>
+		<mail>注册邮箱</mail>
+		<lastdate>最后一次登录时间</lastdate>
+		<regdate>注册时间</regdate>
+		<setlistmamange>设置栏目编辑员</setlistmamange>
+		<whateditor>什么叫栏目编辑员?</whateditor>
+	</list>
+
+	<label>
+		<name>注册帐号</name>
+		<pass>登录密码</pass>
+		<mail>注册邮箱</mail>
+		<ask>您预留的问题</ask>
+		<answer>找回密码答案</answer>
+		<access>用户组访问权限</access>
+		<publish>用户发布权限</publish>
+	</label>
+
+	<group>
+		<default>默认会员组</default>
+		<open>完全开放</open>
+		<add>添加会员组</add>
+		<edt>编辑会员组</edt>
+		<name>组名称</name>
+		<owned>所属用户组</owned>
+		<remark>备注</remark>
+		<link>绑定用户到组</link>
+		<edtlink>修改用户组</edtlink>
+		<select>请选择</select>
+	</group>
+
+	<check>
+		<repass>所提供的密码不正确!</repass>
+		<notuser>你输入的用户名不存在!</notuser>
+		<repeatuser>不能在一个栏目里重复绑定同一个用户!</repeatuser>
+		<oldpass>您输入的原密码不正确!</oldpass>
+		<access>用户组权限不为完全开放时，不能选择生成HTML</access>
+	</check>
+
+	<tip>
+		<repassok>新密码已保存!</repassok>
+		<repass>要重置密码，请提供您目前的密码</repass>
+	</tip>
+
+	<ok>
+		<logout>成功退出!</logout>
+	</ok>
+
+	<error>
+		<groupexist>该用户组下面有用户，请先转移用户到其他组里</groupexist>
+		<ask>您没有设置找回密码答案，无法找回密码!</ask>
+		<gaccess>您所在的用户组无权访问此页！</gaccess>
+	</error>
+
+	<help>
+		<uc_connect><![CDATA[MySQL:MySQL 方式
+NULL:远程方式]]></uc_connect>
+		<uc_ip><![CDATA[当 UC_CONNECT 为非 mysql 方式时, 并且当前应用服务器解析域名有问题时, 请设置此值]]></uc_ip>
+		<ajax><![CDATA[下面注释AJAX调用的不是前台的界面，
+而是管理系统的AJAX样式，仅用做演示功能。]]></ajax>
+		<pass><![CDATA[密码框留空时，密码不做修改
+要修改密码，则填写新密码]]></pass>
+		<access><![CDATA[只有在“完全开放”状态下才使用生成HTML功能；
+默认会员组限制站内会员访问，应选择文档类型为，动态或伪静态。]]></access>
+		<editor><![CDATA[栏目编辑员，实际上论坛管理员一样的；
+		可以管理指定的栏目中的内容的特殊用户。]]></editor>
+	</help>
+
+</kingcms>
