@@ -161,15 +161,6 @@ a:hover {
 /* Panel.. */
 
 #Panel {
-	width:220px;
-	margin: 0;
-	padding: 0;
-	float:left;
-	background-color: #f7f7f7;
-	display: inline;
-	border-bottom: 1px solid #ddd;
-	border-right: 1px solid #A0A0A0;
-	font-size: 11px;
 	}
 #Panel * {
 	margin:0px;
@@ -286,8 +277,6 @@ a:hover {
 /* Content.. */
 
 #Content {
-	border-left: 1px solid #b7b7b7 !important;
-	margin-left: 220px;
 	}
 
 /* ContentInfo/Control/Whatever - Universal to Discussion Index & Comments */
