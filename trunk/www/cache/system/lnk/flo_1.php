@@ -1,0 +1,1 @@
+<?php exit('No direct script access allowed'); ?>s:10:"<!--lnk-->";

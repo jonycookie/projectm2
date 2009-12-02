@@ -1,0 +1,1 @@
+<?php exit('No direct script access allowed'); ?>a:4:{i:6;s:7:"article";i:7;s:7:"product";i:8;s:4:"shop";i:9;s:3:"bbs";}

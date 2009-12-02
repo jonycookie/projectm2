@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kingcms>
+
+	<item>
+		<title>网站如何集成财付通收款功能?</title>
+		<body><![CDATA[先需要在<a href="http://www.tenpay.com/" target="_blank">财付通</a>注册并开通财付通帐号，一般是有QQ号即可申请开通。
+		注册成功后，进入商家工具下面，申请开通中介担保交易，申请成功后，在1-3个工作日内，会得到开通通知，但默认情况下的密钥是空的，需要在<a href="https://www.tenpay.com/med/admin_opentrans_key.shtml" target="_blank">初始密钥</a>页面进行设置。
+		并把新设置的密钥写到 设置->网站参数设置->财付通设置 下面的交易发布密钥栏里，财付通帐号是写财付通登录帐号。保存后即可开始使用财付通在线支付功能。]]></body>
+	</item>
+
+	<item>
+		<title>网站如何集成支付宝收款功能?</title>
+		<body><![CDATA[先需要在<a href="http://www.alipay.com/" target="_blank">支付宝</a>注册并开通支付宝帐号。
+		注册成功后，进入商家工具下面，申请开通中介担保交易，申请提交后，支付宝的工作人员会电话联系您，并支付相关合同产生的费用，最低为600元。
+		商家ID和密钥在登录后可以查到。]]></body>
+	</item>
+
+	<item>
+		<title>生成过程忽快忽慢正常吗?</title>
+		<body><![CDATA[这是属于正常现象,这是浏览器的显示问题，实际生成过程是均速的]]></body>
+	</item>
+
+
+	<item>
+		<title>列表页选择了动态，并把路径设为news/ 结果出来却是/index.php/list-2-1.html</title>
+		<body><![CDATA[动态页和伪静态页的路径指定是多余的，只要你选择了动态或伪静态，不管你指定了什么样的路径，没有意义的。这个路径只能和生成HTML结合使用。
+		为什么不做自动隐藏？
+		有些站长开始用动态页，后来因服务器压力大而转向了静态，这样就有路径修改的问题了，默认的路径格式和伪静态路径格式是一致的。]]></body>
+	</item>
+
+
+</kingcms>

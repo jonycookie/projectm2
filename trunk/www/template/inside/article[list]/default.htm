@@ -1,0 +1,59 @@
+﻿<div class="article">
+	<div class="article_list">
+		<div class="article_list_side">
+			<div class="panel" id="channel_info">
+				<h2><img src="/images/logo/list_{king:listid/}.png" alt="{king:listname/}" /></h2>
+				<ul class="categorys">
+			        {king:portal.list listid1='(king:listid1/)'}
+				        <li><a href="{king:listpath/}">{king:listname/}</a></li>
+			        {/king:portal.list}
+				</ul>
+				<ul class="tags">
+					{king:portal.tag number='50' iscommend='1'}
+						<li><a href="{king:path/}" style="font-size:{king:size/}px;color:{king:color/}" class="bold_{king:bold/}">{king:title/}</a> - {king:hit/}</li>
+					{/king:portal.tag}
+				</ul>
+			</div>
+
+			<div class="panel" id="scroll">
+			</div>
+		</div>
+		<div class="article_list_main">
+			<dl>
+			{king:portal.article type='list'}
+					<dt><a href="{king:path/}">{king:title/}</a> <span class="subtitle">{king:subtitle/}</span>{king:date formatdate="m.d G:i"/}</dt>
+					<dd>
+						<div class="image"><img src="{king:image txt='' border='rectangle' border-size='1' border-color='eeeeee' empty='rectangle' empty-size='4' empty-color='ffffff' width='80' height='80'/}"/></div>				
+						<div class="description">{king:description/} <a href="{king:path/}">[详细]</a></div>
+						<div class="tag">
+						{king:tag explode=','}
+							<a href="{king:root/}index.php/tag-{king:tag fun='urlencode'/}{config:system.rewriteend/}">{king:tag/}</a>
+						{/king:tag}
+						</div>
+						<div class="relate">{king:relate/}</div>
+					</dd>
+			{/king:portal.article}
+			</dl>
+			<div class="pagelist">
+			{king:pagelist line='|'}
+				{king:standard /}
+			{/king:pagelist}
+			</div>
+		</div>
+	</div>
+	<div class="article_side">
+		<div class="ad">
+			<a href="#"><img src="/images/ads_280_210.jpg" /></a>
+		</div>
+		<div class="panel" id="ranking">
+			<h3>最近热门</h3>
+			<div class="content">
+			<ul>
+				{king:portal.article type='lately'}
+				<li><a href="{king:path/}">{king:title/}</a> - {king:hit/}</li>
+				{/king:portal.article}
+			</ul>
+			</div>
+		</div>
+	</div>
+</div>
