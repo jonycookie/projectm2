@@ -1,4 +1,0 @@
-{applicant_name} ({applicant_email}) 填写了帐号申请单.
-
-您可由下列网址批准或驳回其申请:
-{application_url}
