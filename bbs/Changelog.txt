@@ -1,0 +1,708 @@
+$Header: /cvsroot/usebb/UseBB/Changelog.txt,v 1.584 2009/10/24 15:07:39 pc_freak Exp $
+
+UseBB 1.0.10 Changelog
+------------------------------
+
+- Fixed an issue generating infinite loops with the BBCode parsing on some input.
+- Fixed bug #2367: SQL error on search sorted by author.
+- Fixed bug with remembering guest auth settings on adding new forum.
+- Changed RSS feed code so per forum and topic feeds can be shown.
+- Fixed malfunctioning RSS Feed when friendly URLs are enabled.
+- Fixed quirky or wrong entity handling in RSS feeds.
+- Mass email in board default language and only to unique email addresses.
+- Personal emails now sent in correct (recipient's) language.
+- Redirect to the previously selected pane on activating member in ACP.
+- Added email address tooltip on profile link in ACP activate members pane.
+- Translate IP address ::1 in session to 127.0.0.1 for consistency.
+- Made usernames in IP address lookup clickable.
+- Show a warning (unsupported) on the ACP index with UTF-8 translations.
+- Board image is now added to RSS feeds.
+
+UseBB 1.0.9 Changelog
+------------------------------
+
+- Fixed bug #2001: BBCode in links breaks XML well-formedness.
+- Fixed bug #1962: RSS feed fails to validate.
+- Fixed bug #1935: Redirect URLs containing backslashes on some platforms (Windows).
+- Fixed bug #1983: Jabber link on profile needs "xmpp" as protocol, not "jabber".
+- Made smiley image tags refer to the path using ROOT_PATH.
+
+UseBB 1.0.8 Changelog
+------------------------------
+
+- Fixed a few full path disclosure vulnerabilities (reported by Ilia Alshanetsky).
+- Fixed bug #1700: "From" in e-mail messages gets split.
+- Fixed an SQL error when passing negative "page" GET variable.
+- Fixed a few potential "Array to string conversion" notices.
+- Fixed Undefined index NoSuchUser on user activation.
+- Allow terms of use text to contain HTML markup.
+- Added moderator info to member edit pane in ACP.
+- Give visual notice when accessing 403 Forbidden RSS feed.
+- Moved 403 and 404 headers to constants HEADER_40x.
+- Renamed MSN to Windows Live Messenger and changed profile URLs (spaces.live.com).
+
+UseBB 1.0.7 Changelog
+------------------------------
+
+- Added an (random math based or custom) anti-spam question feature against spam bots.
+- Added a security measure which generates a new session ID when logging in/out.
+- Fixed bug #1663: DST settings not saved to new accounts.
+- Fixed bug #1641: Global text color missing.
+- Fixed bug #1591: CSS for BBCode [code] blocks in IE and Safari.
+- Fixed faulty HTTP_HOST reassembling when running on port other than 80.
+- Fixed hexadecimal entities + smilies parsing problem.
+- Fixed fatal error for phpBB converter using mysqli.
+- Admin accounts are no longer deactivated when e-mail address has changed.
+- Made the sendmail -f parameter for emails an on/off setting.
+- Now always stop when superglobals are (tried to be) defined via GET/POST/COOKIE.
+- Faster processing times thanks to rewritten functions::get_config().
+
+UseBB 1.0.6 Changelog
+------------------------------
+
+- Fixed full path disclosure vulnerability (reported by Jesper Jurcenoks, netVigilance, Inc.)
+- Fixed bug #1505: User timezone not always saved correctly.
+- Fixed bug in SQL toolbox with mysqli extension.
+- Another (hopefully always working) fix for Undefined index: PATH_TRANSLATED.
+- Automatically set admin e-mail address when installing.
+- Stop when request variables of the form _XYZ are found and register_globals is enabled.
+
+UseBB 1.0.5 Changelog
+------------------------------
+
+- Fixed bug #1469: BLOB/TEXT column [...] can't have a default value.
+- Fixed bug with BBCode URL parsing and asterisks.
+- Fixed bug with uppercase BBCode tags and incorrect nesting.
+- Fixed bugs with the Abyss Web Server (wrong HTTPS detection and redirection).
+- Fixed bug with undefined variable errtype.
+- Display error upon impossible (> 3) level value of member.
+- Avatars are now resized only when needed (using JavaScript).
+- Random passwords by "forgot password" now respect the password minimum length.
+- Changed method to show e-mail addresses "spam proof", now using HTML entities.
+- Now count topic views as unique view per user per session.
+- Show raw e-mail address on profile and mail form when user may view hidden ones.
+- Remove square brackets from username in quote tag when quoting post.
+
+UseBB 1.0.4 Changelog
+------------------------------
+
+- Fixed bug #1358: Undefined index: PATH_TRANSLATED on module upload.
+- Fixed bug #1377: Make the BBCode controls valid.
+- Fixed bug with crippled rtl &#...; entities.
+- Fixed bug with httpOnly cookies not set on IE with empty cookie domain.
+- Fixed bug with missing rel attribute on www. URL's.
+- Fixed bug with topic title rtrim on forum index.
+- Major performance improvements throughout the board and template parser.
+- Mass email messages are now sent in chunks of 100 recipients (by default).
+- Members on stats box now have a last update time tooltip.
+- Shortened topic titles on forum index now have full title tooltip.
+- Version check is now also possible through cURL.
+- Some minor usability improvements throughout the board.
+- Updated copyright (2007) and FSF's address.
+- Documentation (Readme) and installer updates (ie MySQL collations).
+- Removed DNSBL wildcard IP address banning (useless).
+
+UseBB 1.0.3 Changelog
+------------------------------
+
+- Fixed bug #1322: BBCode parsing bug with spaces in quote tags.
+- Fixed bug #1296: use MTA -f argument when necessary (patch by Tadashi Jokagi).
+- Fixed db_mysql to use new_link parameter while connecting.
+- Will now set cookies with the httpOnly flag, when enabled (by default).
+- Custom setcookie function always sets right past expiry value when needed.
+- Don't allow posts only containing BBCode tags to be posted.
+- Allow guests to edit all guest postings when permissions are set up like this,
+	but don't allow them to edit guest posts otherwise.
+
+UseBB 1.0.2 Changelog
+------------------------------
+
+- Added possibility to use Reply-To header for user emails.
+- Added security fix for the PHP Zend_Hash_Del_Key_Or_Index vulnerability.
+- Fixed bug #1279: BBCode parsing bug within [ ... ].
+- Fixed bug with fread() error for server load on some servers.
+- Fixed bug with partial IP address matching for DNSBL whitelist.
+- Performance improvements with less queries for post edit info.
+- Disable registration log when log file setting is empty.
+- Improvement/fix to external link JS, properly detect rel attribute value.
+- Display server load values always as float with 2 decimals.
+- Show month names in month selection box for the birthday profile field.
+
+UseBB 1.0.1 Changelog
+------------------------------
+
+- Fixed bug #1231: multiple quotes get parsed as identical ones.
+- Fixed bug #1208: unreplaced %s with Log Out on detailed online list.
+- Fixed bug making logging out with auto login present impossible.
+- Fixed bug not stripping slashes in mass email message.
+- Fixed bug: include exclamation mark and brackets in IMG and URL BBCode.
+- Fixed bug setting content type of RSS feed to text/html.
+- Strip BBCode from post preview on search results instead of showing them raw.
+- "Target blank" now works with JS instead of deprecated target attribute.
+- Added info about default language and template in ACP general config.
+- Sample ACP modules are removed from the distribution.
+
+UseBB 1.0 Changelog
+------------------------------
+
+- Fixed bug #1190: wrong mbstring usage (patch by Tadashi Jokagi).
+- Fixed bug #1169: include single quote in IMG and URL BBCode.
+- Fixed bug #1161: fopen and safe mode restriction.
+- Fixed bug with undefined $_SERVER['HTTP_HOST'].
+- Fixed bug causing strange server errors with &new.
+- Fixed bug sometimes redirecting to wrong page for new posts.
+- Removed \n with each <br /> for BBCode.
+- Unset auto login cookie when data is invalid.
+- Also recognize application/xml as XHTML templates.
+- Added {lp_author} and {lp_date} for listing templates.
+- Fix some wrong config settings in config.php.
+- Order usernames by registration date in Activate Members.
+- Disable BCC to own address on own mail form.
+- Database configuration is now hidden in ACP by default.
+- Added possibility to perform SET NAMES latin1 on connect for mysqli.
+- Take care of bad serialized auto login data in cookie.
+- Small template improvements.
+
+UseBB 1.0 RC3 Changelog
+------------------------------
+
+- Fixed minor XSS issue in ACP's edit member feature.
+- Fixed bug #1140: open_basedir restriction in effect.
+- Fixed bug in BBCode parsing removing whitespace in quote.
+- Fixed bug where feature links were hidden for admins when closed.
+- Fixed bug where board name was not unhtml'ed in footer.
+- Minor changes in db_* to disable query log for convertors.
+- Added HTML enabled field notice for forum description.
+- Added disable XHTML content-type config setting.
+
+UseBB 1.0 RC2 Changelog
+------------------------------
+
+- Fixed SQL injection issue with member list search.
+- Fixed minor XSS issue with user date format.
+- Fixed bug Undefined index: post_time on deleting post.
+- Fixed bug with XML parsing errors on bad ASCII characters.
+- Fixed bug in BBCode parsing.
+- Fixed notice Implicit cloning (zend.ze1_compatibility_mode).
+- Fixed Dutch translation errors.
+- BBCode URLs now contain title attributes.
+- ACP general configuration Javascript navigable.
+- Various template improvements.
+
+UseBB 1.0 RC1 Changelog
+------------------------------
+
+- Added to ACP:
+	- Member pruning.
+	- Badword filter controls.
+	- Mass email feature.
+	- Banning management.
+- Added rProtect security features:
+	- Automatic DNSBL powered IP banning.
+	- Registration logging.
+	- Setting to hide never activated members from member list.
+	- Minimum and maximum length for usernames.
+	- Email address DNS (MX records) checking.
+- Added minimum access levels for search and active topics.
+- Added searching and detailed sorting on member list.
+- Added forum pruning by locking topics.
+- Added sorting options on search form.
+- Added possibility to show search results as posts.
+- Added possibility to use exact author name match and guests filter.
+- Added message editing timeout for users.
+- Added settings to enable/disable IP bans and badwords filter.
+- Added setting to hide contact info in profiles for guests.
+- Added possibility for admins to use hidden/disabled template sets.
+- Added setting to show raw entities between [code].
+- Added load average values to ACP index when possible.
+- Added username and password info on registration form in ACP.
+- Added some more rel="nofollow" attributes at various places.
+- Added error upon lost saltcode when registering.
+- Added RSS feed icon support.
+- Fixed possible XSS issue with not unhtml'ed avatar URL.
+- Fixed bug #1001: Edit this member link visible in own profile.
+- Fixed bug #992: RSS feed redirects on restricted board.
+- Fixed bug #988: default timezone for members not set.
+- Fixed bug #971: Undefined index: id upon creating forum.
+- Fixed bug #964: white space in IE before tables in ACP.
+- Fixed bug where a user cannot set his displayed name equal to his
+	username that matches a ban mask.
+- Fixed unwanted smiley parsing on HTML entities.
+- Fixed not unhtml'ed query in ACP SQL toolbox textarea.
+- Fixed unused quick_reply_textarea_cols.
+- Fixed BBCode parsing to create well-formed XHTML.
+- Fixed broken entity displaying at end of 255 chars string.
+- Fixed missing info on move topic form with two visible forums.
+- Fixed undefined index error in installation on Windows.
+- Fixed 'Field x doesn't have a default value' error on strict MySQL.
+- Fixed bug that used admin's settings for new users registered in ACP.
+- Removed obsolete hide_undefined_config_setting_warnings setting.
+- Removed warning on unwanted output.
+- New session management, saving up to 3 queries per request.
+- Automatically login after activation.
+- Changed ACP config to contain many additional info.
+- ACP config now also checks for valid session name.
+- config.php must no longer be writable by PHP.
+- Now serving application/xhtml+xml (text/html on IE et al).
+- Made Skype info in profile callto: link.
+- All trigger_error() errors are now E_USER_ERROR.
+- Hide debug info and page links for banned IP's.
+- Cookie path is now always auto-detected as "/".
+- Easier navigation in ACP general configuration.
+- Rewritten method for finding server load values.
+- Cleaner ACP IP lookup.
+- Guest usernames can again contain all characters and entities.
+- Reintroduced forumlist_topic_rtrim_length for forum index.
+- Various fixes to the install wizard.
+- Flood protection message contains remaining seconds.
+- Hide "Moderators: Nobody".
+- Updated docs files and added HTML readme file.
+- Removed UseBB version in footer for security.
+- Changed SQL error notices to better indicate installation.
+- Various template improvements.
+- <label for="..."> replaced by nesting <label> tags.
+
+UseBB 0.8 Changelog
+------------------------------
+
+- Added admin activation.
+- Added to ACP: register members.
+- Added to ACP: activate members.
+- Added to ACP: delete members.
+- Added to ACP: forum pruning.
+- Added translation helper module.
+- Added allow_duplicate_emails config value.
+- Added edit member shortcut on profile.
+- Added database table shortcuts on SQL toolbox.
+- Added BBCode and smiley controls to signature box.
+- Fixed bug #868: ini_set() disabled for security.
+- Fixed bug #882: SQL error on edit members with custom table prefix.
+- Fixed bug #889: moving moderators may cause duplicates.
+- Fixed bug #939: link tag for feed autodiscovery not working.
+- Fixed some bad handling of input on member editing.
+- Fixed ACP module handling to allow _-. in short names.
+- Fixed some bugs on the user panel.
+- Fixed some translation errors.
+- Fixed URL matching on some mod_rewrite versions.
+- Better module overview.
+- Don't warn about disabled ini_get() and exec().
+- Some additional confirmation messages in the ACP.
+- Members awaiting admin-activation message on ACP index.
+- Registering first user does not require activation anymore.
+- Removed disable_info_emails setting.
+- Version check now contains H2 titles.
+- Less CSS id's in ACP.
+- Changes for better display of large smiley list.
+- Major changes in member and staff list design.
+
+UseBB 0.7 final Changelog
+------------------------------
+
+- Added new installer system.
+- Added to ACP: edit member feature.
+- Added to ACP: moderator control on forum edit form.
+- Added to ACP: move moderators option on deleting forum.
+- Added to ACP: username search on IP-address.
+- Fixed XSS vulnerability with $_SERVER['PHP_SELF'].
+- Fixed bug #805: General Error on iso-8859-8-i encoding.
+- Fixed bug #809: exec() has been disabled for security reasons.
+- Fixed malfunctioning mysqli driver.
+- Fixed non unhtml'ed board name and description.
+- Fixed some bugs in MySQL drivers.
+- Some fixes to make intern installer work.
+- mod_rewrite URLs now also match \.html?\W*.
+- Allow spaces in usernames (not transformed to underscores).
+- Allow HTML in ranks.
+- Don't focus on user name when filled in from session.
+- Minor template improvements.
+
+UseBB 0.7 beta 2 Changelog
+------------------------------
+
+- Added ability to disable registrations plus to give a reason.
+- Added access key Alt+S for sending new topics and replies.
+- Added access key Alt+Q to jump to quick reply box in topic.
+- Fixed bug #738: subscription emails sent to [language_name].
+- Fixed bug #744: dollar sign followed by numerical value disappears.
+- Fixed bug #763: confusing IndexStats language value.
+- Fixed bad smiley parsing code.
+- Fixed missing friendly URL for "mark all as read".
+- Fixed file not found error on install.php.
+- Remove the extension check on images.
+- Hide forum index link in breadcrumbs on single forum mode.
+- Don't use Location header on IIS.
+- Allow e-mail addresses with capital letters.
+- Parse www.example.com and ftp.example.com URL's.
+- Better detect missing or commented out config settings when writing.
+- Strip slashes from raw template content by default.
+- The system now produces an error when unwanted output was triggered.
+- HTTP cache control headers added to output.
+- Several small template changes and fixes.
+
+UseBB 0.7 beta 1 Changelog
+------------------------------
+
+- Added ACP module system.
+- Added to ACP: module overview system with upload/delete.
+- Added mark all as read feature in panel.
+- Added max signature length.
+- Added DocBlocks for phpDocumentor.
+- Fixed XSS vulnerability in search results.
+- Fixed bug #658: search form gives error when no viewable forums.
+- Fixed bug #669: no newlines in quote tags cause problems.
+- Fixed bug #687: mb_language(): Unknown language.
+- Fixed bug #707: Maximum execution time exceeded error on DNS lookup for Google.
+- Fixed bug #709: Undefined index on deleting (to) empty forum.
+- Fixed bug which didn't accept auth value 0 on edit forum form.
+- Fixed bug which returned empty page when member accesses ACP.
+- Fixed bug which changed global stats when forum is deleted and content moved.
+- Fixed some auto focus and tabindex on post forms.
+- Fixed malfunctioning mark updated topics feature.
+- Fixed translating } and { when not needed (disabling Javascript in HTML posts).
+- Fixed bad styles on quote in preview box.
+- Fixed get_config() to set some missing but required config settings.
+- Fixed unavailable $_SERVER['REQUEST_URI'] on IIS.
+- Include trailing / in BBCode URL's.
+- Renamed Jabber to Jabber/XMPP and made a FAQ entry about Google Talk.
+- RSS feed improvements:
+	- Add "Re:" when applicable.
+	- Parse smileys viewable in RSS reader.
+	- Don't add session ID's to URL's in feed.
+- Removed obsolete username_max_length.
+- Added note about installing UseBB on "table doesn't exist" SQL error.
+- Various template fixes, mostly for Opera.
+- Make database password and table prefix mandatory.
+- Throw error when passwords are too short.
+- Don't require leading and trailing whitespace for smilies.
+- Give notice when trying to add forum when no category exists.
+- Better detect the board URL.
+
+UseBB 0.6 Changelog
+------------------------------
+
+- Added ACP skeleton.
+- Added to ACP: system info.
+- Added to ACP: version check.
+- Added to ACP: general configuration.
+- Added to ACP: category management.
+- Added to ACP: forum management.
+- Added to ACP: IP address lookup.
+- Added to ACP: SQL toolbox.
+- Added auto focus on many forms using improved template engine.
+- Added keywords config and HTML meta-tags for description and keywords.
+- Added feature which excludes too short words from the search keywords.
+- Added possibility to BCC to own e-mail address on mail form.
+- Fixed bug #512: too big font sizes allowed in BBCode.
+- Fixed bug #535: changing e-mail address forces new password.
+- Fixed bug #537: tabindex for 'remember me' checkbox missing.
+- Fixed bug #602: mail function unable to send correct e-mails (patch by Tadashi Jokagi).
+- Fixed bug #611: mb_internal_encoding() error in functions.php.
+- Fixed bug which includes certain characters in the BBCode URL parser.
+- Fixed bug in single_forum_mode which didn't properly detect only viewable forum.
+- Fixed bug which might have led to server errors due to always calling RewriteEngine.
+- Fixed bug which might have led to undefined refere_to errors in login and register form.
+- Fixed bug which doesn't return the user to previous page when logout was cancelled.
+- Fixed bug in regular expression for username search RewriteRule.
+- Fixed bad parsing of some entities in unhtml().
+- Fixed bug which made jump to top after inserting bbcode.
+- Fixed bug which changed members' post count when deleting with increase_post_count disabled.
+- Fixed a few missing unhtml() calls.
+- Fixed security issue with URL matching (XSS vulnerability in IE).
+- Fixed security issue with color BBCode (XSS vulnerability in IE).
+- Fixed security issue with accessing $_REQUEST.
+- Fixed some wrong sorting of categories and forums in various files.
+- Fixed a potentional Undefined index error on getnewpost.
+- Fixed URL make function to also urlencode variables in friendly URL's.
+- Fixed install/*.php to work on PHP 5.
+- Renamed kick_user_to_only_viewable_forum to single_forum_mode.
+- Do not add session ID's for Googlebot.
+- Statistics grammar change (singular vs plural).
+- Sorting fixes for member list.
+- HTTP 404 and 403 error codes returned when applicable.
+- Removed duplicate set_page_title() calls in Your Panel.
+- Replace level integers with constants.
+- Don't show forum list on search when only one forum is available.
+- CSS has been detached from the templating system.
+- Removed the trash feature, will be reintroduced later.
+- Friendly URL for RSS feed is now rss.xml.
+- Content type can now be set in global.tpl.php.
+- Don't let Google index all post links with duplicate content.
+- Jabber profile field made clickable.
+- Throw error when $session->update() not called before getting session info.
+- Template improvements and fixes.
+- Major template engine improvements and code cleanups.
+- Adjusted docs and installers to suit new locations on UseBB Docs.
+- common.php reorganization, including config.php check.
+- Ignore some uncompatibility warnings on PHP5.
+- Reference objects instead of cloning them for PHP5 compatibility.
+- Disable MySQL trace mode statement moved to db_mysqli?.php.
+- Added get_server_info() to mysqli? drivers.
+- Ommitted possible PHP bug (33643) (Only variables can be passed by reference).
+- Also search in topic titles.
+- Code cleanups to session handler.
+- Auto login cookie now contains data in serialized array.
+- Birthday year input field replaced with select box.
+- RSS feed query rewrite, the feed now shows the x latest posts intead of updated topics.
+- Limit search results to x items.
+- Don't compress <script />.
+- Disable flood protection for admins and moderators.
+- Members can see their username next to their displayed name, just like admins can.
+- New redirect functions provide easier and more robust redirecting.
+- Don't try to get server load on Windows.
+- Allow + in e-mail addresses.
+
+UseBB 0.5.1 Changelog
+------------------------------
+
+- Added search member's posts link on profile page.
+- Added show edit post message timeout.
+- Search now escapes % and _ and shows search options on result view.
+- Allow search options to be passed via GET.
+- Fixed bug #487: Installer ignores invalid database configuration.
+- Fixed bug #496: BBCode and smiley controls in IE don't work.
+- Fixed bug which keeps 'board closed' in location bar for admins.
+- Fixed bug which leads to SQL error when forums are excluded from stats.
+- Fixed bug which sends subscription e-mail in language of poster.
+- Some fixes to the search engine.
+- Show 5 last page links for topic on topic list.
+- New language loading function.
+- Added separate language var 'CurrentPage' for online list.
+- Disable directory indexes for security.
+
+UseBB 0.5 Changelog
+------------------------------
+
+- Added feature #422: better forum and topic icon system.
+- Added topic review feature.
+- Added displayed name option, able to set all kinds of names.
+- Added BBCode and smiley controls on post form.
+- Added bad words filter.
+- Added ability to disable or limit viewing rights of the stats box.
+- Added jump to new post in topic link.
+- Added flood protection.
+- Added auto subscribe feature.
+- Added auto detect board URL and cookie path if set to empty.
+- Added unsubscribe multiple topics possibility for subscriptions overview.
+- Added trash topic feature (moves topic to predefined trash forum).
+- Added hide moderator list feature settable per forum.
+- Added active topics in RSS 2.0 format.
+- Added ability to hide warnings for configuration and template parser.
+- Added ability to exclude forums from active topics and RSS listing.
+- Added age/birthday profile field.
+- Added forum statistics.
+- Added cross forum search engine.
+- Fixed bug #374: MySQL results not getting freed.
+- Fixed bug #429: E_NOTICE on automatically starting sessions.
+- Fixed bug #469: Blank Topic Possibilities And &...; Things.
+- Fixed bug #475: Undefined Index error in first stage install.
+- Fixed security issue concerning quoting posts.
+- Fixed bad smiley parsing code.
+- Fixed too much stripping of backslashes.
+- Fixed bad unhtml() function.
+- Fixed security issue concerning topic subscription.
+- Fixed bug which sends subscription mails to poster himself.
+- Fixed security issue concerning HTTP_REFERER validation.
+- Fixed security issue concerning certain protocols for [url].
+- Better checking for banned or used IPs, usernames and displayed names.
+- FAQ redesigned to have contents and one question at a time.
+- FAQ updated with more questions.
+- Keep submitted info on edit profile form.
+- Able to view number of hidden users and hidden users marked for admins.
+- Usernames and passwords only take alphanumeric characters.
+- Make edit post location bar contain full path.
+- Try to disable MySQL trace mode.
+- Several fixes to guarantee security.
+- Several fixes to template parser.
+- usebb_die() calls replaced by trigger_error().
+- Splitted database schema and data.
+- Better SQL error catching.
+- General error only shows SQL info when debug level is 2.
+- Removed available_* settings, now dynamically detected.
+- Graphical buttons replaced by HTML ones.
+- Nicer paging links.
+- Various template improvements.
+- Install and upgrade wizards styles update.
+
+UseBB 0.4.1 Changelog
+------------------------------
+
+- Added force avatars width and height config settings.
+- Install and upgrade scripts now take care of DB table prefix.
+- Various small improvements to install and upgrade scripts.
+- Elements from header and footer now globally available.
+- Final fix for Cyrillic (and other) character sets.
+- Fixes for UseBB to work on PHP 4.1.0.
+- Don't do length check of password on login form.
+- Several small template fixes.
+
+UseBB 0.4 Changelog
+------------------------------
+
+- Added topic subscription feature + subscriptions overview in Your Panel.
+- Added detailed online list, member list and staff list.
+- Added feature #301: Search engine friendly URL's.
+- Added feature #337: Allow all kinds of user names.
+- Added feature #338: Allow users to delete their own posts.
+- Added feature #358: Disable sending information e-mails.
+- Added feature #370: Date and Time Translation.
+- Added block when lower leveled tries to edit posts of higher leveled.
+- Added real name and Skype profile fields.
+- Added changable password min length.
+- Added Google's rel="nofollow" for links in BBCode (globally adjustable).
+- Added text direction (dir="") settable via language file.
+- Added "do not increase post count" feature settable per forum.
+- Added smiley graphics.
+- Fixed bug #331: cyrillic languages+entities.
+- Fixed bug #336: Problems on SF.net.
+- Fixed a bug where everything is marked unread as a result of session data lost.
+- Fixed various BBCode parser bugs.
+- Location bar is now more populated over the board.
+- Template parser now collects all info and parses at the end (more possibilities).
+- Language variables in templates are not defined in PHP code anymore but with {l_*}.
+- Various template improvements and translation corrections.
+- Added more security with additional code.
+- Better general error message without information disclosure.
+
+UseBB 0.3.2 Changelog
+------------------------------
+
+- Fixed bug #326: English pack causes error with SurgeMail server.
+- Fixed bug #73: CSS doesn't load directly in IE when gzip enabled.
+- Forums and topics automatically unhighlighted upon viewing.
+- Debug messages XHTML 1.0 Strict compliant.
+- Hide "Moderators: Nobody" from index.
+- Improvements and corrections to translations.
+
+UseBB 0.3.1 Changelog
+------------------------------
+
+- Fixed bug #316: wrong charset in XHTML meta tag.
+- Fixed bug that kicks you back to install/upgrade after logging in.
+- Fixed bug that didn't update the statistics well while installing.
+- Added translations in Dutch and German.
+- Added hack to fallback on English (useful for outdated translations).
+- Fallback on default language and template set when not available.
+- Applied styles to install and upgrade scripts.
+
+UseBB 0.3 Changelog
+------------------------------
+
+- Added feature 954754: Go to topic list if only one forum is viewable.
+- Added feature 973978: Show server load.
+- Added feature 978099: Strip off long topic names in topic list.
+- Added feature 1055684: Hide avatars/signatures setting.
+- Added feature 1055687: Hide from online users list.
+- Added feature 1061847: Hide user information in posts.
+- Added updated forum and topic highlighting.
+- Added feature that saves the guest's username in the session.
+- Added terms of use text in translations.
+- Added 'Open external links in new windows' feature.
+- Added paging for topiclists and topics.
+- Added preview feature for posting new topics and replies.
+- Added edit post feature.
+- Added delete post feature.
+- Added edit information viewing in topics.
+- Added FAQ page.
+- Added active topics page.
+- Added automatic installer.
+- Added MySQL 4.1 (mysqli) enhanced support.
+- Added viewing IP addresses in topics when being admin.
+- Fixed bug 990425: Debug messages are passed to CSS as well.
+- Fixed bug 990463: Location HTTP Header should only take absolute URLs.
+- Fixed bug 997622: Source code compression strips newlines out of textareas.
+- Fixed bug 998619: Registration needs valid e-mail.
+- Fixed bug 1035507: ob_gzhandler + URL-Rewriter error.
+- Fixed bug 1037973: No error on invalid website URL (profile).
+- Fixed IP Spoofing Vulnerability.
+- Fixed session ID vulnerability.
+- Fixed Undefined index: NoSuchUser on send new password page.
+- Fixed broken timezone support.
+- Improved BBCode parser (RFE 973980, bugs 954411 and 1037971).
+- Some changes in defining classes with vars defined with 'var' for PHP5 compatibility.
+- Removed all strtolower() occasions - improves translation possibilities.
+- Configuration, templates and translations moved to file system out of SQL DB.
+- Adjusted template engine and configuration and translation functions.
+- New default template (usebb.net look).
+- Many code improvements, duplicates removed, etc...
+
+UseBB 0.2.3 Changelog
+------------------------------
+
+- Fixed bug 973210: Accessing panel.php?act=register directly results in error.
+- Fixed bug 977336: Fix for attach_sid.
+- Added feature 973982: Make IM information in profile clickable.
+
+UseBB 0.2.2 Changelog
+------------------------------
+
+- Fixed errors in regular expressions.
+- Small changes in panel menu bar.
+- Replaced error on edit post feature with gently message :).
+- Replaced error on FAQ, search and active topics with gently message :).
+
+UseBB 0.2.1 Changelog
+------------------------------
+
+- Fixed bug with MySQL 3.x that gave error on forum view.
+- Fixed quick reply, now only visible when the user is actually allowed to reply.
+- Fixed plain spaces with &nbsp; between buttons in the footer template.
+- Fixed bug 934807: Latest reply in topic list doesn't update.
+- Fixed bug 934456: Latest post doesn't update when moving.
+- Fixed bug 935564: Notice: Array to string conversion in common.php (PHP < 4.3.0).
+- Fixed bug 935924: Session ID's are passed twice on some PHP config (+ revised once).
+- Fixed htmlentities() problem in user signatures.
+- Fixed $errors array that wasn't being initialized in various files.
+- Fixed guest's username length, it's now checked when posting.
+- Fixed bug with regular expressions.
+- Fixed bug with gzip compression for style sheets.
+- Optimalizations in template.php, debug also works without </body> tag and more
+	powerful and better output compression method.
+- Better and safer BBCode parser, new [mailto] tag and URL's don't need to have [url]
+	tags anymore to be parsed.
+- Member's avatar is now checked if it's actually an image (+ revised once).
+- Many changes to templates: the background color and border, the position of the
+	location bar (now before the quick reply box), the table rows containing the posts
+	that don't have the inner vertical border anymore, the spacing between the rank and
+	avatar, the registration date, the post count, the location, the topic title above
+	the post, the markup of msgbox and confirm_form, the font size in <th />, the font
+	size of the signature in the user's profile and the buttons (made by Jemo).
+- Return to topic after posting can now be turned off for posting new topics too.
+- Valid URL checking for profile's website field.
+- Better registration process with terms of use accepting page.
+- Multiple levels of output compression: none, compress whitespace, gzip and gzip +
+	compress whitespace.
+- PHP's session handler now uses the cookie configuration options.
+- Terms of Use added.
+- Automatic return to previous page when terms of use has not been accepted.
+- Small fix with quotes for page title when replying to topics.
+
+UseBB 0.2 Changelog
+------------------------------
+
+- New forum view and topic view, new posting and replying pages.
+- Topic moderation features: deleting, moving, locking and sticky-ing topics.
+- Integration of moderators in the auth system.
+- Many bugfixes in various files.
+- Core functions moved to functions class, arrays replaced by new functions, ...
+- New template_config sql table for template configuration.
+- Session IDs are now passed in the URL, makes board accessable without cookies.
+- Added more detailed location info for use in detailed online list.
+- Many new options in panel pages
+- Many panel pages now give a confirmation message.
+- Better viewing of debug information and SQL errors.
+- Many small template updates and additions.
+- Replaced smaller version of the license with the official one.
+
+UseBB 0.1.1 Changelog
+------------------------------
+
+- Fixed uninitialized arrays error in sources/template.php on Win32.
+- Fixed buggy guests count on index.php.
+- Fixed bug causes admins not seeing hidden e-mail addresses.
+- Fixed broken ICQ status icon when no ICQ number is given.
+- Fixed bug with wrong dataype of auth in usebb_forums.
+- Small change to template forumlist_forum that gives better viewing in IE6.
+- Small update with intval() in sources/functions.php.
+- Removed copyrighted Terms of use with an empty one.
+- Added CVS Header keywords to php files.
+- Cosmetic changes with spaces that should be tabs in php files.
