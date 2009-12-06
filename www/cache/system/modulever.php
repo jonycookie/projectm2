@@ -1,1 +1,0 @@
-<?php exit('No direct script access allowed'); ?>a:4:{s:5:"block";s:3:"100";s:7:"dbquery";s:3:"100";s:6:"portal";s:3:"102";s:4:"user";s:3:"100";}
