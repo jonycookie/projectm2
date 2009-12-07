@@ -1,0 +1,5 @@
+img.snap			{border:1px solid #DFDFDF;padding:2px;background:#FFFFFF;}
+#bigsnap			{position:absolute;z-index:10;top:-400px;left:-400px;display:none;border:0;}
+#bigsnap .border	{position:absolute;z-index:2;top:0px;left:0px;}
+#bigsnap .view		{margin-left:9px;border:1px solid #cccccc;width:1px;height:1px;background:#FFFFFF;padding:2px;}
+#bigsnap .shadow	{position:absolute;z-index:1;top:3px;left:11px;width:1px;height:1px;background:#B8B8B8;filter:alpha(opacity=30);-moz-opacity:0.30;opacity:0.30;}
