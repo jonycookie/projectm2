@@ -1,0 +1,8 @@
+<!--{capture assign=html}-->
+<ul>
+  <!--{iCMS:list loop='true' row=$get.row sortid=$get.sortid}-->
+	<li><span style='float:right'><!--{$list.pubdate|date:"Y-m-d"}--></span> [<!--{$list.sort.link}-->] <!--{$list.link}--></li>
+  <!--{/iCMS}-->
+</ul>
+<!--{/capture}-->
+document.write("<!--{ $html|html2js }-->");

@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><!--{$site.title}-->-<!--{$site.seotitle}--></title>
+<meta name="keywords" content="<!--{$site.keywords}-->">
+<meta name="description" content="<!--{$site.description|html2txt}-->">
+<meta name="copyright" content="<!--{$site.title}-->" />
+<link href="<!--{$site.dir}-->/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+<link href="<!--{$site.dir}-->/skins/global.css" rel="stylesheet" type="text/css" />
+<link href="<!--{$site.dir}-->/skins/index.css" rel="stylesheet" type="text/css" />
+<!--{iCMS:javascript}-->
+<script type="text/javascript">
+<!--
+$(function(){
+	$(".showpic").mouseover(function(){
+		var _this=this;
+		$(".showpic").each(function(i){
+			var picNum=$(this).attr("picdiv"); 
+			if(_this.id==this.id){
+				if(picNum==0){
+					$(this).addClass("btitle2");
+					$("#titlelink").addClass("cDRed");
+				}else{
+					$(this).addClass("active");
+					$("#picli"+picNum).addClass("active");
+				}
+				$("#picdiv"+picNum).show();
+			}else{
+				if(picNum==0){
+					$("#headline").addClass("btitle");
+					$("#titlelink").removeClass("cDRed");
+				}else{
+					$(this).removeClass("active");
+					$("#picli"+picNum).removeClass("active");
+				}
+				
+				$("#picdiv"+picNum).hide();
+			}
+		});
+	});
+});
+-->
+</script>
+</head>
+<body>
+<div id="toolbar"><a href="<!--{$site.url}-->/register.php" target="_blank">注册</a> <a href="<!--{$site.url}-->/usercp.php" target="_blank">登陆</a></div>
+<div id="header">
+	<h1><a href="<!--{$site.url}-->"><!--{$site.title}--></a></h1>
+	<div id="catalogs">
+	  <ul>
+	    <li><a href="<!--{$site.url}-->">首页</a></li>
+	    <!--{iCMS:catalog loop='true' type='top'}-->
+	    <li id="catalog_<!--{$catalog.id}-->"><a href="<!--{$catalog.url}-->"><!--{$catalog.name}--></a></li>
+	    <!--{/iCMS}-->
+	  </ul>
+	</div>
+</div>
+<div id="advertise">
+	<!--{iCMS:advertise name="首页顶部广告"}-->
+</div>
+<div id="search">
+  <form name="searchForm" method="get" action="<!--{$site.url}-->/search.php" id="searchForm" target="_blank">
+    <table border="0" align="left" cellpadding="2" cellspacing="1">
+      <tr>
+        <td width="58" height="2"><select name="stype" id="stype" >
+            <option value="title" selected>标题</option>
+            <option value="content">内容</option>
+          </select></td>
+        <td width="252"><input name="keyword" type="text" class="i1" id="keyword" size="36" /></td>
+        <td width="43"><input type="image" src="<!--{$site.tplurl}-->/images/search.gif" /></td>
+        <td width="60" align="center">热门标签:</td>
+      </tr>
+    </table>
+  </form>
+  <script type="text/javascript">
+	$(function(){
+		$("#searchForm").submit( function() {
+			if($("#keyword").val()==""){
+				alert("请填写关键字");
+				$("#keyword").focus();
+				return false;
+			}
+		});
+	});
+  </script>
+  <div class="tag"> <!--{iCMS:tag loop='true' row='10' orderby='hot'}--> <a href="<!--{$tag.url}-->" target="_blank"><!--{$tag.name}--></a> <!--{/iCMS}--> </div>
+</div>
+<div id="container">
+  <div class="area1">
+    <div class="cleft"> <!--{iCMS:list loop='true' pic='true' row="7"}--> <!--{if $list.first}-->
+      <div id="headline" class="btitle2 showpic" picdiv="<!--{$list.index}-->">
+        <h1><a href="<!--{$list.url}-->" id="titlelink" title="<!--{$list.title}-->"><!--{$list.title|cut:20}--></a></h1>
+      </div>
+      <div class="newstitle"> <!--{else}-->
+        <ul id="picul<!--{$list.index}-->" class="showpic" picdiv="<!--{$list.index}-->">
+          <li id="picli<!--{$list.index}-->">·<a href="<!--{$list.url}-->" title="<!--{$list.title}-->"><!--{$list.title|cut:20}--></a> <span><!--{$list.description|cut:8}--></span></li>
+        </ul>
+        <!--{/if}--> <!--{/iCMS}--> </div>
+    </div>
+    <div class="cright"> <!--{iCMS:list loop='true' pic='true' row="7"}-->
+      <div id="picdiv<!--{$list.index}-->" style="display:<!--{if $list.first}-->block<!--{else}-->none<!--{/if}-->;">
+        <div class="fpic"><a href="<!--{$list.url}-->"><img src="<!--{$list.pic|small:400:200}-->" width="400" height="200" border="0" alt="<!--{$list.title}-->" /></a></div>
+        <div class="digest"><strong>核心提示：</strong><!--{$list.description|html2txt|cut:50}-->……<a href="<!--{$list.url}-->">[详细]</a></div>
+      </div>
+      <!--{/iCMS}--> </div>
+    <div class="clear"> </div>
+  </div>
+  <div class="blank9"> </div>
+  <div class="area0">
+    <div class="colist"> <!--{iCMS:catalog loop='true' type="top" row="4"}-->
+      <div class="<!--{cycle values="col1,col2"}-->">
+        <div class="title">
+          <h3><span><!--{$catalog.name}--></span></h3>
+        </div>
+        <ul class="newsList">
+          <!--{iCMS:list loop='true' sub="all" row="10" sortid=$catalog.id}-->
+          <li><span class="date"><!--{$list.pubdate|date:"m-d"}--></span><a href="<!--{$list.url}-->" title="<!--{$list.title}-->"><!--{$list.title|cut:16}--></a></li>
+          <!--{/iCMS}-->
+        </ul>
+        <p class="alignR pRight"><a href="<!--{$catalog.url}-->" class="cBlue">更多<!--{$catalog.name}-->&gt;&gt;</a></p>
+      </div>
+      <!--{if "$catalog.rownum % 2"=="0"}-->
+      <div class="blank9"> </div>
+      <!--{/if}--> <!--{/iCMS}--> </div>
+    <div class="dignews">
+      <div class="digtitle">
+        <ul id="digtitle">
+          <li><a href="javascript:void(0);" class="thisclass">最近更新</a></li>
+        </ul>
+      </div>
+      <dl id="diglist">
+        <dd> <!--{iCMS:list loop='true' row="7"}-->
+          <div class="digbox" id="digboxa">
+            <div class="diglink"><span id='digg_<!--{$list.id}-->'><!--{$list.digg}--></span> <a class="digvisited" href="javascript:digg('digg',<!--{$list.id}-->);"><!--顶一下--></a></div>
+            <div class="ntitle"><a href='<!--{$list.url}-->' title="<!--{$list.title}-->"><!--{$list.title|cut:16}--></a><span><!--{$list.pubdate|date:"Y-m-d"}--></span> </div>
+            <div class="preview"> <!--{$list.description|html2txt|cut:40}-->... </div>
+          </div>
+          <!--{/iCMS}--> </dd>
+      </dl>
+    </div>
+  </div>
+  <div class="blank9"> </div>
+  <div class="area col" style="padding:5px 0px; height:190px">
+    <div class="title">
+      <h3><span style="color:#666666">每日精华</span></h3>
+    </div>
+    <div class="pic">
+      <ul class="picList">
+        <!--{iCMS:list loop='true' pic='true' sub="all" row='7' orderby="pubdate"}-->
+        <li><a href="<!--{$list.url}-->"><img src="<!--{$list.pic|small:110:110}-->" width="110" height="110" border="0" alt="<!--{$list.title}-->" /></a>
+          <p><a href="<!--{$list.url}-->" title="<!--{$list.title}-->"><!--{$list.title|cut:10}--></a></p>
+        </li>
+        <!--{/iCMS}-->
+      </ul>
+    </div>
+  </div>
+  <div class="blank9"> </div>
+  <div class="area2"> <!--{iCMS:catalog loop='true' type="top" attr="list"}-->
+    <div class="<!--{cycle values="col1,col2"}-->">
+      <div class="title">
+        <h3><span><!--{$catalog.name}--></span></h3>
+      </div>
+      <div class="newsA"> <!--{iCMS:list loop='true' sub="all" row="13" sortid=$catalog.id}--> <!--{if $list.first}-->
+        <div class="btitle">
+          <h2><a href="<!--{$list.url}-->" title="<!--{$list.title}-->"><!--{$list.title|cut:20}--></a></h2>
+          <p><!--{$list.description|html2txt|cut:50}--></p>
+        </div>
+        <ul class="newsList">
+          <!--{else}-->
+          <li><a href="<!--{$list.url}-->" title="<!--{$list.title}-->"><!--{$list.title|cut:20}--></a> <span class="date">(<!--{$list.pubdate|date:"Y/m/d"}-->)</span></li>
+          <!--{if "$list.rownum%6"==0}-->
+        </ul>
+        <ul class="newsList">
+          <!--{/if}--> <!--{/if}--> <!--{/iCMS}-->
+        </ul>
+        <p class="alignR pRight"><a href="<!--{$catalog.url}-->" class="cBlue">更多<!--{$catalog.name}-->&gt;&gt;</a></p>
+      </div>
+      <div class="picA">
+        <div class="title">
+          <h4><!--{$catalog.name}-->精品推荐</h4>
+        </div>
+        <ul class="picList">
+          <!--{iCMS:list loop='true' sub="all" pic="true" row="3" sortid=$catalog.id}-->
+          <li><a href="<!--{$list.url}-->"><img src="<!--{$list.pic|small:120:90}-->" width="120" height="90" border="0" alt="<!--{$list.title}-->" /></a>
+            <p><a href="<!--{$list.url}-->" class="cBlue" title="<!--{$list.title}-->"><!--{$list.title|cut:10}--></a></p>
+          </li>
+          <!--{/iCMS}-->
+        </ul>
+      </div>
+    </div><!--{if "$catalog.rownum%2"==0}--><div class="blank0"></div><!--{/if}-->
+    <!--{/iCMS}--> </div>
+  <div class="blank9"> </div>
+  <div class="flink">
+    <div class="title1">
+      <dl>
+        <dt>友情链接 & 合作伙伴 </dt>
+        <dd><a href="message.php">申请加入</a> </dd>
+      </dl>
+    </div>
+    <div class="flinkcon">
+      <ul>
+        <!--{iCMS:link loop='true'}--><a href='<!--{$link.url}-->' target='_blank'><!--{$link.name}--></a><!--{/iCMS}-->
+      </ul>
+    </div>
+  </div>
+</div>
+<!--{include file="./footer.htm"}-->
+</body>
+</html>

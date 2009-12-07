@@ -1,0 +1,21 @@
+<!--{'<'|cat:'?xml version="1.0" encoding="UTF-8"?'|cat:'>'}-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url>
+      <loc><!--{$site.url}--></loc>
+      <lastmod><!--{$NOW|date:"Y-m-d"}--></lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+<!--{iCMS:catalog loop="true" row="100"}--><!--{if $catalog.attr!="page"}-->
+   <url>
+      <loc><!--{$catalog.url|gethttpurl}--></loc>
+      <changefreq>weekly</changefreq>
+   </url>
+<!--{iCMS:list loop="true" row="10000" sortid=$catalog.id}-->
+   <url>
+      <loc><!--{$list.url|gethttpurl}--></loc>
+      <lastmod><!--{$list.pubdate|date:"Y-m-d"}--></lastmod>
+      <changefreq>always</changefreq>
+   </url>
+<!--{/iCMS}--><!--{/if}--><!--{/iCMS}-->
+</urlset>

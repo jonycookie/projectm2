@@ -1,0 +1,88 @@
+<table width="520" border="0" cellpadding="4" cellspacing="1" class="border">
+  <form id="mForm" name="mForm" method="post" action="<!--{$site.dir}-->/message.php?do=post">
+    <tr>
+      <td height="22" colspan="3" align="center"><h3>留 言</h3></td>
+    </tr>
+    <tr>
+      <td width="116" height="22">尊姓大名:</td>
+      <td colspan="2"><input name="name" type="text" class="border" id="name" /></td>
+    </tr>
+    <tr>
+      <td height="22">QQ/MSN:</td>
+      <td colspan="2"><input name="m" type="text" class="border" id="m" /></td>
+    </tr>
+    <tr>
+      <td height="22">E-mail:</td>
+      <td colspan="2"><input name="mail" type="text" class="border" id="mail" />[必填]</td>
+    </tr>
+    <tr>
+      <td height="22">主页/博客:</td>
+      <td colspan="2"><input name="homepage" type="text" class="border" id="homepage" value="http://"/></td>
+    </tr>
+    <tr>
+      <td height="22">验证码：</td>
+      <td width="183" height="22"><input name="seccode" type="text" id="seccode" size="5" maxlength="4" />
+        <img src="<!--{$site.dir}-->/include/seccode.php" align="absmiddle" id="seccodeimg"> </td>
+      <td width="191"><input name="secret" value="on" type="checkbox" />
+        悄悄话</td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center">
+      <script type="text/javascript" src="<?=$iCMS->dir?>javascript/editor.js"></script>
+      <textarea name="messagetext" id="messagetext" rows="8" class="editor-mini"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td height="22" colspan="3" align="center"><input name="action" type="hidden" id="action" value="save" />
+        <input type="submit" class="border" value="提交" />
+        <input type="reset" class="border" value="重置" /></td>
+    </tr>
+  </form>
+</table>
+<script type="text/javascript">
+$(function(){
+	$("#seccodeimg").click(function(){
+		$(this).attr('src',SiteDir+"/include/seccode.php?"+Math.random());
+	}); 
+//提交事件
+	$("#mForm").submit(function (){
+		var param={"name":$("#name").val(),"seccode":$("#seccode").val(),
+			"m":$("#m").val(),"mail":$("#mail").val(),"homepage":$("#homepage").val(),
+			"messagetext":'',"action":'save'
+		}
+		if(param.name==""){
+			alert("雁过留毛,人过留名!");
+			$("#name").focus();
+			return false;
+		}
+		var pattern = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+		if(!pattern.test(param.mail)){
+			alert("邮箱地址的格式不正确!!");
+			$("#mail").focus();
+			return false;
+		}
+		if(param.seccode==""){
+			alert("请填写验证码!");
+			$("#seccodeimg").attr('src',SiteDir+"/include/seccode.php?"+Math.random());
+			$("#seccode").focus();
+			return false;
+		}
+		var mEditor = FCKeditorAPI.GetInstance('messagetext');
+		param.messagetext=mEditor.GetXHTML(true);
+		if(param.messagetext==""){
+			alert("说两句吧!!!");
+			mEditor.Focus();
+			return false;
+		}
+		$.post(SiteDir+"/message.php?do=post",param,
+			function(o){
+				alert(o.msg);
+				if(o.state=="1"){
+					window.location.reload();
+				}
+				$("#seccodeimg").attr('src',SiteDir+"/include/seccode.php?"+Math.random());
+			},"json");
+	  return false;
+	}); 
+});
+</script>
