@@ -1,0 +1,520 @@
+/********************************************
+(Xionex 05042006) IceBB Temporary ACC Skin because David hasn't made one yet
+(c) 2004-2006 XAOS Interactive
+*********************************************/
+
+body
+{
+    background-color: #fff;
+    text-align:center;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 0.8em;
+	margin: 0px;
+    color: #2a2727;
+	line-height: 1.4em;
+}
+
+/* WRAPPER - sets board width */
+#initWrap
+{
+    width: 95%;
+    margin: 15px auto 20px auto;
+    text-align: left;
+    padding: 5px;
+}
+
+
+/*******************************
+ * Headings
+ *******************************/
+
+/* Category colors and control */
+h3
+{
+	background: #648cbf;
+	color: #f7f8f9;
+	padding: 4px;
+	margin: 0 0 1px 0;
+	font-size: 12px;
+}
+
+h3 a:link,
+h3 a:active,
+h3 a:visited
+{
+	color: #f7f8f9;
+	text-decoration: none;
+}
+
+h3 a:hover
+{
+	color: #f7f8f9;
+}
+
+h3.importante
+{
+	background: #bf8c64;
+	color: #f9f8f7;
+}
+
+h3.importante a
+{
+	color: #f9f8f7;
+}
+
+/* subtitle + table headings */
+.Subtitle,
+th
+{
+	font-size: 11px;
+	padding: 2px;
+	text-align: left; /* Opera fix */
+}
+
+
+/*******************************
+ * Links
+ *******************************/
+
+a:link,
+a:active,
+a:visited
+{
+	text-decoration: underline;
+	color: #2e5fa2;
+}
+
+a:hover
+{
+	text-decoration: underline;
+	color: #33373d;
+}
+
+/* autocomplete lists */
+.ac_results
+{
+	position: absolute;
+	display: none;
+	width: 300px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	color: #000;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	text-align: left;
+}
+
+.ac_results li
+{
+	padding: 2px;
+}
+
+.ac_over
+{
+	background-color: Highlight;
+	color: HighlightText;
+	cursor: default;
+}
+
+/*******************************
+ * Navigation bar
+ *******************************/
+
+#topnav
+{
+	font-size:80%;
+	text-align:right;
+	padding-right:6px;
+}
+
+h1
+{
+	font-size:120%;
+	margin:0;
+	background: #648cbf;
+	color: #f7f8f9;
+	padding: 4px;
+	border-bottom: 1px solid #3159ab;
+	text-align: left;
+}
+
+h2
+{
+	font-size: 14px;
+	border-bottom: 1px solid #CCC;
+	Margin: 0px 0px 6px 0px;
+}
+
+#notes_box
+{
+	width:96% !important;
+	border:1px solid #eee;
+}
+
+/*******************************
+ * Tables
+ *******************************/
+
+table
+{
+	width: 100%;
+}
+
+tr,
+td
+{
+	padding: 4px;
+}
+
+th
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+.row1
+{
+   background-color: #f3f5f8;
+}
+
+.row2 
+{
+   background-color: #eef1f5;
+}
+
+.row3,
+.buttonstrip,
+.buttonrow
+{
+	background-color: #dee6f1;
+}
+
+.Subtitle,
+th
+{
+	background: #dee6f1;
+	color: #000000;
+	font-size: 11px;
+	padding: 2px;
+}
+
+img
+{
+	border: 0;
+}
+
+.desc
+{
+	font-size: 11px;
+}
+
+.buttonstrip,
+.buttonrow
+{
+	text-align: center;
+	padding: 2px;
+}
+
+.borderwrap
+{
+	background: #FFF;
+	border: 1px solid #383631;
+	padding: 1px;
+	margin-bottom: 6px;
+}
+
+/*******************************
+ * Forms
+ *******************************/
+
+form
+{
+	display: inline;
+}
+
+input,
+textarea
+{
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, sans-serif;
+	font-size:100%;
+}
+
+input,
+select,
+button,
+textarea
+{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 100%;
+	border-width: 1px;
+	border-style: solid;
+	padding: 4px;
+	border-color: #ccc;
+	background: #fff;
+	color: #000;
+}
+
+textarea.monospaced
+{
+	font-family: monospace;
+}
+
+/* OpenID */
+input.openid_login,
+.openid_login_info
+{
+   background: url(images/openid.gif) no-repeat;
+   background-position: 0 50%;
+   padding-left: 18px;
+}
+
+input.button,
+input[type="submit"],
+input[type="button"],
+button
+{
+	padding: 3px;
+	border-color: #ddd #cdcdcd #cdcdcd #ddd;
+	background: #f5f5f5;
+	color: #666;
+}
+
+input.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+button:hover
+{
+	border-color: #ccc;
+	background: #fcfcfc;
+}
+
+input.button.default,
+input[type="submit"].default,
+input[type="button"].default,
+button.default
+{
+	color: #333;
+}
+
+fieldset
+{
+	border-width: 2px;
+	border-style: solid;
+	border-color: #dee6f1;
+}
+
+fieldset legend
+{
+	font-weight: bold;
+	color: #667080;
+}
+
+.editgroup
+{
+	padding: 1px;
+	margin-right: 2px;
+}
+
+.field_title
+{
+	font-weight: bold;
+	display: block;
+}
+
+.field_desc
+{
+	font-size: 80%;
+	display: block;
+	line-height: 1.3em;
+}
+
+/*******************************
+ * Other global
+ *******************************/
+
+.catEnd
+{
+	height: 5px;
+	background: #3a70b3;
+}
+
+.Copyright
+{
+	text-align: center;
+}
+
+/* TABS */
+.tabs
+{
+	margin: 6px 0px;
+	color: #666;
+}
+
+.tabs ul
+{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	display: inline;
+}
+
+.tabs ul li
+{
+	display: inline;
+	margin: 0px;
+	padding: 0px;
+}
+
+.tabs a:link,
+.tabs a:visited
+{
+	margin: 0px 3px;
+	color: #999;
+}
+
+.tabs a.active
+{
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+}
+
+/* pagination */
+.pages
+{
+	display: block;
+	margin: 2px;
+}
+
+.pages > .title
+{
+	font-weight: bold;
+}
+
+.pages > .current_page
+{
+	font-weight: bold;
+}
+
+/* sql manager */
+.sql_log_code
+{
+	border: 1px solid lightblue;
+	width: 100%;
+	max-height: 100px;
+	display: block;
+	overflow: auto;
+	font-family: "Courier New", Courier, monospace;
+	white-space: pre;
+}
+
+/* backup */
+#progress_container
+{
+	border: 1px solid #999;
+	padding: 1px;
+	font-size: 80%;
+	position: relative;
+}
+
+#progress_container #progress_bar_container
+{
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	bottom: 1px;
+	right: 1px;
+	z-index: 100;
+}
+
+#progress_container #progress_bar
+{
+	background-color: #dee6f1;
+}
+
+#progress_container #progress_numeric
+{
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	bottom: 1px;
+	right: 1px;
+	z-index: 200;
+	text-align:center;
+	color: #000;
+}
+
+/* log severity colors */
+.severity-0 td
+{
+	background-color: #F3F5F8;
+}
+
+.severity-1 td
+{
+	background-color: #F4F0EA;
+}
+
+.severity-2 td
+{
+	background-color: #F4EBDC;
+}
+
+.severity-3 td
+{
+	background-color: #F5E6CF;
+}
+
+.severity-4 td
+{
+	background-color: #F6E1C1;
+}
+
+.severity-5 td
+{
+	background-color: #F6DBB3;
+}
+
+.severity-6 td
+{
+	background-color: #F7D6A5;
+}
+
+.severity-7 td
+{
+	background-color: #F8D198;
+}
+
+.severity-8 td
+{
+	background-color: #F8CC8A;
+}
+
+.severity-9 td
+{
+	background-color: #F9C77C;
+}
+
+.hide
+{
+	display: none;
+}
+
+#login_screen
+{
+	margin-top: 15%;
+}
+
+#login_screen_links
+{
+	font-size: 80%;
+	margin: 4px;
+}
+
+.copyright
+{
+	font-size: 80%;
+	color: #ccc;
+	text-align: center;
+}

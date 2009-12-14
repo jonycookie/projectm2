@@ -1,0 +1,63 @@
+rss
+{
+	margin:6px;
+	font-family:verdana;
+	color:#333333;
+	font-size:0.9em;
+}
+
+channel title
+{
+	font-size:140%;
+	display:none;
+	color:#999999;
+}
+
+channel link
+{
+	display:none;
+}
+
+channel description
+{
+	font-size:140%;
+	display:inline;
+	color:#999999;
+}
+
+channel language
+{
+	display:none;
+}
+
+item
+{
+	margin:6px;
+	padding:6px;
+	border:1px solid #eeeeee;
+	display:block;
+}
+
+item title
+{
+	font-weight:bold;
+	display:block;
+	color:#666666;
+	font-size:110%;
+}
+
+item description
+{
+	font-size:100%;
+	color:#333333;
+	display:block;
+}
+
+item link
+{
+	font-style:italic;
+	display:block;
+	color:#666666;
+	font-size:90%;
+	margin-top:2px;
+}

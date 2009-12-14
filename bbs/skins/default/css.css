@@ -1,0 +1,732 @@
+/********************************************
+(Xionex 05042006) IceBB Default Skin
+(c) 2004-2008 XAOS Interactive
+*********************************************/
+
+/*
+Skinning Tip:
+The debugger will tell you which skin files are being used, so you can locate the skin code you're looking for
+*/
+
+/*************************************************************
+ ** GLOBAL
+ *************************************************************/
+
+body
+{
+    background-color: #ffffff;
+    text-align: center;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 0.8em;
+    margin: 0px;
+    color: #2a2727;
+	line-height: 1.5em;
+}
+
+/* WRAPPER - sets board width */
+#initWrap
+{
+    width: 95%;
+    margin: 15px auto 20px auto;
+    text-align: left;
+    padding: 5px;
+	background-color: #fff;
+}
+
+
+/*******************************
+ * Headings
+ *******************************/
+
+/* Topic Name */
+h1
+{
+	font-size: 16px;
+	margin: 0px;
+}
+
+/* Category colors and control */
+h2
+{
+	background: #648cbf;
+	color: #f7f8f9;
+	padding: 4px;
+	margin: 0 0 1px 0;
+	font-size: 12px;
+}
+
+h2 a:link,
+h2 a:active,
+h2 a:visited
+{
+	color: #f7f8f9;
+	text-decoration: none;
+}
+
+h2 a:hover
+{
+	color: #f7f8f9;
+}
+
+/* subtitle + table headings */
+.Subtitle,
+th
+{
+	background: #dee6f1;
+	color: #000000;
+	font-size: 11px;
+	padding: 2px;
+	text-align: left; /* Opera fix */
+}
+
+/*******************************
+ * Links
+ *******************************/
+
+a:link,
+a:active,
+a:visited
+{
+	color: #2e5fa2;
+	text-decoration: underline;
+}
+
+a:hover
+{
+	color: #33373d;
+	text-decoration: underline;
+}
+
+/*******************************
+ * Navigation bar
+ *******************************/
+
+#Nav
+{
+	margin-top: 10px;
+	margin-left: 5px;
+	padding: 4px;
+}
+
+#Nav a:active,
+#Nav a:visited,
+#Nav a:link
+{
+	color: #000;
+	text-decoration: none;
+}
+
+#Nav a:hover
+{
+	color: #999;
+	text-decoration: none;
+}
+	
+/*******************************
+ * Menus
+ *******************************/
+
+#menu
+{
+	font-size: 14px;
+	font-weight: bold;
+	float: right;
+}
+
+#menu a
+{
+	text-decoration: none;
+	margin: 0px 3px;
+}
+
+/*******************************
+ * Tables
+ *******************************/
+
+table
+{
+	width: 100%;
+}
+tr, td
+{
+	padding: 4px;
+}
+th
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+img
+{
+	border: 0;
+}
+
+.desc
+{
+	font-size: 11px;
+}
+
+.row1
+{
+   background-color: #f3f5f8;
+}
+
+.row2 
+{
+   background-color: #eef1f5;
+}
+
+
+.row3,
+.buttonstrip,
+.buttonrow
+{
+	background-color: #dee6f1;
+}
+
+.buttonstrip,
+.buttonrow
+{
+	text-align: center;
+	padding: 2px;
+}
+
+.row_attach
+{
+	background-color: #e1edf8;
+}
+
+
+/*******************************
+ * Forms
+ *******************************/
+
+form
+{
+	display: inline;
+}
+
+input,
+select,
+button,
+textarea
+{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 100%;
+	padding: 4px;
+	border: 1px solid #cccccc;
+	background: #fff;
+	color: #000;
+}
+
+/* OpenID */
+input.openid_login
+{
+   background: url(images/openid.gif) no-repeat;
+   background-position: 0 50%;
+   padding-left: 18px;
+}
+
+input[type="checkbox"], input[type="radio"]
+{
+	border: 0;
+	background: transparent;
+}
+
+textarea
+{
+	line-height: 1.5em;
+}
+
+textarea.monospaced
+{
+	font-family: monospace;
+}
+
+input.small
+{
+	padding: 1px;
+}
+
+/*input.default
+{
+	font-weight: bold;
+}*/
+
+.textentry
+{
+	border: 1px solid #bcbcbc;
+	background: #f3f3f3;
+}
+
+.textentry textarea,
+.textentry .weditor
+{
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 100%;
+	width: 99%;
+}
+
+.wysiwyg-editor .mceEditor
+{
+	border: 0px;
+	background-color: #fff !important;
+}
+
+.wysiwyg-editor .mceToolbarTop,
+.wysiwyg-editor .mceToolbarBottom
+{
+	background-color: #eee !important;
+}
+
+.textentry .weditor-container
+{
+	border: 1px solid #cccccc;
+	line-height: 1.5em;
+	padding: 4px;
+	background: #fff;
+}
+
+.textentry .weditor-iframe
+{
+	border: 0px;
+	width: 100%;
+}
+
+.toolbar
+{
+	background: #e0e0e0;
+	padding: 2px;
+}
+
+.toolbar select
+{
+	padding: 0px;
+}
+
+.toolbar select option
+{
+	font-family: verdana, arial, sans-serif !important;
+}
+
+.toolbar .editgroup
+{
+	border-left: 1px solid #ccc;
+	padding: 0px 2px;
+	height: 24px;
+}
+
+.toolbar .editgroup a
+{
+	text-decoration: none;
+	border: 1px solid #e0e0e0;
+	height: 100%;
+	padding: 6px 0px 2px 0px;
+}
+
+.toolbar .editgroup a:hover
+{
+	border: 1px solid #999;
+}
+
+.toolbar .editgroup a img
+{
+	vertical-align: bottom;
+}
+
+fieldset
+{
+	border: 2px solid #dee6f1;
+}
+
+fieldset legend
+{
+	font-weight: bold;
+	color: #667080;
+}
+
+.editgroup
+{
+	padding: 1px;
+	margin-right: 2px;
+}
+	
+.editgroup img a:hover
+{
+	background: #f1f1f1;
+}
+
+/*******************************
+ * Pagination
+ *******************************/
+ 
+.pages a
+{
+	padding: 2px;
+}
+
+.mini-pages
+{
+	font-size: 80%;
+}
+
+/* autocomplete lists */
+span.autocomplete
+{
+	position: absolute;
+	width: 300px;
+	background-color: #fff;
+	color: #000;
+	border: 1px solid #ccc;
+	display: block;
+}
+
+span.autocomplete ul
+{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+span.autocomplete li
+{
+	padding: 2px;
+}
+
+span.autocomplete li.selected
+{
+	background-color: Highlight;
+	color: HighlightText;
+	cursor: default;
+}
+
+/*******************************
+ * Quote tags + other BBCode
+ *******************************/
+ 
+.quote_tag,
+.code_tag
+{
+	padding: 1px;
+	border-width: 1px;
+	border-style: solid;
+	margin: 0px;
+}
+
+.quote_tag .Subtitle,
+.code_tag .Subtitle
+{
+	margin-bottom: 2px;
+	font-weight: bold;
+}
+
+.code_tag pre
+{
+	font-family: monospace;
+	font-size: 130%;
+	margin: 0px;
+	overflow: auto;
+	max-height: 350px;
+}
+
+.code_tag pre code
+{
+	margin: 0px;
+}
+
+/*******************************
+ * Other global
+ *******************************/
+
+#away_box
+{
+	margin-top: 10px;
+	background: #fae5b0;
+	color: #000;
+	font-weight: bold;
+	padding: 5px;
+	border: 1px solid #fad163;
+}
+
+#Organizer
+{
+	background: #eef1f5;
+	color: #000;
+	padding: 5px;
+	border: 1px solid #bcbcbc;
+}
+
+/* NOT DONE
+#Organizer h2
+{
+	background: #f1ebc7;
+	color: #000;
+}
+END NOT DONE */
+
+.borderwrap
+{
+	background: #FFF;
+	border: 1px solid #383631;
+	padding: 1px;
+}
+
+.catEnd
+{
+	height: 5px;
+	background: #3a70b3;
+}
+
+.clear
+{
+	clear: both;
+}
+
+/* TABS - work in progress */
+.tabs
+{
+	margin: 6px 0px;
+	color: #666;
+}
+
+.tabs ul
+{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	display: inline;
+}
+
+.tabs ul li
+{
+	display: inline;
+	margin: 0px;
+	padding: 0px;
+}
+
+.tabs a:link,
+.tabs a:visited
+{
+	margin: 0px 3px;
+	color: #999;
+}
+
+.tabs a.active
+{
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+}
+
+tt.bbcode
+{
+	font-size: 120%;
+}
+
+/*******************************
+ * Footer
+ *******************************/
+
+#footer
+{
+	margin: 14px 0px 0px;
+	background: #efebdb;
+	border-top: 1px solid #cac4ad;
+	border-bottom: 1px solid #cac4ad;
+	font-size: 100%;
+	color: #747163;
+	padding: 14px;
+}
+
+#footer #stats
+{
+	font-style: italic;
+	float: right;
+}
+
+/*************************************************************
+ ** PAGE-SPECIFIC
+ *************************************************************/
+
+/*******************************
+ * Home
+ *******************************/
+
+#home-view-select
+{
+	text-align: center;
+}
+
+/*******************************
+ * Private Messages
+ *******************************/
+
+.PM_Panel
+{
+	background: #dee6f1;
+	padding: 4px;
+}
+
+.PM_row1
+{
+	background: #f3f5f8;
+	padding: 3px;
+	border-bottom: 1px solid #3a70b3;
+}
+
+.PM_row2
+{
+	background: #eef1f5;
+	padding: 3px;
+	border-bottom: 1px solid #3a70b3;
+}
+
+.Author
+{
+	font-size: 10px;
+	color: #000;
+}
+
+.Author a:link,
+.Author a:visited,
+.Author a:active
+{
+	color: black;
+	text-decoration: none;
+}
+
+.Author a:hover
+{
+	text-decoration: none;
+	color: black;
+}
+ 
+/*******************************
+ * Search results + error pages
+ *******************************/
+ 
+.result
+{
+	background: #F2F2F2;
+	padding: 6px;
+	margin-bottom: 4px;
+}
+	
+.highlight_result,
+.highlight_error
+{
+	background: #fffde9;
+	padding: 5px;
+	border: 1px solid #bcbcbc;
+}
+
+.highlight_error .title
+{
+	font-weight: bold;
+}
+
+.highlight_error ul
+{
+	margin: 0;
+	padding-left: 1.5em;
+}
+	
+.other_opt
+{
+	background: #F6F6F6;
+	border: 2px solid #CCCCCC;
+	padding: 6px;
+	margin-top: 5px;
+}
+
+/*******************************
+ * Topic view
+ *******************************/
+
+.Topicname
+{
+	margin-top: 9px;
+	margin-bottom: 13px;
+}
+
+.t_opt
+{
+	font-size: 9px;
+}
+
+.t_bar
+{
+	margin-bottom: 10px;
+	border-bottom: 1px solid #bcbcbc;
+	font-size: 10px;
+}
+
+.post .post-content
+{
+	width: 100%;
+	margin: 1px;
+	/* IE 6 bug fix */
+	line-height: 1.5em;
+}
+
+.post .post-content .post-left,
+.post .post-content .post-right
+{
+	padding: 3px;
+	overflow: hidden;
+}
+
+.post .post-content .post-left
+{
+	float: left;
+	width: 200px;
+	display: inline;
+}
+
+.post .post-content .post-right
+{
+	border-left: 1px solid #fff;
+	clear: right;
+}
+
+.post .post-content .post-buttons
+{
+	border-top: 1px solid #fff;
+	text-align: right;
+}
+
+/*******************************
+ * Other pages
+ *******************************/
+
+/* UCC and PM menus */
+.ucp-menu ul,
+.pm-menu ul
+{
+	margin: 3px 0 3px 4px;
+	padding: 3px;
+	list-style-type: none;
+	list-style-image: none;
+}
+
+/* redirection */
+#redirect_inpage
+{
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	text-align: left;
+	padding: 4px;
+	border-top: 1px solid #999;
+	font-weight: bold;
+}
+
+.tooltip
+{
+	background-color: #fff;
+	border: 1px solid #000;
+	font-size: 80%;
+	padding: 2px;
+}

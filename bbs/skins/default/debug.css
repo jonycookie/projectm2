@@ -1,0 +1,106 @@
+/********************************************
+IceBB Default Skin CSS / Debug Page
+(c) 2004-2006 XAOS Interactive
+*********************************************/
+
+body
+{
+    background-color:#FFFFFF;
+    text-align:center;
+    font-family: Verdana, sans-serif;
+    font-size:10pt;
+    margin:0px;
+    color:#000;
+	line-height: 1.4em;
+}
+
+h1
+{
+    background: #e7e7e7 repeat-x;
+    padding:5px;
+    color:#000;
+    font-weight: bold;
+    margin:2px;
+    font-size:100%;
+    border-bottom:1px solid #5a5f57;
+}
+
+h2
+{
+    color:#000;
+    background:#abd791 repeat-x;
+    font-size:100%;
+    padding:4px;
+    margin:1px;
+    font-weight:bold;
+}
+
+h3,
+th
+{
+    background-color:#e8f3e2;
+    color:#3b3b3b;
+    font-weight:bold;
+    font-size:100%;
+    margin:0px;
+    padding:4px;
+}
+
+.border
+{
+	border:1px solid #5a5f57;
+	margin:2px 2px 6px 2px;
+	width:99.6%;
+	padding: 1px;
+	text-align:left;
+	margin:6px auto;
+	width:80%;
+}
+
+table
+{
+	font-size:100%;
+}
+
+th
+{
+	text-align:left;
+}
+
+.col1
+{
+	background-color:#f6fff6;
+}
+
+.col2
+{
+	background-color:#eaf6e8;
+	font-weight:bold;
+	width:30%;
+	color: #747773;
+}
+
+fieldset
+{
+   border:2px solid #ccddee;
+}
+
+fieldset legend
+{
+   color:#667788;
+   font-weight:bold;
+}
+
+a:link,
+a:active,
+a:visited
+{
+    color:#2964AC;
+    text-decoration: underline;
+}
+
+a:hover
+{
+   color:#900728;
+   text-decoration: underline;
+}

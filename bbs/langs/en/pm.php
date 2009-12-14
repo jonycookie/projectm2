@@ -1,0 +1,55 @@
+<?php
+$lang['title']			= "Private Messages";
+$lang['no']				= "You have no PMs";
+$lang['title_menu']		= "Menu";
+$lang['title_content']	= "Content";
+$lang['menu_home']		= "PM Home";
+$lang['menu_sub_new']	= "New";
+$lang['menu_new']		= "Write new PM";
+$lang['list_title']		= "Subject";
+$lang['list_from']		= "From";
+$lang['not_yours']		= "That's not yours, give it back!";
+$lang['complete_all']	= "Please complete all fields";
+$lang['access_denied']	= "Access denied";
+$lang['pm_edited']		= "PM edited";
+$lang['pm_sent']		= "PM sent";
+$lang['menu']			= "Menu";
+$lang['compose']		= "Compose";
+$lang['compose2']		= "Compose a message";
+$lang['inbox_link']		= "Inbox";
+$lang['tags']			= "Tags";
+$lang['tags2']			= "Tags:";
+$lang['tag']			= "Tag:";
+$lang['tag2']			= "Tag";
+$lang['pm_title']		= "Private Messages";
+$lang['with_selected']	= "With selected...";
+$lang['reply']			= "Reply";
+$lang['forward']		= "Forward";
+$lang['delete']			= "Delete";
+$lang['move']			= "Move";
+$lang['new_pms']		= "%d private message(s)";
+$lang['subject']		= "Subject";
+$lang['subject2']		= "Subject:";
+$lang['quick_reply']	= "Quick Reply";
+$lang['reply_button']	= "Add reply";
+$lang['smilies_button']	= "Smilies";
+$lang['advanced']		= "Advanced";
+$lang['labels']			= "Labels...";
+$lang['created_by']		= "Created by:";
+$lang['created_on']		= "Created on date:";
+$lang['report']			= "Report";
+$lang['ignore']			= "Add user to ignore list";
+$lang['reply_quote']	= "Reply with quote";
+$lang['send_pm']		= "Send Private Message";
+$lang['more']			= "More";
+$lang['to']				= "To:";
+// 0.9.3
+$lang['no_perms_pm']	= "You do not have permission to use the Private Message system.";
+$lang['user_not_exist']	= "The member you selected does not exist.";
+$lang['you_blocked']	= "You are currently being blocked by that member.";
+$lang['pm_nav']			= "Navigation";
+$lang['inbox_link_new']	= "Inbox (%d)";
+$lang['del_topic']		= "Delete this topic";
+// 0.9.3.1
+$lang['pm_not_exist']	= "The PM you selected does not exist or you do not have permission to view it.";
+?>
