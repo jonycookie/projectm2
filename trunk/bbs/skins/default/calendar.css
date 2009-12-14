@@ -1,0 +1,38 @@
+.calendar.calmonth h2
+{
+	padding:4px;
+	height:23px;
+	margin-bottom:0px;
+}
+
+.calendar th a
+{
+	color:#fff;
+}
+
+.calendar td
+{
+	width:14.1%;
+}
+
+.calendar .calsmall td
+{
+	width:14%;
+}
+
+.day
+{
+	height:100px;
+	vertical-align:top;
+}
+
+.day_today
+{
+	border:1px solid #ccddee;
+	background-color:#fff;
+}
+
+.day_blank
+{
+	background-color:#f2f2f2;
+}

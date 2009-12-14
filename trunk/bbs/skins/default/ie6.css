@@ -1,0 +1,11 @@
+/********************************************
+(Xionex 05042006) IceBB Default Skin
+(c) 2004-2008 XAOS Interactive
+*********************************************/
+/* fixes for IE 6                           */
+
+/* PNG fix */
+img
+{
+	behavior: url(iepngfix.htc);
+}

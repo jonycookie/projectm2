@@ -1,0 +1,162 @@
+/*
+IceBB Installation CSS 
+(c) 2005 The IceBB Team
+*/
+
+body
+{
+	background:#FFF;
+	text-align:center;
+	margin:0;
+	font-family:san-serif, Verdana;
+	font-size:12px;
+}
+
+#welcome
+{
+	width:100%;
+	text-align:left;
+	background:#F1F1F1;
+}
+
+#starter
+{
+	width:700px;
+	margin:0 auto;
+	text-align:left;
+}
+
+#header
+{
+    background:#648cbf;
+    border-bottom:1px solid #5D93D0;
+    color:#f7f8f9;
+    padding:12px;
+    padding-left:64px;
+    margin-bottom:6px;
+}
+
+#header h1
+{
+	margin:0;
+	color:#fff;
+	font-weight:normal;
+	font-size:160%;
+}
+
+.block
+{
+	background-color:#eef1f5;
+	padding:3px;
+}
+
+.block h3
+{
+	padding:1px;
+	margin:1px;
+	color:#c11717;
+	font-size:14px;
+}
+
+.border
+{
+	border:1px solid #5d93d0;
+	padding:2px;
+	margin-bottom:6px;
+}
+
+.backup-reminder
+{
+	border-color:#d0935d;
+}
+
+.backup-reminder .block
+{
+	background-color:#f5f1ee;
+}
+
+.bottom,
+h3.title
+{
+	border-bottom:2px solid #000;
+	margin:4px;
+	padding-bottom:3px;
+}
+
+h2
+{
+	color:#999999;
+	font-family:verdana,sans-serif;
+	font-weight:normal;
+	font-size:200%;
+	margin:0px;
+	background:#fff;
+	border:0px;
+}
+
+td
+{
+	font-size:80%;
+}
+
+a:link,
+a:visited,
+a:active
+{
+	color:#3e7fc7;
+	text-decoration:none;
+}
+
+a:hover
+{
+	color:#c11717;
+	text-decoration:underline;
+}
+
+p
+{
+	padding:2px;
+	margin-bottom:10px;
+	margin-top:4px;
+}
+
+.span
+{
+	color:#3ea62a;
+	font-weight:bold;
+}
+
+.nomercy
+{
+	color:#b31d1d;
+	font-weight:bold;
+}
+
+.help
+{
+	display:none;
+	position:absolute;
+	background-color:#FFFED8;
+	color:#999882;
+	border:1px solid #CCCBAD;
+	padding:2px;
+	font-size:90%;
+	width:250px;
+	text-align:left;
+}
+
+#steps
+{
+	font-weight:bold;
+	color:#000;
+	margin-top:10px;
+	float:right;
+}
+
+#footer
+{
+	border-top:1px dashed #999999;
+	color:#999999;
+	text-align:center;
+	padding:3px;
+}
