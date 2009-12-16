@@ -1,0 +1,44 @@
+NovaBoard Readme File
+http://www.novaboard.net
+
+Contents:
+
+1. License in Brief
+2. Server Requirements
+3. Installation Instructions
+4. Getting Help
+5. Contributing
+
+1. The License in Brief
+
+- You may use NovaBoard in its standard form without restriction from the authors, but please observe your country's laws.
+- You may modify NovaBoard for personal usage, including commercial situations, however please observe the next point.
+- You must distribute NovaBoard for free, or with a Distributor's Fee (you must therefore not make a profit).
+- Please read section (4) of the license for information on distributing modified versions of NovaBoard.
+- Plugins, Modules, Themes, and other works which extend the functionality of NovaBoard are subject to licenses decided upon by their author, although we encourage them to use the Artistic License.
+
+2. Server Requirements
+
+- PHP4 or greater
+- MySQL4 or greater
+- GD2 Image Library
+
+We recommend running the latest version of each, but please be aware that testing may not have been carried out on your exact configuration. Also, we strongly advise against free hosting sites, and will not provide support for those listed on our site.
+
+If you have not got hosting set up just yet, we can happily recommend TMDHosting.com - we are currently negotiating a discount for people who sign up through us.
+
+3. Installation Instructions
+
+- Download the archive
+- Extract the files from the zip archive
+- Upload these files to your website by FTP
+- Go to the installer file using your web browser - http://yourwebsiteincludingfolder/install.php
+- Follow the instructions on screen, and you're done!
+
+4. Getting Help
+
+We're happy to help you via the support forums, available through our main website. If you think you've found a bug, or would like to request a feature for NovaBoard, please do so via http://code.google.com/p/novaboard/issues/entry. Our community is always on hand to help!
+
+5. Contributing
+
+We're always looking for talented people to join us in developing the project. If you wish to improve the code, check out our SVN repository at http://novaboard.googlecode.com/svn/ and submit improvements via the issues system mentioned in section 4. Alternatively, if you wish to create a theme or module for NovaBoard, you're 100% welcome to do so, but we do ask that you post it in our forum - it makes it a lot easier for users to search through them, plus you'll benefit from our remote distribution system.
