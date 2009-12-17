@@ -54,13 +54,13 @@ window.focus();
     <tr>
       <form action="<?=__SELF__?>?do=dialog&operation=post" method="post" enctype="multipart/form-data" name="uploadfile" target="post" id="uploadfile">
         <td>上　传：</td>
-        <td colspan="3" class="vtop rowform"><input name="file" type="file" class="uploadbtn" id="pic" /><input name="action" type="hidden" value="uploadfile" /> <input type="submit" value="上传" style="border:1px solid #999999;"/></td>
+        <td colspan="3"><input name="file" type="file" class="uploadbtn" id="pic" /><input name="action" type="hidden" value="uploadfile" /> <input type="submit" value="上传" style="border:1px solid #999999;"/></td>
       </form>
     </tr>
     <tr>
       <form action="<?=__SELF__?>?do=dialog&operation=post" method="post" name="createdir" target="post" id="createdir">
         <td>新目录：</td>
-        <td colspan="3" class="vtop rowform"><input type='text' name='dirname' value='' style='width:150px'><input name="action" type="hidden" value="createdir" /> <input type="submit" value="创建" style="border:1px solid #999999;"/></td>
+        <td colspan="3"><input type='text' name='dirname' value='' style='width:150px'><input name="action" type="hidden" value="createdir" /> <input type="submit" value="创建" style="border:1px solid #999999;"/></td>
       </form>
     </tr>
   </table>

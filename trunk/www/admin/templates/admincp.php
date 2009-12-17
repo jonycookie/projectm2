@@ -21,12 +21,10 @@
 <table cellpadding="0" cellspacing="0" width="100%" height="100%">
   <tr>
     <td colspan="2" height="90"><div class="mainhd">
-        <div class="logo">iCMS Administrator's Control Panel</div>
         <div class="uinfo">
           <p>您好, <em><?=$Admin->admin->username?></em> [ <a href="<?=__SELF__?>?do=logout" target="_top">退出</a> ]</p>
           <p class="btnlink"><a href="index.php" target="_blank">网站首页</a></p>
         </div>
-        <div class="navbg"></div>
         <div class="nav">
           <ul id="topmenu">
             <?php if($Admin->MP('header_index','F')){?><li><em><a href="javascript:void(0);" id="header_index" onClick="toggleMenu('index', 'home');"><?=lang('header_index')?></a></em></li>									<?php }?>

@@ -29,16 +29,16 @@ iCMS_admincp_head();
         <th class="partition">作者</th>
       </tr>
       <tr>
-        <td class="vtop rowform"><textarea name="source" id="source" onKeyUp="textareasize(this)" class="tarea"><?=implode("\r\n",$sources)?></textarea></td>
-        <td class="vtop rowform"><textarea name="author" id="author" onKeyUp="textareasize(this)" class="tarea"><?=implode("\r\n",$authors)?></textarea></td>
+        <td><textarea name="source" id="source" onKeyUp="textareasize(this)" class="tarea"><?=implode("\r\n",$sources)?></textarea></td>
+        <td><textarea name="author" id="author" onKeyUp="textareasize(this)" class="tarea"><?=implode("\r\n",$authors)?></textarea></td>
       </tr>
       <tr>
         <th width="50%" class="partition">编辑</th>
         <th class="partition"></th>
       </tr>
       <tr>
-        <td class="vtop rowform"><textarea name="editor" id="editor" onKeyUp="textareasize(this)" class="tarea"><?=implode("\r\n",$editors)?></textarea></td>
-        <td class="vtop rowform">&nbsp;</td>
+        <td><textarea name="editor" id="editor" onKeyUp="textareasize(this)" class="tarea"><?=implode("\r\n",$editors)?></textarea></td>
+        <td>&nbsp;</td>
       </tr>
       <tr class="nobg">
         <td colspan="3"><div class="fixsel">

@@ -32,28 +32,28 @@ iCMS_admincp_head();
     <input type="hidden" name="action" value="tag" />
     <table class="tb tb2 ">
       <tr>
-        <td class="vtop tips2" width="120">按归类:</td>
-        <td class="vtop rowform"><select name="sortid[]" id="sortid" multiple="multiple" size="15">
+        <td width="120">按归类:</td>
+        <td><select name="sortid[]" id="sortid" multiple="multiple" size="15">
           <option value='all'>所 有 归 类</option>
     	  <optgroup label="======================================"></optgroup>
     	  <?=tagsort()?>
         </select></td>
       </tr>
       <tr>
-        <td class="vtop tips2">按TAG ID：</td>
-        <td class="vtop rowform">开始ID：<input name="startid" type="text" id="startid" class="txt" style="width:80px" /><br />-<br />结束ID：<input name="endid" type="text" id="endid" class="txt" style="width:80px" /></td>
+        <td>按TAG ID：</td>
+        <td>开始ID：<input name="startid" type="text" id="startid" class="txt" style="width:80px" /><br />-<br />结束ID：<input name="endid" type="text" id="endid" class="txt" style="width:80px" /></td>
       </tr>
       <tr>
-        <td class="vtop tips2">按日期：</td>
-        <td class="vtop rowform">开始时间：<input type="text" class="txt" name="starttime" value="" onclick="showcalendar(event, this)" style="width:120px"><br />-<br />结束时间：<input type="text" class="txt" name="endtime" value="" onclick="showcalendar(event, this)" style="width:120px"></td>
+        <td>按日期：</td>
+        <td>开始时间：<input type="text" class="txt" name="starttime" value="" onclick="showcalendar(event, this)" style="width:120px"><br />-<br />结束时间：<input type="text" class="txt" name="endtime" value="" onclick="showcalendar(event, this)" style="width:120px"></td>
       </tr><!--
        <tr>
-        <td class="vtop tips2" width="120">指定生成页数:</td>
-        <td class="vtop rowform"><input type="text" class="txt" name="cpn" value="" style="width:120px"></td>
+        <td width="120">指定生成页数:</td>
+        <td><input type="text" class="txt" name="cpn" value="" style="width:120px"></td>
       </tr>
        <tr>
-        <td class="vtop tips2" width="120">间隔时间(s):</td>
-        <td class="vtop rowform"><input type="text" class="txt" name="time" value="1" style="width:120px"></td>
+        <td width="120">间隔时间(s):</td>
+        <td><input type="text" class="txt" name="time" value="1" style="width:120px"></td>
       </tr>-->
       <tr>
         <td colspan="2" class="td21"><input type="submit" class="btn" name="cleanupsubmit" value="提交" /></td>

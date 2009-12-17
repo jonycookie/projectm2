@@ -17,7 +17,7 @@ iCMS_admincp_head();
     <input type="hidden" name="action" value="all" />
     <table class="tb tb2 ">
       <tr>
-        <td class="vtop tips2" align="center">全站HTML更新，很消耗服务器资源．请慎用！</td>
+        <td align="center">全站HTML更新，很消耗服务器资源．请慎用！</td>
       </tr>
       <tr>
         <td align="center"><input type="submit" class="btn" name="cleanupsubmit" value="提交" /></td>

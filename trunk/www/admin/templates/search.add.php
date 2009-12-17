@@ -26,18 +26,18 @@ iCMS_admincp_head();
         <th colspan="15" class="partition">添加关键字</th>
       </tr>
       <tr class="nobg">
-        <td colspan="2" class="td27">关键字:</td>
+        <td colspan="2">关键字:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input name="search" id="search" value="<?=$rs->search?>" type="text" class="txt"  /></td>
-        <td class="vtop tips2"></td>
+        <td><input name="search" id="search" value="<?=$rs->search?>" type="text" class="txt"  /></td>
+        <td></td>
       </tr>
       <tr class="nobg">
-        <td colspan="2" class="td27">次数:</td>
+        <td colspan="2">次数:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input name="times" id="times" value="<?=$rs->times?>" type="text" class="txt"  /></td>
-    	<td class="vtop tips2"></td>
+        <td><input name="times" id="times" value="<?=$rs->times?>" type="text" class="txt"  /></td>
+    	<td></td>
       </tr>
        <tr class="nobg">
         <td colspan="2"><div class="fixsel">

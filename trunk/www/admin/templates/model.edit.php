@@ -26,39 +26,39 @@ iCMS_admincp_head();
     <input type="hidden" name="id" value="<?=$id?>" />
     <table class="tb tb2 ">
       <tr class="nobg">
-        <th colspan="2" class="td27">模型名称:</th>
+        <th colspan="2">模型名称:</th>
       </tr>
       <tr>
-        <td class="vtop rowform"><input name="name" type="text" id="name" value="<?=$rs['name']?>" class="txt" /></td>
-        <td class="vtop tips2"></td>
+        <td><input name="name" type="text" id="name" value="<?=$rs['name']?>" class="txt" /></td>
+        <td></td>
       </tr>
         <tr class="nobg">
-        <td colspan="2" class="td27">模型表名:</td>
+        <td colspan="2">模型表名:</td>
       </tr>
      <tr>
-        <td class="vtop rowform"><input name="table" type="text" id="table" value="<?=$rs['table']?>" class="txt" /></td>
-        <td class="vtop tips2">请以字母开头,留空将按模型名称拼音</td>
+        <td><input name="table" type="text" id="table" value="<?=$rs['table']?>" class="txt" /></td>
+        <td>请以字母开头,留空将按模型名称拼音</td>
       </tr>
        <tr class="nobg">
-        <td colspan="2" class="td27">模型说明:</td>
+        <td colspan="2">模型说明:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><textarea  rows="6" onkeyup="textareasize(this)" name="desc" id="desc" cols="50" class="tarea"><?=$rs['desc']?></textarea></td>
-        <td class="vtop tips2">100字以内</td>
+        <td><textarea  rows="6" onkeyup="textareasize(this)" name="desc" id="desc" cols="50" class="tarea"><?=$rs['desc']?></textarea></td>
+        <td>100字以内</td>
       </tr>
        <tr class="nobg">
-        <td colspan="2" class="td27">列表文件:</td>
+        <td colspan="2">列表文件:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input name="listpage" type="text" id="listpage" value="<?=$rs['listpage']?>" class="txt" /></td>
-        <td class="vtop tips2">可留空</td>
+        <td><input name="listpage" type="text" id="listpage" value="<?=$rs['listpage']?>" class="txt" /></td>
+        <td>可留空</td>
       </tr>
        <tr class="nobg">
-        <td colspan="2" class="td27">内容显示文件:</td>
+        <td colspan="2">内容显示文件:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input name="showpage" type="text" id="showpage" value="<?=$rs['showpage']?>" class="txt" /></td>
-        <td class="vtop tips2">可留空</td>
+        <td><input name="showpage" type="text" id="showpage" value="<?=$rs['showpage']?>" class="txt" /></td>
+        <td>可留空</td>
       </tr>
      <tr class="nobg">
         <td colspan="2"><div class="fixsel"> <input type="submit" class="btn" value="提交"  /> </div></td>

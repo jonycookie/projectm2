@@ -27,13 +27,13 @@ iCMS_admincp_head();
     <input type="hidden" name="uid" value="<?=$rs->uid?>" />
     <table class="tb tb2 ">
       <tr>
-        <td colspan="2" class="td27">设置[<?=$rs->username?>]管理权限</td>
+        <td colspan="2">设置[<?=$rs->username?>]管理权限</td>
       </tr>
        <tr>
         <td colspan="2"><input name="power[]" type="checkbox" class="checkbox" value="ADMINCP" /> 允许进入后台</td>
       </tr>
       <tr>
-        <td class="vtop rowform" id="powerdiv" colspan="2" style="width:auto;">
+        <td id="powerdiv" colspan="2" style="width:auto;">
 	      <table style="width:100%"><tr>
 	      <?php foreach($menu_array AS $H=>$value){?>
 	      <td valign="top" style="width:10%"><h4><input name="power[]" type="checkbox" class="checkbox" value="header_<?=$H?>" /><?=lang('header_'.$H)?></h4><ul>

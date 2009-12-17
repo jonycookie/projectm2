@@ -17,13 +17,13 @@ iCMS_admincp_head();
   <?php if ($L['parentfolder']){ ?>
   <tr>
     <td width="24"><a href="<?=__SELF__?>?do=template&operation=manage&dir=<?=$L['parentfolder']?>"><img src="admin/images/file/parentfolder.gif" border="0"></a></td>
-    <td class="vtop rowform"><strong><a href="<?=__SELF__?>?do=template&operation=manage&dir=<?=$L['parentfolder']?>">．．</a></strong></td>
+    <td><strong><a href="<?=__SELF__?>?do=template&operation=manage&dir=<?=$L['parentfolder']?>">．．</a></strong></td>
   </tr>
   <?php } 
   	  for($i=0;$i<count($L['folder']);$i++){?>
   <tr>
     <td width="24"><a href="<?=__SELF__?>?do=template&operation=manage&dir=<?=$L['folder'][$i]['path']?>"><img src="admin/images/file/closedfolder.gif" border="0"></a></td>
-    <td class="vtop rowform"><strong><a href="<?=__SELF__?>?do=template&operation=manage&dir=<?=$L['folder'][$i]['path']?>"><?=$L['folder'][$i]['dir']?></a></strong></td>
+    <td><strong><a href="<?=__SELF__?>?do=template&operation=manage&dir=<?=$L['folder'][$i]['path']?>"><?=$L['folder'][$i]['dir']?></a></strong></td>
   </tr>
   <?php } ?>
 </table>

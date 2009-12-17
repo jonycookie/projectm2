@@ -28,7 +28,7 @@ window.focus();
     <tr>
       <form action="<?=__SELF__?>?do=dialog&operation=post" method="post" enctype="multipart/form-data">
         <td style="width:60px;">请选择文件</td>
-        <td class="vtop rowform"><input name="file" type="file" class="uploadbtn" id="pic" /><input name="action" type="hidden" value="Aupload" /><input name="in" type="hidden" value="<?=$in?>" /> <input type="submit" value="上传" style="border:1px solid #999999;"/></td>
+        <td><input name="file" type="file" class="uploadbtn" id="pic" /><input name="action" type="hidden" value="Aupload" /><input name="in" type="hidden" value="<?=$in?>" /> <input type="submit" value="上传" style="border:1px solid #999999;"/></td>
       </form>
     </tr>
   </table>

@@ -31,28 +31,28 @@ iCMS_admincp_head();
           <th colspan="15" class="partition">编辑页面</th>
         </tr>
         <tr class="nobg">
-          <td colspan="2" class="td27">标题：</td>
+          <td colspan="2">标题：</td>
         </tr>
         <tr>
-          <td class="vtop rowform"><input name="title" id="title" value="<?=$rs->title?>" type="text" class="txt"  /></td>
-          <td class="vtop tips2">页面标题</td>
+          <td><input name="title" id="title" value="<?=$rs->title?>" type="text" class="txt"  /></td>
+          <td>页面标题</td>
         </tr>
         <tr class="nobg">
-          <td colspan="2" class="td27">关键字：</td>
+          <td colspan="2">关键字：</td>
         </tr>
         <tr>
-          <td class="vtop rowform"><textarea  rows="6" onkeyup="textareasize(this)" name="keyword" id="keyword" cols="50" class="tarea"><?=$rs->keyword?></textarea></td>
-          <td class="vtop tips2">页面关键词用于搜索引擎优化，放在 meta 的 keyword 标签中，多个关键字间请用半角逗号 "," 隔开,HTML代码不可用</td>
+          <td><textarea  rows="6" onkeyup="textareasize(this)" name="keyword" id="keyword" cols="50" class="tarea"><?=$rs->keyword?></textarea></td>
+          <td>页面关键词用于搜索引擎优化，放在 meta 的 keyword 标签中，多个关键字间请用半角逗号 "," 隔开,HTML代码不可用</td>
         </tr>
         <tr class="nobg">
-          <td colspan="2" class="td27">描述：</td>
+          <td colspan="2">描述：</td>
         </tr>
         <tr>
-          <td class="vtop rowform"><textarea  rows="6" onkeyup="textareasize(this)" name="description" id="description" cols="50" class="tarea"><?=$rs->description?></textarea></td>
-          <td class="vtop tips2">页面描述，不要超边200字，HTML代码不可用</td>
+          <td><textarea  rows="6" onkeyup="textareasize(this)" name="description" id="description" cols="50" class="tarea"><?=$rs->description?></textarea></td>
+          <td>页面描述，不要超边200字，HTML代码不可用</td>
         </tr>
         <tr class="nobg">
-          <td colspan="2" class="td27">代码内容: 支持HTML代码</td>
+          <td colspan="2">代码内容: 支持HTML代码</td>
         </tr>
         <tr>
           <td colspan="2" class="vtop">

@@ -30,8 +30,8 @@ iCMS_admincp_head();
         <th class="partition">过滤词</th>
      </tr>
       <tr>
-        <td class="vtop rowform"><textarea name="disable" id="source" onKeyUp="textareasize(this)" class="tarea"><?=implode("\r\n",$cache['word.disable'])?></textarea></td>
-        <td class="vtop rowform"><textarea name="filter" id="editor" onKeyUp="textareasize(this)" class="tarea"><?=implode("\r\n",$filterArray)?></textarea></td>
+        <td><textarea name="disable" id="source" onKeyUp="textareasize(this)" class="tarea"><?=implode("\r\n",$cache['word.disable'])?></textarea></td>
+        <td><textarea name="filter" id="editor" onKeyUp="textareasize(this)" class="tarea"><?=implode("\r\n",$filterArray)?></textarea></td>
       </tr>
       <tr class="nobg">
         <td colspan="3"><div class="fixsel">

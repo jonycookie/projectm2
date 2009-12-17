@@ -26,97 +26,97 @@ iCMS_admincp_head();
     <input type="hidden" name="uid" value="<?=$rs->uid?>" />
     <table class="tb tb2 ">
       <tr>
-        <th colspan="2" class="td27">个人资料</th>
+        <th colspan="2">个人资料</th>
       </tr>
       <tr class="nobg">
-        <td colspan="2" class="td27">用户名:</td>
+        <td colspan="2">用户名:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input name="name" type="text" id="name" value="<?=$rs->username?>" readonly="true" class="txt"/></td>
-        <td class="vtop tips2"></td>
+        <td><input name="name" type="text" id="name" value="<?=$rs->username?>" readonly="true" class="txt"/></td>
+        <td></td>
       </tr>
         <tr class="nobg">
-        <td colspan="2" class="td27">新密码:</td>
+        <td colspan="2">新密码:</td>
       </tr>
      <tr>
-        <td class="vtop rowform"><input name="pwd1" type="password" id="pwd1" class="txt"/> </td>
-        <td class="vtop tips2">不更改请留空</td>
+        <td><input name="pwd1" type="password" id="pwd1" class="txt"/> </td>
+        <td>不更改请留空</td>
       </tr>
        <tr class="nobg">
-        <td colspan="2" class="td27">确认密码:</td>
+        <td colspan="2">确认密码:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input name="pwd2" type="password" id="pwd2" class="txt"/> </td>
-        <td class="vtop tips2">不更改请留空</td>
+        <td><input name="pwd2" type="password" id="pwd2" class="txt"/> </td>
+        <td>不更改请留空</td>
       </tr>
       <tr class="nobg">
-        <td colspan="2" class="td27">注册时间:</td>
+        <td colspan="2">注册时间:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input type="text" disabled class="txt" value="<?=get_date($rs->info['regtime'],"Y-m-d H:i:s")?>" readonly="true"/></td>
-        <td class="vtop tips2"></td>
+        <td><input type="text" disabled class="txt" value="<?=get_date($rs->info['regtime'],"Y-m-d H:i:s")?>" readonly="true"/></td>
+        <td></td>
       </tr>
       <tr class="nobg">
-        <td colspan="2" class="td27">最后登陆IP:</td>
+        <td colspan="2">最后登陆IP:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input type="text" disabled class="txt" value="<?=$rs->lastip?>" readonly="true"/></td>
-        <td class="vtop tips2"></td>
+        <td><input type="text" disabled class="txt" value="<?=$rs->lastip?>" readonly="true"/></td>
+        <td></td>
       </tr>
       <tr class="nobg">
-        <td colspan="2" class="td27">最后登陆时间:</td>
+        <td colspan="2">最后登陆时间:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input type="text" disabled class="txt" value="<?=get_date($rs->lastlogintime,"Y-m-d H:i:s")?>" readonly="true"/></td>
-        <td class="vtop tips2"></td>
+        <td><input type="text" disabled class="txt" value="<?=get_date($rs->lastlogintime,"Y-m-d H:i:s")?>" readonly="true"/></td>
+        <td></td>
       </tr>
       <tr>
-        <td colspan="2" class="td27">以下资料选填</td>
+        <td colspan="2">以下资料选填</td>
       </tr>
        <tr class="nobg">
-        <td colspan="2" class="td27">昵称:</td>
+        <td colspan="2">昵称:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input name="nickname" type="text" id="nickname" value="<?=$rs->info['nickname']?>" maxlength="12" class="txt"/> </td>
-         <td class="vtop tips2">发表文章时显示的名字,留空显示用户名</td>
+        <td><input name="nickname" type="text" id="nickname" value="<?=$rs->info['nickname']?>" maxlength="12" class="txt"/> </td>
+         <td>发表文章时显示的名字,留空显示用户名</td>
      </tr>
        <tr class="nobg">
-        <td colspan="2" class="td27">QQ/MSN:</td>
+        <td colspan="2">QQ/MSN:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input name="icq" type="text" id="icq" value="<?=$rs->info['icq']?>" maxlength="12" class="txt"/></td>
-         <td class="vtop tips2"></td>
+        <td><input name="icq" type="text" id="icq" value="<?=$rs->info['icq']?>" maxlength="12" class="txt"/></td>
+         <td></td>
      </tr>
        <tr class="nobg">
-        <td colspan="2" class="td27">E-mail:</td>
+        <td colspan="2">E-mail:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input name="email" type="text" id="email" value="<?=$rs->email?>" class="txt"/></td>
-        <td class="vtop tips2"></td>
+        <td><input name="email" type="text" id="email" value="<?=$rs->email?>" class="txt"/></td>
+        <td></td>
       </tr>
        <tr class="nobg">
-        <td colspan="2" class="td27">主页/博客:</td>
+        <td colspan="2">主页/博客:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input name="home" type="text" id="home" value="<?=$rs->info['home']?>" class="txt"/></td>
-        <td class="vtop tips2"></td>
+        <td><input name="home" type="text" id="home" value="<?=$rs->info['home']?>" class="txt"/></td>
+        <td></td>
       </tr>
        <tr class="nobg">
-        <td colspan="2" class="td27">性别:</td>
+        <td colspan="2">性别:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><select name="gender" id="gender">
+        <td><select name="gender" id="gender">
             <option value="2">保密</option>
             <option value="1">男</option>
             <option value="0">女</option>
           </select></td>
-        <td class="vtop tips2"></td>
+        <td></td>
       </tr>
        <tr class="nobg">
-        <td colspan="2" class="td27">生日:</td>
+        <td colspan="2">生日:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><select name="year" id="year" style="width:60px;">
+        <td><select name="year" id="year" style="width:60px;">
             <option value=""></option>
             <option value="1970">1970</option>
             <option value="1971">1971</option>
@@ -204,21 +204,21 @@ iCMS_admincp_head();
             <option value="31">31</option>
           </select>
           日</td>
-         <td class="vtop tips2"></td>
+         <td></td>
      </tr>
        <tr class="nobg">
-        <td colspan="2" class="td27">来自:</td>
+        <td colspan="2">来自:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input name="from" type="text" id="from" value="<?=$rs->info['from']?>" class="txt"/></td>
-        <td class="vtop tips2"></td>
+        <td><input name="from" type="text" id="from" value="<?=$rs->info['from']?>" class="txt"/></td>
+        <td></td>
       </tr>
        <tr class="nobg">
-        <td colspan="2" class="td27">签名:</td>
+        <td colspan="2">签名:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><textarea name="signature" id="signature" cols="45" rows="5" onkeyup="textareasize(this)" class="tarea"><?=$rs->info['signature']?></textarea></td>
-        <td class="vtop tips2">不更改请留空</td>
+        <td><textarea name="signature" id="signature" cols="45" rows="5" onkeyup="textareasize(this)" class="tarea"><?=$rs->info['signature']?></textarea></td>
+        <td>不更改请留空</td>
       </tr>
       <tr class="nobg">
         <td colspan="2"><div class="fixsel"> <input type="submit" class="btn" name="forumlinksubmit" value="提交"  /> </div></td>
