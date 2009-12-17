@@ -21,6 +21,6 @@ define('DB_PREFIX', 		'www_');
 //----------------------------------------
 define('DB_COLLATE', 	'');
 //----------------------------------------
-define('iCMSKEY', 		'sTcFCN8754Sed949Dd6KJt4FZE6HWuGR');
+define('iCMSKEY', 		'7ZFAKge9zXnh42S6TWcpfNhqHUfr4PtK');
 define('iCMS_CHARSET','utf-8');
 ?>
