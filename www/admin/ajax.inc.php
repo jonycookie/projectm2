@@ -6,17 +6,17 @@
  * @author coolmoo <idreamsoft@qq.com>
  */
 !defined('iPATH') && exit('What are you doing?');
+$action = $_GET['action'];
 if(in_array($action,array('message','comment'))){
     $id =intval($_POST['id']);
 	$reply='admin||'.htmlspecialchars($_POST['replytext']);
 	$iCMS->db->update($action,compact('reply'),compact('id'))&&exit('1');
 }elseif(in_array($action,array('source','author','editor'))){
 	include_once(iPATH.'include/default.value.php');
-	$ul="<ul>";
-	if(${$action."s"})foreach(${$action."s"} as $val){
-		$ul.="<li onclick=\"indefault('$val','$action')\">$val</li>\n";
+	$ul="";
+	if(${$action."s"})foreach(${$action."s"} as $key=>$val){
+		$ul.="$val|$key\n";
 	}
-	$ul.="</ul>";
 	echo $ul;
 }elseif($action=="getsubcatalog"){
 	include_once(iPATH.'include/catalog.class.php');

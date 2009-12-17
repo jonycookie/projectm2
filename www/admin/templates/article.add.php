@@ -26,8 +26,12 @@ iCMS_admincp_head();
 <script type="text/javascript" src="<?=$iCMS->dir?>javascript/jquery.function.js"></script>
 <script type="text/javascript" src="<?=$iCMS->dir?>javascript/calendar.js"></script>
 <script type="text/javascript" src="<?=$iCMS->dir?>javascript/editor.js"></script>
+<script type="text/javascript" src="<?=$iCMS->dir?>javascript/autocomplete.js"></script>
 <script type="text/javascript">
 $(function(){
+	$("#source").autocomplete("<?=__SELF__?>?do=ajax&action=source");
+	$("#author").autocomplete("<?=__SELF__?>?do=ajax&action=author");
+	$("#editor").autocomplete("<?=__SELF__?>?do=ajax&action=editor");
 	$("#title").focus();
 	$("#savearticle").submit(function(){
 		if($("#catalog option:selected").attr("value")=="0"){
@@ -101,15 +105,6 @@ $(function(){
 //	$("#pic").snap('value');
 	$("#pic").dblclick( function () { showPic('pic'); }); 
 });
-function indefault(v,id){
-	var val	=$("#"+id).val();
-	if(val==""){
-		val=v;
-	}else{
-		val+=" "+v;
-	}
-	$("#"+id).val(val);
-}
 function showPic(id){
 	var picurl	=$("#"+id).val();
 	if(picurl){
@@ -176,13 +171,13 @@ function editContentLink(fieldName){
       </tr>
       <tr>
         <td>出处：</td>
-        <td><input type="text" name="source" class="txt" id="source" value="<?=$rs['source']?>" style="width:200px" /> <button type="button" class="selectdefault" to="source"><span>预 设</span></button></td>
+        <td><input type="text" name="source" class="txt" id="source" value="<?=$rs['source']?>" /></td>
         <td>作者：</td>
-        <td><input type="text" name="author" class="txt" id="author" value="<?=$rs['author']?>" style="width:200px" /> <button type="button" class="selectdefault" to="author"><span>预 设</span></button></td>
+        <td><input type="text" name="author" class="txt" id="author" value="<?=$rs['author']?>" /></td>
       </tr>
       <tr>
         <td>编辑：</td>
-        <td colspan="3" style="width:auto"><input name="editor" class="txt" type="text" id="editor" value="<?=$rs['editor']?>" /> <button type="button" class="selectdefault" to="editor"><span>预 设</span></button></td>
+        <td colspan="3"><input name="editor" class="txt" type="text" id="editor" value="<?=$rs['editor']?>" /></td>
       </tr>
       <tr>
         <td>缩略图：</td>
