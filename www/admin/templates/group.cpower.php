@@ -16,10 +16,10 @@ iCMS_admincp_head();
     <input type="hidden" name="gid" value="<?=$rs->gid?>" />
     <table class="tb tb2 ">
       <tr>
-        <td colspan="2" class="td27">设置[<?=$rs->name?>]组栏目管理权限</td>
+        <td colspan="2">设置[<?=$rs->name?>]组栏目管理权限</td>
       </tr>
       <tr>
-        <td class="vtop rowform" colspan="2" style="width:auto;"><ul>
+        <td colspan="2" style="width:auto;"><ul>
     <?php if($catalog->Carray)foreach($catalog->Carray AS $key=>$C){?>
 		  <li style="width:100%;"><?=str_repeat("│　", $C['level'])."├"?><input name="cpower[]" type="checkbox" class="checkbox" value="<?=$C['id']?>" parent="<?=$C['rootid']?>"/> <?=$C['name']?></li>
 	      <?php }?>

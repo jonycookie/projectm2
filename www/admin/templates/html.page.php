@@ -17,8 +17,8 @@ iCMS_admincp_head();
     <input type="hidden" name="action" value="page" />
     <table class="tb tb2 ">
       <tr>
-        <td class="vtop tips2" width="120">独立页面:</td>
-        <td class="vtop rowform"><select name="cid[]" id="cid" multiple="multiple" size="15">
+        <td width="120">独立页面:</td>
+        <td><select name="cid[]" id="cid" multiple="multiple" size="15">
           <option value='all'>所有独立页面</option>
     	  <optgroup label="======================================"></optgroup>
           <?=$catalog->select(0,0,1,'page','all')?>

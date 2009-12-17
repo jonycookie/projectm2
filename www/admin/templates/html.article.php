@@ -32,20 +32,20 @@ iCMS_admincp_head();
     <input type="hidden" name="action" value="article" />
     <table class="tb tb2 ">
       <tr>
-        <td class="vtop tips2" width="120">按栏目:</td>
-        <td class="vtop rowform"><select name="cid[]" id="cid" multiple="multiple" size="15">
+        <td width="120">按栏目:</td>
+        <td><select name="cid[]" id="cid" multiple="multiple" size="15">
           <option value='all'>所 有 栏 目</option>
     	  <optgroup label="======================================"></optgroup>
           <?=$catalog->select(0,0,1,'channel&list','all')?>
         </select></td>
       </tr>
       <tr>
-        <td class="vtop tips2">按文章ID：</td>
-        <td class="vtop rowform">开始ID：<input name="startid" type="text" id="startid" class="txt" style="width:80px" /><br />-<br />结束ID：<input name="endid" type="text" id="endid" class="txt" style="width:80px" /></td>
+        <td>按文章ID：</td>
+        <td>开始ID：<input name="startid" type="text" id="startid" class="txt" style="width:80px" /><br />-<br />结束ID：<input name="endid" type="text" id="endid" class="txt" style="width:80px" /></td>
       </tr>
       <tr>
-        <td class="vtop tips2">按日期：</td>
-        <td class="vtop rowform">开始时间：<input type="text" class="txt" name="starttime" value="" onclick="showcalendar(event, this)" style="width:120px"><br />-<br />结束时间：<input type="text" class="txt" name="endtime" value="" onclick="showcalendar(event, this)" style="width:120px"></td>
+        <td>按日期：</td>
+        <td>开始时间：<input type="text" class="txt" name="starttime" value="" onclick="showcalendar(event, this)" style="width:120px"><br />-<br />结束时间：<input type="text" class="txt" name="endtime" value="" onclick="showcalendar(event, this)" style="width:120px"></td>
       </tr>
       <tr>
         <td colspan="2" class="td21"><input type="submit" class="btn" name="cleanupsubmit" value="提交" /></td>

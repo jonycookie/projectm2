@@ -121,8 +121,8 @@ function editContentLink(fieldName){
     <table class="tb tb2 ">
     <?php for($i=0;$i<$fcount;$i++){if($form[$i]['general']){?>
       <tr>
-        <td class="td27" style="width:100px"><?=$form[$i]['general']['label']?>：</td>
-        <td class="vtop rowform" style="width:auto"><?=$form[$i]['general']['html']?><?=$form[$i]['general']['description']?></td>
+        <td style="width:100px"><?=$form[$i]['general']['label']?>：</td>
+        <td style="width:auto"><?=$form[$i]['general']['html']?><?=$form[$i]['general']['description']?></td>
       </tr>
       <?php }}?>	  
       <tr class="nobg">

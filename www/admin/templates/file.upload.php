@@ -25,18 +25,18 @@ iCMS_admincp_head();
     <tr>
       <form action="<?=__SELF__?>?do=dialog&operation=post" method="post" name="createdir" target="post" id="createdir" onsubmit="return checkdirname();">
         <td class="td25" style="width:70px;">新目录：</td>
-        <td class="vtop rowform"><input type='text' name='dirname' value='' style='width:150px'><input name="savedir" type="hidden" value="<?=$dir?>" /><input name="action" type="hidden" value="createdir" /> <input type="submit" value="创建" style="border:1px solid #999999;"/></td>
+        <td><input type='text' name='dirname' value='' style='width:150px'><input name="savedir" type="hidden" value="<?=$dir?>" /><input name="action" type="hidden" value="createdir" /> <input type="submit" value="创建" style="border:1px solid #999999;"/></td>
       </form>
     </tr>
     <tr>
       <form action="<?=__SELF__?>?do=dialog&operation=post" method="post" enctype="multipart/form-data" name="uploadfile" target="post" id="uploadfile" onsubmit="return checkfile();">
         <td class="td25" style="width:70px;">上　传：</td>
-        <td class="vtop rowform"><input name="file" type="file" class="uploadbtn" id="pic" /><input name="savedir" type="hidden" value="<?=$dir?>" /><input name="action" type="hidden" value="uploadfile" /> <input type="submit" value="上传" style="border:1px solid #999999;"/></td>
+        <td><input name="file" type="file" class="uploadbtn" id="pic" /><input name="savedir" type="hidden" value="<?=$dir?>" /><input name="action" type="hidden" value="uploadfile" /> <input type="submit" value="上传" style="border:1px solid #999999;"/></td>
       </form>
     </tr>
     <tr>
         <td class="td25" style="width:70px;">批量上传：</td>
-        <td class="vtop rowform"><?php include "multi.upload.php" ?></td>
+        <td><?php include "multi.upload.php" ?></td>
     </tr>
   </table>
 </div>

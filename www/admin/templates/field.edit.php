@@ -29,35 +29,35 @@ iCMS_admincp_head();
     <input type="hidden" name="id" value="<?=$id?>" />
     <table class="tb tb2 ">
       <tr class="nobg">
-        <th colspan="2" class="td27">名称:</th>
+        <th colspan="2">名称:</th>
       </tr>
       <tr>
-        <td class="vtop rowform"><input name="name" type="text" id="name" value="<?=$name?>" class="txt" style="width:160px;"/> <input name="hidden" type="checkbox" id="hidden" value="1" class="checkbox" />隐藏字段</td>
-        <td class="vtop tips2">隐藏字段 将不会在表单上显示</td>
+        <td><input name="name" type="text" id="name" value="<?=$name?>" class="txt" style="width:160px;"/> <input name="hidden" type="checkbox" id="hidden" value="1" class="checkbox" />隐藏字段</td>
+        <td>隐藏字段 将不会在表单上显示</td>
       </tr>
       <tr class="nobg">
-        <td colspan="2" class="td27">字段:</td>
+        <td colspan="2">字段:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input name="field" type="text" id="field" value="<?=$rs['field']?>" class="txt" /></td>
-        <td class="vtop tips2">请以字母开头,留空将按字段名称拼音</td>
+        <td><input name="field" type="text" id="field" value="<?=$rs['field']?>" class="txt" /></td>
+        <td>请以字母开头,留空将按字段名称拼音</td>
       </tr>
       <tr class="nobg">
-        <td colspan="2" class="td27">所属模型:</td>
+        <td colspan="2">所属模型:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><select name="mid" id="mid">
+        <td><select name="mid" id="mid">
     		<option value="0">通用模型</option>
 		    <?=getModelselect($mid)?>
           </select>
         </td>
-        <td class="vtop tips2"></td>
+        <td></td>
       </tr>
       <tr class="nobg">
-        <td colspan="2" class="td27">类型:</td>
+        <td colspan="2">类型:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><select name="type" id="type">
+        <td><select name="type" id="type">
             <option value="number">数字(number)</option>
             <option value="text">字符串(text)</option>
             <option value="radio">单选(radio)</option>
@@ -73,20 +73,20 @@ iCMS_admincp_head();
             <option value="upload">上传(upload)</option>
           </select>
         </td>
-        <td class="vtop tips2">如果该字段正在使用,修改类型会使用数据丢失</td>
+        <td>如果该字段正在使用,修改类型会使用数据丢失</td>
       </tr>
       <tr class="nobg">
-        <td colspan="2" class="td27">默认值:</td>
+        <td colspan="2">默认值:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input name="default" type="text" value="<?=$rs['default']?>" class="txt" /></td>
-        <td class="vtop tips2"></td>
+        <td><input name="default" type="text" value="<?=$rs['default']?>" class="txt" /></td>
+        <td></td>
       </tr>
       <tr class="nobg">
-        <td colspan="2" class="td27">是否验证:</td>
+        <td colspan="2">是否验证:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><select name="validate" id="validate">
+        <td><select name="validate" id="validate">
             <option value="N">不验证</option>
             <option value="0">不能为空</option>
             <option value="1">匹配字母</option>
@@ -95,32 +95,32 @@ iCMS_admincp_head();
             <option value="5">url验证</option>
             <option value="preg">自定义正则</option>
           </select><div id="validate_preg" style="display: none;margin-top:10px;">自定义正则:<input name="validate" value="<?=$rs['validate']?>" type="text" class="txt" disabled="disabled"/></div></td>
-        <td class="vtop tips2"></td>
+        <td></td>
       </tr>
      <tr>
-        <td colspan="2" class="td27">简短描述(可选):</td>
+        <td colspan="2">简短描述(可选):</td>
       </tr>
       <tr class="noborder">
-        <td class="vtop rowform"><textarea  rows="6" onkeyup="textareasize(this)" name="description" id="description" cols="50" class="tarea"><?=$rs['description']?></textarea></td>
-        <td class="vtop tips2"></td>
+        <td><textarea  rows="6" onkeyup="textareasize(this)" name="description" id="description" cols="50" class="tarea"><?=$rs['description']?></textarea></td>
+        <td></td>
       </tr>
       <tbody id="style_number">
         <tr>
           <th colspan="15" class="partition">数字(number)</th>
         </tr>
         <tr>
-          <td colspan="2" class="td27">数值最大值（可选）:</td>
+          <td colspan="2">数值最大值（可选）:</td>
         </tr>
         <tr class="noborder">
-          <td class="vtop rowform"><input name="rules[number][maxnum]" value="<?=$rs['rules']['maxnum']?>" type="text" class="txt"/></td>
-          <td class="vtop tips2"></td>
+          <td><input name="rules[number][maxnum]" value="<?=$rs['rules']['maxnum']?>" type="text" class="txt"/></td>
+          <td></td>
         </tr>
         <tr>
-          <td colspan="2" class="td27">数值最小值（可选）:</td>
+          <td colspan="2">数值最小值（可选）:</td>
         </tr>
         <tr class="noborder">
-          <td class="vtop rowform"><input name="rules[number][minnum]" value="<?=$rs['rules']['minnum']?>" type="text" class="txt"   /></td>
-          <td class="vtop tips2"></td>
+          <td><input name="rules[number][minnum]" value="<?=$rs['rules']['minnum']?>" type="text" class="txt"   /></td>
+          <td></td>
         </tr>
       </tbody>
       <tbody id="style_text" style="display: none">
@@ -128,11 +128,11 @@ iCMS_admincp_head();
           <th colspan="15" class="partition">字串(text)</th>
         </tr>
         <tr>
-          <td colspan="2" class="td27">内容最大长度（可选）:</td>
+          <td colspan="2">内容最大长度（可选）:</td>
         </tr>
         <tr class="noborder">
-          <td class="vtop rowform"><input name="rules[text][maxlength]" value="<?=$rs['rules']['maxlength']?>" type="text" class="txt"   /></td>
-          <td class="vtop tips2"></td>
+          <td><input name="rules[text][maxlength]" value="<?=$rs['rules']['maxlength']?>" type="text" class="txt"   /></td>
+          <td></td>
         </tr>
       </tbody>
       <tbody id="style_textarea" style="display: none">
@@ -140,11 +140,11 @@ iCMS_admincp_head();
           <th colspan="15" class="partition">文本(textarea)</th>
         </tr>
         <tr>
-          <td colspan="2" class="td27">内容最大长度（可选）:</td>
+          <td colspan="2">内容最大长度（可选）:</td>
         </tr>
         <tr class="noborder">
-          <td class="vtop rowform"><input name="rules[textarea][maxlength]" value="<?=$rs['rules']['maxlength']?>" type="text" class="txt"   /></td>
-          <td class="vtop tips2"></td>
+          <td><input name="rules[textarea][maxlength]" value="<?=$rs['rules']['maxlength']?>" type="text" class="txt"   /></td>
+          <td></td>
         </tr>
       </tbody>
       <tbody id="style_select" style="display: none">
@@ -152,11 +152,11 @@ iCMS_admincp_head();
           <th colspan="15" class="partition">选择(select)</th>
         </tr>
         <tr>
-          <td colspan="2" class="td27">选项内容:</td>
+          <td colspan="2">选项内容:</td>
         </tr>
         <tr class="noborder">
-          <td class="vtop rowform"><textarea  rows="6" onkeyup="textareasize(this)" name="rules[select][choices]" id="rules[select][choices]" cols="50" class="tarea"><?=$rs['rules']['choices']?></textarea></td>
-          <td class="vtop tips2">只在项目为可选时有效，每行一个选项，等号前面为选项索引(建议用数字)，后面为内容，例如: <br />
+          <td><textarea  rows="6" onkeyup="textareasize(this)" name="rules[select][choices]" id="rules[select][choices]" cols="50" class="tarea"><?=$rs['rules']['choices']?></textarea></td>
+          <td>只在项目为可选时有效，每行一个选项，等号前面为选项索引(建议用数字)，后面为内容，例如: <br />
             <i>1 = 光电鼠标<br />
             2 = 机械鼠标<br />
             3 = 没有鼠标</i><br />
@@ -168,11 +168,11 @@ iCMS_admincp_head();
           <th colspan="15" class="partition">多选选择(multiple)</th>
         </tr>
         <tr>
-          <td colspan="2" class="td27">选项内容:</td>
+          <td colspan="2">选项内容:</td>
         </tr>
         <tr class="noborder">
-          <td class="vtop rowform"><textarea  rows="6" onkeyup="textareasize(this)" name="rules[multiple][choices]" id="rules[multiple][choices]" cols="50" class="tarea"><?=$rs['rules']['choices']?></textarea></td>
-          <td class="vtop tips2">只在项目为可选时有效，每行一个选项，等号前面为选项索引(建议用数字)，后面为内容，例如: <br />
+          <td><textarea  rows="6" onkeyup="textareasize(this)" name="rules[multiple][choices]" id="rules[multiple][choices]" cols="50" class="tarea"><?=$rs['rules']['choices']?></textarea></td>
+          <td>只在项目为可选时有效，每行一个选项，等号前面为选项索引(建议用数字)，后面为内容，例如: <br />
             <i>1 = 光电鼠标<br />
             2 = 机械鼠标<br />
             3 = 没有鼠标</i><br />
@@ -184,11 +184,11 @@ iCMS_admincp_head();
           <th colspan="15" class="partition">单选(radio)</th>
         </tr>
         <tr>
-          <td colspan="2" class="td27">选项内容:</td>
+          <td colspan="2">选项内容:</td>
         </tr>
         <tr class="noborder">
-          <td class="vtop rowform"><textarea  rows="6" onkeyup="textareasize(this)" name="rules[radio][choices]" id="rules[radio][choices]" cols="50" class="tarea"><?=$rs['rules']['choices']?></textarea></td>
-          <td class="vtop tips2">只在项目为可选时有效，每行一个选项，等号前面为选项索引(建议用数字)，后面为内容，例如: <br />
+          <td><textarea  rows="6" onkeyup="textareasize(this)" name="rules[radio][choices]" id="rules[radio][choices]" cols="50" class="tarea"><?=$rs['rules']['choices']?></textarea></td>
+          <td>只在项目为可选时有效，每行一个选项，等号前面为选项索引(建议用数字)，后面为内容，例如: <br />
             <i>1 = 光电鼠标<br />
             2 = 机械鼠标<br />
             3 = 没有鼠标</i><br />
@@ -200,11 +200,11 @@ iCMS_admincp_head();
           <th colspan="15" class="partition">多选(checkbox)</th>
         </tr>
         <tr>
-          <td colspan="2" class="td27">选项内容:</td>
+          <td colspan="2">选项内容:</td>
         </tr>
         <tr class="noborder">
-          <td class="vtop rowform"><textarea  rows="6" onkeyup="textareasize(this)" name="rules[checkbox][choices]" id="rules[checkbox][choices]" cols="50" class="tarea"><?=$rs['rules']['choices']?></textarea></td>
-          <td class="vtop tips2">只在项目为可选时有效，每行一个选项，等号前面为选项索引(建议用数字)，后面为内容，例如: <br />
+          <td><textarea  rows="6" onkeyup="textareasize(this)" name="rules[checkbox][choices]" id="rules[checkbox][choices]" cols="50" class="tarea"><?=$rs['rules']['choices']?></textarea></td>
+          <td>只在项目为可选时有效，每行一个选项，等号前面为选项索引(建议用数字)，后面为内容，例如: <br />
             <i>1 = 光电鼠标<br />
             2 = 机械鼠标<br />
             3 = 没有鼠标</i><br />
@@ -216,18 +216,18 @@ iCMS_admincp_head();
           <th colspan="15" class="partition">图片(image)</th>
         </tr>
         <tr>
-          <td colspan="2" class="td27">图片最大宽度（可选）:</td>
+          <td colspan="2">图片最大宽度（可选）:</td>
         </tr>
         <tr class="noborder">
-          <td class="vtop rowform"><input name="rules[image][maxwidth]" value="" type="text" class="txt"/><?=$rs['rules']['maxwidth']?></td>
-          <td class="vtop tips2"></td>
+          <td><input name="rules[image][maxwidth]" value="" type="text" class="txt"/><?=$rs['rules']['maxwidth']?></td>
+          <td></td>
         </tr>
         <tr>
-          <td colspan="2" class="td27">图片最大高度（可选）:</td>
+          <td colspan="2">图片最大高度（可选）:</td>
         </tr>
         <tr class="noborder">
-          <td class="vtop rowform"><input name="rules[image][maxheight]" value="" type="text" class="txt"/><?=$rs['rules']['maxheight']?></td>
-          <td class="vtop tips2"></td>
+          <td><input name="rules[image][maxheight]" value="" type="text" class="txt"/><?=$rs['rules']['maxheight']?></td>
+          <td></td>
         </tr>
       </tbody>
       <tr>

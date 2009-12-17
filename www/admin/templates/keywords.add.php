@@ -27,14 +27,14 @@ iCMS_admincp_head();
         <th colspan="15" class="partition">添加关键字</th>
       </tr>
       <tr class="nobg">
-        <td colspan="2" class="td27">关键字:</td>
+        <td colspan="2">关键字:</td>
       </tr>
       <tr>
-        <td class="vtop rowform"><input name="keyword" id="keyword" value="<?=$rs->keyword?>" type="text" class="txt"  /></td>
-        <td class="vtop tips2">要替换的文字</td>
+        <td><input name="keyword" id="keyword" value="<?=$rs->keyword?>" type="text" class="txt"  /></td>
+        <td>要替换的文字</td>
       </tr>
       <tr class="nobg">
-        <td colspan="2" class="td27">替换:</td>
+        <td colspan="2">替换:</td>
       </tr>
       <tr>
         <td colspan="2">

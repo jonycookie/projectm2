@@ -133,7 +133,7 @@ $(function(){
             </li>
           </ul></td>
          <tr class="nobg">
-        <td class="vtop rowform" style="text-align:right"><a href="http://www.idreamsoft.cn/doc/iCMS" target="_blank">详细模板标签说明</a></td></tr>
+        <td style="text-align:right"><a href="http://www.idreamsoft.cn/doc/iCMS" target="_blank">详细模板标签说明</a></td></tr>
       </tr>
     </table>
   </div>
@@ -147,7 +147,7 @@ $(function(){
           <!--input type="button" value="预览" class="btn" id="preview"/--></th>
       </tr>
       <tr>
-        <td class="vtop rowform" style="width:100%;"><textarea name="html" id="html" class="tarea" style='width:100%;height:410px;font-family: "Courier New", Courier, monospace;font-size: 14px;line-height: 140%;'><?=dhtmlspecialchars($FileData)?></textarea></td>
+        <td style="width:100%;"><textarea name="html" id="html" class="tarea" style='width:100%;height:410px;font-family: "Courier New", Courier, monospace;font-size: 14px;line-height: 140%;'><?=dhtmlspecialchars($FileData)?></textarea></td>
       </tr>
     </table>
   </form>

@@ -30,7 +30,7 @@ iCMS_admincp_head();
     <tr>
       <form action="<?=__SELF__?>?do=file&operation=post" method="post" enctype="multipart/form-data" name="uploadfile" target="post" id="uploadfile">
         <td style="width:60px;">重新上传：</td>
-        <td class="vtop rowform"><input name="file" type="file" class="uploadbtn" id="pic" /><input name="fid" type="hidden" value="<?=$fid?>" /><input name="action" type="hidden" value="reupload" /> <input type="submit" value="上传" style="border:1px solid #999999;"/></td>
+        <td><input name="file" type="file" class="uploadbtn" id="pic" /><input name="fid" type="hidden" value="<?=$fid?>" /><input name="action" type="hidden" value="reupload" /> <input type="submit" value="上传" style="border:1px solid #999999;"/></td>
       </form>
     </tr>
   </table>

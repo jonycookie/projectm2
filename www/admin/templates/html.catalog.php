@@ -17,20 +17,20 @@ iCMS_admincp_head();
     <input type="hidden" name="action" value="catalog" />
     <table class="tb tb2 ">
       <tr>
-        <td class="vtop tips2" width="120">选择栏目:</td>
-        <td class="vtop rowform"><select name="cid[]" id="cid" multiple="multiple" size="15">
+        <td width="120">选择栏目:</td>
+        <td><select name="cid[]" id="cid" multiple="multiple" size="15">
           <option value='all'>所 有 栏 目</option>
     	  <optgroup label="======================================"></optgroup>
           <?=$catalog->select(0,0,1,'channel&list','all')?>
         </select></td>
       </tr>
        <tr>
-        <td class="vtop tips2" width="120">指定生成页数:</td>
-        <td class="vtop rowform"><input type="text" class="txt" name="cpn" value="" style="width:120px"></td>
+        <td width="120">指定生成页数:</td>
+        <td><input type="text" class="txt" name="cpn" value="" style="width:120px"></td>
       </tr>
        <tr>
-        <td class="vtop tips2" width="120">间隔时间(s):</td>
-        <td class="vtop rowform"><input type="text" class="txt" name="time" value="1" style="width:120px"></td>
+        <td width="120">间隔时间(s):</td>
+        <td><input type="text" class="txt" name="time" value="1" style="width:120px"></td>
       </tr>
      <tr>
         <td colspan="2" class="td21"><input type="submit" class="btn" name="cleanupsubmit" value="提交" /></td>

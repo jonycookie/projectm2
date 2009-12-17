@@ -32,14 +32,14 @@ iCMS_admincp_head();
 <?php }?>
     <table class="tb tb2 ">
       <tr>
-        <td class="vtop tips2">选择主页模板:</td>
-        <td class="vtop rowform"><input name="indexTPL" type="text" id="indexTPL" value="<?=$iCMS->config['indexTPL']?>" class="txt"/></td>
-        <td class="vtop tips2"><img src="admin/images/selecttpl.gif" width="67" height="19" align="absmiddle" onclick="showDialog('<?=__SELF__?>?do=dialog&operation=template&hit=file&type=htm','indexTPL');"/></td>
+        <td>选择主页模板:</td>
+        <td><input name="indexTPL" type="text" id="indexTPL" value="<?=$iCMS->config['indexTPL']?>" class="txt"/></td>
+        <td><img src="admin/images/selecttpl.gif" width="67" height="19" align="absmiddle" onclick="showDialog('<?=__SELF__?>?do=dialog&operation=template&hit=file&type=htm','indexTPL');"/></td>
       </tr>
       <tr>
-        <td class="vtop tips2">首页文件名:</td>
-        <td class="vtop rowform"><input name="indexname" type="text" id="indexname" value="<?=$iCMS->config['indexname']?>" class="txt"/><?=$iCMS->config['htmlext']?></td>
-        <td class="vtop tips2"></td>
+        <td>首页文件名:</td>
+        <td><input name="indexname" type="text" id="indexname" value="<?=$iCMS->config['indexname']?>" class="txt"/><?=$iCMS->config['htmlext']?></td>
+        <td></td>
       </tr>
       <tr>
         <td colspan="3" class="td21"><input type="submit" class="btn" name="cleanupsubmit" value="提交" /></td>

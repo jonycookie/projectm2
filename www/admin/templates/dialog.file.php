@@ -33,12 +33,12 @@ $(function(){
   <?php if ($L['parentfolder']){ ?>
   <tr>
     <td width="24"><a href="<?=__SELF__?>?do=dialog&operation=<?=$operation?>&type=<?=$type?>&hit=<?=$hit?>&in=<?=$in?>&from=<?=$from?>&dir=<?=$L['parentfolder']?>"><img src="admin/images/file/parentfolder.gif" border="0"></a></td>
-    <td class="vtop rowform"><strong><a href="<?=__SELF__?>?do=dialog&operation=<?=$operation?>&type=<?=$type?>&hit=<?=$hit?>&in=<?=$in?>&from=<?=$from?>&dir=<?=$L['parentfolder']?>">．．</a></strong></td>
+    <td><strong><a href="<?=__SELF__?>?do=dialog&operation=<?=$operation?>&type=<?=$type?>&hit=<?=$hit?>&in=<?=$in?>&from=<?=$from?>&dir=<?=$L['parentfolder']?>">．．</a></strong></td>
   </tr>
   <?php } for($i=0;$i<count($L['folder']);$i++){?>
   <tr>
     <td width="24"><a href="<?=__SELF__?>?do=dialog&operation=<?=$operation?>&type=<?=$type?>&hit=<?=$hit?>&in=<?=$in?>&from=<?=$from?>&dir=<?=$L['folder'][$i]['path']?>"><img src="admin/images/file/closedfolder.gif" border="0"></a></td>
-    <td class="vtop rowform"><strong><?php if ($hit=='dir'){?><a href="javascript:void(0)" onclick="insert('<?=$L['folder'][$i]['path']?>','<?=$in?>');"><?php }else{?><a href="<?=__SELF__?>?do=dialog&operation=<?=$operation?>&type=<?=$type?>&hit=<?=$hit?>&in=<?=$in?>&from=<?=$from?>&dir=<?=$L['folder'][$i]['path']?>"><?php }?><?=$L['folder'][$i]['dir']?></a></strong></td>
+    <td><strong><?php if ($hit=='dir'){?><a href="javascript:void(0)" onclick="insert('<?=$L['folder'][$i]['path']?>','<?=$in?>');"><?php }else{?><a href="<?=__SELF__?>?do=dialog&operation=<?=$operation?>&type=<?=$type?>&hit=<?=$hit?>&in=<?=$in?>&from=<?=$from?>&dir=<?=$L['folder'][$i]['path']?>"><?php }?><?=$L['folder'][$i]['dir']?></a></strong></td>
   </tr>
   <?php } ?>
 </table>
@@ -77,13 +77,13 @@ $(function(){
     <tr>
       <form action="<?=__SELF__?>?do=dialog&operation=post" method="post" enctype="multipart/form-data" name="uploadfile" target="post" id="uploadfile">
         <td class="td25">上　传：</td>
-        <td class="vtop rowform"><input name="file" type="file" class="uploadbtn" id="pic" /><input name="savedir" type="hidden" value="<?=$dir?>" /><input name="action" type="hidden" value="uploadfile" /> <input type="submit" value="上传" style="border:1px solid #999999;"/></td>
+        <td><input name="file" type="file" class="uploadbtn" id="pic" /><input name="savedir" type="hidden" value="<?=$dir?>" /><input name="action" type="hidden" value="uploadfile" /> <input type="submit" value="上传" style="border:1px solid #999999;"/></td>
       </form>
     </tr>
     <tr>
       <form action="<?=__SELF__?>?do=dialog&operation=post" method="post" name="createdir" target="post" id="createdir">
         <td class="td25">新目录：</td>
-        <td class="vtop rowform"><input type='text' name='dirname' value='' style='width:150px'><input name="savedir" type="hidden" value="<?=$dir?>" /><input name="action" type="hidden" value="createdir" /> <input type="submit" value="创建" style="border:1px solid #999999;"/></td>
+        <td><input type='text' name='dirname' value='' style='width:150px'><input name="savedir" type="hidden" value="<?=$dir?>" /><input name="action" type="hidden" value="createdir" /> <input type="submit" value="创建" style="border:1px solid #999999;"/></td>
       </form>
     </tr>
   </table>
