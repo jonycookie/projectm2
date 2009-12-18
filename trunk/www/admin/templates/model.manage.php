@@ -16,16 +16,6 @@ iCMS_admincp_head();
       <li><a href="<?=__SELF__?>?do=model&operation=edit"><span>新增模型</span></a></li>
     </ul>
   </div>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li></li>
-        </ul></td>
-    </tr>
-  </table>
     <table class="tb tb2 ">
       <tr>
         <th>ID</th>

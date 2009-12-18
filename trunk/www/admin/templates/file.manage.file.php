@@ -13,23 +13,13 @@ iCMS_admincp_head();
 <script type="text/JavaScript">admincpnav('首页&nbsp;&raquo;&nbsp;文件管理&nbsp;&raquo;&nbsp;<select name="filemethod" onchange="parent.main.location.href=\'<?=__SELF__?>?do=file&operation=manage&method=\'+this.value"><option value="database"<?php if($method=="database") echo ' selected="selected"'?>>数据库模式</option><option value="file"<?php if($method=="file") echo ' selected="selected"'?>>文件模式</option></select>','');</script>
 <div class="container" id="cpcontainer">
   <div class="itemtitle">
-    <h3>文件管理</h3>
+    <h3>文件管理 [<?=GetFileSize($totalSize)?>]</h3>
     <ul class="tab1" id="submenu">
       <li id="nav_manage"<?php if(empty($_GET['type'])) echo ' class="current"'?>><a href="<?=__SELF__?>?do=file&operation=manage"><span>所有文件</span></a></li>
       <li id="nav_image"<?php if($_GET['type']=='image') echo ' class="current"'?>><a href="<?=__SELF__?>?do=file&operation=manage&type=image"><span>图片文件</span></a></li>
       <li id="nav_other"<?php if($_GET['type']=='other') echo ' class="current"'?>><a href="<?=__SELF__?>?do=file&operation=manage&type=other"><span>其它文件</span></a></li>
     </ul>
   </div>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li><?=GetFileSize($totalSize)?></li>
-        </ul></td>
-    </tr>
-  </table>
   <form action="<?=__SELF__?>?do=file&operation=post" method="post">
     <table class="tb tb2 ">
       <tr>

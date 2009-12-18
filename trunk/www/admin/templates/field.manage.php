@@ -16,17 +16,6 @@ iCMS_admincp_head();
       <li><a href="<?=__SELF__?>?do=field&operation=edit"><span>新增字段</span></a></li>
     </ul>
   </div>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>排序:表单的显示顺序</li>
-          <li>系统默认字段有特殊设置,禁止编辑</li>
-       </ul></td>
-    </tr>
-  </table>
   <form action="<?=__SELF__?>?do=field&operation=post" method="post">
     <table class="tb tb2 ">
       <tr>

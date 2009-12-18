@@ -12,16 +12,6 @@ iCMS_admincp_head();
 <script type="text/JavaScript">admincpnav('首页&nbsp;&raquo;&nbsp;管理员管理','');</script>
 <div class="container" id="cpcontainer">
   <h3>分配管理权限</h3>
-  <!--table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>注:添加栏目、添加文章、评论管理、审核文章、友情链接、广告管理</li>
-        </ul></td>
-    </tr>
-  </table-->
   <form action="<?=__SELF__?>?do=account&operation=post" method="post">
     <input type="hidden" name="action" value="power" />
     <input type="hidden" name="uid" value="<?=$rs->uid?>" />

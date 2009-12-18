@@ -16,16 +16,6 @@ iCMS_admincp_head();
       <li id="nav_add"><a href="<?=__SELF__?>?do=link&operation=add"><span>添加友情链接</span></a></li>
     </ul>
   </div>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>未填写文字说明的项目将以紧凑型显示。</li>
-        </ul></td>
-    </tr>
-  </table>
   <form name="cpform" method="post" action="<?=__SELF__?>?do=link&operation=post" id="cpform" >
     <input type="hidden" name="action" value="edit" />
     <table class="tb tb2 ">

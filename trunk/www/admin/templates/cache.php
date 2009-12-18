@@ -12,16 +12,6 @@ iCMS_admincp_head();
 <script type="text/JavaScript">admincpnav('首页&nbsp;&raquo;&nbsp;更新缓存','');</script>
 <div class="container" id="cpcontainer">
   <h3>更新系统统计</h3>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>清除模板缓存：影响清理后第一次访问速度，建议在未对模板进行修改时请勿进行清除模板缓存操作</li>
-        </ul></td>
-    </tr>
-  </table>
   <form name="cpform" method="post" action="<?=__SELF__?>?do=cache&operation=post" id="cpform" >
     <input type="hidden" name="action" value="cache" />
     <table class="tb tb2 ">

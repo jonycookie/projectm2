@@ -29,16 +29,6 @@ iCMS_admincp_head();
       <li><a href="<?=__SELF__?>?do=advertise&operation=add"><span>添加</span></a> </li>
     </ul>
   </div>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>广告标签名支持中文，例：&lt;!--{iCMS:advertise name="首页通栏广告"}--&gt;</li>
-        </ul></td>
-    </tr>
-  </table>
   <form name="cpform" method="post" action="<?=__SELF__?>?do=advertise&operation=post" id="cpform" >
     <table class="tb tb2 ">
       <tr>

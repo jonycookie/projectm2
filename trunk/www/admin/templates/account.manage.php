@@ -12,18 +12,6 @@ iCMS_admincp_head();
 <script type="text/JavaScript">admincpnav('首页&nbsp;&raquo;&nbsp;管理员管理','');</script>
 <div class="container" id="cpcontainer">
   <h3>管理员管理</h3>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>点击ID可查看该管理员</li>
-          <li>可单独设置管理员后台权限和栏目权限</li>
-          <li>用户权限:综合用户组和管理员单独设置的权限</li>
-        </ul></td>
-    </tr>
-  </table>
   <form action="<?=__SELF__?>?do=account&operation=post" method="post">
     <input type="hidden" name="action" value="update" />
     <table class="tb tb2 ">

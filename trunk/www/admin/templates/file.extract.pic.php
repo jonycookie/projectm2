@@ -13,18 +13,6 @@ iCMS_admincp_head();
 <script type="text/JavaScript">admincpnav('首页&nbsp;&raquo;&nbsp;HTML更新&nbsp;&raquo;&nbsp更新文章','');</script>
 <div class="container" id="cpcontainer">
   <h3>提取文章缩略图</h3>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>请选择下列其中一种方式，如不采用请留空</li>
-          <li>下列方式优先权：按栏目>按文章ID>按日期</li>
-          <li>结束时间为空时则使用当前时间为结束时间</li>
-        </ul></td>
-    </tr>
-  </table>
   <form name="cpform" method="get" action="<?=__SELF__?>" id="cpform" >
     <input type="hidden" name="do" value="file" />
     <input type="hidden" name="operation" value="extract" />

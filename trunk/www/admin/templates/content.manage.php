@@ -94,16 +94,6 @@ function doaction(obj){
       <li><a href="<?=__SELF__?>?do=content&operation=add&table=<?=$table?>&mid=<?=$mid?>"><span>添加内容</span></a></li>
     </ul>
  </div>
- <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>点击ID可查看该内容</li>
-        </ul></td>
-    </tr>
-  </table>
   <form action="<?=__SELF__?>" method="get">
     <input type="hidden" name="do" value="content" />
     <input type="hidden" name="operation" value="manage" />

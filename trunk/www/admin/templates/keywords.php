@@ -17,16 +17,6 @@ iCMS_admincp_head();
       <li id="nav_add"><a href="<?=__SELF__?>?do=keywords&operation=add"><span>添加关键字</span></a></li>
     </ul>
   </div>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>替换内容中的关键字</li>
-        </ul></td>
-    </tr>
-  </table>
   <form action="<?=__SELF__?>?do=keywords&operation=post" method="post">
     <input type="hidden" name="action" value="edit" />
     <table class="tb tb2 ">

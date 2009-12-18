@@ -23,17 +23,6 @@ iCMS_admincp_head();
       <li<?php if($operation=="editfield"){?> class="current"<?php }?>><a href="<?=__SELF__?>?do=model&operation=editfield&mid=<?=$id?>"><span>编辑模型字段</span></a></li>
     </ul>
   </div>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>排序:表单的显示顺序</li>
-          <li>字段排序可拖拉</li>
-        </ul></td>
-    </tr>
-  </table>
   <form action="<?=__SELF__?>?do=model&operation=post" method="post">
     <input type="hidden" name="action" value="order" />
     <input type="hidden" name="id" value="<?=$id?>" />

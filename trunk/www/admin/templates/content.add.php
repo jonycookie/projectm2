@@ -104,16 +104,6 @@ function editContentLink(fieldName){
 </script>
 <div class="container" id="cpcontainer">
   <h3><?=empty($id)?'添加':'编辑'?><?=$model->name?></h3>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>点击ID可查看该<?=$model->name?></li>
-        </ul></td>
-    </tr>
-  </table>
   <form action="<?=__SELF__?>?do=content&operation=post" method="post" enctype="multipart/form-data" name="savecontent" id="savecontent">
     <input type="hidden" name="action" value="save" />
     <input name="mid" type="hidden" id="mid" value="<?=$mid?>" />
