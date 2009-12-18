@@ -11,16 +11,6 @@ iCMS_admincp_head();
 <script type="text/JavaScript">admincpnav('首页&nbsp;&raquo;&nbsp;文件管理&nbsp;&raquo;&nbsp;上传文件','');</script>
 <div class="container" id="cpcontainer">
 <h3>上传文件</h3>
-<table class="tb tb2 nobdb" id="tips">
-  <tr>
-    <th colspan="15" class="partition">技巧提示</th>
-  </tr>
-  <tr>
-    <td class="tipsblock"><ul id="tipslis">
-        <li></li>
-      </ul></td>
-  </tr>
-</table>
 <table class="tb tb2">
     <tr>
       <form action="<?=__SELF__?>?do=dialog&operation=post" method="post" name="createdir" target="post" id="createdir" onsubmit="return checkdirname();">

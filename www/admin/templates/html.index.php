@@ -14,16 +14,7 @@ iCMS_admincp_head();
 <?php }?>
 <div class="container" id="cpcontainer">
   <h3>更新首页</h3>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>如果看不到左侧菜单,请刷新网页!  注:按F5或者刷新本页无效</li>
-        </ul></td>
-    </tr>
-  </table>  <form name="cpform" method="get" action="<?=__SELF__?>" id="cpform" >
+  <form name="cpform" method="get" action="<?=__SELF__?>" id="cpform" >
     <input type="hidden" name="do" value="html" />
     <input type="hidden" name="operation" value="create" />
     <input type="hidden" name="action" value="index" />

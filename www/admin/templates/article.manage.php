@@ -93,16 +93,6 @@ function doaction(obj){
 <script type="text/javascript" src="javascript/calendar.js"></script>
 <div class="container" id="cpcontainer">
   <h3>文章管理</h3>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>点击ID可查看该文章</li>
-        </ul></td>
-    </tr>
-  </table>
   <form action="<?=__SELF__?>" method="get">
     <input type="hidden" name="do" value="article" />
     <input type="hidden" name="operation" value="manage" />

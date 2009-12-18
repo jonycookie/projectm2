@@ -47,17 +47,6 @@ function fold(cid,level,obj){
       <li<?php if($operation=="fold"){?> class="current"<?php }?>><a href="<?=__SELF__?>?do=catalog&operation=fold"><span>收缩所有栏目</span></a></li>
     </ul>
   </div>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>点击ID后面数字，可查看该栏目</li>
-          <li>点击<img src="admin/images/add.gif"/> 可展开下级</li>
-        </ul></td>
-    </tr>
-  </table>
   <form name="cpform" method="post" action="<?=__SELF__?>?do=catalog&operation=post" id="cpform" >
     <input type="hidden" name="action" value="edit" />
     <table class="tbL tb tb2 ">

@@ -11,16 +11,6 @@ iCMS_admincp_head();
 <script type="text/JavaScript">admincpnav('首页&nbsp;&raquo;&nbsp;会员管理','');</script>
 <div class="container" id="cpcontainer">
   <h3>会员管理</h3>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>点击ID可查看该会员</li>
-        </ul></td>
-    </tr>
-  </table>
   <form action="<?=__SELF__?>?do=user&operation=post" method="post">
     <input type="hidden" name="action" value="edit" />
     <input type="hidden" name="uid" value="<?=$rs->uid?>" />

@@ -35,6 +35,20 @@ $(function(){
 });
  </script>
 <div class="container" id="cpcontainer">
+  <form name="cpform" method="post" action="<?=__SELF__?>?do=template&operation=post" id="cpform" >
+    <table class="tb tb2 ">
+      <tr>
+        <th class="partition"><span style="float:right;margin-top:4px;" id="shtag">模板标签</span>编辑模板
+          <input name="action" type="hidden" value="edit" />
+          <input name="tplpath" type="hidden" value="<?=$_GET['path']?>" />
+          <input type="submit" value="保存" class="btn" />
+          <!--input type="button" value="预览" class="btn" id="preview"/--></th>
+      </tr>
+      <tr>
+        <td style="width:100%;"><textarea name="html" id="html" class="tarea" style='width:100%;height:410px;font-family: "Courier New", Courier, monospace;font-size: 14px;line-height: 140%;'><?=dhtmlspecialchars($FileData)?></textarea></td>
+      </tr>
+    </table>
+  </form>
   <div id="tagTip" style="width:310px; background-color:#FFFFFF; border:#CCCCCC 1px solid;">
     <table class="tb tb2" id="tips">
       <tr>
@@ -137,19 +151,5 @@ $(function(){
       </tr>
     </table>
   </div>
-  <form name="cpform" method="post" action="<?=__SELF__?>?do=template&operation=post" id="cpform" >
-    <table class="tb tb2 ">
-      <tr>
-        <th class="partition"><span style="float:right;margin-top:4px;" id="shtag">模板标签</span>编辑模板
-          <input name="action" type="hidden" value="edit" />
-          <input name="tplpath" type="hidden" value="<?=$_GET['path']?>" />
-          <input type="submit" value="保存" class="btn" />
-          <!--input type="button" value="预览" class="btn" id="preview"/--></th>
-      </tr>
-      <tr>
-        <td style="width:100%;"><textarea name="html" id="html" class="tarea" style='width:100%;height:410px;font-family: "Courier New", Courier, monospace;font-size: 14px;line-height: 140%;'><?=dhtmlspecialchars($FileData)?></textarea></td>
-      </tr>
-    </table>
-  </form>
 </div>
 </body></html>

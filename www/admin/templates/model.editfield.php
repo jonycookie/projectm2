@@ -34,17 +34,6 @@ iCMS_admincp_head();
       <li<?php if($operation=="editfield"){?> class="current"<?php }?>><a href="<?=__SELF__?>?do=model&operation=editfield&mid=<?=$id?>"><span>编辑模型字段</span></a></li>
     </ul>
   </div>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>字段可拖拉</li>
-          <li>灰色字段为系统默认字段,要更改排序请到字段管理</li>
-        </ul></td>
-    </tr>
-  </table>
   <table class="tb tb2 ">
     <tr>
       <th class="partition" style="width:50%">{

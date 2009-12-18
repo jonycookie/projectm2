@@ -14,16 +14,6 @@ iCMS_admincp_head();
 <div class="container" id="cpcontainer">
   <h3>
     <?=empty($id)?'新增':'编辑'?>字段</h3>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li></li>
-        </ul></td>
-    </tr>
-  </table>
   <form action="<?=__SELF__?>?do=field&operation=post" method="post">
     <input type="hidden" name="action" value="edit" />
     <input type="hidden" name="id" value="<?=$id?>" />

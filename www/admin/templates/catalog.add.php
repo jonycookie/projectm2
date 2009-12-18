@@ -18,16 +18,6 @@ iCMS_admincp_head();
       <li id="nav_basic" class="current"><a href="javascript:void(0)"><span>基本设置</span></a></li>
     </ul>
   </div>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>以下设置没有继承性，即仅对当前栏目有效，不会对下级子栏目产生影响。</li>
-        </ul></td>
-    </tr>
-  </table>
   <form name="cpform" method="post" action="<?=__SELF__?>?do=catalog&operation=post" id="cpform" >
     <input name="cid" type="hidden" value="<?=$rs['id'] ?>" />
     <input name="action" type="hidden" id="action" value="save" />

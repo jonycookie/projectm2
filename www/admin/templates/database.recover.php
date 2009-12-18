@@ -11,16 +11,6 @@ iCMS_admincp_head();
 <script type="text/JavaScript">admincpnav('首页&nbsp;&raquo;&nbsp;数据库管理&nbsp;&raquo;&nbsp;数据库恢复','');</script>
 <div class="container" id="cpcontainer">
   <h3>数据库恢复</h3>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>点击ID可查看该TAG</li>
-        </ul></td>
-    </tr>
-  </table>
   <form action="<?=__SELF__?>?do=database&operation=<?=$operation=='backup'?'savebackup':'post'?>" method="post">
     <table class="tb tb2 ">
       <tr>

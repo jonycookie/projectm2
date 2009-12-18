@@ -30,16 +30,6 @@ iCMS_admincp_head();
       <li<?php if($operation=="sort"){?> class="current"<?php }?>><a href="<?=__SELF__?>?do=tag&operation=sort"><span>TAG归类管理</span></a></li>
     </ul>
   </div>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>点击ID可查看该TAG</li>
-        </ul></td>
-    </tr>
-  </table>
   <form action="<?=__SELF__?>?do=tag&operation=post" method="post">
   <table class="tb tb2 ">
     <tr>

@@ -19,17 +19,6 @@ iCMS_admincp_head();
       <li class="current"><a href="<?=__SELF__?>?do=advertise&operation=add"><span>添加</span></a> </li>
     </ul>
   </div>
-  <table class="tb tb2 nobdb" id="tips">
-    <tr>
-      <th colspan="15" class="partition">技巧提示</th>
-    </tr>
-    <tr>
-      <td class="tipsblock"><ul id="tipslis">
-          <li>展现方式: 页头通栏广告显示于论坛页面右上方，通常使用 468x60 图片或 Flash 的形式。当前页面有多个页头通栏广告时，系统会随机选取其中之一显示。</li>
-          <li>价值分析: 由于能够在页面打开的第一时间将广告内容展现于最醒目的位置，因此成为了网页中价位最高、最适合进行商业宣传或品牌推广的广告类型之一。</li>
-        </ul></td>
-    </tr>
-  </table>
   <script type="text/javascript" src="javascript/calendar.js"></script>
   <form name="cpform" method="post" action="<?=__SELF__?>?do=advertise&operation=post" id="cpform" >
     <input type="hidden" name="action" value="add" />
