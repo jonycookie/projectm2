@@ -7,8 +7,6 @@
  */
 //error_reporting(E_ERROR | E_PARSE);
 define('iCMS', TRUE);
-define('iCMS_VER', '3.1');
-define('iCMS_RELEASE', '20091212');
 define('iCMS_BUG', TRUE);
 define('iCMS_TPL_BUG', TRUE);
 define('iPATH',substr(dirname(strtr(__FILE__,'\\','/')), 0,-7)."/");
@@ -77,7 +75,7 @@ if ( !extension_loaded('mysql')){
 }
 
 require_once(iPATH.'include/compat.php');
-require_once(iPATH.'include/version.php');
+//require_once(iPATH.'include/version.php');
 require_once(iPATH.'include/cookie.php');
 require_once(iPATH.'include/common.php');
 if ( get_magic_quotes_gpc() ) {

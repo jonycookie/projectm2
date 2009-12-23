@@ -74,7 +74,7 @@ define('__SELF__',$PHP_SELF);
 define('__REF__',empty($_SERVER['HTTP_REFERER'])?'':$_SERVER['HTTP_REFERER']);
 
 require_once iPATH.'include/compat.php';
-require_once iPATH.'include/version.php';
+//require_once iPATH.'include/version.php';
 require_once iPATH.'include/cookie.php';
 require_once iPATH.'include/config.php';
 require_once iPATH.'include/mysql.class.php';
