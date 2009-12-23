@@ -51,7 +51,7 @@ function fold(cid,level,obj){
     <input type="hidden" name="action" value="edit" />
     <table class="tbL tb tb2 ">
       <tr>
-        <th>显示顺序</th>
+        <th>排序</th>
         <th>栏目名称</th>
         <th>管理</th>
       </tr>

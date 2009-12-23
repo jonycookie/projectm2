@@ -21,7 +21,7 @@ iCMS_admincp_head();
     <table class="tb tb2 ">
       <tr>
         <th></th>
-        <th>显示顺序</th>
+        <th>排序</th>
         <th>网站名称</th>
         <th>网站 URL</th>
         <th>文字说明</th>
