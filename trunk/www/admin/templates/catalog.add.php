@@ -247,12 +247,6 @@ $(function(){
 			return false;
 		}
 	}); 
-	$("#mid").change( function() {
-	  	if(this.value>0){
-	  		$("#listpl").val('{TPL}/list.content.htm');
-	  		$("#contentpl").val('{TPL}/show.content.htm');
-	  	}
-	}); 
 });
 </script>
 </body></html>
