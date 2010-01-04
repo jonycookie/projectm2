@@ -1,0 +1,24 @@
+<table cellspacing="0" cellpadding="0" width="100%" summary="{lang my_replys}">
+<thead>
+<tr>
+<td>{lang in_thread}</td>
+<td>{lang forum}</td>
+<td>{lang lastpost}</td>
+<td>{lang status}</td>
+</tr>
+</thead>
+<tbody>
+<!--{if $postlist}-->
+	<!--{loop $postlist $key $post}-->
+		<tr>
+		<td><a href="redirect.php?goto=findpost&pid=$post[pid]&ptid=$post[tid]" target="_blank">$post[tsubject]</a></td>
+		<td><a href="forumdisplay.php?fid=$post[fid]" target="_blank">$post[forumname]</a></td>
+		<td><cite><a href="redirect.php?tid=$post[tid]&goto=lastpost#lastpost">$post[lastpost]</a><br />by <!--{if $post['lastposter']}--><a href="space.php?username=$post[lastposterenc]" target="_blank">$post[lastposter]</a><!--{else}-->{lang anonymous}<!--{/if}--></cite></td>
+		<td><!--{if $post[invisible] == '-1'}-->{lang forum_recyclebin}<!--{elseif $post[invisible] == '2'}-->{lang my_threads_aduit}<!--{else}-->{lang my_threads_common}<!--{/if}--></td>
+		</tr>
+	<!--{/loop}-->
+<!--{else}-->
+	<tr><td colspan="4">{lang forum_nothreads}</td></tr>
+<!--{/if}-->
+</tbody>
+</table>

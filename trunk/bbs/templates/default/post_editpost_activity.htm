@@ -1,0 +1,195 @@
+<!--{if !$iscircle || !$sgid}-->{template header}<!--{else}-->{template supesite_header}<!--{/if}-->
+
+<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; <!--{if $isfirstpost}-->{lang post_editpost_activity}<!--{else}-->{lang post_editpost}<!--{/if}--></div>
+
+<script type="text/javascript" src="include/javascript/calendar.js"></script>
+<script type="text/javascript">
+var postminchars = parseInt('$minpostsize');
+var postmaxchars = parseInt('$maxpostsize');
+var disablepostctrl = parseInt('$disablepostctrl');
+var attachments = new Array();
+var bbinsert = parseInt('$bbinsert');
+var attachimgurl = new Array();
+var isfirstpost = parseInt('$isfirstpost');
+var special = parseInt('$special');
+var allowposttrade = parseInt('$allowposttrade');
+var allowpostreward = parseInt('$allowpostreward');
+var allowpostactivity = parseInt('$allowpostactivity');
+lang['board_allowed'] = '{lang board_allowed}';
+lang['lento'] = '{lang lento}';
+lang['bytes'] = '{lang bytes}';
+lang['post_curlength'] = '{lang post_curlength}';
+lang['post_subject_and_message_isnull'] = '{lang post_subject_and_message_isnull}';
+lang['post_subject_toolong'] = '{lang post_subject_toolong}';
+lang['post_message_length_invalid'] = '{lang post_message_length_invalid}';
+lang['post_activity_sort_null'] = '{lang post_activity_sort_null}';
+lang['post_activity_fromtime_null'] = '{lang post_activity_fromtime_null}';
+lang['post_activity_addr_null'] = '{lang post_activity_addr_null}';
+</script>
+
+{template post_preview}
+
+<form method="post" id="postform" action="post.php?action=edit&extra=$extra&editsubmit=yes&mod=$mod" $enctype onSubmit="return validate(this)">
+	<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+	<input type="hidden" name="page" value="$page" />
+
+	<div class="mainbox formbox">
+	<h1><!--{if $isfirstpost}-->{lang post_editpost_activity}<!--{else}-->{lang post_editpost}<!--{/if}--></h1>
+	<table summary="" cellspacing="0" cellpadding="0">
+
+		<thead>
+			<tr>
+				<th>{lang username}</th>
+				<td>
+					<!--{if $discuz_uid}-->
+						$discuz_userss [<a href="$link_logout">{lang member_logout}</a>]
+					<!--{else}-->
+						{lang guest} [<a href="$link_login">{lang member_login}</a>]
+					<!--{/if}-->
+				</td>
+			</tr>
+		</thead>
+		<thead>
+			<tr>
+				<th>{lang activity_info}</th>
+				<td>&nbsp;</td>
+			</tr>
+		</thead>
+
+		<tr>
+			<th><label for="subject">{lang activity_name}</label></th>
+			<td>
+				$typeselect
+				<input type="text" name="subject" id="subject" size="45" value="$postinfo[subject]" tabindex="3" />
+				<input type="hidden" name="origsubject" value="$postinfo[subject]" />
+				<input type="hidden" name="activity" value="yes" />
+			</td>
+		</tr>
+		<tr>
+			<th><label for="activityclass">{lang activiy_sort}</label></th>
+			<td>
+				<!--{if $activitytypelist}-->
+					<select onchange="this.form.activityclass.value=this.value" tabindex="4">
+						<option value=""></option>
+					<!--{loop $activitytypelist $type}-->
+						<option value="$type">$type</option>
+					<!--{/loop}-->
+					</select>
+				<!--{/if}-->
+				<input type="text" size="45" id="activityclass" name="activityclass" value="$activity['class']" tabindex="4" />
+			</td>
+		</tr>
+		<tr>
+			<th>{lang activity_starttime}</th>
+			<td>
+				<p>
+					<label><input class="radio" type="radio" value="0" name="activitytime" onclick="$('certainstarttime').style.display='';$('uncertainstarttime').style.display='none';" <!--{if !$activity['starttimeto']}-->checked="checked"<!--{/if}--> tabindex="5" />{lang activity_specific_time}</label>
+					<label><input class="radio" type="radio" value="1" name="activitytime" onclick="$('certainstarttime').style.display='none';$('uncertainstarttime').style.display=''" <!--{if $activity['starttimeto']}-->checked="checked"<!--{/if}--> tabindex="5" />{lang activity_bound_time}</label>
+				</p>
+				<span id="certainstarttime" <!--{if $activity['starttimeto']}-->style="display: none"<!--{/if}-->><input onclick="showcalendar(event, this, true)" type="text" name="starttimefrom[0]" id="starttimefrom_0" size="15" value="<!--{if !$activity['starttimeto']}-->$activity[starttimefrom]<!--{/if}-->" tabindex="5" /></span>
+				<span id="uncertainstarttime" <!--{if !$activity['starttimeto']}-->style="display: none"<!--{/if}-->> <input onclick="showcalendar(event, this, true)" type="text" name="starttimefrom[1]" id="starttimefrom_1" size="20" value="<!--{if $activity[starttimeto]}-->$activity[starttimefrom]<!--{/if}-->" tabindex="5" /> - <input onclick="showcalendar(event, this, true)" type="text" name="starttimeto" size="20" value="<!--{if $activity['starttimeto']}-->$activity[starttimeto]<!--{/if}-->" tabindex="5" /></span>
+				<em class="tips">{lang sample}:<!--{echo date("Y-m-d H:i", $timestamp + 86400)}--></em>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="activityplace">{lang activity_space}</label></th>
+			<td><input type="text" id="activityplace" name="activityplace"size="45" value="$activity['place']" tabindex="6" /></td>
+		</tr><tr>
+		<th><label for="cost">{lang activity_payment}</label></th>
+			<td>
+				<input onkeyup="checkvalue(this.value, 'costmessage')" type="text" id="cost" name="cost" size="8" value="$activity['cost']" tabindex="7" /> {lang payment_unit} <span id="costmessage"></span>
+				<script type="text/javascript">
+					function checkvalue(value, message){
+						if(!value.search(/^\d+$/)) {
+							$(message).innerHTML = '';
+						} else {
+							$(message).innerHTML = '<b>{lang input_invalid}</b>';
+						}
+					}
+				</script>
+			</td>
+		</tr>
+
+		<tr>{template post_editor}</tr>
+
+		<!--{if $isfirstpost && $tagstatus}-->
+			<tr>
+				<th><label for="tags">{lang post_tag}</label></th>
+				<td>
+					<input size="45" type="input" id="tags" name="tags" value="$threadtags" tabindex="200" />&nbsp;
+					<button onclick="relatekw();return false">{lang searchtags}</button><span id="tagselect"></span>
+					<em class="tips">{lang tag_comment}</em>
+				</td>
+			</tr>
+		<!--{/if}-->
+
+		<thead>
+			<tr>
+				<th>{lang activity_info_ext}</th>
+				<td>&nbsp;</td>
+			</tr>
+		</thead>
+		<tr>
+			<th>{lang activity_need_member}</span>({lang optional_info})</td>
+			<td><input onkeyup="checkvalue(this.value, 'activitynumbermessage')" type="text" name="activitynumber" size="45" value="$activity['number']" tabindex="201"> <span id="activitynumbermessage"></span></td>
+		</tr>
+		<tr>
+			<th>{lang gender}</th>
+			<td>
+			<label><input class="radio" type="radio" name="gender" value="0" tabindex="202" <!--{if !$activity['gender']}-->checked<!--{/if}-->>{lang unlimited}</label>
+			<label><input class="radio" type="radio" name="gender" value="1" tabindex="203" <!--{if $activity['gender'] == 1}-->checked<!--{/if}-->>{lang male}</label>
+			<label><input class="radio" type="radio" name="gender" value="2" tabindex="204" <!--{if $activity['gender'] == 2}-->checked<!--{/if}-->>{lang female}</label>
+			</td>
+		</tr>
+		<tr>
+			<th>{lang activity_totime}</span>({lang optional_info})<br />{lang post_zero_is_nopermission}</td>
+			<td><input onclick="showcalendar(event, this, true)" type="text" name="activityexpiration" size="45" value="$activity['expiration']" tabindex="205" /> {lang sample}:<!--{echo date("Y-m-d H:i", $timestamp + 86400)}--></td>
+		</tr>
+
+		<thead>
+			<tr>
+				<th>{lang post_otherinfo}</th>
+				<td>&nbsp;</td>
+			</tr>
+		</thead>
+
+		<!--{if $allowsetreadperm && $isfirstpost}-->
+			<tr>
+			<th>{lang readperm_thread}</th>
+			<td><input type="text" name="readperm" size="6" value="$thread[readperm]" tabindex="206" /> <span class="smalltxt">({lang post_zero_is_nopermission})</span></td>
+			</tr>
+		<!--{/if}-->
+		<tr class="btns">
+			<th>&nbsp;</th>
+			<td>
+				<input type="hidden" name="wysiwyg" id="{$editorid}_mode" value="$editormode">
+				<input type="hidden" name="fid" id="fid" value="$fid">
+				<input type="hidden" name="tid" value="$tid">
+				<input type="hidden" name="pid" value="$pid">
+				<input type="hidden" name="postsubject" value="$postinfo[subject]">
+				<button type="submit" class="submit" name="editsubmit" id="postsubmit" tabindex="300"><!--{if $isfirstpost}-->{lang post_editpost_activity}<!--{else}-->{lang post_editpost}<!--{/if}--></button>
+				<em>{lang post_submit_hotkey}</em>&nbsp;&nbsp;
+				&nbsp;<a href="###" id="restoredata" onclick="loadData()" title="{lang post_autosave_last_restore}">{lang post_autosave_restore}</a>
+			</td>
+		</tr>
+		</table>
+	</div>
+	{template post_editpost_attachlist}
+</form>
+
+{template post_js}
+
+<script type="text/javascript">
+	var textobj = $(editorid + '_textarea');
+	<!--{if $bbinsert}-->
+		<!--{if $editormode}-->if(!(is_opera && is_opera < 9)) {textobj.value = bbcode2html(textobj.value);}<!--{/if}-->
+		newEditor(wysiwyg);
+	<!--{/if}-->
+	checkFocus();
+	setCaretAtEnd();
+	if(!(is_ie >= 5 || is_moz >= 2)) {
+		$('restoredata').style.display = 'none';
+	}
+</script>
+
+<!--{if !$iscircle || !$sgid}-->{template footer}<!--{else}-->{template supesite_footer}<!--{/if}-->

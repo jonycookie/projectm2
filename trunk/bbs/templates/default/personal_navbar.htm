@@ -1,0 +1,92 @@
+<div>
+<h2>{lang my_admin}</h2>
+<ul>
+	<li class="<!--{if $BASESCRIPT == 'pm.php'}-->side_on first<!--{/if}-->"><h3><a href="pm.php">{lang pm}</a></h3></li>
+	<!--{if $BASESCRIPT == 'my.php'}-->
+		<li class="side_on">
+			<h3>{lang my}</h3>
+			<ul>
+				<li<!--{if in_array($item, array('threads', 'posts'))}--> class="current"<!--{/if}-->><a href="my.php?item=threads$extrafid">{lang show_mytopics}</a></li>
+				<li<!--{if $item == 'favorites'}--> class="current"<!--{/if}-->><a href="my.php?item=favorites&type=thread$extrafid">{lang my_favorite}</a></li>
+				<li<!--{if $item == 'subscriptions'}--> class="current"<!--{/if}-->><a href="my.php?item=subscriptions&type=forum$extrafid">{lang my_subscriptions}</a></li>
+				<li<!--{if $item == 'grouppermission'}--> class="current"<!--{/if}-->><a href="my.php?item=grouppermission">{lang my_permissions}</a></li>
+				<li<!--{if $item == 'polls'}--> class="current"<!--{/if}-->><a href="my.php?item=polls&type=poll$extrafid">{lang my_polls}</a></li>
+				<li<!--{if in_array($item, array('tradestats', 'selltrades', 'buytrades', 'tradethreads'))}--> class="current"<!--{/if}-->><a href="my.php?item=tradestats$extrafid">{lang my_trades}</a></li>
+				<li<!--{if $item == 'reward'}--> class="current"<!--{/if}-->><a href="my.php?item=reward&type=stats$extrafid">{lang my_rewards}</a></li>
+				<li<!--{if $item == 'activities'}--> class="current"<!--{/if}-->><a href="my.php?item=activities&type=orig$extrafid">{lang my_activities}</a></li>
+				<li<!--{if $item == 'debate'}--> class="current"<!--{/if}-->><a href="my.php?item=debate&type=orig$extrafid">{lang my_debate}</a></li>
+				<!--{if $videoopen}-->
+					<li<!--{if $item == 'video'}--> class="current"<!--{/if}-->><a href="my.php?item=video&type=orig$extrafid">{lang my_video}</a></li>
+				<!--{/if}-->
+				<li<!--{if $item == 'buddylist'}--> class="current"<!--{/if}-->><a href="my.php?item=buddylist&$extrafid">{lang my_buddylist}</a></li>
+				<!--{if $creditspolicy['promotion_visit'] || $creditspolicy['promotion_register']}-->
+					<li<!--{if $item == 'promotion'}--> class="current"<!--{/if}-->><a href="my.php?item=promotion$extrafid">{lang post_my_advisit}</a></li>
+				<!--{/if}-->
+				<!--{if $supe['status'] && $xspacestatus}-->
+					<li><a href="$supe[siteurl]/?uid/$discuz_uid" target="_blank">{lang space}</a></li>
+				<!--{elseif $spacestatus}-->
+					<li><a href="space.php?uid=$discuz_uid" target="_blank">{lang space}</a></li>
+				<!--{/if}-->
+			</ul>
+		</li>
+	<!--{else}-->
+		<li><h3><a href="my.php">{lang my}</a></h3></li>
+	<!--{/if}-->
+	<!--{if $BASESCRIPT == 'memcp.php'}-->
+		<li class="side_on">
+			<h3>{lang memcp}</h3>
+			<ul>
+			<li<!--{if !$action}--> class="current"<!--{/if}-->><a href="memcp.php">{lang memcp_home}</a></li>
+			<li<!--{if $action == 'profile'}--> class="current"<!--{/if}-->><a href="memcp.php?action=profile">{lang memcp_profile}</a></li>
+			<!--{if $exchangestatus || $transferstatus || $ec_ratio}-->
+				<li<!--{if $action == 'credits' && in_array($operation, array('exchange', 'transfer', 'addfunds'))}--> class="current"<!--{/if}-->><a href="memcp.php?action=credits">{lang memcp_credits}</a></li>
+			<!--{/if}-->
+			<li<!--{if $action == 'creditslog' && in_array($operation, array('creditslog', 'paymentlog', 'incomelog', 'rewardpaylog', 'rewardincomelog'))}--> class="current"<!--{/if}-->><a href="memcp.php?action=creditslog">{lang memcp_credits_log}</a></li>
+			<!--{if $allowmultigroups}-->
+				<li<!--{if $action == 'usergroups'}--> class="current"<!--{/if}-->><a href="memcp.php?action=usergroups">{lang memcp_usergroups}</a></li>
+			<!--{/if}-->
+			<!--{if $spacestatus || $supe['status'] && $xspacestatus}-->
+				<li><a href="memcp.php?action=spacemodule" target="_blank">{lang space_settings}</a></li>
+			<!--{/if}-->
+			<!--{if $supe['status'] && !$xspacestatus}-->
+				<li><a href="$supe[siteurl]/?uid/$discuz_uid" target="_blank">{lang space_upgrade_space}</a></li>
+			<!--{/if}-->
+			</ul>
+		</li>
+	<!--{else}-->
+		<li><h3><a href="memcp.php">{lang memcp}</a></h3></li>
+	<!--{/if}-->
+	<!--{if $regstatus > 1}-->
+		<!--{if $BASESCRIPT == 'invite.php'}-->
+			<li class="side_on last">
+				<h3>{lang invite}</h3>
+				<ul>
+					<li<!--{if $action == 'buyinvite'}--> class="current"<!--{/if}-->><a href="invite.php?action=buyinvite">{lang invite_get}</a></li>
+					<li<!--{if in_array($action, array('availablelog', 'invalidlog', 'usedlog', 'sendlog'))}--> class="current"<!--{/if}-->><a href="invite.php?action=availablelog">{lang invite_logs}</a></li>
+				</ul>
+			</li>
+		<!--{else}-->
+			<li><h3><a href="invite.php">{lang invite}</a></h3></li>
+		<!--{/if}-->
+	<!--{/if}-->
+	</ul>
+
+</ul>
+
+</div>
+
+<div class="credits_info">
+	<h2>{lang memcp_credits_info}</h2>
+	<ul>
+		<li>{lang credits}: $credits</li>
+		<!--{loop $extcredits $id $credit}-->
+		<li>
+			<!--{if $id == $creditstrans}-->
+			$credit[title]: <span style="font-weight: bold;">$GLOBALS['extcredits'.$id]</span> $credit[unit]
+			<!--{else}-->
+			$credit[title]: $GLOBALS['extcredits'.$id] $credit[unit]
+			<!--{/if}-->
+		</li>
+		<!--{/loop}-->
+	</ul>
+</div>

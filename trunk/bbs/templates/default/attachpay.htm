@@ -1,0 +1,51 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; {lang attachment_buy}</div>
+
+<form method="post" action="misc.php?action=attachpay">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<input type="hidden" name="referer" value="$referer" />
+	<input type="hidden" name="aid" value="$aid" />
+	<div class="mainbox formbox">
+		<h1>{lang attachment_buy}</h1>
+		<table summary="{lang attachment_buy}" cellspacing="0" cellpadding="0">
+			<thead>
+				<tr>
+					<th>{lang username}</th>
+					<td>$discuz_userss [<a href="$link_logout">{lang member_logout}</a>]</td>
+				</tr>
+			</thead>
+			
+			<tr>
+				<th>{lang author}</th>
+				<td><a href="space.php?uid=$attach[uid]">$attach[author]</a></td>
+			</tr>
+			
+			<tr>
+				<th>{lang attachment}</th>
+				<td>$attach[filename] <!--{if $attach['description']}-->($attach[description])<!--{/if}--></td>
+			</tr>
+			
+			<tr>
+				<th>{lang price}({$extcredits[$creditstrans][title]})</th>
+				<td>$attach[price] {$extcredits[$creditstrans][unit]}</td>
+			</tr>
+			
+			<tr>
+				<th>{lang pay_author_income}({$extcredits[$creditstrans][title]})</th>
+				<td>$attach[netprice] {$extcredits[$creditstrans][unit]}</td>
+			</tr>
+			
+			<tr>
+				<th>{lang pay_balance}({$extcredits[$creditstrans][title]})</th>
+				<td>$balance {$extcredits[$creditstrans][unit]}</td>
+			</tr>
+			
+			<tr class="btns">
+				<th>&nbsp;</th>
+				<td><button class="submit" type="submit" name="paysubmit" value="true">{lang submit}</button></td>
+			</tr>
+		
+		</table>
+	</div>
+</form>
+{template footer}

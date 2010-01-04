@@ -1,0 +1,48 @@
+<div>
+	<h2>{lang magics}</h2>
+	<ul>
+		<li<!--{if $action == 'shop'}--> class="current"<!--{/if}-->><a href="magic.php?action=shop">{lang magics_shop}</a></li>
+		<!--{if $magicmarket}-->
+		<li<!--{if $action == 'market'}--> class="current"<!--{/if}-->><a href="magic.php?action=market">{lang magics_market}</a></li>
+		<!--{/if}-->
+		<li<!--{if $action == 'user'}--> class="current"<!--{/if}-->><a href="magic.php?action=user">{lang magics_user}</a></li>
+		<li><a href="memcp.php?action=credits&operation=addfunds" target="_blank">{lang memcp_credits_addfunds}</a></li>
+	</ul>
+	<h2>{lang magics_log}</h2>
+	<ul>
+		<li<!--{if $operation == 'uselog'}--> class="current"<!--{/if}-->><a href="magic.php?action=log&operation=uselog">{lang magics_log_use}</a></li>
+		<li<!--{if $operation == 'buylog'}--> class="current"<!--{/if}-->><a href="magic.php?action=log&operation=buylog">{lang magics_log_buy}</a></li>
+		<li<!--{if $operation == 'givelog'}--> class="current"<!--{/if}-->><a href="magic.php?action=log&operation=givelog">{lang magics_log_present}</a></li>
+		<li<!--{if $operation == 'receivelog'}--> class="current"<!--{/if}-->><a href="magic.php?action=log&operation=receivelog">{lang magics_log_receive}</a></li>
+		<!--{if $magicmarket}-->
+		<li<!--{if $operation == 'marketlog'}--> class="current"<!--{/if}-->><a href="magic.php?action=log&operation=marketlog">{lang magics_log_market}</a></li>
+		<!--{/if}-->
+	</ul>
+	<!--{if $magicsdiscount || $maxmagicsweight}-->
+		<h2>{lang magics_information}</h2>
+		<ul>
+		<!--{if $magicsdiscount}-->
+			<li>{lang magics_discount}: $magicsdiscount {lang discount}</li>
+		<!--{/if}-->
+		<!--{if $maxmagicsweight}-->
+			<li>{lang magics_capacity}: $totalweight/$maxmagicsweight</li>
+		<!--{/if}-->
+		</ul>
+	<!--{/if}-->
+</div>
+
+<div class="credits_info">
+	<h2>{lang memcp_credits_info}</h2>
+	<ul>
+		<li>{lang credits}: $credits</li>
+		<!--{loop $extcredits $id $credit}-->
+		<li>
+			<!--{if $id == $creditstrans}-->
+			$credit[title]: <span style="font-weight: bold;">$GLOBALS['extcredits'.$id]</span> $credit[unit]
+			<!--{else}-->
+			$credit[title]: $GLOBALS['extcredits'.$id] $credit[unit]
+			<!--{/if}-->
+		</li>
+		<!--{/loop}-->
+	</ul>
+</div>

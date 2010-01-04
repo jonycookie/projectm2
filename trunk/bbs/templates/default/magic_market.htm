@@ -1,0 +1,104 @@
+{template header}
+
+	<div id="nav"><a href="$indexname">$bbname</a> &raquo; {lang magics_market}</div>
+	<div class="container">
+		<div class="side">
+			{template magic_navbar}
+		</div>
+		<div class="content">
+			<!--{if !$magicstatus && $adminid == 1}-->
+				<div class="notice">{lang magics_tips}</div>
+			<!--{/if}-->
+			<form method="post" action="magic.php?action=market">
+				<input type="hidden" name="formhash" value="{FORMHASH}">
+				<!--{if !$operation || $operation == 'my'}-->
+					<div class="mainbox">
+						<span class="headactions"><a href="magic.php?action=market&operation=my">{lang magics_market_my}</a></span>
+						<h1>{lang magics_market}</h1>
+						<table summary="{lang magics_market}" cellspacing="0" cellpadding="0">
+							<thead>
+								<tr>
+									<td>{lang magics_name}</td>
+									<td>{lang magics_function}</td>
+									<td class="nums">{lang magics_price}</td>
+									<td class="nums">{lang magics_num}</td>
+									<td class="nums">{lang magics_single_weight}</td>
+									<td class="user">{lang magics_seller}</td>
+									<td>{lang magics_operation}</td>
+								</tr>
+							</thead>
+							<!--{if $magiclist}-->
+								<!--{loop $magiclist $magic}-->
+									<tr>
+										<td><a href="magic.php?action=shop&amp;operation=buy&amp;magicid=$magic[magicid]" target="_blank">$magic[name]</a></td>
+										<td>$magic[description]</td>
+										<td class="nums">$magic[price] $extcredits[$creditstrans][title]</td>
+										<td class="nums">$magic[num]</td>
+										<td class="nums">$magic[weight]</td>
+										<td class="user"><a href="space.php?action=viewpro&uid=$magic[uid]" target="_blank">$magic[username]</a></td>
+										<td>
+											<!--{if $magic[uid] != $discuz_uid}-->
+												<a href="magic.php?action=market&operation=buy&mid=$magic[mid]">{lang magics_operation_buy}</a>
+											<!--{else}-->
+												<a href="magic.php?action=market&operation=down&mid=$magic[mid]">{lang magics_operation_down}</a>
+											<!--{/if}-->
+										</td>
+									</tr>
+								<!--{/loop}-->
+							<!--{else}-->
+								<tr><td colspan="7">{lang magics_market_nonexistence}</td></tr>
+							<!--{/if}-->
+					</table>
+					</div>
+					<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+					<!--{if !$operation == 'my'}-->
+					<div id="footfilter" class="box">
+						<select name="magicid"><option value="">{lang magics_name}</option>$magicselect</select>
+						<select name="orderby">
+							<option value="">{lang magics_market_order}</option>
+							<option value="price" $check[price]>{lang magics_price}</option>
+							<option value="num" $check[num]>{lang magics_num}</option>
+						</select>
+						<select name="ascdesc">
+							<option value="">{lang orderby}</option>
+							<option value="ASC" $check[ASC]>{lang order_asc}</option>
+							<option value="DESC" $check[DESC]>{lang order_desc}</option>
+						</select>&nbsp;
+						<button class="submit" type="submit" name="searchsubmit">{lang search}</button>
+					</div>
+					<!--{/if}-->
+				<!--{elseif $operation == 'buy' || $operation == 'down'}-->
+					<input type="hidden" name="operation" value="$operation" />
+					<input type="hidden" name="mid" value="$mid" />
+					<div class="mainbox">
+						<h1><!--{if $operation == 'buy'}-->{lang magics_operation_buy}<!--{elseif $operation == 'down'}-->{lang magics_operation_down}<!--{/if}--></h1>
+						<table cellspacing="0" cellpadding="0">
+							<tr>
+								<td class="attriblist">
+									<dl>
+										<dt><img src="images/magics/$magic[pic]" alt="$magic[name]"></dt>
+										<dd class="name">$magic[name]</dd>
+										<dd>$magic[description]</dd>
+										<dd>{lang magics_price}: $magic[price] $extcredits[$creditstrans][title]</dd>
+										<dd>{lang magics_weight}: $magic[weight]</dd>
+										<dd>{lang magics_shop_num}: $magic[num]</dd>
+									</dl>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div id="footfilter" class="box">
+						<!--{if $operation == 'buy'}-->
+							<label>{lang magics_amount_buy}: <input name="magicnum" type="text" size="5" value="$magic[num]" /></label>
+							&nbsp;<button class="submit" type="submit" name="buysubmit" value="true">{lang magics_operation_buy}</button>
+						<!--{elseif $operation == 'down'}-->
+							<label>{lang magics_amount_down}: <input name="magicnum" type="text" size="5" value="$magic[num]" /></label>
+							&nbsp;<button class="submit" type="submit" name="downsubmit" value="true">{lang magics_operation_down}</button>
+						<!--{/if}-->
+					</div>
+				<!--{/if}-->
+				</form>
+		</div>
+	</div>
+
+{template footer}

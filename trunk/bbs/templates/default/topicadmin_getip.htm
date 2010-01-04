@@ -1,0 +1,31 @@
+{template header}
+
+<!--{if $inajax}-->
+	
+	{lang admin_getip_this} <b>$member[useip]</b> $member[iplocation]
+	<!--{if $allowviewip}-->
+		<br /><a href="admincp.php?action=ipban&ip=$member[useip]&frames=yes" target="_blank">[ {lang admin_ban_this_ip} ]</a> &nbsp;
+	<!--{/if}-->
+	<a href="###close" onclick="hideMenu()">[ {lang pm_close} ]</a>
+	
+<!--{else}-->
+	<div id="nav">
+	<a href="$indexname">$bbname</a> $navigation &raquo; {lang admin_getip}
+	</div>
+
+	<div class="mainbox formbox">
+	<h1>{lang admin_getip}</h1>
+	<table cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+	<td>{lang admin_getip_this} <b>$member[useip]</b> $member[iplocation]
+	</td>
+	<tr><td>
+
+	<!--{if $allowviewip}-->
+		<a href="admincp.php?action=ipban&ip=$member[useip]&frames=yes" target="_blank">[ {lang admin_ban_this_ip} ]</a> &nbsp;
+	<!--{/if}-->
+	<a href="###" onclick="history.go(-1)">[ {lang go_back} ]</a>
+
+	</td></tr></table></div></form>
+<!--{/if}-->
+{template footer}

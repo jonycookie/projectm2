@@ -1,0 +1,91 @@
+{template header}
+
+<!--{if !$inajax}-->
+<div id="nav"><a href="$indexname">$bbname</a> &raquo; {lang board_message}</div>
+
+<div class="box message">
+<h1>$bbname {lang board_message}</h1>
+<p>{lang nopermission}</p>
+
+<!--{if $show_message}--><p><b>$show_message</b></p><!--{/if}-->
+<p><!--{if $discuz_uid}-->{lang nopermission_loggedin}<!--{else}-->{lang nopermission_no_loggedin}</p><!--{/if}-->
+<!--{if !$discuz_uid}-->
+	<form name="login" method="post" action="logging.php?action=login">
+	<input type="hidden" name="formhash" value="{FORMHASH}">
+	<input type="hidden" name="referer" value="$referer">
+	<input type="hidden" name="cookietime" value="2592000">
+	<div class="box" style="width: 60%; margin: 10px auto;">
+	<table cellspacing="0" cellpadding="4" width="100%">
+	<thead>
+	<tr>
+	<td colspan="2">{lang member_login}</td>
+	</tr>
+	</thead>
+	<tbody>
+	<!--{if $seccodecheck}-->
+		<tr>
+			<th><label for="seccodeverify">{lang seccode}</label></th>
+			<td>
+				<div id="seccodeimage"></div>
+				<input type="text" onfocus="updateseccode();this.onfocus = null" id="seccodeverify" name="seccodeverify" size="8" maxlength="4" tabindex="1" />
+				<em class="tips"><strong>{lang seccode_click}</strong> <!--{if $seccodedata['type'] == 2}-->{lang seccode_animator_flashrefresh}<!--{elseif $seccodedata['animator'] == 1}-->{lang seccode_animator_refresh}<!--{else}-->{lang seccode_refresh}<!--{/if}--></em></td>
+				<script type="text/javascript">
+					var seccodedata = [{$seccodedata['width']}, {$seccodedata['height']}, {$seccodedata['type']}];
+				</script>
+		</tr>
+	<!--{/if}-->
+	<tr>
+	<td onclick="document.login.username.focus();">
+	<label><input type="radio" name="loginfield" value="username" checked="checked" />{lang username}</label>
+	<label><input type="radio" name="loginfield" value="uid" />{lang uid}</td></label>
+	<td><input type="text" name="username" size="25" maxlength="40" tabindex="2" /> &nbsp;<em class="tips"><a href="$regname">$reglinkname</a></em></td>
+	</tr>
+	<tr>
+	<td>{lang password}</td>
+	<td><input type="password" name="password" size="25" tabindex="3" /> &nbsp;<em class="tips"><a href="member.php?action=lostpasswd">{lang lostpassword}</a></em></td>
+	</tr>
+	<tr>
+	<td>{lang security_question}</td>
+	<td><select name="questionid" tabindex="4">
+	<option value="0">&nbsp;</option>
+	<option value="1">{lang security_question_1}</option>
+	<option value="2">{lang security_question_2}</option>
+	<option value="3">{lang security_question_3}</option>
+	<option value="4">{lang security_question_4}</option>
+	<option value="5">{lang security_question_5}</option>
+	<option value="6">{lang security_question_6}</option>
+	<option value="7">{lang security_question_7}</option>
+	</select></td>
+	</tr>
+	<tr>
+	<td>{lang security_answer}</td>
+	<td><input type="text" name="answer" size="25" tabindex="5" /></td>
+	</tr>
+	<tr><td></td><td>
+	<button class="submit" type="submit" name="loginsubmit" id="loginsubmit" value="true" tabindex="6">{lang member_login}</button>
+	</td></tr>
+	</table>
+	</div>
+	</form>
+<!--{/if}-->
+</div>
+
+<!--{else}-->
+
+<script type="text/javascript">
+
+function ajaxerror() {
+	<!--{if !$discuz_uid}-->
+		alert('$show_message');
+	<!--{else}-->
+		alert('{lang nopermission_loggedin}');
+	<!--{/if}-->
+}
+
+ajaxerror();
+
+</script>
+
+<!--{/if}-->
+
+{template footer}

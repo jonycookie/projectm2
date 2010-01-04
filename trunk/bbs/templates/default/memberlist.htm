@@ -1,0 +1,61 @@
+{template header}
+<div id="foruminfo">
+	<div id="nav"><a href="$indexname">$bbname</a> &raquo; <!--{if $type != 'birthdays'}-->{lang member_list}<!--{else}-->{lang todays_birthdays_members}<!--{/if}--></div>
+</div>
+
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+<div class="mainbox">
+	<h3><!--{if $type != 'birthdays'}-->{lang member_list}<!--{else}-->{lang todays_birthdays_members}<!--{/if}--></h3>
+	<table summary="<!--{if $type != 'birthdays'}-->{lang member_list}<!--{else}-->{lang todays_birthdays_members}<!--{/if}-->" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+			<td><a href="member.php?action=list&order=username">{lang username}</a></td>
+			<td>{lang uid}</td>
+			<td><a href="member.php?action=list&order=gender">{lang gender}</a></td>
+			<td><a href="member.php?action=list&order=regdate">{lang regdate}</a></td>
+			<td>{lang lastvisit}</td>
+			<td>{lang posts}</td>
+			<!--{if $type != 'birthdays'}-->
+				<td><a href="member.php?action=list&order=credits">{lang credits}</a></td>
+			<!--{else}-->
+				<td><a href="member.php?action=list&type=birthdays">{lang todays_birthdays}</a></td>
+			<!--{/if}-->
+			</tr>
+		</thead>
+		<tbody>
+		<!--{loop $memberlist $member}-->
+			<tr>
+				<td><a href="space.php?uid=$member[uid]" class="bold">$member[username]</a></td>
+				<td >$member[uid]</td>
+				<td><!--{if $member['gender'] == '1'}-->{lang male}<!--{elseif $member['gender'] == 2}-->{lang female}<!--{else}-->&nbsp;<!--{/if}--></td>
+				<td>$member[regdate]</td>
+				<td>$member[lastvisit]</td>
+				<td>$member[posts]</td>
+				<!--{if $type != 'birthdays'}-->
+					<td>$member[credits]</td>
+				<!--{else}-->
+					<td>$member[bday]</td>
+				<!--{/if}-->
+			</tr>
+		<!--{/loop}-->
+		</tbody>
+	</table>
+</div>
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+<!--{if $type != 'birthdays'}-->
+<div id="footfilter" class="box">
+	<form method="post" action="member.php?action=list">
+		<input type="hidden" name="formhash" value="{FORMHASH}" />
+		<input type="text" size="15" name="srchmem" />
+		&nbsp;<button type="submit">{lang search}</button>
+	</form>
+	{lang orderby}:
+	<a href="member.php?action=list&order=regdate">{lang regdate}</a> -
+	<a href="member.php?action=list&order=username">{lang username}</a> -
+	<a href="member.php?action=list&order=credits">{lang credits}</a> -
+	<a href="member.php?action=list&order=gender">{lang gender}</a> -
+	<a href="member.php?action=list&type=admins">{lang admin_status}</a>
+</div>
+<!--{/if}-->
+
+{template footer}

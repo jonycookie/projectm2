@@ -1,0 +1,121 @@
+<form method="post" id="postform" action="pm.php?action=send&pmsubmit=yes" onSubmit="return validate(this)">
+	<!--{if $folder == 'outbox'}--><input type="hidden" name="pmid" value="$pmid" /><!--{/if}-->
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<div class="mainbox formbox">
+	<h1>{lang pm_send}</h1>
+	<ul class="tabs">
+		<li class="current sendpm"><a href="pm.php?action=send">{lang pm_send}</a></li>
+		<li><a href="pm.php?folder=inbox">{lang pm_inbox}[<span id="pm_unread">$pm_inbox_newpm</span>]</a></li>
+		<li><a href="pm.php?folder=outbox">{lang pm_outbox}</a></li>
+		<li><a href="pm.php?folder=track">{lang pm_track}</a></li>
+		<li><a href="pm.php?action=search">{lang pm_search}</a></li>
+		<li><a href="pm.php?action=archive">{lang pm_archive}</a></li>
+		<li><a href="pm.php?action=ignore">{lang pm_ignore}</a></li>
+	</ul>
+	<table summary="{lang pm_send}" cellspacing="0" cellpadding="0" id="pmlist">
+		<!--{if $seccodecheck}-->
+			<tr>
+				<th><label for="seccodeverify">{lang seccode}</label></th>
+				<td>
+					<div id="seccodeimage"></div>
+					<input type="text" onfocus="updateseccode();this.onfocus = null" id="seccodeverify" name="seccodeverify" size="8" maxlength="4" />
+					<em class="tips"><strong>{lang seccode_click}</strong> <!--{if $seccodedata['type'] == 2}-->{lang seccode_animator_flashrefresh}<!--{elseif $seccodedata['animator'] == 1}-->{lang seccode_animator_refresh}<!--{else}-->{lang seccode_refresh}<!--{/if}--></em></td>
+					<script type="text/javascript">
+						var seccodedata = [{$seccodedata['width']}, {$seccodedata['height']}, {$seccodedata['type']}];
+					</script>
+			</tr>
+		<!--{/if}-->
+
+		<!--{if $secqaacheck}-->
+			<tr>
+			<th>{lang secqaa}</th>
+			<td><div id="secquestion"></div><input type="text" name="secanswer" size="25" maxlength="50" tabindex="1" /></td>
+			</tr>
+			<script type="text/javascript">
+			<!--{if ($attackevasive & 1) && $seccodecheck}-->
+				setTimeout("updatesecqaa()", 2001);
+			<!--{else}-->
+				updatesecqaa();
+			<!--{/if}-->
+			</script>
+		<!--{/if}-->
+
+		<tr>
+			<th><label for="msgto">{lang to}</label></th>
+			<td><input type="text" id="msgto" name="msgto" size="65" value="$touser" tabindex="2" /></td>
+		</tr>
+
+		<!--{if $buddylist}-->
+		<tr>
+			<th id="buddy"><label><input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form, 'msgtobuddys')" tabindex="3" />{lang pm_to_buddy}</label></th>
+			<td>
+				<ul class="userlist">
+				<!--{loop $buddylist $key $buddy}-->
+					<li><label><input class="checkbox" type="checkbox" name="msgtobuddys[]" value="$buddy[buddyid]" /> $buddy[buddyname]</label></li>
+				<!--{/loop}-->
+				</ul>
+			</td>
+		</tr>
+		<!--{/if}-->
+
+		<tr>
+			<th><label for="subject">{lang subject}</th>
+			<td><input type="text" id="subject" name="subject" size="65" value="$subject" tabindex="4" /></td>
+		</tr>
+
+		<tr>
+			<th valign="top"><label for="pm_textarea">{lang message}</label>
+				<!--{if $smileyinsert}-->
+					<div id="smilieslist"></div>
+					<script type="text/javascript">ajaxget('post.php?action=smilies', 'smilieslist');</script>
+				<!--{/if}-->
+			</th>
+			<td><textarea id="pm_textarea" class="autosave" rows="15" cols="10" name="message" style="width: 95%;" onKeyDown="ctlent(event);" tabindex="5">
+<!--{if $do == 'reply'}-->[b]{lang pm_orig_message}:[/b] [url={$boardurl}pm.php?action=view&folder=inbox&pmid={$pm[pmid]}]$pm[subject][/url]{LF}
+<!--{elseif $do == 'forward'}-->
+[b]{lang pm_orig_message}[/b] [url={$boardurl}pm.php?action=send&pmid=$pm[pmid]&do=reply]({lang reply})[/url]
+[b]{lang from}:[/b] [url={$boardurl}space.php?uid={$pm[msgfromid]}]$pm[msgfrom][/url]
+[b]{lang to}:[/b] [url={$boardurl}space.php?uid=$discuz_uid]$discuz_user[/url]
+[b]{lang time}:[/b] $pm[dateline]{LF}{LF}
+<!--{/if}-->$message</textarea>
+					<br /><label><input type="checkbox" name="saveoutbox" value="1"<!--{if $folder == 'outbox'}--> checked=checked""<!--{/if}--> tabindex="6" />{lang pm_send_save_outbox}</label>
+			</td>
+		</tr>
+
+		<tr class="btns">
+			<th>&nbsp;</th>
+			<td>
+				<button type="submit" class="submit" name="pmsubmit" id="postsubmit" value="true" tabindex="7">{lang submit}</button>
+				<em>{lang post_submit_hotkey}</em>
+				&nbsp;<a href="###" id="restoredata" onclick="loadData()" title="{lang post_autosave_last_restore}">{lang post_autosave_restore}</a>
+			</td>
+		</tr>
+</table>
+</div>
+</form>
+<script type="text/javascript" src="include/javascript/post.js"></script>
+<script type="text/javascript">
+	var wysiwyg = bbinsert = 0;
+	lang['post_autosave_none'] = "{lang post_autosave_none}";
+	lang['post_autosave_confirm'] = "{lang post_autosave_confirm}";
+	function validate(theform) {
+		if (theform.subject.value == '' || theform.message.value == '') {
+			alert("{lang post_subject_and_message_isnull}");
+			theform.subject.focus();
+			return false;
+		} else if (theform.subject.value.length > 75) {
+			alert("{lang post_subject_toolong}");
+			theform.subject.focus();
+			return false;
+		}
+		theform.message.value = parseurl(theform.message.value, 'bbcode');
+		theform.pmsubmit.disabled = true;
+		return true;
+	}
+	checkFocus();
+	setCaretAtEnd();
+	var textobj = $('pm_textarea');
+	if(!(is_ie >= 5 || is_moz >= 2)) {
+		$('restoredata').style.display = 'none';
+	}
+</script>

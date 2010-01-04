@@ -1,0 +1,20 @@
+<!--{if $thread['freemessage']}-->
+	<div id="postmessage_$pid" class="t_msgfont">$thread[freemessage]</div>
+<!--{/if}-->
+<div style="width: 500px;" class="notice">{lang pay_comment}<!--{if $thread[endtime]}--><br />{lang pay_free_time}<!--{/if}--></div>
+<div class="box" style="width: 500px;">
+		<table summary="{lang activity_info}" cellpadding="0" cellspacing="0">
+			<tr>
+				<th>{lang price}({$extcredits[$creditstrans][title]}):</th>
+				<td>$thread[price] {$extcredits[$creditstrans][unit]}</td>
+			</tr>
+			<tr>
+				<th>{lang pay_buyers}:</th>
+				<td>$thread[payers]&nbsp; <a href="misc.php?action=viewpayments&tid=$tid" target="_blank">({lang pay_view})</a></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center"><button class="submit" value="true" name="paysubmit" type="button" onclick="window.location.href='misc.php?action=pay&tid=$tid'">{lang pay}</button></td>
+			</tr>
+		</table>
+</div>		
+</div>

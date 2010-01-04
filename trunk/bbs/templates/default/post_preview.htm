@@ -1,0 +1,23 @@
+<!--{if empty($showpreview)}-->
+<div class="mainbox viewthread" id="previewtable" style="display: $previewdisplay">
+	<h1>{lang post_previewpost}</h1>
+	<table summary="{lang post_previewpost}" cellspacing="0" cellpadding="0">
+		<tr>
+			<td class="postauthor">
+				<!--{if $action == 'edit'}-->
+					<!--{if $postinfo['authorid']}--><a href="space.php?uid=$postinfo[authorid]">$postinfo[author]</a><!--{else}-->{lang guest}<!--{/if}-->
+				<!--{else}-->
+					<!--{if $discuz_uid}-->$discuz_userss<!--{else}-->{lang guest}<!--{/if}-->
+				<!--{/if}-->
+			</td>
+			<td class="postcontent">
+				<div class="postmessage" id="previewmessage">
+					<h2>$subject</h2>
+					$message_preview
+				</div>
+			</td>
+		</tr>
+	</table>
+	</div>
+<br />
+<!--{/if}-->

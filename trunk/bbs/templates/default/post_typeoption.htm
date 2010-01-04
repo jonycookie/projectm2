@@ -1,0 +1,126 @@
+{template header}
+<input type="hidden" name="selecttypeid" size="45" value="$selecttypeid" />
+<table cellspacing="0" cellpadding="0" width="100%">
+<tr><th>·¢ÌûËµÃ÷</th><td>$threaddesc</td></tr>
+<!--{if $forum['threadtypes']['expiration'][$selecttypeid]}-->
+	<tr><th>{lang threadtype_expiration}({lang required})</th>
+		<td>
+			<select name="typeexpiration">
+				<option value="259200">{lang three_days}</option>
+				<option value="432000">{lang five_days}</option>
+				<option value="604800">{lang seven_days}</option>
+				<option value="2592000">{lang one_month}</option>
+				<option value="7776000">{lang three_months}</option>
+				<option value="15552000">{lang half_year}</option>
+				<option value="31536000">{lang one_year}</option>
+			</select>
+		</td>
+	</tr>
+<!--{/if}-->
+<!--{loop $optionlist $optionid $option}-->
+	<tr>
+	<th>$option[title]
+	<!--{if $option['maxnum']}-->
+		({lang maxnum} $option[maxnum])
+	<!--{/if}-->
+	<!--{if $option['minnum']}-->
+		({lang minnum} $option[minnum])
+	<!--{/if}-->
+	<!--{if $option['maxlength']}-->
+		({lang maxlength} $option[maxlength])
+	<!--{/if}-->
+	<!--{if $option['unchangeable']}-->
+		({lang unchangeable})
+	<!--{/if}-->
+	<!--{if $option[description]}--><br />$option[description]<!--{/if}-->
+	</th>
+	<td>
+		<!--{if in_array($option['type'], array('number', 'text', 'email', 'calendar', 'image', 'url'))}-->
+			<!--{if $option['type'] == 'calendar'}-->
+				<script type="text/javascript" src="include/javascript/calendar.js"></script>
+				<input type="text" name="typeoption[{$option[identifier]}]" id="typeoption[{$option[identifier]}]" size="45" onBlur="check{$option[identifier]}()" value="$option[value]" onclick="showcalendar(event, this, false)" $option[unchangeable] />
+			<!--{else}-->
+				<input type="text" name="typeoption[{$option[identifier]}]" id="typeoption[{$option[identifier]}]" size="45" onBlur="check{$option[identifier]}()" value="$option[value]" $option[unchangeable] />
+			<!--{/if}-->
+		<!--{elseif in_array($option['type'], array('radio', 'checkbox', 'select'))}-->
+			<!--{if $option[type] == 'select'}-->
+				<select name="typeoption[{$option[identifier]}]" $option[unchangeable]>
+				<!--{loop $option['choices'] $id $value}-->
+					<option value="$id" $option['value'][$id]>$value</option>
+				<!--{/loop}-->
+				</select>
+			<!--{elseif $option['type'] == 'radio'}-->
+				<!--{loop $option['choices'] $id $value}-->
+					<input type="radio" class="radio" name="typeoption[{$option[identifier]}]" id="typeoption[{$option[identifier]}]" onclick="check{$option[identifier]}()" value="$id" $option['value'][$id] $option[unchangeable]> $value
+				<!--{/loop}-->
+			<!--{elseif $option['type'] == 'checkbox'}-->
+				<!--{loop $option['choices'] $id $value}-->
+					<input type="checkbox" class="checkbox" name="typeoption[{$option[identifier]}][]" id="typeoption[{$option[identifier]}]" onclick="check{$option[identifier]}()" value="$id" $option['value'][$id][$id] $option[unchangeable]> $value
+				<!--{/loop}-->
+			<!--{/if}-->
+		<!--{elseif in_array($option['type'], array('textarea'))}-->
+			<textarea name="typeoption[{$option[identifier]}]" id="typeoption[{$option[identifier]}]" rows="10" cols="20" style="width:32%; height:60px" onBlur="check{$option[identifier]}()" $option[unchangeable]>$option[value]</textarea>
+		<!--{/if}-->
+	&nbsp;<span id="check{$option[identifier]}"><!--{if $option['required']}-->({lang required})<!--{/if}--></span></td>
+	</tr>
+<!--{/loop}-->
+</table>
+
+<script type="text/javascript">
+	var threadtype_required_invalid = '{lang threadtype_required_invalid}';
+	var threadtype_format_num_invalid = '{lang threadtype_format_num_invalid}';
+	var threadtype_format_email_invalid = '{lang threadtype_format_email_invalid}';
+	var threadtype_toolong_invalid = '{lang threadtype_toolong_invalid}';
+	var threadtype_maxnum_invalid = '{lang threadtype_maxnum_invalid}';
+	var threadtype_minnum_invalid = '{lang threadtype_minnum_invalid}';
+
+	<!--{loop $optionlist $optionid $option}-->
+		function check{$option['identifier']}() {
+			var required = '$option[required]';
+			var checktype = '$option[type]';
+			var checkmaxlength = '$option[maxlength]';
+			var checkmaxnum = '$option[maxnum]';
+			var checkminnum = '$option[minnum]';
+
+			var ce = $('check{$option[identifier]}');
+			var checkvalue = $('typeoption[{$option[identifier]}]').value;
+
+			if(required != '0') {
+				if(checkvalue == '') {
+					warning(ce, threadtype_required_invalid);
+					return;
+				} else {
+					ce.innerHTML = '<img src="{IMGDIR}/check_right.gif" width="13" height="13">';
+				}
+			}
+
+			if(checkvalue) {
+				if(checktype == 'number' && isNaN(checkvalue)) {
+					warning(ce, threadtype_format_num_invalid);
+					return;
+				} else if(checktype == 'email' && !(/^[\-\.\w]+@[\.\-\w]+(\.\w+)+$/.test(checkvalue))) {
+					warning(ce, threadtype_format_email_invalid);
+					return;
+				} else if((checktype == 'text' || checktype == 'textarea') && checkmaxlength != '0' && mb_strlen(checkvalue) > checkmaxlength) {
+					warning(ce, threadtype_toolong_invalid);
+					return;
+				} else if(checktype == 'number' && checkmaxnum != '0' && checkvalue > checkmaxnum) {
+					warning(ce, threadtype_maxnum_invalid);
+					return;
+				} else if(checktype == 'number' && checkminnum != '0' && checkvalue < checkminnum) {
+					warning(ce, threadtype_minnum_invalid);
+					return;
+				} else {
+					ce.innerHTML = '<img src="{IMGDIR}/check_right.gif" width="13" height="13">';
+				}
+			}
+		}
+	<!--{/loop}-->
+
+	function warning(obj, msg) {
+		obj.style.display = '';
+		obj.innerHTML = '<img src="{IMGDIR}/check_error.gif" width="13" height="13"> &nbsp; ' + msg;
+		obj.className = "warning";
+	}
+</script>
+{template footer}

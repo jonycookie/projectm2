@@ -1,0 +1,26 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; {lang pay_view}</div>
+<div class="mainbox">
+	<h1>{lang pay_view}</h1>
+	<table summary="{lang pay_view}" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<td>{lang username}</td>
+				<td>{lang time}</td>
+				<td>{$extcredits[$creditstrans][title]}</td>
+			</tr>
+		</thead>
+		<!--{if $loglist}-->
+			<!--{loop $loglist $log}-->
+				<tr>
+					<td><a href="space.php?uid=$log[uid]">$log[username]</a></td>
+					<td>$log[dateline]</td>
+					<td>$log[amount] {$extcredits[$creditstrans][unit]}</td>
+				</tr>
+			<!--{/loop}-->
+		<!--{else}-->
+			<tr><td colspan="3">{lang pay_nobuyers}</td></tr>
+		<!--{/if}-->
+	</table>
+</div>
+{template footer}

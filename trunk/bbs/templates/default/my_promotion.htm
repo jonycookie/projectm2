@@ -1,0 +1,22 @@
+
+<table cellspacing="0" cellpadding="0" width="100%">
+	
+	<tr><td>
+		{lang my_promotion_url}<br />
+	</td></tr>
+	<tr><td>
+		{lang post_promotion_url1}<input type="text" onclick="this.select();setcopy(this.value, '{lang post_copied}');" value="$boardurl?fromuid=$discuz_uid" size="50" />
+	</td></tr>
+	<tr><td>
+		{lang post_promotion_url2}<input type="text" onclick="this.select();setcopy(this.value, '{lang post_copied}');" value="$boardurl?fromuser=$discuz_user" size="50" />
+	</td></tr>
+	<tr><td>
+		<em>
+		<ul>
+		<li>{lang credit_promotion}</li>
+		<!--{if $promotion_visit}--><li>{lang credit_promotion_visit} <font color="red">$promotion_visit</font></li><!--{/if}-->
+		<!--{if $promotion_register}--><li>{lang credit_promotion_register} <font color="red">$promotion_register</font></li><!--{/if}-->
+		</ul>
+		</em>
+	</td></tr>
+</table>

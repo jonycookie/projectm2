@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=$charset" />
+<title>{lang qihoo_custom_topics} - Powered by Discuz!</title>
+<!--{if $allowcsscache}--><link rel="stylesheet" type="text/css" href="forumdata/cache/style_$styleid.css" /><!--{else}--><style type="text/css">{template css}</style><!--{/if}-->
+</head>
+
+<script type="text/javascript">
+function checkall(form, prefix, checkall) {
+	var checkall = checkall ? checkall : 'chkall';
+	for(var i = 0; i < form.elements.length; i++) {
+		var e = form.elements[i];
+		if(e.name != checkall && (!prefix || (prefix && e.name.match(prefix)))) {
+			e.checked = form.elements(checkall).checked;;
+		}
+	}
+}
+</script>
+
+<form method="post" action="misc.php?action=customtopics">
+<input type="hidden" name="formhash" value="{FORMHASH}" />
+<input type="hidden" name="keywordsubmit" value="yes" />
+<div class="mainbox">
+
+<table cellspacing="0" cellpadding="0" width="100%" align="center">
+<thead>
+<tr>
+<td><input class="checkbox" type="checkbox" name="chkall" class="header" onclick="checkall(this.form, 'delete')" />{lang delete_check}</td>
+<td>{lang qihoo_custom_topics}</td>
+</tr>
+</thead>
+<tbody>
+
+<!--{loop $customkwlist $vals}-->
+	<tr align="center">
+	<td width="8%"><input type="checkbox" name="delete[]" value="$vals[keyword]" /></td>
+	<td width="16%">$vals[url]</a></td>
+	</tr>
+<!--{/loop}-->
+
+<tr align="center">
+<td width="8%">{lang add_new}</td>
+<td width="16%"><input type="text" name="newkeyword" value="" size="25" /></td>
+</tr></tbody>
+<tr class="btns">
+<td></td>
+<td><button type="submit" class="submit" name="keywordsubmit" value="true">{lang submit}</button>&nbsp;&nbsp;<button type="submit" name="close" value="true" onClick="window.close()">{lang close}</button></td>
+
+</table></div>
+
+</form>
+{eval output();}

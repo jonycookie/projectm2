@@ -1,0 +1,174 @@
+<script type="text/javascript" src="include/javascript/viewthread.js"></script>
+<script type="text/javascript">zoomstatus = parseInt($zoomstatus);</script>
+
+<td id="main_layout1">
+
+<div id="module_topic">
+<table class="module" cellpadding="0" cellspacing="0" border="0"><tr><td class="header">
+<div class="title">
+	<!--{if $blogtopic['special'] == 1}-->
+		<a target="_blank" href="viewthread.php?tid=$tid"><img src="{IMGDIR}/pollsmall.gif" alt="{lang thread_poll}" border="0" /></a>
+	<!--{/if}-->
+	<!--{if $blogtopic['special'] == 2}-->
+		<a target="_blank" href="viewthread.php?tid=$tid"><img src="{IMGDIR}/tradesmall.gif" alt="{lang thread_trade}" border="0" /></a>
+	<!--{/if}-->
+	<!--{if $blogtopic['special'] == 3}-->
+		<!--{if $blogtopic['price'] > 0}-->
+		 	<a target="_blank" href="viewthread.php?tid=$tid"><img src="{IMGDIR}/rewardsmall.gif" alt="{lang thread_reward}" border="0" /></a>
+		<!--{elseif $blogtopic['price'] < 0}-->
+			<a target="_blank" href="viewthread.php?tid=$tid"><img src="{IMGDIR}/rewardsmallend.gif" alt="{lang thread_rewardend}" border="0" /></a>
+		<!--{/if}-->
+	<!--{/if}-->
+	<!--{if $blogtopic['special'] == 4}-->
+		<a target="_blank" href="viewthread.php?tid=$tid"><img src="{IMGDIR}/activitysmall.gif" alt="{lang thread_activity}" border="0" /></a>
+	<!--{/if}-->
+	$blogtopic[subject]
+</div>
+<div class="more">
+<a href="viewthread.php?action=printable&tid=$tid" target="_blank">{lang thread_printable}</a> |
+<a href="misc.php?action=emailfriend&tid=$tid" target="_blank">{lang thread_email_friend}</a>
+<!--{if $uid == $discuz_uid || $forum['ismoderator']}-->
+	| <a href="misc.php?action=blog&tid=$tid">{lang blog_remove}</a>
+	| <a href="post.php?action=edit&fid=$blogtopic[fid]&tid=$tid&pid=$blogtopic[pid]" target="_blank">{lang edit_post}</a>
+<!--{else}-->
+	| <a href="misc.php?action=rate&tid=$tid&pid=$blogtopic[pid]&isblog=yes" target="_blank">{lang rate}</a>
+<!--{/if}-->
+</div>
+</td></tr>
+<tr><td class="message">
+<div class="dateline">$blogtopic[dateline]</div>
+<br />
+<div style="float: right">$blogtopic[karma]</div>
+$blogtopic[message]
+<!--{if $blogtopic['attachment']}-->
+	<br /><br /><img src="images/attachicons/common.gif" alt="" />&nbsp;{lang attachment}: <i>{lang attach_nopermission}</i>
+<!--{elseif $blogtopic['attachlist']}-->
+	<br /><br /><div class="attach msgbody">
+	<div class="msgheader">
+	{lang attachment}</div><div class="msgborder" style="padding: 0px; border-bottom: 0px;">
+	$blogtopic[attachlist]
+	</div>
+	</div>
+<!--{/if}-->
+<!--{if $blogtopic['tags']}-->
+	<br /><br /><strong>{lang tag}: $blogtopic[tags]</strong>
+<!--{/if}-->
+</td></tr></table>
+</div>
+
+<div id="module_topiccomment">
+<!--{if $commentlist}-->
+	<table class="module" cellpadding="0" cellspacing="0" border="0"><tr><td class="header">
+	<div class="title">
+	{lang blog_comments}($blogtopic[replies])
+	</div>
+	</td></tr>
+	<tr><td>
+	<!--{if $multipage}-->$multipage<br /><br /><!--{/if}-->
+	<!--{loop $commentlist $comment}-->
+		<br /><div class="message">
+		<!--{if $comment['subject']}--><div class="comment_subject">$comment[subject]</div><!--{/if}-->
+
+		<!--{if $adminid != 1 && $bannedmessages && (($comment['authorid'] && !$comment['username']) || ($comment['groupid'] == 4 || $comment['groupid'] == 5))}-->
+			{lang message_banned}
+		<!--{elseif $comment['status'] == 1}-->
+			{lang message_single_banned}
+		<!--{else}-->
+			$comment[message]
+			<!--{if $comment['attachment']}-->
+				<br /><br /><img src="images/attachicons/common.gif" alt="" />&nbsp;{lang attachment}: <i>{lang attach_nopermission}</i>
+			<!--{elseif $comment['attachlist']}-->
+				<br /><br /><div class="attach msgbody">
+				<div class="msgheader">
+				{lang attachment}</div><div class="msgborder" style="padding: 0px; border-bottom: 0px;">
+				$comment[attachlist]
+				</div>
+				</div>
+			<!--{/if}-->
+		<!--{/if}-->
+		<br style="clear: both"><br />
+		<div class="author">
+		<!--{if $comment['authorid'] && $comment['username'] && !$comment['anonymous']}-->
+			<a href="space.php?uid=$comment[authorid]" class="bold" title="$comment[authortitle]{LF}{lang credits}: $comment[credits]{LF}{lang posts}: $comment[posts]{LF}{lang regtime}: $comment[regdate]">$comment[author]</a> {eval showstars($comment['stars']);}
+		<!--{else}-->
+			<!--{if !$comment['authorid']}-->
+				<span class="bold">{lang guest}</span> <span class="smalltxt">$comment[useip]</span>
+			<!--{elseif $comment['authorid'] && $comment['username'] && $comment['anonymous']}-->
+				<span class="bold">{lang anonymous}</span>
+			<!--{else}-->
+				<span class="bold">$comment[author]</span> <span class="smalltxt">{lang member_deleted}</span>
+			<!--{/if}-->
+		<!--{/if}-->
+		</div>
+		<div class="dateline">$comment[dateline]</div>
+		</div><br />
+	<!--{/loop}-->
+	<!--{if $multipage}-->$multipage<br /><br /><!--{/if}-->
+	</td></tr></table>
+<!--{/if}-->
+</div>
+
+<!--{if $allowpostreply}-->
+	<script type="text/javascript">
+	var postminchars = $minpostsize;
+	var postmaxchars = $maxpostsize;
+	var disablepostctrl = $disablepostctrl;
+	function validate(theform) {
+		if (theform.message.value == "" && theform.subject.value == "") {
+			alert("{lang post_subject_and_message_isnull}");
+			return false;
+		} else if (theform.subject.value.length > 80) {
+			alert("{lang post_subject_toolong}");
+			return false;
+		}
+		if (!disablepostctrl && ((postminchars != 0 && theform.message.value.length < postminchars) || (postmaxchars != 0 && theform.message.value.length > postmaxchars))) {
+			alert("{lang post_message_length_invalid}\n\n{lang post_curlength}: "+theform.message.value.length+" {lang bytes}\n{lang board_allowed}: "+postminchars+" {lang lento} "+postmaxchars+" {lang bytes}");
+			return false;
+		}
+		theform.replysubmit.disabled = true;
+		return true;
+	}
+	var postSubmited = false;
+	function ctlent(event) {
+		if(postSubmited == false && (event.ctrlKey && event.keyCode == 13) || (event.altKey && event.keyCode == 83) && $('postsubmit')) {
+			postSubmited = true;
+			$('postsubmit').disabled = true;
+			$('postform').submit();
+		}
+	}
+	</script>
+
+	<form id="postform" method="post" name="input" action="post.php?action=reply&fid=$fid&tid=$tid&replysubmit=yes" onSubmit="return validate(this)">
+	<input type="hidden" name="formhash" value="{FORMHASH}">
+	<input type="hidden" name="isblog" value="yes">
+	<input type="hidden" name="page" value="$page">
+	<input type="hidden" name="starttime" value="$starttime">
+	<input type="hidden" name="endtime" value="$endtime">
+
+	<table id="module_postcomment" align="center" cellpadding="0" cellspacing="0" border="0">
+	<tr><td colspan="2" class="header"><div class="reply"><a target="_blank" href="post.php?action=reply&fid=$blogtopic[fid]&tid=$tid">{lang space_adv}</a></div>{lang blog_post_comment}</td></tr>
+	<tr>
+	<th>{lang subject} ({lang optional})</th>
+	<td><input class="input" type="text" name="subject" value="" tabindex="1"></td>
+	</tr>
+	<tr>
+	<th>{lang options}<br />
+	<input class="checkbox" type="checkbox" name="parseurloff" value="1"> {lang disable} {lang post_parseurl}<br />
+	<input class="checkbox" type="checkbox" name="smileyoff" value="1"> {lang disable} {faq smilies}<br />
+	<input class="checkbox" type="checkbox" name="bbcodeoff" value="1"> {lang disable} {faq discuzcode}<br />
+	<input class="checkbox" type="checkbox" name="usesig" value="1" $usesigcheck> {lang post_show_sig}<br />
+	<input class="checkbox" type="checkbox" name="emailnotify" value="1"> {lang post_email_notify}
+	</th>
+	<td><textarea rows="7" name="message" onKeyDown="ctlent(event);" tabindex="2"></textarea><br />
+	<input class="button" type="submit" name="replysubmit" id="postsubmit" value="{lang blog_post_comment}" tabindex="3">&nbsp;&nbsp;&nbsp;
+	<input class="button" type="reset" name="topicsreset" value="{lang post_topicreset}" tabindex="4">&nbsp; &nbsp;{lang post_submit_hotkey}</td>
+	</tr></table></form>
+<!--{else}-->
+	<table id="module_postcomment" align="center">
+	<tr><td colspan="2" class="header">{lang blog_post_comment}</td></tr>
+	<tr><td>{lang blog_closed}</td></tr>
+	</table>
+<!--{/if}-->
+<div align="right"><a target="_blank" href="viewthread.php?tid=$tid">{lang space_full_version}</a></div>
+
+</td>

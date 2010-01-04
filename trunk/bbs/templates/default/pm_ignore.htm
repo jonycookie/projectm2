@@ -1,0 +1,27 @@
+<form method="post" action="pm.php?action=ignore">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<div class="mainbox formbox">
+		<h1>{lang pm_ignore}</h1>
+		<ul class="tabs">
+			<li class="sendpm"><a href="pm.php?action=send">{lang pm_send}</a></li>
+			<li><a href="pm.php?folder=inbox">{lang pm_inbox}[<span id="pm_unread">$pm_inbox_newpm</span>]</a></li>
+			<li><a href="pm.php?folder=outbox">{lang pm_outbox}</a></li>
+			<li><a href="pm.php?folder=track">{lang pm_track}</a></li>
+			<li><a href="pm.php?action=search">{lang pm_search}</a></li>
+			<li><a href="pm.php?action=archive">{lang pm_archive}</a></li>
+			<li class="current"><a href="pm.php?action=ignore">{lang pm_ignore}</a></li>
+		</ul>
+		<table summary="{lang pm_ignore}" cellspacing="0" cellpadding="0">
+			<tr>
+				<td><textarea rows="5" cols="70" id="ignorelist" name="ignorelist" style="width: 98%;">$ignorepm</textarea>
+			</td>
+			</tr>
+			<tr>
+				<td><button type="submit" class="submit" name="ignoresubmit" value="true">{lang submit}</button></td>
+			</tr>
+			<tr>
+				<td><div class="tisp">{lang pm_ignore_comment}</div></td>
+			</tr>
+		</table>
+	</div>
+</form>

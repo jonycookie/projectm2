@@ -1,0 +1,69 @@
+
+<table cellspacing="0" cellpadding="0" width="100%">
+
+<!--{if $goodsbuyer}-->
+	<thead>
+	<tr><td colspan="2">{lang my_trade_buyer_info}</td></tr>
+	</thead>
+	<tr>
+	  <th><a href="my.php?item=buytrades$extrafid&filter=trading">{lang my_trade_view_buy}</a></th>
+	  <td>
+  	      <a href="my.php?item=buytrades$extrafid">{lang my_trade_buyer_trading}</a><br />
+	<!--{if $buyerattend}-->
+	      <a href="my.php?item=buytrades$extrafid&filter=attention">{lang my_trade_need_attend_buy}</a><br />
+	      <div class="lighttxt" style="padding-left: 1em">{lang my_trade_include}:<div style="padding-left: 2em">
+		<!--{if $attendstatus[1]}-->$attendstatus[1] {lang my_trade_include_1}<br /><!--{/if}-->
+		<!--{if $attendstatus[5]}-->$attendstatus[5] {lang my_trade_include_5}<br /><!--{/if}-->
+		<!--{if $attendstatus[11]}-->$attendstatus[11] {lang my_trade_include_11}<br /><!--{/if}-->
+		<!--{if $attendstatus[12]}-->$attendstatus[12] {lang my_trade_include_12}<br /><!--{/if}-->
+	      </div></div>
+	<!--{/if}-->
+	<!--{if $eccreditbuyer}--><a href="my.php?item=buytrades$extrafid&filter=eccredit">{lang my_trade_need_buyer_eccredit}</a><!--{/if}-->	  </td>
+	</tr>
+<!--{/if}-->
+<!--{if $goodsseller}-->
+	<thead>
+	<tr><td colspan="2">{lang my_trade_seller_info}</td></tr></thead>
+	<tbody>
+		<tr><th><a href="my.php?item=tradethreads">{lang my_trade_view_thread}</a></th>
+	  <td><a href="my.php?item=tradethreads">{lang my_trade_seller_trading}</a></td>
+	</tr>
+	<tr>
+	  <th><a href="my.php?item=selltrades$extrafid&filter=trading">{lang my_trade_view_sell}</a></th>
+	  <td>
+	<!--{if $sellerattend}-->
+	      <a href="my.php?item=selltrades$extrafid&filter=attention">{lang my_trade_need_attend_sell}</a><br />
+	      <div class="lighttxt" style="padding-left: 1em">{lang my_trade_include}:<div style="padding-left: 2em">
+		<!--{if $attendstatus[2]}-->$attendstatus[2] {lang my_trade_include_2}<br /><!--{/if}-->
+		<!--{if $attendstatus[4]}-->$attendstatus[4] {lang my_trade_include_4}<br /><!--{/if}-->
+		<!--{if $attendstatus[10]}-->$attendstatus[10] {lang my_trade_include_10}<br /><!--{/if}-->
+		<!--{if $attendstatus[13]}-->$attendstatus[13] {lang my_trade_include_13}<br /><!--{/if}-->
+	      </div></div>
+	<!--{/if}-->
+	<!--{if $eccreditseller}--><a href="my.php?item=selltrades$extrafid&filter=eccredit">{lang my_trade_need_seller_eccredit}</a><!--{/if}-->
+<!--{/if}-->   </td></tr>
+	</tbody>
+
+
+<!--{if $buystats['tradesum'] || $sellstats['tradesum']}-->
+
+
+	<thead>
+	<tr><td colspan="2">{lang my_trade_stat}</td></tr>
+	</thead>
+	<tbody>
+	<tr><td colspan="2">
+	<!--{if $buystats['tradesum']}-->
+		{lang my_trade_buyer_total}: $buystats[totalitems]<br />
+		{lang my_trade_buyer_sum}: $buystats[tradesum] {lang payment_unit}<br />
+	<!--{/if}-->
+	<!--{if $sellstats['tradesum']}-->
+		{lang my_trade_seller_total}: $sellstats[totalitems]<br />
+		{lang my_trade_seller_sum}: $sellstats[tradesum] {lang payment_unit}
+	<!--{/if}-->
+	</td></tr>
+	</tbody>
+
+<!--{/if}-->
+
+</table>

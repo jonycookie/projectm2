@@ -1,0 +1,54 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; {lang eccredit}</div>
+<form method="post" action="eccredit.php?action=rate" id="postform">
+<input type="hidden" name="formhash" value="{FORMHASH}" />
+<input type="hidden" name="referer" value="$referer" />
+
+<div class="mainbox">
+<h1>{lang eccredit_post}</h1>
+<table cellspacing="0" cellpadding="0" width="100%" align="center">
+
+
+<tr>
+<th>{lang eccredit_retee}</span></th>
+<td>
+<!--{if $discuz_uid == $order[buyerid]}-->
+	<a href="space.php?action=viewpro&uid=$order[sellerid]" target="_blank">$order[seller]</a>
+<!--{else}-->
+	<a href="space.php?action=viewpro&uid=$order[buyerid]" target="_blank">$order[buyer]</a>
+<!--{/if}-->
+</td>
+</tr>
+<tr>
+<th>{lang eccredit_tradegoods}</th>
+<td><a href="redirect.php?goto=findpost&pid=$order[pid]" target="_blank">$order[subject]</a></td>
+</tr>
+
+<tr>
+<th>{lang rate}</th>
+<td>
+<input name="score" value="1" type="radio" class="radio" checked />
+<font color="#ff0000"><img src="images/rank/good.gif" border="0" width="14" height="16"> <strong>{lang eccredit_good}</strong><!--{if !$order[offline]}-->{lang eccredit_good_comment}<!--{/if}--></font>&nbsp;&nbsp;
+<input name="score" value="0" type="radio" class="radio">
+<font color="green"><img src="images/rank/soso.gif" border="0" width="14" height="16"> <strong>{lang eccredit_soso}</strong><!--{if !$order[offline]}-->{lang eccredit_soso_comment}<!--{/if}--></font>&nbsp;&nbsp;
+<input name="score" value="-1" type="radio" class="radio">
+<img src="images/rank/bad.gif" border="0" width="14" height="16"> <strong>{lang eccredit_bad}</strong><!--{if !$order[offline]}-->{lang eccredit_bad_comment}<!--{/if}-->
+<!--{if $order['offline']}-->&nbsp;&nbsp;({lang eccredit_offline})<!--{/if}--></td></tr>
+
+<tr>
+<th>{lang eccredit1}</span></th>
+<td><textarea name="message" rows="5" cols="67" maxlength="50"></textarea></td>
+</tr>
+<tr class="btns">
+<th></th>
+<td>
+<input type="hidden" name="orderid" value="$orderid">
+<input type="hidden" name="type" value="$type">
+<button type="submit" class="submit" id="postsubmit" name="ratesubmit" value="true">{lang submit}</button>{lang post_submit_hotkey}
+</td>
+</tr>
+</table></div>
+
+</form>
+
+{template footer}

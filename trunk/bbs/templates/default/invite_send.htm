@@ -1,0 +1,43 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> &raquo; <a href="invite.php">{lang invite}</a> &raquo; {lang invite_send}</div>
+<div class="container">
+	<div class="content">
+		<form method="post" action="invite.php?action=sendinvite">
+			<input type="hidden" name="formhash" value="{FORMHASH}" />
+			<input type="hidden" name="invitecode" value="$invitecode" />
+			<div class="mainbox formbox">
+				<h1>{lang emailinvite}</h1>
+				<table summary="{lang emailinvite}" cellspacing="0" cellpadding="0">
+					<tr>
+						<th><label for="fromname">{lang emailfriend_your_name}</label></th>
+						<td><input type="text" name="fromname" id="fromname" size="25" maxlength="40" value="$discuz_userss" /></td>
+					</tr>
+					
+					<tr>
+						<th><label for="fromemail">{lang emailfriend_your_email}</label></th>
+						<td><input type="text" name="fromemail" id="fromemail" size="25" value="$email" /></td>
+					</tr>
+					
+					<tr>
+						<th><label for="sendtoname">{lang emailfriend_receiver_name}</label></th>
+						<td><input type="text" name="sendtoname" id="sendtoname" size="25" /></td>
+					</tr>
+					<tr>
+						<th><label for="sendtoemail">{lang emailfriend_receiver_email}</label></th>
+						<td><input type="text" name="sendtoemail" id="sendtoemail" size="25" /></td>
+					</tr>
+					<tr>
+						<th valign="top"><label for="message">{lang message}</label></th>
+						<td><textarea cols="70" rows="8" name="message" id="message" style="width: 98%;">{lang emailinvite_message}</textarea></td>
+					</tr>
+					<tr>
+						<th>&nbsp;</th>
+						<td><button type="submit" class="submit" name="sendsubmit" value="sendsubmit">{lang send}</button></td>
+					</tr>
+				</table>
+			</div>
+		</form>
+	</div>
+	<div class="side">{template personal_navbar}</div>
+</div>
+{template footer}

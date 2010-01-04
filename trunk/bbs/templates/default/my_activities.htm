@@ -1,0 +1,69 @@
+<div class="msgtabs">
+
+<!--{if $type == 'orig'}-->
+	<strong> {lang my_activity_orig} &#8212; <!--{if $ended == ''}-->{lang my_activities_all}<!--{elseif $ended == 'no'}-->{lang my_activities_noexpiration}<!--{elseif $ended == 'yes'}-->{lang my_activities_expiration}<!--{/if}--></strong>
+<!--{elseif $type == 'apply'}-->
+	<strong>{lang my_activity_apply} &#8212; <!--{if $ended == ''}-->{lang my_activities_all}<!--{elseif $ended == 'no'}-->{lang my_activities_noexpiration}<!--{elseif $ended == 'yes'}-->{lang my_activities_expiration}<!--{/if}--></strong>
+<!--{/if}-->
+</div>
+
+
+
+
+
+
+<table cellspacing="0" cellpadding="0" width="100%" align="center">
+<!--{if $type == 'orig'}-->
+		<thead>
+		<tr>
+		<td>{lang activity_name}</td>
+		<td>{lang activity_starttime}</td>
+		<td>{lang activity_space}</td>
+		<td>{lang activity_payment}</td>
+		<td>{lang my_activities_stop_stauts}</td>
+		</tr>
+		</thead>
+		
+		<tbody>
+		<!--{if $activity}-->
+			<!--{loop $activity $value}-->
+				<tr>
+				<td><!--{if $thread['displayorder'] >= 0}--><a href="viewthread.php?tid=$value['tid']" target="_black">$value[subject]</a><!--{else}-->$value[subject]<!--{/if}--></td>
+				<td>$value[starttimefrom]</td>
+				<td>$value[place]</td>
+				<td>$value[cost]</td>
+				<td><!--{if $value['expiration']}-->{lang my_activities_stop_stauts_yes}<!--{else}-->{lang my_activities_stop_stauts_no}<!--{/if}--></td>
+				</tr>
+			<!--{/loop}-->
+		<!--{else}-->
+			<tr><td>{lang my_activity_nonexistence}</td></tr>
+		<!--{/if}-->
+		</tbody>
+<!--{else}-->
+	<thead>
+	<tr>
+	<td>{lang activity_name}</td>
+	<td>{lang activity_starttime}</td>
+	<td>{lang activity_space}</td>
+	<td>{lang activity_payment}</td>
+	<td>{lang activity_confirm_status}</td>
+	</tr>
+	</thead>
+	
+	<tbody>
+	<!--{if $activity}-->
+		<!--{loop $activity $value}-->
+			<tr>
+			<td><!--{if $thread['displayorder'] >= 0}--><a href="viewthread.php?tid=$value['tid']" target="_black">$value[subject]</a><!--{else}-->$value[subject]<!--{/if}--></td>
+			<td>$value[starttimefrom]</td>
+			<td>$value[place]</td>
+			<td>$value[cost]</td>
+			<td><!--{if $value['verified']}-->{lang activity_confirm_status_yes}<!--{else}-->{lang activity_confirm_status_no}<!--{/if}--></td>
+			</tr>
+		<!--{/loop}-->
+	<!--{else}-->
+		<tr><td colspan="5">{lang my_activity_nonexistence}</td></tr>
+	<!--{/if}-->
+	</tbody>
+<!--{/if}-->
+</table>

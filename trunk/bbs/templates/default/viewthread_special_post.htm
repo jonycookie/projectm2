@@ -1,0 +1,84 @@
+{template header}
+
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+<div class="box specialpostcontainer">
+	<ul class="tabs">
+		<li class="current">
+		<!--{if $thread['special'] == 1 || $thread['special'] == 6}-->
+			<a href="viewthread.php?fid=$fid&tid=$tid&do=viewspecialpost" onclick="ajaxget(this.href, 'ajaxspecialpost', 'specialposts');doane(event);">{lang special_tab_poll}</a>
+		<!--{elseif $thread['special'] == 3}-->
+			<a href="viewthread.php?fid=$fid&tid=$tid&do=viewspecialpost" onclick="ajaxget(this.href, 'ajaxspecialpost', 'specialposts');doane(event);">{lang special_tab_reward}</a>
+		<!--{elseif $thread['special'] == 4}-->
+			<a href="viewthread.php?fid=$fid&tid=$tid&do=viewspecialpost" onclick="ajaxget(this.href, 'ajaxspecialpost', 'specialposts');doane(event);">{lang special_tab_activity}</a>
+			</li><li><a href="misc.php?action=activityapplylist&tid=$tid" onclick="ajaxget(this.href, 'ajaxspecialpost', 'specialposts');doane(event);">{lang activity_join_list}</a>
+		<!--{/if}-->
+		</li>
+	</ul>
+
+	<form method="post" name="modactions">
+		<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+		<!--{if !empty($postlist)}-->
+			<!--{loop $postlist $post}-->
+				<div class="specialpost">
+					<div class="postinfo">
+						<h2>
+							<!--{if $post['authorid'] && $post['username'] && $post['anonymous']}-->
+								<!--{if $forum['ismoderator']}-->
+									<a class="dropmenu" style="font-weight: normal;" href="space.php?uid=$post[authorid]" target="_blank" onclick="ajaxmenu(event, this.id, 0, '', 1, 3, 0)" id="author_$post[pid]">{lang anonymous}</a>
+								<!--{else}-->
+									<span style="font-size: 12px;">{lang anonymous}</span>
+								<!--{/if}-->
+							<!--{else}-->
+								<a class="dropmenu" style="font-weight: normal;" href="space.php?uid=$post[authorid]" target="_blank" onclick="ajaxmenu(event, this.id, 0, '', 1, 3, 0)" id="author_$post[pid]">$post[author]</a>
+							<!--{/if}-->
+							$post[dateline]
+						</h2>
+						<strong title="{lang post_copylink}" onclick="setcopy('{$boardurl}viewthread.php?tid=$tid&amp;page=$page$fromuid#pid$post[pid]', '{lang post_copied}')"><!--{if !empty($postno[$post[number]+1])}-->{echo $postno[$post[number]+1]}<!--{else}-->{$post[number]}{$postno[0]}<!--{/if}--></strong>
+						<!--{if $thread['special'] == 3 && ($forum['ismoderator'] || $thread['authorid'] == $discuz_uid) && $discuz_uid != $post['authorid'] && $post['authorid'] != $thread['authorid'] && $post['first'] == 0 && $thread['price'] > 0}-->
+							<label onclick="setanswer($post['pid'])">{lang reward_set_bestanswer}</label>
+						<!--{/if}-->
+						<!--{if ($forum['ismoderator'] && $alloweditpost && !(in_array($post['adminid'], array(1, 2, 3)) && $adminid > $post['adminid'])) || ($forum['alloweditpost'] && $discuz_uid && $post['authorid'] == $discuz_uid)}--><a href="post.php?action=edit&amp;fid=$fid&amp;tid=$tid&amp;pid=$post[pid]&amp;page=$page&amp;extra=$extra">{lang edit}</a><!--{/if}-->
+						<!--{if $allowpostreply}--><a href="post.php?action=reply&amp;fid=$fid&amp;tid=$tid&amp;repquote=$post[pid]&amp;extra=$extra&amp;page=$page">{lang reply_quote}</a><!--{/if}-->
+						<!--{if $forum['ismoderator'] && $allowdelpost}--><input class="checkbox" type="checkbox" name="topiclist[]" value="$post[pid]" /><!--{/if}-->
+					</div>
+					<div class="postmessage">
+						<!--{if !empty($post[subject])}--><h2>$post[subject]</h2><!--{/if}-->
+						<!--{if $adminid != 1 && $bannedmessages && (($post['authorid'] && !$post['username']) || ($post['groupid'] == 4 || $post['groupid'] == 5))}-->
+							<div class="notice" style="width: 500px">{lang message_banned}</div>
+						<!--{elseif $adminid != 1 && $post['status'] == 1}-->
+							<div class="notice" style="width: 500px">{lang message_single_banned}</div>
+						<!--{else}-->
+							<!--{if isset($trades[$post[pid]])}-->
+								<!--{eval tradeinfo($trades[$post[pid]]);}-->
+								</td></tr>
+								<tr class="speciallist"><td colspan="2" style="border-top: 1px solid {INNERBORDERCOLOR}">
+							<!--{/if}-->
+							<div class="t_msgfont">$post[message]</div>
+							<!--{if $post['attachment']}-->
+								<div class="notice postattach">{lang attachment}: <em>{lang attach_nopermission}</em></div>
+							<!--{elseif $hideattach[$post[pid]] && $post['attachments']}-->
+								<div class="notice postattach">{lang attachment}: <em>{lang attachment_reply_show}</em></div>
+							<!--{elseif $post['attachlist']}-->
+								<div class="box postattachlist">
+									<h4>{lang attachment}</h4>
+									$post[attachlist]
+								</div>
+							<!--{/if}-->
+
+						<!--{/if}-->
+					</div>
+				</div>
+			<!--{/loop}-->
+		<!--{else}-->
+			<div class="specialpost"><div class="postmessage">
+				{lang none}
+			</div></div>
+		<!--{/if}-->
+
+	</form>
+</div>
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+
+
+{template footer}

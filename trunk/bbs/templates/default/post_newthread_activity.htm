@@ -1,0 +1,231 @@
+{template header}
+
+<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; {lang post_newthread_activity}</div>
+
+<script type="text/javascript" src="include/javascript/calendar.js"></script>
+<script type="text/javascript">
+var postminchars = parseInt('$minpostsize');
+var postmaxchars = parseInt('$maxpostsize');
+var disablepostctrl = parseInt('$disablepostctrl');
+var typerequired = parseInt('$forum[threadtypes][required]');
+var bbinsert = parseInt('$bbinsert');
+var seccodecheck = parseInt('$seccodecheck');
+var secqaacheck = parseInt('$secqaacheck');
+var special = 4;
+var isfirstpost = 1;
+var allowposttrade = parseInt('$allowposttrade');
+var allowpostreward = parseInt('$allowpostreward');
+var allowpostactivity = parseInt('$allowpostactivity');
+lang['board_allowed'] = '{lang board_allowed}';
+lang['lento'] = '{lang lento}';
+lang['bytes'] = '{lang bytes}';
+lang['post_curlength'] = '{lang post_curlength}';
+lang['post_subject_and_message_isnull'] = '{lang post_subject_and_message_isnull}';
+lang['post_subject_toolong'] = '{lang post_subject_toolong}';
+lang['post_message_length_invalid'] = '{lang post_message_length_invalid}';
+lang['post_type_isnull'] = '{lang post_type_isnull}';
+lang['post_activity_sort_null'] = '{lang post_activity_sort_null}';
+lang['post_activity_fromtime_null'] = '{lang post_activity_fromtime_null}';
+lang['post_activity_addr_null'] = '{lang post_activity_addr_null}';
+</script>
+
+{template post_preview}
+
+<form method="post" id="postform" action="post.php?action=newthread&fid=$fid&extra=$extra&topicsubmit=yes" $enctype>
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+<input type="hidden" name="isblog" value="$isblog" />
+<input type="hidden" name="special" value="4" />
+
+<div class="mainbox formbox">
+<span class="headactions"><a href="member.php?action=credits&view=forum_post&fid=$fid" target="_blank">{lang credits_policy_view}</a></span>
+<h1>{lang post_newthread_activity}</h1>
+<table summary="{lang post_newthread_activity}" cellspacing="0" cellpadding="0">
+
+			<thead>
+				<tr>
+					<th>{lang username}</th>
+					<td>
+						<!--{if $discuz_uid}-->
+							$discuz_userss [<a href="$link_logout">{lang member_logout}</a>]
+						<!--{else}-->
+							{lang guest} [<a href="$link_login">{lang member_login}</a>]
+						<!--{/if}-->
+					</td>
+				</tr>
+			</thead>
+
+<!--{if $seccodecheck}-->
+	<tr>
+		<th><label for="seccodeverify">{lang seccode}</label></th>
+		<td>
+			<div id="seccodeimage"></div>
+			<input type="text" onfocus="updateseccode();this.onfocus = null" id="seccodeverify" name="seccodeverify" size="8" maxlength="4" tabindex="1" />
+			<em class="tips"><strong>{lang seccode_click}</strong> <!--{if $seccodedata['type'] == 2}-->{lang seccode_animator_flashrefresh}<!--{elseif $seccodedata['animator'] == 1}-->{lang seccode_animator_refresh}<!--{else}-->{lang seccode_refresh}<!--{/if}--></em></td>
+			<script type="text/javascript">
+				var seccodedata = [{$seccodedata['width']}, {$seccodedata['height']}, {$seccodedata['type']}];
+			</script>
+	</tr>
+<!--{/if}-->
+<!--{if $secqaacheck}-->
+	<tr><th><span class="bold">{lang secqaa}</span></td>
+	<td><div id="secquestion"></div><input type="text" name="secanswer" id="secanswer" size="25" maxlength="50" tabindex="2" />
+	<script type="text/javascript">
+	<!--{if ($attackevasive & 1) && $seccodecheck}-->
+		setTimeout("ajaxget('ajax.php?action=updatesecqaa&inajax=1', 'secquestion')", 2001);
+	<!--{else}-->
+		ajaxget('ajax.php?action=updatesecqaa&inajax=1', 'secquestion');
+	<!--{/if}-->
+	</script></td>
+	</tr>
+<!--{/if}-->
+	<thead>
+		<tr>
+			<th>{lang activity_info}</th>
+			<td>&nbsp;</td>
+		</tr>
+	</thead>
+
+	<tr>
+		<th><label for="subject">{lang activity_name}</label></th>
+		<td>
+			<!--{if $iscircle && $mycircles}-->
+				<select name='sgid'>
+					<option value="0">{lang circle_select_please}</option>
+					<!--{loop $mycircles $id $name}-->
+					<option value="$id">$name</option>
+					<!--{/loop}-->
+				</select>
+			<!--{else}-->
+				$typeselect
+			<!--{/if}-->
+			<input type="text" name="subject" id="subject" size="45" value="$subject" tabindex="3" />
+		</td>
+	</tr>
+
+	<tr>
+		<th><label for="activityclass">{lang activiy_sort}</label></th>
+		<td>
+			<!--{if $activitytypelist}-->
+				<select onchange="this.form.activityclass.value=this.value" tabindex="4">
+					<option value=""></option>
+				<!--{loop $activitytypelist $type}-->
+					<option value="$type">$type</option>
+				<!--{/loop}-->
+				</select>
+			<!--{/if}-->
+			<input type="text" size="29" maxlength="45" id="activityclass" name="activityclass" tabindex="4" />
+		</td>
+	</tr>
+
+	<tr>
+		<th>{lang activity_starttime}</th>
+		<td>
+			<p><label><input class="radio" type="radio" value="0" name="activitytime" onclick="$('certainstarttime').style.display='';$('uncertainstarttime').style.display='none';" checked="checked" tabindex="5" />{lang activity_specific_time}</label>
+			<label><input class="radio" type="radio" value="1" name="activitytime" onclick="$('certainstarttime').style.display='none';$('uncertainstarttime').style.display=''"  tabindex="5" />{lang activity_bound_time}</label></p>
+			<span id="certainstarttime"><input onclick="showcalendar(event, this, true)" type="text" name="starttimefrom[0]" id="starttimefrom_0" size="15" value="" tabindex="5" /></span>
+			<span id="uncertainstarttime" style="display: none"> <input onclick="showcalendar(event, this, true)" type="text" name="starttimefrom[1]" id="starttimefrom_1" size="20" value="" tabindex="5" /> - <input onclick="showcalendar(event, this, true)" type="text" name="starttimeto" size="20" value="" tabindex="5" /></span>
+			<em class="tips">{lang sample}:<!--{echo date("Y-m-d H:i", $timestamp + 86400)}--></em>
+		</td>
+	</tr>
+
+	<tr>
+		<th><label for="activityplace">{lang activity_space}</label></th>
+		<td><input type="text" size="45" name="activityplace" id="activityplace" tabindex="6" /></td>
+	</tr>
+	<tr>
+		<th><label for="cost">{lang activity_payment}</label></td>
+		<td><input onkeyup="checkvalue(this.value, 'costmessage')" type="text" name="cost" id="cost" size="8" value="0" tabindex="7" /> {lang payment_unit} <span id="costmessage"></span></td>
+	</tr>
+
+<tr>
+{template post_editor}
+</tr>
+
+<!--{if $tagstatus}-->
+	<tr>
+		<th><label for="tags">{lang post_tag}</label></th>
+		<td>
+			<input size="45" type="input" id="tags" name="tags" value="" tabindex="200" />&nbsp;
+			<button onclick="relatekw();return false">{lang searchtags}</button><span id="tagselect"></span>
+			<em class="tips">{lang tag_comment}</em>
+		</td>
+	</tr>
+<!--{/if}-->
+<thead>
+<tr>
+<td colspan="2">{lang activity_info_ext}</td>
+</tr>
+</thead>
+<tr>
+<th><label for="activitycity">{lang activity_city}({lang optional_info})</label></th>
+<td>
+<input type="text" size="45" maxlength="45" name="activitycity" id="activitycity" tabindex="201">
+</td>
+</tr>
+
+<tr>
+<th><label for="activitynumber">{lang activity_need_member}({lang optional_info})</label></th>
+<td><input onkeyup="checkvalue(this.value, 'activitynumbermessage')" type="text" name="activitynumber" id="activitynumber" size="45" value="" tabindex="202" /> <span id="activitynumbermessage"></span></td>
+</tr>
+<script type="text/javascript">
+	function checkvalue(value, message){
+		if(!value.search(/^\d+$/)) {
+			$(message).innerHTML = '';
+		} else {
+			$(message).innerHTML = '<b>{lang input_invalid}</b>';
+		}
+	}
+</script>
+<tr>
+<th>{lang gender}</th>
+<td>
+<label><input type="radio" name="gender" value="0" tabindex="203" checked />{lang unlimited}</label>
+<label><input type="radio" name="gender" value="1" tabindex="204" />{lang male}</label>
+<label><input type="radio" name="gender" value="2" tabindex="205" />{lang female}</label></td>
+</tr>
+<tr>
+<th><label for="activityexpiration">{lang activity_totime}({lang optional_info})</label></th>
+<td><input onclick="showcalendar(event, this, true)" type="text" name="activityexpiration" id="activityexpiration" size="45" value="" tabindex="206" /> <em class="tips">{lang sample}:<!--{echo date("Y-m-d H:i", $timestamp + 86400)}--></em></td>
+</tr>
+<thead>
+<tr>
+<td colspan="2">{lang post_otherinfo}<input id="advshow" type="checkbox" onclick="showadv()" tabindex="207" /></td>
+</tr>
+</thead>
+<tbody id="adv" style="display: none">
+<!--{if $allowsetreadperm}-->
+	<tr>
+	<th><label for="readperm">{lang readperm_thread}</label></th>
+	<td><input type="text" name="readperm" id="readperm" size="6" value="$readperm" tabindex="208" /> <em class="tips">({lang post_zero_is_nopermission})</em></td>
+	</tr>
+<!--{/if}-->
+
+</tbody>
+
+<tr class="btns">
+	<th>&nbsp;</th>
+	<td>
+		<input type="hidden" name="wysiwyg" id="{$editorid}_mode" value="$editormode" />
+		<button type="submit" class="submit" name="topicsubmit" id="postsubmit" value="true" tabindex="300">{lang post_newthread_activity}</button>
+		<em>{lang post_submit_hotkey}</em>&nbsp;&nbsp;
+		&nbsp;<a href="###" id="restoredata" onclick="loadData()" title="{lang post_autosave_last_restore}">{lang post_autosave_restore}</a>
+	</td>
+</tr>
+</table></div>
+</div>
+
+</form>
+
+{template post_js}
+
+<script type="text/javascript">
+	function showadv() {
+		if($("advshow").checked == true) {
+			$("adv").style.display = "";
+		} else {
+			$("adv").style.display = "none";
+		}
+	}
+</script>
+
+{template footer}

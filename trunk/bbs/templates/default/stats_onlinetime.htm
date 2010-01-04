@@ -1,0 +1,23 @@
+{template header}
+	<div id="nav"><a href="$indexname">$bbname</a> &raquo; <a href="stats.php">{lang stats}</a> &raquo; {lang stats_onlinetime}</div>
+	<div class="container">
+		<div class="side">
+			{template stats_navbar}
+		</div>
+		<div class="content">
+			<div class="mainbox">
+				<h1>{lang stats_onlinetime}</h1>
+				<table summary="{lang stats_onlinetime}" cellpadding="0" cellspacing="0">
+					<thead>
+						<tr>
+							<td colspan="2">{lang stats_onlinetime_total}</td>
+							<td colspan="2">{lang stats_onlinetime_thismonth}</td>
+						</tr>
+					</thead>
+					$onlines
+				</table>
+			</div>
+			<div class="notice">{lang stats_update}</div>
+		</div>
+	</div>
+{template footer}

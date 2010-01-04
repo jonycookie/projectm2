@@ -1,0 +1,185 @@
+<!--{if !$iscircle || !empty($frombbs)}-->{template header}<!--{else}-->{template supesite_header}<!--{/if}-->
+
+<script type="text/javascript" src="include/javascript/viewthread.js"></script>
+<script type="text/javascript">zoomstatus = parseInt($zoomstatus);</script>
+
+<div id="foruminfo">
+	<div id="nav">
+		<!--{if $forumjump && $jsmenu[1]}--><a href="$indexname" id="forumlist" onmouseover="showMenu(this.id)" class="dropmenu">$bbname</a><!--{else}--><a href="$indexname">$bbname</a><!--{/if}--> $navigation
+	</div>
+	<div id="headsearch">
+	<!--{if !empty($google) && ($google & 4)}-->
+		<script type="text/javascript" src="forumdata/cache/google_var.js"></script>
+		<script type="text/javascript" src="include/javascript/google.js"></script>
+	<!--{/if}-->
+	<!--{if !empty($qihoo['status']) && $searchboxstatus}-->
+		<form method="post" action="search.php?srchtype=qihoo" onSubmit="this.target='_blank';">
+			<input type="hidden" name="searchsubmit" value="yes" />
+			<input type="text" name="srchtxt" value="$qihoo_searchboxtxt" size="27" class="input" style="{BGCODE}" onmouseover="this.focus();this.value='';this.onmouseover=null;" onfocus="this.select()" />
+			&nbsp;<button type="submit">{lang search}</button>
+		</form>
+	<!--{/if}-->
+	</div>
+</div>
+
+<div id="ad_text"></div>
+
+<!--{if !empty($newpmexists) || $announcepm}-->
+	<div class="maintable" id="pmprompt">
+	{template pmprompt}
+	</div>
+<!--{/if}-->
+<div class="pages_btns">
+
+	<div class="threadflow"><a href="redirect.php?fid=$fid&amp;tid=$tid&amp;goto=nextoldset"> &lsaquo;&lsaquo; {lang last_thread}</a> | <a href="redirect.php?fid=$fid&amp;tid=$tid&amp;goto=nextnewset">{lang next_thread} &rsaquo;&rsaquo;</a></div>
+
+	<!--{if $allowpost || !$discuz_uid}-->
+		<span class="postbtn" id="newspecialheader" onmouseover="showMenu(this.id)"><a href="post.php?action=newthread&amp;fid=$fid&amp;extra=$extra"><img src="{IMGDIR}/newtopic.gif" border="0" alt="{lang post_newthread}" title="{lang post_newthread}" /></a></span>
+	<!--{/if}-->
+	<!--{if $allowpostreply || !$discuz_uid}--><span class="replybtn"><a href="post.php?action=reply&amp;fid=$fid&amp;tid=$tid&amp;extra=$extra"><img src="{IMGDIR}/reply.gif" border="0" alt="" /></a></span><!--{/if}-->
+</div>
+
+		<!--{if $allowposttrade || $allowpostpoll || $allowpostreward || $allowpostactivity || $allowpostdebate || $allowpostvideo || $forum['threadtypes'] || !$discuz_uid}-->
+			<ul class="popupmenu_popup newspecialmenu" id="newspecialheader_menu" style="display: none">
+				<!--{if !$forum['allowspecialonly']}--><li><a href="post.php?action=newthread&amp;fid=$fid&amp;extra=$extra">{lang post_newthread}</a></li><!--{/if}-->
+				<!--{if $allowpostpoll || !$discuz_uid}--><li class="poll"><a href="post.php?action=newthread&amp;fid=$fid&amp;extra=$extra&amp;special=1">{lang post_newthreadpoll}</a></li><!--{/if}-->
+				<!--{if $allowposttrade || !$discuz_uid}--><li class="trade"><a href="post.php?action=newthread&amp;fid=$fid&amp;extra=$extra&amp;special=2">{lang post_newthreadtrade}</a></li><!--{/if}-->
+				<!--{if $allowpostreward || !$discuz_uid}--><li class="reward"><a href="post.php?action=newthread&amp;fid=$fid&amp;extra=$extra&amp;special=3">{lang post_newthreadreward}</a></li><!--{/if}-->
+				<!--{if $allowpostactivity || !$discuz_uid}--><li class="activity"><a href="post.php?action=newthread&amp;fid=$fid&amp;extra=$extra&amp;special=4">{lang post_newthreadactivity}</a></li><!--{/if}-->
+				<!--{if $allowpostdebate || !$discuz_uid}--><li class="debate"><a href="post.php?action=newthread&amp;fid=$fid&amp;extra=$extra&amp;special=5">{lang post_newthreaddebate}</a></li><!--{/if}-->
+				<!--{if $allowpostvideo || !$discuz_uid}--><li class="video"><a href="post.php?action=newthread&amp;fid=$fid&amp;extra=$extra&amp;special=6">{lang post_newthreadvideo}</a></li><!--{/if}-->
+				<!--{if $forum['threadtypes'] && !$forum['allowspecialonly']}-->
+					<!--{loop $forum['threadtypes']['types'] $typeid $threadtypes}-->
+						<!--{if $forum['threadtypes']['special'][$typeid] && $forum['threadtypes']['show'][$typeid]}-->
+							<li class="popupmenu_option"><a href="post.php?action=newthread&amp;fid=$fid&amp;extra=$extra&amp;typeid=$typeid">$threadtypes</a></li>
+						<!--{/if}-->
+					<!--{/loop}-->
+					<!--{loop $forum['typemodels'] $id $model}-->
+						<li class="popupmenu_option"><a href="post.php?action=newthread&amp;fid=$fid&amp;extra=$extra&amp;modelid=$id">$model[name]</a></li>
+					<!--{/loop}-->
+				<!--{/if}-->
+			</ul>
+		<!--{/if}-->
+
+<!--{if $highlightstatus}--><a href="viewthread.php?tid=$tid&amp;page=$page" style="font-weight: normal">{lang disable_highlight}</a><!--{/if}-->
+
+<div class="mainbox viewthread specialthread">
+	<div class="headactions">
+		<!--{if $discuz_uid}-->
+			<a href="misc.php?action=emailfriend&amp;tid=$tid" id="emailfriend" onclick="ajaxmenu(event, this.id, 9000000, '', 0)">{lang thread_email_friend}</a>
+			<a href="my.php?item=subscriptions&amp;subadd=$tid" id="ajax_subscription" onclick="ajaxmenu(event, this.id)">{lang thread_subscribe}</a>
+			<a href="my.php?item=favorites&amp;tid=$tid" id="ajax_favorite" onclick="ajaxmenu(event, this.id)">{lang thread_favorite}</a>
+		<!--{/if}-->
+		<!--{if $supe['status'] && $xspacestatus && $thread['authorid'] == $discuz_uid}-->
+			<!--{if !$thread['itemid']}-->
+				<a href="$supe[siteurl]/spacecp.php?action=spaceblogs&amp;op=add&amp;tid=$tid" target="_blank">{lang supe_join_xspace}</a>
+			<!--{else}-->
+				<a href="$supe[siteurl]/index.php?action/viewspace/itemid/$thread[itemid]/fromdiscuz/$supe_fromdiscuz" target="_blank">{lang supe_view_in_xspace}</a>
+			<!--{/if}-->
+			<a href="$supe[siteurl]/spacecp.php?action=spacenews&op=add&tid=$tid" target="_blank">{lang supe_resource_add}</a>
+		<!--{elseif $spacestatus && $thread['authorid'] && ($thread['authorid'] == $discuz_uid || $forum['ismoderator'])}-->
+			<!--{if $thread['blog']}-->
+				<a href="misc.php?action=blog&amp;tid=$tid" id="ajax_blog" onclick="ajaxmenu(event, this.id, 2000, 'changestatus', 0)">{lang blog_remove}</a>
+			<!--{elseif $allowuseblog && $forum['allowshare'] && $thread['authorid'] == $discuz_uid}-->
+				<a href="misc.php?action=blog&amp;tid=$tid" id="ajax_blog" onclick="ajaxmenu(event, this.id, 2000, 'changestatus', 0)">{lang blog_add}</a>
+			<!--{/if}-->
+			<script type="text/javascript">
+				function changestatus(obj) {
+					obj.innerHTML = obj.innerHTML == '{lang blog_remove}' ? '{lang blog_add}' : '{lang blog_remove}';
+				}
+			</script>
+		<!--{/if}-->
+	</div>
+	<h6>{lang special_video}</h6>
+
+	<!--{if $lastmod['modaction'] || $thread['blog'] || $thread['readperm'] || $thread[itemid] || $lastmod['magicname']}-->
+		<ins>
+		<!--{if $thread[itemid]}-->
+			<a href="$supe[siteurl]/index.php?action/viewspace/itemid/$thread[itemid]" target="_blank"><span class="bold" style="margin-right:20px;">{lang supe_thread_already_been_join_to_xspace}</span></a>
+		<!--{/if}-->
+		<!--{if $lastmod['modaction']}-->&nbsp; <a href="misc.php?action=viewthreadmod&amp;tid=$tid" title="{lang thread_mod}" target="_blank">{lang thread_mod_by}</a>&nbsp;<!--{/if}-->
+		<!--{if $spacestatus && $thread['blog']}-->&nbsp; <a href="space.php?$thread[authorid]/myblogs" target="_blank">{lang thread_blog}</a> &nbsp;<!--{/if}-->
+		<!--{if $thread['readperm']}-->&nbsp; {lang readperm_thread} <span class="bold">$thread[readperm]</span> &nbsp;<!--{/if}-->
+		<!--{if $lastmod['magicname']}-->&nbsp; <a href="misc.php?action=viewthreadmod&amp;tid=$tid" title="{lang thread_mod}" target="_blank">{lang magics_logs}</a>&nbsp;<!--{/if}-->
+		</ins>
+	<!--{/if}-->
+
+	<table summary="" cellspacing="0" cellpadding="0">
+		<tr>
+			<td class="postcontent">
+				<h1>$thread[subject]</h1>
+				<div class="postmessage">
+					<!--{if !empty($post[ratings])}--><span class="postratings"><a href="misc.php?action=viewratings&amp;tid=$tid&amp;pid=$pid" title="{lang rate} $post[rate]">$post[ratings]</a></span><!--{/if}-->
+					{eval $playurl = "http://union.bokecc.com/flash/discuz2/player.swf?siteid=$vsiteid&vid=$vid&tid=$tid&pid=$pid&autoStart=$vautoplay&referer=".urlencode($boardurl."viewthread.php?tid=$tid");}
+					{eval $shareplayurl = "http://union.bokecc.com/flash/discuz2/player.swf?siteid=$vsiteid&vid=$vid";}
+					<div style="text-align: center; margin-bottom: 1em;">
+					<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="object_flash_player" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" height="373" width="438">
+					<param name="movie" value='$playurl'>
+					<param name="quality" value="high">
+					<param name="allowScriptAccess" value="always">
+					<param name="allowFullScreen" value="true">
+					<embed src='$playurl' allowScriptAccess="always" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" allowfullscreen="true" height="373" width="438">
+					</object>
+					</div>
+					$post[message]
+					<!--{if $post['attachment']}-->
+						<div class="notice postattach">{lang attachment}: <em>{lang attach_nopermission}</em></div>
+					<!--{elseif $hideattach[$post[pid]] && $post['attachments']}-->
+						<div class="notice postattach">{lang attachment}: <em>{lang attachment_reply_show}</em></div>
+					<!--{elseif $postlist[$pid]['attachlist']}-->
+						<div class="box postattachlist">
+							<h4>{lang attachment}</h4>
+							{$postlist[$pid][attachlist]}						</div>
+					<!--{/if}-->
+
+					<!--{if $thread['tags'] || $relatedkeywords}-->
+						<p class="posttags">{lang thread_keywords}
+						<!--{if $thread['tags']}-->$thread[tags]<!--{/if}-->
+						<!--{if $relatedkeywords}--><span class="postkeywords">$relatedkeywords</span><!--{/if}-->
+						</p>
+					<!--{/if}-->
+				</div>
+			</td>
+			<td class="postauthor">
+				$post[avatar]
+				<dl>
+					<dt>{lang special_author}</dt><dd><a href="space.php?username=$post[author]" target="_blank">$post[author]</a></dd>
+					<dt>$post[authortitle]</dt><dd>&nbsp;</dd>
+					<dt>{eval showstars($post['stars']);}</dt><dd>&nbsp;</dd>
+					<dt>{lang special_starttime}</dt><dd>$thread[starttime]</dd>
+				</dl>
+			<!--{if $post['msn'] || $post['qq'] || $post['icq'] || $post['yahoo'] || $post['taobao']}-->
+			<p class="imicons">
+				<!--{if $post['msn']}--><a href="javascript:;" onclick="msnoperate('add', '$post[msn]')" title="{lang msn_add}"><img src="{IMGDIR}/msnadd.gif" alt="{lang msn_add}" /></a>
+					<a href="javascript:;" onclick="msnoperate('chat', '$post[msn]')" title="{lang msn_chat}"><img src="{IMGDIR}/msnchat.gif" alt="{lang msn_chat}" /></a><!--{/if}-->
+				<!--{if $post['qq']}--><a href="http://wpa.qq.com/msgrd?V=1&amp;Uin=$post[qq]&amp;Site=$bbname&amp;Menu=yes" target="_blank"><img src="{IMGDIR}/qq.gif" alt="QQ" /></a><!--{/if}-->
+				<!--{if $post['icq']}--><a href="http://wwp.icq.com/scripts/search.dll?to=$post[icq]" target="_blank"><img src="{IMGDIR}/icq.gif" alt="ICQ" /></a><!--{/if}-->
+				<!--{if $post['yahoo']}--><a href="http://edit.yahoo.com/config/send_webmesg?.target=$post[yahoo]&.src=pg" target="_blank"><img src="{IMGDIR}/yahoo.gif" alt="Yahoo!"  /></a><!--{/if}-->
+				<!--{if $post['taobao']}--><script type="text/javascript">document.write('<a target="_blank" href="http://amos1.taobao.com/msg.ww?v=2&uid='+encodeURIComponent('$post[taobaoas]')+'&s=2"><img src="{IMGDIR}/taobao.gif" alt="{lang taobao}" /></a>');</script><!--{/if}-->
+			</p>
+			<!--{/if}-->
+				<!--{if $customauthorinfo[3]}--><dl class="profile">{eval @eval('echo "'.$customauthorinfo[3].'";');}</dl><!--{/if}-->
+			<dl style="padding-top:15px;padding-left:3px">
+				{lang video_playurl}<a href="###" onclick="playurl.select('');setcopy(playurl.value, '{lang playurl_copied}');">[{lang copy}]</a><br /><input type="text" id="playurl" value="{$boardurl}viewthread.php?tid=$tid" size="28" onclick="this.select();setcopy(this.value, '{lang playurl_copied}');"><br />
+				{lang video_shareurl}<a href="###" onclick="shareurl.select('');setcopy(shareurl.value, '{lang shareurl_copied}');">[{lang copy}]</a><br /><input type="text" id="shareurl" value="[video=$vautoplay]$vid[/video]" size="28" onclick="this.select();setcopy(this.value, '{lang shareurl_copied}');"><br />
+				{lang video_flashurl}<a href="###" onclick="flashurl.select('');setcopy(flashurl.value, '{lang flashurl_copied}');">[{lang copy}]</a><br /><input type="text" id="flashurl" value="$shareplayurl" size="28" onclick="this.select();setcopy(this.value, '{lang flashurl_copied}');"></dl>
+			</td>
+		</tr>
+		<tr>
+		  <td class="postcontent">
+				<p class="postactions">
+					<!--{if $forum['ismoderator'] || $thread[authorid] == $discuz_uid}--><a href="post.php?action=edit&amp;fid=$fid&amp;tid=$tid&amp;pid=$post[pid]&amp;page=$page&amp;extra=$extra">{lang edit}</a>&nbsp;&nbsp;<!--{/if}-->
+					<!--{if $raterange && $post['authorid']}-->&nbsp;<a href="misc.php?action=rate&amp;tid=$tid&amp;pid=$post[pid]&amp;page=$page" id="ajax_rate_$post[pid]" onclick="ajaxmenu(event, this.id, 9000000, '', 0)">{lang rate}</a>&nbsp;&nbsp;<!--{/if}-->
+					<!--{if $discuz_uid && $magicstatus}--><a href="magic.php?action=user&amp;pid=$post[pid]" target="_blank">{lang magics_use}</a><!--{/if}-->
+				</p>		  </td>
+	      <td class="postauthor">&nbsp;</td>
+	  </tr>
+	</table>
+</div>
+
+<!--{if $admode && empty($insenz['hardadstatus']) && !empty($advlist['interthread']) && $thread['replies']}--><div class="ad_column" id="ad_interthread">$advlist[interthread]</div><!--{else}--><div id="ad_interthread"></div><!--{/if}-->
+
+<div id="ajaxspecialpost"></div>
+<script type="text/javascript">ajaxget('viewthread.php?fid=$fid&tid=$tid&do=viewspecialpost&page=$page', 'ajaxspecialpost');</script>
+
+{template viewthread_fastreply}

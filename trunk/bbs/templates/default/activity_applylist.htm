@@ -1,0 +1,61 @@
+{template header}
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+<div class="box">
+	<ul class="tabs">
+		<li><a href="viewthread.php?fid=$fid&amp;tid=$tid&amp;do=viewspecialpost" onclick="ajaxget(this.href, 'ajaxspecialpost', 'ajaxspecialpost');doane(event);">{lang special_tab_activity}</a></li>
+		<li class="current"><a href="misc.php?action=activityapplylist&amp;tid=$tid" onclick="ajaxget(this.href, 'ajaxspecialpost', 'ajaxspecialpost');doane(event);">{lang activity_join_list}</a></li>
+	</ul>
+
+	<form id="applylistform" method="post" action="misc.php?action=activityapplylist&amp;tid=$tid">
+		<input type="hidden" name="formhash" value="{FORMHASH}" />
+		<input type="hidden" name="operation" value="" />
+
+		<!--{if !empty($applylist)}-->
+			<table summary="Apply List" cellspacing="0" cellpadding="5">
+				<thead>
+					<tr>
+						<!--{if $thread['authorid'] == $discuz_uid}--><td>&nbsp;</td><!--{/if}-->
+						<td>{lang activity_join_members}</td>
+						<!--{if $thread['authorid'] == $discuz_uid}--><td>{lang activity_linkman}</td><!--{/if}-->
+						<td>{lang leaveword}</td>
+						<td>{lang activity_payment}</td>
+						<td>{lang activity_jointime}</td>
+						<!--{if $thread['authorid'] == $discuz_uid}--><td>{lang status}</td><!--{/if}-->
+					</tr>
+				</thead>
+				<!--{loop $applylist $apply}-->
+					<tr>
+						<!--{if $thread['authorid'] == $discuz_uid}-->
+							<td><input class="checkbox" type="checkbox" name="applyidarray[]" value="$apply[applyid]" /></td>
+						<!--{/if}-->
+						<td><a target="_blank" href="space.php?uid=$apply[uid]">$apply[username]</a></td>
+						<!--{if $thread['authorid'] == $discuz_uid}-->
+							<td>$apply[contact]</td>
+						<!--{/if}-->
+						<td>$apply[message]</td>
+						<td><!--{if $apply[payment] >= 0}-->$apply[payment] {lang payment_unit}<!--{else}-->{lang activity_self}<!--{/if}--></td>
+						<td>$apply[dateline]</td>
+						<!--{if $thread['authorid'] == $discuz_uid}-->
+							<td><!--{if $apply[verified]}-->{lang activity_allow_join}<!--{else}-->{lang activity_cant_audit}<!--{/if}--></td>
+						<!--{/if}-->
+					</tr>
+				<!--{/loop}-->
+			</table>
+			<!--{if $thread['authorid'] == $discuz_uid}-->
+				<div class="footoperation">
+					<label><input class="checkbox header" type="checkbox" name="chkall" onclick="checkall(this.form, 'applyid')" /> {lang checkall}</label>&nbsp;&nbsp;
+					<button type="submit" value="true" name="applylistsubmit" onclick="$('applylistform').operation.value='delete'">{lang delete}</button>&nbsp;&nbsp;
+					<button class="submit" type="submit" value="true" name="applylistsubmit">{lang confirm}</button>
+				</div>
+			<!--{/if}-->
+		<!--{else}-->
+			<div class="specialpost">
+				{lang none}
+			</div>
+		<!--{/if}-->
+
+	</form>
+</div>
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+
+{template footer}

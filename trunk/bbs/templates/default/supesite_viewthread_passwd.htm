@@ -1,0 +1,15 @@
+{template supesite_header}
+<div class="msglist" style="margin-top: 10px;">
+	<h3 class="topblock"><a href="$supe[siteurl]/?action_mygroup_gid_$sgid">$circle[groupname]</a> &raquo; <a href="$supe[siteurl]/?action_mygroup_gid_{$sgid}_op_list_type_bbs">{lang circle_bbs}</a> $navigation</h3>
+</div>
+
+<form method="post" action="viewthread.php?tid=$tid&action=pwverify">
+<input type="hidden" name="formhash" value="{FORMHASH}">
+
+<div class="block" style="width: 500px; margin: 1em auto; padding-bottom: 2em;">
+	<h3><strong>{lang password}</strong></h3>
+	<p>{lang circle_input_password}</p>
+	<p style="text-align: center;"><input type="password" name="pw" size="25"> <input class="button" type="submit" name="loginsubmit" value="{lang submit}"></p>
+</div>
+</form>
+{template supesite_footer}

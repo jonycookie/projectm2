@@ -1,0 +1,44 @@
+{template header}
+<div id="nav">
+<a href="$indexname">$bbname</a> &raquo; {lang blog_search}
+</div>
+
+<div class="pages_btns">
+$multipage
+</div>
+<div class="mainbox formbox">
+<h1>{lang blog_search}</h1>
+<table cellspacing="0" cellpadding="0" width="100%" align="center" style="table-layout: fixed; word-wrap: break-word">
+<thead>
+<tr>
+<td>{lang subject}</td>
+<td>{lang author}</td>
+<td class="time">{lang time}</td>
+<td>{lang blog_category}</td>
+<td>{lang blog_comments}</td>
+<td>{lang views}</td>
+</tr>
+</thead>
+<tbody>
+<!--{if $threadlist}-->
+	<!--{loop $threadlist $thread}-->
+		<tr>
+		<td>
+		$thread['attachment']<a href="blog.php?tid=$thread[tid]" target="_blank" $thread[highlight]>$thread[subject]</a></td>
+		<td><!--{if $thread['authorid']}--><a href="space.php?uid=$thread[authorid]">$thread[author]</a><!--{else}-->{lang guest}<!--{/if}--></td>
+		<td><em class="tips">$thread[dateline]</em></td>
+		<td><a href="blog.php?uid=$thread[authorid]&fid=$thread[fid]">$thread[forumname]</a></td>
+		<td>$thread[replies]</td>
+		<td>$thread[views]</td>
+		</tr>
+	<!--{/loop}-->
+<!--{else}-->
+	<tr><td colspan="6">{lang search_nomatch}</td></tr>
+<!--{/if}-->
+</tbody>
+</table>
+</div>
+<div class="pages_btns">
+$multipage
+</div>
+{template footer}

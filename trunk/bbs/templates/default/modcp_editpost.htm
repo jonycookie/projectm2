@@ -1,0 +1,58 @@
+{template header}
+
+<!--{if $action == 'editsubject'}-->
+
+	<input type="text" id="subject_$tid" name="subject_$tid" value="$forum[subject]" size="60" maxlength="80" ondblclick="doane(event)" />
+
+	<script type="text/javascript" reload="1">
+	$('subject_$tid').focus();
+	$('subject_$tid').onblur = function() {
+		ajaxget('modcp.php?action=editsubject&tid=$tid&editsubjectsubmit=yes&subjectnew=' + (is_ie && document.charset == 'utf-8' ? encodeURIComponent($('subject_$tid').value) : $('subject_$tid').value), 'thread_$tid', 'thread_$tid', '{lang ajax_post}');
+	}
+	$('subject_$tid').onkeydown = function(e) {
+		e = e ? e : window.event;
+		actualCode = e.keyCode ? e.keyCode : e.charCode;
+		if(actualCode == 13) {
+			ajaxget('modcp.php?action=editsubject&tid=$tid&editsubjectsubmit=yes&subjectnew=' + (is_ie && document.charset == 'utf-8' ? encodeURIComponent($('subject_$tid').value) : $('subject_$tid').value), 'thread_$tid', 'thread_$tid', '{lang ajax_post}');
+			doane(e);
+		} else if(actualCode == 27) {
+			ajaxget('modcp.php?action=editsubject&tid=$tid&editsubjectsubmit=yes&subjectnew=' + (is_ie && document.charset == 'utf-8' ? encodeURIComponent($('subject_$tid').value) : $('subject_$tid').value), 'thread_$tid', 'thread_$tid', '{lang ajax_post}');
+			
+		}
+	}
+	</script>
+
+<!--{elseif $action == 'editmessage'}-->
+
+	<textarea type="text" id="message_$pid" name="message_$pid" style="width: 80%; height: 200px; overflow: visible" ondblclick="doane(event)">$orig[message]</textarea>
+	<p style="margin: 5px; text-align: center;">
+		<button type="button" value="true" class="submit" onclick="submitmessage('$pid');this.disabled=true">{lang submit}</button>&nbsp;&nbsp;
+		<button type="button" class="submit" onclick="ajaxget('modcp.php?action=editmessage&pid=$pid&tid=$tid&editmessagesubmit=yes&inajax=1&do=notupdate', 'postmessage_$pid')">{lang cancel}</button>
+	</p>
+	<script type="text/javascript">
+
+	$('message_$pid').focus();
+	function submitmessage(pid) {
+		//debug avoid memory leak.
+		if(!$('messageform_'+pid)) {
+			var messageform = document.createElement("form");
+			messageform.id = 'messageform_'+pid;
+			messageform.method = 'post';
+			messageform.action = 'modcp.php?action=editmessage&pid='+pid+'&tid=$tid&editmessagesubmit=yes&inajax=1';
+			var messageforminput = document.createElement('input');
+			messageforminput.id= 'messageforminput_'+pid;
+			messageforminput.type= 'hidden';
+			messageforminput.name = 'message';
+			messageforminput.value = $('message_'+pid).value;
+			messageform.appendChild(messageforminput);
+			document.body.appendChild(messageform);
+		} else {
+			$('messageforminput_'+pid).value = $('message_'+pid).value;
+		}
+		ajaxpost('messageform_'+pid, 'postmessage_'+pid);
+	}
+
+	</script>
+
+<!--{/if}-->
+{template footer}

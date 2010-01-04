@@ -1,0 +1,29 @@
+<div class="mainbox viewthread">
+	<h1>$pm[subject]</h1>
+	<table summary="Read PM" cellspacing="0" cellpadding="0">
+		<tr>
+			<td class="postcontent">
+				<p class="postinfo">
+					{lang time}:$pm[dateline],&nbsp;
+					{lang from}:<!--{if !$announcepm}--><!--{if $pm[msgfromid]}--><a href="space.php?uid=$pm[msgfromid]">$pm[msgfrom]</a><!--{else}-->{lang pm_systemmessage}<!--{/if}--><!--{else}-->{lang pm_announce}<!--{/if}-->,&nbsp;
+					{lang to}:<a href="space.php?uid=$pm[msgtoid]">$pm[msgto]</a>
+				</p>
+				<div class="postmessage">$pm[message]</div>
+				<p class="postactions">
+					<a href="###" onclick="history.go(-1);">{lang return}</a>
+					<!--{if !$announcepm}-->
+						<!--{if $folder == 'inbox' && $pm[msgfromid]}-->
+							 - <a href="pm.php?action=send&pmid=$pmid&do=reply">{lang reply}</a>
+						<!--{/if}-->
+						 - <a href="pm.php?action=send&pmid=$pmid&do=forward">{lang forward}</a>
+						<!--{if $folder == 'inbox'}--> - <a href="pm.php?action=markunread&pmid=$pmid" id="ajax_markunread_$pmid" onclick="ajaxmenu(event, this.id)">{lang pm_mark_unread}</a><!--{/if}-->
+						 - <a href="pm.php?action=archive&pmid=$pmid">{lang download}</a>
+						 - <a href="pm.php?action=delete&folder=$folder&pmid=$pmid">{lang delete}</a>
+					<!--{else}-->
+						- <a href="pm.php?action=announcearchive&pmid=$pmid">{lang download}</a>
+					<!--{/if}-->
+				</p>
+			</td>
+		</tr>
+	</table>
+</div>

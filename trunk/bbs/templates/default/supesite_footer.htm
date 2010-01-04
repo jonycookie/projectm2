@@ -1,0 +1,27 @@
+	<!--{if !empty($jsmenu) && (empty($bbclosed) || $adminid == 1)}-->{template jsmenu}<!--{/if}-->
+	<!--{if $admode && empty($insenz['hardadstatus']) && !empty($advlist)}-->
+		<div class="ad_footerbanner" id="ad_footerbanner1">$advlist[footerbanner1]</div><div class="ad_footerbanner" id="ad_footerbanner2">$advlist[footerbanner2]</div><div class="ad_footerbanner" id="ad_footerbanner3">$advlist[footerbanner3]</div>
+	<!--{else}-->
+		<div id="ad_footerbanner1"></div><div id="ad_footerbanner2"></div><div id="ad_footerbanner3"></div>
+	<!--{/if}-->
+	<!-- Footer -->
+	<div id="footer">
+		<p id="footmenu">
+			<a href="$supe[siteurl]" target="_self">$supe[sitename]</a> | 
+			<a href="$supe[siteurl]/?action_site_type_panel" target="_self">{lang supe_cpanel}</a> | 
+			<a href="$supe[siteurl]/?action_site_type_map" target="_self">{lang supe_sitemap}</a> | 
+			<a href="$supe[siteurl]/?action_site_type_link" target="_self">{lang supe_friendlinks}</a> | 
+			<a href="mailto:$adminemail" target="_self">{lang contactus}</a></p>
+		<p id="copyright">
+			Powered by <a href="http://www.supesite.com" target="_blank"><strong>Supe<span>Site</span></strong></a> &amp; <strong><a href="http://www.discuz.net" target="_blank"><span>Discuz!</span></a></strong> <em>$version</em>
+			&copy; 2001-2007 <a href="http://www.comsenz.com" target="_blank">Comsenz Inc.</a>
+			{eval updatesession();}
+			<!--{if debuginfo()}-->
+				<br /><span id="debuginfo">Processed in $debuginfo[time] second(s), $debuginfo[queries] queries<!--{if $gzipcompress}-->, Gzip enabled<!--{/if}--></span>
+			<!--{/if}-->
+		</p>
+	</div>
+	<!-- /Footer -->
+</div>
+{eval output();}
+</body></html>

@@ -1,0 +1,116 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> &raquo; {lang digest}</div>
+
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+
+<div class="mainbox threadlist">
+	<h1>{lang digest}</h1>
+	<table summary="{lang digest}" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<td class="icon">&nbsp;</td>
+				<th>{lang subject}</th>
+				<td lang="forum">{lang forum}</td>
+				<td class="author">{lang author}</td>
+				<td class="nums">{lang replies}/{lang views}</td>
+				<td class="lastpost">{lang lastpost}</td>
+			</tr>
+		</thead>
+		<!--{loop $threadlist $thread}-->
+		<tbody>
+			<tr>
+				<td class="icon">
+					<!--{if $thread['special'] == 1}-->
+						<img src="{IMGDIR}/pollsmall.gif" alt="{lang thread_poll}" />
+					<!--{elseif $thread['special'] == 2}-->
+						<img src="{IMGDIR}/tradesmall.gif" alt="{lang thread_trade}" />
+					<!--{elseif $thread['special'] == 3}-->
+						<!--{if $thread['price'] > 0}-->
+							<img src="{IMGDIR}/rewardsmall.gif" alt="{lang thread_reward}" />
+						<!--{elseif $thread['price'] < 0}-->
+							<img src="{IMGDIR}/rewardsmallend.gif" alt="{lang thread_rewardend}" />
+						<!--{/if}-->
+					<!--{elseif $thread['special'] == 4}-->
+						<img src="{IMGDIR}/activitysmall.gif" alt="{lang thread_activity}" />
+					<!--{elseif $thread['special'] == 5}-->
+						<img src="{IMGDIR}/debatesmall.gif" alt="{lang thread_debate}" />
+					<!--{elseif $thread['special'] == 6}-->
+						<img src="{IMGDIR}/videosmall.gif" alt="{lang thread_video}" />
+					<!--{else}-->
+						$thread['icon']
+					<!--{/if}-->
+				</td>
+				<th>
+				<label>
+				<!--{if $thread['special'] == 1}-->
+					<img src="{IMGDIR}/pollsmall.gif" alt="{lang thread_poll}" />
+				<!--{/if}-->
+				<!--{if $thread['special'] == 2}-->
+					<img src="{IMGDIR}/tradesmall.gif" alt="{lang thread_trade}" />
+				<!--{/if}-->
+				<!--{if $thread['special'] == 3}-->
+					<!--{if $thread['price'] > 0}-->
+						<img src="{IMGDIR}/rewardsmall.gif" alt="{lang thread_reward}" />
+					<!--{elseif $thread['special'] == '3' && $thread['price'] < 0}-->
+						<img src="{IMGDIR}/rewardsmallend.gif" alt="{lang thread_rewardend}" />
+					<!--{/if}-->
+				<!--{/if}-->
+				<!--{if $thread['special'] == 4}-->
+					<img src="{IMGDIR}/activitysmall.gif" alt="{lang thread_activity}" />
+				<!--{/if}-->
+				<!--{if $thread['attachment']}-->
+					<img src="images/attachicons/common.gif" alt="{lang attachment}" />
+				<!--{/if}-->
+				<!--{if $thread['displayorder']}-->
+					<img src="{IMGDIR}/pin_$thread[displayorder].gif" alt="{lang thread_stick}<!--{if $thread['displayorder'] == 3}-->$threadsticky[0]<!--{elseif $thread['displayorder'] == 2}-->$threadsticky[1]<!--{elseif $thread['displayorder'] == 1}-->$threadsticky[2]<!--{/if}-->" />
+				<!--{/if}-->
+				<!--{if $thread['digest']}-->
+					<img src="{IMGDIR}/digest_$thread[digest].gif" alt="{lang thread_digest} $thread[digest]" />
+				<!--{/if}-->
+				</label>
+				<a href="viewthread.php?tid=$thread[tid]&highlight=$index[keywords]" target="_blank" $thread[highlight]>$thread[subject]</a>
+				<!--{if $thread[multipage]}--><span class="threadpages">$thread[multipage]</span><!--{/if}-->
+				</th>
+				<td class="forum"><a href="forumdisplay.php?fid=$thread[fid]">$thread[forumname]</a></td>
+				<td class="author">
+				<cite><!--{if $thread['authorid']}--><a href="space.php?uid=$thread[authorid]">$thread[author]</a><!--{else}-->{lang anonymous}<!--{/if}--></cite>
+				<em>$thread[dateline]</em>
+				</td>
+				<td class="nums"><strong>$thread[replies]</strong> / <em>$thread[views]</em></td>
+				<td class="lastpost">
+					<em><a href="redirect.php?tid=$thread[tid]&goto=lastpost&highlight=$index[keywords]#lastpost">$thread[lastpost]</a></em>
+					<cite><!--{if $thread['lastposter']}--><a href="space.php?username=$thread[lastposterenc]">$thread[lastposter]</a><!--{else}-->{lang anonymous}<!--{/if}--></cite>
+				</td>
+			</tr>
+		</tbody>
+		<!--{/loop}-->
+	</table>
+</div>
+
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+
+<form method="post" action="digest.php">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<div class="box">
+		<h4>{lang digest_forum}</h4>
+		<ul class="userlist">
+			<!--{loop $forumlist $key $forum}-->
+				<li><label><input class="checkbox" type="checkbox" name="forums[]" value="$forum[fid]" $forumcheck[$forum[fid]] /> $forum[name]</label></li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<div id="footfilter" class="box">
+		<label>{lang keyword}: <input type="text" size="15" name="keyword" value="$keyword" /></label>
+		&nbsp;&nbsp;<label>{lang author}: <input type="text" size="15" name="author" value="$author" /></label>
+		&nbsp;&nbsp;<label>{lang orderby}: <select name="order">
+			<option value="digest" $ordercheck[digest]>{lang level}</option>
+			<option value="replies" $ordercheck[replies]>{lang replies}</option>
+			<option value="views" $ordercheck[views]>{lang views}</option>
+			<option value="dateline" $ordercheck[dateline]>{lang dateline}</option>
+			<option value="lastpost" $ordercheck[lastpost]>{lang lastpost}</option>
+		</select></label>
+		&nbsp;&nbsp; <button class="submit" type="submit" value="true">{lang search}</button>
+	</div>
+</form>
+
+{template footer}

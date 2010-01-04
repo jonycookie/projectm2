@@ -1,0 +1,42 @@
+{template header}
+<div id="nav">
+<a href="$indexname">$bbname</a> $navigation &raquo;
+{lang admin_copy}
+</div>
+
+<form method="post" action="topicadmin.php?action=copy" id="postform">
+<input type="hidden" name="formhash" value="{FORMHASH}" />
+<input type="hidden" name="fid" value="$fid" />
+<input type="hidden" name="referer" value="$referer" />
+<input type="hidden" name="tid" value="$tid" />
+
+<div class="mainbox formbox">
+<h1>{lang admin_copy}</h1>
+<table cellspacing="0" cellpadding="0" width="100%">
+
+
+<tr>
+<th>{lang username}</th>
+<td>$discuz_userss <em class="tips">[<a href="$link_logout">{lang member_logout}</a>]</em></td>
+</tr>
+
+<tr>
+<th>{lang admin_copy}</th>
+<td><select name="copyto">
+$forumselect
+</select></td>
+</tr>
+{template topicadmin_reason}
+
+<tr class="btns">
+<th>&nbsp;</th>
+<td>
+
+<button class="submit" type="submit" name="copysubmit" id="postsubmit" value="true">{lang submit}</button> {lang post_submit_hotkey}
+</td>
+</tr>
+
+
+</table></div>
+</form>
+{template footer}

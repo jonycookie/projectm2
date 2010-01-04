@@ -1,0 +1,47 @@
+
+<div class="box" id="pmprompt">
+	<!--{if $pmsound}--><bgsound src="images/sound/pm_$pmsound.wav" /><!--{/if}-->
+	<span class="headactions">
+		<a href="pm.php" target="_blank">{lang pm_new_detail}</a>
+		<!--{if $newpm}--><a href="pm.php?action=noprompt" onclick="ajaxget(this.href, 'pmprompt', null, null, 'none');doane(event);">{lang pm_new_ignore}</a><!--{/if}-->
+	</span>
+	<h4>{lang pm_new_youhave}<!--{if $newpmnum}-->{lang pm_new}&nbsp;<!--{/if}--><!--{if $announcepm}-->{lang pm_newannounce}<!--{/if}--></h4>
+	<table summary="New PM" cellspacing="0" cellpadding="5">
+
+	<!--{if $pmlist}-->
+	<!--{loop $pmlist $pm}-->
+		<tbody id="pmrow_$pm[pmid]">
+			<tr>
+				<td width="13%" nowrap valign="top">
+					<span class="bold">{lang from}: </span><!--{if !empty($pm['announce'])}-->{lang pm_announce}<!--{elseif $pm[msgfromid]}--><a href="space.php?uid=$pm[msgfromid]">$pm[msgfrom]</a><!--{else}-->{lang pm_systemmessage}<!--{/if}-->
+				</td>
+				<td>
+					<span class="bold" nowrap>{lang subject}:</span>
+					<!--{if !empty($pm['announce'])}-->
+						<a href="pm.php?action=view&folder=announce&pmid=$pm[pmid]&pmprompt=yes" target="_blank" onclick="ajaxget(this.href, 'pm_$pm[pmid]', null, null, '', 'hidelastpm($pm[pmid])');doane(event);">$pm[subject]</a>
+					<!--{else}-->
+						<a href="pm.php?action=view&pmid=$pm[pmid]&pmprompt=yes" target="_blank" onclick="ajaxget(this.href, 'pm_$pm[pmid]', null, null, '', 'hidelastpm($pm[pmid])');doane(event);">$pm[subject]</a>
+					<!--{/if}-->
+					<div id="pm_$pm[pmid]" style="display: none">
+						$pm[content]
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	<!--{/loop}-->
+	<!--{/if}-->
+
+	</table>
+</div>
+
+<script type="text/javascript">
+
+lastpmid = null;
+function hidelastpm(pmid) {
+	if(lastpmid && lastpmid != pmid) {
+		changedisplay($('pm_'+lastpmid), 'none');
+	}
+	lastpmid = pmid;
+}
+
+</script>

@@ -1,0 +1,143 @@
+<!--{eval
+function userinfo($member) {
+global $spacelanguage, $spacesettings, $uid;
+}-->
+
+	<table class="module" cellpadding="0" cellspacing="0" border="0"><tr><td class="header"><div class="title">$spacelanguage[userinfo]</div></td></tr>
+	<tr><td>
+	<div id="module_userinfo">
+		<div class="status">{lang status}: <span><!--{if $member[online]}-->{lang online}<!--{else}-->{lang offline}<!--{/if}--></span></div>
+		<div class="info">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="table-layout: fixed; overflow: hidden">
+		<tr><td align="center">
+		<!--{if $member[avatar]}-->
+			<img src="$member[avatar]" width="$member[avatarwidth]" height="$member[avatarheight]" border="0" alt="" />
+		<!--{else}-->
+			<img src="images/avatars/noavatar.gif" alt="" />
+		<!--{/if}-->
+		</td></tr></table></div>
+		<div class="username">$member[username]<!--{if $member[nickname]}--><br />$member[nickname]<!--{/if}--></div>
+		<div class="operation">
+		<img src="mspace/$spacesettings[style]/sendmail.gif" alt="" /><a target="_blank" href="pm.php?action=send&uid=$member[uid]">{lang send_pm}</a>
+		<img src="mspace/$spacesettings[style]/buddy.gif" alt="" /><a target="_blank" href="my.php?item=buddylist&newbuddyid=$member[uid]&buddysubmit=yes" id="ajax_buddy" onclick="ajaxmenu(event, this.id)">{lang add_to_buddylist}</a>
+		</div>
+		<!--{if $member['bio']}-->
+		<div class="more">
+		<br />$member[bio]
+		</div>
+		<!--{/if}-->
+	</div>
+	</td></tr></table>
+
+<!--{eval
+}
+}-->
+
+<!--{if $spacesettings['side'] != 2}-->
+	<td id="main_layout0"><!--{eval userinfo($member)}--></td>
+<!--{/if}-->
+
+<td id="main_layout1">
+<div id="module_userdetails">
+
+<table class="module" cellpadding="0" cellspacing="0" border="0"><tr><td class="header">
+<div class="title">{lang space_userdetails}</div>
+<div class="more">
+<!--{if $member[uid] == $discuz_uid}-->
+	<a href="memcp.php?action=profile" target="_blank">{lang memcp_profile}</a>
+<!--{/if}-->
+<a href="eccredit.php?uid=$member[uid]" target="_blank">{lang trade_rate}</a>
+<!--{if $allowmagics && $magicstatus}-->
+	<a href="magic.php?action=user&username=$member[usernameenc]" target="_blank">{lang magics_use}</a>
+<!--{/if}-->
+<a href="search.php?srchuid=$member[uid]&srchfid=all&srchfrom=0&searchsubmit=yes">{lang search_posts}</a>
+<!--{if $allowedituser || $allowbanuser}-->
+	<!--{if $adminid == 1}-->
+		<a href="admincp.php?action=members&username=$member[usernameenc]&searchsubmit=yes&frames=yes" target="_blank">{lang edit_member}</a>
+	<!--{else}-->
+		<a href="admincp.php?action=editmember&uid=$member[uid]&membersubmit=yes&frames=yes" target="_blank">{lang edit_member}</a>
+	<!--{/if}-->
+	<a href="admincp.php?action=banmember&uid=$member[uid]&membersubmit=yes&frames=yes" target="_blank">{lang ban_member}</a>
+<!--{/if}-->
+<!--{if $member['adminid'] > 0 && $modworkstatus}-->
+	<a href="stats.php?type=modworks&uid=$member[uid]">{lang moderations}</a>
+<!--{/if}-->
+</div>
+</td></tr>
+</table>
+
+<table class="info" border="0" cellspacing="0" cellpadding="{TABLESPACE}" width="100%">
+<tr><th>{lang uid}:</th><td>$member[uid]</td></tr>
+<tr><th>{lang regdate}:</th><td>$member[regdate]</td></tr>
+<!--{if $allowviewip}-->
+	<tr><th>{lang regip}:</th><td>$member[regip] $member[regiplocation]</td></tr>
+	<tr><th>{lang lastip}:</th><td>$member[lastip] $member[lastiplocation]</td></tr>
+<!--{/if}-->
+<tr><th>{lang lastvisit}:</th><td><!--{if $member['invisible'] && $adminid != 1}-->{lang login_invisible_mode}<!--{else}-->$member[lastvisit]<!--{/if}--></td></tr>
+<tr><th>{lang lastpost}:</th><td>$member[lastpost]</td></tr>
+<!--{if $pvfrequence}-->
+	<tr><th>{lang pageviews}:</th><td>$member[pageviews]</td></tr>
+<!--{/if}-->
+<!--{if $oltimespan}-->
+	<tr><th valign="top">{lang onlinetime}:</th><td>{lang onlinetime_total} <span class="bold">$member[totalol]</span> {lang hours}, {lang onlinetime_thismonth} <span class="bold">$member[thismonthol]</span> {lang hours} {eval showstars(ceil(($member['totalol'] + 1) / 50));}<br />{lang onlinetime_upgrade}</td></tr>
+<!--{/if}-->
+<!--{if $modforums}-->
+	<tr><th>{lang moderator}:</th><td>$modforums</td></tr>
+<!--{/if}-->
+<tr><td colspan="2"><hr class="line" size="0"></td></tr>
+<!--{if $member['medals']}-->
+	<tr><th>{lang medals}:</th><td>
+	<!--{loop $member['medals'] $medal}-->
+		<img src="images/common/$medal[image]" border="0" alt="$medal[name]" /> &nbsp;
+	<!--{/loop}-->
+	</td></tr>
+<!--{/if}-->
+<tr><th valign="top">{lang usergroup}:</th><td>$member[grouptitle] {eval showstars($member['groupstars']);}<!--{if $member['maingroupexpiry']}--><br /><span class="smalltxt">{lang valid_before} $member[maingroupexpiry]</span><!--{/if}--></td></tr>
+<!--{if $extgrouplist}-->
+	<tr><th valign="top">{lang extgroups}:</th><td>
+	<!--{loop $extgrouplist $extgroup}-->
+		$extgroup[title]<!--{if $extgroup['expiry']}-->&nbsp;({lang valid_before} $extgroup[expiry])<!--{/if}--><br />
+	<!--{/loop}-->
+	</td></tr>
+<!--{/if}-->
+<tr><th>{lang rank}:</th><td>$member[ranktitle] {eval showstars($member['rankstars']);}</td></tr>
+<tr><th>{lang readperm}:</th><td>$member[readaccess]</td></tr>
+<tr><th>{lang credits}:</th><td>$member[credits]</td></tr>
+<!--{loop $extcredits $id $credit}-->
+	<tr><th>$credit[title]:</th><td>{$member[extcredits.$id]} $credit[unit]</td></tr>
+<!--{/loop}-->
+<tr><th>{lang posts}:</th><td>$member[posts] ({lang post_percent} $percent%)</td></tr>
+<tr><th>{lang posts_per_day}:</th><td>$postperday {lang posts}</td></tr>
+<tr><th>{lang digestposts}:</th><td>$member[digestposts] {lang posts}</td></tr>
+<tr><td colspan="2"><hr class="line" size="0"></td></tr>
+<tr><th>{lang gender}:</th><td><!--{if $member['gender'] == 1}-->{lang male}<!--{elseif $member['gender'] == 2}-->{lang female}<!--{else}-->{lang secret}<!--{/if}--></td></tr>
+<!--{if $member['location']}--><tr><th>{lang location}:</th><td>$member[location]&nbsp;</td></tr><!--{/if}-->
+<tr><th>{lang birthday}:</th><td>$member[bday]</td></tr>
+<!--{if $member['site']}--><tr><th>{lang homepage}: </th><td><a href="$member[site]" target="_blank">$member[site]</a></td></tr><!--{/if}-->
+<!--{if $member['showemail']}--><tr><th>Email: </th><td>$member[email]</td></tr><!--{/if}-->
+<!--{if $member['qq']}--><tr><th>QQ: </th><td><a href="http://wpa.qq.com/msgrd?V=1&Uin=$member[qq]&Site=$bbname&Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:$member[qq]:4"  border="0" alt="QQ" />$member[qq]</a></td></tr><!--{/if}-->
+<!--{if $member['icq']}--><tr><th>ICQ: </th><td>$member[icq]</td></tr><!--{/if}-->
+<!--{if $member['yahoo']}--><tr><th>Yahoo: </th><td>$member[yahoo]</td></tr><!--{/if}-->
+<!--{if $member['msn']}--><tr><th>MSN: </th><td>$member[msn]</td></tr><!--{/if}-->
+<!--{if $member['taobao']}--><tr><th>{lang taobao}: </th><td><script type="text/javascript">document.write('<a target="_blank" href="http://amos1.taobao.com/msg.ww?v=2&uid='+encodeURIComponent('$member[taobaoas]')+'&s=2"><img src="http://amos1.taobao.com/online.ww?v=2&uid='+encodeURIComponent('$member[taobaoas]')+'&s=1" alt="{lang taobao}" border="0" /></a>');</script></td></tr><!--{/if}-->
+<!--{if $member['alipay']}--><tr><th>{lang alipay}: </th><td><a href="https://www.alipay.com/payto:$member[alipay]?partner=20880020258585430156" target="_blank">$member[alipay]</a></td></tr><!--{/if}-->
+<tr><th>{lang trade_buyer_rate}:</th><td>$member[sellercredit] <a href="eccredit.php?uid=$member[uid]" target="_blank"><img src="images/rank/seller/$member['sellerrank'].gif" border="0" class="absmiddle"></a></td></tr>
+<tr><th>{lang trade_seller_rate}:</th><td>$member[buyercredit] <a href="eccredit.php?uid=$member[uid]" target="_blank"><img src="images/rank/buyer/$member['buyerrank'].gif" border="0" class="absmiddle"></a></td></tr>
+
+<!--{loop $_DCACHE['fields'] $field}-->
+	<tr><th>$field[title]:</th><td>
+	<!--{if $field['selective']}-->
+		$field['choices'][$member['field_'.$field['fieldid']]]
+	<!--{else}-->
+		$member['field_'.$field['fieldid']]
+	<!--{/if}-->
+	&nbsp;</td></tr>
+<!--{/loop}-->
+
+</table>
+</div>
+</td>
+
+<!--{if $spacesettings['side'] != 0 && $spacesettings['side'] != 1}-->
+	<td id="main_layout2"><!--{eval userinfo($member)}--></td>
+<!--{/if}-->

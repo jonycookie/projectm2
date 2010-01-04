@@ -1,0 +1,127 @@
+<!--{if !$iscircle || !$sgid}-->{template header}<!--{else}-->{template supesite_header}<!--{/if}-->
+
+<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; {lang post_newreply}</div>
+
+<script type="text/javascript">
+var postminchars = parseInt('$minpostsize');
+var postmaxchars = parseInt('$maxpostsize');
+var disablepostctrl = parseInt('$disablepostctrl');
+var bbinsert = parseInt('$bbinsert');
+var seccodecheck = parseInt('$seccodecheck');
+var secqaacheck = parseInt('$secqaacheck');
+lang['board_allowed'] = '{lang board_allowed}';
+lang['lento'] = '{lang lento}';
+lang['bytes'] = '{lang bytes}';
+lang['post_curlength'] = '{lang post_curlength}';
+lang['post_subject_and_message_isnull'] = '{lang post_subject_and_message_isnull}';
+lang['post_subject_toolong'] = '{lang post_subject_toolong}';
+lang['post_message_length_invalid'] = '{lang post_message_length_invalid}';
+</script>
+
+{template post_preview}
+
+<form method="post" id="postform" action="post.php?action=reply&fid=$fid&tid=$tid&extra=$extra&replysubmit=yes" $enctype>
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+
+<div class="mainbox formbox">
+	<h1>{lang post_newreply}</h1>
+	<table summary="{lang post_newreply}" cellspacing="0" cellpadding="0">
+
+		<thead>
+			<tr>
+				<th>{lang username}</th>
+				<td>
+					<!--{if $discuz_uid}-->
+						$discuz_userss [<a href="$link_logout">{lang member_logout}</a>]
+					<!--{else}-->
+						{lang guest} [<a href="$link_login">{lang member_login}</a>]
+					<!--{/if}-->
+				</td>
+			</tr>
+		</thead>
+
+<!--{if $seccodecheck}-->
+	<tr>
+		<th><label for="seccodeverify">{lang seccode}</label></th>
+		<td>
+			<div id="seccodeimage"></div>
+			<input type="text" onfocus="updateseccode();this.onfocus = null" id="seccodeverify" name="seccodeverify" size="8" maxlength="4" tabindex="0" />
+			<em class="tips"><strong>{lang seccode_click}</strong> <!--{if $seccodedata['type'] == 2}-->{lang seccode_animator_flashrefresh}<!--{elseif $seccodedata['animator'] == 1}-->{lang seccode_animator_refresh}<!--{else}-->{lang seccode_refresh}<!--{/if}--></em></td>
+			<script type="text/javascript">
+				var seccodedata = [{$seccodedata['width']}, {$seccodedata['height']}, {$seccodedata['type']}];
+			</script>
+	</tr>
+<!--{/if}-->
+<!--{if $secqaacheck}-->
+	<tr><th><label for="secanswer">{lang secqaa}</label></th>
+	<td><div id="secquestion"></div><input type="text" name="secanswer" id="secanswer" size="25" maxlength="50" tabindex="1" />
+	<script type="text/javascript">
+	<!--{if ($attackevasive & 1) && $seccodecheck}-->
+		setTimeout("ajaxget('ajax.php?action=updatesecqaa&inajax=1', 'secquestion')", 2001);
+	<!--{else}-->
+		ajaxget('ajax.php?action=updatesecqaa&inajax=1', 'secquestion');
+	<!--{/if}-->
+	</script></td>
+	</tr>
+<!--{/if}-->
+
+<!--{if $special == 5}-->
+	<tr>
+	<th>{lang debate_position}</th>
+	<td>
+	<!--{if empty($firststand)}-->
+		<select name="stand" tabindex="2"><option value="0" selected>{lang debate_neutral}</option><option  value="1">{lang debate_square}</option><option  value="2">{lang debate_opponent}</option></select></td>
+	<!--{elseif $firststand == 1}-->
+		{lang debate_square}
+	<!--{elseif $firststand == 2}-->
+		{lang debate_opponent}
+	<!--{/if}-->
+
+	</tr>
+<!--{/if}-->
+
+<tr>
+<th><label for="subject">{lang subject}</label></th>
+<td><input type="text" name="subject" id="subject" size="45" value="$subject" tabindex="3" />&nbsp; <em class="tips">({lang optional})</em></td>
+</tr>
+
+<tr class="bottom">
+{template post_editor}
+</tr>
+		<tr class="btns">
+			<th>&nbsp;</th>
+			<td>
+				<input type="hidden" name="wysiwyg" id="{$editorid}_mode" value="$editormode" />
+				<input type="hidden" name="fid" id="fid" value="$fid" />
+				<button type="submit" name="replysubmit" id="postsubmit" value="true" tabindex="300">{lang post_newreply}</button>
+				<em>{lang post_submit_hotkey}</em>&nbsp;&nbsp;
+				&nbsp;<a href="###" id="restoredata" onclick="loadData()" title="{lang post_autosave_last_restore}">{lang post_autosave_restore}</a>
+			</td>
+		</tr>
+
+</table></div>
+
+</form>
+
+<div class="box">
+	<h4>{lang post_thread_review}</h4>
+
+	<!--{if $thread['replies'] > $ppp}-->
+		<div class="specialpost">
+			<div class="postmessage">{lang post_replies_toolong}</div>
+		</div>
+	<!--{else}-->
+		<!--{loop $postlist $post}-->
+			<div class="specialpost">
+				<p class="postinfo"><!--{if $post['author'] && !$post['anonymous']}-->$post[author]<!--{else}-->{lang anonymous}<!--{/if}--> {lang poston} $post[dateline]</p>
+				<div class="postmessage">$post[message]</div>
+			</div>
+		<!--{/loop}-->
+	<!--{/if}-->
+
+	</table>
+</div>
+
+{template post_js}
+
+<!--{if !$iscircle || !$sgid}-->{template footer}<!--{else}-->{template supesite_footer}<!--{/if}-->

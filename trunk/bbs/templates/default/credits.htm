@@ -1,0 +1,73 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> &raquo; {lang credits_policy}</div>
+
+<div class="mainbox">
+	<h1>{lang credits_policy}</h1>
+	<table summary="{lang credits_policy}" cellspacing="0" cellpadding="0">
+
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<!--{loop $extcredits $id $credit}-->
+					<td>$credit[title]</td>
+				<!--{/loop}-->
+			</tr>
+		</thead>
+		<tbody>
+		<!--{loop $policyarray $operation $policy}-->
+			<tr>
+				<th>
+				<!--{if $operation == 'post'}-->
+					{lang credits_policy_post}
+				<!--{elseif $operation == 'forum_post'}-->
+					{lang credits_policy_forum_post}
+				<!--{elseif $operation == 'reply'}-->
+					{lang credits_policy_reply}
+				<!--{elseif $operation == 'forum_reply'}-->
+					{lang credits_policy_forum_reply}
+				<!--{elseif $operation == 'digest'}-->
+					{lang credits_policy_digest}
+				<!--{elseif $operation == 'forum_digest'}-->
+					{lang credits_policy_forum_digest}
+				<!--{elseif $operation == 'postattach'}-->
+					{lang credits_policy_postattach}
+				<!--{elseif $operation == 'forum_postattach'}-->
+					{lang credits_policy_forum_postattach}
+				<!--{elseif $operation == 'getattach'}-->
+					{lang credits_policy_getattach}
+				<!--{elseif $operation == 'forum_getattach'}-->
+					{lang credits_policy_forum_getattach}
+				<!--{elseif $operation == 'pm'}-->
+					{lang credits_policy_pm}
+				<!--{elseif $operation == 'search'}-->
+					{lang credits_policy_search}
+				<!--{elseif $operation == 'promotion_visit'}-->
+					{lang credits_policy_promotion_visit}
+				<!--{elseif $operation == 'promotion_register'}-->
+					{lang credits_policy_promotion_register}
+				<!--{elseif $operation == 'tradefinished'}-->
+					{lang credits_policy_trade}
+				<!--{elseif $operation == 'votepoll'}-->
+					{lang credits_policy_poll}
+				<!--{elseif $operation == 'lowerlimit'}-->
+					{lang credits_policy_lowerlimit}
+				<!--{/if}-->
+				</th>
+				<!--{loop $extcredits $id $credit}-->
+					<!--{if isset($view) && $operation == $view}-->
+						<td>{$creditsarray[$operation][$id]}</td>
+					<!--{else}-->
+						<td>{$creditsarray[$operation][$id]}</td>
+					<!--{/if}-->
+				<!--{/loop}-->
+			</tr>
+		<!--{/loop}-->
+		</tbody>
+	</table>
+</div>
+<div class="notice">
+	<p>{lang credits_policy_lowerlimit}: {lang credits_policy_lowerlimit_comment}</p>
+	<p>{lang credits_policy_formula}: $creditsformulaexp</p>
+</div>
+
+{template footer}

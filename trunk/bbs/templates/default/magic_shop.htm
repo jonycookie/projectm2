@@ -1,0 +1,85 @@
+{template header}
+
+	<div id="nav"><a href="$indexname">$bbname</a> &raquo; {lang magics_shop}</div>
+	<div class="container">
+		<div class="side">
+			{template magic_navbar}
+		</div>
+		<div class="content">
+			<!--{if !$magicstatus && $adminid == 1}-->
+				<div class="notice">{lang magics_tips}</div>
+			<!--{/if}-->
+			<!--{if $operation == ''}-->
+				<div class="mainbox">
+					<h1>{lang magics_shop}</h1>
+					<ul class="tabs">
+						<li<!--{if empty($typeid)}--> class="current"<!--{/if}-->><a href="magic.php?action=shop">{lang all}</a></li>
+						<li<!--{if $typeid==1}--> class="current"<!--{/if}-->><a href="magic.php?action=shop&typeid=1">{lang magics_type_1}</a></li>
+						<li<!--{if $typeid==2}--> class="current"<!--{/if}-->><a href="magic.php?action=shop&typeid=2">{lang magics_type_2}</a></li>
+						<li<!--{if $typeid==3}--> class="current"<!--{/if}-->><a href="magic.php?action=shop&typeid=3">{lang magics_type_3}</a></li>
+					</ul>
+					<table summary="{lang magics_shop}" cellspacing="0" cellpadding="0">
+					<!--{if $magiclist}-->
+						<!--{loop $magiclist $key $magic}-->
+							<!--{if $key && ($key % 2 == 0)}-->
+								</tr>
+								<!--{if $key < $magicnum}-->
+									<tr>
+								<!--{/if}-->
+							<!--{/if}-->
+							<td width="50%" class="attriblist">
+								<dl>
+									<dt><img src="images/magics/$magic[pic]" alt="$magic[name]" /></dt>
+									<dd class="name">$magic[name]</dd>
+									<dd>$magic[description]</dd>
+									<dd>{lang magics_price}: <b>$magic[price]</b> $extcredits[$creditstrans][title] {lang magics_weight}: <b>$magic[weight]</b> {lang magics_shop_num}: <b>$magic[num]</b> {lang magics_shop_salevolume}:<b>$magic[salevolume]</b></dd>
+									<dd><a href="magic.php?action=shop&operation=buy&magicid=$magic[magicid]">{lang magics_operation_buy}</a></dd>
+								</dl>
+							</td>
+						<!--{/loop}-->
+							$magicendrows
+					<!--{else}-->
+						<td colspan="3">{lang magics_shop_nonexistence}</td></tr>
+					<!--{/if}-->
+			<!--{elseif $operation == 'buy'}-->
+				<form method="post" action="magic.php?action=shop">
+				<input type="hidden" name="formhash" value="{FORMHASH}" />
+				<input type="hidden" name="operation" value="buy" />
+				<input type="hidden" name="magicid" value="$magicid" />
+				<input type="hidden" name="operatesubmit" value="yes" />
+				<div class="mainbox">
+				<h1>{lang magics_shop}</h1>
+				<table cellspacing="0" cellpadding="0" width="100%" align="0">
+				<tr><td rowspan="6"align="center" width="20%"><img src="images/magics/$magic[pic]"><br /></td>
+				<td width="80%"><b>$magic[name]</b></td></tr>
+				<tr><td>$magic[description]</td></tr>
+				<tr><td>{lang magics_price}: $magic[price] $extcredits[$creditstrans][title] {lang magics_shop_num}: $magic[num] {lang magics_shop_salevolume}: $magic[salevolume] {lang magics_weight}: $magic[weight]</td></tr>
+				<tr><td>{lang magics_permission}: <font color=red><!--{if $useperm}--> {lang magics_permission_yes} <!--{else}--> {lang magics_permission_no} <!--{/if}--></font>
+				<!--{if $magic[type] == 1}-->
+						<br />{lang magics_permission_forum}: <!--{if $forumperm}-->$forumperm<!--{else}--> {lang magics_permission_allforum} <!--{/if}-->
+				<!--{/if}-->
+				<!--{if $magic[type] == 2}-->
+						<br />{lang magics_permission_group}: <!--{if $targetgroupperm}-->$targetgroupperm<!--{else}--> {lang magics_permission_allgroup} <!--{/if}-->
+				<!--{/if}-->
+				</td></tr>
+				<tr><td width="10%">
+					{lang magics_amount_buy}: <input name="magicnum" type="text" size="5" value="1" />&nbsp;
+					<!--{if $allowmagics > 1 }-->
+						<input type="checkbox" name="checkgive" value="0" onclick="$('showgive').style.display = $('showgive').style.display == 'none' ? '' : 'none'; this.value = this.value == 0 ? 1 : 0; this.checked = this.value == 0 ? false : true" /> {lang magics_shop_present}
+						<div id="showgive" style="display:none">
+							{lang magics_target_present}: <input name="tousername" type="text" size="5" />
+						</div>
+					<!--{/if}-->
+				</td></tr>
+				<tr><td>
+					<button class="submit" type="submit" name="operatesubmit" id="operatesubmit" value="true" tabindex="101">{lang magics_operation_buy}</button>
+				</td></tr>
+				</table></div>
+				</form>
+			<!--{/if}-->
+			</tr></table></div>
+			<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+		</div>
+	</div>
+
+{template footer}

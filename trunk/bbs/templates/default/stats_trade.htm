@@ -1,0 +1,59 @@
+{template header}
+<div id="nav">
+<a href="$indexname">$bbname</a> &raquo; <a href="stats.php">{lang stats}</a> &raquo; {lang stats_trade_rank}
+</div>
+
+
+<div class="container">
+	<div class="side">
+		{template stats_navbar}
+	</div>
+	<div class="content">
+	<div class="mainbox">
+		<h3>{lang stats_trade_rank}</h3>
+<div class="msgtabs"><strong>{lang trade_price_sort}</strong></div>
+<table cellspacing="0" cellpadding="0" width="100%" align="center">
+<thead>
+<tr>
+<td>{lang post_trade_name}</td>
+<td>{lang trade_seller}</td>
+<td>{lang trade_totalprice}({lang payment_unit})</td>
+</tr>
+</thead>
+<tbody>
+<!--{loop $tradesums $tradesum}-->
+	<tr>
+	<td><a target="_blank" href="viewthread.php?do=tradeinfo&tid=$tradesum[tid]&pid=$tradesum[pid]">$tradesum[subject]</a></td>
+	<td><a target="_blank" href="space.php?uid=$tradesum[sellerid]">$tradesum[seller]</a></td>
+	<td>$tradesum[tradesum]</td>
+	</tr>
+<!--{/loop}-->
+</tbody>
+
+</table>
+<table cellspacing="0" cellpadding="0" width="100%" align="center">
+<div class="msgtabs"><strong>{lang trace_number_sort}</strong></div>
+
+<thead>
+<tr>
+<td>{lang post_trade_name}</td>
+<td>{lang trade_seller}</td>
+<td>{lang trace_sell_number}</td>
+</tr>
+</thead>
+<tbody>
+<!--{loop $totalitems $totalitem}-->
+	<tr>
+	<td><a target="_blank" href="viewthread.php?do=tradeinfo&tid=$tradesum[tid]&pid=$tradesum[pid]">$totalitem[subject]</a></td>
+	<td><a target="_blank" href="space.php?uid=$totalitem[sellerid]">$totalitem[seller]</a></td>
+	<td>$totalitem[totalitems]</td>
+	</tr>
+<!--{/loop}-->
+</tbody>
+</table></div>
+
+
+<div class="notice">{lang stats_update}</div>
+</div>
+</div>
+{template footer}

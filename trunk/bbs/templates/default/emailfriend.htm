@@ -1,0 +1,83 @@
+{template header}
+<!--{if !$inajax}-->
+	<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; {lang emailfriend}</div>
+
+	<form method="post" action="misc.php?action=emailfriend">
+		<input type="hidden" name="formhash" value="{FORMHASH}" />
+		<input type="hidden" name="tid" value="$tid" />
+		<div class="mainbox formbox">
+		<h1>{lang emailfriend}</h1>
+			<table summary="Email Friend" cellspacing="0" cellpadding="0">
+				<tr>
+					<th>{lang emailfriend_your_name}</th>
+					<td><input type="text" name="fromname" size="25" maxlength="40" value="$discuz_userss"></td>
+				</tr>
+				<tr>
+					<th>{lang emailfriend_your_email}</th>
+					<td><input type="text" name="fromemail" size="25" value="$email"></td>
+				</tr>
+				<tr>
+					<th>{lang emailfriend_receiver_name}</th>
+					<td><input type="text" name="sendtoname" size="25"></td>
+				</tr>
+				<tr>
+					<th>{lang emailfriend_receiver_email}</th>
+					<td><input type="text" name="sendtoemail" size="25"></td>
+				</tr>
+				<tr>
+					<th valign="top">{lang message}</th>
+					<td><textarea rows="9" name="message" style="OVERFLOW: visible;HEIGHT:120px;width: 80%; word-break: break-all">
+					{lang emailfriend_message}</textarea></td>
+				</tr>
+				<tr class="btns">
+					<th>&nbsp;</th>
+					<td><button name="sendsubmit" type="submit" class="submit" value="true">{lang submit}</button></td>
+				</tr>
+			</table>
+		</div>		
+	</form>
+<!--{else}-->
+	<div class="ajaxform">
+		<form method="post" action="misc.php?action=emailfriend&inajax=1&sendsubmit=yes" id="emailfriendform" name="emailfriendform">
+			<input type="hidden" name="formhash" value="{FORMHASH}" />
+			<input type="hidden" name="tid" value="$tid" />
+			<table summary="Email Friend" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<th>{lang emailfriend}</th>
+						<td align="right"><a href="javascript:hideMenu();"><img src="{IMGDIR}/close.gif" alt="{lang close}" title="{lang close}" /></a></td>
+					</tr>
+				</thead>
+			
+				<tr>
+					<th>{lang emailfriend_your_name}</h>
+					<td><input type="text" name="fromname" size="25" maxlength="40" value="$discuz_userss"></td>
+				</tr>
+			
+				<tr>
+					<th>{lang emailfriend_your_email}</h>
+					<td><input type="text" name="fromemail" size="25" value="$email"></td>
+				</tr>
+			
+				<tr>
+					<th>{lang emailfriend_receiver_name}</th>
+					<td><input type="text" name="sendtoname" size="25"></td>
+				</tr>
+				<tr>
+					<th>{lang emailfriend_receiver_email}</th>
+					<td><input type="text" name="sendtoemail" size="25"></td>
+				</tr>
+				<tr>
+					<th valign="top">{lang message}</th>
+					<td><textarea rows="5" name="message" style="width: 400px;">
+					{lang emailfriend_message}</textarea></td>
+				</tr>
+				<tr class="btns">
+					<th>&nbsp;</th>
+					<td><button name="sendsubmit" type="submit" class="submit" onclick="ajaxpost('emailfriendform', '$ajaxmenuid')">{lang submit}</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+<!--{/if}-->
+{template footer}

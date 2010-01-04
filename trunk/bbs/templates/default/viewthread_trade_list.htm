@@ -1,0 +1,47 @@
+{template header}
+<table summary="Trade List" cellspacing="0" cellpadding="0">
+	<thead class="separation">
+		<tr>
+			<th>
+			<!--{if $showtradetypemenu}-->
+				<span id="tradetypes" class="dropmenu" onmouseover="showMenu(this.id)">{lang post_trade_alllist}</span>
+				<ul class="popupmenu_popup" id="tradetypes_menu" style="display: none;">
+				<li><a href="viewthread.php?do=viewtradelist&tid=$tid" ajaxtarget="ajaxtradelist">{lang all}</a></li>
+				<!--{loop $threadtradetypes $tradetype}-->
+					<!--{if $tradetype}-->
+						<li><a href="viewthread.php?do=viewtradelist&tid=$tid&tradetypeid=$tradetype" ajaxtarget="ajaxtradelist">$tradetypes[$tradetype]</a></li>
+					<!--{else}-->
+						<li><a href="viewthread.php?do=viewtradelist&tid=$tid&tradetypeid=0" ajaxtarget="ajaxtradelist">{lang space_trade_nonetype}</a></li>
+					<!--{/if}-->
+				<!--{/loop}-->
+				</ul>
+			<!--{else}-->
+				{lang post_trade_alllist}
+			<!--{/if}-->
+			</th>
+			<td class="price">{lang trade_price}</td>
+			<td class="nums">{lang trade_number}</td>
+			<td class="time">{lang trade_remaindays}</td>
+		</tr>
+	</thead>
+	<!--{loop $trades $trade}-->
+		<tr>
+			<th>
+			<!--{if $trade['typeid']}--><a href="search.php?srchtype=trade&srchtypeid=$trade['typeid']&searchsubmit=yes" target="_blank"><em>[{$tradetypes[$trade['typeid']]}]</em></a> <!--{/if}--><a href="viewthread.php?do=tradeinfo&tid=$tid&pid=$trade[pid]" target="_blank">$trade[subject]</a>
+			</th>
+			<td class="price"><strong>$trade[price]</strong> {lang payment_unit}</td>
+			<td class="nums">$trade[amount]</td>
+			<td class="time">
+			<!--{if $trade[closed]}-->
+				<em>{lang trade_timeout}</em>
+			<!--{elseif $trade[expiration] > 0}-->
+				{$trade[expiration]}{lang trade_day}{$trade[expirationhour]}{lang trade_hour}
+			<!--{elseif $trade[expiration] == -1}-->
+				<em>{lang trade_timeout}</em>
+			<!--{/if}-->
+			</td>
+		</tr>
+	<!--{/loop}-->
+</table>
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+{template footer}

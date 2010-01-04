@@ -1,0 +1,114 @@
+<form method="post" action="pm.php?action=delete&folder=$folder">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<div class="mainbox">
+		<h1>{lang pm}</h1>
+		<ul class="tabs headertabs">
+			<li class="sendpm"><a href="pm.php?action=send">{lang pm_send}</a></li>
+			<li <!--{if $folder == 'inbox'}--> class="current"<!--{/if}-->><a href="pm.php?folder=inbox">{lang pm_inbox}[<span id="pm_unread">$pm_inbox_newpm</span>]</a></li>
+			<li <!--{if $folder == 'outbox'}--> class="current"<!--{/if}-->><a href="pm.php?folder=outbox">{lang pm_outbox}</a></li>
+			<li <!--{if $folder == 'track'}--> class="current"<!--{/if}-->><a href="pm.php?folder=track">{lang pm_track}</a></li>
+			<li><a href="pm.php?action=search">{lang pm_search}</a></li>
+			<li><a href="pm.php?action=archive">{lang pm_archive}</a></li>
+			<li><a href="pm.php?action=ignore">{lang pm_ignore}</a></li>
+		</ul>
+		<table summary="{lang pm_inbox}" cellspacing="0" cellpadding="0" id="pmlist">
+			<thead>
+				<tr>
+					<td class="selector">&nbsp;</td>
+					<th>{lang subject}</th>
+					<td class="user"><!--{if $folder != 'outbox' && $folder != 'track'}-->{lang from}<!--{else}-->{lang to}<!--{/if}--></td>
+					<td class="time">{lang time}</td>
+				</tr>
+			</thead>
+			<!--{if $pmlist}-->
+			<!--{loop $pmlist $pm}-->
+				<tr id="pmrow_$pm[pmid]">
+				<!--{if $folder == 'inbox' && $pm['announce']}-->
+					<td class="selector">&nbsp;</td><td $pm[class]><a href="pm.php?action=view&folder=announce&pmid=$pm[pmid]" onclick="showpm(event, this)" id="pm_view_$pm[pmid]">$pm[subject]</a></td>
+				<!--{else}-->
+					<td class="selector"><input type="checkbox" name="delete[]" value="$pm[pmid]" /></td>
+					<td  $pm[class]>
+					<!--{if $folder == 'outbox'}-->
+						<a href="pm.php?action=send&folder=outbox&pmid=$pm[pmid]">$pm[subject]</a>
+					<!--{else}-->
+						<a href="pm.php?action=view&folder=$folder&pmid=$pm[pmid]" onclick="showpm(event, this)" id="pm_view_$pm[pmid]">$pm[subject]</a>
+					<!--{/if}-->
+				<!--{/if}-->
+				</td>
+				<td>
+				<!--{if $folder == 'inbox'}-->
+					<!--{if !$pm['announce']}-->
+						<!--{if $pm[msgfromid]}--><a href="space.php?uid=$pm[msgfromid]">$pm[msgfrom]</a><!--{else}-->{lang pm_systemmessage}<!--{/if}-->
+					<!--{else}-->
+						{lang pm_announce}
+					<!--{/if}-->
+				<!--{else}-->
+					<a href="space.php?uid=$pm[msgtoid]">$pm[msgto]</a>
+				<!--{/if}-->
+				</td>
+				<td><em>$pm[dateline]</em></td>
+				</tr>
+			<!--{/loop}-->
+			</table>
+			<div class="footoperation">
+				<label><input class="checkbox" type="checkbox" id="chkall" name="chkall" onclick="checkall(this.form)" /> {lang checkall}</label>
+				<button type="submit" name="pmsend" value="true">{lang delete}</button>
+			</div>
+			<!--{else}-->
+				<tr><td colspan="4">{lang search_nomatch}</td></tr>
+			</table>
+			<!--{/if}-->
+	</div>
+</form>
+<div class="notice">{lang pm_total}: <em id="pmtotalnum">$pm_total</em> ,&nbsp; {lang pm_storage}: $maxpmnum</div>
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+
+<!--{if $folder != 'outbox'}-->
+	<script type="text/javascript">
+
+	var prepmdiv = '';
+	function showpm(event, obj) {
+		var url = obj.href + '&inajax=1';
+		var currpmdiv = obj.id + '_div';
+		if(!$(currpmdiv)) {
+			var x = new Ajax();
+			x.get(url, function(s) {
+				evalscript(s);
+				//debug 确定表格和当前所在行，插入行，列。
+				var table1 = obj.parentNode.parentNode.parentNode.parentNode;
+				var row1 = table1.insertRow(obj.parentNode.parentNode.rowIndex + 1);
+				row1.id = currpmdiv;
+				row1.className = 'row';
+				var cell1 = row1.insertCell(0);
+				cell1.innerHTML = '&nbsp;';
+				cell1.className = 'pmmessage';
+				var cell2 = row1.insertCell(1);
+				cell2.colSpan = '3';
+				cell2.innerHTML = s;
+				cell2.className = 'pmmessage';
+
+				if(prepmdiv) {
+					$(prepmdiv).style.display = 'none';
+				}
+
+				changestatus(obj);
+				prepmdiv = currpmdiv;
+			})
+		} else {
+			if($(currpmdiv).style.display == 'none') {
+				$(currpmdiv).style.display = '';
+				changestatus(obj);
+				if(prepmdiv) {
+					$(prepmdiv).style.display = 'none';
+				}
+				prepmdiv = currpmdiv;
+			} else {
+				$(currpmdiv).style.display = 'none';
+				prepmdiv = '';
+			}
+		}
+		doane(event);
+	}
+
+	</script>
+<!--{/if}-->

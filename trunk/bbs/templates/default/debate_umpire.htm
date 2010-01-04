@@ -1,0 +1,76 @@
+{template header}
+
+<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; {lang debate_umpirecomment}</div>
+
+<form method="post" id="postform" action="misc.php?action=debateumpire&tid=$tid" $enctype onSubmit="return validate(this)">
+	<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+	<input type="hidden" name="page" value="$page" />
+
+	<div class="mainbox formbox">
+		<h1>{lang debate_umpirecomment}</h1>
+		<table summary="{lang debate_umpirecomment}" cellspacing="0" cellpadding="0">
+			<thead>
+				<tr>
+					<th>{lang username}</th>
+					<td>$discuz_userss [<a href="$link_logout">{lang member_logout}</a>]</td>
+				</tr>
+			</thead>
+
+			<tr>
+				<th>{lang debate_subject}</th>
+				<td>$debate[subject]</td>
+			</tr>
+
+			<tr>
+				<th>{lang debate_winner}</th>
+				<td>
+					<label><input type="radio" name="winner" value="1" class="radio" $winnerchecked[1] id="winner1" /> {lang debate_square}</label>
+					<label><input type="radio" name="winner" value="2" class="radio" $winnerchecked[2] id="winner2" />  {lang debate_opponent}</label>
+					<label><input type="radio" name="winner" value="3" class="radio" $winnerchecked[3] id="winner3" />  {lang debate_draw}</label>
+				</td>
+			</tr>
+
+			<tr>
+				<th><label for="bestdebater">{lang debate_bestdebater}</label></th>
+				<td>
+					<input type="text" name="bestdebater" value="$debate[bestdebater]" size="20" id="bestdebater" />
+					<select onchange="$('bestdebater').value=this.options[this.options.selectedIndex].value">
+						<option value=""><strong>{lang debate_recommend_list}</strong></option>
+						<option value="">------------------------------</option>
+						<!--{loop $candidates $candidate}-->
+							<option value="$candidate[username]"<!--{if $candidate[username] == $debate[bestdebater]}--> selected<!--{/if}-->>$candidate[username] ( $candidate[voters] {lang debate_poll}, <!--{if $candidate[stand] == 1}-->{lang debate_square}<!--{elseif $candidate[stand] == 2}-->{lang debate_opponent}<!--{/if}-->)</option>
+						<!--{/loop}-->
+					</select><em class="tips">({lang debate_list_nonexistence})</em>
+				</td>
+			</tr>
+
+			<tr>
+				<th valign="top"><label for="umpirepoint">{lang debate_umpirepoint}</label></th>
+				<td><textarea id="umpirepoint" name="umpirepoint" style="width:98%; height: 200px;">$debate[umpirepoint]</textarea></td>
+			</tr>
+
+			<tr class="btns">
+				<th>&nbsp;</th>
+				<td><button type="submit" name="umpiresubmit" value="true" class="submit">{lang submit}</button></td>
+			</tr>
+		</table>
+	</div>
+</form>
+
+<script type="text/javascript">
+function validate(theform) {
+	if(theform.bestdebater.value == '') {
+		alert('{lang debate_bestdebater_nonexistence}');
+		return false;
+	} else if($('winner1').checked == false && $('winner2').checked == false && $('winner3').checked == false) {
+		alert('{lang debate_winner_nonexistence}');
+		return false;
+	} else if(theform.umpirepoint.value == '') {
+		alert('{lang debate_umpirepoint_nonexistence}');
+		return false;
+	}
+	return true;
+}
+</script>
+
+{template footer}

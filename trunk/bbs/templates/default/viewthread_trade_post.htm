@@ -1,0 +1,134 @@
+{template header}
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+<div class="box specialpostcontainer">
+	<ul class="tabs">
+		<li<!--{if empty($do) || $do == 'viewall'}--> class="current"<!--{/if}-->><a href="viewthread.php?fid=$fid&tid=$tid&do=viewall" onclick="ajaxget(this.href, 'ajaxtradepost', 'specialposts');doane(event);">{lang all}</a></li>
+		<li<!--{if $do == 'viewpost'}--> class="current"<!--{/if}-->><a href="viewthread.php?fid=$fid&tid=$tid&do=viewpost" onclick="ajaxget(this.href, 'ajaxtradepost', 'specialposts');doane(event);">{lang trade_viewreply}</a></li>
+		<li<!--{if $do == 'viewtrade'}--> class="current" <!--{/if}-->><a href="viewthread.php?fid=$fid&tid=$tid&do=viewtrade" onclick="ajaxget(this.href, 'ajaxtradepost', 'specialposts');doane(event);">{lang trade_viewtrade}</a></li>
+		<li<!--{if $do == 'viewfirstpost'}--> class="current" <!--{/if}-->><a href="viewthread.php?fid=$fid&tid=$tid&do=viewfirstpost" onclick="ajaxget(this.href, 'ajaxtradepost', 'specialposts');doane(event);">{lang post_trade_aboutcounter}</a></li>
+		<li id="ad_relatedtrade" style="display: none"<!--{if $do == 'viewrelatedtrade'}--> class="current" <!--{/if}-->></li>
+	</ul>
+
+	<form method="post" name="modactions">
+		<input type="hidden" name="formhash" value="{FORMHASH}" />
+		<!--{if $do != 'viewrelatedtrade' && !empty($postlist)}-->
+			<!--{loop $postlist $post}-->
+				<div class="specialpost">
+					<div class="postinfo">
+						<h2>
+							<!--{if $post['authorid'] && $post['username'] && $post['anonymous']}-->
+								<!--{if $forum['ismoderator']}-->
+									<a class="dropmenu" style="font-weight: normal;" href="space.php?uid=$post[authorid]" target="_blank" onclick="ajaxmenu(event, this.id, 0, '', 1, 3, 0)" id="author_$post[pid]">{lang anonymous}</a>
+								<!--{else}-->
+									<span style="font-size: 12px;">{lang anonymous}</span>
+								<!--{/if}-->
+							<!--{else}-->
+								<a class="dropmenu" style="font-weight: normal;" href="space.php?uid=$post[authorid]" target="_blank" onclick="ajaxmenu(event, this.id, 0, '', 1, 3, 0)" id="author_$post[pid]">$post[author]</a>
+							<!--{/if}-->
+							$post[dateline]
+						</h2>
+						<strong title="{lang post_copylink}" onclick="setcopy('{$boardurl}viewthread.php?tid=$tid&amp;page=$page$fromuid#pid$post[pid]', '{lang post_copied}')"><!--{if $do == 'viewpost' && !empty($postno[$post[number]+1])}-->{echo $postno[$post[number]+1]}<!--{else}-->{$post[number]}{$postno[0]}<!--{/if}--></strong>
+						<!--{if ($forum['ismoderator'] && $alloweditpost && !(in_array($post['adminid'], array(1, 2, 3)) && $adminid > $post['adminid'])) || ($forum['alloweditpost'] && $discuz_uid && $post['authorid'] == $discuz_uid)}--><a href="post.php?action=edit&amp;fid=$fid&amp;tid=$tid&amp;pid=$post[pid]&amp;page=$page&amp;extra=$extra">{lang edit}</a><!--{/if}-->
+						<!--{if $allowpostreply}--><a href="post.php?action=reply&amp;fid=$fid&amp;tid=$tid&amp;repquote=$post[pid]&amp;extra=$extra&amp;page=$page">{lang reply_quote}</a><!--{/if}-->
+						<!--{if $forum['ismoderator'] && $allowdelpost}--><input class="checkbox" type="checkbox" name="topiclist[]" value="$post[pid]" /><!--{/if}-->
+					</div>
+					<div class="postmessage">
+						<!--{if !empty($post[subject])}--><h2>$post[subject]</h2><!--{/if}-->
+						<!--{if $adminid != 1 && $bannedmessages && (($post['authorid'] && !$post['username']) || ($post['groupid'] == 4 || $post['groupid'] == 5))}-->
+							<div class="notice" style="width: 500px">{lang message_banned}</div>
+						<!--{elseif $adminid != 1 && $post['status'] == 1}-->
+							<div class="notice" style="width: 500px">{lang message_single_banned}</div>
+						<!--{else}-->
+							<!--{if isset($trades[$post[pid]])}-->
+								<!--{eval tradeinfo($trades[$post[pid]]);}--><br />
+							<!--{/if}-->
+							<div class="t_msgfont" style="clear: both;">$post[message]</div>
+							<!--{if $post['attachment']}-->
+								<div class="notice postattach">{lang attachment}: <em>{lang attach_nopermission}</em></div>
+							<!--{elseif $hideattach[$post[pid]] && $post['attachments']}-->
+								<div class="notice postattach">{lang attachment}: <em>{lang attachment_reply_show}</em></div>
+							<!--{elseif $post['attachlist']}-->
+								<div class="box postattachlist">
+									<h4>{lang attachment}</h4>
+									$post[attachlist]
+								</div>
+							<!--{/if}-->
+						<!--{/if}-->
+					</div>
+				</div>
+			<!--{/loop}-->
+		<!--{elseif $do == 'viewrelatedtrade'}-->
+			<div class="specialpost"><div class="postmessage" id="relatedtrades">
+			</div></div>
+			$relatedtrades
+		<!--{else}-->
+			<div class="specialpost"><div class="postmessage">
+				{lang none}
+			</div></div>
+		<!--{/if}-->
+		</form>
+</div>
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+
+<!--{eval
+function tradeinfo($trade) {
+global $thread, $post, $discuz_uid, $tradeimagewidth, $tradeimageheight, $tradetypes;
+}-->
+<div class="tradeinfo">
+	<div class="tradethumb">
+	<!--{if $trade['thumb']}-->
+		<a href="###"><img src="$trade[thumb]" onclick="zoom(this, '$trade[attachurl]')" onload="thumbImg(this)" width="$tradeimagewidth" height="$tradeimageheight" alt="$trade[subject]" /></a>
+	<!--{else}-->
+		<img src="{IMGDIR}/trade_nophoto.gif" alt="$trade[subject]" />
+	<!--{/if}-->
+	<br /><a href="viewthread.php?do=tradeinfo&tid=$post[tid]&pid=$post[pid]" target="_blank"><em>{lang trade_fullinfo}</em></a>
+	</div>
+
+	<div class="tradeattribute" style="width: 40%">
+		<h3><!--{if $trade['typeid']}--><em>[{$tradetypes[$trade['typeid']]}]</em> <!--{/if}-->$trade[subject]</h3>
+		<dl>
+		<!--{if $trade['costprice'] > 0}--><dt>{lang trade_costprice}:</dt><dd><del>$trade[costprice] {lang payment_unit}</del></dd><!--{/if}-->
+		<dt>{lang trade_price}:</dt>
+		<dd><strong>$trade[price]</strong>&nbsp;{lang payment_unit}</dd>
+		<dt>{lang trade_transport}:</dt>
+		<dd>
+			<!--{if $trade['transport'] == 1}-->{lang post_trade_transport_seller}<!--{/if}-->
+			<!--{if $trade['transport'] == 2 || $trade['transport'] == 4}-->
+				<!--{if $trade['transport'] == 4}-->{lang post_trade_transport_physical}<!--{/if}-->
+				<!--{if !empty($trade['ordinaryfee']) || !empty($trade['expressfee']) || !empty($trade['emsfee'])}-->
+					<!--{if !empty($trade['ordinaryfee'])}-->{lang post_trade_transport_mail} $trade[ordinaryfee] {lang payment_unit}<!--{/if}-->
+					<!--{if !empty($trade['expressfee'])}--> {lang post_trade_transport_express} $trade[expressfee] {lang payment_unit}<!--{/if}-->
+					<!--{if !empty($trade['emsfee'])}--> EMS $trade[emsfee] {lang payment_unit}<!--{/if}-->
+				<!--{elseif $trade['transport'] == 2}-->
+					{lang post_trade_transport_none}
+				<!--{/if}-->
+			<!--{/if}-->
+			<!--{if $trade['transport'] == 3}-->{lang post_trade_transport_virtual}<!--{/if}-->
+		</dd>
+		<dt>{lang trade_number}:</dt><dd>$trade[amount]</dd>
+		</dl>
+		<!--{if $post['authorid'] != $discuz_uid && empty($thread['closed']) && empty($trade['closed'])}-->
+			<!--{if $trade[amount]}--><a href="###" onclick="window.open('trade.php?tid=$post[tid]&pid=$post[pid]','','')"><img src="{IMGDIR}/trade_buy.gif" border="0" /></a> &nbsp;<!--{/if}-->
+			<a href="###" onclick="window.open('pm.php?action=send&uid=$trade[sellerid]&tradepid=$post[pid]','','')"><img src="{IMGDIR}/trade_pm.gif" border="0" /></a>
+		<!--{/if}-->
+	</div>
+</div>
+
+<!--{eval
+}
+}-->
+
+<!--{if !empty($insenz['traderelatedad'])}-->
+	<script type="text/javascript">var tradekeywords = '$tradekeywords';</script>
+	<!--{echo stripslashes($insenz['traderelatedad'])}-->
+	<!--{if !empty($insenz['relatedtrades'])}-->
+		<script type="text/javascript">
+			function showrelatedtrades(e) {
+				ajaxget('viewthread.php?fid=$fid&tid=$tid&do=viewrelatedtrade', 'ajaxtradepost', 'specialposts');
+				doane(e);
+			}
+		</script>
+	<!--{/if}-->
+<!--{/if}-->
+
+{template footer}

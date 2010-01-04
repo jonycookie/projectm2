@@ -1,0 +1,37 @@
+<table cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<td>{lang in_thread}</td>
+<td>{lang forum}</td>
+<td class="time"><!--{if $type == 'orig'}-->{lang lastpost}<!--{else}-->{lang debate_dateline}<!--{/if}--></td>
+<td>{lang status}</td>
+</tr>
+</thead>
+
+<tbody>
+<!--{if $debatelist}-->
+	<!--{loop $debatelist $key $debate}-->
+		<tr>
+		<td><a href="viewthread.php?tid=$debate[tid]" target="_blank">$debate[subject]</a></td>
+		<td><a href="forumdisplay.php?fid=$debate[fid]" target="_blank">$debate[forumname]</a></td>
+		<td>
+			<!--{if $type == 'debate'}-->
+				<em>
+					<a href="redirect.php?tid=$debate[tid]&goto=lastpost#lastpost" target="_blank">$debate[lastpost]</a><br />by
+					<!--{if $debate['lastposter']}-->
+						<a href="space.php?username=$debate[lastposterenc]" target="_blank">$debate[lastposter]</a>
+					<!--{else}-->
+						{lang anonymous}
+					<!--{/if}-->
+				</em>
+			<!--{else}-->
+				<em>$debate[dateline]</em>
+			<!--{/if}-->		</td>
+		<td><!--{if $debate[displayorder] == '-1'}-->{lang forum_recyclebin}<!--{elseif $debate[displayorder] == '-2'}-->{lang my_threads_aduit}<!--{elseif $debate[closed] == '1'}-->{lang my_threads_close}<!--{else}-->{lang my_threads_common}<!--{/if}--></td>
+		</tr>
+	<!--{/loop}-->
+<!--{else}-->
+	<tr><td colspan="4">{lang forum_nothreads}</td></tr>
+<!--{/if}-->
+</tbody>
+</table>

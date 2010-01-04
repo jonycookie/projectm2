@@ -1,0 +1,67 @@
+<!--{if $type == 'forum'}-->
+	<form method="post" action="my.php?item=favorites&type=forum">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	
+	<table cellspacing="0" cellpadding="0" width="100%" summary="{lang my_favorite_forums}">
+	<thead class="separation">
+	<tr>
+	<td align="center" width="48"><input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form)" />{lang delete_check}</td>
+	<td>{lang forum}</td>
+	<td>{lang forum_threads}</td>
+	<td>{lang forum_posts}</td>
+	<td>{lang forum_todayposts}</td>
+	</tr>
+	</thead>
+	
+	<tbody>
+	<!--{if $favlist}-->
+		<!--{loop $favlist $fav}-->
+			<tr>
+			<td><input class="checkbox" type="checkbox" name="delete[]" value="$fav[fid]" /></td>
+			<td><a href="forumdisplay.php?fid=$fav[fid]" target="_blank">$fav[name]</a></td>
+			<td>$fav[threads]</td>
+			<td>$fav[posts]</td>
+			<td>$fav[todayposts]</td>
+			</tr>
+		<!--{/loop}-->
+	<!--{else}-->
+		<tr><td colspan="5">{lang memcp_nofavs}</td></tr>
+	<!--{/if}-->
+	
+	</tbody>
+	</table>
+<!--{elseif $type == 'thread'}-->
+	<form method="post" action="my.php?item=favorites&type=thread">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<table cellspacing="0" cellpadding="0" width="100%" align="center" summary="{lang my_favorite_threads}">
+	<thead class="separation">
+	<tr>
+	<td align="center" width="48"><input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form)">{lang delete_check}</td>
+	<td>{lang subject}</td>
+	<td>{lang forum}</td>
+	<td>{lang replies}</td>
+	<td>{lang lastpost}</td>
+	</tr>
+	</thead>
+
+	<tbody>
+	<!--{if $favlist}-->
+		<!--{loop $favlist $fav}-->
+			<tr>
+			<td><input class="checkbox" type="checkbox" name="delete[]" value="$fav[tid]"></td>
+			<td><a href="viewthread.php?tid=$fav[tid]" target="_blank">$fav[subject]</a></td>
+			<td><a href="forumdisplay.php?fid=$fav[fid]" target="_blank">$fav[name]</a></td>
+			<td>$fav[replies]</td>
+			<td><cite><a href="redirect.php?tid=$fav[tid]&goto=lastpost#lastpost">$fav[lastpost]</a> by <!--{if $fav['lastposter']}--><a href="space.php?username=$fav[lastposterenc]" target="_blank">$fav[lastposter]</a><!--{else}-->{lang anonymous}<!--{/if}--></cite></td>
+			</tr>
+		<!--{/loop}-->
+	<!--{else}-->
+		<tr><td colspan="5">{lang memcp_nofavs}</td></tr>
+	<!--{/if}-->
+
+	</tbody>
+	</table>
+<!--{/if}-->
+<p class="btns"><button type="submit" class="submit" name="favsubmit" value="true">{lang submit}</button></p>
+
+</form>

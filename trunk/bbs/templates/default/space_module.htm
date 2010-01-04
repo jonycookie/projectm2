@@ -1,0 +1,529 @@
+<!--{eval
+// Space Module Template Functions for Discuz! Version 1.0.0
+
+function threadspecial($thread) {
+}-->
+
+	<!--{if $thread['special'] == 1}-->
+		<img src="images/default/pollsmall.gif" alt="{lang thread_poll}" border="0" />
+	<!--{elseif $thread['special'] == 2}-->
+		<img src="images/default/tradesmall.gif" alt="{lang thread_trade}" border="0" />
+	<!--{elseif $thread['special'] == 3}-->
+		<!--{if $thread['price'] > 0}-->
+		 	<img src="images/default/rewardsmall.gif" alt="{lang thread_reward}" border="0" />
+		<!--{elseif $thread['price'] < 0}-->
+			<img src="images/default/rewardsmallend.gif" alt="{lang thread_rewardend}" border="0" />
+		<!--{/if}-->
+	<!--{elseif $thread['special'] == 4}-->
+		<img src="images/default/activitysmall.gif" alt="{lang thread_activity}" border="0" />
+	<!--{elseif $thread['special'] == 5}-->
+		<img src="images/default/debatesmall.gif" alt="{lang thread_debate}" border="0" />
+	<!--{elseif $thread['special'] == 6}-->
+		<img src="images/default/videosmall.gif" alt="{lang thread_video}" border="0" />
+	<!--{/if}-->
+	<!--{if $thread['attachment']}-->
+		<img src="images/attachicons/common.gif" alt="{lang attachment}" border="0" />
+	<!--{/if}-->
+
+<!--{eval
+}
+
+function userinfo($moduledata) {
+global $spacesettings, $uid;
+list($moduledata['bio'], $moduledata['biotrade']) = explode("\t\t\t", $moduledata['bio']);
+}-->
+
+	<div id="module_userinfo">
+	<div class="status">{lang status}: <span><!--{if $moduledata[online]}-->{lang online}<!--{else}-->{lang offline}<!--{/if}--></span></div>
+	<div class="info">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="table-layout: fixed; overflow: hidden">
+	<tr><td align="center">
+	<!--{if $moduledata[avatar]}-->
+		<a href="space.php?action=viewpro&uid=$uid"><img src="$moduledata[avatar]" width="$moduledata[avatarwidth]" height="$moduledata[avatarheight]" border="0" alt="" /></a>
+	<!--{else}-->
+		<img src="images/avatars/noavatar.gif" alt="" />
+	<!--{/if}-->
+	</td></tr></table></div>
+	<div class="username">$moduledata[username]<!--{if $moduledata[nickname]}--><br />$moduledata[nickname]<!--{/if}--></div>
+	<div class="operation">
+	<img src="mspace/$spacesettings[style]/sendmail.gif" alt="" /><a target="_blank" href="pm.php?action=send&uid=$uid">{lang send_pm}</a>
+	<img src="mspace/$spacesettings[style]/buddy.gif"alt="" /><a target="_blank" href="my.php?item=buddylist&newbuddyid=$uid&buddysubmit=yes" id="ajax_buddy" onclick="ajaxmenu(event, this.id)">{lang add_to_buddylist}</a>
+	</div>
+	<!--{if $moduledata['bio']}-->
+	<div class="more">
+	<br />$moduledata[bio]
+	</div>
+	<!--{/if}-->
+	</div>
+
+<!--{eval
+}
+
+function viewcalendar($moduledata) {
+global $timestamp, $uid;
+}-->
+
+	<table id="module_calendar" cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
+	<tr class="header"><td colspan="7">
+	<table cellspacing="0" cellpadding="0" width="100%"><tr>
+	<td width="30%" align="right"><a href="space.php?$uid/myblogs/$moduledata[pstarttime]/$moduledata[pendtime]">&laquo;</a></td>
+	<td width="40%" align="center" nowrap>$moduledata[curtime]</td>
+	<td width="30%" align="left">
+	<!--{if $moduledata['nstarttime'] < $timestamp}-->
+		<a href="space.php?$uid/myblogs/$moduledata[nstarttime]/$moduledata[nendtime]">&raquo;</a>
+	<!--{/if}-->
+	&nbsp;</td></tr></table></td></tr>
+	<tr class="header1" align="center"><td>{lang week_sun}</td><td>{lang week_mon}</td><td>{lang week_tues}</td><td>{lang week_wed}</td><td>{lang week_thurs}</td><td>{lang week_fri}</td><td>{lang week_sat}</td></tr>
+	$moduledata[html]
+	</table>
+
+<!--{eval
+}
+
+function mythreads($moduledata, $center = '') {
+global $discuz_uid, $mod, $multipage, $_DCACHE, $dateformat, $timeformat, $timeoffset;
+}-->
+
+	<div id="module_mythreads">
+	<!--{if $mod}-->
+		<table cellspacing="0" cellpadding="0" width="100%">
+		<tr class="list_category"><td class="subject">{lang subject}</td><td class="forum">{lang forum}</td><td class="views">{lang reply}/{lang views}</td><td class="lastpost">{lang lastpost}</td></tr>
+		<!--{loop $moduledata $thread}-->
+			<tr>
+			<td class="subject"><a href="viewthread.php?tid=$thread[tid]" target="_blank"><!--{eval threadspecial($thread);}-->$thread[subject]</a></td>
+			<td class="forum"><a href="forumdisplay.php?fid=$thread[fid]" target="_blank">$_DCACHE[forums][$thread[fid]][name]</a></td>
+			<td class="views">$thread[replies] / $thread[views]</td>
+			<td class="lastpost"><a target="_blank" href="redirect.php?tid=$thread[tid]&goto=lastpost#lastpost"><!--{echo gmdate("$dateformat $timeformat", $thread[lastpost] + $timeoffset * 3600);}--></a><br />
+				{lang forum_lastpost_by} <!--{if $thread[lastposter]}--><a href="space.php?username=<!--{echo rawurlencode($thread[lastposter])}-->" target="_blank">$thread[lastposter]</a><!--{else}-->{lang anonymous}<!--{/if}--></td>
+			</tr>
+		<!--{/loop}-->
+		</table>
+		<div class="line"></div>
+		$multipage
+	<!--{elseif $center}-->
+		<div class="center">
+		<!--{loop $moduledata $thread}-->
+			<div class="center_subject"><ul><li><a href="viewthread.php?tid=$thread[tid]" target="_blank"><!--{eval threadspecial($thread);}-->$thread[subject]</a></li></ul></div>
+			<div class="center_lastpost">
+				<a href="forumdisplay.php?fid=$thread[fid]" target="_blank">$_DCACHE[forums][$thread[fid]][name]</a> | <a target="_blank" href="redirect.php?tid=$thread[tid]&goto=lastpost#lastpost"><!--{echo gmdate("$dateformat $timeformat", $thread[lastpost] + $timeoffset * 3600);}--></a>
+			</div>
+			<div class="center_message">
+				$thread[message]
+			</div>
+			<div class="center_views">
+				<!--{if $thread[authorid] == $discuz_uid}--><a target="_blank" href="post.php?action=edit&fid=$thread[fid]&tid=$thread[tid]&pid=$thread[pid]">{lang edit}</a> |<!--{/if}-->
+				{lang views}($thread[views]) |
+				<a href="viewthread.php?tid=$thread[tid]" target="_blank">{lang reply}($thread[replies])</a> | <a target="_blank" href="my.php?item=favorites&tid=$thread[tid]" id="ajax_favorite_t$thread[tid]" onclick="ajaxmenu(event, this.id)">{lang thread_favorite}</a>
+			</div>
+		<!--{/loop}-->
+		</div>
+	<!--{else}-->
+		<div class="side"><ul>
+		<!--{loop $moduledata $thread}-->
+			<li><a href="viewthread.php?tid=$thread[tid]" target="_blank"><!--{eval threadspecial($thread);}-->$thread[subject]</a></li>
+		<!--{/loop}-->
+		</ul></div>
+	<!--{/if}-->
+	</div>
+
+<!--{eval
+}
+
+function myreplies($moduledata, $center = '') {
+global $mod, $multipage, $_DCACHE, $dateformat, $timeformat, $timeoffset;
+}-->
+
+	<div id="module_myreplies">
+	<!--{if $mod}-->
+		<table cellspacing="0" cellpadding="0" width="100%">
+		<tr class="list_category"><td class="subject">{lang subject}</td><td class="forum">{lang forum}</td><td class="views">{lang reply}/{lang views}</td><td class="lastpost">{lang lastpost}</td></tr>
+		<!--{loop $moduledata $thread}-->
+			<tr>
+			<td class="subject"><a href="redirect.php?goto=findpost&pid=$thread[pid]&ptid=$thread[tid]" target="_blank"><!--{eval threadspecial($thread);}-->$thread[subject]</a></td>
+			<td class="forum"><a href="forumdisplay.php?fid=$thread[fid]" target="_blank">$_DCACHE[forums][$thread[fid]][name]</a></td>
+			<td class="views">$thread[replies] / $thread[views]</td>
+			<td class="lastpost"><a target="_blank" href="redirect.php?tid=$thread[tid]&goto=lastpost#lastpost"><!--{echo gmdate("$dateformat $timeformat", $thread[lastpost] + $timeoffset * 3600);}--></a><br />
+				{lang forum_lastpost_by} <!--{if $thread[lastposter]}--><a href="space.php?username=<!--{echo rawurlencode($thread[lastposter])}-->" target="_blank">$thread[lastposter]</a><!--{else}-->{lang anonymous}<!--{/if}--></td>
+			</tr>
+		<!--{/loop}-->
+		</table>
+		<div class="line"></div>
+		$multipage
+	<!--{elseif $center}-->
+		<div class="center">
+		<!--{loop $moduledata $thread}-->
+			<div class="center_subject"><ul><li><a href="redirect.php?goto=findpost&pid=$thread[pid]&ptid=$thread[tid]" target="_blank"><!--{eval threadspecial($thread);}-->$thread[subject]</a></li></ul></div>
+			<div class="center_lastpost">
+				<a href="forumdisplay.php?fid=$thread[fid]" target="_blank">$_DCACHE[forums][$thread[fid]][name]</a> | <a target="_blank" href="redirect.php?tid=$thread[tid]&goto=lastpost#lastpost"><!--{echo gmdate("$dateformat $timeformat", $thread[lastpost] + $timeoffset * 3600);}--></a>
+			</div>
+			<div class="center_message">
+				$thread[message]
+			</div>
+			<div class="center_views">
+				{lang views}($thread[views]) |
+				<a href="viewthread.php?tid=$thread[tid]" target="_blank">{lang reply}($thread[replies])</a> | <a target="_blank" href="my.php?item=favorites&tid=$thread[tid]" id="ajax_favorite_r$thread[tid]" onclick="ajaxmenu(event, this.id)">{lang thread_favorite}</a>
+			</div>
+		<!--{/loop}-->
+		</div>
+	<!--{else}-->
+		<div class="side"><ul>
+		<!--{loop $moduledata $thread}-->
+			<li><a href="redirect.php?goto=findpost&pid=$thread[pid]&ptid=$thread[tid]" target="_blank"><!--{eval threadspecial($thread);}-->$thread[subject]</a></li>
+		<!--{/loop}-->
+		</ul></div>
+	<!--{/if}-->
+	</div>
+
+<!--{eval
+}
+
+function myrewards($moduledata, $center = '') {
+global $mod, $multipage, $_DCACHE, $dateformat, $timeformat, $timeoffset, $extcredits, $creditstrans;
+}-->
+
+	<div id="module_myrewards">
+	<!--{if $mod}-->
+		<table cellspacing="0" cellpadding="0" width="100%">
+		<tr class="list_category"><td class="subject">{lang subject}</td><td class="forum">{lang forum}</td><td class="price">{lang my_reward_allprice}</td></tr>
+		<!--{loop $moduledata $thread}-->
+			<tr>
+			<td class="subject"><a href="viewthread.php?tid=$thread[tid]" target="_blank">$thread[subject]</a></td>
+			<td class="forum"><a href="forumdisplay.php?fid=$thread[fid]" target="_blank">$_DCACHE[forums][$thread[fid]][name]</a></td>
+			<td class="price">
+			<!--{if $thread[answererid]}-->
+				{lang thread_rewardend}: <a href="space.php?uid=$thread[answererid]" target="_blank">$thread[username]</a>
+			<!--{else}-->
+				$thread[price] {$extcredits[$creditstrans][unit]}
+			<!--{/if}-->
+			</td></tr>
+		<!--{/loop}-->
+		</table>
+		<div class="line"></div>
+		$multipage
+	<!--{elseif $center}-->
+		<div class="center">
+		<!--{loop $moduledata $thread}-->
+			<div class="center_subject"><ul><li><a href="viewthread.php?tid=$thread[tid]" target="_blank">$thread[subject]</a></li></ul></div>
+			<div class="center_lastpost">
+				<a href="forumdisplay.php?fid=$thread[fid]" target="_blank">$_DCACHE[forums][$thread[fid]][name]</a>
+				<!--{if $thread[answererid]}-->
+				{lang thread_rewardend}: <a href="space.php?uid=$thread[answererid]" target="_blank">$thread[username]</a>
+				<!--{else}-->
+					{lang thread_reward}: $thread[price] {$extcredits[$creditstrans][unit]}
+				<!--{/if}-->
+			</div>
+			<div class="center_message">
+				$thread[message]
+			</div>
+			<div class="center_views">
+				{lang views}($thread[views]) |
+				<a href="viewthread.php?tid=$thread[tid]" target="_blank">{lang reply}($thread[replies])</a> | <a target="_blank" href="my.php?item=favorites&tid=$thread[tid]" id="ajax_favorite_w$thread[tid]" onclick="ajaxmenu(event, this.id)">{lang thread_favorite}</a>
+			</div>
+		<!--{/loop}-->
+		</div>
+	<!--{else}-->
+		<table cellspacing="0" cellpadding="0" width="100%">
+		<!--{loop $moduledata $thread}-->
+			<tr>
+			<td class="side_subject"><a href="viewthread.php?tid=$thread[tid]" target="_blank">$thread[subject]</a></td>
+			<td class="side_answerer">
+			<!--{if $thread[answererid]}-->
+				<a href="space.php?uid=$thread[answererid]" target="_blank">$thread[username]</a>
+			<!--{else}-->
+				$thread[price] {$extcredits[$creditstrans][unit]}
+			<!--{/if}-->
+			</td></tr>
+		<!--{/loop}-->
+		</table>
+	<!--{/if}-->
+	</div>
+
+<!--{eval
+}
+
+function mytrades($moduledata, $center = '') {
+global $mod, $multipage, $_DCACHE, $dateformat, $timeformat, $timeoffset, $tradeimagewidth, $tradeimageheight, $tradetypeid;
+}-->
+
+	<div id="module_mytrades">
+	<!--{if $mod || $center}-->
+		<!--{loop $moduledata $trade}-->
+			<!--{eval format_expiration($trade);}-->
+			<div style="float: left;width: 30%; margin:5px;text-align: center">
+			<table cellspacing="0" cellpadding="0" style="width: 80%"><tr><td height="100" align="center" valign="top">
+			<a href="viewthread.php?do=tradeinfo&tid=$trade[tid]&pid=$trade[pid]" target="_blank">
+			<img border="0" {if $trade['aid']}src="attachment.php?aid=$trade[aid]"{else}src="images/default/trade_nophoto.gif"{/if} onload="thumbImg(this)" width="96" height="96" alt="$trade[subject]" />
+			</a></td></tr></table>
+			<div class="item" style="height: 100px">
+			<a class="subject" href="viewthread.php?do=tradeinfo&tid=$trade[tid]&pid=$trade[pid]" target="_blank">$trade[subject]</a><br />
+			<!--{if $trade['costprice'] > 0}-->
+				{lang post_trade_costprice}: <span style="text-decoration: line-through">$trade[costprice]</span> {lang payment_unit}<br />
+			<!--{/if}-->
+			{lang post_trade_price}: <span class="price">$trade[price]</span> {lang payment_unit}<br />
+			<span class="expiration">
+			<!--{if $trade[closed]}-->
+				{lang trade_timeout}
+			<!--{elseif $trade[expiration] > 0}-->
+				{lang trade_remain} {$trade[expiration]}{lang trade_day}
+			<!--{elseif $trade[expiration] == -1}-->
+				{lang trade_timeout}
+			<!--{/if}-->
+			</span>
+			</div></div>
+		<!--{/loop}-->
+		<!--{if isset($tradetypeid)}-->
+			<div class="line" style="clear: both"></div>
+			$multipage
+		<!--{/if}-->
+	<!--{else}-->
+		<!--{loop $moduledata $trade}-->
+			<!--{eval format_expiration($trade);}-->
+			<div class="item">
+			<span class="side_price"><span class="price">$trade[price]</span> {lang payment_unit}</span>
+			<a class="side_subject" href="viewthread.php?do=tradeinfo&tid=$trade[tid]&pid=$trade[pid]" target="_blank">$trade[subject]</a><br />
+			</div>
+		<!--{/loop}-->
+	<!--{/if}-->
+	</div>
+
+<!--{eval
+}
+
+function myvideos($moduledata, $center = '') {
+global $mod, $multipage, $dateformat, $timeformat, $timeoffset;
+}-->
+
+	<div id="module_myvideos">
+	<!--{if $mod}-->
+		<!--{loop $moduledata $video}-->
+			<div style="float: left;width: 45%; margin:5px;text-align: center">
+			<table cellspacing="0" cellpadding="0" style="width: 80%"><tr><td height="96" align="center" valign="middle">
+			<a href="viewthread.php?tid=$video[tid]" target="_blank"><img src="$video[vthumb]" alt="$video[vtitle]" width="124" height="94" border="0" /></a></td></tr></table>
+			<div class="item" style="height: 80px">
+			$video[vtitle]<br />
+			{lang dateline}: <!--{echo gmdate("$dateformat $timeformat", $video[dateline] + $timeoffset * 3600);}--><br />
+			{lang video_views}: $video[vview]<br />
+			<!--{if $video['vtime']}-->{lang video_time}: $video[vtime] {lang video_minute}<!--{/if}-->
+			</div></div>
+		<!--{/loop}-->
+	<!--{else}-->
+		<!--{loop $moduledata $video}-->
+			<a href="viewthread.php?tid=$video[tid]" target="_blank"><img src="$video[vthumb]" alt="$video[vtitle]" width="124" height="94" border="0" /></a><br />$video[vtitle]<br /><br />
+		<!--{/loop}-->
+	<!--{/if}-->
+	</div>
+
+<!--{eval
+}
+
+function mytradetypes($moduledata) {
+global $uid, $tradetypes;
+
+}-->
+
+	<div id="module_userinfo">
+		<ul>
+		<li><a href="space.php?uid=$uid&mod=mytrades">{lang space_trade_home}</a></li>
+		<li><a href="space.php?uid=$uid&mod=mytrades&tradetypeid=all">{lang space_trade_all}</a></li>
+		<li><a href="space.php?uid=$uid&mod=mytrades&tradetypeid=stick">{lang space_trade_stick}</a></li>
+		<!--{loop $moduledata $typeid}-->
+			<li><a href="space.php?uid=$uid&mod=mytrades&tradetypeid=$typeid[typeid]"><!--{if $typeid[typeid]}-->{$tradetypes[$typeid[typeid]]}<!--{else}-->{lang space_trade_nonetype}<!--{/if}--></a></li>
+		<!--{/loop}-->
+		</ul>
+	</div>
+
+<!--{eval
+}
+
+function mycounters($moduledata, $center = '') {
+global $_DCACHE, $multipage;
+}-->
+
+	<div id="module_mythreads">
+		<table cellspacing="0" cellpadding="0" width="100%">
+		<tr class="list_category"><td class="subject">{lang subject}</td><td class="forum">{lang forum}</td><td class="views">{lang reply}/{lang views}</td></tr>
+		<!--{loop $moduledata $thread}-->
+			<tr>
+			<td class="subject"><a href="viewthread.php?tid=$thread[tid]" target="_blank"><!--{eval threadspecial($thread);}-->$thread[subject]</a></td>
+			<td class="forum"><a href="forumdisplay.php?fid=$thread[fid]" target="_blank">$_DCACHE[forums][$thread[fid]][name]</a></td>
+			<td class="views">$thread[replies] / $thread[views]</td>
+			</tr>
+		<!--{/loop}-->
+		</table>
+		<div class="line"></div>
+		$multipage
+	</div>
+
+<!--{eval
+}
+
+function tradeinfo($moduledata) {
+global $spacesettings, $uid;
+list($moduledata['bio'], $moduledata['biotrade']) = explode("\t\t\t", $moduledata['bio']);
+}-->
+
+	<div id="module_userinfo"><div class="more">
+	$moduledata['biotrade']
+	</div></div>
+
+<!--{eval
+}
+
+function myblogs($moduledata, $center = '') {
+global $discuz_uid, $mod, $multipage, $_DCACHE, $dateformat, $timeformat, $timeoffset;
+}-->
+
+	<div id="module_myblogs">
+	<!--{if $mod || $center}-->
+		<div class="center">
+		<!--{loop $moduledata $thread}-->
+			<div class="center_subject"><ul><li><a target="_blank" href="blog.php?tid=$thread[tid]"><!--{eval threadspecial($thread);}-->$thread[subject]</a></li></ul></div>
+			<div class="center_lastpost">
+				<a href="forumdisplay.php?fid=$thread[fid]" target="_blank">$_DCACHE[forums][$thread[fid]][name]</a> | <!--{echo gmdate("$dateformat", $thread[dateline] + $timeoffset * 3600);}-->
+			</div>
+			<div class="center_message">
+				$thread[message]
+			</div>
+			<div class="center_views">
+				<!--{if $thread[authorid] == $discuz_uid}--><a target="_blank" href="post.php?action=edit&fid=$thread[fid]&tid=$thread[tid]&pid=$thread[pid]">{lang edit}</a> |<!--{/if}-->
+				{lang views}($thread[views]) |
+				<a target="_blank" href="blog.php?tid=$thread[tid]">{lang blog_comments}($thread[replies])</a> | <a target="_blank" href="my.php?item=favorites&tid=$thread[tid]" id="ajax_favorite_b$thread[tid]" onclick="ajaxmenu(event, this.id)">{lang thread_favorite}</a>
+			</div>
+		<!--{/loop}-->
+		</div>
+		<!--{if $mod}-->
+			<div class="line"></div>
+			$multipage
+		<!--{/if}-->
+	<!--{else}-->
+		<div class="side"><ul>
+		<!--{loop $moduledata $thread}-->
+			<li><a target="_blank" href="blog.php?tid=$thread[tid]"><!--{eval threadspecial($thread);}-->$thread[subject]</a></li>
+		<!--{/loop}-->
+		</ul></div>
+	<!--{/if}-->
+	</div>
+
+<!--{eval
+}
+
+function postblog() {
+global $mod, $forumselect;
+}-->
+
+	<div id="module_postblog">
+	<form method="get" action="post.php">
+	<input type="hidden" name="action" value="newthread">
+	<input type="hidden" name="isblog" value="yes">
+	<br /><select name="fid" style="width: 92%">$forumselect</select><br />
+	<br /><input class="button" type="submit" value="{lang submit}"><br /><br />
+	</form>
+	</div>
+
+<!--{eval
+}
+
+function hotblog($moduledata) {
+global $starttime, $endtime;
+}-->
+
+	<div id="module_hotblog"><ul>
+	<!--{loop $moduledata $blog}-->
+		<li><a href="blog.php?tid=$blog[tid]" target="_blank" title="$blog[views] {lang views}, $blog[replies] {lang blog_comments}">$blog[subject]</a></li>
+	<!--{/loop}-->
+	</ul></div>
+
+<!--{eval
+}
+
+function lastpostblog($moduledata) {
+global $starttime, $endtime;
+}-->
+
+	<div id="module_hotblog"><ul>
+	<!--{loop $moduledata $blog}-->
+		<li><a href="blog.php?tid=$blog[tid]" target="_blank" title="$blog[views] {lang views}, $blog[replies] {lang blog_comments}">$blog[subject]</a></li>
+	<!--{/loop}-->
+	</ul></div>
+
+<!--{eval
+}
+
+function myfavforums($moduledata, $center = '') {
+global $mod, $multipage;
+}-->
+
+	<div id="module_myfavforums">
+	<!--{if $mod}-->
+		<table cellspacing="0" cellpadding="0" width="100%">
+		<tr class="list_category"><td class="forum">{lang forum}</td><td class="threads">{lang forum_threads}</td><td class="posts">{lang forum_posts}</td><td class="todayposts">{lang forum_todayposts}</td></tr>
+		<!--{loop $moduledata $forum}-->
+			<tr>
+			<td class="forum"><a href="forumdisplay.php?fid=$forum[fid]" target="_blank">$forum[name]</a></td>
+			<td class="threads">$forum[threads]</td>
+			<td class="posts">$forum[posts]</td>
+			<td class="todayposts">$forum[todayposts]</td>
+			</tr>
+		<!--{/loop}-->
+		</table>
+		<div class="line"></div>
+		$multipage
+	<!--{else}-->
+		<div class="side"><ul>
+		<!--{loop $moduledata $forum}-->
+			<li><a href="forumdisplay.php?fid=$forum[fid]" target="_blank">$forum[name]</a> <!--{if $forum[todayposts]}-->($forum[todayposts])<!--{/if}--></li>
+		<!--{/loop}-->
+		</ul></div>
+	<!--{/if}-->
+	</div>
+
+<!--{eval
+}
+
+function myfavthreads($moduledata, $center = '') {
+global $mod, $multipage, $_DCACHE, $dateformat, $timeformat, $timeoffset;
+}-->
+
+	<div id="module_myfavthreads">
+	<!--{if $mod}-->
+		<table cellspacing="0" cellpadding="0" width="100%">
+		<tr class="list_category"><td class="subject">{lang subject}</td><td class="forum">{lang forum}</td><td class="views">{lang reply}/{lang views}</td><td class="lastpost">{lang lastpost}</td></tr>
+		<!--{loop $moduledata $thread}-->
+			<tr>
+			<td class="subject"><a href="viewthread.php?tid=$thread[tid]" target="_blank"><!--{eval threadspecial($thread);}-->$thread[subject]</a></td>
+			<td class="forum"><a href="forumdisplay.php?fid=$thread[fid]" target="_blank">$_DCACHE[forums][$thread[fid]][name]</a></td>
+			<td class="views">$thread[replies] / $thread[views]</td>
+			<td class="lastpost"><a target="_blank" href="redirect.php?tid=$thread[tid]&goto=lastpost#lastpost"><!--{echo gmdate("$dateformat $timeformat", $thread[lastpost] + $timeoffset * 3600);}--></a><br />
+				{lang forum_lastpost_by} <!--{if $thread[lastposter]}--><a href="space.php?username=<!--{echo rawurlencode($thread[lastposter])}-->" target="_blank">$thread[lastposter]</a><!--{else}-->{lang anonymous}<!--{/if}--></td>
+			</tr>
+		<!--{/loop}-->
+		</table>
+		<div class="line"></div>
+		$multipage
+	<!--{else}-->
+		<div class="side"><ul>
+		<!--{loop $moduledata $thread}-->
+			<li><a href="viewthread.php?tid=$thread[tid]" target="_blank"><!--{eval threadspecial($thread);}-->$thread[subject]</a> ($thread[replies])</li>
+		<!--{/loop}-->
+		</ul></div>
+	<!--{/if}-->
+	</div>
+
+<!--{eval
+}
+
+function myfriends($moduledata) {
+global $mod, $spacelanguage;
+}-->
+
+	<div id="module_myfriends">
+	<!--{loop $moduledata $friend}-->
+	<div class="friend"><ul><li><a href="space.php?uid=$friend[uid]" target="_blank">$friend[username]</a></li></ul></div>
+	<div class="space"><a href="space.php?uid=$friend[uid]" target="_blank"><!--{if !empty($friend[spacename])}-->$friend[spacename]<!--{else}-->{$friend[username]}$spacelanguage[space]<!--{/if}--></a></div>
+	<!--{/loop}-->
+	</div>
+
+<!--{eval
+}
+
+}-->

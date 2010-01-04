@@ -1,0 +1,51 @@
+{template header}
+<div id="nav">
+<a href="$indexname">$bbname</a> $navigation &raquo; {lang admin_split}
+</div>
+
+<form method="post" action="topicadmin.php?action=split" id="postform">
+<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+<div class="mainbox formbox">
+<h1>{lang admin_split}</h1>
+<table cellspacing="0" cellpadding="0" width="100%">
+
+<tr>
+<th>{lang username}</th>
+<td>$discuz_userss <em class="tips">[<a href="$link_logout">{lang member_logout}</a>]</em></td>
+</tr>
+
+<tr>
+<th>{lang admin_split_newsubject}</th>
+<td><input type="text" name="subject" size="45" /></td>
+</tr>
+
+{template topicadmin_reason}
+
+<tr>
+<th>{lang select}</th>
+<td>{lang content}</td>
+</tr>
+
+<!--{loop $postlist $post}-->
+	<tr>
+	<th><input type="checkbox" name="split[]" value="$post[pid]" /></th>
+	<td><b><!--{if $post['author']}-->$post[author]<!--{else}-->{lang guest}<!--{/if}--></b>
+	<br /><br />$post[message]
+	</td>
+	</tr>
+<!--{/loop}-->
+
+<tr class="btns">
+<th>&nbsp;</th>
+<td>
+<input type="hidden" name="fid" value="$fid">
+<input type="hidden" name="tid" value="$tid">
+<button class="submit" type="submit" name="splitsubmit" id="postsubmit" value="true">{lang admin_split}</button> {lang post_submit_hotkey}
+</td>
+</tr>
+
+
+</table></div>
+</form>
+{template footer}

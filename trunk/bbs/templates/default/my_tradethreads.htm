@@ -1,0 +1,51 @@
+
+
+<form action="my.php?item=tradethreads" method="post">
+<div class="msgtabs">
+<div class="mysearch">{lang my_trade_goods_name} <input name="srchkey" value="$srchkey" size="27"> &nbsp;<button type="submit" name="submit" value="true">{lang search}</button></div>
+<strong>{lang my_trade_selles}&#8212;&#8212;{lang my_trade_view_thread}<!--{if $tid || $srchkey}-->[<a href="my.php?item=$item$extrafid">{lang my_trade_view_allthread}</a>]<!--{/if}--></strong></div>
+</form>
+
+<table cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<td colspan="2">{lang my_trade_goods_name}</td>
+<td >{lang my_trade_show}</td>
+<td>{lang my_trade_sale_quantity}</td>
+<td>{lang my_trade_stock_quantity}</td>
+<td>{lang my_trade_amount_all}</td>
+<td>{lang my_trade_last}</td>
+</tr>
+</thead>
+<!--{if $tradelist}-->
+	<!--{loop $tradelist $key $trade}-->
+		<tr height="80">
+		<td width="80" align="center">
+		<a href="viewthread.php?do=tradeinfo&tid=$trade[tid]&pid=$trade[pid]" target="_blank">
+		<!--{if $trade['aid']}-->
+			<img class="absmiddle" src="attachment.php?aid=$trade[aid]&noupdate=yes" onload="thumbImg(this)" width="80" height="80" alt="" border="0" />
+		<!--{else}-->
+			<img class="absmiddle" src="{IMGDIR}/trade_nophotosmall.gif" alt="" border="0" />
+		<!--{/if}-->
+		</a>
+		</td>
+		<td class="subject"><a href="viewthread.php?do=tradeinfo&tid=$trade[tid]&pid=$trade[pid]" target="_blank">$trade[subject]</a><br />
+		<!--{if $trade[closed]}-->
+			<span class="lighttxt">{lang trade_timeout}</span>
+		<!--{elseif $trade[expiration] > 0}-->
+			<span class="lighttxt">{lang trade_remain} {$trade[expiration]}{lang trade_day}{$trade[expirationhour]}{lang trade_hour}</span>
+		<!--{elseif $trade[expiration] == -1}-->
+			<span class="lighttxt">{lang trade_timeout}</span>
+		<!--{/if}-->
+		</td>
+		<td><a href="my.php?item=selltrades&tid=$trade[tid]&pid=$trade[pid]" target="_blank">{lang enter}</a></td>
+		<td>$trade[totalitems]</td>
+		<td>$trade[amount]</td>
+		<td>$trade[tradesum]</td>
+		<td><!--{if $trade['lastbuyer']}--><a href="redirect.php?tid=$trade[tid]&goto=lastpost#lastpost">$trade[lastupdate]</a><br />{lang forum_lastpost_by} <a href="space.php?username=$trade[lastbuyer]" target="_blank">$trade[lastbuyer]</a><!--{else}-->&nbsp;<!--{/if}--></td>
+		</tr>
+	<!--{/loop}-->
+<!--{else}-->
+	<tr><td colspan="6">{lang forum_nothreads}</td></tr>
+<!--{/if}-->
+</table>

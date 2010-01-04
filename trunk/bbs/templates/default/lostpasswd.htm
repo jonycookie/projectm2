@@ -1,0 +1,43 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> &raquo; {lang lostpassword}</div>
+
+<form method="post" action="member.php?action=lostpasswd">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<div class="mainbox formbox">
+		<h1>{lang lostpassword}</h1>
+		<table summary="{lang lostpassword}" cellspacing="0" cellpadding="0">
+			<tr>
+				<th><label for="username">{lang username}</label></th>
+				<td><input type="text" id="username" name="username" size="25" /></td>
+			</tr>
+			<tr>
+				<th><label for="email">{lang email}</label></th>
+				<td ><input type="text" id="email" name="email" size="25" />
+			</tr>
+			<tr>
+				<th><label for="questionid">{lang security_question}</label></th>
+				<td>
+					<select id="questionid" name="questionid">
+						<option value="0">&nbsp;</option>
+						<option value="1">{lang security_question_1}</option>
+						<option value="2">{lang security_question_2}</option>
+						<option value="3">{lang security_question_3}</option>
+						<option value="4">{lang security_question_4}</option>
+						<option value="5">{lang security_question_5}</option>
+						<option value="6">{lang security_question_6}</option>
+						<option value="7">{lang security_question_7}</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th><label for="answer">{lang security_answer}</label></th>
+				<td><input type="text" name="answer" size="25" /></td>
+			</tr>
+			<tr class="btns">
+				<th>&nbsp;</th>
+				<td><button type="submit" class="submit" name="lostpwsubmit" value="true">{lang submit}</button></td>
+			</tr>
+		</table>
+	</div>
+</form>
+{template footer}

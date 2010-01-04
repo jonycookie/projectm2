@@ -1,0 +1,276 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo;
+<!--{if $operation == 'delete'}-->
+	{lang admin_delthread}
+<!--{elseif $operation == 'move'}-->
+	{lang admin_move}
+<!--{elseif $operation == 'highlight'}-->
+	{lang admin_highlight}
+<!--{elseif $operation == 'type'}-->
+	{lang admin_type}
+<!--{elseif $operation == 'close'}-->
+	{lang admin_openclose}
+<!--{elseif $operation == 'stick'}-->
+	{lang admin_stick_unstick}
+<!--{elseif $operation == 'digest'}-->
+	{lang admin_digest_addremove}
+<!--{elseif $operation == 'supe_push'}-->
+	{lang admin_supe_push_addremove}
+<!--{elseif $operation == 'removereward'}-->
+	{lang admin_supe_push_addremove}
+<!--{elseif $operation == 'bump'}-->
+	{lang admin_bump_down}
+<!--{elseif $operation == 'recommend'}-->
+	{lang admin_recommend}
+<!--{/if}-->
+</div>
+
+<form method="post" action="topicadmin.php?action=moderate&operation=$operation" id="postform">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<input type="hidden" name="fid" value="$fid" />
+	<input type="hidden" name="referer" value="$referer" />
+
+	<div class="mainbox formbox">
+		<h1>
+		<!--{if $operation == 'delete'}-->
+			{lang admin_delthread}
+		<!--{elseif $operation == 'move'}-->
+			{lang admin_move}
+		<!--{elseif $operation == 'highlight'}-->
+			{lang admin_highlight}
+		<!--{elseif $operation == 'type'}-->
+			{lang admin_type}
+		<!--{elseif $operation == 'close'}-->
+			{lang admin_openclose}
+		<!--{elseif $operation == 'stick'}-->
+			{lang admin_stick_unstick}
+		<!--{elseif $operation == 'digest'}-->
+			<a href="member.php?action=credits&view=digest" target="_blank">{lang credits_policy_view}</a>{lang admin_digest_addremove}
+		<!--{elseif $operation == 'supe_push'}-->
+			{lang admin_supe_push}
+		<!--{elseif $operation == 'bump'}-->
+			{lang admin_bump_down}
+		<!--{elseif $operation == 'recommend'}-->
+			{lang admin_recommend}
+		<!--{/if}-->
+		</h1>
+	<table summary="Operating" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<th>{lang username}</th>
+				<td>$discuz_userss [<a href="$link_logout">{lang member_logout}</a>]</td>
+			</tr>
+		</thead>
+
+		<!--{if $operation == 'move'}-->
+			<tr>
+				<th><label for="moveto">{lang admin_move_target}</label></th>
+				<td>
+					<select id="moveto" name="moveto">
+						$forumselect
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<th>{lang admin_move_type}</th>
+				<td>
+					<label><input class="radio" type="radio" name="type" value="normal" checked="checked" /> {lang admin_move}</label>
+					<label><input class="radio" type="radio" name="type" value="redirect" /> {lang admin_move_redirect}</label>
+				</td>
+			</tr>
+		<!--{elseif $operation == 'highlight'}-->
+			<tr>
+				<th>{lang admin_highlight_style}</td>
+				<td>
+					<label><input class="checkbox" type="checkbox" name="highlight_style[1]" value="1" $stylecheck[1] /> <strong style="font-weight: bold; color: #000;">{lang admin_highlight_bold}</strong></label>&nbsp;
+					<label><input class="checkbox" type="checkbox" name="highlight_style[2]" value="1" $stylecheck[2] /> <em style="font-style: italic;">{lang admin_highlight_italic}</em></label>&nbsp;
+					<label><input class="checkbox" type="checkbox" name="highlight_style[3]" value="1" $stylecheck[3] /> <span style="text-decoration: underline;">{lang admin_highlight_underline}</span></label>
+				</td>
+			</tr>
+
+			<tr>
+				<th>{lang admin_highlight_color}</th>
+				<td>
+					<label class="highlight"><input class="radio" type="radio" name="highlight_color" value="0" $colorcheck[0] /><em style="background: {LINK};"></em></label>
+					<label class="highlight"><input class="radio" type="radio" name="highlight_color" value="1" $colorcheck[1] /><em style="background: red;"></em></label>
+					<label class="highlight"><input class="radio" type="radio" name="highlight_color" value="2" $colorcheck[2] /><em style="background: orange;"></em></label>
+					<label class="highlight"><input class="radio" type="radio" name="highlight_color" value="3" $colorcheck[3] /><em style="background: yellow;"></em></label>
+					<label class="highlight"><input class="radio" type="radio" name="highlight_color" value="4" $colorcheck[4] /><em style="background: green;"></em></label>
+					<label class="highlight"><input class="radio" type="radio" name="highlight_color" value="5" $colorcheck[5] /><em style="background: cyan;"></em></label>
+					<label class="highlight"><input class="radio" type="radio" name="highlight_color" value="6" $colorcheck[6] /><em style="background: blue;"></em></label>
+					<label class="highlight"><input class="radio" type="radio" name="highlight_color" value="7" $colorcheck[7] /><em style="background: purple;"></em></label>
+					<label class="highlight"><input class="radio" type="radio" name="highlight_color" value="8" $colorcheck[8] /><em style="background: gray;"></em></label>
+				</td>
+			</tr>
+		<!--{elseif $operation == 'type'}-->
+			<tr>
+				<th>{lang admin_move_target}</td>
+				<td>$typeselect</td>
+			</tr>
+		<!--{elseif $operation == 'close'}-->
+			<tr>
+				<th>{lang action}</th>
+				<td>
+					<label><input class="radio" type="radio" name="close" value="0" $closecheck[0] /> {lang admin_open} </label>&nbsp;
+					<label><input class="radio" type="radio" name="close" value="1" $closecheck[1] /> {lang admin_close}</label>
+				</td>
+			</tr>
+		<!--{elseif $operation == 'stick'}-->
+			<tr>
+				<th>{lang level}</th>
+				<td>
+					<!--{if !$single || $threadlist[$tid]['displayorder'] > 0}-->
+						<label><input class="radio" type="radio" name="level" value="0" onclick="$('expirationarea').disabled=1" /> {lang admin_unstick} </label>&nbsp;
+					<!--{/if}-->
+						<label><input class="radio" type="radio" name="level" value="1" $stickcheck[1] onclick="$('expirationarea').disabled=0" /> <img src="{IMGDIR}/pin_1.gif" alt="$threadsticky[2]" /> $threadsticky[2]</label>
+					<!--{if $allowstickthread >= 2}-->
+						<label><input class="radio" type="radio" name="level" value="2" $stickcheck[2] onclick="$('expirationarea').disabled=0" /> <img src="{IMGDIR}/pin_2.gif" alt="$threadsticky[1]" /> $threadsticky[1]</label>
+						<!--{if $allowstickthread == 3}-->
+							<label><input class="radio" type="radio" name="level" value="3" $stickcheck[3] onclick="$('expirationarea').disabled=0" /> <img src="{IMGDIR}/pin_3.gif" alt="$threadsticky[0]" /> $threadsticky[0]</label>
+						<!--{/if}-->
+					<!--{/if}-->
+				</td>
+			</tr>
+		<!--{elseif $operation == 'digest'}-->
+			<tr>
+				<th>{lang level}</th>
+				<td>
+					<!--{if !$single || ($single && $threadlist[$tid]['digest'])}-->
+						<label><input class="radio" type="radio" name="level" value="0" $digestcheck[0] onclick="$('expiration').disabled=1" /> {lang admin_digest_remove} </label>&nbsp;
+				<!--{/if}-->
+					<label><input class="radio" type="radio" name="level" value="1" $digestcheck[1] onclick="$('expiration').disabled=0" /> <img src="{IMGDIR}/digest_1.gif" alt="" /></label>
+					<label><input class="radio" type="radio" name="level" value="2" $digestcheck[2] onclick="$('expiration').disabled=0" /> <img src="{IMGDIR}/digest_2.gif" alt="" /></label>
+					<label><input class="radio" type="radio" name="level" value="3" $digestcheck[3] onclick="$('expiration').disabled=0" /> <img src="{IMGDIR}/digest_3.gif" alt="" /></label>
+				</td>
+			</tr>
+
+		<!--{elseif $operation == 'supe_push'}-->
+			<tr>
+			<td class="altbg1"><span class="bold">{lang topicadmin_push_supesite}</span></td>
+			<td class="altbg2">
+			<input class="radio" type="radio" name="supe_pushstatus" value="2" $supe_pushstatus[2]> {lang topicadmin_push_add} &nbsp; &nbsp;
+			<input class="radio" type="radio" name="supe_pushstatus" value="-2" $supe_pushstatus[-2]> {lang topicadmin_push_remove} &nbsp; &nbsp;</td>
+			</tr>
+
+		<!--{elseif $operation == 'bump'}-->
+			<tr>
+				<th>{lang action}</th>
+				<td>
+					<label><input class="radio" type="radio" name="isbump" value="1" checked="checked" /> {lang admin_bump} </label>&nbsp;
+					<label><input class="radio" type="radio" name="isbump" value="0" /> {lang admin_down}</label>
+				</td>
+			</tr>
+		<!--{elseif $operation == 'recommend'}-->
+			<tr>
+				<th>{lang action}</th>
+				<td>
+					<label><input class="radio" type="radio" name="isrecommend" value="1" checked="checked" /> {lang admin_recommend}</label>
+					<label><input class="radio" type="radio" name="isrecommend" value="0" /> {lang admin_unrecommend}</label>
+				</td>
+			</tr>
+			<tr>
+				<th><label for="recommendexpire">{lang thread_moderations_expiration}</label></th>
+				<td>
+					<select id="recommendexpire" name="recommendexpire">
+						<option value="86400">{lang admin_recommend_day}</option>
+						<option value="259200">{lang admin_recommend_day_three}</option>
+						<option value="432000">{lang admin_recommend_day_five}</option>
+						<option value="604800">{lang admin_recommend_week}</option>
+						<option value="2592000">{lang admin_recommend_month}</option>
+						<option value="7776000">{lang admin_recommend_month_three}</option>
+						<option value="15552000">{lang admin_recommend_month_six}</option>
+						<option value="31536000">{lang admin_recommend_year}</option>
+					</select>
+				</td>
+			</tr>
+		<!--{/if}-->
+
+		<!--{if in_array($operation, array('stick', 'digest', 'highlight', 'close'))}-->
+			<tr id="expirationarea">
+				<th><label for="expiration">{lang thread_moderations_expiration}</label></th>
+				<td><input onclick="showcalendar(event, this, true)" type="text" name="expiration" id="expiration" size="15" value="$expirationdefault" /> {lang thread_moderations_expiration_comment}</td>
+			</tr>
+		<!--{/if}-->
+
+		{template topicadmin_reason}
+
+		<!--{if in_array($operation, array('stick', 'digest', 'highlight'))}-->
+			<tr>
+				<th>{lang admin_next}</th>
+				<td>
+					<label><input class="radio" type="radio" name="next" value="" checked="checked" /> {lang none} </label>&nbsp;
+					<!--{if $operation != 'highlight'}--><label><input class="radio" type="radio" name="next" value="highlight" /> {lang admin_highlight} </label>&nbsp; <!--{/if}-->
+					<!--{if $operation != 'stick'}--><label><input class="radio" type="radio" name="next" value="stick" /> {lang admin_stick_unstick} </label>&nbsp; <!--{/if}-->
+					<!--{if $operation != 'digest'}--><label><input class="radio" type="radio" name="next" value="digest"> {lang admin_digest_addremove} </label>&nbsp; <!--{/if}-->
+				</td>
+			</tr>
+		<!--{/if}-->
+
+		<tr class="btns">
+			<th>&nbsp;</th>
+			<td><button type="submit" name="modsubmit" id="postsubmit" value="true">{lang submit}</button> {lang post_submit_hotkey}
+		</tr>
+
+	</table>
+
+	</div>
+
+	<!--{if $single}-->
+		<input type="hidden" name="moderate[]" value="$moderate[0]" />
+		<!--{if $loglist}-->
+			<div class="mainbox">
+				<h3>{lang thread_moderations}</h3>
+				<table summary="Log List" cellspacing="0" cellpadding="0">
+					<thead>
+						<tr>
+							<td>{lang thread_moderations_username}</td>
+							<td>{lang time}</td>
+							<td>{lang thread_moderations_action}</td>
+							<td>{lang thread_moderations_expiration}</td>
+						</tr>
+					</thead>
+					<!--{loop $loglist $log}-->
+						<tr>
+							<td><!--{if $log[uid]}--><a href="space.php?uid=$log['uid']" target="_blank">$log['username']</a><!--{else}-->{lang thread_moderations_cron}<!--{/if}--></td>
+							<td>$log['dateline']</td>
+							<td $log['status']><strong>{$modactioncode[$log['action']]}</strong></td>
+							<td $log['status']><!--{if $log['expiration']}-->$log['expiration']<!--{elseif in_array($log['action'], array('STK', 'HLT', 'DIG', 'CLS', 'OPN'))}-->{lang thread_moderations_expiration_unlimit}<!--{/if}--></td>
+						</tr>
+					<!--{/loop}-->
+				</table>
+			</div>
+		<!--{/if}-->
+	<!--{else}-->
+		<div class="mainbox threadlist">
+			<table summary="Threads" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<th>{lang subject}</th>
+						<td class="author">{lang author}</td>
+						<td class="nums">{lang replies}</td>
+						<td class="lastpost">{lang lastpost}</td>
+					</tr>
+				</thead>
+				<!--{loop $threadlist $thread}-->
+				<tbody>
+					<tr>
+						<th>
+							<input type="checkbox" name="moderate[]" value="$thread[tid]" checked="checked" />
+							<a href="viewthread.php?tid=$thread[tid]&extra=$extra">$thread[subject]</a>
+						</th>
+						<td class="author"><!--{if $thread[author]}--><a href="space.php?uid=$thread[authorid]">$thread[author]</a><!--{else}-->{lang anonymous}<!--{/if}--></td>
+						<td class="nums">$thread[replies]</td>
+						<td class="lastpost">$thread[lastpost] <cite>by <!--{if $thread['lastposter']}--><a href="space.php?username=$thread[lastposterenc]">$thread[lastposter]</a><!--{else}-->{lang anonymous}<!--{/if}--></cite></td>
+					</tr>
+				</tbody>
+				<!--{/loop}-->
+			</table>
+		</div>
+	<!--{/if}-->
+
+</form>
+<!--{if in_array($operation, array('stick', 'digest', 'highlight', 'close'))}-->
+	<script type="text/javascript" src="include/javascript/calendar.js"></script>
+<!--{/if}-->
+{template footer}

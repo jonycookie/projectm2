@@ -1,0 +1,113 @@
+{template header}
+	<div id="nav"><a href="$indexname">$bbname</a> &raquo; <a href="stats.php">{lang stats}</a> &raquo; {lang stats_main}</div>
+	<div class="container">
+		<div class="side">
+			{template stats_navbar}
+		</div>
+		<div class="content">
+			<div class="mainbox">
+				<h3>{lang stats_main_member}</h3>
+				<table summary="{lang stats_main_member}" cellspacing="0" cellpadding="0">
+					<tr>
+						<th>{lang stats_main_members}</th><td>$members</td>
+						<th>{lang stats_main_posters}</th><td>$mempost</td>
+					</tr>
+					
+					<tr>
+						<th>{lang stats_main_admins}</th><td>$admins</td>
+						<th>{lang stats_main_nonposters}</th><td>$memnonpost</td>
+					</tr>
+					
+					<tr>
+						<th>{lang stats_main_new}</th><td>$lastmember</td>
+						<th>{lang stats_main_posters_percent}</th><td>$mempostpercent%</td>
+					</tr>
+					
+					<tr>
+						<th>{lang stats_main_topposter}</th><td>$bestmem <em title="{lang stats_main_total_posted}">($bestmemposts)</em></td>
+						<th>{lang stats_main_posts_avg}</th><td>$mempostavg</td>
+					</tr>
+			
+				</table>
+			</div>
+			<div class="mainbox">
+				<h3>{lang stats}</h3>
+				<table summary="{lang stats}" cellspacing="0" cellpadding="0">
+					<tr>
+						<th>{lang stats_main_forums_count}</th><td>$forums</td>
+						<th>{lang stats_main_nppd}</th><td>$postsaddavg</td>
+						<th>{lang stats_main_hot_forum}</th><td><a href="forumdisplay.php?fid=$hotforum[fid]" target="_blank">$hotforum[name]</a></td>
+					</tr>
+					
+					<tr>
+						<th>{lang stats_main_threads_count}</th><td>$threads</td>
+						<th>{lang stats_main_nmpd}</th><td>$membersaddavg</td>
+						<th>{lang stats_main_threads_count}</th><td>$hotforum[threads]</td>
+					</tr>
+					
+					<tr>
+						<th>{lang stats_main_posts_count}</th><td>$posts</td>
+						<th>{lang stats_main_todays_newposts}</th><td>$postsaddtoday</td>
+						<th>{lang stats_main_posts_count}</th><td>$hotforum[posts]</td>
+					</tr>
+					
+					<tr>
+						<th>{lang stats_main_rpt}</th><td>$threadreplyavg</td>
+						<th>{lang stats_main_members_count}</th><td>$membersaddtoday</td>
+						<th>{lang stats_main_board_activity}</th><td>$activeindex</td>
+					</tr>
+				</table>
+			</div>
+			<!--{if $statstatus}-->
+				<div class="mainbox">
+					<h3>{lang stats_main_pageview}</h3>
+					<table summary="{lang stats_main_pageview}" cellspacing="0" cellpadding="0">
+						<tr>
+							<th>{lang stats_main_total_pageview}</th><td>$stats_total[hits]</td>
+							<th>{lang stats_main_maxpv_month}</th><td>$maxmonth_year {lang year} $maxmonth_month {lang month}</td>
+						</tr>
+					
+						<tr>
+							<th>{lang stats_main_total_visitors}</th><td>$stats_total[visitors] {lang stats_main_person_time}</td>
+							<th>{lang stats_main_total_pageview_month}</th><td>$maxmonth</td>
+						</tr>
+					
+						<tr>
+							<th>{lang member}</th><td>$stats_total[members]</td>
+							<th>{lang stats_main_period_of_time}</th><td>$maxhourfrom - $maxhourto</td>
+						</tr>
+					
+						<tr>
+							<th>{lang guest}</th><td>$stats_total[guests]</td>
+							<th>{lang stats_main_total_pageview_time}</th><td>$maxhour</td>
+						</tr>
+					
+						<tr>
+							<th>{lang stats_main_pv_avg}</th><td>$pageviewavg</td>
+							<th>&nbsp;</th><td>&nbsp;</td>
+						</tr>
+					
+					</table>
+				</div>
+			<!--{/if}-->
+			<div class="mainbox">
+				<h3>{lang stats_main_month}</h3>
+				<table summary="{lang stats_main_month}" cellpadding="0" cellspacing="0">
+				<!--{if $statstatus}-->
+					$statsbar_month
+				<!--{else}-->
+					<thead>
+						<td colspan="2">{lang stats_month_posts}</td>
+					</thead>
+					$statsbar_monthposts
+					<thead>
+						<td colspan="2">{lang stats_day_posts}</td>
+					</thead>
+					$statsbar_dayposts
+				<!--{/if}-->
+				</table>
+			</div>
+			<div class="notice">{lang stats_update}</div>
+		</div>
+	</div>
+{template footer}

@@ -1,0 +1,37 @@
+<table cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<td>{lang in_thread}</td>
+<td>{lang forum}</td>
+<td><!--{if $type == 'poll'}-->{lang lastpost}<!--{else}-->{lang poll_dateline}<!--{/if}--></td>
+<td>{lang status}</td>
+</tr>
+</thead>
+<tbody>
+<!--{if $polllist}-->
+	<!--{loop $polllist $key $poll}-->
+		<tr>
+		<td><a href="viewthread.php?tid=$poll[tid]" target="_blank">$poll[subject]</a></td>
+		<td><a href="forumdisplay.php?fid=$poll[fid]" target="_blank">$poll[forumname]</a></td>
+		<td>
+			<!--{if $type == 'poll'}-->
+				<cite>
+					<a href="redirect.php?tid=$poll[tid]&goto=lastpost#lastpost" target="_blank">$poll[lastpost]</a><br />by 
+					<!--{if $poll['lastposter']}-->
+						<a href="space.php?username=$poll[lastposterenc]" target="_blank">$poll[lastposter]</a>
+					<!--{else}-->
+						{lang anonymous}
+					<!--{/if}-->
+				<cite>
+			<!--{else}-->
+				<cite>$poll[dateline]</cite>
+			<!--{/if}-->
+		</td>
+		<td><!--{if $poll[displayorder] == '-1'}-->{lang forum_recyclebin}<!--{elseif $poll[displayorder] == '-2'}-->{lang my_threads_aduit}<!--{elseif $poll[closed] == '1'}-->{lang my_threads_close}<!--{else}-->{lang my_threads_common}<!--{/if}--></td>
+		</tr>
+	<!--{/loop}-->
+<!--{else}-->
+	<tr><td colspan="4">{lang forum_nothreads}</td></tr>
+<!--{/if}-->
+</tbody>
+</table>

@@ -1,0 +1,50 @@
+{template header}
+
+<!--{if $inajax}-->
+
+	<ul class="userlist">
+	<!--{if !$voterlist}-->
+		<li>{lang none}</li>
+	<!--{else}-->
+		<!--{loop $voterlist $voter}-->
+			<li><a href="space.php?uid=$voter[uid]" target="_blank">$voter[username]</a></li>
+		<!--{/loop}-->
+	<!--{/if}-->
+	</ul>
+	<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+
+<!--{else}-->
+
+	<div id="nav">
+		<a href="$indexname">$bbname</a> &raquo; {lang poll_show_voter}
+	</div>
+
+	<div class="pages_btns">
+		$multipage
+	</div>
+	<div class="mainbox">
+		<h1>{lang poll_view_voters}</h1>
+		<table summary="$tagname" cellspacing="0" cellpadding="0">
+			<tbody>
+				<tr>
+					<th>
+					<ul class="userlist">
+					<!--{if !$voterlist}-->
+						<li>{lang none}</li>
+					<!--{else}-->
+						<!--{loop $voterlist $voter}-->
+							<li><a href="space.php?uid=$voter[uid]" target="_blank">$voter[username]</a></li>
+						<!--{/loop}-->
+					<!--{/if}-->
+					</ul>
+					</th>
+				</tr>
+			<tbody>
+		</table>
+	</div>
+
+	<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+
+<!--{/if}-->
+
+{template footer}

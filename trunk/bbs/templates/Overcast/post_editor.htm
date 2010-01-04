@@ -1,0 +1,301 @@
+<script type="text/javascript">
+lang['post_discuzcode_code'] = '{lang post_discuzcode_input_code}';
+lang['post_discuzcode_quote'] = '{lang post_discuzcode_input_quote}';
+lang['post_discuzcode_free'] = '{lang post_discuzcode_input_free}';
+lang['post_discuzcode_hide'] = '{lang post_discuzcode_input_hide}';
+var editorcss = 'forumdata/cache/style_{STYLEID}.css';
+var editorcss_append = 'forumdata/cache/style_{STYLEID}_append.css';
+var TABLEBG = '{TABLEBG}';
+</script>
+<th valign="top">
+	<label for="posteditor_textarea">
+	<!--{if $special == 1}-->
+		{lang poll_message}
+	<!--{elseif $thread['special'] == 2 && $isfirstpost}-->
+		{lang post_trade_counterdesc}
+	<!--{elseif $thread['special'] == 2 && $special == 2}-->
+		{lang post_trade_description}
+	<!--{elseif $special == 3 && $allowpostreward}-->
+		{lang reward_message}
+	<!--{elseif $special == 4 && $allowpostactivity}-->
+		{lang activity_description}
+	<!--{elseif $special == 5}-->
+		<!--{if $allowpostdebate && $isfirstpost || $action == 'newthread'}-->
+			{lang debate_backgroup}
+		<!--{else}-->
+			{lang debate_position}
+		<!--{/if}-->
+	<!--{else}-->
+		{lang message}
+	<!--{/if}-->
+	</label>
+	<div id="{$editorid}_left" {if !$advanceeditor}style="display: none"{/if}>
+		<ul {if !$advanceeditor}style="display: none"{/if}>
+			<li>{lang post_html} <em><!--{if $forum['allowhtml'] || $allowhtml}-->{lang enabled}<!--{else}-->{lang disabled}<!--{/if}--></em></li>
+			<li>{faq smilies} <em><!--{if $forum['allowsmilies']}-->{lang enabled}<!--{else}-->{lang disabled}<!--{/if}--></em></li>
+			<li>{faq discuzcode} <em><!--{if $forum['allowbbcode']}-->{lang enabled}<!--{else}-->{lang disabled}<!--{/if}--></em></li>
+			<li>{lang post_imgcode} <em><!--{if $forum['allowimgcode']}-->{lang enabled}<!--{else}-->{lang disabled}<!--{/if}--></em></li>
+		</ul>
+	<!--{if $smileyinsert}-->
+		<div class="">
+			<div id="smilieslist"><img src="{IMGDIR}/loading.gif"></div>
+		</div>
+	<!--{/if}-->
+
+	<ul>
+		<li><label><input type="checkbox" name="parseurloff" id="parseurloff" value="1" $urloffcheck /> {lang disable} {lang post_parseurl}</label></li>
+		<li><label><input type="checkbox" name="smileyoff" id="smileyoff" value="1" $smileyoffcheck /> {lang disable} {faq smilies}</label></li>
+		<li><label><input type="checkbox" name="bbcodeoff" id="bbcodeoff" value="1" $codeoffcheck /> {lang disable} {faq discuzcode}</label></li>
+		<!--{if $tagstatus && ($action == 'newthread' || $action == 'edit' && $isfirstpost)}--><li><label><input type="checkbox" name="tagoff" id="tagoff" value="1" $tagoffcheck /> {lang disable} {lang tag_parse}</label></li><!--{/if}-->
+		<!--{if $allowhtml}--><li><label><input type="checkbox" name="htmlon" id="htmlon" value="1" $htmloncheck /> {lang enable} {lang post_html}</label></li><!--{/if}-->
+		<!--{if $action != 'edit'}-->
+			<!--{if $allowanonymous}--><li><label><input type="checkbox" name="isanonymous" value="1" /> {lang post_anonymous}</label></li><!--{/if}-->
+		<!--{else}-->
+			<!--{if $allowanonymous || (!$allowanonymous && $orig['anonymous'])}--><li><label><input type="checkbox" name="isanonymous" value="1" <!--{if $orig['anonymous']}-->checked="checked"<!--{/if}--> /> {lang post_anonymous}</label></li><!--{/if}-->
+		<!--{/if}-->
+		<li><label><input type="checkbox" name="usesig" value="1" $usesigcheck> {lang post_show_sig}</label></li>
+		<!--{if $action != 'edit'}-->
+			<li><label><input type="checkbox" name="emailnotify" value="1" $notifycheck> {lang post_email_notify}</label></li>
+			<!--{if $action == 'newthread'}-->
+				<!--{if $forum['ismoderator'] && ($allowdirectpost || !$forum['modnewposts'])}-->
+					<li><label><input type="checkbox" name="sticktopic" value="1" $stickcheck> {lang post_stick_thread}</label></li>
+					<li><label><input type="checkbox" name="addtodigest" value="1" $digestcheck> {lang post_digest_thread}</label></li>
+				<!--{/if}-->
+				<!--{if $allowuseblog && $forum['allowshare']}--><li><label><input type="checkbox" name="addtoblog" value="1" $blogcheck> {lang post_blog_thread}</label></li><!--{/if}-->
+			<!--{/if}-->
+		<!--{else}-->
+			<!--{if ($isorigauthor || $forum['ismoderator']) && $isfirstpost && $thread['replies'] < 1}-->
+				<li><label><input type="checkbox" name="delete" value="1"> <b>{lang post_delpost}</b>
+				<!--{if $thread['special'] == 3}-->{lang reward_price_back}<!--{/if}--></label></li>
+			<!--{elseif !$isfirstpost && ($isorigauthor || $forum['ismoderator'])}-->
+				<li><label><input type="checkbox" name="delete" value="1"> <b>{lang post_delpost}</b></label></li>
+			<!--{/if}-->
+
+			<!--{if $auditstatuson}--><li><label><input type="checkbox" name="audit" value="1"> <b>{lang auditstatuson}</b></label></li><!--{/if}-->
+		<!--{/if}-->
+</div>
+</th>
+
+<td valign="top">
+	<div id="$editorid">
+
+	<!--{if $bbinsert}-->
+		<table summary="editor" id="editor" cellpadding="0" cellspacing="0">
+			<tr>
+			<td id="{$editorid}_controls" class="editortoolbar">
+				<table summary="Editor ToolBar" cellpadding="0" cellspacing="0">
+					<tr>
+						<td><a id="{$editorid}_cmd_bold"><img src="{IMGDIR}/common/bb_bold.gif" title="{lang post_discuzcode_bold}" alt="B" /></a></td>
+						<td><a id="{$editorid}_cmd_italic"><img src="{IMGDIR}/common/bb_italic.gif" title="{lang post_discuzcode_italic}" alt="I" /></a></td>
+						<td><a id="{$editorid}_cmd_underline"><img src="{IMGDIR}/common/bb_underline.gif" title="{lang post_discuzcode_underline}" alt="U" /></a></td>
+
+						<td><img src="{IMGDIR}/common/bb_separator.gif" alt="|" /></td>
+
+						<td>
+							<a id="{$editorid}_popup_fontname" title="{lang post_discuzcode_fontname}">
+								<span style="width: 110px; display: block; white-space: nowrap;" id="{$editorid}_font_out" class="dropmenu">{lang post_discuzcode_fontname}</span>
+							</a>
+						</td>
+
+						<td>
+							<a id="{$editorid}_popup_fontsize" title="{lang post_discuzcode_fontsize}">
+								<span style="width: 30px; display: block;" id="{$editorid}_size_out" class="dropmenu">{lang post_discuzcode_fontsize}</span>
+							</a>
+						</td>
+
+						<td>
+							<a id="{$editorid}_popup_forecolor" title="{lang post_discuzcode_forecolor}">
+								<span style="width: 30px; display: block;" class="dropmenu"><img src="{IMGDIR}/common/bb_color.gif" width="21" height="16" alt="" /><br /><img src="{IMGDIR}/common/bb_clear.gif" id="{$editorid}_color_bar" alt="" style="background-color:black" width="21" height="4" /></span>
+							</a>
+						</td>
+
+						<td><img src="{IMGDIR}/common/bb_separator.gif" alt="|" /></td>
+
+						<td><a id="{$editorid}_cmd_justifyleft"><img src="{IMGDIR}/common/bb_left.gif" title="{lang post_discuzcode_left}" alt="Align Left" /></a></td>
+						<td><a id="{$editorid}_cmd_justifycenter"><img src="{IMGDIR}/common/bb_center.gif" title="{lang post_discuzcode_center}" alt="Align Center" /></a></td>
+						<td><a id="{$editorid}_cmd_justifyright"><img src="{IMGDIR}/common/bb_right.gif" title="{lang post_discuzcode_right}" alt="Align Right" /></a></td>
+
+						<td><img src="{IMGDIR}/common/bb_separator.gif" alt="|" /></td>
+
+						<td><a id="{$editorid}_cmd_createlink"><img src="{IMGDIR}/common/bb_url.gif" title="{lang post_discuzcode_url}" alt="Url" /></a></td>
+						<td><a id="{$editorid}_cmd_email"><img src="{IMGDIR}/common/bb_email.gif" title="{lang post_discuzcode_email}" alt="Email" /></a></td>
+						<td><a id="{$editorid}_cmd_insertimage"><img src="{IMGDIR}/common/bb_image.gif" title="{lang post_discuzcode_image}" alt="Image" /></a></td>
+						<!--{if $forum['allowmediacode']}-->
+							<td><a id="{$editorid}_popup_media"><img src="{IMGDIR}/common/bb_media.gif" title="{lang post_discuzcode_media}" alt="Media" /></a></td>
+						<!--{/if}-->
+
+						<td><img src="{IMGDIR}/common/bb_separator.gif" alt="|" /></td>
+
+						<td><a id="{$editorid}_cmd_quote"><img src="{IMGDIR}/common/bb_quote.gif" title="{lang post_discuzcode_quote}" alt="Quote" /></a></td>
+						<td><a id="{$editorid}_cmd_code"><img src="{IMGDIR}/common/bb_code.gif" title="{lang post_discuzcode_code}" alt="Code" /></a></td>
+
+					</tr>
+				</table>
+
+				<table summary="Editor ToolBar" cellpadding="0" cellspacing="0" id="{$editorid}_morebuttons0" {if !$advanceeditor}style="display: none"{/if}>
+					<tr>
+
+					<td><a id="{$editorid}_cmd_removeformat"><img src="{IMGDIR}/common/bb_removeformat.gif" title="{lang post_discuzcode_removeformat}" alt="Rremove Format" /></a></td>
+					<td><a id="{$editorid}_cmd_unlink"><img src="{IMGDIR}/common/bb_unlink.gif" title="{lang post_discuzcode_unlink}" alt="Unlink" /></a></td>
+					<td><a id="{$editorid}_cmd_undo"><img src="{IMGDIR}/common/bb_undo.gif" title="{lang post_discuzcode_undo}" alt="Undo" /></a></td>
+					<td><a id="{$editorid}_cmd_redo"><img src="{IMGDIR}/common/bb_redo.gif" title="{lang post_discuzcode_redo}" alt="Redo" /></a></td>
+
+					<td><img src="{IMGDIR}/common/bb_separator.gif" alt="|" /></td>
+
+					<td><a id="{$editorid}_cmd_insertorderedlist"><img src="{IMGDIR}/common/bb_orderedlist.gif" title="{lang post_discuzcode_orderedlist}" alt="Ordered List" /></a></td>
+					<td><a id="{$editorid}_cmd_insertunorderedlist"><img src="{IMGDIR}/common/bb_unorderedlist.gif" title="{lang post_discuzcode_unorderedlist}" alt="Unordered List" /></a></td>
+					<td><a id="{$editorid}_cmd_outdent"><img src="{IMGDIR}/common/bb_outdent.gif" title="{lang post_discuzcode_outdent}" alt="Outdent" /></a></td>
+					<td><a id="{$editorid}_cmd_indent"><img src="{IMGDIR}/common/bb_indent.gif" title="{lang post_discuzcode_indent}" alt="Indent" /></a></td>
+					<td><a id="{$editorid}_cmd_floatleft"><img src="{IMGDIR}/common/bb_floatleft.gif" title="{lang post_discuzcode_floatleft}" alt="Float Left" /></a></td>
+					<td><a id="{$editorid}_cmd_floatright"><img src="{IMGDIR}/common/bb_floatright.gif" title="{lang post_discuzcode_floatright}" alt="Float Right" /></a></td>
+
+					<td><img src="{IMGDIR}/common/bb_separator.gif" alt="|" /></td>
+
+					<td><a id="{$editorid}_cmd_table"><img src="{IMGDIR}/common/bb_table.gif" title="{lang post_discuzcode_table}" alt="Table" /></a></td>
+
+					<td><a id="{$editorid}_cmd_free"><img src="{IMGDIR}/common/bb_free.gif" title="{lang post_discuzcode_free}" alt="Free" /></a></td>
+					<!--{if $allowhidecode}--><td><a id="{$editorid}_cmd_hide"><img src="{IMGDIR}/common/bb_hide.gif" title="{lang post_discuzcode_hide}" alt="Hide" /></a></td><!--{/if}-->
+
+					<td><img src="{IMGDIR}/common/bb_separator.gif" alt="|" /></td>
+					<!--{if $forum['allowbbcode'] && $allowcusbbcode}-->
+						<!--{eval $cusnum=0;}-->
+						<!--{loop $_DCACHE['bbcodes_display'] $tag $bbcode}-->
+						<td><a id="{$editorid}_cmd_custom{$bbcode[params]}_$tag"><img src="{IMGDIR}/common/$bbcode[icon]" title="$bbcode[explanation]" alt="$tag" /></a></td><!--{if in_array($cusnum++, array(5, 25))}--></tr></table><table summary="Editor ToolBar" cellpadding="0" cellspacing="0" id="{$editorid}_morebuttons{if $cusnum == 6}1{else}2{/if}" {if !$advanceeditor}style="display: none"{/if}><tr><!--{/if}-->
+						<!--{/loop}-->
+					<!--{/if}-->
+					</tr>
+				</table>
+
+				<div id="{$editorid}_switcher" class="editor_switcher_bar">
+					<a id="{$editorid}_buttonctrl" class="right"><!--{if $advanceeditor}-->{lang editor_mode_simple}<!--{else}-->{lang editor_mode_all}<!--{/if}--></a>
+					<button type="button" id="bbcodemode">{lang editor_mode_discuzcode}</button>
+					<button type="button" id="wysiwygmode">{lang editor_mode_wysiwyg}</button>
+				</div>
+
+				</td>
+			</tr>
+			<tr>
+				<td class="editortoolbar">
+					<!--{eval $fontoptions = array({lang post_discuzcode_fontoptions})}-->
+					<div class="popupmenu_popup fontname_menu" id="{$editorid}_popup_fontname_menu" style="display: none">
+					<ul unselectable="on">
+					<!--{loop $fontoptions $fontname}-->
+							<li onclick="discuzcode('fontname', '$fontname');hideMenu()" style="font-family: $fontname" unselectable="on">$fontname</li>
+					<!--{/loop}-->
+					</ul>
+					</div>
+
+					<!--{eval $sizeoptions = array(1, 2, 3, 4, 5, 6, 7)}-->
+					<div class="popupmenu_popup fontsize_menu" id="{$editorid}_popup_fontsize_menu" style="display: none">
+					<ul unselectable="on">
+					<!--{loop $sizeoptions $size}-->
+							<li onclick="discuzcode('fontsize', $size);hideMenu()" unselectable="on"><font size="$size" unselectable="on">$size</font></li>
+					<!--{/loop}-->
+					</ul>
+					</div>
+
+					<!--{if $forum['allowmediacode']}-->
+						<div class="popupmenu_popup" id="{$editorid}_popup_media_menu" style="width: 240px;display: none">
+						<input type="hidden" id="{$editorid}_mediatype" value="ra">
+						<input type="hidden" id="{$editorid}_mediaautostart" value="0">
+						<table cellpadding="4" cellspacing="0" border="0" unselectable="on">
+						<tr class="popupmenu_option">
+							<td nowrap>
+								{lang post_discuzcode_media_url}:<br />
+								<input id="{$editorid}_mediaurl" size="40" value="" onkeyup="setmediatype('$editorid')" />
+							</td>
+						</tr>
+						<tr class="popupmenu_option">
+							<td nowrap>
+								<label style="float: left; width: 32%"><input type="radio" name="{$editorid}_mediatyperadio" id="{$editorid}_mediatyperadio_ra" onclick="$('{$editorid}_mediatype').value = 'ra'" checked="checked">RA</label>
+								<label style="float: left; width: 32%"><input type="radio" name="{$editorid}_mediatyperadio" id="{$editorid}_mediatyperadio_wma" onclick="$('{$editorid}_mediatype').value = 'wma'">WMA</label>
+								<label style="float: left; width: 32%"><input type="radio" name="{$editorid}_mediatyperadio" id="{$editorid}_mediatyperadio_mp3" onclick="$('{$editorid}_mediatype').value = 'mp3'">MP3</label>
+								<label style="float: left; width: 32%"><input type="radio" name="{$editorid}_mediatyperadio" id="{$editorid}_mediatyperadio_rm" onclick="$('{$editorid}_mediatype').value = 'rm'">RM/RMVB</label>
+								<label style="float: left; width: 32%"><input type="radio" name="{$editorid}_mediatyperadio" id="{$editorid}_mediatyperadio_wmv" onclick="$('{$editorid}_mediatype').value = 'wmv'">WMV</label>
+								<label style="float: left; width: 32%"><input type="radio" name="{$editorid}_mediatyperadio" id="{$editorid}_mediatyperadio_mov" onclick="$('{$editorid}_mediatype').value = 'mov'">MOV</label>
+							</td>
+						</tr>
+						<tr class="popupmenu_option">
+							<td nowrap>
+								<label style="float: left; width: 32%">{lang width}: <input id="{$editorid}_mediawidth" size="5" value="400" /></label>
+								<label style="float: left; width: 32%">{lang height}: <input id="{$editorid}_mediaheight" size="5" value="300" /></label>
+								<label style="float: left; width: 32%"><input type="checkbox" onclick="$('{$editorid}_mediaautostart').value = this.checked ? 1 : 0"> {lang post_discuzcode_media_autostart}</label>
+							</td>
+						</tr>
+
+						<tr class="popupmenu_option">
+							<td align="center" colspan="2"><input type="button" size="8" value="{lang submit}" onclick="setmediacode('$editorid')"> <input type="button" onclick="hideMenu()" value="{lang cancel}" /></td>
+						</tr>
+						</table>
+						</div>
+					<!--{/if}-->
+
+					<!--{eval $coloroptions = array('Black', 'Sienna', 'DarkOliveGreen', 'DarkGreen', 'DarkSlateBlue', 'Navy', 'Indigo', 'DarkSlateGray', 'DarkRed', 'DarkOrange', 'Olive', 'Green', 'Teal', 'Blue', 'SlateGray', 'DimGray', 'Red', 'SandyBrown', 'YellowGreen', 'SeaGreen', 'MediumTurquoise', 'RoyalBlue', 'Purple', 'Gray', 'Magenta', 'Orange', 'Yellow', 'Lime', 'Cyan', 'DeepSkyBlue', 'DarkOrchid', 'Silver', 'Pink', 'Wheat', 'LemonChiffon', 'PaleGreen', 'PaleTurquoise', 'LightBlue', 'Plum', 'White')}-->
+					<div class="popupmenu_popup" id="{$editorid}_popup_forecolor_menu" style="display: none">
+					<table cellpadding="0" cellspacing="0" border="0" unselectable="on" style="width: auto;"><tr>
+					<!--{loop $coloroptions $key $colorname}-->
+							<td class="editor_colornormal" onclick="discuzcode('forecolor', '$colorname');hideMenu()" unselectable="on" onmouseover="colorContext(this, 'mouseover')" onmouseout="colorContext(this, 'mouseout')"><div style="background-color: $colorname" unselectable="on"></div></td><!--{if ($key + 1) % 8 == 0}--></tr><tr><!--{/if}-->
+					<!--{/loop}-->
+					</tr></table></div>
+				</td>
+			</tr>
+		</table>
+	<!--{/if}-->
+
+	<table class="editor_text" summary="Message Textarea" cellpadding="0" cellspacing="0" style="table-layout: fixed;">
+		<tr>
+			<td>
+				<textarea class="autosave" name="message" rows="10" cols="60" style="width:99%; height:250px" tabindex="100" id="{$editorid}_textarea"><!--{if $action == 'edit'}-->$postinfo[message]<!--{else}-->$message<!--{/if}--></textarea>
+			</td>
+		</tr>
+	</table>
+
+	<div id="{$editorid}_bottom" {if !$advanceeditor}style="border-top: none; display: none"{/if}>
+
+		<table summary="Enitor Buttons" cellpadding="0" cellspacing="0" class="editor_button" style="border-top: none;">
+			<tr>
+				<td style="border-top: none;">
+					<div class="editor_textexpand">
+						<img src="{IMGDIR}/common/bb_contract.gif" width="11" height="21" title="{lang post_discuzcode_contract}" alt="{lang post_discuzcode_contract}" id="{$editorid}_contract" /><img src="{IMGDIR}/common/bb_expand.gif" width="12" height="21" title="{lang post_discuzcode_expand}" alt="{lang post_discuzcode_expand}" id="{$editorid}_expand" />
+					</div>
+					</td>
+				<td align="right" style="border-top: none;">
+					<button type="button" id="checklength">{lang post_check_length}</button>
+					<button type="button" name="previewbutton" id="previewbutton" tabindex="102">{lang post_previewpost}</button>
+					<button type="button" tabindex="103" id="clearcontent">{lang post_topicreset}</button>
+				</td>
+			</tr>
+		</table>
+
+		<!--{if $allowpostattach}-->
+			<table class="box" summary="Upload" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<th>{lang attachment_new}</th>
+						<!--{if $allowsetattachperm}--><td class="nums">{lang readperm}</td><!--{/if}-->
+						<!--{if $maxprice}--><td class="nums">{lang price}</td><!--{/if}-->
+						<td>{lang description}</td>
+					</tr>
+				</thead>
+				<tbody id="attachbodyhidden" style="display:none"><tr>
+					<th>
+						<input type="file" name="attach[]" />
+						<span id="localfile[]"></span>
+						<input type="hidden" name="localid[]" />
+					</th>
+					<!--{if $allowsetattachperm}--><td class="nums"><input type="text" name="attachperm[]" value="0" size="1" /></td><!--{/if}-->
+					<!--{if $maxprice}--><td class="nums"><input type="text" name="attachprice[]" value="0" size="1" />{$extcredits[$creditstrans][unit]}</td><!--{/if}-->
+					<td><input type="text" name="attachdesc[]" size="25" /></td>
+				</tr></tbody>
+				<tbody id="attachbody"></tbody>
+				<tr><td colspan="5" style="border-bottom: none;">
+					{lang attachment_size}: <strong><!--{if $maxattachsize_kb}-->{lang lower_than} $maxattachsize_kb kb <!--{else}-->{lang size_no_limit}<!--{/if}--></strong><br />
+					<!--{if $attachextensions}-->{lang attachment_allow_exts}: <strong>$attachextensions</strong><br /><!--{/if}-->
+					<!--{if $maxprice}-->{lang price}: <strong>{lang post_price_comment}{$extcredits[$creditstrans][title]}<!--{if $maxincperthread}-->{lang post_price_income_comment}<!--{/if}--><!--{if $maxchargespan}-->{lang post_price_charge_comment}<!--{/if}--><!--{/if}--></strong>
+				</td></tr>
+			</table>
+			<div id="img_hidden" alt="1" style="position:absolute;top:-100000px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image');width:{$thumbwidth}px;height:{$thumbheight}px"></div>
+		<!--{/if}-->
+	</div>
+</div>
+</td>

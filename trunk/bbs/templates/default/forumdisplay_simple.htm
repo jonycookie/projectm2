@@ -1,0 +1,87 @@
+{template header}
+
+<div id="foruminfo">
+	<div id="headsearch">
+	<!--{if !empty($qihoo['status']) && $searchboxstatus}-->
+		<form method="post" action="search.php?srchtype=qihoo" onSubmit="this.target='_blank';">
+		<input type="hidden" name="searchsubmit" value="yes" />
+		<input type="text" name="srchtxt" value="$qihoo_searchboxtxt" />
+		<button type="submit">{lang search}</button>
+		</form>
+	<!--{/if}-->
+	<p>
+		<!--{if $supe['status'] && $discuz_uid}-->
+			<!--{if !$xspacestatus}-->
+				<a href="$supe[siteurl]/index.php?action/register" target="_blank">{lang supe_signin_xspace}</a> |
+			<!--{else}-->
+				<a href="$supe[siteurl]/index.php?action/space/uid/$discuz_uid" target="_blank">{lang supe_myxspace}</a> |
+			<!--{/if}-->
+		<!--{/if}-->
+		<a href="my.php?item=favorites&amp;fid=$fid" id="ajax_favorite" onclick="ajaxmenu(event, this.id)">{lang forum_favorite}</a> |
+		<a href="my.php?item=threads&amp;srchfid=$fid">{lang show_mytopics}</a> |
+		<a href="forumdisplay.php?fid=$fid&amp;filter=digest">{lang thread_digest}</a>
+	<!--{if $allowmodpost && $forum['modnewposts']}-->
+		| <a href="admincp.php?action=modthreads&amp;frames=yes" target="_blank">{lang forum_moderate}{lang forum_moderate_threads}</a>
+		<!--{if $forum['modnewposts'] == 2}-->| <a href="admincp.php?action=modreplies&amp;frames=yes" target="_blank">{lang forum_moderate}{lang forum_moderate_replies}</a><!--{/if}-->
+	<!--{/if}-->
+	<!--{if $adminid == 1 && $forum['recyclebin']}-->
+		| <a href="admincp.php?action=recyclebin&amp;frames=yes" target="_blank">{lang forum_recyclebin}</a>
+	<!--{/if}-->
+	<!--{if $rssstatus}--><a href="rss.php?fid=$fid&amp;auth=$rssauth" target="_blank"><img src="images/common/xml.gif" border="0" class="absmiddle" alt="{lang rss_subscribe_all}" /></a><!--{/if}-->
+	</p>
+	</div>
+	<div id="nav">
+		<p><a id="forumlist" href="$indexname"{if $forumjump && $jsmenu[1]} class="dropmenu" onmouseover="showMenu(this.id)"{/if}>$bbname</a> $navigation</p>
+		<p>{lang forum_modedby}: <!--{if $moderatedby}-->$moderatedby<!--{else}-->{lang forum_opening}<!--{/if}--></p>
+	</div>
+</div>
+
+<!--{if $forum['rules'] || $forum['recommendlist']}-->
+<table summary="Rules and Recommend" class="portalbox" cellpadding="0" cellspacing="1">
+	<tr>
+		<!--{if $forum['rules']}-->
+		<td>
+			<h3>{lang forum_rules}</h3>
+			$forum[rules]
+		</td>
+		<!--{/if}-->
+		<!--{if $forum['recommendlist']}-->
+		<td id="recommendlist">
+			<h3>{lang forum_recommend} <!--{if $forum['ismoderator'] && $forum['modrecommend']['sort'] != 1}--><em>[<a href="admincp.php?action=forumrecommend&amp;fid=$fid&amp;frames=yes" target="_blank">{lang forum_recommend_admin}</a>]</em><!--{/if}--></h3>
+			<ul>
+			<!--{loop $forum['recommendlist'] $tid $thread}-->
+				<li><cite><a href="space.php?uid=$thread[authorid]" target="_blank">$thread[author]</a>: </cite><a href="viewthread.php?tid=$tid" $thread['subjectstyles'] target="_blank">$thread[subject]</a></li>
+			<!--{/loop}-->
+			</ul>
+		</td>
+		<!--{/if}-->
+	</tr>
+</table>
+<!--{/if}-->
+
+<!--{if !empty($newpmexists) || $announcepm}-->
+	<div class="maintable" id="pmprompt">
+	{template pmprompt}
+	</div>
+<!--{/if}-->
+
+<!--{if $admode && empty($insenz['hardadstatus']) && !empty($advlist['text'])}--><div class="ad_text" id="ad_text"><table summary="Text Ad" cellpadding="0" cellspacing="1">$advlist[text]</table></div><!--{else}--><div id="ad_text"></div><!--{/if}-->
+
+<!--{if $subexists}-->
+<div class="mainbox forumlist">
+	{template forumdisplay_subforum}
+</div>
+<!--{/if}-->
+
+<div class="legend">
+	<label><img src="{IMGDIR}/forum_new.gif" alt="{lang forum_newposts}" />{lang forum_newposts}</label>
+	<label><img src="{IMGDIR}/forum.gif" alt="{lang forum_nonewpost}" />{lang forum_nonewpost}</label>
+</div>
+
+<!--{if $forumjump && $jsmenu[1]}-->
+	<div class="popupmenu_popup" id="forumlist_menu" style="display: none">
+		{$forummenu}
+	</div>
+<!--{/if}-->
+
+{template footer}

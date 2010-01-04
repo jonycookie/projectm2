@@ -1,0 +1,34 @@
+{template header}
+<div id="nav">
+<a href="$indexname">$bbname</a> $navigation &raquo; {lang admin_delposts}
+</div>
+
+<form method="post" action="topicadmin.php?action=delpost" id="postform">
+<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+<div class="mainbox formbox">
+<h1>{lang admin_delposts}</h1>
+<table cellspacing="0" cellpadding="0" width="100%">
+
+<tr>
+<th>{lang username}</th>
+<td>$discuz_userss <em class="tips">[<a href="$link_logout">{lang member_logout}</a>]</em></td>
+</tr>
+
+{template topicadmin_reason}
+
+<tr class="btns">
+<th>&nbsp;</th>
+<td>
+$deleteid
+<input type="hidden" name="fid" value="$fid">
+<input type="hidden" name="tid" value="$tid">
+<input type="hidden" name="page" value="$page">
+<button class="submit" type="submit" name="delpostsubmit" id="postsubmit" value="true">{lang admin_delpost}</button> {lang post_submit_hotkey}
+</td>
+</tr>
+
+
+</table></div>
+</form>
+{template footer}

@@ -1,0 +1,38 @@
+{template header}
+<div id="foruminfo">
+	<div id="headsearch">
+	<form method="get" action="tag.php">
+		<input type="text" name="name" />
+		&nbsp;<button type="submit">{lang search}</button>
+	</form>
+	</div>
+	<div id="nav"><a href="$indexname">$bbname</a> &raquo; <a href="tag.php">{lang tag}</a></div>
+</div>
+
+<div class="mainbox">
+	<h1>{lang hottags}</h1>
+	<ul class="taglist">
+		<!--{if $hottags}-->
+		<!--{loop $hottaglist $tag}-->
+			<li><a href="tag.php?name=$tag[tagnameenc]" target="_blank">$tag[tagname]</a><em>($tag[total])</em></li>
+		<!--{/loop}-->
+		<!--{else}-->
+			<li>{lang tag_nofound}</li>
+		<!--{/if}-->
+	</ul>
+</div>
+
+<div class="mainbox">
+	<h3>{lang randtags}</h3>
+	<ul class="taglist">
+		<!--{if $randtaglist}-->
+		<!--{loop $randtaglist $tag}-->
+			<li><a href="tag.php?name=$tag[tagnameenc]" target="_blank">$tag[tagname]</a><em>($tag[total])</em></li>
+		<!--{/loop}-->
+		<!--{else}-->
+			<li>{lang tag_nofound}</li>
+		<!--{/if}-->
+	</ul>
+</div>
+
+{template footer}

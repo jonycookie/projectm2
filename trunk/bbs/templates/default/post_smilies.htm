@@ -1,0 +1,28 @@
+{template header}
+
+<h4><span<!--{if count($_DCACHE['smileytypes']) > 1}--> id="{$editorid}_popup_smileytypes" onmouseover="showMenu(this.id, true, 0, 2)" class="dropmenu"<!--{/if}-->>$_DCACHE[smileytypes][$stypeid][name]</span></h4>
+
+<table summary="smilies" cellpadding="0" cellspacing="0">
+<tr align="center">
+<!--{eval $i=0;}-->
+<!--{loop $smilies $key $smiley}-->
+        <!--{if $i >= $smcols * $smrows}--><!--{eval break;}--><!--{/if}-->
+        <!--{if !($i % $smcols)}--><!--{if $i}--></tr><!--{/if}--><tr height="<!--{echo ($smthumb + 6);}-->"><!--{/if}-->
+        <td align="center" id="smilie_{$key}_parent" onMouseover="smileyMenu(this)" onClick="insertSmiley($key)"><img src="images/smilies/$_DCACHE[smileytypes][$_DCACHE[smilies][typearray][$key]][directory]/$smiley[url]" id="smilie_$key" alt="$smiley[code]" title="$smiley['lw']" width="$smiley['w']" height="$smiley['h']" border="0" /></td>
+        <!--{eval $i++;}-->
+<!--{/loop}-->
+</tr>
+<!--{if ceil($i/$smcols) < $smrows}--><!--{echo str_repeat('<tr height="'.($smthumb + 6).'"><td colspan="'.$smrows.'"></td></tr>', $smrows - ceil($i/$smcols));}--><!--{/if}-->
+</table>
+$multipage
+
+<!--{if count($_DCACHE['smileytypes']) > 1}-->
+	<ul unselectable="on" class="popupmenu_popup" id="{$editorid}_popup_smileytypes_menu" style="display: none">
+	<!--{eval unset($_DCACHE['smileytypes'][$stypeid]);}-->
+	<!--{loop $_DCACHE['smileytypes'] $typeid $type}-->
+		<li unselectable="on"><a href="post.php?action=smilies&stypeid=$typeid&inajax=1" ajaxtarget="smilieslist">$type[name]</a></li>
+	<!--{/loop}-->
+	</ul>
+<!--{/if}-->
+
+{template footer}
