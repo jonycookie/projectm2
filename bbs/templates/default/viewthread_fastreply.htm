@@ -1,0 +1,153 @@
+<!--{if $relatedthreadlist && $qihoo['relate']['position']}-->
+	{template viewthread_relatedthread}
+<!--{/if}-->
+
+<!--{if $fastpost && $allowpostreply && $thread[closed] == 0}-->
+	<script type="text/javascript" src="include/javascript/post.js"></script>
+	<script type="text/javascript">
+	var postminchars = parseInt('$minpostsize');
+	var postmaxchars = parseInt('$maxpostsize');
+	var disablepostctrl = parseInt('$disablepostctrl');
+	function validate(theform) {
+		if (theform.message.value == "" && theform.subject.value == "") {
+			alert("{lang post_subject_and_message_isnull}");
+			theform.message.focus();
+			return false;
+		} else if (theform.subject.value.length > 80) {
+			alert("{lang post_subject_toolong}");
+			theform.subject.focus();
+			return false;
+		}
+		if (!disablepostctrl && ((postminchars != 0 && theform.message.value.length < postminchars) || (postmaxchars != 0 && theform.message.value.length > postmaxchars))) {
+			alert("{lang post_message_length_invalid}\n\n{lang post_curlength}: "+theform.message.value.length+" {lang bytes}\n{lang board_allowed}: "+postminchars+" {lang to} "+postmaxchars+" {lang bytes}");
+			return false;
+		}
+		if(!fetchCheckbox('parseurloff')) {
+			theform.message.value = parseurl(theform.message.value, 'bbcode');
+		}
+		theform.replysubmit.disabled = true;
+		return true;
+	}
+	</script>
+	<form method="post" id="postform" action="post.php?action=reply&amp;fid=$fid&amp;tid=$tid&amp;extra=$extra&amp;replysubmit=yes" onSubmit="return validate(this)">
+		<input type="hidden" name="formhash" value="{FORMHASH}" />
+		<div id="quickpost" class="box">
+			<span class="headactions"><a href="member.php?action=credits&amp;view=forum_reply&amp;fid=$fid" target="_blank">{lang credits_policy_view}</a></span>
+			<h4>{lang post_fastreply}</h4>
+			<div class="postoptions">
+				<h5>{lang options}</h5>
+				<p><label><input class="checkbox" type="checkbox" name="parseurloff" id="parseurloff" value="1"> {lang disable} {lang post_parseurl}</label></p>
+				<p><label><input class="checkbox" type="checkbox" name="smileyoff" id="smileyoff" value="1"> {lang disable} {faq smilies}</label></p>
+				<p><label><input class="checkbox" type="checkbox" name="bbcodeoff" id="bbcodeoff" value="1"> {lang disable} {faq discuzcode}</label></p>
+				<!--{if $allowanonymous || $forum['allowanonymous']}--><p><label><input class="checkbox" type="checkbox" name="isanonymous" value="1"> {lang post_anonymous}</label></p><!--{/if}-->
+				<p><label><input class="checkbox" type="checkbox" name="usesig" value="1" $usesigcheck> {lang post_show_sig}</label></p>
+				<p><label><input class="checkbox" type="checkbox" name="emailnotify" value="1"> {lang post_email_notify}</label></p>
+			</div>
+			<div class="postform">
+				<h5>{lang subject}
+				<!--{if $thread[special] == 5}-->
+					<select name="stand" $firststanddisabled><option value="0"$firststandselect[0]>{lang debate_neutral}</option><option  value="1"$firststandselect[1]>{lang debate_square}</option><option  value="2"$firststandselect[2]>{lang debate_opponent}</option></select>
+				<!--{/if}-->
+				<input type="text" id="subject" name="subject" value="" tabindex="1"></h5>
+				<p><label>{lang content}</label>
+				<textarea rows="7" cols="80" class="autosave" name="message" id="message" onKeyDown="ctlent(event);" tabindex="2"></textarea>
+				</p>
+				<p class="btns">
+					<button type="submit" name="replysubmit" id="postsubmit" value="replysubmit" tabindex="3">{lang post_topicsubmit}</button>{lang post_submit_hotkey}&nbsp;
+					<a href="###" id="previewpost" onclick="$('postform').action=$('postform').action + '&previewpost=yes';$('postform').submit();">{lang post_previewpost}</a>&nbsp;
+					<a href="###" id="restoredata" title="{lang post_autosave_last_restore}" onclick="loadData()">{lang post_autosave_restore}</a>&nbsp;
+					<a href="###" onclick="$('postform').reset()">{lang post_topicreset}</a>
+				</p>
+			</div>
+			<!--{if $smileyinsert}-->
+				<div class="smilies">
+					<div id="smilieslist"></div>
+					<script type="text/javascript">ajaxget('post.php?action=smilies', 'smilieslist');</script>
+				</div>
+			<!--{/if}-->
+			<script type="text/javascript">
+				var textobj = $('message');
+				window.onbeforeunload = function () {saveData(textobj.value)};
+				if(is_ie >= 5 || is_moz >= 2) {
+					lang['post_autosave_none'] = "{lang post_autosave_none}";
+					lang['post_autosave_confirm'] = "{lang post_autosave_confirm}";
+				} else {
+					$('restoredata').style.display = 'none';
+				}
+			</script>
+		</div>
+	</form>
+<!--{/if}-->
+
+<!--{if $forum['ismoderator'] || $forumjump && !$jsmenu[1] || $visitedforums}-->
+	<script type="text/javascript">
+		function modaction(action) {
+			if(!action) {
+				return;
+			}
+			if(!in_array(action, ['delpost', 'banpost'])) {
+				window.location=('topicadmin.php?tid=$tid&fid=$fid&action='+ action +'&sid=$sid');
+			} else {
+				document.modactions.action = 'topicadmin.php?action='+ action +'&fid=$fid&tid=$tid&page=$page;'
+				document.modactions.submit();
+			}
+		}
+	</script>
+	<div id="footfilter" class="box">
+	<!--{if $forum['ismoderator']}-->
+		<form action="#">{lang admin_modoptions}:
+		<select name="action" id="action" onchange="modaction(this.options[this.selectedIndex].value)">
+		<option value="" selected>{lang admin_modoptions}</option>
+		<!--{if $allowdelpost}-->
+			<option value="delpost">{lang admin_delpost}</option>
+			<option value="delete">{lang admin_delthread}</option>
+		<!--{/if}-->
+		<option value="banpost">{lang admin_banpost}</option>
+		<option value="close">{lang admin_close}</option>
+		<option value="move">{lang admin_move}</option>
+		<!--{if !$thread['special']}--><option value="copy">{lang admin_copy}</option><!--{/if}-->
+		<option value="highlight">{lang admin_highlight}</option>
+		<option value="type">{lang admin_type}</option>
+		<option value="digest">{lang admin_digest}</option>
+		<!--{if $allowstickthread}--><option value="stick">{lang admin_stick}</option><!--{/if}-->
+		<!--{if $thread['price'] > 0 && $allowrefund && $thread['special'] == 0}--><option value="refund">{lang admin_refund}</option><!--{/if}-->
+		<!--{if !$thread['special']}--><option value="split">{lang admin_split}</option><!--{/if}-->
+		<!--{if !$thread['special']}--><option value="merge">{lang admin_merge}</option><!--{/if}-->
+		<!--{if $thread['special'] == 3 && $thread['price'] > 0}--><option value="removereward">{lang admin_remove_reward}</option><!--{/if}-->
+		<option value="bump">{lang admin_bump}</option>
+		<option value="repair">{lang admin_repair}</option>
+		<!--{if $forum['modrecommend']['sort'] != 1}--><option value="recommend">{lang admin_recommend}</option><!--{/if}-->
+		<!--{if $supe['status'] && $allowpushthread && $forum['supe_pushsetting']['status'] == 2 && $thread['supe_pushstatus'] == 0}-->
+			<option value="supe_push">{lang admin_supe_push}</option>
+		<!--{/if}-->
+		</select>
+		</form>
+	<!--{/if}-->
+	<!--{if $forumjump && !$jsmenu[1]}-->
+		<select onchange="if(this.options[this.selectedIndex].value != '') {
+		window.location=('forumdisplay.php?fid='+this.options[this.selectedIndex].value+'&amp;sid=$sid') }">
+		<option value="">{lang forum_jump}</option>
+		$forumselect
+		</select>&nbsp;
+	<!--{/if}-->
+	<!--{if $visitedforums}-->
+		<select onchange="if(this.options[this.selectedIndex].value != '') {
+		window.location=('forumdisplay.php?fid='+this.options[this.selectedIndex].value+'&amp;sid=$sid') }">
+		<option value="">{lang visited_forums}</option>
+		$visitedforums
+		</select>
+	<!--{/if}-->
+</div>
+<!--{/if}-->
+
+<!--{if $forumjump && $jsmenu[1]}-->
+	<div class="popupmenu_popup" id="forumlist_menu" style="display: none">
+		{$forummenu}
+	</div>
+<!--{/if}-->
+
+<!--{if !$iscircle || !empty($frombbs)}-->{template footer}<!--{else}-->{template supesite_footer}<!--{/if}-->
+<script type="text/javascript" src="include/javascript/msn.js"></script>
+<!--{if $relatedthreadupdate}-->
+<script type="text/javascript" src="relatethread.php?tid=$tid&amp;subjectenc=$thread[subjectenc]&amp;tagsenc=$thread[tagsenc]&amp;verifykey=$verifykey&amp;up=$qihoo_up"></script>
+<!--{/if}-->

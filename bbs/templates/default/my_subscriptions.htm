@@ -1,0 +1,32 @@
+<form method="post" action="my.php?item=subscriptions">
+<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+<table cellspacing="0" cellpadding="0" width="100%" summary="{lang my_subscription_threads}">
+<thead>
+<tr>
+<td width="48"><input type="checkbox" name="chkall" class="header checkbox" onclick="checkall(this.form)" />{lang delete_check}</td>
+<td>{lang subject}</td>
+<td>{lang forum}</td>
+<td>{lang replies}</td>
+<td>{lang lastpost}</td>
+</tr>
+</thead>
+<tbody>
+<!--{if $subslist}-->
+	<!--{loop $subslist $subs}-->
+		<tr>
+		<td><input class="checkbox" type="checkbox" name="delete[]" value="$subs[tid]" /></td>
+		<td><a href="viewthread.php?tid=$subs[tid]" target="_blank">$subs[subject]</a></td>
+		<td><a href="forumdisplay.php?fid=$subs[fid]" target="_blank">$subs[name]</a></td>
+		<td>$subs[replies]</td>
+		<td><cite><a href="redirect.php?tid=$subs[tid]&goto=lastpost#lastpost">$subs[lastpost]</a> by <!--{if $subs['lastposter']}--><a href="space.php?username=$subs[lastposterenc]" target="_blank">$subs[lastposter]</a><!--{else}-->{lang anonymous}<!--{/if}--></cite></td>
+		</tr>
+	<!--{/loop}-->
+<!--{else}-->
+	<tr><td colspan="5">{lang memcp_nosubs}</td></tr>
+<!--{/if}-->
+
+</table>
+<p class="btns"><button type="submit" class="submit" name="subsubmit" value="true">{lang submit}</button></p>
+
+</form>

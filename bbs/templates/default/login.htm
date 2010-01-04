@@ -1,0 +1,105 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> &raquo; {lang member_login}</div>
+
+<form method="post" name="login" action="logging.php?action=login&amp;">
+<input type="hidden" name="formhash" value="{FORMHASH}" />
+<input type="hidden" name="referer" value="$referer" />
+<div class="mainbox formbox">
+	<span class="headactions">{faq login}</span>
+	<h1>{lang member_login}</h1>
+	<table summary="{lang member_login}" cellspacing="0" cellpadding="0">
+		<!--{if $seccodecheck}-->
+			<tr>
+				<th><label for="seccodeverify">{lang seccode}</label></th>
+				<td>
+					<div id="seccodeimage"></div>
+					<input type="text" onfocus="updateseccode();this.onfocus = null" id="seccodeverify" name="seccodeverify" size="8" maxlength="4" tabindex="1" />
+					<em class="tips"><strong>{lang seccode_click}</strong> <!--{if $seccodedata['type'] == 2}-->{lang seccode_animator_flashrefresh}<!--{elseif $seccodedata['animator'] == 1}-->{lang seccode_animator_refresh}<!--{else}-->{lang seccode_refresh}<!--{/if}--></em></td>
+					<script type="text/javascript">
+						var seccodedata = [{$seccodedata['width']}, {$seccodedata['height']}, {$seccodedata['type']}];
+					</script>
+			</tr>
+		<!--{/if}-->
+		<tr>
+			<th onclick="document.login.username.focus();">
+				<label><input class="radio" type="radio" name="loginfield" value="username" tabindex="2" checked="checked" />{lang username}</label>
+				<label><input class="radio" type="radio" name="loginfield" value="uid" tabindex="3" />{lang uid}</label>
+			</th>
+			<td>
+				<input type="text" id="username" name="username" size="25" maxlength="40" tabindex="4" />
+				<a href="$regname">{lang register_now}</a>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="password">{lang password}</label></th>
+			<td>
+				<input type="password" id="password" name="password" size="25" tabindex="5" />
+				<a href="member.php?action=lostpasswd">{lang lostpassword}</a>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="questionid">{lang security_question}</label></th>
+			<td>
+				<select id="questionid" name="questionid" tabindex="6">
+					<option value="0">{lang security_question_0}</option>
+					<option value="1">{lang security_question_1}</option>
+					<option value="2">{lang security_question_2}</option>
+					<option value="3">{lang security_question_3}</option>
+					<option value="4">{lang security_question_4}</option>
+					<option value="5">{lang security_question_5}</option>
+					<option value="6">{lang security_question_6}</option>
+					<option value="7">{lang security_question_7}</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="answer">{lang security_answer}</label></th>
+			<td><input type="text" id="answer" name="answer" size="25" tabindex="7" /> {lang login_secques_comment}</td>
+		</tr>
+		<tr>
+			<th>{lang login_cookie_time}</th>
+			<td>
+				<label><input class="radio" type="radio" name="cookietime" value="315360000" tabindex="8" $cookietimecheck[315360000] /> {lang login_permanent}</label>
+				<label><input class="radio" type="radio" name="cookietime" value="2592000" tabindex="9" $cookietimecheck[2592000] /> {lang login_one_month}</label>
+				<label><input class="radio" type="radio" name="cookietime" value="86400" tabindex="10" $cookietimecheck[86400] /> {lang login_one_day}</label>
+				<label><input class="radio" type="radio" name="cookietime" value="3600" tabindex="11" $cookietimecheck[3600] /> {lang login_one_hour}</label>
+				<label><input class="radio" type="radio" name="cookietime" value="0" tabindex="12" $cookietimecheck[0] /> {lang login_this_task}</label>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="loginmode">{lang login_invisible}</label></th>
+			<td>
+				<select id="loginmode" name="loginmode" tabindex="13">
+					<option value="">{lang use_default}</option>
+					<option value="normal"> {lang login_normal_mode}</option>
+					<option value="invisible"> {lang login_invisible_mode}</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="styleid">{lang style}</label></th>
+			<td>
+				<select id="styleid" name="styleid" tabindex="14">
+					<option value="">{lang use_default}</option>
+					$styleselect
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td><button class="submit" type="submit" name="loginsubmit" value="true" tabindex="100">{lang submit}</button></td>
+		</tr>
+	</table>
+</div>
+</form>
+
+<script type="text/javascript">
+document.login.username.focus();
+
+var mydate = new Date();
+var mytimestamp = parseInt(mydate.valueOf() / 1000);
+if(Math.abs(mytimestamp - $timestamp) > 86400) {
+	window.alert('{lang login_timeoffset}');
+}
+</script>
+{template footer}

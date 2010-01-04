@@ -1,0 +1,127 @@
+{template header}
+	<div id="nav"><a href="$indexname">$bbname</a> &raquo; {lang magics_user}</div>
+	<div class="container">
+		<div class="side">
+			{template magic_navbar}
+		</div>
+		<div class="content">
+			<!--{if !$magicstatus && $adminid == 1}-->
+				<div class="notice">{lang magics_tips}</div>
+			<!--{/if}-->
+			<!--{if $operation == ''}-->
+				<div class="mainbox">
+					<h1>{lang magics_user}</h1>
+					<ul class="tabs">
+						<li<!--{if empty($typeid)}--> class="current"<!--{/if}-->><a href="magic.php?action=user&amp;pid=$pid">{lang all}</a></li>
+						<li<!--{if $typeid==1}--> class="current"<!--{/if}-->><a href="magic.php?action=$action&typeid=1&amp;pid=$pid">{lang magics_type_1}</a></li>
+						<li<!--{if $typeid==2}--> class="current"<!--{/if}-->><a href="magic.php?action=$action&typeid=2&amp;pid=$pid">{lang magics_type_2}</a></li>
+						<li<!--{if $typeid==3}--> class="current"<!--{/if}-->><a href="magic.php?action=$action&typeid=3&amp;pid=$pid">{lang magics_type_3}</a></li>
+					</ul>
+					<table summary="{lang magics_user}" cellspacing="0" cellpadding="0">
+						<!--{if $magiclist}-->
+							<!--{loop $magiclist $key $magic}-->
+								<!--{if $key && ($key % 2 == 0)}-->
+									</tr>
+									<!--{if $key < $magicnum}-->
+										<tr>
+									<!--{/if}-->
+								<!--{/if}-->
+								<td width="50%" class="attriblist">
+									<dl>
+										<dt><img src="images/magics/$magic[pic]" alt="$magic[name]" /></dt>
+										<dd class="name">$magic[name]</dd>
+										<dd>$magic[description]</dd>
+										<dd>{lang magics_num}: <b>$magic[num]</b> {lang magics_user_totalnum}: <b>$magic[weight]</b></dd>
+										<dd>
+											<a href="magic.php?action=user&operation=use&magicid=$magic[magicid]&pid=$pid&username=$username">{lang magics_operation_use}</a>&nbsp;|&nbsp;
+											<!--{if $allowmagics > 1}-->
+												<a href="magic.php?action=user&operation=give&magicid=$magic[magicid]">{lang magics_operation_present}</a>&nbsp;|&nbsp;
+											<!--{/if}-->
+											<a href="magic.php?action=user&operation=drop&magicid=$magic[magicid]">{lang magics_operation_drop}</a>&nbsp;|&nbsp;
+											<!--{if $magicmarket && $allowmagics > 1}-->
+												<a href="magic.php?action=user&operation=sell&magicid=$magic[magicid]">{lang magics_operation_sell}</a>&nbsp;
+											<!--{/if}-->
+										</dd>
+									</dl>
+								</td>
+							<!--{/loop}-->
+								$magicendrows
+						<!--{else}-->
+							<td colspan="3">{lang magics_shop_nonexistence}</td></tr>
+						<!--{/if}-->
+					</table>
+			<!--{elseif $operation == 'give' || $operation == 'use' || $operation == 'sell' || $operation == 'drop'}-->
+			<form method="post" action="magic.php?action=user">
+				<input type="hidden" name="formhash" value="{FORMHASH}" />
+				<input type="hidden" name="operation" value="$operation" />
+				<input type="hidden" name="magicid" value="$magicid" />
+				<input type="hidden" name="$operationsubmit" value="yes" />
+				<div class="mainbox">
+					<h1>
+					<!--{if $operation == 'give'}-->
+						{lang magics_operation_present}
+					<!--{elseif $operation == 'drop'}-->
+						{lang magics_operation_drop}
+					<!--{elseif $operation == 'sell'}-->
+						{lang magics_operation_sell}
+					<!--{elseif $operation == 'use'}-->
+						{lang magics_operation_use}
+					<!--{/if}-->
+					</h1>
+					<table summary="" cellspacing="0" cellpadding="0">
+						<tr>
+							<td class="attriblist">
+								<dl>
+									<dt><img src="images/magics/$magic[pic]" alt="$magic[name]"></dt>
+									<dd>$magic[name]</dd>
+									<dd>$magic[description]</dd>
+									<dd>{lang magics_num}: $magic[num] {lang magics_user_totalnum}: $magic[weight]</dd>
+									<dd>{lang magics_permission}: <font color=red><!--{if $useperm}--> {lang magics_permission_yes} <!--{else}--> {lang magics_permission_no} <!--{/if}--></font></dd>
+									<!--{if $magic[type] == 1}-->
+										<dd>{lang magics_permission_forum}:
+										<!--{if $forumperm}-->$forumperm<!--{else}--> {lang magics_permission_allforum} <!--{/if}--></dd>
+									<!--{/if}-->
+									<!--{if $magic[type] == 2}-->
+										<dd>{lang magics_permission_group}:
+										<!--{if $targetgroupperm}-->$targetgroupperm<!--{else}--> {lang magics_permission_allgroup} <!--{/if}--></dd>
+									<!--{/if}-->
+								</dl>
+							</td>
+						</tr>
+						<!--{if $operation != 'use'}-->
+							<tr ><td width="10%">
+								{lang magics_num}:<input name="magicnum" type="text" size="5" value="1" />&nbsp;&nbsp;
+							<!--{if $operation == 'sell'}-->
+								{lang magics_price}:<input name="price" type="text" size="5" />
+							<!--{/if}-->
+							<!--{if $operation == 'give' && $allowmagics > 1 }-->
+								{lang magics_target_present}:<input name="tousername" type="text" size="5" />
+							<!--{/if}-->
+							</td></tr>
+						<!--{/if}-->
+						<tr class="btns"><td colspan="2">
+						<!--{if $operation == 'use'}-->{eval showmagic();}<!--{/if}-->
+							<!--{if $operation == 'give'}-->
+								<button class="submit" type="submit" name="operatesubmit" id="operatesubmit" value="true"  onclick="return confirm('{lang magics_confirm}');">{lang magics_operation_present}</button>
+							<!--{elseif $operation == 'drop'}-->
+								<button class="submit" type="submit" name="operatesubmit" id="operatesubmit" value="true"  onclick="return confirm('{lang magics_confirm}');">{lang magics_operation_drop}</button>
+							<!--{elseif $operation == 'sell'}-->
+								<button class="submit" type="submit" name="operatesubmit" id="operatesubmit" value="true"  onclick="return confirm('{lang magics_confirm}');">{lang magics_operation_sell}</button>
+							<!--{elseif $operation == 'use'}-->
+								<button class="submit" type="submit" name="usesubmit" id="usesubmit" value="true">{lang magics_operation_use}</button>
+							<!--{/if}-->
+						</td></tr>
+	</table></div>
+
+
+
+	</form>
+<!--{/if}-->
+		</div>
+	</div>
+
+
+
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+
+{template footer}

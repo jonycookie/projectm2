@@ -1,0 +1,115 @@
+{template header}
+<!--{if $action == 'markinvite'}-->
+
+	<tr>
+		<td><input type="text" value="$invite[invitecode]" readonly="readonly" onclick="this.select();setcopy('$invite[invitecode]', '{lang invite_copy_code_success}')" style="font-weight:<!--{if $changestatus == '1'}-->bold<!--{else}-->normal<!--{/if}-->" title="{lang invite_copy}" /></td>
+		<td class="time">$invite[dateline]</td>
+		<td class="time">$invite[expiration]</td>
+		<td>
+		<!--{if $changestatus == '1'}-->
+			<a href="###" onclick="setcopy('{$boardurl}$regname?invitecode=$invite[invitecode]', '{lang invite_copy_link_success}')">{lang invite_copy}</a> |
+			<!--{if $allowmailinvite}--><a href="invite.php?action=sendinvite&amp;invitecode=$invite[invitecode]">{lang invite_send}</a> |<!--{/if}-->
+			<a href="invite.php?action=markinvite&amp;invitecode=$invite[invitecode]" id="ajax_markinvite_$invite[invitecode]" onclick="ajaxget(this.href, 'invite_$invite[invitecode]', 'ajaxwaitid');doane(event);">{lang invite_mark}</a>
+		<!--{else}-->
+			<a href="invite.php?action=markinvite&amp;invitecode=$invite[invitecode]&amp;do=undo" id="ajax_markinvite_$invite[invitecode]" onclick="ajaxget(this.href, 'invite_$invite[invitecode]', 'ajaxwaitid');doane(event);">{lang invite_unmark}</a>
+		<!--{/if}-->
+		</td>
+	</tr>
+
+<!--{else}-->
+
+	<div id="nav">
+		<a href="$indexname">$bbname</a> &raquo;
+		<!--{if empty($action)}-->
+			{lang invite}
+		<!--{else}-->
+			<a href="invite.php">{lang invite}</a> &raquo;
+			<!--{if $action == 'buyinvite'}-->{lang invite_get}
+			<!--{elseif $action == 'sendinvite'}-->{lang invite_send}
+			<!--{elseif $action == 'availablelog'}-->{lang invite_available}
+			<!--{elseif $action == 'invalidlog'}-->{lang invite_invalid}
+			<!--{elseif $action == 'usedlog'}-->{lang invite_used}
+			<!--{/if}-->
+		<!--{/if}-->
+	</div>
+	<div class="container">
+		<div class="content">
+			<form method="post" action="invite.php?action=$action">
+				<input type="hidden" name="formhash" value="{FORMHASH}" />
+				<div class="mainbox invitecodelist">
+					<h1>{lang invite_logs}</h1>
+					<ul class="tabs headertabs">
+						<li {$cur_class[availablelog]}><a href="invite.php?action=availablelog">{lang invite_available}</a></li>
+						<li {$cur_class[invalidlog]}><a href="invite.php?action=invalidlog">{lang invite_invalid}</a></li>
+						<li {$cur_class[usedlog]}><a href="invite.php?action=usedlog">{lang invite_used}</a></li>
+					</ul>
+					<table cellspacing="0" cellpadding="0" summary="{lang invite_logs}">
+					<!--{if in_array($action, array('availablelog', 'invalidlog', 'sendlog'))}-->
+						<thead>
+							<tr>
+								<td>{lang invite_code}</td>
+								<td class="time">{lang invite_buy_dateline}</td>
+								<td class="time">{lang invite_expiration}</td>
+								<!--{if $action == 'availablelog'}--><td>{lang action}</td><!--{/if}-->
+							</tr>
+						</thead>
+
+						<!--{loop $invitelist $invite}-->
+						<tbody id="invite_$invite[invitecode]">
+							<tr>
+								<td><input type="text" value="$invite[invitecode]" readonly="readonly" onclick="this.select();setcopy('$invite[invitecode]', '{lang invite_copy_code_success}')" style="font-weight:<!--{if $invite['status'] == '1'}-->bold<!--{else}-->normal<!--{/if}-->" title="{lang invite_copy}" /></td>
+								<td class="time">$invite[dateline]</td>
+								<td class="time">$invite[expiration]</td>
+								<!--{if $action == 'availablelog'}-->
+									<td>
+										<a href="###" onclick="setcopy('{$boardurl}$regname?invitecode=$invite[invitecode]', '{lang invite_copy_link_success}')">{lang invite_copy}</a> |
+										<!--{if $invite['status'] == '1'}-->
+											<!--{if $allowmailinvite}--><a href="invite.php?action=sendinvite&amp;invitecode=$invite[invitecode]">{lang invite_send}</a> |<!--{/if}-->
+											<a href="invite.php?action=markinvite&amp;invitecode=$invite[invitecode]" id="ajax_markinvite_$invite[invitecode]" onclick="ajaxget(this.href, 'invite_$invite[invitecode]', 'ajaxwaitid');doane(event);">{lang invite_mark}</a>
+										<!--{else}-->
+											<a href="invite.php?action=markinvite&amp;invitecode=$invite[invitecode]&amp;do=undo" id="ajax_markinvite_$invite[invitecode]" onclick="ajaxget(this.href, 'invite_$invite[invitecode]', 'ajaxwaitid');doane(event);">{lang invite_unmark}</a>
+										<!--{/if}-->
+									</td>
+								<!--{/if}-->
+							</tr>
+						</tbody>
+						<!--{/loop}-->
+						<!--{if empty($invitelist)}-->
+							<tr><td colspan="4">{lang invite_log_nonexistence}<!--{if $action == 'availablelog'}--><a href="invite.php?action=buyinvite">{lang invite_get_code}</a><!--{/if}--></td></tr>
+						<!--{/if}-->
+
+						</table>
+
+					<!--{elseif $action == 'usedlog'}-->
+						<table cellspacing="0" cellpadding="0" summary="{lang invite_logs}">
+							<thead>
+								<tr>
+									<td>{lang invite_regsiter}</td>
+									<td class="time">{lang invite_buy_dateline}</td>
+									<td class="time">{lang invite_code}</td>
+								</tr>
+							</thead>
+							<tbody>
+							<!--{if $invitelist}-->
+								<!--{loop $invitelist $invite}-->
+									<tr>
+										<td><a href="space.php?uid=$invite['uid']" target="_blank">$invite[username]</a></td>
+										<td class="time">$invite[dateline]</td>
+										<td class="time">$invite[invitecode]</td>
+									</tr>
+								<!--{/loop}-->
+							<!--{else}-->
+								<tr><td colspan="3">{lang magics_log_nonexistence}</td></tr>
+							<!--{/if}-->
+							</tbody>
+						</table>
+				<!--{/if}-->
+				</div>
+
+				<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+			</form>
+		</div>
+		<div class="side">{template personal_navbar}</div>
+	</div>
+<!--{/if}-->
+{template footer}

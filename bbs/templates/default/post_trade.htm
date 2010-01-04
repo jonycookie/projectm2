@@ -1,0 +1,154 @@
+<script type="text/javascript">
+lang['post_trade_costprice_is_number'] = '{lang post_trade_costprice_is_number}';
+lang['post_trade_price_is_number'] = '{lang post_trade_price_is_number}';
+lang['post_trade_amount_is_number'] = '{lang post_trade_amount_is_number}';
+</script>
+<input type="hidden" name="trade" value="yes" />
+<tr>
+	<th style="border-bottom: 0"><label for="item_name">{lang post_trade_name}</label></th>
+	<td style="border-bottom: 0">$tradetypeselect <input type="text" id="item_name" name="item_name" size="30" value="$trade[subject]" tabindex="50" /></td>
+</tr>
+
+<tr><td id="threadtypes" colspan="2" style="border: 0px; padding: 0px"></td></tr>
+
+<tr>
+	<th><label for="item_quality">{lang trade_type}</label></th>
+	<td>
+		<select id="item_quality" name="item_quality" tabindex="51">
+			<option value="1" <!--{if $trade['quality'] == 1}-->selected="selected"<!--{/if}-->>{lang trade_new}</option>
+			<option value="2" <!--{if $trade['quality'] == 2}-->selected="selected"<!--{/if}-->>{lang trade_old}</option>
+		</select>
+
+		<select name="item_type" tabindex="52">
+		<option value="1" <!--{if $trade['itemtype'] == 1}-->selected<!--{/if}-->>{lang trade_type_buy}</option>
+		<option value="2" <!--{if $trade['itemtype'] == 2}-->selected<!--{/if}-->>{lang trade_type_service}</option>
+		<option value="3" <!--{if $trade['itemtype'] == 3}-->selected<!--{/if}-->>{lang trade_type_auction}</option>
+		<option value="4" <!--{if $trade['itemtype'] == 4}-->selected<!--{/if}-->>{lang trade_type_donate}</option>
+		<option value="5" <!--{if $trade['itemtype'] == 5}-->selected<!--{/if}-->>{lang trade_type_compensate}</option>
+		<option value="6" <!--{if $trade['itemtype'] == 6}-->selected<!--{/if}-->>{lang trade_type_bonus}</option>
+		</select>
+	</td>
+</tr>
+
+<!--{if $allowpostattach}-->
+	<tr>
+		<th>{lang post_trade_picture}</th>
+		<td>
+		<input type="file" name="tradeattach[]" class="absmiddle" size="30" onchange="attachpreview(this, 'tradeattach_preview', 80, 80)" tabindex="53" />
+		<div id="tradeattach_preview">
+		<!--{if $tradeattach[attachment]}-->
+			<a href="$tradeattach[url]/$tradeattach[attachment]" target="_blank">
+			<!--{if $tradeattach['thumb']}-->
+				<img height="80" src="$tradeattach[url]/$tradeattach[attachment].thumb.jpg" border="0" alt="" />
+			<!--{else}-->
+				<img height="80" src="$tradeattach[url]/$tradeattach[attachment]" border="0" alt="" />
+			<!--{/if}-->
+			</a>
+		<!--{/if}-->
+		</div><!--{if $tradeattach[attachment]}--><input name="tradeaid" type="hidden" value="$tradeattach[aid]"><!--{/if}-->
+		<div id="tradeattach_preview_hidden" style="position: absolute; top: -100000px; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image'); width: 80px; height: 80px"></div>
+		</td>
+	</tr>
+<!--{/if}-->
+<tr>
+{template post_editor}
+</tr>
+
+<!--{if ($action == 'newthread' || $action == 'edit' && $isfirstpost) && $tagstatus}-->
+	<tr>
+		<th><label for="tags">{lang tag}</label></th>
+		<td>
+			<input size="45" type="input" id="tags" name="tags" value="$threadtags" tabindex="154" />&nbsp;
+			<button onclick="relatekw();return false">{lang searchtags}</button><span id="tagselect"></span>
+			<em class="tips">{lang tag_comment}</em>
+		</td>
+	</tr>
+<!--{/if}-->
+<thead>
+	<tr>
+		<th>{lang post_tradeinfo}</th>
+		<td>&nbsp;</td>
+	</tr>
+</thead>
+<tr>
+	<th><label for="item_costprice">{lang post_trade_costprice}</label></th>
+	<td><input type="text" id="item_costprice" name="item_costprice" size="30" value="$trade[costprice]" tabindex="155" />
+</tr>
+<tr>
+	<th><label for="item_price">{lang post_trade_price}</label></th>
+	<td><input type="text" id="item_price" name="item_price" size="30" value="$trade[price]" tabindex="156" /> <em class="tips"><!--{if $mintradeprice && $maxtradeprice}-->{lang tarde_price_bound} $mintradeprice {lang payment_unit} - $maxtradeprice {lang payment_unit}<!--{else}-->{lang trade_min_price} $mintradeprice {lang payment_unit}<!--{/if}--></em></td>
+</tr>
+<tr>
+	<th><label for="item_locus">{lang post_trade_locus}</label></th>
+	<td><input type="text" id="item_locus" name="item_locus" size="30" value="$trade[locus]" tabindex="157" /></td>
+</tr>
+<tr>
+	<th><label for="item_number">{lang post_trade_number}</label></th>
+	<td><input type="text" id="item_number" name="item_number" size="30" value="$trade[amount]" tabindex="158" /></td>
+</tr>
+
+<!--{if $ec_account}-->
+	<tr>
+		<th><label for="paymethod">{lang post_trade_paymethod}</label></td>
+		<td><input type="radio" id="paymethod" name="paymethod" onclick="$('tradeaccount').style.display = ''" value="1"{if $trade[account]} checked="checked"{/if} /> {lang post_trade_paymethod_online} <input type="radio" id="paymethod" name="paymethod" onclick="$('tradeaccount').style.display = 'none'" value="0"{if !$trade[account]} checked="checked"{/if} /> {lang post_trade_paymethod_offline}
+		</td>
+	</tr>
+	<tbody id="tradeaccount"{if !$trade[account]} style="display: none"{/if}>
+	<tr>
+		<th><label for="seller">{lang post_trade_seller}</label></td>
+		<td>
+			<input type="text" id="seller" name="seller" size="30" value="$trade[account]" />
+		</td>
+	</tr>
+	</tbody>
+<!--{else}-->
+	<input type="hidden" id="seller" name="seller" value="" />
+<!--{/if}-->
+
+<tr>
+	<th valign="top">{lang post_trade_transport}</th>
+	<td>
+		<label><input class="radio" type="radio" name="transport" value="virtual" tabindex="160" <!--{if $trade['transport'] == 3}-->checked="checked"<!--{/if}--> onclick="$('logisticssetting').style.display='none'" /> {lang post_trade_transport_virtual}</label>
+		<label><input class="radio" type="radio" name="transport" value="seller" tabindex="161" <!--{if $trade['transport'] == 1}-->checked="checked"<!--{/if}--> onclick="$('logisticssetting').style.display=''" /> {lang post_trade_transport_seller}</label>
+		<label><input class="radio" type="radio" name="transport" value="buyer" tabindex="162" <!--{if $trade['transport'] == 2}-->checked="checked"<!--{/if}--> onclick="$('logisticssetting').style.display=''" /> {lang post_trade_transport_buyer}</label>
+		<label><input class="radio" type="radio" name="transport" value="logistics" tabindex="163" <!--{if $trade['transport'] == 4}-->checked="checked"<!--{/if}--> onclick="$('logisticssetting').style.display=''" /> {lang trade_type_transport_physical}</label>
+	</td>
+</tr>
+<tbody id="logisticssetting" style="display:<!--{if $trade['transport'] == 3}--> none<!--{/if}-->">
+<tr>
+	<th valign="top">{lang post_trade_transport_fee}</th>
+	<td>
+		{lang post_trade_transport_mail} <input type="text" name="postage_mail" size="3" value="$trade[ordinaryfee]" tabindex="164" /> {lang payment_unit}<em class="tips">({lang post_trade_transport_mail_unit})</em><br />
+		{lang post_trade_transport_express} <input type="text" name="postage_express" size="3" value="$trade[expressfee]" tabindex="165" /> {lang payment_unit} <em class="tips">({lang post_trade_transport_express_unit})</em><br />
+		EMS <input type="text" name="postage_ems" size="3" value="$trade[emsfee]" tabindex="166" /> {lang payment_unit} <em class="tips">({lang post_trade_transport_ems_unit})</em><br />
+	</td>
+</tr>
+</tbody>
+<!--{if $action == 'edit'}-->
+	<tr>
+		<th>{lang trade_start}</th>
+		<td>
+			<label><input class="radio" type="radio" name="closed" value="0" tabindex="167" <!--{if $trade['closed'] == 0}-->checked="checked"<!--{/if}-->>{lang yes}</label>&nbsp;
+			<label><input class="radio" type="radio" name="closed" value="1" tabindex="168" <!--{if $trade['closed'] == 1}-->checked="checked"<!--{/if}-->>{lang no}</label>
+		</td>
+	</tr>
+<!--{/if}-->
+<tr>
+	<th><label for="item_expiration">{lang thread_moderations_expiration}</label></th>
+	<td>
+		<input onclick="showcalendar(event, this, false)" type="text" id="item_expiration" name="item_expiration" size="30" value="$trade[expiration]" tabindex="169">
+		<select onchange="this.form.item_expiration.value = this.value">
+			<option value=''></option>
+			<option value=''>{lang thread_moderations_expiration_unlimit}</option>
+			<option value='$expiration_7days'>{lang seven_days}</option>
+			<option value='$expiration_14days'>{lang fourteen_days}</option>
+			<option value='$expiration_month'>{lang one_month}</option>
+			<option value='$expiration_3months'>{lang three_months}</option>
+			<option value='$expiration_halfyear'>{lang half_year}</option>
+			<option value='$expiration_year'>{lang one_year}</option>
+		</select></td>
+</tr>
+
+<script type="text/javascript">
+	<!--{if $trade[price] && $tradetaxtype == 2}-->$('realtax').innerHTML = Math.ceil($trade[price] * ($tradetaxs / 100));<!--{/if}-->
+</script>

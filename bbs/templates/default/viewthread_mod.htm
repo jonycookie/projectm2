@@ -1,0 +1,25 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; {lang thread_moderations}</div>
+
+<div class="mainbox">
+	<h1>{lang thread_moderations}</h1>
+	<table summary="{lang thread_moderations}" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<td>{lang thread_moderations_username}</td>
+				<td class="time">{lang time}</td>
+				<td>{lang thread_moderations_action}</td>
+				<td class="time">{lang thread_moderations_expiration}</td>
+			</tr>
+		</thead>
+		<!--{loop $loglist $log}-->
+			<tr>
+				<td><!--{if $log['uid']}--><a href="space.php?uid=$log['uid']" target="_blank">$log[username]</a><!--{else}-->{lang thread_moderations_cron}<!--{/if}--></td>
+				<td class="time">$log[dateline]</td>
+				<td $log[status]><!--{if $log['magicid']}--><a href="magic.php?action=shop&operation=buy&magicid=$log['magicid']" target="_blank">$log[magicname]</a><!--{else}-->{$modactioncode[$log['action']]}<!--{/if}--></td>
+				<td class="time" $log[status]><!--{if $log['expiration']}-->$log[expiration]<!--{elseif in_array($log['action'], array('STK', 'HLT', 'DIG', 'CLS', 'OPN'))}-->{lang thread_moderations_expiration_unlimit}<!--{/if}--></td>
+			</tr>
+		<!--{/loop}-->
+	</table>
+</div>
+{template footer}

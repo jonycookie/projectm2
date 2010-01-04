@@ -1,0 +1,32 @@
+{template header}
+<div class="postauthor userinfopanel" style="border: 0;padding: 0">
+<p style="float: right"><a href="###" onclick="hideMenu()"><img src="{IMGDIR}/close.gif" alt="{lang close}" title="{lang close}" /></a></p>
+<p><b>$post[username]</b></p>
+<!--{if $post[nickname]}--><p>$post[nickname]</p><!--{/if}-->
+<p><em>$post['userstatusby']</em></p>
+<p>{eval showstars($post['stars']);}</p>
+<!--{if $post['msn'] || $post['qq'] || $post['icq'] || $post['yahoo']}-->
+<div class="imicons">
+	<!--{if $post['msn']}--><a href="javascript:;" onclick="msnoperate('add', '$post[msn]')" title="{lang msn_add}"><img src="{IMGDIR}/msnadd.gif" alt="{lang msn_add}" /></a>
+		<a href="javascript:;" onclick="msnoperate('chat', '$post[msn]')" title="{lang msn_chat}"><img src="{IMGDIR}/msnchat.gif" alt="{lang msn_chat}" /></a><!--{/if}-->
+	<!--{if $post['qq']}--><a href="http://wpa.qq.com/msgrd?V=1&amp;Uin=$post[qq]&amp;Site=$bbname&amp;Menu=yes" target="_blank"><img src="{IMGDIR}/qq.gif" alt="QQ" /></a><!--{/if}-->
+	<!--{if $post['icq']}--><a href="http://wwp.icq.com/scripts/search.dll?to=$post[icq]" target="_blank"><img src="{IMGDIR}/icq.gif" alt="ICQ" /></a><!--{/if}-->
+	<!--{if $post['yahoo']}--><a href="http://edit.yahoo.com/config/send_webmesg?.target=$post[yahoo]&.src=pg" target="_blank"><img src="{IMGDIR}/yahoo.gif" alt="Yahoo!"  /></a><!--{/if}-->
+</div>
+<!--{/if}-->
+<dl><!--{if $customauthorinfo[3]}-->{eval @eval('echo "'.$customauthorinfo[2].'";');}<!--{/if}--></dl>
+<!--{if $post['site']}-->
+	<p><a href="$post[site]" target="_blank">{lang member_homepage}</a></p>
+<!--{/if}-->
+<p><a href="space.php?action=viewpro&uid=$post[uid]" target="_blank">{lang member_viewpro}</a></p>
+<!--{if $allowedituser || $allowbanuser}-->
+	<!--{if $adminid == 1}-->
+		<p><a href="admincp.php?action=members&username=$post[usernameenc]&searchsubmit=yes&frames=yes" target="_blank">{lang edit_member}</a></p>
+	<!--{else}-->
+		<p><a href="admincp.php?action=editmember&uid=$post[uid]&membersubmit=yes&frames=yes" target="_blank">{lang edit_member}</a></p>
+	<!--{/if}-->
+	<p><a href="admincp.php?action=banmember&uid=$post[uid]&membersubmit=yes&frames=yes" target="_blank">{lang ban_member}</a></p>
+<!--{/if}-->
+</div>
+{template footer}
+

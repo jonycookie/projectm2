@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=$charset">
+<title>$navtitle $bbname $seotitle - Powered by Discuz!</title>
+$seohead
+<meta name="keywords" content="$metakeywords,$seokeywords" />
+<meta name="description" content="$metadescription $bbname $seodescription - Discuz! Board" />
+<meta name="generator" content="Discuz! $version with Templates 5.0.0" />
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+<meta http-equiv="MSThemeCompatible" content="Yes" />
+<link rel="archives" title="$bbname" href="{$boardurl}archiver/" />
+$rsshead
+$extrahead
+
+<!--{if $allowcsscache}--><link rel="stylesheet" type="text/css" id="css" href="forumdata/cache/style_{STYLEID}.css" /><!--{else}--><style type="text/css" id="css">{template css}</style><!--{/if}-->
+</head>
+
+<body onkeydown="if(event.keyCode==27) return false;" style="margin: 0px; padding: 0px;">
+<div  style="height:100%; padding-top: 70px; background: #F2F7FF; ">
+	<a href="###" onClick="window.location='post.php?action=newthread&amp;fid=$fid&amp;extra=$extra&amp;url={echo urlencode($url)}&amp;md5=$md5&amp;from=iframe'"><img src="{IMGDIR}/trans_post.gif" border="0" alt="" style=" float: right; margin-top: -40px; margin-right: 20px;"></a>
+	<div style="text-align: left; padding: 2px 16px; border-bottom: 3px solid #B4C9E0;"><div style=" width:172px; height:65px; overflow:hidden; float:left; margin-top: -70px; "><a href="$indexname" title="$bbname">{BOARDLOGO}</a></div><div style="float:left; height:65px; padding: 3px; line-height: 20px; display: none; margin-top: -70px; "></div></div>
+	<iframe frameborder="0" scrolling="yes" name="main" src="$url" style="height: 100%; visibility: inherit; width: 100%; z-index: 1;overflow: auto;"></iframe>
+</div>
+<img style="display:none;" src="http://pvstat.qihoo.com/dimana.gif?_pdt=discuz&_pg=s100812&_r=$randnum&_dim_k=orgthread&_dim_v={echo urlencode($boardurl);}||{$statsdata}||1" width=1 height=1 />
+</body></html>

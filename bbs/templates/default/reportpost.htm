@@ -1,0 +1,93 @@
+{template header}
+<!--{if !$inajax}-->
+	<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; {lang reportpost}</div>
+
+	<form method="post" name="input" action="misc.php?action=report&inajax=$inajax" id="reportpostform">
+		<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+		<div class="mainbox formbox">
+			<h1>{lang reportpost}</h1>
+			<table summary="{lang reportpost}" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<th>{lang username}</th>
+						<td>$discuz_userss [<a href="$link_logout">{lang member_logout}</a>]</td>
+					</tr>
+				</thead>
+
+				<!--{if $reportpost == 1}-->
+					<input type="hidden" name="to[3]" value="yes" />
+				<!--{else}-->
+					<tr>
+						<th>{lang reportpost_to}</th>
+						<td>
+							<!--{if $reportpost == 3}--><label><input class="checkbox" type="checkbox" name="to[1]" value="yes"> {lang admin}</label> &nbsp;<!--{/if}-->
+							<!--{if $reportpost >= 2}--><label><input class="checkbox" type="checkbox" name="to[2]" value="yes"> {lang supermod}</label> &nbsp;<!--{/if}-->
+							<label><input class="checkbox" type="checkbox" name="to[3]" value="yes" checked="checked" /> {lang moderator}</label>
+						</td>
+					</tr>
+				<!--{/if}-->
+
+				<tr>
+					<th valign="top"><label for="reason">{lang reportpost_suggestion}</label></th>
+					<td><textarea rows="9" id="reason" name="reason" style="width: 98%;">{lang reportpost_reason}</textarea></td>
+				</tr>
+
+				<tr class="btns">
+					<th>&nbsp;</th>
+					<td>
+						<input type="hidden" name="tid" value="$tid" />
+						<input type="hidden" name="fid" value="$fid" />
+						<input type="hidden" name="pid" value="$pid" />
+						<input type="hidden" name="page" value="$page" />
+						<button class="submit" type="submit" name="reportsubmit" value="true">{lang reportpost}</button>
+					</td>
+				</tr>
+
+			</table>
+		</div>
+	</form>
+<!--{else}-->
+	<div class="ajaxform">
+		<form method="post" name="input" action="misc.php?action=report&inajax=$inajax&reportsubmit=yes" id="reportpostform">
+			<input type="hidden" name="formhash" value="{FORMHASH}" />
+			<table summary="{lang reportpost}" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<th>{lang reportpost}</th>
+						<td align="right"><a href="javascript:hideMenu();"><img src="{IMGDIR}/close.gif" alt="{lang close}" title="{lang close}" /></a></td>
+					</tr>
+				</thead>
+				<!--{if $reportpost == 1}-->
+					<input type="hidden" name="to[3]" value="yes" />
+				<!--{else}-->
+					<tr>
+						<th>{lang reportpost_to}</th>
+						<td>
+							<!--{if $reportpost == 3}--><label><input class="checkbox" type="checkbox" name="to[1]" value="yes"> {lang admin}</label> &nbsp;<!--{/if}-->
+							<!--{if $reportpost >= 2}--><label><input class="checkbox" type="checkbox" name="to[2]" value="yes"> {lang supermod}</label> &nbsp;<!--{/if}-->
+							<label><input class="checkbox" type="checkbox" name="to[3]" value="yes" checked="checked" /> {lang moderator}</label>
+						</td>
+					</tr>
+				<!--{/if}-->
+
+				<tr>
+					<th valign="top"><label for="reason">{lang reportpost_suggestion}</label></td>
+					<th><textarea rows="4" id="reason" name="reason" style="width: 300px; height: 5em">{lang reportpost_reason}</textarea>
+				</tr>
+
+				<tr class="btns">
+					<th>&nbsp;</th>
+					<td>
+						<input type="hidden" name="tid" value="$tid" />
+						<input type="hidden" name="fid" value="$fid" />
+						<input type="hidden" name="pid" value="$pid" />
+						<input type="hidden" name="page" value="$page" />
+						<button class="submit" type="submit" name="reportsubmit" value="true" onclick="ajaxpost('reportpostform', 'ajax_report_{$pid}_menu');return false">{lang reportpost}</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+<!--{/if}-->
+{template footer}

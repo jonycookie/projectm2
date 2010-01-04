@@ -1,0 +1,43 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; {lang pay}</div>
+<form method="post" action="misc.php?action=pay">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<input type="hidden" name="referer" value="$referer" />
+	<div class="mainbox formbox">
+		<h1>{lang pay}</h1>
+		<table summary="{lang pay}" cellspacing="0" cellpadding="0">
+			<tr>
+				<th>{lang username}:</th>
+				<td>$discuz_userss <span class="smalltxt">[<a href="$link_logout">{lang member_logout}</a>]</span></td>
+			</tr>
+			<tr>
+				<th>{lang author}:</th>
+				<td><a href="space.php?uid=$thread[authorid]">$thread[author]</a></td>
+			</tr>
+			<tr>
+				<th>{lang subject}:</th>
+				<td><a href="viewthread.php?tid=$tid">$thread[subject]</a></td>
+			</tr>
+			<tr>
+				<th valign="top">{lang price}({$extcredits[$creditstrans][title]}):</th>
+				<td>$thread[price] {$extcredits[$creditstrans][unit]}</td>
+			</tr>
+			<tr>
+				<th valign="top">{lang pay_author_income}({$extcredits[$creditstrans][title]}):</th>
+				<td>$thread[netprice] {$extcredits[$creditstrans][unit]}</td>
+			</tr>
+			<tr>
+				<th valign="top">{lang pay_balance}({$extcredits[$creditstrans][title]}):</th>
+				<td>$balance {$extcredits[$creditstrans][unit]}</td>
+			</tr>
+			<tr class="btns">
+				<th>&nbsp;</th>
+				<td>
+					<input type="hidden" name="tid" value="$tid" />
+					<button class="submit" type="submit" name="paysubmit" value="true">{lang submit}</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</form>
+{template footer}

@@ -1,0 +1,52 @@
+<h1>{lang my}</h1>
+
+<div class="msgtabs"><strong>{lang my_threads_last_five}</strong></div>
+<table cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<td style="width: 50%">{lang subject}</td>
+<td class="time">{lang forum}</td>
+<td class="time">{lang lastpost}</td>
+<td width="40">{lang status}</td>
+</tr>
+</thead>
+<tbody>
+<!--{if $threadlist}-->
+	<!--{loop $threadlist $thread}-->
+		<tr>
+		<td><!--{if $thread['displayorder'] >= 0}--><a href="viewthread.php?tid=$thread[tid]" target="_blank">$thread[subject]</a><!--{else}-->$thread[subject]<!--{/if}--></td>
+		<td><a href="forumdisplay.php?fid=$thread[fid]" target="_blank">$thread[forumname]</a></td>
+		<td><cite><a href="redirect.php?tid=$thread[tid]&goto=lastpost#lastpost">$thread[lastpost]</a><br /> by <!--{if $thread['lastposter']}--><a href="space.php?username=$thread[lastposterenc]" target="_blank">$thread[lastposter]</a><!--{else}-->{lang anonymous}<!--{/if}--></cite></td>
+		<td><!--{if $thread[displayorder] == '-1'}-->{lang forum_recyclebin}<!--{elseif $thread[displayorder] == '-2'}-->{lang my_threads_aduit}<!--{elseif $thread[closed] == '1'}-->{lang close}<!--{else}-->{lang common}<!--{/if}--></td>
+		</tr>
+	<!--{/loop}-->
+<!--{else}-->
+	<tr><td colspan="4">{lang forum_nothreads}</td></tr>
+<!--{/if}-->
+</tbody>
+</table>
+<div class="msgtabs"><strong>{lang my_replys_last_five}</strong></div>
+<table cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<td style="width: 50%">{lang in_thread}</td>
+<td class="time">{lang forum}</td>
+<td class="time">{lang lastpost}</td>
+<td width="40">{lang status}</td>
+</tr>
+</thead>
+<tbody>
+<!--{if $postlist}-->
+	<!--{loop $postlist $post}-->
+		<tr>
+		<td><!--{if $post[invisible] == 0}--><a href="redirect.php?goto=findpost&pid=$post[pid]&ptid=$post[tid]" target="_blank"><!--{if $post[subject]}-->$post[subject]<!--{else}-->{lang title_none}<!--{/if}--></a><!--{else}--><!--{if $post[subject]}-->$post[subject]<!--{else}-->{lang title_none}<!--{/if}--><!--{/if}--></td>
+		<td><a href="forumdisplay.php?fid=$post[fid]" target="_blank">$post[forumname]</a></td>
+		<td><cite><a href="redirect.php?tid=$post[tid]&goto=lastpost#lastpost">$post[lastpost]</a><br /> by <!--{if $post['lastposter']}--><a href="space.php?username=$post[lastposterenc]" target="_blank">$post[lastposter]</a><!--{else}-->{lang anonymous}<!--{/if}--></cite></td>
+		<td><!--{if $post[invisible] == '-1'}-->{lang delete_wait}<!--{elseif $post[invisible] == '2'}-->{lang delete_wait}<!--{else}-->{lang common}<!--{/if}--></td>
+		</tr>
+	<!--{/loop}-->
+<!--{else}-->
+	<tr><td colspan="4">{lang forum_nothreads}</td></tr>
+<!--{/if}-->
+</tbody>
+</table>

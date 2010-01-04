@@ -1,0 +1,90 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; {lang trade_displayorder}</div>
+
+<script type="text/javascript">
+	var max_obj = $tradestick;
+	var p = $stickcount;
+	function checkbox(obj) {
+		if(obj.checked) {
+			p++;
+			for (var i = 0; i < $('tradeform').elements.length; i++) {
+				var e = tradeform.elements[i];
+				if(p == max_obj) {
+					if(e.name.match('stick') && !e.checked) {
+						e.disabled = true;
+					}
+				}
+			}
+		} else {
+			p--;
+			for (var i = 0; i < $('tradeform').elements.length; i++) {
+				var e = tradeform.elements[i];
+				if(e.name.match('stick') && e.disabled) {
+					e.disabled = false;
+				}
+			}
+		}
+	}
+</script>
+
+
+<form id="tradeform" method="post" action="misc.php?action=tradeorder&tid=$tid">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<div class="mainbox">
+		<h1>{lang trade_displayorder}</h1>
+		<table summary="{lang trade_displayorder}" cellspacing="0" cellpadding="0">
+			<thead>
+				<tr>
+					<td class="nums">{lang trade_show_order}</td>
+					<td>{lang trade_update_stick}</td>
+					<td width="48">&nbsp;</td>
+					<td>{lang post_trade_name}</td>
+					<td>{lang post_trade_number}</td>
+					<td>{lang post_trade_costprice}</td>
+					<td>{lang post_trade_price}</td>
+					<td>{lang trade_remaindays}</td>
+				</tr>
+			</thead>
+			<!--{loop $trades $trade}-->
+			<tr>
+				<td class="nums"><input size="1" name="displayorder[{$trade[pid]}]" value="$trade[displayorderview]" /></td>
+				<td><input class="checkbox" type="checkbox" onclick="checkbox(this)" name="stick[{$trade[pid]}]" value="yes" <!--{if $trade[displayorder] > 0}-->checked="checked"<!--{elseif $tradestick <= $stickcount}-->disabled="disabled"<!--{/if}--> /></td>
+				<td align="center">
+				<!--{if $trade['aid']}-->
+					<a href="viewthread.php?do=tradeinfo&tid=$tid&pid=$trade[pid]" target="_blank"><img class="absmiddle" src="attachment.php?aid=$trade[aid]" onload="thumbImg(this)" width="48" height="48" alt="$trade[subject]" /></a>
+				<!--{else}-->
+					<a href="viewthread.php?do=tradeinfo&tid=$tid&pid=$trade[pid]" target="_blank"><img class="absmiddle" src="{IMGDIR}/trade_nophotosmall.gif" onload="thumbImg(this)" width="48" height="48" alt="$trade[subject]" /></a>
+				<!--{/if}-->
+				</td>
+				<td>
+					<a href="viewthread.php?do=tradeinfo&amp;tid=$tid&amp;pid=$trade[pid]" target="_blank">$trade[subject]</a>
+					[ <a href="post.php?action=edit&amp;fid=$fid&amp;tid=$tid&amp;pid=$trade[pid]&amp;page=$page&amp;extra=$extra" target="_blank">{lang edit}</a> ]
+				</td>
+				<td>$trade[amount]</td>
+				<td>
+					<!--{if $trade['costprice'] > 0}-->
+						<del>$trade[costprice]</del> {lang payment_unit}
+					<!--{/if}-->
+				</td>
+				<td>$trade[price] {lang payment_unit}</td>
+				<td>
+				<!--{if $trade[closed]}-->
+					{lang trade_timeout}
+				<!--{elseif $trade[expiration] > 0}-->
+					{$trade[expiration]}{lang trade_day}{$trade[expirationhour]}{lang trade_hour}
+				<!--{elseif $trade[expiration] == -1}-->
+					{lang trade_timeout}
+				<!--{/if}-->
+				</td>
+			</tr>
+			<!--{/loop}-->
+		</table>
+		<div class="footoperation">
+			<label><input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form, 'stick')" />{lang checkall}</label>
+			<button class="submit" type="submit" name="tradesubmit" value="true">{lang trade_update_order}</button>
+			&nbsp;&nbsp;{lang trade_update_stickmax} $tradestick
+		</div>
+	</div>
+</form>
+
+{template footer}

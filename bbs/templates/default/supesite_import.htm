@@ -1,0 +1,124 @@
+{template header}
+<div class="subtable nav">
+<a href="$indexname">$bbname</a> &raquo; {lang supe_import_forum}
+</div><br />
+
+<script type="text/javascript">
+function validate(theform) {
+	if (!theform.importsubmit.disabled && !theform.fid.value) {
+		alert('{lang supe_pls_choose_forum_you_want}');
+		return false;
+	}
+	theform.importsubmit.disabled = true;
+	return true;
+}
+
+var threadtypes = new Array();
+$js_threadtypes
+var threadtypesrequired = new Array();
+$js_threadtypesrequired
+
+function selectthreadtype(fid) {
+	if(!fid) {
+		return;
+	}
+	var threadtype = threadtypes[fid];
+	typeidtbody = $('tbody1');
+
+	if(typeidtbody.firstChild) {
+		typeidtbody.firstChild.removeNode(true);
+	}
+
+	if(threadtype != '') {
+		tr1 = document.createElement('tr');
+		td1 = document.createElement('td');
+		td1.setAttribute('className', 'altbg1');
+		td1.innerHTML = '<span class="bold">{lang admin_type}:</span>';
+		td2 = document.createElement('td');
+		td2.setAttribute('className', 'altbg2');
+		var html = '<select name="typeid">';
+		if(threadtypesrequired[fid] == '') {
+			html += '<option value="0"></option>';
+		}
+		for(k in threadtype) {
+			html += '<option value="'+k+'">' + threadtype[k] + '</option>';
+		}
+
+		html += '</select>';
+		td2.innerHTML = html;
+		tr1.appendChild(td1);
+		tr1.appendChild(td2);
+		typeidtbody.appendChild(tr1);
+	}
+}
+</script>
+
+<form method="post" name="input" action="post.php?action=import&extra=$extra&importsubmit=yes&itemid=$itemid" $enctype onSubmit="return validate(this)">
+<input type="hidden" name="formhash" value="{FORMHASH}">
+
+<div class="spaceborder" style="clear: both">
+<table cellspacing="{INNERBORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%" align="center">
+<tr><td colspan="2" class="header">{lang supe_choose_forum}
+</td></tr>
+
+<tr>
+<td class="altbg1 bold" width="40%">{lang username}:</td>
+<td class="altbg2" width="60%">$discuz_userss <span class="smalltxt">[<a href="$link_logout">{lang member_logout}</a>]</span></td>
+</tr>
+
+<!--{if $seccodecheck}-->
+	<tr>
+		<th><label for="seccodeverify">{lang seccode}</label></th>
+		<td>
+			<div id="seccodeimage"></div>
+			<input type="text" onfocus="updateseccode();this.onfocus = null" id="seccodeverify" name="seccodeverify" size="8" maxlength="4" />
+			<em class="tips"><strong>{lang seccode_click}</strong> <!--{if $seccodedata['type'] == 2}-->{lang seccode_animator_flashrefresh}<!--{elseif $seccodedata['animator'] == 1}-->{lang seccode_animator_refresh}<!--{else}-->{lang seccode_refresh}<!--{/if}--></em></td>
+			<script type="text/javascript">
+				var seccodedata = [{$seccodedata['width']}, {$seccodedata['height']}, {$seccodedata['type']}];
+			</script>
+	</tr>
+<!--{/if}-->
+
+<!--{if $secqaacheck}-->
+	<tr>
+	<td class="altbg1">{lang secqaa}:</td>
+	<td class="altbg2"><div id="secquestion"></div><input type="text" name="secanswer" size="25" maxlength="50">
+	<script type="text/javascript">
+	<!--{if ($attackevasive & 1) && $seccodecheck}-->
+		setTimeout("updatesecqaa()", 2001);
+	<!--{else}-->
+		updatesecqaa();
+	<!--{/if}-->
+	</script></td>
+	</tr>
+<!--{/if}-->
+
+<tr>
+<td class="altbg1"><span class="bold">{lang supe_target_forum}:</span></td>
+<td class="altbg2">
+<select name="fid" id="fid" onchange="selectthreadtype(this.options[this.options.selectedIndex].value)">
+$forumselect
+</select>
+</td>
+</tr>
+
+<tbody id="tbody1">
+</tbody>
+
+<tr><td colspan="2" align="left" class="altbg1">{lang supesite_import_comment}</td></tr>
+</table></div>
+<br /><center><input class="button" type="submit" name="importsubmit" value="{lang submit}" tabindex="5"></center>
+</form>
+
+<script type="text/javascript">
+	options1 = $('fid').options;
+	var len = options1.length;
+	for(var i=0; i < len; i++) {
+		if(options1[i].value != '') {
+			options1[i].selected = true;
+			selectthreadtype(options1[i].value);
+			break;
+		}
+	}
+</script>
+{template footer}

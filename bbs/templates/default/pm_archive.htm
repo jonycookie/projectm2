@@ -1,0 +1,67 @@
+<form method="post" action="pm.php?action=archive" target="_blank">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<div class="mainbox formbox">
+		<h1>{lang pm_archive}</h1>
+		<ul class="tabs">
+			<li class="sendpm"><a href="pm.php?action=send">{lang pm_send}</a></li>
+			<li><a href="pm.php?folder=inbox">{lang pm_inbox}[<span id="pm_unread">$pm_inbox_newpm</span>]</a></li>
+			<li><a href="pm.php?folder=outbox">{lang pm_outbox}</a></li>
+			<li><a href="pm.php?folder=track">{lang pm_track}</a></li>
+			<li><a href="pm.php?action=search">{lang pm_search}</a></li>
+			<li class="current"><a href="pm.php?action=archive">{lang pm_archive}</a></li>
+			<li><a href="pm.php?action=ignore">{lang pm_ignore}</a></li>
+		</ul>
+		<table summary="{lang pm_archive}" cellspacing="0" cellpadding="0">
+			<tr>
+				<th>{lang pm_archive_folder}</th>
+				<td>
+					<label><input type="radio" name="folder" value="inbox" checked="checked" /> {lang pm_inbox}</label>
+					<label><input type="radio" name="folder" value="outbox" /> {lang pm_outbox}</label>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>{lang pm_archive_from}</th>
+				<td>
+					<select name="days">
+						<option value="1">{lang pm_archive_from_1_days}</option>
+						<option value="2">{lang pm_archive_from_2_days}</option>
+						<option value="7">{lang pm_archive_from_7_days}</option>
+						<option value="30">{lang pm_archive_from_30_days}</option>
+						<option value="90">{lang pm_archive_from_90_days}</option>
+						<option value="180">{lang pm_archive_from_180_days}</option>
+						<option value="365">{lang pm_archive_from_365_days}</option>
+						<option value="0">{lang all}</option>
+					</select>
+					<label><input type="radio" name="newerolder" value="newer" checked="checked" /> {lang search_newer}</label>
+					<label><input type="radio" name="newerolder" value="older" /> {lang search_older}</label>
+				</td>
+			</tr>
+			
+			<tr>
+				<th><label for="amount">{lang pm_archive_amount}</label></th>
+				<td>
+					<select id="amount" name="amount">
+						<option value="10">10</option>
+						<option value="20">20</option>
+						<option value="30">30</option>
+						<option value="40">40</option>
+						<option value="50">50</option>
+						<option value="0">{lang all}</option>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>&nbsp;</th>
+				<td><label><input class="checkbox" type="checkbox" name="delete" value="1" /> {lang pm_archive_delete}</label></td>
+			</tr>
+			
+			<tr>
+				<th>&nbsp;</th>
+				<td><button type="submit" class="submit" name="archivesubmit" value="true">{lang pm_archive}</button></td>
+			</tr>
+			
+		</table>
+	</div>
+</form>

@@ -1,0 +1,145 @@
+{template header}
+
+<script type="text/javascript" src="include/javascript/viewthread.js"></script>
+<script type="text/javascript">zoomstatus = parseInt($zoomstatus);</script>
+
+<div id="nav">
+	<!--{if $forumjump && $jsmenu[1]}--><a href="$indexname" id="forumlist" onmouseover="showMenu(this.id)" class="dropmenu">$bbname</a><!--{else}--><a href="$indexname">$bbname</a><!--{/if}--> $navigation &raquo; $trade[subject]
+</div>
+
+<div class="mainbox viewthread tradeinfo">
+	<h1>$trade[subject]</h1>
+	<div class="tradethumb">
+	<!--{if $trade['thumb']}-->
+		<a href="###"><img src="$trade[thumb]" onclick="zoom(this, '$trade[attachurl]')" onload="thumbImg(this)" width="$tradeimagewidth" height="$tradeimageheight" alt="$trade[subject]" /></a>
+	<!--{else}-->
+		<img src="{IMGDIR}/trade_nophoto.gif" alt="$trade[subject]" />
+	<!--{/if}-->
+	</div>
+
+	<div class="tradeattribute" style="width: 30%">
+		<dl>
+		<!--{if $trade['costprice'] > 0}--><dt>{lang trade_costprice}:</dt><dd><del>$trade[costprice] {lang payment_unit}</del></dd><!--{/if}-->
+		<dt>{lang trade_price}:</dt>
+		<dd><strong>$trade[price]</strong>&nbsp;{lang payment_unit}</dd>
+		<dt>{lang trade_transport}:</dt>
+		<dd>
+			<!--{if $trade['transport'] == 1}-->{lang post_trade_transport_seller}<!--{/if}-->
+			<!--{if $trade['transport'] == 2 || $trade['transport'] == 4}-->
+				<!--{if $trade['transport'] == 4}-->{lang post_trade_transport_physical}<!--{/if}-->
+				<!--{if !empty($trade['ordinaryfee']) || !empty($trade['expressfee']) || !empty($trade['emsfee'])}-->
+					<!--{if !empty($trade['ordinaryfee'])}-->{lang post_trade_transport_mail} $trade[ordinaryfee] {lang payment_unit}<!--{/if}-->
+					<!--{if !empty($trade['expressfee'])}--> {lang post_trade_transport_express} $trade[expressfee] {lang payment_unit}<!--{/if}-->
+					<!--{if !empty($trade['emsfee'])}--> EMS $trade[emsfee] {lang payment_unit}<!--{/if}-->
+				<!--{elseif $trade['transport'] == 2}-->
+					{lang post_trade_transport_none}
+				<!--{/if}-->
+			<!--{/if}-->
+			<!--{if $trade['transport'] == 3}-->{lang post_trade_transport_virtual}<!--{/if}-->
+		</dd>
+		<!--{if $trade[locus]}--><dt>{lang trade_locus}:</dt><dd>$trade[locus]</dd><!--{/if}-->
+		</dl>
+		<!--{if $post['authorid'] != $discuz_uid && empty($thread['closed']) && empty($trade['closed'])}-->
+			<!--{if $trade[amount]}--><a href="###" onclick="window.open('trade.php?tid=$post[tid]&pid=$post[pid]','','')"><img src="{IMGDIR}/trade_buy.gif" border="0" /></a> &nbsp;<!--{/if}-->
+			<a href="###" onclick="window.open('pm.php?action=send&uid=$trade[sellerid]&tradepid=$post[pid]','','')"><img src="{IMGDIR}/trade_pm.gif" border="0" /></a><br /><br />
+		<!--{/if}-->
+		<!--{if $trade['account']}-->
+			{lang post_trade_supportalipay}<br /><br />
+		<!--{/if}-->
+		<dl>
+			<dt>{lang trade_type_viewthread}:</dt>
+			<dd>
+				<!--{if $trade['quality'] == 1}-->{lang trade_new}<!--{/if}-->
+				<!--{if $trade['quality'] == 2}-->{lang trade_old}<!--{/if}-->
+				<!--{if $trade['itemtype'] == 1}-->{lang trade_type_buy}
+				<!--{elseif $trade['itemtype'] == 2}-->{lang trade_type_service}
+				<!--{elseif $trade['itemtype'] == 3}-->{lang trade_type_auction}
+				<!--{elseif $trade['itemtype'] == 4}-->{lang trade_type_donate}
+				<!--{elseif $trade['itemtype'] == 5}-->{lang trade_type_compensate}
+				<!--{elseif $trade['itemtype'] == 6}-->{lang trade_type_bonus}<!--{/if}-->
+			</dd>
+			<dt>{lang trade_remaindays}:</dt>
+			<dd>
+			<!--{if $trade[closed]}-->
+				<em>{lang trade_timeout}</em>
+			<!--{elseif $trade[expiration] > 0}-->
+				{$trade[expiration]}{lang trade_day}{$trade[expirationhour]}{lang trade_hour}
+			<!--{elseif $trade[expiration] == -1}-->
+				<em>{lang trade_timeout}</em>
+			<!--{else}-->
+				&nbsp;
+			<!--{/if}-->
+			</dd>
+			<dt>{lang post_trade_number}:</dt><dd>$trade[amount]</dd>
+			<dt>{lang post_trade_buynumber}:</dt><dd>$trade[totalitems]</dd>
+		</dl>
+	</div>
+
+	<div class="box sellerinfo postauthor">
+		<h4>{lang trade_sellerinfo}: <a href="space.php?username=$post[usernameenc]">$post[username]</a></h4>
+		<dl>
+			<dt>{lang eccredit_buyerinfo}</dt><dd>$post[sellercredit] <a href="eccredit.php?uid=$post[uid]" target="_blank"><img src="images/rank/seller/$post[sellerrank].gif" border="0" class="absmiddle"></a></dd>
+			<dt>{lang eccredit_sellerinfo}</dt><dd>$post[buyercredit] <a href="eccredit.php?uid=$post[uid]" target="_blank"><img src="images/rank/buyer/$post[buyerrank].gif" border="0" class="absmiddle"></a></dd>
+			<!--{if $spacedata['limitmytrades']}--><dt><a href="space.php?$post[uid]/mytrades" target="_blank">{lang trade_view_space}</a></dt><dd>&nbsp;</dd><!--{/if}-->
+			<dt><a href="viewthread.php?tid=$tid">{lang trade_view_all}</a></dt><dd>&nbsp;</dd>
+		</dl>
+		<!--{if $post['msn'] || $post['qq'] || $post['icq'] || $post['yahoo'] || $post['taobao']}-->
+		<p class="imicons">
+			<!--{if $post['msn']}--><a href="javascript:;" onclick="msnoperate('add', '$post[msn]')" title="{lang msn_add}"><img src="{IMGDIR}/msnadd.gif" alt="{lang msn_add}" /></a>
+				<a href="javascript:;" onclick="msnoperate('chat', '$post[msn]')" title="{lang msn_chat}"><img src="{IMGDIR}/msnchat.gif" alt="{lang msn_chat}" /></a><!--{/if}-->
+			<!--{if $post['qq']}--><a href="http://wpa.qq.com/msgrd?V=1&amp;Uin=$post[qq]&amp;Site=$bbname&amp;Menu=yes" target="_blank"><img src="{IMGDIR}/qq.gif" alt="QQ" /></a><!--{/if}-->
+			<!--{if $post['icq']}--><a href="http://wwp.icq.com/scripts/search.dll?to=$post[icq]" target="_blank"><img src="{IMGDIR}/icq.gif" alt="ICQ" /></a><!--{/if}-->
+			<!--{if $post['yahoo']}--><a href="http://edit.yahoo.com/config/send_webmesg?.target=$post[yahoo]&.src=pg" target="_blank"><img src="{IMGDIR}/yahoo.gif" alt="Yahoo!"  /></a><!--{/if}-->
+			<!--{if $post['taobao']}--><script type="text/javascript">document.write('<a target="_blank" href="http://amos1.taobao.com/msg.ww?v=2&uid='+encodeURIComponent('$post[taobaoas]')+'&s=2"><img src="{IMGDIR}/taobao.gif" alt="{lang taobao}" /></a>');</script><!--{/if}-->
+		</p>
+		<!--{/if}-->
+		<!--{if $customauthorinfo[3]}--><dl class="profile">{eval @eval('echo "'.$customauthorinfo[3].'";');}</dl><!--{/if}-->
+	</div>
+	<p class="postinfo">{lang trade_goodsinfo}</p>
+	<div class="postmessage">
+
+
+		<!--{if $typetemplate}-->
+			$typetemplate
+		<!--{elseif $optionlist}-->
+			<div class="box typeoption">
+				<h4>$tradetypes[$tradetypeid]</h4>
+				<table summary="{lang threadtype_option}" cellpadding="0" cellspacing="0">
+				<!--{loop $optionlist $option}-->
+					<tr>
+						<th>$option[title]</th>
+						<td><!--{if $option['value']}-->$option[value]<!--{else}-->-<!--{/if}--></td>
+					</tr>
+				<!--{/loop}-->
+				</table>
+			</div>
+		<!--{/if}-->
+
+		$post[message]
+		<!--{if $post['attachment']}-->
+			<div class="notice postattach">{lang attachment}: <em>{lang attach_nopermission}</em></div>
+		<!--{elseif $hideattach[$post[pid]] && $post['attachments']}-->
+			<div class="notice postattach">{lang attachment}: <em>{lang attachment_reply_show}</em></div>
+		<!--{elseif $post['attachlist']}-->
+			<div class="box postattachlist">
+				<h4>{lang attachment}</h4>
+				$post[attachlist]
+			</div>
+		<!--{/if}-->
+	</div>
+	<div class="postactions">
+		<strong onclick="scroll(0,0)">TOP</strong>&nbsp;
+		<!--{if $post['authorid'] == $discuz_uid}--><a href="my.php?item=selltrades&tid=$post[tid]&pid=$post[pid]" target="_blank">{lang trade_show_log}</a>&nbsp;<!--{/if}-->
+		<!--{if ($forum['ismoderator'] && $alloweditpost && !(in_array($post['adminid'], array(1, 2, 3)) && $adminid > $post['adminid'])) || ($forum['alloweditpost'] && $discuz_uid && $post['authorid'] == $discuz_uid)}--><a href="post.php?action=edit&amp;fid=$fid&amp;tid=$tid&amp;pid=$trade[pid]&amp;page=$page&amp;extra=$extra">{lang edit}</a>&nbsp;<!--{/if}-->
+		<!--{if $allowpostreply}--><a href="post.php?action=reply&amp;fid=$fid&amp;tid=$tid&amp;repquote=$post[pid]&amp;extra=$extra&amp;page=$page">{lang reply_quote}</a><!--{/if}-->
+	</div>
+</td></tr>
+</td></tr></table></div>
+
+<!--{if $forumjump && $jsmenu[1]}-->
+	<div class="popupmenu_popup" id="forumlist_menu" style="display: none">
+		{$forummenu}
+	</div>
+<!--{/if}-->
+
+{template footer}

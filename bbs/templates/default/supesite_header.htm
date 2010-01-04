@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=$charset" />
+<title>$navtitle $bbname $seotitle - Powered by Discuz!</title>
+$seohead
+<meta name="keywords" content="{$metakeywords}Discuz!,Board,Comsenz,forums,bulletin board,$seokeywords" />
+<meta name="description" content="$bbname $seodescription - Discuz! Board" />
+<meta name="generator" content="Discuz! $version" />
+<meta name="author" content="Discuz! Team & Comsenz UI Team" />
+<meta name="copyright" content="2001-2007 Comsenz Inc." />
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+<meta http-equiv="MSThemeCompatible" content="Yes" />
+<link rel="archives" title="$bbname" href="{$boardurl}archiver/">
+$rsshead
+$extrahead
+<!--{if $allowcsscache}--><link id="css" rel="stylesheet" type="text/css" href="forumdata/cache/style_{STYLEID}.css" /><!--{else}--><style id="css" type="text/css">{template css}</style><!--{/if}-->
+<link rel="stylesheet" type="text/css" id="css" href="$supe[siteurl]/templates/default/css/group.css" />
+<style>
+	$circle[css]
+</style>
+<script type="text/javascript">var IMGDIR = '{IMGDIR}';var attackevasive = '$attackevasive';</script>
+<script type="text/javascript" src="include/javascript/common.js"></script>
+<script type="text/javascript" src="include/javascript/menu.js"></script>
+<script type="text/javascript" src="include/javascript/ajax.js"></script>
+</head>
+
+<body onkeydown="if(event.keyCode==27) return false;">
+
+<div id="group_wrap">
+	<div id="group_topmenu">
+		<ul>
+			<li><a href="$supe[siteurl]" target="_self">{lang supe_home}</a></li>
+			<li><a href="$supe[siteurl]/?action_news" target="_self">{lang supe_news}</a></li>
+			<li><a href="$supe[siteurl]/?action_blog" target="_self">{lang supe_blog}</a></li>
+			<li><a href="$supe[siteurl]/?action_image" target="_self">{lang supe_image}</a></li>
+			<li><a href="$supe[siteurl]/?action_goods" target="_self">{lang supe_goods}</a></li>
+			<li><a href="$supe[siteurl]/?action_file" target="_self">{lang supe_file}</a></li>
+			<li><a href="$supe[siteurl]/?action_link" target="_self">{lang supe_link}</a></li>
+			<li><a href="$supe[siteurl]/?action_bbs" target="_self">{lang supe_bbs}</a></li>
+			<li><a href="$supe[siteurl]/?action_group" target="_self">{lang supe_circle}</a></li>
+			<li><a href="$supe[siteurl]/?action_video" target="_self">{lang supe_video}</a></li>
+			<li><a href="$supe[siteurl]/batch.search.php" target="_self">{lang search}</a></li>
+		</ul>
+	</div>
+	<div id="group_header" <!--{if $circle['headerimage']}-->style="background-image: url($supe[attachurl]/$circle[headerimage]);"<!--{else}--><!--{/if}-->>
+		<div id="groupname">
+			<h2><a href="$supe[siteurl]/?action_mygroup_gid_$sgid">$circle[groupname]</a></h2>
+		</div>
+		<div id="group_menu">
+			<ul>
+				<li><a href="$supe[siteurl]/?action_mygroup_gid_$sgid">{lang circle_home}</a></li>
+				<li><a href="$supe[siteurl]/?action_mygroup_gid_{$sgid}_op_list">{lang circle_oplist}</a></li>
+				<li><a href="$supe[siteurl]/?action_mygroup_gid_{$sgid}_op_list_type_recommend">{lang circle_oprecommend}</a></li>
+				<li><a href="$supe[siteurl]/?action_mygroup_gid_{$sgid}_op_list_type_digest">{lang circle_opdigest}</a></li>
+				<li><a href="$supe[siteurl]/?action_mygroup_gid_{$sgid}_op_list_type_bbs">{lang circle_bbs}</a></li>
+				<li><a href="$supe[siteurl]/?action_mygroup_gid_{$sgid}_op_list_type_members">{lang circle_member}</a></li>
+				<li><a href="$supe[siteurl]/spacecp.php?action=mygroups&gid=$sgid" target="_blank">{lang circle_admin}</a></li>
+				<li><!--{if $discuz_uid}--><a href="$link_logout">{lang logout}</a><!--{else}--><a href="$link_login">{lang login}</a><!--{/if}--></li>
+				<li class="important"><a href="$supe[siteurl]/batch.common.php?action=joingroup&gid=$sgid&referer=$boardurl$_SERVER[REQUEST_URI]">{lang circle_join}</a></li>
+			</ul>
+		</div>
+	</div>

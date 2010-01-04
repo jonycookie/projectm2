@@ -1,0 +1,123 @@
+<!--{eval global $tid, $fid, $thisgid, $catlist, $advitems, $postlist, $admode;}-->
+<!--{if CURSCRIPT == 'forumdisplay' && $queryfloat}-->
+<script type="text/javascript">
+	var normalthreads = new Array();
+	var floatthreads = new Array();
+	var tbodys = $('forum_$fid') ? $('forum_$fid').getElementsByTagName('tbody') : new Array();
+	var randtbody = null;
+	for(var i in tbodys) {
+		if(tbodys[i].id) {
+			if(tbodys[i].id.substr(0, 12) == 'normalthread') {
+				normalthreads.push(tbodys[i]);
+			} else if(tbodys[i].id.substr(0, 11) == 'floatthread') {
+				floatthreads.push(tbodys[i]);
+			}
+		}
+	}
+	if(normalthreads.length) {
+		for(var i = 0; i < floatthreads.length; i++) {
+			var randtbody = normalthreads[Math.floor(Math.random()*normalthreads.length)];
+			randtbody.insertBefore(floatthreads[i].getElementsByTagName('tr')[0], randtbody.getElementsByTagName('tr')[0]);
+			floatthreads[i].parentNode.removeChild(floatthreads[i]);
+		}
+	}
+</script>
+<!--{/if}-->
+<!--{if !($admode && empty($insenz['hardadstatus']) && !empty($advlist))}-->
+	<div style="display: none" id="ad_none">
+	<div id="ad_headerbanner_none"><!--{if !empty($advlist['headerbanner'])}-->$advlist[headerbanner]<!--{/if}--></div>
+	<!--{if !empty($advlist['text'])}--><div class="ad_text" id="ad_text_none"><table summary="Text Ad" cellpadding="0" cellspacing="1">$advlist[text]</table></div><!--{/if}-->
+	<!--{if CURSCRIPT == 'index' && !empty($advlist['intercat'])}-->
+		<!--{loop $catlist $key $cat}-->
+			<!--{if $advlist['intercat'][$key] = array_merge(($advlist['intercat'][0] ? $advlist['intercat'][0] : array()), ($advlist['intercat'][$key] ? $advlist['intercat'][$key] : array()))}-->
+				<div class="ad_column" id="ad_intercat_{$key}_none"><!--{echo $advitems[$advlist['intercat'][$key][array_rand($advlist['intercat'][$key])]]}--></div>
+			<!--{/if}-->
+		<!--{/loop}-->
+	<!--{/if}-->
+	<!--{if CURSCRIPT == 'viewthread'}-->
+		<!--{if !$thread['special']}-->
+		<!--{loop $postlist $post}-->
+			<!--{if $post['count'] > 0}-->
+				<!--{if !empty($advlist['thread1'][$post['count']])}--><div class="ad_textlink1" id="ad_thread1_{$post[count]}_none">$advlist[thread1][$post[count]]</div><!--{/if}-->
+				<!--{if !empty($advlist['thread2'][$post['count']])}--><div class="ad_textlink2" id="ad_thread2_{$post[count]}_none">$advlist[thread2][$post[count]]</div><!--{/if}-->
+				<!--{if !empty($advlist['thread3'][$post['count']])}--><div class="ad_pip" id="ad_thread3_{$post[count]}_none">$advlist[thread3][$post[count]]</div><!--{/if}-->
+			<!--{else}-->
+				<div class="ad_textlink1" id="ad_thread1_0_none">$advlist[thread1][0]</div>
+				<div class="ad_textlink2" id="ad_thread2_0_none">$advlist[thread2][0]</div>
+				<div class="ad_pip" id="ad_thread3_0_none">$advlist[thread3][0]</div>
+			<!--{/if}-->
+		<!--{/loop}-->
+		<!--{/if}-->
+		<div class="ad_column" id="ad_interthread_none"><!--{if !empty($advlist['interthread']) && $thread['replies']}-->$advlist[interthread]<!--{/if}--></div>
+	<!--{/if}-->
+	<div class="ad_footerbanner" id="ad_footerbanner1_none">$advlist[footerbanner1]</div>
+	<div class="ad_footerbanner" id="ad_footerbanner2_none">$advlist[footerbanner2]</div>
+	<div class="ad_footerbanner" id="ad_footerbanner3_none">$advlist[footerbanner3]</div>
+	</div>
+
+	<script type="text/javascript">
+		var insenz_status = <!--{if !empty($insenz['hardadstatus'])}-->1<!--{else}-->0<!--{/if}-->;
+		var insenz_availableadvs = {'headerbanner' : '1', 'thread3_0' : '2', 'thread2_0' : '3', 'thread1_0' : '4', 'interthread' : '5', 'footerbanner1' : '6', 'footerbanner2' : '7', 'footerbanner3' : '8'};
+		var insenz_adkeys = [{$insenz['hardadstatus']}];
+		var ad_divs = $('ad_none').getElementsByTagName('div');
+		var insenz_cookie = document.cookie.indexOf('insenz_cookie') == -1 ? null : getcookie('insenz_cookie');
+		var ad_obj = null;
+	
+		if(!insenz_status || insenz_cookie) {
+			for(var i = 0; i < ad_divs.length; i++) {
+				if(ad_divs[i].id.substr(0, 3) == 'ad_' && (ad_obj = $(ad_divs[i].id.substr(0, ad_divs[i].id.length - 5))) && ad_divs[i].innerHTML) {
+					if(insenz_cookie) {
+						re = new RegExp(insenz_availableadvs[ad_divs[i].id.substr(3, ad_divs[i].id.length - 8)] + "\:(0" + "|" + gid + "|" + fid + ")", "ig");
+						if(re.exec(insenz_cookie) != null) continue;
+					}
+					ad_obj.innerHTML = ad_divs[i].innerHTML;
+					ad_obj.className = ad_divs[i].className;
+				}
+			}
+		}
+	</script>
+	
+	<!--{if !empty($insenz['hardadstatus'])}--><script type="text/javascript" src='$insenz[jsurl]&gid=$thisgid&fid=$fid&tid=$tid&random={echo random(4)}' charset="UTF-8"></script><!--{/if}-->
+	
+	<script type="text/javascript">
+		<!--{if !empty($insenz['hardadstatus'])}-->
+			if(typeof insenz_usedadkeys != 'undefined' && typeof insenz_advs != 'undefined' && insenz_usedadkeys.length && insenz_advs.length) {
+				insenz_cookie = '';
+				for(var j in insenz_advs) {
+					for(var k in insenz_advs[j]) {
+						insenz_cookie += j + ':' + k + 'D';
+					}
+				}
+				setcookie('insenz_cookie', insenz_cookie, 86400);
+			} else {
+				insenz_cookie = 1;
+				setcookie('insenz_cookie', '', -86400);
+				var insenz_usedadkeys = new Array();
+			}
+			if(insenz_cookie) {
+				for(var i = 0; i < ad_divs.length; i++) {
+					if(ad_divs[i].id.substr(0, 3) == 'ad_' && (ad_obj = $(ad_divs[i].id.substr(0, ad_divs[i].id.length - 5))) && ad_divs[i].innerHTML && !in_array(insenz_availableadvs[ad_divs[i].id.substr(3, ad_divs[i].id.length - 8)], insenz_usedadkeys)) {
+						ad_obj.innerHTML = ad_divs[i].innerHTML;
+						ad_obj.className = ad_divs[i].className;
+					}
+				}
+			}
+		<!--{/if}-->
+		$('ad_none').parentNode.removeChild($('ad_none'));
+	</script>
+<!--{/if}-->
+<!--{if CURSCRIPT == 'viewthread' && $insenz['topicrelatedad'] && !$thread['special']}-->
+	<script type="text/javascript">var tradekeywords = '$GLOBALS[tradekeywords]';</script>
+	<!--{echo stripslashes($insenz['topicrelatedad'])}-->
+<!--{/if}-->
+
+<!--{if !empty($advlist['float']) || !empty($advlist['couplebanner'])}-->
+	<div align="left"  style="clear: both;">
+	<script type="text/javascript" src="include/javascript/floatadv.js"></script>
+	<script type="text/javascript">
+	$advlist[float]
+	$advlist[couplebanner]
+	theFloaters.play();
+	</script>
+	</div>
+<!--{/if}-->

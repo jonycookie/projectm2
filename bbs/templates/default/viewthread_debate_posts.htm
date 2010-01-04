@@ -1,0 +1,74 @@
+{template header}
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+<div class="box specialpostcontainer">
+	<ul class="tabs">
+		<li id="viewall" $standchecked[all]><a href="viewthread.php?do=viewdebatepost&tid=$tid" onclick="ajaxget(this.href, 'ajaxdebateposts', 'ajaxspecialposts');doane(event);">{lang debate_all_point}</a></li>
+		<li id="viewstand1" $standchecked[1]><a href="viewthread.php?do=viewdebatepost&tid=$tid&stand=1" onclick="ajaxget(this.href, 'ajaxdebateposts', 'ajaxspecialposts');doane(event);">{lang debate_square_point}</a></li>
+		<li id="viewstand2" $standchecked[2]><a href="viewthread.php?do=viewdebatepost&tid=$tid&stand=2" onclick="ajaxget(this.href, 'ajaxdebateposts', 'ajaxspecialposts');doane(event);">{lang debate_opponent_point}</a></li>
+		<li id="viewstand0" $standchecked[0]><a href="viewthread.php?do=viewdebatepost&tid=$tid&stand=0" onclick="ajaxget(this.href, 'ajaxdebateposts', 'ajaxspecialposts');doane(event);">{lang debate_neutra_point}</a></li>
+		<!--{if $debate['umpirepoint']}-->
+			<li id="viewumpire" $standchecked[umpire]><a href="javascript:;" onclick="checkumpire(event)">{lang debate_umpirepoint}</a></li>
+		<!--{/if}-->
+	</ul>
+
+	<div id="ajaxspecialposts">
+	<form method="post" name="modactions">
+		<input type="hidden" name="formhash" value="{FORMHASH}" />
+		<!--{if !empty($postlist)}-->
+			<!--{loop $postlist $post}-->
+				<div class="specialpost">
+					<div class="postinfo">
+						<h2>
+							<span class="poststand{$post[stand]}"><!--{if $post[stand] == 1}-->{lang debate_square}<!--{elseif $post[stand] == 2}-->{lang debate_opponent}<!--{else}-->{lang debate_neutral}<!--{/if}--></span>
+							<!--{if $post['authorid'] && $post['username'] && $post['anonymous']}-->
+								<!--{if $forum['ismoderator']}-->
+									<a class="dropmenu" style="font-weight: normal;" href="space.php?uid=$post[authorid]" target="_blank" onclick="ajaxmenu(event, this.id, 0, '', 1, 3, 0)" id="author_$post[pid]">{lang anonymous}</a>
+								<!--{else}-->
+									<span style="font-size: 12px;">{lang anonymous}</span>
+								<!--{/if}-->
+							<!--{else}-->
+								<a class="dropmenu" style="font-weight: normal;" href="space.php?uid=$post[authorid]" target="_blank" onclick="ajaxmenu(event, this.id, 0, '', 1, 3, 0)" id="author_$post[pid]">$post[author]</a>
+							<!--{/if}-->
+							$post[dateline]
+						</h2>
+						<!--{if !isset($stand)}--><strong href="###$post[pid]" class="bold" title="{lang post_copylink}" onclick="setcopy('{$boardurl}viewthread.php?tid=$tid&amp;page=$page$fromuid#pid$post[pid]', '{lang post_copied}')"><!--{if !empty($postno[$post[number]+1])}-->{echo $postno[$post[number]+1]}<!--{else}-->{$post[number]}{$postno[0]}<!--{/if}--></strong><!--{/if}-->
+						<!--{if $post['stand']}-->
+							( {lang debate_poll_num}: <span class="bold" id="postvoter_$post[pid]">$post[voters]</span> {lang debate_poll} )
+							<a href="misc.php?action=debatevote&tid=$tid&pid=$post[pid]" id="voterdebate_$post[pid]" onclick="ajaxmenu(event, this.id)">{lang debate_poll_my}</a>
+						<!--{/if}-->
+						<!--{if ($forum['ismoderator'] && $alloweditpost && !(in_array($post['adminid'], array(1, 2, 3)) && $adminid > $post['adminid'])) || ($forum['alloweditpost'] && $discuz_uid && $post['authorid'] == $discuz_uid)}-->&nbsp;<a href="post.php?action=edit&amp;fid=$fid&amp;tid=$tid&amp;pid=$post[pid]&amp;page=$page&amp;extra=$extra">{lang edit}</a><!--{/if}-->
+						<!--{if $allowpostreply}-->&nbsp;<a href="post.php?action=reply&amp;fid=$fid&amp;tid=$tid&amp;repquote=$post[pid]&amp;extra=$extra&amp;page=$page">{lang reply_quote}</a><!--{/if}-->
+						<!--{if $forum['ismoderator'] && $allowdelpost}--><input class="checkbox" type="checkbox" name="topiclist[]" value="$post[pid]" /><!--{/if}-->
+					</div>
+					<div class="postmessage">
+						<!--{if !empty($post[subject])}--><h2>$post[subject]</h2><!--{/if}-->
+						<!--{if $adminid != 1 && $bannedmessages && (($post['authorid'] && !$post['username']) || ($post['groupid'] == 4 || $post['groupid'] == 5))}-->
+							<div class="notice" style="width: 500px">{lang message_banned}</div>
+						<!--{elseif $adminid != 1 && $post['status'] == 1}-->
+							<div class="notice" style="width: 500px">{lang message_single_banned}</div>
+						<!--{else}-->
+							<div class="t_msgfont">$post[message]</div>
+							<!--{if $post['attachment']}-->
+								<div class="notice postattach">{lang attachment}: <em>{lang attach_nopermission}</em></div>
+							<!--{elseif $hideattach[$post[pid]] && $post['attachments']}-->
+								<div class="notice postattach">{lang attachment}: <em>{lang attachment_reply_show}</em></div>
+							<!--{elseif $post['attachlist']}-->
+								<div class="box postattachlist">
+									<h4>{lang attachment}</h4>
+									$post[attachlist]
+								</div>
+							<!--{/if}-->
+						<!--{/if}-->
+					</div>
+					</div>
+				<!--{/loop}-->
+			<!--{else}-->
+				<div class="specialpost">
+					<p class="postmessage">{lang none}</p>
+				</div>
+			<!--{/if}-->
+	</form>
+	</div>
+</div>
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+{template footer}

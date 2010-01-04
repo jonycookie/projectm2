@@ -1,0 +1,140 @@
+<!--{if !$iscircle || !$sgid}-->{template header}<!--{else}-->{template supesite_header}<!--{/if}-->
+
+<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; <!--{if $special == 2}--><a href="viewthread.php?do=tradeinfo&tid=$tid&pid=$pid">$trade[subject]</a> &raquo; {lang post_editpost_tradegoods}<!--{elseif $isfirstpost}-->{lang post_editpost_trade}<!--{else}-->{lang post_editpost}<!--{/if}--></div>
+
+<!--{if isset($trade) && $allowposttrade || isset($activity) && $allowpostactivity || isset($trade) && $allowposttrade}-->
+	<script type="text/javascript" src="include/javascript/calendar.js"></script>
+<!--{/if}-->
+<script type="text/javascript">
+var postminchars = parseInt('$minpostsize');
+var postmaxchars = parseInt('$maxpostsize');
+var disablepostctrl = parseInt('$disablepostctrl');
+var typerequired = 0;
+var attachments = new Array();
+var bbinsert = parseInt('$bbinsert');
+var tradepost = {if $special == 2}1{else}0{/if};
+var isfirstpost = parseInt('$isfirstpost');
+var attachimgurl = new Array();
+var allowposttrade = parseInt('$allowposttrade');
+lang['board_allowed'] = '{lang board_allowed}';
+lang['lento'] = '{lang lento}';
+lang['bytes'] = '{lang bytes}';
+lang['post_curlength'] = '{lang post_curlength}';
+lang['post_subject_and_message_isnull'] = '{lang post_subject_and_message_isnull}';
+lang['post_subject_toolong'] = '{lang post_subject_toolong}';
+lang['post_message_length_invalid'] = '{lang post_message_length_invalid}';
+lang['post_trade_alipay_null'] = '{lang post_trade_alipay_null}';
+lang['post_trade_goodsname_null'] = '{lang post_trade_goodsname_null}';
+lang['post_trade_price_null'] = '{lang post_trade_price_null}';
+</script>
+
+{template post_preview}
+
+<form method="post" id="postform" action="post.php?action=edit&fid=$fid&tid=$tid&pid=$pid&extra=$extra&editsubmit=yes&mod=$mod" $enctype>
+	<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}" />
+	<input type="hidden" name="page" value="$page" />
+
+	<div class="mainbox formbox">
+		<h1><!--{if $special == 2}-->{lang post_editpost_tradegoods}<!--{elseif $isfirstpost}-->{lang post_editpost_trade}<!--{else}-->{lang post_editpost}<!--{/if}--></h1>
+		<table summary="Edit Trade" cellspacing="0" cellpadding="0" id="specialpost">
+
+			<thead>
+				<tr>
+					<th>{lang username}</th>
+					<td>
+						<!--{if $discuz_uid}-->
+							$discuz_userss [<a href="$link_logout">{lang member_logout}</a>]
+						<!--{else}-->
+							{lang guest} [<a href="$link_login">{lang member_login}</a>]
+						<!--{/if}-->
+					</td>
+				</tr>
+			</thead>
+
+			<tr>
+				<th><label for="subject">{lang subject}</label></th>
+				<td>
+					$typeselect
+					<input type="text" name="subject" id="subject" size="45" value="$postinfo[subject]" tabindex="3" />
+					<input type="hidden" name="origsubject" value="$postinfo[subject]" />
+				</td>
+			</tr>
+
+			<!--{if $special == 2}-->
+			<thead>
+				<tr>
+					<th>{lang post_goodsinfo}</th>
+					<td>&nbsp;</td>
+				</tr>
+			</thead>
+
+				{template post_trade}
+			<!--{else}-->
+				<tr>
+				{template post_editor}
+				</tr>
+			<!--{/if}-->
+
+			<!--{if $isfirstpost}-->
+				<!--{if $special == 2}-->
+					<thead>
+						<tr>
+							<th>{lang post_otherinfo}</th>
+							<td>&nbsp;</td>
+						</tr>
+					</thead>
+				<!--{else}-->
+					<!--{if $tagstatus}-->
+						<tr>
+							<th><label for="tags">{lang post_tag}</label></th>
+							<td>
+								<input size="45" type="input" id="tags" name="tags" value="$threadtags" tabindex="95" />&nbsp;
+								<button onclick="relatekw();return false">{lang searchtags}</button><span id="tagselect"></span>
+								<em class="tips">{lang tag_comment}</em>
+							</td>
+						</tr>
+					<!--{/if}-->
+
+					<tr>
+						<th><label for="aboutthread">{lang post_trade_aboutcounter}</label></th>
+						<td><textarea name="aboutcounter" id="aboutcounter" rows="10" cols="20" style="width:99%; height:60px" tabindex="96">$postinfo[aboutcounter]</textarea></td>
+					</tr>
+				<!--{/if}-->
+				<!--{if $allowsetreadperm}-->
+					<tr>
+						<th><label for="readperm">{lang readperm_thread}</label></th>
+						<td><input type="text" id="readperm" name="readperm" size="6" value="$thread[readperm]" /> ({lang post_zero_is_nopermission})</td>
+					</tr>
+				<!--{/if}-->
+			<!--{/if}-->
+			<tr class="btns">
+				<th>&nbsp;</th>
+				<td>
+					<button type="submit" name="editsubmit" id="postsubmit" value="true" tabindex="101"><!--{if $special == 2}-->{lang post_editpost_tradegoods}<!--{elseif $isfirstpost}-->{lang post_editpost_trade}<!--{else}-->{lang post_editpost}<!--{/if}--></button>
+					<input type="hidden" name="wysiwyg" id="{$editorid}_mode" value="$editormode" />
+					<em>{lang post_submit_hotkey}</em>&nbsp;&nbsp;
+					&nbsp;<a href="###" id="restoredata" onclick="loadData()" title="{lang post_autosave_last_restore}">{lang post_autosave_restore}</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	{template post_editpost_attachlist}
+</form>
+
+{template post_js}
+
+<script type="text/javascript">
+	var textobj = $(editorid + '_textarea');
+	<!--{if $bbinsert}-->
+		<!--{if $editormode}-->if(!(is_opera && is_opera < 9)) {textobj.value = bbcode2html(textobj.value);}<!--{/if}-->
+		newEditor(wysiwyg);
+	<!--{/if}-->
+	checkFocus();
+	setCaretAtEnd();
+	if(!(is_ie >= 5 || is_moz >= 2)) {
+		$('restoredata').style.display = 'none';
+	}
+	<!--{if $special == 2 && $tradetypeid}-->ajaxget('post.php?action=threadtypes&tradetype=yes&pid=$pid&typeid=$tradetypeid&themeid=1', 'threadtypes');<!--{/if}-->
+</script>
+
+<!--{if !$iscircle || !$sgid}-->{template footer}<!--{else}-->{template supesite_footer}<!--{/if}-->

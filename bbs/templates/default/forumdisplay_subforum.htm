@@ -1,0 +1,66 @@
+<span class="headactions"><img id="subforum_$forum[fid]_img" src="{IMGDIR}/$collapseimg[subforum]" title="{lang spread}" alt="{lang spread}" onclick="toggle_collapse('subforum_$forum[fid]');" /></span>
+<h3>{lang forum_subforums}</h3>
+<table id="subforum_$forum[fid]" summary="subform" cellspacing="0" cellpadding="0" style="$collapse[subforum]">
+<!--{if !$forum['forumcolumns']}-->
+	<thead class="category">
+		<tr>
+			<th>{lang forum_name}</th>
+			<td class="nums">{lang forum_threads}</td>
+			<td class="nums">{lang forum_posts}</td>
+			<td class="lastpost">{lang forum_lastpost}</td>
+		</tr>
+	</thead>
+	<!--{loop $sublist $sub}-->
+		<!--{if $sub['permission']}-->
+			<tbody>
+				<tr>
+					<th$sub[folder]>
+						$sub[icon]
+						<h2><a href="forumdisplay.php?fid=$sub[fid]">$sub[name]</a><!--{if $sub[todayposts]}--> <em>({lang index_today}: $sub[todayposts])</em><!--{/if}--></h2>
+						<!--{if $sub[description]}--><p>$sub[description]</p><!--{/if}-->
+						<!--{if $sub['moderators']}--><!--{if $moddisplay == 'flat'}--><p class="moderators">{lang forum_moderators}: $sub[moderators]</p><!--{else}--><span class="dropmenu" id="mod$sub[fid]" onmouseover="showMenu(this.id)">{lang forum_moderators}</span><ul class="moderators popupmenu_popup" id="mod$sub[fid]_menu" style="display: none">$sub[moderators]</ul><!--{/if}--><!--{/if}-->
+					</th>
+					<td class="nums">$sub[threads]</td>
+					<td class="nums">$sub[posts]</td>
+					<td class="lastpost">
+					<!--{if $sub['permission'] == 1}-->
+						{lang private_forum}
+					<!--{else}-->
+						<!--{if is_array($sub['lastpost'])}-->
+							<a href="redirect.php?tid=$sub[lastpost][tid]&goto=lastpost#lastpost">$sub[lastpost][subject]</a>
+							<cite>{lang forum_lastpost_by} <!--{if $sub['lastpost']['author']}-->$sub[lastpost][author]<!--{else}-->{lang anonymous}<!--{/if}--> - $sub[lastpost][dateline]</cite>
+						<!--{else}-->
+							{lang never}
+						<!--{/if}-->
+					<!--{/if}-->
+					</td>
+				</tr>
+			</tbody>
+		<!--{/if}-->
+	<!--{/loop}-->
+<!--{else}-->
+	<tr>
+	<!--{loop $sublist $sub}-->
+		<!--{if $sub['orderid'] && ($sub['orderid'] % $forum['forumcolumns'] == 0)}-->
+			</tr></tbody>
+			<!--{if $sub['orderid'] < $forum['subscount']}-->
+				<tbody><tr>
+			<!--{/if}-->
+		<!--{/if}-->
+		<th width="{$forum[forumcolwidth]}"$sub[folder]>
+			<h2><a href="forumdisplay.php?fid=$sub[fid]">$sub[name]</a><!--{if $sub[todayposts]}--><em> ({lang index_today}: $sub[todayposts])</em><!--{/if}--></h2>
+			<p>
+				{lang forum_lastpost}:
+				<!--{if is_array($sub['lastpost'])}-->
+					<a href="redirect.php?tid=$sub[lastpost][tid]&amp;goto=lastpost#lastpost">$sub[lastpost][dateline]</a>
+					{lang forum_lastpost_by} <!--{if $sub['lastpost']['author']}-->$sub['lastpost']['author']<!--{else}-->{lang anonymous}<!--{/if}-->
+				<!--{else}-->
+					{lang never}
+				<!--{/if}-->
+			</p>
+			<p>{lang forum_threads}:$sub[threads], {lang forum_posts}: $sub[posts]</p>
+		</th>
+	<!--{/loop}-->
+	$forum[endrows]
+<!--{/if}-->
+</table>

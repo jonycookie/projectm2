@@ -1,0 +1,100 @@
+<script type="text/javascript">
+	if(!(is_ie >= 5 || is_moz >= 2)) {
+		$('restoredata').style.display = 'none';
+	}
+	var editorid = '$editorid';
+	var textobj = $(editorid + '_textarea');
+	var wysiwyg = (is_ie || is_moz || (is_opera >= 9)) && parseInt('$editormode') && bbinsert == 1 ? 1 : 0;
+	var allowswitcheditor = parseInt('$allowswitcheditor');
+	var allowhtml = parseInt('$allowhtml');
+	var forumallowhtml = parseInt('$forum[allowhtml]');
+	var allowsmilies = parseInt('$forum[allowsmilies]');
+	var allowbbcode = parseInt('$forum[allowbbcode]');
+	var allowimgcode = parseInt('$forum[allowimgcode]');
+	var special = parseInt('$special');
+	var BORDERCOLOR = "{BORDERCOLOR}";
+	var ALTBG2 = "{ALTBG2}";
+	var charset = '$charset';
+	var smilies = new Array();
+	<!--{if !empty($GLOBALS['_DCACHE']['smilies']) && is_array($GLOBALS['_DCACHE']['smilies'])}-->
+		<!--{loop $_DCACHE['smilies_display'] $typeid $smilies}-->
+			<!--{loop $smilies $key $smiley}-->
+				<!--{eval $smiley[code]=addcslashes($smiley['code'], '\\\'');}-->
+				smilies[$key] = {'code' : '$smiley[code]', 'url' : '$_DCACHE[smileytypes][$typeid][directory]/$smiley[url]'};
+			<!--{/loop}-->
+		<!--{/loop}-->
+	<!--{/if}-->
+	lang['post_autosave_none']		= "{lang post_autosave_none}";
+	lang['post_autosave_confirm']		= "{lang post_autosave_confirm}";
+	lang['post_video_uploading']		= "{lang video_uploading}";
+	lang['post_video_vclass_required']	= "{lang video_vclass_required}";
+</script>
+
+<!--{if $allowpostattach}-->
+	<script type="text/javascript">
+		var thumbwidth = parseInt($thumbwidth);
+		var thumbheight = parseInt($thumbheight);
+		var extensions = '$attachextensions';
+		lang['post_attachment_ext_notallowed']	= '{lang post_attachment_ext_notallowed}';
+		lang['post_attachment_img_invalid']	= '{lang post_attachment_img_invalid}';
+		lang['post_attachment_deletelink']	= '{lang post_attachment_deletelink}';
+		lang['post_attachment_insert']		= '{lang post_attachment_insert}';
+		lang['post_attachment_insertlink']	= '{lang post_attachment_insertlink}';
+	</script>
+	<script type="text/javascript" src="include/javascript/post_attach.js"></script>
+<!--{/if}-->
+
+<script type="text/javascript" src="include/javascript/post.js"></script>
+
+<!--{if $bbinsert}-->
+	<script type="text/javascript">
+		var fontoptions = new Array({lang post_discuzcode_fontoptions});
+		var custombbcodes = new Array();
+		<!--{if $forum['allowbbcode'] && $allowcusbbcode}-->
+			<!--{loop $_DCACHE['bbcodes_display'] $tag $bbcode}-->
+				custombbcodes["$tag"] = {'prompt' : '$bbcode[prompt]'};
+			<!--{/loop}-->
+		<!--{/if}-->
+		lang['enter_list_item']			= "{lang post_discuzcode_listitem}";
+		lang['enter_link_url']			= "{lang post_discuzcode_linkurl}";
+		lang['enter_image_url']			= "{lang post_discuzcode_imageurl}";
+		lang['enter_email_link']		= "{lang post_discuzcode_emaillink}";
+		lang['fontname']			= "{lang post_discuzcode_fontname}";
+		lang['fontsize']			= "{lang post_discuzcode_fontsize}";
+		lang['post_advanceeditor']		= "{lang editor_mode_all}";
+		lang['post_simpleeditor']		= "{lang editor_mode_simple}";
+		lang['submit']				= "{lang submit}";
+		lang['cancel']				= "{lang cancel}";
+	</script>
+	<script type="text/javascript" src="include/javascript/editor.js"></script>
+<!--{/if}-->
+
+<script type="text/javascript" src="include/javascript/bbcode.js"></script>
+
+<!--{if $action == 'edit' || $action == 'reply' && $repquote}-->
+	<script type="text/javascript">
+		if(wysiwyg) {
+			initialized = false;
+			newEditor(1, bbcode2html(textobj.value));
+		}
+	</script>
+<!--{/if}-->
+
+<script type="text/javascript" src="include/javascript/post_editor.js"></script>
+
+<script type="text/javascript">
+	$(editorid + '_contract').onclick = function() {resizeEditor(-100)};
+	$(editorid + '_expand').onclick = function() {resizeEditor(100)};
+	$('checklength').onclick = function() {checklength($('postform'))};
+	$('previewbutton').onclick = function() {previewpost()};
+	$('clearcontent').onclick = function() {clearcontent()};
+	$('postform').onsubmit = function() {return validate(this);};
+	<!--{if $action == 'newthread'}-->
+		$('subject').focus();
+	<!--{else}-->
+		checkFocus();
+		setCaretAtEnd();
+	<!--{/if}-->
+</script>
+
+<!--{if $smileyinsert}--><script type="text/javascript">ajaxget('post.php?action=smilies', 'smilieslist');</script><!--{/if}-->

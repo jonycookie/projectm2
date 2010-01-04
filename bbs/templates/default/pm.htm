@@ -1,0 +1,34 @@
+{template header}
+
+<script type="text/javascript" src="include/javascript/viewthread.js"></script>
+<script type="text/javascript">zoomstatus = parseInt($zoomstatus);</script>
+
+<div class="container">
+	<div id="foruminfo">
+		<div id="nav">
+			<a href="$indexname">$bbname</a> &raquo; {lang pm}
+		</div>
+	</div>
+	<div class="content">
+
+		<!--{if empty($action)}-->
+			{template pm_folder}
+		<!--{elseif $action == 'view'}-->
+			{template pm_view}
+		<!--{elseif $action == 'send'}-->
+			{template pm_send}
+		<!--{elseif $action == 'search'}-->
+			<!--{if !empty($searchid)}-->{template pm_search_result}<!--{else}-->{template pm_search}<!--{/if}-->
+		<!--{elseif $action == 'archive'}-->
+			{template pm_archive}
+		<!--{elseif $action == 'ignore'}-->
+			{template pm_ignore}
+		<!--{/if}-->
+
+	</div>
+	<div class="side">
+		{template personal_navbar}
+	</div>
+</div>
+
+{template footer}

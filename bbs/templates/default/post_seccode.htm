@@ -1,0 +1,84 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> $navigation<!--{if $action == 'newthread'}--> &raquo; {lang post_newthread}<!--{elseif $action == 'reply'}--> &raquo; {lang post_newreply}<!--{/if}--></div>
+
+<form id="seccodeform" method="$request[method]" action="$request[action]" $enctype>
+$request[elements]
+<div class="mainbox formbox">
+<!--{if $seccodecheck}-->
+	<table summary="{lang post_seccode}" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<th>{lang post_seccode}</th>
+				<td>&nbsp;</td>
+			</tr>
+		</thead>
+			<tr>
+				<th>{lang seccode}</th>
+				<td>
+					<div id="seccodeimage">{lang seccode_click}</div>
+					<input type="text" onfocus="updateseccode();this.onfocus = null" id="seccodeverify" name="seccodeverify" size="8" maxlength="4" />
+					<!--{if $seccodedata['type'] == 2}-->{lang seccode_animator_flashrefresh}<!--{elseif $seccodedata['animator'] == 1}-->{lang seccode_animator_refresh}<!--{else}-->{lang seccode_refresh}<!--{/if}-->
+					<script type="text/javascript">
+							var seccodedata = [{$seccodedata['width']}, {$seccodedata['height']}, {$seccodedata['type']}];
+					</script>
+				</td>
+			</tr>
+	</table>
+<!--{/if}-->
+<!--{if $secqaacheck}-->
+	<table summary="{lang post_secqaa}" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<th>{lang post_secqaa}</th>
+				<td>&nbsp;</td>
+			</tr>
+		</thead>
+		<tr>
+			<th>{lang secqaa}</th>
+			<td>
+				<div id="secquestion"></div><input type="text" name="secanswer" size="25" maxlength="50">
+	<script type="text/javascript">
+	<!--{if ($attackevasive & 1) && $seccodecheck}-->
+		setTimeout("ajaxget('ajax.php?action=updatesecqaa&inajax=1', 'secquestion')", 2001);
+	<!--{else}-->
+		ajaxget('ajax.php?action=updatesecqaa&inajax=1', 'secquestion');
+	<!--{/if}-->
+	</script></td>
+	</tr></table>
+<!--{/if}-->
+
+<!--{if $allowpostattach}-->
+	<table summary="{lang attachment_new}" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<th>{lang attachment_new}</th>
+				<td><!--{if $maxattachsize_kb}-->{lang lower_than} $maxattachsize_kb kb <!--{else}-->{lang size_no_limit}<!--{/if}--><!--{if $attachextensions}-->, {lang attachment_allow_exts}: $attachextensions<!--{/if}--></td>
+			</tr>
+		</thead>
+		<tr>
+			<th>&nbsp;</th>
+			<td>
+				<table summary="" cellpadding="0" cellspacing="0">
+					<tbody id="attachbody" style=""><tr><td><!--{if $allowsetattachperm}-->{lang readperm}: <input type="text" name="attachperm[]" value="0" size="1" />&nbsp; &nbsp;<!--{/if}-->{lang description}: <input type="text" name="attachdesc[]" size="15" />&nbsp; &nbsp;{lang attachment}: <input type="file" name="attach[]" size="15" /></td></tr></tbody>
+					<tr>
+						<td style="border: none;">
+							<button type="button" onclick="newnode = $('attachbody').firstChild.cloneNode(true); newnode.firstChild.childNodes[1].value = ''; newnode.firstChild.childNodes[3].value = ''; $('attachbody').appendChild(newnode)">&nbsp;+&nbsp;</button>&nbsp;
+							<button type="button" onclick="$('attachbody').childNodes.length > 1 && $('attachbody').lastChild ? $('attachbody').removeChild($('attachbody').lastChild) : 0;">&nbsp;-&nbsp;</button>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		
+	</table>
+<!--{/if}-->
+	<table>
+		<tr>
+			<th>&nbsp;</th>
+			<td><button class="submit" type="submit">{lang submit}</button></td>
+		</tr>
+	</table>
+</div>
+</form>
+
+{template footer}

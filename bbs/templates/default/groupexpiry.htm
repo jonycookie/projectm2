@@ -1,0 +1,22 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> &raquo; {lang group_expiry}</div>
+
+<div class="mainbox">
+<h1>{lang getpassword}</h1>
+
+<table cellspacing="0" cellpadding="0}" width="100%">
+<tr align="center" class="header">
+<td>{lang usergroup}</td>
+<td>{lang group_expiry_time}</td>
+<td>{lang group_expiry_type}</td>
+</tr>
+<!--{loop $expirylist $group}-->
+	<tr align="center">
+	<td>$group[grouptitle]</td>
+	<td>$group[time]</td>
+	<td ><!--{if $group['type'] == 'main'}-->{lang group_expiry_type_main}<!--{else}-->{lang group_expiry_type_ext}<!--{/if}--></td>
+	</tr>
+<!--{/loop}-->
+<tr><td colspan="3">{lang group_expiry_comment}</td></tr>
+</table></div>
+{template footer}

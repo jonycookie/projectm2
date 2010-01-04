@@ -1,0 +1,164 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> &raquo; {lang search}</div>
+
+<form method="post" action="search.php" {if $qihoo['status']}onSubmit="if(this.srchtype[0].value=='qihoo' && this.srchtype[0].checked) this.target='_blank'; else this.target=''; return true;"{/if}>
+<input type="hidden" name="formhash" value="{FORMHASH}" />
+<div class="mainbox formbox">
+	<span class="headactions"><a href="member.php?action=credits&view=search" target="_blank">{lang credits_policy_view}</a></span>
+	<h1><!--{if $srchtype == 'threadtype'}-->{lang search_info_more}<!--{else}-->{lang search}<!--{/if}--></h1>
+	<table summary="{lang search}" cellspacing="0" cellpadding="0">
+		<!--{if $srchtype == 'threadtype'}-->
+			<tr>
+				<th style="border-bottom: 0px"><label for="typeid">{lang threadtype_option}</label></th>
+				<td style="border-bottom: 0px">
+					<select name="typeid" onchange="ajaxget('post.php?action=threadtypes&typeid='+this.options[this.selectedIndex].value+'&operate=1&sid=$sid', 'threadtypes', 'threadtypeswait')">
+						<option value="0">{lang none}</option>$threadtypes
+					</select>
+					<span id="threadtypeswait"></span>
+				</td>
+			</tr>
+			<tbody id="threadtypes"></tbody>
+		<!--{else}-->
+		<tr>
+			<th><label for="srchtxt">{lang search_keywords}</label></th>
+			<td><input type="text" id="srchtxt" name="srchtxt" size="45" maxlength="40" />
+			<!--{if $tagstatus}--><p>$hottaglist</p><!--{/if}-->
+			</td>
+			<td>{lang search_keywords_comment}</td>
+		</tr>
+		<tr>
+			<th><label for="srchname">{lang username}</label></th>
+			<td><input type="text" id="srchname" name="srchuname" size="45" maxlength="40" /></td>
+			<td>{lang search_username_comment}</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td><button class="submit" type="submit" name="searchsubmit" value="true">{lang search}</button></td>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+	<table summary="{lang search_option}" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<th>{lang search_option}</th>
+				<td>&nbsp;</td>
+			</tr>
+		</thead>
+		<tr>
+			<th>{lang search_mode}</th>
+			<td>
+				<label><input type="radio" name="srchtype" onclick="orderbyselect(1)" value="title" $checktype[title] $disabled[title] /> {lang search_title}</label>
+				<label><input type="radio" name="srchtype" onclick="orderbyselect(1)" value="blog" $disabled[blog] /> {lang search_blog}</label>
+				<label><input type="radio" name="srchtype" onclick="orderbyselect(2)" value="trade" /> {lang search_trade}</label>
+				<label><input type="radio" name="srchtype" onclick="window.location=('search.php?srchtype=threadtype')" value="trade" /> {lang search_info}</label>
+				<label><input type="radio" name="srchtype" onclick="orderbyselect(1)" value="fulltext" $disabled[fulltext] /> {lang search_fulltext}</label>
+				<!--{if $qihoo['status']}--><label><input type="radio" name="srchtype" onclick="orderbyselect(1)" value="qihoo" $checktype[qihoo] /> {lang search_qihoo}</label><!--{/if}-->
+			</td>
+		</tr>
+		<tr>
+			<td>{lang search_thread_range}</td>
+			<td>
+				<label><input type="radio" name="srchfilter" value="all" checked="checked" /> {lang search_thread_range_all}</label>
+				<label><input type="radio" name="srchfilter" value="digest" /> {lang search_thread_range_digest}</label>
+				<label><input type="radio" name="srchfilter" value="top" /> {lang search_thread_range_top}</label>
+			</td>
+		</tr>
+		<tbody id="specialtr1">
+		<tr>
+			<td>{lang special_thread}</td>
+			<td>
+				<label><input type="checkbox" name="special[]" value="1" /> {lang special_poll}</label>
+				<label><input type="checkbox" name="special[]" value="2" /> {lang special_trade}</label>
+				<label><input type="checkbox" name="special[]" value="3" /> {lang special_reward}</label>
+				<label><input type="checkbox" name="special[]" value="4" /> {lang special_activity}</label>
+				<label><input type="checkbox" name="special[]" value="5" /> {lang special_debate}</label>
+				<label><input type="checkbox" name="special[]" value="6" /> {lang special_video}</label>
+			</td>
+		</tr>
+		</tbody>
+		<tbody id="specialtr2" style="display: none">
+		<tr>
+			<td>{lang search_tradetype}</td>
+			<td>
+				<select name="srchtypeid"><option value="">{lang all}</option>
+				<!--{loop $tradetypes $typeid $typename}-->
+					<option value="$typeid">$typename</option>
+				<!--{/loop}-->
+				</select>
+			</td>
+		</tr>
+		</tbody>
+		<tr>
+			<th><label for="srchfrom">{lang search_time}</label></th>
+			<td>
+				<select id="srchfrom" name="srchfrom">
+					<option value="0">{lang search_any_date}</option>
+					<option value="86400">{lang 1_days_ago}</option>
+					<option value="172800">{lang 2_days_ago}</option>
+					<option value="432000">{lang 7_days_ago}</option>
+					<option value="1296000">{lang 30_days_ago}</option>
+					<option value="5184000">{lang 90_days_ago}</option>
+					<option value="8640000">{lang 180_days_ago}</option>
+					<option value="31536000">{lang 356_days_ago}</option>
+				</select>
+				<label><input type="radio" name="before" value="" checked="checked" /> {lang search_newer}</label>
+				<label><input type="radio" name="before" value="1" /> {lang search_older}</label>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="orderby">{lang search_orderby}</label></td>
+			<td>
+				<select id="orderby1" name="orderby">
+					<option value="lastpost" selected="selected">{lang order_lastpost}</option>
+					<option value="dateline">{lang order_starttime}</option>
+					<option value="replies">{lang order_replies}</option>
+					<option value="views">{lang order_views}</option>
+				</select>
+				<select id="orderby2" name="orderby" style="position: absolute; display: none" disabled>
+					<option value="dateline" selected="selected">{lang dateline}</option>
+					<option value="price">{lang post_trade_price}</option>
+					<option value="expiration">{lang trade_remaindays}</option>
+				</select>
+				<label><input type="radio" name="ascdesc" value="asc" /> {lang order_asc}</label>
+				<label><input type="radio" name="ascdesc" value="desc" checked="checked" /> {lang order_desc}</label>
+			</td>
+		</tr>
+		<!--{/if}-->
+		<tr>
+			<td valign="top"><label for="srchfid">{lang search_range}</label></td>
+			<td>
+				<select id="srchfid" name="srchfid[]" multiple="multiple" size="10" style="width: 26em;">
+					<option value="all"{if !$srchfid} selected="selected"{/if}>{lang search_all_forums}</option>
+					<option value="">&nbsp;</option>
+					$forumselect
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td><button class="submit" type="submit" name="searchsubmit" value="true">{lang search}</button></td>
+		</tr>
+	</table>
+</div>
+</form>
+
+<script type="text/javascript">
+function orderbyselect(ordertype) {
+	$('orderby1').style.display = 'none';
+	$('orderby1').style.position = 'absolute';
+	$('orderby1').disabled = true;
+	$('specialtr1').style.display = 'none';
+	$('orderby2').style.display = 'none';
+	$('orderby2').style.position = 'absolute';
+	$('orderby2').disabled = true;
+	$('specialtr2').style.display = 'none';
+	$('orderby' + ordertype).style.display = '';
+	$('orderby' + ordertype).style.position = 'static';
+	$('orderby' + ordertype).disabled = false;
+	$('specialtr' + ordertype).style.display = '';
+}
+<!--{if $typeid}-->
+	ajaxget('post.php?action=threadtypes&typeid=$typeid&operate=1&inajax=1', 'threadtypes');
+<!--{/if}-->
+</script>
+{template footer}

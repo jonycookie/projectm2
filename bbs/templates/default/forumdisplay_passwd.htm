@@ -1,0 +1,14 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> $navigation</div>
+
+<form method="post" action="forumdisplay.php?fid=$fid&action=pwverify">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<div class="box message">
+		<h1>{lang forum_password_require}</h1>
+		<p style="text-align: center; margin: 3em 0;">
+			<input type="password" name="pw" size="25">
+			&nbsp;<button class="submit" type="submit" name="loginsubmit" value="true">{lang submit}</button>
+		</p>
+	</div>
+</form>
+{template footer}

@@ -1,0 +1,34 @@
+<table cellspacing="0" cellpadding="0" width="100%" summary="{lang my_threads}">
+<thead>
+<tr>
+<td style="width: 40%">{lang subject}</td>
+<td>{lang forum}</td>
+<td>{lang lastpost}</td>
+<td>{lang status}</td>
+</tr>
+</thead>
+<tbody>
+<!--{if $threadlist}-->
+	<!--{loop $threadlist $thread}-->
+		<tr>
+		<td><!--{if $thread['displayorder'] >= 0}--><a href="viewthread.php?tid=$thread[tid]" target="_blank">$thread[subject]</a><!--{else}-->$thread[subject]<!--{/if}--></td>
+		<td><a href="forumdisplay.php?fid=$thread[fid]" target="_blank">$thread[forumname]</a></td>
+		<td>
+			<cite>
+				<a href="redirect.php?tid=$thread[tid]&goto=lastpost#lastpost">$thread[lastpost]</a>
+				<br />by 
+				<!--{if $thread['lastposter']}-->
+					<a href="space.php?username=$thread[lastposterenc]" target="_blank">$thread[lastposter]</a>
+				<!--{else}-->
+					{lang anonymous}
+				<!--{/if}-->
+			</cite>
+		</td>
+		<td><!--{if $thread[displayorder] == '-1'}-->{lang forum_recyclebin}<!--{elseif $thread[displayorder] == '-2'}-->{lang my_threads_aduit}<!--{elseif $thread[closed] == '1'}-->{lang my_threads_close}<!--{else}-->{lang my_threads_common}<!--{/if}--></td>
+		</tr>
+	<!--{/loop}-->
+<!--{else}-->
+	<tr><td colspan="4">{lang forum_nothreads}</td></tr>
+<!--{/if}-->
+</tbody>
+</table>

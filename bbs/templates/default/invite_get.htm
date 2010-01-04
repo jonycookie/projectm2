@@ -1,0 +1,39 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> &raquo; {lang invite_get}</div>
+<div class="container">
+	<div class="content">
+		<form method="post" action="invite.php?action=buyinvite">
+			<input type="hidden" name="formhash" value="{FORMHASH}" />
+			<div class="notice">
+				<ul><!--{if $maxinvitenum}-->{lang invite_num_tips}<!--{/if}-->{lang invite_expiration_tips}</ul>
+			</div>
+			<div class="mainbox formbox">
+				<h1>{lang invite_get}</h1>
+				<table cellspacing="0" cellpadding="0" summary="{lang invite_get}">
+					<tr>
+						<th><label for="amount">{lang invite_buy_num}</label></th>
+						<td><input type="text" size="15" id="amount" name="amount" value="0" onkeyup="calcredit()" />
+							<em class="tips">( {lang invite_code_price} <strong>$inviteprice $extcredits[$creditstrans]['title']</strong> )</em>
+						</td>
+					</tr>
+					<tr>
+						<th>{lang invite_buy_credit}</th>
+						<td><strong id="desamount">0</strong> $extcredits[$creditstrans]['title']</td>
+					</tr>
+					<tr>
+						<th>&nbsp;</th>
+						<td><button type="submit" class="submit" name="buysubmit" value="buysubmit">{lang invite_buy}</button></td>
+					</tr>
+				</table>
+			</div>
+			<script type="text/javascript">
+			function calcredit() {
+				var amount = parseInt($('amount').value);
+				$('desamount').innerHTML = !isNaN(amount) ? Math.floor(amount * $inviteprice) : 0;
+			}
+			</script>
+		</form>
+	</div>
+	<div class="side">{template personal_navbar}</div>
+</div>
+{template footer}

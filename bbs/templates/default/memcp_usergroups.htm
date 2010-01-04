@@ -1,0 +1,108 @@
+{template header}
+<div class="container">
+	<div id="foruminfo">
+		<div id="nav"><a href="$indexname">$bbname</a> &raquo; {lang memcp_usergroups}</div>
+	</div>
+	<div class="content">
+	<div class="mainbox formbox">
+	<h1>{lang memcp_usergroups}</h1>
+<!--{if empty($type)}-->
+	<form method="post" action="memcp.php?action=usergroups&type=main">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+	<table summary="{lang memcp_usergroups}" cellspacing="0" cellpadding="0" width="100%" align="center">
+	<thead>
+		<tr>
+		<td>{lang memcp_usergroups_title}</td>
+		<td>{lang memcp_usergroups_dailyprice}</td>
+		<td>{lang memcp_usergroups_minspan}</td>
+		<td class="time">{lang memcp_usergroups_expiry}</td>
+		<td>{lang memcp_usergroups_join_ext}</td>
+		<td>{lang memcp_usergroups_join_main}</td>
+		</tr>
+	</thead>
+	<tbody>
+	<!--{if $grouplist}-->
+		<!--{loop $grouplist $group}-->
+			<tr>
+			<td>$group[grouptitle]</td>
+			<td>{$extcredits[$creditstrans][title]} $group[dailyprice] {$extcredits[$creditstrans][unit]}</td>
+			<td>$group[minspan] {lang memcp_usergroups_days}</td>
+			<td>$group[expiry]</td>
+			<td><!--{if $group['type'] != 'member' && $group['groupid'] != $groupid}--><!--{if in_array($group['groupid'], $extgroupidarray)}--><a href="memcp.php?action=usergroups&type=extended&edit=$group[groupid]">[{lang memcp_usergroups_exit}]</a><!--{else}--><a href="memcp.php?action=usergroups&type=extended&edit=$group[groupid]"><b>[{lang memcp_usergroups_join}]</b></a><!--{/if}--><!--{else}-->&nbsp;<!--{/if}--></td>
+			<td><input type="radio" name="groupidnew" value="$group[groupid]" $group[mainselected] $group[maindisabled] /></td>
+			</tr>
+		<!--{/loop}-->
+		<td colspan="6">{lang memcp_usergroups_comment}</td></tr>
+	<!--{else}-->
+		<td colspan="6">{lang memcp_nogroups}</td></tr>
+	<!--{/if}-->
+	</tbody>
+	<tr class="btns">
+	<td colspan="6"><button class="submit" type="submit" name="groupsubmit" id="groupsubmit" value="true" tabindex="1">{lang submit}</button></td>
+	</table>
+	</form>
+<!--{elseif $type == 'extended'}-->
+	<form method="post" action="memcp.php?action=usergroups&type=extended&edit=$edit">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+	<table summary="{lang memcp_usergroups}" cellspacing="0" cellpadding="0" width="100%" align="center">
+	<thead>
+		<tr>
+		<td colspan="2"><!--{if $join}-->{lang memcp_usergroups_join}<!--{else}-->{lang memcp_usergroups_exit}<!--{/if}--></td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+		<th>{lang username}:</th>
+		<td>$discuz_userss <span class="smalltxt">[<a href="$link_logout">{lang member_logout}</a>]</span></td>
+		</tr>
+
+		<tr>
+		<th>{lang usergroup}:</th>
+		<td>$group[grouptitle]</td>
+		</tr>
+
+		<!--{if $join}-->
+			<tr>
+			<th>{lang memcp_usergroups_dailyprice}:</th>
+			<td>{$extcredits[$creditstrans][title]} $group[dailyprice] {$extcredits[$creditstrans][unit]}</td>
+			</tr>
+
+			<tr>
+			<th>{lang memcp_usergroups_minspan}:</th>
+			<td>$group[minspan] {lang memcp_usergroups_days}</td>
+			</tr>
+
+			<!--{if $group['dailyprice']}-->
+				<tr>
+				<th>{lang memcp_usergroups_span}:</th>
+				<td><input type="text" size="5" name="days" value="$group[minspan]" /> {lang memcp_usergroups_days}</td>
+				</tr>
+				<tr>
+				<td colspan="2">{lang memcp_usergroups_join_comment}</td>
+				</tr>
+			<!--{/if}-->
+		<!--{else}-->
+			<!--{if $group['dailyprice']}-->
+				<tr>
+				<td colspan="2">{lang memcp_usergroups_exit_comment}</td>
+				</tr>
+			<!--{/if}-->
+		<!--{/if}-->
+	</tbody>
+	</table>
+	<p class="btns">
+		<button type="submit" name="groupsubmit" id="groupsubmit" value="true" tabindex="2">{lang submit}</button>
+	</p>
+
+	</form>
+<!--{/if}-->
+
+	</div>
+	</div>
+	<div class="side">
+		{template personal_navbar}
+	</div>
+</div>
+{template footer}

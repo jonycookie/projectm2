@@ -1,0 +1,57 @@
+<form method="post" action="pm.php?action=delete&folder=$index['folder']">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<div class="mainbox">
+		<h1>{lang pm_search}</h1>
+		<ul class="tabs headertabs">
+			<li class="sendpm"><a href="pm.php?action=send">{lang pm_send}</a></li>
+			<li><a href="pm.php?folder=inbox">{lang pm_inbox}[<span id="pm_unread">$pm_inbox_newpm</span>]</a></li>
+			<li><a href="pm.php?folder=outbox">{lang pm_outbox}</a></li>
+			<li><a href="pm.php?folder=track">{lang pm_track}</a></li>
+			<li class="current"><a href="pm.php?action=search">{lang pm_search}</a></li>
+			<li><a href="pm.php?action=archive">{lang pm_archive}</a></li>
+			<li><a href="pm.php?action=ignore">{lang pm_ignore}</a></li>
+		</ul>
+		<table summary="lang pm_search" cellspacing="0" cellpadding="0">
+			<thead>
+				<tr>
+					<td class="selector">&nbsp;</td>
+					<td>{lang subject}</td>
+					<td>{lang pm_folders}</td>
+					<td>{lang from}</td>
+					<td>{lang to}</td>
+					<td>{lang time}</td>
+				</tr>
+			</thead>
+		<tbody>
+		<!--{if $pmlist}-->
+			<!--{loop $pmlist $pm}-->
+				<tr>
+					<td class="selector"><!--{if $index['folder'] == 'track' && !$pm['new']}--><input class="checkbox" type="checkbox" disabled="disabled" /><!--{else}--><input class="checkbox" type="checkbox" name="delete[]" value="$pm[pmid]" /><!--{/if}--></td>
+					<td><a href="pm.php?action=view&folder=$index['folder']&pmid=$pm[pmid]&highlight=$index['keywords']" target="_blank">$pm[subject]</a></td>
+					<td>
+					<!--{if $index['folder'] == inbox}-->
+						{lang pm_inbox}
+					<!--{elseif $index['folder'] == outbox}-->
+						{lang pm_outbox}
+					<!--{elseif $index['folder'] == track}-->
+						{lang pm_track}
+					<!--{/if}--></td>
+					<td><a href="space.php?uid=$pm[msgfromid]" target="_blank">$pm[msgfrom]</a></td>
+					<td><a href="space.php?uid=$pm[msgtoid]" target="_blank">$pm[msgto]</a></td>
+					<td><em>$pm[dateline]</em></td>
+				</tr>
+			<!--{/loop}-->
+			</table>
+			<div class="footoperation">
+				<label><input type="checkbox" id="chkall" name="chkall" onclick="checkall(this.form)" /> {lang checkall}</label>
+				<button type="submit" name="pmsend" value="true">{lang delete}</button>
+			</div>
+			<!--{else}-->
+				<tr><td colspan="6">{lang search_nomatch}</td></tr>
+			</table>
+			<!--{/if}-->
+		</table>
+		
+		<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+	</div>
+</form>

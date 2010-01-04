@@ -1,0 +1,39 @@
+{template header}
+<script type="text/javascript" src="include/javascript/qihoo.js"></script>
+<script type="text/javascript" src="http://search.qihoo.com/usearch.html?kw=$keyword&ics=$charset&ocs=$charset&site=discuzall&stype=$stype&sort=$relate&bsize=$length&site2=$site&tpp=$tpp&start=$start"></script>
+<script type="text/javascript">
+if(qihoo_num) {
+	var threadslist = qihoothreads(qihoo_perpage);
+	var multipage = multi(qihoo_num, $tpp, $page, "topic.php?topic=$topic&keyword=$keyword&stype=$stype&length=$length&relate=$relate");
+} else {
+	var threadslist = "<tr><td class=\"altbg1\" colspan=\"6\">{lang qihoo_topic_nothreads}</td></tr>";
+	var multipage = "";
+}
+</script>
+
+<div id="foruminfo">
+	<div id="nav"><a href="$indexname">$bbname</a> &raquo; {lang qihoo_topics} &raquo; $topic</div>
+</div>
+<div class="pages_btns"><script type="text/javascript">document.write(multipage);</script></div>
+<div class="mainbox">
+	<span class="headactions"><a href="http://www.qihoo.com" target="_blank">{lang qihoo_topic_powered_by}</a></span>
+	<h3>{lang qihoo_topics}: $topic</h3>
+	<table summary="{lang qihoo_topics}: $topic" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<td>{lang subject}</td>
+				<td>{lang forum}</td>
+				<td>{lang author}</td>
+				<td>{lang replies}</td>
+				<td>{lang views}</td>
+				<td>{lang lastpost}</td>
+			</tr>
+		</thead>
+		<tbody><script type="text/javascript">document.write(threadslist);</script></tbody>
+	</table>
+</div>
+
+<div class="pages_btns"><script type="text/javascript">document.write(multipage);</script></div>
+
+<br /><br /><script type="text/javascript" src="http://pcode.qihoo.com/site/friend/discuz12068.html"></script>
+{template footer}

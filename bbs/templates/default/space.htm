@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=$charset">
+<title><!--{if !empty($member[spacename])}-->$member[spacename]<!--{else}-->{$member[username]}{lang space_userspace}<!--{/if}--><!--{if CURSCRIPT == 'viewpro'}--> - {lang somebodys_profile}<!--{else}-->$titleextra<!--{/if}--> - Powered by Discuz!</title>
+<meta name="keywords" content="{$metakeywords}Discuz!,Board,Comsenz,forums,bulletin board,$seokeywords">
+<meta name="description" content="$bbname $seodescription - Discuz! Board">
+<meta name="generator" content="Discuz! $version">
+<meta name="author" content="Discuz! Team & Comsenz UI Team">
+<meta name="copyright" content="2001-2007 Comsenz Inc.">
+<meta name="MSSmartTagsPreventParsing" content="TRUE">
+<meta http-equiv="MSThemeCompatible" content="Yes">
+$extrahead
+
+<link rel="stylesheet" type="text/css" id="stylecss" href="mspace/$spacesettings[style]/style.css">
+<style type="text/css">
+.popupmenu_popup { text-align: left; line-height: 1.4em; padding: 10px; overflow: hidden; border: 0; background: #FFF; background-repeat: repeat-x; background-position: 0 1px;  }
+img { border: 0; }
+</style>
+<script type="text/javascript">var attackevasive = '$attackevasive';var IMGDIR = '{IMGDIR}';</script>
+<script type="text/javascript" src="include/javascript/common.js"></script>
+<script type="text/javascript" src="include/javascript/menu.js"></script>
+<script type="text/javascript" src="include/javascript/ajax.js"></script>
+<script type="text/javascript" src="include/javascript/viewthread.js"></script>
+<script type="text/javascript">
+	<!--{if $_DCACHE['settings']['frameon']}-->
+		if(parent.location != self.location) {
+			parent.location = self.location;
+		}
+	<!--{/if}-->
+	function addbookmark(url, site){
+		if(is_ie) {
+			window.external.addFavorite(url, site);
+		} else {
+			alert('Please press "Ctrl+D" to add bookmark');
+		}
+	}
+</script>
+</head>
+<body>
+<div id="append_parent"></div><div id="ajaxwaitid" style="position: absolute;right: 0"></div>
+<div id="menu_top">
+	<div class="bgleft"></div>
+	<div class="bg">
+	<span>{lang space_welcome}
+	<!--{if $discuz_uid}-->
+		$discuz_user&nbsp; &nbsp;<a href="$link_logout">{lang logout}</a> | <a href="pm.php">{lang pm}</a>
+	<!--{else}-->
+		{lang guest}&nbsp; &nbsp;<a href="$link_register">$reglinkname</a> | <a href="$link_login">{lang login}</a>
+	<!--{/if}-->
+	| <a href="$indexname">{lang space_returnboard}</a></span>
+	</div>
+	<div class="bgright"></div>
+</div>
+<div id="header">
+	<div class="bg">
+	<div class="title"><!--{if !empty($member[spacename])}-->$member[spacename]<!--{else}-->{$member[username]}{lang space_userspace}<!--{/if}--></div>
+	<div class="desc">$spacesettings[description]</div>
+	<div class="headerurl"><!--{if in_array($rewritestatus, array(2, 3))}--><a href="space.php?uid=$uid" class="spaceurl">{$boardurl}space-uid-$uid.html</a><!--{else}--><a href="space.php?uid=$uid" class="spaceurl">{$boardurl}space.php?uid=$uid</a><!--{/if}--> <a href="###" onclick="setcopy('{$boardurl}space.php?uid=$uid', '{lang post_copied}')">{lang space_copylink}</a> | <a href="###" onclick="addbookmark('{$boardurl}space.php?uid=$uid', document.title)">{lang space_addfav}</a></div></div>
+</div>
+<div id="menu">
+	<div class="block"><a href="space.php?uid=$uid">{lang space_index}</a>&nbsp;
+	<!--{if $allowviewpro}-->&nbsp;<a href="space.php?action=viewpro&uid=$uid">{lang personal_info}</a>&nbsp;&nbsp;<!--{/if}-->
+	<!--{loop $menulist $menu}-->&nbsp;<a href="space.php?$uid/$menu">$spacelanguage[$menu]</a>&nbsp;&nbsp;<!--{/loop}-->
+	</div>
+	<div class="control">
+	<!--{if $discuz_uid == $uid}-->
+		<a href="memcp.php?action=spacemodule">{lang space_settings}</a>
+	<!--{elseif $discuz_uid}-->
+		<a href="space.php?uid=$discuz_uid">{lang space_my}</a>
+	<!--{else}-->
+		<a href="$regname">{lang space_sign}</a>
+	<!--{/if}-->
+	</div>
+	<div class="icon"></div>
+</div>
+
+<div class="outer">
+<table class="main" border="0" cellspacing="0">
+<tr>
+<!--{if $action != 'viewpro'}-->
+	<!--{if !$tid}-->
+		<!--{if $spacesettings['side'] != 2}-->
+			<td id="main_layout0">
+			<!--{loop $layout[0] $module}-->
+				<table class="module" cellpadding="0" cellspacing="0" border="0"><tr><td class="header">
+				<div class="title">$spacelanguage[$module]</div>
+				<!--{if array_key_exists($module, $listmodule)}--><div class="more"><a href="space.php?$uid/$module">{lang space_more}</a></div><!--{/if}-->
+				</td></tr>
+				<tr><td>
+				<!--{eval $module($moduledata[$module][value]);}-->
+				</td></tr>
+				</table>
+			<!--{/loop}-->
+			</td>
+		<!--{/if}-->
+
+		<td id="main_layout1">
+		<!--{loop $layout[1] $module}-->
+			<table class="module" cellpadding="0" cellspacing="0" border="0"><tr><td class="header">
+			<div class="title">$spacelanguage[$module]</div>
+			<!--{if !$mod && array_key_exists($module, $listmodule)}--><div class="more"><a href="space.php?$uid/$module">{lang space_more}</a></div><!--{/if}-->
+			</td></tr>
+			<tr><td>
+			<!--{eval $module($moduledata[$module][value], 1);}-->
+			</td></tr>
+			</table>
+		<!--{/loop}-->
+		</td>
+
+		<!--{if $spacesettings['side'] != 1}-->
+			<td id="main_layout2" align="right">
+			<!--{loop $layout[2] $module}-->
+				<table class="module" cellpadding="0" cellspacing="0" border="0"><tr><td class="header">
+				<div class="title">$spacelanguage[$module]</div>
+				<!--{if array_key_exists($module, $listmodule)}--><div class="more"><a href="space.php?$uid/$module">{lang space_more}</a></div><!--{/if}-->
+				</td></tr>
+				<tr><td>
+				<!--{eval $module($moduledata[$module][value]);}-->
+				</td></tr>
+				</table>
+			<!--{/loop}-->
+			</td>
+		<!--{/if}-->
+	<!--{else}-->
+		<!--{template space_topic}-->
+	<!--{/if}-->
+<!--{else}-->
+	<!--{template viewpro}-->
+<!--{/if}-->
+</tr>
+</table>
+</div>
+
+<div id="footer"><div>
+Powered by <a href="http://www.discuz.net" target="_blank" style="color: blue"><b>Discuz!</b></a> $version &nbsp;&copy; 2001-2007 <a href="http://www.comsenz.com" target="_blank">Comsenz Inc.</a>
+<!--{if debuginfo()}-->
+	<br />Processed in $debuginfo[time] second(s), $debuginfo[queries] queries<!--{if $gzipcompress}-->, Gzip enabled<!--{/if}-->
+<!--{/if}-->
+{eval updatesession();}
+</div></div>
+</body>
+</html>
+{eval output();}

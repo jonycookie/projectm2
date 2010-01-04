@@ -1,0 +1,56 @@
+	<!--{if !empty($jsmenu) && (empty($bbclosed) || $adminid == 1)}-->{template jsmenu}<!--{/if}-->
+	<!--{if $admode && empty($insenz['hardadstatus']) && !empty($advlist)}-->
+		<div class="ad_footerbanner" id="ad_footerbanner1">$advlist[footerbanner1]</div><div class="ad_footerbanner" id="ad_footerbanner2">$advlist[footerbanner2]</div><div class="ad_footerbanner" id="ad_footerbanner3">$advlist[footerbanner3]</div>
+	<!--{else}-->
+		<div id="ad_footerbanner1"></div><div id="ad_footerbanner2"></div><div id="ad_footerbanner3"></div>
+	<!--{/if}-->
+</div>
+<div id="footer">
+	<div class="wrap">
+		<div id="footlinks">
+			<p>{lang time_now}<!--{if $icp}--> <a href="http://www.miibeian.gov.cn/" target="_blank">$icp</a><!--{/if}--></p>
+			<p>
+				<a href="member.php?action=clearcookies&amp;formhash={FORMHASH}">{lang clear_cookies}</a>
+				- <a href="mailto:$adminemail">{lang contactus}</a> - <a href="$siteurl" target="_blank">$sitename</a>
+				<!--{if $archiverstatus}--> - <a href="archiver/" target="_blank">Archiver</a><!--{/if}-->
+				<!--{if $wapstatus}--> - <a href="wap/" target="_blank">WAP</a><!--{/if}-->
+				- <span class="scrolltop" onclick="window.scrollTo(0,0);">TOP</span>
+				<!--{if !empty($stylejumpstatus)}-->
+					- <span id="styleswitcher" class="dropmenu" onmouseover="showMenu(this.id)">{lang style}</span>
+					<script type="text/javascript">
+					function setstyle(styleid) {
+					<!--{if CURSCRIPT == 'forumdisplay'}-->
+						location.href = 'forumdisplay.php?fid=$fid&page=$page&styleid=' + styleid;
+					<!--{elseif CURSCRIPT == 'viewthread'}-->
+						location.href = 'viewthread.php?tid=$tid&page=$page&styleid=' + styleid;
+					<!--{else}-->
+						location.href = '$indexname?styleid=' + styleid;
+					<!--{/if}-->
+					}
+					</script>
+					<ul id="styleswitcher_menu" class="popupmenu_popup" style="display: none;">
+						<!--{loop $stylejump $id $name}-->
+						<li{if $id == $styleid} class="current"{/if}><a href="###" onclick="setstyle($id)">$name</a></li>
+						<!--{/loop}-->
+					</ul>
+				<!--{/if}-->
+			</p>
+		</div>
+
+		<a href="http://www.discuz.net" target="_blank" title="Powered by Discuz!"><img src="{IMGDIR}/discuz_icon.gif" border="0" alt="Discuz!" /></a>
+		<p id="copyright">
+			Powered by <strong><a href="http://www.discuz.net" target="_blank">Discuz!</a></strong> <em>$version</em><!--{if !empty($boardlicensed)}--> <a href="http://www.discuz.com/index.php?action=certificate&host=$_SERVER[HTTP_HOST]" target="_blank">Licensed</a><!--{/if}-->
+			&copy; 2001-2007 <a href="http://www.comsenz.com" target="_blank">Comsenz Inc.</a>
+		</p>
+		{eval updatesession();}
+		<!--{if debuginfo()}-->
+			<p id="debuginfo">Processed in $debuginfo[time] second(s), $debuginfo[queries] queries<!--{if $gzipcompress}-->, Gzip enabled<!--{/if}-->.</p>
+		<!--{/if}-->
+	</div>
+</div>
+<!--{if $_DCACHE['settings']['frameon'] && in_array(CURSCRIPT, array('index', 'forumdisplay', 'viewthread')) && $_DCOOKIE['frameon'] == 'yes'}-->
+	<script type="text/javascript" src="include/javascript/iframe.js"></script>
+<!--{/if}-->
+{eval output();}
+</body>
+</html>

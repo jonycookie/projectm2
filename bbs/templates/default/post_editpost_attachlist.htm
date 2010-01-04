@@ -1,0 +1,59 @@
+<!--{if $postinfo['attachment'] && $attachments}-->
+	<div class="mainbox">
+		<h3>{lang attachments}</h3>
+		<table summary="{lang attachments}" cellspacing="0" cellpadding="0">
+			<thead>
+				<tr>
+					<td class="selector">{lang delete_check}</td>
+					<td>aid</td>
+					<td>{lang attachment}</td>
+					<td class="time">{lang attachment_date}</td>
+					<td class="nums" nowrap="nowrap">{lang attachment_size}</td>
+					<td class="nums" nowrap="nowrap">{lang downloads}</td>
+					<td nowrap="nowrap">{lang readperm}</td>
+					<td>{lang price}</td>
+					<td>{lang description}</td>
+				</tr>
+			</thead>
+			<!--{loop $attachments $attach}-->
+				<tr>
+					<td class="selector"><input class="checkbox" type="checkbox" name="deleteaid[]" value="$attach[aid]"></td>
+					<td nowrap="nowrap">
+					<!--{if $attach['isimage']}-->
+						<a href="###" onclick="insertAttachimgTag('$attach[aid]', '$attach['width']')" title="{lang post_attachment_insert}">$attach[aid]</a>
+					<!--{else}-->
+						<a href="###" onclick="insertAttachTag('$attach[aid]')" title="{lang post_attachment_insert}">$attach[aid]</a>
+					<!--{/if}-->
+					</td>
+					<td>
+						<div id="attach$attach[aid]">
+						<a href="###" class="right" onclick="attachupdate('$attach[aid]')">[{lang update}]</a>
+						<!--{if $attach['isimage']}-->
+							<a href="###" class="right" onclick="insertAttachimgTag('$attach[aid]', '$attach['width']')" title="{lang post_attachment_insert}">[{lang post_attachment_insertlink}]</a>
+						<!--{else}-->
+							<a href="###" class="right" onclick="insertAttachTag('$attach[aid]')" title="{lang post_attachment_insert}">[{lang post_attachment_insertlink}]</a>
+						<!--{/if}-->
+						<!--{if $attach['isimage']}-->
+							<!--{if $editormode || $allowswitcheditor}-->
+								<span id="imgpreview_$attach[aid]" onmouseover="showMenu(this.id, 0, 0, 1, 0)">$attach[filetype] <a href="attachment.php?aid=$attach[aid]&noupdate=yes&nothumb=yes" target="_blank">$attach[filename]</a></span>
+								<div class="popupmenu_popup" id="imgpreview_$attach[aid]_menu" style="position:absolute;top:-100000px;margin-left: 20px;text-align: center"><img id="preview_$attach[aid]" onload="if(this.width < $thumbwidth) this.style.width = 'auto'; else this.style.width = '{$thumbwidth}px';$('imgpreview_$attach[aid]_menu').style.width = this.clientWidth" {if $attach['thumb']}src="$attach[url]/$attach[attachment].thumb.jpg"{else}src="$attach[url]/$attach[attachment]"{/if} /></div>
+							<!--{else}-->
+								$attach[filetype] <a href="attachment.php?aid=$attach[aid]&noupdate=yes&nothumb=yes" target="_blank">$attach[filename]</a>
+							<!--{/if}-->
+						<!--{else}-->
+							$attach[filetype] <a href="attachment.php?aid=$attach[aid]" target="_blank">$attach[filename]</a>
+						<!--{/if}-->
+					</div>
+					<span id="attachupdate$attach[aid]"></span>
+					</td>
+					<td class="time">$attach[dateline]</td>
+					<td class="nums">$attach[filesize]</td>
+					<td class="nums">$attach[downloads]</td>
+					<td><!--{if $allowsetattachperm}--><input type="text" size="3" name="attachpermnew[{$attach[aid]}]" value="$attach[readperm]"><!--{else}--><input type="text" size="3" value="$attach[readperm]" disabled><!--{/if}--></td>
+					<td><!--{if $maxprice}--><input type="text" size="3" name="attachpricenew[{$attach[aid]}]" value="$attach[price]"><!--{else}--><input type="text" size="3" value="$attach[price]" disabled><!--{/if}--></td>
+					<td><input type="text" size="25" name="attachdescnew[{$attach[aid]}]" value="$attach[description]"></td>
+				</tr>
+			<!--{/loop}-->
+	</table>
+	</div>
+<!--{/if}-->

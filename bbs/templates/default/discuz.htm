@@ -1,0 +1,330 @@
+{template header}
+
+<div id="foruminfo">
+	<div id="userinfo">
+		<div id="nav">
+			<!--{if $supe['status']}--><a href="$supe[siteurl]" target="_blank">$supe['sitename']</a> - <!--{/if}-->
+			<!--{if $gid || !$discuz_uid}--><a href="$indexname">$bbname</a> <!--{else}--><a href="space.php?action=viewpro&uid=$discuz_uid" class="dropmenu" id="creditlist" onmouseover="showMenu(this.id)">$discuz_user</a> <!--{/if}-->
+			<!--{if $discuz_uid}-->
+				<!--{if $supe['status'] && $xspacestatus}-->
+					- <a href="$supe[siteurl]/?uid/$discuz_uid" target="_blank">{lang space}</a>
+				<!--{elseif $spacestatus}-->
+					- <a href="space.php?uid=$discuz_uid" target="_blank">{lang space}</a>
+				<!--{/if}-->
+				<!--{if $supe['status'] && !$xspacestatus}-->
+					- <a href="$supe[siteurl]/?uid/$discuz_uid" target="_blank">{lang space_upgrade_space}</a>
+				<!--{/if}-->
+			<!--{/if}-->
+		</div>
+		<p>
+		<!--{if $discuz_uid}-->
+			<!--{if $allowinvisible}-->{lang online_status}:
+			<span id="loginstatus"><!--{if !empty($invisible)}--><a href="member.php?action=switchstatus" onclick="ajaxget(this.href, 'loginstatus');doane(event);">{lang login_invisible_mode}</a><!--{else}--><a href="member.php?action=switchstatus" title="{lang login_switch_invisible_mode}" onclick="ajaxget(this.href, 'loginstatus');doane(event);">{lang login_normal_mode}</a><!--{/if}--></span>,
+			<!--{/if}-->
+			{lang your_lastvisit}: <em>$lastvisittime</em>
+			<!--{if !empty($google) && ($google & 1)}--><br /><!--{else}--> &nbsp;<!--{/if}-->
+			<a href="search.php?srchfrom=$newthreads&amp;searchsubmit=yes">{lang show_newthreads}</a>
+			<a href="member.php?action=markread" id="ajax_markread" onclick="ajaxmenu(event, this.id)">{lang mark_read}</a>
+		<!--{elseif !$passport_status}-->
+			<form id="loginform" method="post" name="login" action="logging.php?action=login&amp;loginsubmit=true">
+				<input type="hidden" name="formhash" value="{FORMHASH}" />
+				<input type="hidden" name="cookietime" value="2592000" />
+				<input type="hidden" name="loginfield" value="username" />
+				<input type="text" id="username" name="username" size="15" maxlength="40" tabindex="1" value="{lang username}" onclick="this.value = ''" />
+				<input type="password" id="password" name="password" size="10" tabindex="2" onkeypress="if((event.keyCode ? event.keyCode : event.charCode) == 13) $('loginform').submit()" />
+				<button name="userlogin" type="submit" value="true">{lang login}</button>
+			</form>
+		<!--{/if}-->
+		</p>
+	</div>
+
+	<div id="forumstats">
+		<p>
+			{lang index_today}: <em>$todayposts</em>, {lang index_yesterday}: <em>$postdata[0]</em>, {lang index_maxday}: <em>$postdata[1]</em> &nbsp; <a href="digest.php">{lang digest}</a>
+			<!--{if $rssstatus}--><a href="rss.php?auth=$rssauth" title="{lang rss_subscribe_all}" target="_blank"><img src="images/common/xml.gif" alt="{lang rss_subscribe_all}" /></a><!--{/if}-->
+		</p>
+		<p>{lang index_threads}: <em>$threads</em>, {lang index_posts}: <em>$posts</em>, {lang index_members}: <em>$totalmembers</em>, {lang welcome_newmember} <cite><a href="space.php?username=$memberenc">$lastmember</a></cite></p>
+	</div>
+	<!--{if !empty($google) && ($google & 1)}-->
+		<div id="headsearch" style="clear: both">
+		<script type="text/javascript" src="forumdata/cache/google_var.js"></script>
+		<script type="text/javascript" src="include/javascript/google.js"></script>
+		</div>
+	<!--{/if}-->
+</div>
+
+<!--{if empty($gid) && $announcements}-->
+	<div id="announcement" onmouseover="if(!anncount) {clearTimeout(annst);annst = 0}" onmouseout="if(!annst) annst = setTimeout('announcementScroll()', anndelay);">
+		<div id="announcementbody"><ul>$announcements</ul></div>
+	</div>
+	<script type="text/javascript">
+		var anndelay = 3000;
+		var anncount = 0;var annheight = 36;var annst = 0;
+		function announcementScroll() {
+			if(!annst) {
+				$('announcementbody').innerHTML += '<br style="clear: both" />' + $('announcementbody').innerHTML;$('announcementbody').scrollTop = 0;
+				if($('announcementbody').scrollHeight > annheight * 3) {
+					annst = setTimeout('announcementScroll()', anndelay);
+				} else {
+					$('announcement').onmouseover = $('announcement').onmouseout = null;
+				}
+				return;
+			}
+			if(anncount == annheight) {
+				if($('announcementbody').scrollHeight - annheight <= $('announcementbody').scrollTop) {
+					$('announcementbody').scrollTop = $('announcementbody').scrollHeight / 2 - annheight;
+				}
+				anncount = 0;annst = setTimeout('announcementScroll()', anndelay);
+			} else {
+				$('announcementbody').scrollTop++;anncount++;annst = setTimeout('announcementScroll()', 10);
+			}
+		}
+
+	</script>
+<!--{/if}-->
+
+<!--{if !empty($newpmexists) || $announcepm}-->
+	<div style="clear: both; margin-top: 5px" id="pmprompt">
+	{template pmprompt}
+	</div>
+<!--{/if}-->
+
+<!--{if $admode && empty($insenz['hardadstatus']) && !empty($advlist['text'])}--><div class="ad_text" id="ad_text"><table summary="Text Ad" cellpadding="0" cellspacing="1">$advlist[text]</table></div><!--{else}--><div id="ad_text"></div><!--{/if}-->
+
+<table summary="HeadBox" class="portalbox" cellpadding="0" cellspacing="1">
+	<tr>
+	<!--{if $supeitemsstatus || $hottagstatus}-->
+		<td>
+			<!--{if $supeitemsstatus}-->
+				<div id="supeitems"><h3><a href="$supe[siteurl]" target="_blank">{lang supe_updateitems}</a></h3>
+				<ul>
+					$_DCACHE[supe_updateitems]
+				</ul>
+				</div>
+			<!--{/if}-->
+			<!--{if $hottagstatus}-->
+				<div id="hottags"><h3><a href="tag.php" target="_blank">{lang hottags}</a></h3>
+				$_DCACHE[tags]
+				</div>
+			<!--{/if}-->
+		</td>
+	<!--{/if}-->
+	<!--{if !empty($qihoo['status']) && ($qihoo['searchbox'] & 1)}-->
+		<td id="qihoosearch"{if $supeitemsstatus || $hottagstatus} style="width: 242px;"{/if}>
+		<!--{if !empty($qihoo['status']) && ($qihoo['searchbox'] & 1)}-->
+			<form method="post" action="search.php?srchtype=qihoo" onSubmit="this.target='_blank';">
+				<input type="hidden" name="searchsubmit" value="yes" />
+				<input type="text" name="srchtxt" value="$qihoo_searchboxtxt" size="20" />
+				<select name="stype">
+					<option value="" selected="selected">{lang qihoo_search_filltext}</option>
+					<option value="1">{lang qihoo_search_title}</option>
+					<option value="2">{lang qihoo_search_author}</option>
+				</select>
+				&nbsp;<button name="searchsubmit" type="submit" value="true">{lang search}</button>
+			</form>
+
+			<!--{if !empty($qihoo['links']['keywords'])}-->
+				<strong>{lang qihoo_hot_searches}</strong>
+				<!--{loop $qihoo['links']['keywords'] $link}-->
+					$link&nbsp;
+				<!--{/loop}-->
+			<!--{/if}-->
+
+			<!--{if $customtopics}-->
+				<strong>{lang qihoo_custom_topics}</strong>&nbsp;&nbsp;$customtopics [<a href="###" onclick="window.open('misc.php?action=customtopics', '', 'width=320,height=450,resizable=yes,scrollbars=yes');">{lang edit}</a>]<br />
+			<!--{/if}-->
+
+			<!--{if !empty($qihoo['links']['topics'])}-->
+				<strong>{lang qihoo_topics}</strong>&nbsp;
+				<!--{loop $qihoo['links']['topics'] $url}-->
+					{$url} &nbsp;
+				<!--{/loop}-->
+			<!--{/if}-->
+		<!--{/if}-->
+		</td>
+	<!--{/if}-->
+	</tr>
+</table>
+
+<!--{loop $catlist $key $cat}-->
+	<!--{if $cat['forumscount']}-->
+		<div class="mainbox forumlist">
+			<span class="headactions">
+				<!--{if $cat['moderators']}-->{lang forum_category_modedby}: $cat[moderators]<!--{/if}-->
+				<img id="category_$cat[fid]_img" src="{IMGDIR}/$cat[collapseimg]" title="{lang spread}" alt="{lang spread}" onclick="toggle_collapse('category_$cat[fid]');" />
+			</span>
+			<h3><a href="$indexname?gid=$cat[fid]">$cat[name]</a></h3>
+			<table id="category_$cat[fid]" summary="category$cat[fid]" cellspacing="0" cellpadding="0" style="$collapse['category_'.$cat[fid]]">
+			<!--{if !$cat['forumcolumns']}-->
+				<thead class="category">
+					<tr>
+						<th>{lang forum_name}</th>
+						<td class="nums">{lang forum_threads}</td>
+						<td class="nums">{lang forum_posts}</td>
+						<td class="lastpost">{lang forum_lastpost}</td>
+					</tr>
+				</thead>
+				<!--{loop $cat[forums] $forumid}-->
+					<!--{eval $forum=$forumlist[$forumid];}-->
+					<tbody id="forum$forum[fid]">
+						<tr>
+							<th$forum[folder]>
+								$forum[icon]
+								<h2><a href="forumdisplay.php?fid=$forum[fid]">$forum[name]</a><!--{if $forum[todayposts] && !$forum['redirect']}--><em> ({lang index_today}: $forum[todayposts])</em><!--{/if}--></h2>
+								<!--{if $forum[description]}--><p>$forum[description]</p><!--{/if}-->
+								<!--{if $forum['subforums']}--><p>{lang forum_subforums}: $forum['subforums']</p><!--{/if}-->
+								<!--{if $forum['moderators']}--><!--{if $moddisplay == 'flat'}--><p class="moderators">{lang forum_moderators}: $forum[moderators]</p><!--{else}--><span class="dropmenu" id="mod$forum[fid]" onmouseover="showMenu(this.id)">{lang forum_moderators}</span><ul class="moderators popupmenu_popup" id="mod$forum[fid]_menu" style="display: none">$forum[moderators]</ul><!--{/if}--><!--{/if}-->
+							</th>
+							<td class="nums">{if $forum['redirect']}--{else}$forum[threads]{/if}</td>
+							<td class="nums">{if $forum['redirect']}--{else}$forum[posts]{/if}</td>
+							<td class="lastpost">
+							<!--{if $forum['permission'] == 1}-->
+								{lang private_forum}
+							<!--{else}-->
+								<!--{if $forum['redirect']}-->
+									--
+								<!--{elseif is_array($forum['lastpost'])}-->
+									<a href="redirect.php?tid=$forum[lastpost][tid]&amp;goto=lastpost#lastpost">{echo cutstr($forum[lastpost][subject], 40)}</a>
+									<cite>{lang forum_lastpost_by} <!--{if $forum['lastpost']['author']}-->$forum['lastpost']['author']<!--{else}-->{lang anonymous}<!--{/if}--> - $forum[lastpost][dateline]</cite>
+								<!--{else}-->
+									{lang never}
+								<!--{/if}-->
+							<!--{/if}-->
+							</td>
+						</tr>
+					</tbody>
+				<!--{/loop}-->
+			<!--{else}-->
+					<tr>
+					<!--{loop $cat['forums'] $forumid}-->
+						<!--{eval $forum=$forumlist[$forumid];}-->
+						<!--{if $forum['orderid'] && ($forum['orderid'] % $cat['forumcolumns'] == 0)}-->
+							</tr></tbody>
+							<!--{if $forum['orderid'] < $cat['forumscount']}-->
+								<tbody><tr>
+							<!--{/if}-->
+						<!--{/if}-->
+						<th width="$cat[forumcolwidth]"{$forum[folder]}>
+							<h2><a href="forumdisplay.php?fid=$forum[fid]">$forum[name]</a><!--{if $forum[todayposts]}--><em> ({lang index_today}: $forum[todayposts])</em><!--{/if}--></h2>
+							<p>{lang forum_threads}: $forum[threads], {lang forum_posts}: $forum[posts]</p>
+							<!--{if $forum['permission'] == 1}-->
+								<p>{lang private_forum}
+							<!--{else}-->
+								<p>{lang forum_lastpost}:
+									<!--{if is_array($forum['lastpost'])}-->
+										<a href="redirect.php?tid=$forum[lastpost][tid]&amp;goto=lastpost#lastpost">$forum[lastpost][dateline]</a>
+										{lang forum_lastpost_by} <!--{if $forum['lastpost']['author']}-->$forum['lastpost']['author']<!--{else}-->{lang anonymous}<!--{/if}-->
+									<!--{else}-->
+										{lang never}
+									<!--{/if}-->
+								</p>
+							<!--{/if}-->
+						</th>
+					<!--{/loop}-->
+				$cat['endrows']
+			<!--{/if}-->
+			</table>
+		</div>
+		<!--{if $admode && empty($insenz['hardadstatus']) && !empty($advlist['intercat']) && ($advlist['intercat'][$key] = array_merge(($advlist['intercat'][0] ? $advlist['intercat'][0] : array()), ($advlist['intercat'][$key] ? $advlist['intercat'][$key] : array())))}--><div class="ad_column" id="ad_intercat_$key"><!--{echo $advitems[$advlist['intercat'][$key][array_rand($advlist['intercat'][$key])]]}--></div><!--{else}--><div id="ad_intercat_$key"></div><!--{/if}-->
+	<!--{/if}-->
+<!--{/loop}-->
+
+<!--{if $_DCACHE['forumlinks']}-->
+<div class="box">
+	<span class="headactions"><img id="forumlinks_img" src="{IMGDIR}/$collapseimg[forumlinks]" alt="" onclick="toggle_collapse('forumlinks');" /></span>
+	<h4>{lang board_links}</h4>
+	<table summary="{lang board_links}" id="forumlinks" cellpadding="0" cellspacing="0" style="$collapse[forumlinks]">
+		<!--{loop $_DCACHE['forumlinks'] $flink}-->
+			<tr>
+				<td>
+					<!--{if $flink['type'] == 1}--><img src="$flink[logo]" alt="" class="forumlink_logo" /><!--{/if}-->
+					$flink[content]
+				</td>
+			</tr>
+		<!--{/loop}-->
+	</table>
+</div>
+<!--{/if}-->
+
+<!--{if empty($gid) && $supe['status'] && $supe['maxupdateusers'] && $_DCACHE['supe_updateusers']}-->
+<div class="box" id="supe_maxupdateusers">
+	<h4><a href="$supe[siteurl]" target="_blank">{lang supe_updateusers}</a></h4>
+	<ul class="userlist">
+		<!--{loop $_DCACHE['supe_updateusers'] $supe_updateuser}-->
+			<li><a href="$supe[siteurl]/?uid/{$supe_updateuser[uid]}" target="_blank">{$supe_updateuser[username]}</a></li>
+		<!--{/loop}-->
+	</ul>
+</div>
+<!--{/if}-->
+
+<!--{if empty($gid) && ($whosonlinestatus || $maxbdays)}-->
+	<div class="box" id="online">
+	<!--{if $whosonlinestatus}-->
+		<!--{if $detailstatus}-->
+			<span class="headactions"><a href="$indexname?showoldetails=no#online" title="{lang pm_close}"><img src="{IMGDIR}/collapsed_no.gif" alt="{lang pm_close}" /></a></span>
+			<h4>
+				<strong><a href="member.php?action=online">{lang onlinemember}</a></strong>
+				- <em>$onlinenum</em> {lang onlines}
+				- <em>$membercount</em> {lang index_members}(<em>$invisiblecount</em> {lang index_invisibles}),
+				<em>$guestcount</em> {lang index_guests}
+				- {lang index_mostonlines} <em>$onlineinfo[0]</em> {lang on} <em>$onlineinfo[1]</em>.
+			</h4>
+		<!--{else}-->
+			<span class="headactions"><a href="$indexname?showoldetails=yes#online" class="nobdr"><img src="{IMGDIR}/collapsed_yes.gif" alt="" /></a></span>
+			<h4>
+				<strong><a href="member.php?action=online">{lang onlinemember}</a></strong>
+				- {lang total} <em>$onlinenum</em> {lang onlines}
+				- {lang index_mostonlines} <em>$onlineinfo[0]</em> {lang on} <em>$onlineinfo[1]</em>.
+			</h4>
+		<!--{/if}-->
+	<!--{else}-->
+		<h4><strong><a href="member.php?action=online">{lang onlinemember}</a></strong></h4>
+	<!--{/if}-->
+	<!--{if $maxbdays}-->
+		<div id="bdayslist">
+			<!--{if $_DCACHE['birthdays_index']['todaysbdays']}--><a href="member.php?action=list&amp;type=birthdays">{lang todays_birthdays}</a>: $_DCACHE[birthdays_index][todaysbdays]<!--{else}-->{lang todays_birthdays_none}<!--{/if}-->
+		</div>
+	<!--{/if}-->
+	<!--{if $whosonlinestatus}-->
+		<dl id="onlinelist">
+		<dt>$_DCACHE[onlinelist][legend]</dt>
+		<!--{if $detailstatus}-->
+			<dd>
+			<ul class="userlist">
+			<!--{if $whosonline}-->
+				<!--{loop $whosonline $key $online}-->
+					<li title="{lang time}: $online[lastactivity]{LF} {lang action}: $online[action] <!--{if $online['fid']}-->{LF}{lang forum}: $online[fid]<!--{/if}-->">
+					<img src="images/common/$online[icon]" alt="" />
+					<!--{if $online['uid']}-->
+						<a href="space.php?uid=$online[uid]">$online[username]</a>
+					<!--{else}-->
+						$online[username]
+					<!--{/if}-->
+					</li>
+				<!--{/loop}-->
+			<!--{else}-->
+				<li style="width: auto">{lang online_only_guests}</li>
+			<!--{/if}-->
+			</ul>
+			</dd>
+		<!--{/if}-->
+		</dl>
+	<!--{/if}-->
+	</div>
+<!--{/if}-->
+
+<div class="legend">
+	<label><img src="{IMGDIR}/forum_new.gif" alt="{lang forum_newposts}" />{lang forum_newposts}</label>
+	<label><img src="{IMGDIR}/forum.gif" alt="{lang forum_nonewpost}" />{lang forum_nonewpost}</label>
+</div>
+<ul class="popupmenu_popup" id="creditlist_menu" style="display: none">
+	<li>{lang credits}: $credits</li>
+<!--{loop $extcredits $id $credit}-->
+	<li>$credit[title]: $GLOBALS['extcredits'.$id] $credit[unit]</li>
+<!--{/loop}-->
+</ul>
+<!--{if empty($gid) && $announcements}-->
+	<script type="text/javascript">announcementScroll();</script>
+<!--{/if}-->
+
+{template footer}

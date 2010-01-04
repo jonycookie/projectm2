@@ -1,0 +1,66 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> &raquo; <!--{if !$action}-->{lang faq}<!--{else}--><a href="faq.php">{lang faq}</a> $navigation<!--{/if}--></div>
+
+<!--{if !$action}-->
+	<table summary="FAQ" class="portalbox" cellpadding="0" cellspacing="1">
+		<tr>
+		<!--{loop $faqparent $parent}-->
+			<td>
+			<h3>$parent[title]</h3>
+			<ul style="margin: 2px auto;">
+			<!--{loop $faqsub[$parent[id]] $sub}-->
+				<li><a href="faq.php?action=message&amp;id=$sub[id]">$sub[title]</a></li>
+			<!--{/loop}-->
+			</ul>
+			</td>
+		<!--{/loop}-->
+		</tr>
+	</table>
+<!--{elseif $action == 'message'}-->
+
+	<div class="box viewthread specialthread faq">
+		<table summary="" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="postcontent">
+					<h1>$faq[title]</h1>
+					<div class="postmessage">$faq[message]</div>
+				</td>
+				<!--{if $otherlist}-->
+				<td valign="top" style="width: 260px; border: none;">
+					<div class="box" style="margin: 8px; border: none;">
+						<h4>{lang faq_related}</h4>
+						<ul style="padding: 5px; line-height: 2em;">
+							<!--{loop $otherlist $other}-->
+							<li><a href="faq.php?action=message&amp;id=$other[id]">$other[title]</a></li>
+							<!--{/loop}-->
+						</ul>
+					</div>
+				<!--{/if}-->
+				</td>
+			</tr>
+		</table>
+	</div>
+
+<!--{elseif $action == 'search'}-->
+	<!--{loop $faqlist $faq}-->
+		<div class="box viewthread specialthread faq">
+		<div class="postcontent"><h1>$faq[title]</h1></div>
+		<div class="postmessage">$faq[message]</div>
+		</div><br />
+	<!--{/loop}-->
+<!--{/if}-->
+
+<div class="legend">
+	<form method="post" action="faq.php?action=search&searchsubmit=yes">
+		<input type="hidden" name="formhash" value="{FORMHASH}" />
+		{lang faq_search} <input type="text" name="keyword" size="30" value="$keyword" />
+		<select name="searchtype">
+			<option value="all">{lang faq_search_title_and_content}</option>
+			<option value="title">{lang faq_search_title}</option>
+			<option value="message">{lang faq_search_content}</option>
+		</select>&nbsp;
+		<button type="submit" name="searchsubmit">{lang submit}</button>
+	</form>
+</div>
+
+{template footer}

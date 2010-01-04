@@ -1,0 +1,58 @@
+{template header}
+
+<div class="ajaxform" style="width: 500px;">
+<form method="post" id="postpmform" name="postpmform" action="pm.php?action=send&inajax=1">
+<input type="hidden" name="formhash" value="{FORMHASH}" />
+<input type="hidden" name="pmsubmit" value="{FORMHASH}" />
+<table cellspacing="0" cellpadding="0" width="100%">
+	<thead>
+		<tr>
+		<th>{lang pm_send}</th>
+		<td align="right"><a href="javascript:hideMenu();"><img src="{IMGDIR}/close.gif" alt="{lang close}" title="{lang close}" /></a></td>
+		</tr>
+	</thead>
+
+	<!--{if $seccodecheck}-->
+		<tr>
+			<th><label for="seccodeverify">{lang seccode}</label></th>
+			<td>
+				<div id="seccodeimage"></div>
+				<input type="text" onfocus="updateseccode();this.onfocus = null" id="seccodeverify" name="seccodeverify" size="8" maxlength="4" />
+				<em class="tips"><strong>{lang seccode_click}</strong> <!--{if $seccodedata['type'] == 2}-->{lang seccode_animator_flashrefresh}<!--{elseif $seccodedata['animator'] == 1}-->{lang seccode_animator_refresh}<!--{else}-->{lang seccode_refresh}<!--{/if}--></em></td>
+				<script type="text/javascript">
+					var seccodedata = [{$seccodedata['width']}, {$seccodedata['height']}, {$seccodedata['type']}];
+				</script>
+		</tr>
+	<!--{/if}-->
+
+	<!--{if $secqaacheck}-->
+		<tr>
+		<th>{lang secqaa}</th>
+		<td><div id="secquestion"></div><input type="text" name="secanswer" size="25" maxlength="50" /></td>
+		</tr>
+		<script type="text/javascript" reload="1">ajaxget('ajax.php?action=updatesecqaa', 'secquestion');</script>
+	<!--{/if}-->
+
+<tr><th>{lang to}</th>
+<td><input type="text" name="msgto" size="65" value="$touser" /></td></tr>
+<tr>
+<th>{lang subject}</th>
+<td><input type="text" name="subject" size="65" value="$subject" /></td>
+</tr>
+
+<tr>
+<th>{lang message}<br /><br />
+</th>
+<td><textarea id="pm_textarea" rows="6" cols="10" name="message" style="width: 100%; height:100px; word-break: break-all" onKeyDown="ctlent(event);"></textarea><br /></td>
+</tr>
+</tbody>
+<tr>
+<th></th>
+<td><button name="pmsubmit" type="button" class="submit" value="true" onclick="ajaxpost('postpmform', '$ajaxmenuid');return false">{lang submit}</button></td>
+</table>
+
+</form>
+</div>
+
+
+{template footer}

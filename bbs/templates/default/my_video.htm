@@ -1,0 +1,30 @@
+
+<table cellspacing="0" cellpadding="0" width="100%">
+	<!--{if $videolist}-->
+		<!--{loop $videolist $key $video}-->
+			<!--{if $key && ($key % 2 == 0)}-->
+				</tr>
+				<!--{if $key < $videonum}-->
+					<tr>
+				<!--{/if}-->
+			<!--{/if}-->
+				<td width="50%" class="attriblist">
+					<dl>
+						<dt><a href="viewthread.php?tid=$video[tid]" target="_blank">
+						<img src="$video[vthumb]" alt="$video[vtitle]" width="124" height="94" /></a></dt>
+						<dd class="name">$video[vtitle]</dd>
+						<dd>{lang dateline}: $video[dateline]</dd>
+						<dd>{lang video_views}: $video[vview]</dd>
+						<!--{if $video['vtime']}--><dd>{lang video_time}: $video[vtime] {lang video_minute}</dd><!--{/if}-->
+						<dd>{lang video_operate}:
+							<!--{if $video['pid'] && $video['tid']}--><a href="viewthread.php?tid=$video[tid]" target="_blank">{lang video_view}</a> <!--{/if}-->
+							<a href="###" onclick="setcopy('[video={$video[vautoplay]}]$video[vid][/video]', '{lang video_copy_code}')">{lang video_copy}</a>
+						</dd>
+					</dl>
+				</td>
+		<!--{/loop}-->
+			$videoendrows
+	<!--{else}-->
+		<tr><td colspan="5">{lang memcp_novideo}</td></tr>
+	<!--{/if}-->
+</table>

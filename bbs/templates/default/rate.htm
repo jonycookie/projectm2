@@ -1,0 +1,175 @@
+{template header}
+
+<!--{if $action == 'rate'}-->
+	<!--{if !$inajax}-->
+		<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; {lang rate}</div>
+
+		<form method="post" action="misc.php?action=rate" id="postform">
+			<input type="hidden" name="formhash" value="{FORMHASH}" />
+			<input type="hidden" name="referer" value="$referer" />
+
+			<div class="mainbox formbox">
+				<h1>{lang thread_rate}</h1>
+				<table summary="{lang thread_rate}" cellspacing="0" cellpadding="0">
+					<thead>
+						<tr>
+							<th>{lang username}</th>
+							<td>$discuz_userss [<a href="$link_logout">{lang member_logout}</a>]</td>
+						</tr>
+					</thead>
+					<tr>
+						<th>{lang author}</th>
+						<td><!--{if $post['author'] && !$post['anonymous']}--><a href="space.php?uid=$post[authorid]">$post[author]</a><!--{else}-->{lang anonymous}<!--{/if}--></td>
+					</tr>
+
+					<tr>
+						<th>{lang subject}</th>
+						<td><a href="viewthread.php?tid=$tid">$thread[subject]</a></td>
+					</tr>
+
+					<tr>
+						<th>{lang rate}</td>
+						<td>
+							<!--{loop $ratelist $id $options}-->
+							<p>
+								<select onchange="this.form.score$id.value=this.value">
+									<option value="0">{$extcredits[$id][title]}</option>
+									<option value="0">----</option>
+									$options
+								</select>
+								<input type="text" name="score$id" value="0" size="3" /> {$extcredits[$id][unit]} <em class="tips">( {lang rate_quota_today} )</em>
+							</p>
+							<!--{/loop}-->
+						</td>
+					</tr>
+
+					{template topicadmin_reason}
+
+					<tr class="btns">
+						<th>&nbsp;</th>
+						<td>
+							<input type="hidden" name="tid" value="$tid" />
+							<input type="hidden" name="pid" value="$pid" />
+							<input type="hidden" name="page" value="$page" />
+							<button type="submit" name="ratesubmit" value="true" id="postsubmit">{lang submit}</button> {lang post_submit_hotkey}
+						</td>
+					</tr>
+
+				</table>
+			</div>
+		</form>
+	<!--{else}-->
+		<div class="ajaxform">
+			<form method="post" action="misc.php?action=rate&inajax=1" id="ratepostform$pid">
+				<input type="hidden" name="formhash" value="{FORMHASH}" />
+				<input type="hidden"  name="ratesubmit" value="yes" />
+				<input type="hidden" name="referer" value="$referer" />
+
+				<table summary="{lang thread_rate}" cellspacing="0" cellpadding="0">
+
+					<thead>
+						<tr>
+							<th>{lang thread_rate}</th>
+							<td align="right"><a href="javascript:hideMenu();"><img src="{IMGDIR}/close.gif" alt="{lang close}" title="{lang close}" /></a></td>
+						</tr>
+					</thead>
+
+					<tr>
+						<th>{lang rate}</th>
+						<td>
+							<!--{loop $ratelist $id $options}-->
+							<p>
+								<select onchange="this.form.score$id.value=this.value" style="width: 8em">
+									<option value="0">{$extcredits[$id][title]}</option>
+									<option value="0">----</option>
+									$options
+								</select>
+								<input type="text" name="score$id" value="0" size="3" /> {$extcredits[$id][unit]} <em class="tips">( {lang rate_quota_today} )</em>
+							</p>
+							<!--{/loop}-->
+						</td>
+					</tr>
+
+					{template topicadmin_reason}
+
+					<tr class="btns">
+						<th>&nbsp;</th>
+						<td>
+							<input type="hidden" name="tid" value="$tid" />
+							<input type="hidden" name="pid" value="$pid" />
+							<input type="hidden" name="page" value="$page" />
+							<button class="submit" type="button" value="true" id="postsubmit" onclick="ajaxpost('ratepostform$pid', '$ajaxmenuid');return false">{lang submit}</button>
+						</td>
+					</tr>
+
+				</table>
+			</form>
+		</div>
+	<!--{/if}-->
+<!--{elseif $action == 'removerate'}-->
+	<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; {lang thread_removerate}</div>
+
+	<form method="post" action="misc.php?action=removerate" id="postform">
+		<input type="hidden" name="formhash" value="{FORMHASH}" />
+		<input type="hidden" name="referer" value="$referer" />
+
+		<div class="mainbox formbox">
+			<h1>{lang thread_removerate}</h1>
+			<table summary="{lang thread_removerate}" cellspacing="0" cellpadding="0">
+				<thead>
+					<th>{lang username}</th>
+					<td>$discuz_userss [<a href="$link_logout">{lang member_logout}</a>]</td>
+				</thead>
+
+				<tr>
+					<th>{lang author}</th>
+					<td><!--{if $post['author'] && !$post['anonymous']}--><a href="space.php?uid=$post[authorid]">$post[author]</a><!--{else}-->{lang anonymous}<!--{/if}--></td>
+				</tr>
+
+				<tr>
+					<th>{lang subject}</th>
+					<td><a href="viewthread.php?tid=$tid">$thread[subject]</a></td>
+				</tr>
+
+				{template topicadmin_reason}
+
+				<tr class="btns">
+					<th>&nbsp;</th>
+					<td>
+						<input type="hidden" name="tid" value="$tid" />
+						<input type="hidden" name="pid" value="$pid" />
+						<input type="hidden" name="page" value="$page" />
+						<button type="submit" name="ratesubmit" value="true" id="postsubmit">{lang submit}</button> {lang post_submit_hotkey}
+					</td>
+				</tr>
+			</table>
+
+		</div>
+
+	<div class="mainbox formbox">
+	<table summary="{lang thread_removerate}" cellspacing="0" cellpadding="0">
+	<thead>
+		<tr>
+			<td><input type="checkbox" name="chkall" onclick="checkall(this.form, 'logid')" />{lang delete_check}</td>
+			<td>{lang username}</td>
+			<td>{lang time}</td>
+			<td>{lang credits}</td>
+			<td>{lang reason}</td>
+		</tr>
+	</thead>
+	<!--{loop $ratelogs $ratelog}-->
+		<tr>
+			<td><input type="checkbox" name="logidarray[]" value="$ratelog[uid] $ratelog[extcredits] $ratelog[dbdateline]" /></td>
+			<td><a href="space.php?uid=$ratelog[uid]">$ratelog[username]</a></td>
+			<td>$ratelog[dateline]</td>
+			<td>{$extcredits[$ratelog[extcredits]][title]} <span class="bold">$ratelog[scoreview]</span> {$extcredits[$ratelog[extcredits]][unit]}</td>
+			<td>$ratelog[reason]</td>
+		</tr>
+	<!--{/loop}-->
+	</table>
+	</div>
+
+	</form>
+<!--{/if}-->
+
+{template footer}

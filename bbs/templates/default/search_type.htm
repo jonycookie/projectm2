@@ -1,0 +1,37 @@
+{template header}
+<div id="nav">
+<a href="$indexname">$bbname</a> &raquo; {lang search_info}
+</div>
+
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+<div class="mainbox threadlist">
+<h1>{lang search_info}</h1>
+<table cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<td>{lang subject}</td>
+<!--{loop $optionlist $var}-->
+	<td style="width: 10%">$var</td>
+<!--{/loop}-->
+<td style="width: 15%">{lang dateline}</td>
+</tr>
+</thead>
+<tbody>
+<!--{if $resultlist}-->
+	<!--{loop $resultlist $tid $value}-->
+		<tr style="height: 30px">
+			<td><a href="viewthread.php?tid=$tid" target="_blank">$value['subject']</a></td>
+			<!--{loop $value['option'] $var}-->
+				<td style="width: 10%"><!--{if $var}-->$var<!--{else}-->&nbsp;<!--{/if}--></td>
+			<!--{/loop}-->
+			<td style="width: 15%">$value['dateline']</td>
+		</tr>
+	<!--{/loop}-->
+<!--{else}-->
+	<tr><td colspan="$colspan">{lang search_nomatch}</td></tr>
+<!--{/if}-->
+</tbody>
+</table>
+</div>
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+{template footer}

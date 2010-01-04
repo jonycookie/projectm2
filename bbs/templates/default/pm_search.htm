@@ -1,0 +1,107 @@
+<form method="post" onSubmit="if(this.srchtype[0].value=='qihoo' && this.srchtype[0].checked) this.target='_blank'; else this.target=''; return true;">
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<div class="mainbox formbox">
+		<h1>{lang pm_search}</h1>
+		<ul class="tabs headertabs">
+			<li class="sendpm"><a href="pm.php?action=send">{lang pm_send}</a></li>
+			<li><a href="pm.php?folder=inbox">{lang pm_inbox}[<span id="pm_unread">$pm_inbox_newpm</span>]</a></li>
+			<li><a href="pm.php?folder=outbox">{lang pm_outbox}</a></li>
+			<li><a href="pm.php?folder=track">{lang pm_track}</a></li>
+			<li class="current"><a href="pm.php?action=search">{lang pm_search}</a></li>
+			<li><a href="pm.php?action=archive">{lang pm_archive}</a></li>
+			<li><a href="pm.php?action=ignore">{lang pm_ignore}</a></li>
+		</ul>
+		<table summary="{lang pm_search}" cellspacing="0" cellpadding="0">
+			<thead>
+				<tr>
+					<th>{lang search}</th>
+					<td>&nbsp;</td>
+				</tr>
+			</thead>
+			<tr>
+				<th><label for="srchtxt">{lang search_keywords}</label></th>
+				<td colspan="2">
+					<input type="text" id="srchtxt" name="srchtxt" size="25" maxlength="40" />
+					<div class="tips">{lang search_keywords_comment}</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<th><label for="srchname">{lang pm_search_username}</label></th>
+				<td colspan="2">
+					<input type="text" id="srchname" name="srchuname" size="25" maxlength="40" />
+					<div class="tips">{lang pm_search_username_comment}</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>&nbsp;</th>
+				<td><button type="submit" class="submit" name="searchsubmit" value="true">{lang search}</button></td>
+			</tr>
+			
+			<thead>
+				<tr>
+					<th>{lang search_option}</th>
+					<td>&nbsp;</td>
+				</tr>
+			</thead>
+			
+			<tr>
+				<th><label for="srchfolder">{lang search_range}</label></th>
+				<td>
+					<select id="srchfolder" name="srchfolder">
+						<option value="inbox">{lang pm_inbox}</option>
+						<option value="outbox">{lang pm_outbox}</option>
+						<option value="track">{lang pm_track}</option>
+					</select>
+					<label><input type="radio" name="srchtype" value="title" checked="checked" /> {lang search_title}</label>
+					<label><input type="radio" name="srchtype" value="fulltext" $ftdisabled /> {lang search_fulltext}</label>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>&nbsp;</th>
+				<td>
+					<label><input type="checkbox" name="srchread" value="1" checked="checked" /> {lang pm_search_read}</label>
+					<label><input type="checkbox" name="srchunread" value="1" checked="checked" /> {lang pm_search_unread}</label>
+				</td>
+			</tr>
+			
+			<tr>
+				<th><label for="srchfrom">{lang search_time}</label></th>
+				<td>
+					<select id="srchfrom" name="srchfrom">
+						<option value="0">{lang search_any_date}</option>
+						<option value="86400">{lang 1_days_ago}</option>
+						<option value="172800">{lang 2_days_ago}</option>
+						<option value="432000">{lang 7_days_ago}</option>
+						<option value="1296000">{lang 30_days_ago}</option>
+						<option value="5184000">{lang 90_days_ago}</option>
+						<option value="8640000">{lang 180_days_ago}</option>
+						<option value="31536000">{lang 356_days_ago}</option>
+					</select>
+					<label><input type="radio" name="before" value="" checked="checked" /> {lang search_newer}</label>
+					<label><input type="radio" name="before" value="1" /> {lang search_older}</label>
+				</td>
+			</tr>
+			
+			
+			<tr>
+				<th><label for="orderby">{lang search_orderby}</label></th>
+				<td>
+					<select id="orderby" name="orderby">
+						<option value="dateline"> {lang pm_search_orderby_dateline}</option>
+						<option value="msgfrom"> {lang pm_search_orderby_from}</option>
+					</select>
+					<label><input type="radio" name="ascdesc" value="asc" /> {lang order_asc}</label>
+					<label><input type="radio" name="ascdesc" value="desc" checked /> {lang order_desc}</label>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>&nbsp;</th>
+				<td><button type="submit" class="submit" name="searchsubmit" value="true">{lang search}</button></td>
+			</tr>
+		</table>
+	</div>
+</form>

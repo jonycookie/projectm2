@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=$charset" />
+$extrahead
+<title>{lang supe_dialog_box} - Powered By X-Space</title>
+<link href="{$supe[siteurl]}/admin/images/style.css" rel="stylesheet" type="text/css" />
+<style>
+#noticetb td.succ {
+	background: #FCFFEF url({$supe[siteurl]}/admin/images/icon_succ.gif) no-repeat 1em 3.2em;
+	padding: 1em;
+	padding-bottom: 0;
+	width: 500px;
+}
+#noticetb td.warning {
+	background: #FCFFEF url({$supe[siteurl]}/admin/images/icon_notice.gif) no-repeat 1em 3.2em;
+	padding: 1em;
+	padding-bottom: 0;
+	width: 500px;
+}
+#noticetb h1 {
+	background: none;
+	margin-top: 0;
+	margin-bottom: 1em;
+	padding-left: 0;
+	line-height: 1.2em;
+	border-bottom: 1px solid #EEE;
+}
+#noticetb p {
+	margin: 0.5em 0;
+	padding-left: 2.5em;
+	padding-bottom: 2em;
+}
+#noticetb p.links {
+	text-align: right;
+	border-top: 1px solid #EEE;
+	padding: 0.5em;
+	padding-bottom: 0;
+}
+#noticetb p.links a {
+	background: url({$supe[siteurl]}/admin/images/icon_arrow.gif) no-repeat 0 0.1em;
+	padding-left: 1em;
+	margin-left: 1em;
+}
+.succ {
+	background: #FCFFEF url({$supe[siteurl]}/admin/images/icon_succ.gif) no-repeat 1em 3.2em;
+	padding: 1em;
+	padding-bottom: 0;
+	width: 500px;
+}
+.warning {
+	background: #FCFFEF url({$supe[siteurl]}/admin/images/icon_notice.gif) no-repeat 1em 3.2em;
+	padding: 1em;
+	padding-bottom: 0;
+	width: 500px;
+}
+</style>
+</head>
+
+<body>
+
+<table id="noticetb" summary="" cellpadding="0" cellspacing="0" width="450" border="0" style="margin: 20% auto;">
+	<tr>
+		<td width="7" height="7"><img src="{$supe[siteurl]}/admin/images/y_box_01.gif" alt="" /></td>
+		<td style="background: url({$supe[siteurl]}/admin/images/y_box_02.gif) repeat-x;"><img src="{$supe[siteurl]}/admin/images/y_box_02.gif" alt="" /></td>
+		<td width="6"><img src="{$supe[siteurl]}/admin/images/y_box_03.gif" alt="" /></td>
+	</tr>
+	<tr>
+		<td style="background: url({$supe[siteurl]}/admin/images/y_box_04.gif) repeat-y;"><img src="{$supe[siteurl]}/admin/images/y_box_04.gif" alt="" /></td>
+
+		<!--{if $supe_error}-->
+			<td class="warning">
+		<!--{else}-->
+			<td class="succ">
+		<!--{/if}-->
+			<h1>{lang supe_message}</h1>
+			<p style="font-weight: bold;">
+				$show_message
+				<!--{if !$supe_error}-->
+					<br /><br /><a href="$url_forward">{lang message_forward}</a>
+				<!--{/if}-->
+			</p>
+			<p class="links"><!--{if !$supe_error}--><a href="$url_forward">{lang supe_confirm}</a><!--{else}--><a href="javascript:history.back();" class="back">{lang message_go_back}</a><!--{/if}--></p>
+		</td>
+		<td style="background: url({$supe[siteurl]}/admin/images/y_box_05.gif) repeat-y;"><img src="{$supe[siteurl]}/admin/images/y_box_05.gif" alt="" /></td>
+	</tr>
+	<tr>
+		<td height="28" style="vertical-align: top;"><img src="{$supe[siteurl]}/admin/images/y_box_06.gif" alt="" /></td>
+		<td style="background: url({$supe[siteurl]}/admin/images/y_box_07.gif) repeat-x top;"><img src="{$supe[siteurl]}/admin/images/y_box_07.gif" alt="" /></td>
+		<td style="vertical-align: top;"><img src="{$supe[siteurl]}/admin/images/y_box_08.gif" alt="" /></td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!--{if !$iscircle || !$sgid}-->{template header}<!--{else}-->{template supesite_header}<!--{/if}-->
+
+<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; <!--{if $isfirstpost}--><!--{if $thread['special'] == 1}-->{lang post_editpost_poll}<!--{elseif $thread['special'] == 3}-->{lang post_editpost_reward}<!--{elseif $thread['special'] == 5}-->{lang post_editpost_debate}<!--{else}-->{lang post_editpost}<!--{/if}--><!--{else}-->{lang post_editpost}<!--{/if}--></div>
+
+<!--{if $thread['special'] == 4 || $thread['special'] == 5}-->
+	<script type="text/javascript" src="include/javascript/calendar.js"></script>
+<!--{/if}-->
+<script type="text/javascript">
+var postminchars = parseInt('$minpostsize');
+var postmaxchars = parseInt('$maxpostsize');
+var disablepostctrl = parseInt('$disablepostctrl');
+var typerequired = parseInt('$forum[threadtypes][required]');
+var attachments = new Array();
+var bbinsert = parseInt('$bbinsert');
+var attachimgurl = new Array();
+var isfirstpost = parseInt('$isfirstpost');
+var special = parseInt('$special');
+var allowposttrade = parseInt('$allowposttrade');
+var allowpostreward = parseInt('$allowpostreward');
+var allowpostactivity = parseInt('$allowpostactivity');
+lang['board_allowed'] = '{lang board_allowed}';
+lang['lento'] = '{lang lento}';
+lang['bytes'] = '{lang bytes}';
+lang['post_curlength'] = '{lang post_curlength}';
+lang['post_subject_and_message_isnull'] = '{lang post_subject_and_message_isnull}';
+lang['post_subject_toolong'] = '{lang post_subject_toolong}';
+lang['post_message_length_invalid'] = '{lang post_message_length_invalid}';
+lang['post_type_isnull'] = '{lang post_type_isnull}';
+lang['post_reward_credits_null'] = '{lang post_reward_credits_null}';
+</script>
+
+{template post_preview}
+
+<form method="post" id="postform" action="post.php?action=edit&extra=$extra&editsubmit=yes&mod=$mod" $enctype>
+<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
+<input type="hidden" name="page" value="$page">
+
+<div class="mainbox formbox">
+	<h1><!--{if $isfirstpost}--><!--{if $thread['special'] == 1}-->{lang post_editpost_poll}<!--{elseif $thread['special'] == 3}-->{lang post_editpost_reward}<!--{elseif $thread['special'] == 5}-->{lang post_editpost_debate}<!--{else}-->{lang post_editpost}<!--{/if}--><!--{else}-->{lang post_editpost}<!--{/if}--></h1>
+	<table summary="Edit Post" cellspacing="0" cellpadding="0" id="editpost">
+
+		<!--{if $discuz_uid}-->
+		<thead>
+			<tr>
+				<th>{lang username}</th>
+				<td>$discuz_userss <em class="tips">[<a href="$link_logout">{lang member_logout}</a>]</em></td>
+			</tr>
+		</thead>
+		<!--{/if}-->
+
+<!--{if $thread['special'] == 3 && $isfirstpost}-->
+	<tr>
+	<th>{lang reward_price}<!--{if !empty($extcredits[$creditstrans][title])}-->({$extcredits[$creditstrans][title]})<!--{/if}--></th>
+	<td>
+	<!--{if $thread['price'] > 0}-->
+        <input onkeyup="getrealprice(this.value)" type="text" name="rewardprice" size="6" value="$rewardprice" tabindex="2" />
+        {lang reward_tax_add}: <span id="realprice">0</span> {$extcredits[$creditstrans][unit]} ({lang reward_low} $minrewardprice {$extcredits[$creditstrans][unit]}<!--{if $maxrewardprice > 0}--> - $maxrewardprice {$extcredits[$creditstrans][unit]}<!--{/if}--></span>)
+	<!--{elseif $thread['price'] < 0 && $forum['ismoderator']}-->
+	<input type="text" name="rewardprice" size="6" value="$rewardprice" tabindex="2" />
+	<!--{else}-->
+	<input onkeyup="getrealprice(this.value)" type="hidden" name="rewardprice" size="6" value="$rewardprice" tabindex="2" />$rewardprice {$extcredits[$creditstrans][unit]}
+	<!--{/if}-->
+	</td></tr>
+	<!--{if $thread['price'] > 0}-->
+	<script type="text/javascript">
+		$('realprice').innerHTML = 0;
+		function getrealprice(price){
+			if(!price.search(/^\d+$/) ) {
+				n = parseInt(price) + Math.ceil(parseInt(price * $creditstax)) - (parseInt($thread['price']) + Math.ceil(parseInt($thread['price'] * $creditstax)));
+				if(price > 32767) {
+					$('realprice').innerHTML = '<b>{lang reward_price_overflow}</b>';
+				} else if (price < $rewardprice) {
+					$('realprice').innerHTML = '<b>{lang reward_cant_fall}</b>';
+				}else if (price < $minrewardprice || ($maxrewardprice > 0 && price > $maxrewardprice)) {
+					$('realprice').innerHTML = '<b>{lang reward_price_bound}</b>';
+				} else {
+					$('realprice').innerHTML = n;
+				}
+			}else{
+				$('realprice').innerHTML = '<b>{lang input_invalid}</b>';
+			}
+		}
+	</script>
+	<!--{/if}-->
+<!--{/if}-->
+
+<tr>
+<th style="border-bottom: 0;">{lang subject}</th>
+<td style="border-bottom: 0;">
+<!--{if $isfirstpost}-->
+	$typeselect
+<!--{/if}-->
+<!--{if $thread['special'] == 3 && !$forum['ismoderator'] && $isfirstpost && $thread['replies'] > 0}-->
+	<input type="hidden" name="subject" id="subject" size="45" value="$postinfo[subject]" tabindex="3" />$postinfo[subject]
+<!--{else}-->
+	<input type="text" name="subject" id="subject" size="45" value="$postinfo[subject]" tabindex="3" />
+<!--{/if}-->
+
+<input type="hidden" name="origsubject" value="$postinfo[subject]" />
+<!--{if $special == 6}-->
+	<input type="hidden" name="subjectu8" value="" />
+	<input type="hidden" name="tagsu8" value="" />
+	<input type="hidden" name="vid" value="1" />
+<!--{/if}-->
+</td></tr>
+
+<!--{if $thread['special'] == 1 && $isfirstpost && ($alloweditpoll || $thread['authorid'] == $discuz_uid)}-->
+	<input type="hidden" name="polls" value="yes" />
+	<tr><th>{lang poll_days_valid}</th><td><input type="text" name="expiration" value="<!--{if !$poll[expiration]}-->0<!--{elseif $poll[expiration] < 0}-->{lang poll_close}<!--{elseif $poll[expiration] < $timestamp}-->{lang poll_finish}<!--{else}{eval print_r(round(($poll[expiration] - $timestamp) / 86400))} {/if}-->" size="6" tabindex="4" /> <em class="tips">({lang post_zero_is_nopermission})</em></td></tr>
+	<tr>
+	<th valign="top">{lang post_poll_options}<br />
+	{lang post_poll_comment} $maxpolloptions<br /><br />
+	<input type="checkbox" name="visibilitypoll" value="1" tabindex="4" {if !$poll[visible]}checked{/if} /> {lang poll_submit_after}<br />
+	<input type="checkbox" name="multiplepoll" value="1" tabindex="5" <!--{if $poll[multiple]}-->checked<!--{/if}-->  onclick="this.checked?$('maxchoicescontrol').style.display='':$('maxchoicescontrol').style.display='none';" /> {lang post_poll_allowmultiple}<br />
+	<!--{if !$poll[expiration] || $poll[expiration] > $timestamp}--><input type="checkbox" name="close" value="1" /> {lang poll_close}<br /><!--{/if}-->
+	<span id="maxchoicescontrol" <!--{if !$poll[multiple]}-->style="display: none"<!--{/if}-->>{lang poll_max_options}: <input type="text" name="maxchoices" value="$poll[maxchoices]" size="5" /><br />
+	</span></td><td>
+	{lang poll_show_order}&nbsp;<a id="addpolloptlink" href="#" onclick="addpollopt()">[{lang poll_option_add}]</a><br />
+	<!--{loop $poll['polloption'] $key $option}-->
+		<input type="hidden" name="polloptionid[{$poll[polloptionid][$key]}]" value="$poll[polloptionid][$key]">
+		<input type="text" name="displayorder[{$poll[polloptionid][$key]}]" value="$poll[displayorder][$key]" size="5" tabindex="6" style="text-align:right">&nbsp;<input type="text" name="polloption[{$poll[polloptionid][$key]}]" value="$option" tabindex="7" size="55"<!--{if !$alloweditpoll}--> readonly<!--{/if}--> /><br />
+	<!--{/loop}-->
+	<span id="addpolloptindex"></span>
+	</td></tr>
+<script type="text/javascript">
+var max = $key + 1;
+var polloptionid = $poll[polloptionid][$key] + 1;
+function addpollopt() {
+	if(max < $maxpolloptions) {
+		max++;
+		var optrow='<input type="hidden" name="polloptionid['+ polloptionid +']" value='+ polloptionid +'><input type="text" name="displayorder[]" value="" size="5" style="text-align:right">&nbsp;<input type="text" name="polloption[]" value="" size="55"><br />';
+		$('addpolloptindex').innerHTML = $('addpolloptindex').innerHTML + optrow;
+		polloptionid++;
+		if(max == $maxpolloptions) {
+			$('addpolloptlink').disabled=true;
+		}
+	}
+}
+</script>
+<!--{/if}-->
+<tbody id="threadtypes"></tbody>
+<tr>
+{template post_editor}</tr>
+
+<!--{if $isfirstpost}-->
+
+	<!--{if $tagstatus}-->
+		<tr>
+			<th><label for="tags">{lang post_tag}</label></th>
+			<td>
+				<input size="45" type="input" id="tags" name="tags" value="$threadtags" tabindex="200" />&nbsp;
+				<button onclick="relatekw();return false">{lang searchtags}</button><span id="tagselect"></span>
+				<em class="tips">{lang tag_comment}</em>
+			</td>
+		</tr>
+	<!--{/if}-->
+
+	<!--{if $thread['special'] == 5}-->
+		<tr>
+		<th>{lang debate_square_point}</th>
+		<td><textarea name="affirmpoint" rows="10" cols="20" style="width:99%; height:60px" tabindex="201" onkeydown="ctlent(event)">$debate[affirmpoint]</textarea></td>
+		</tr>
+		<tr>
+		<th>{lang debate_opponent_point}</th>
+		<td><textarea name="negapoint" rows="10" cols="20" style="width:99%; height:60px" tabindex="202" onkeydown="ctlent(event)">$debate[negapoint]</textarea></td>
+		</tr>
+		<tr>
+		<th>{lang debate_endtime}</th>
+		<td><input onclick="showcalendar(event, this, true)" type="text" name="endtime" size="45" value="$debate[endtime]" tabindex="203" /></td>
+		</tr>
+		<tr>
+		<th>{lang debate_umpire}</th>
+		<td><input type="text" name="umpire" size="45" tabindex="204" onblur="checkuserexists(this.value, 'checkuserinfo')" value="$debate[umpire]" /><span id="checkuserinfo"></span></td>
+		</tr>
+	<!--{/if}-->
+
+		<thead>
+			<tr>
+				<th>{lang post_otherinfo}</th>
+				<td>&nbsp;</td>
+			</tr>
+		</thead>
+
+	<!--{if $allowsetreadperm}-->
+		<tr>
+		<th>{lang readperm_thread}</th>
+		<td><input type="text" name="readperm" size="6" value="$thread[readperm]" tabindex="205" /> <em class="tips">({lang post_zero_is_nopermission})</em></td>
+		</tr>
+	<!--{/if}-->
+
+	<!--{if $maxprice && !$thread['special']}-->
+		<tr>
+		<th>{lang price}({$extcredits[$creditstrans][title]})</th>
+		<td>
+		<!--{if $thread['price'] == -1 || $thread['freecharge']}-->
+			<input type="text" name="price" size="6" value="$thread[pricedisplay]" tabindex="206" disabled /> <em class="tips">{$extcredits[$creditstrans][unit]} <!--{if $thread['price'] == -1}-->({lang post_price_refunded})<!--{else}-->({lang post_price_free})<!--{/if}--></em>
+		<!--{else}-->
+			<input type="text" name="price" size="6" value="$thread[pricedisplay]" tabindex="206" /> <em class="tips">{$extcredits[$creditstrans][unit]} ({lang post_price_comment}<!--{if $maxincperthread}-->{lang post_price_income_comment}<!--{/if}--><!--{if $maxchargespan}-->{lang post_price_charge_comment}<!--{/if}-->)</em>
+			{lang post_price_free_comment}
+		<!--{/if}-->	</td></tr>
+	<!--{/if}-->
+
+	<!--{if !$thread['special']}-->
+		<tr>
+		<th>{lang icon}</th><td><input type="radio" name="iconid" value="0" tabindex="207" checked /> {lang none} $icons</td>
+		</tr>
+	<!--{/if}-->
+
+<!--{/if}-->
+
+	<tr class="btns">
+		<th>&nbsp;</th>
+		<td>
+			<input type="hidden" name="wysiwyg" id="{$editorid}_mode" value="$editormode" />
+			<input type="hidden" name="fid" id="fid" value="$fid" />
+			<input type="hidden" name="tid" value="$tid" />
+			<input type="hidden" name="pid" value="$pid" />
+			<input type="hidden" name="postsubject" value="$postinfo[subject]" />
+			<button type="submit" name="editsubmit" id="postsubmit" value="true" tabindex="300"><!--{if $isfirstpost}--><!--{if $thread['special'] == 1}-->{lang post_editpost_poll}<!--{elseif $thread['special'] == 3}-->{lang post_editpost_reward}<!--{elseif $thread['special'] == 5}-->{lang post_editpost_debate}<!--{else}-->{lang post_editpost}<!--{/if}--><!--{else}-->{lang post_editpost}<!--{/if}--></button>
+			<em>{lang post_submit_hotkey}</em>&nbsp;&nbsp;
+			&nbsp;<a href="###" id="restoredata" onclick="loadData()" title="{lang post_autosave_last_restore}">{lang post_autosave_restore}</a>
+		</td>
+	</tr>
+</table>
+</div>
+
+<!--{if $postinfo['attachment'] && $attachments}-->
+{template post_editpost_attachlist}
+<!--{/if}-->
+
+</form>
+
+{template post_js}
+
+<script type="text/javascript">
+	function checkuserexists(username, objname) {
+		var x = new Ajax();
+		username = is_ie && document.charset == 'utf-8' ? encodeURIComponent(username) : username;
+		x.get('ajax.php?inajax=1&action=checkuserexists&username=' + username, function(s){
+			var obj = $(objname);
+			obj.innerHTML = s;
+		});
+	}
+	<!--{if $thread[typeid] && $isfirstpost}-->ajaxget('post.php?action=threadtypes&tid=$tid&typeid=$thread[typeid]&themeid=1', 'threadtypes', 'threadtypeswait');<!--{/if}-->
+</script>
+
+<!--{if !$iscircle || !$sgid}-->{template footer}<!--{else}-->{template supesite_footer}<!--{/if}-->

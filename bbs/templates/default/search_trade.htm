@@ -1,0 +1,53 @@
+{template header}
+<div id="nav">
+<a href="$indexname">$bbname</a> &raquo; {lang search_trade}
+</div>
+
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+<div class="mainbox threadlist">
+<h1>{lang search_trade}</h1>
+<table cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<td colspan="2">{lang my_trade_goods_name}</td>
+<td style="width: 10%"><a href="search.php?searchid=$searchid&srchtype=trade&orderby=price&searchsubmit=yes">{lang post_trade_price}</a></td>
+<td style="width: 10%">{lang post_trade_locus}</td>
+<td style="width: 10%"><a href="search.php?searchid=$searchid&srchtype=trade&orderby=expiration&searchsubmit=yes">{lang trade_remaindays}</a></td>
+</tr>
+</thead>
+<tbody>
+<!--{if $tradelist}-->
+	<!--{loop $tradelist $key $trade}-->
+		<tr height="80">
+		<td width="80" align="center">
+		<a href="viewthread.php?do=tradeinfo&tid=$trade[tid]&pid=$trade[pid]" target="_blank">
+		<!--{if $trade['aid']}-->
+			<img class="absmiddle" src="attachment.php?aid=$trade[aid]&noupdate=yes" onload="thumbImg(this)" width="80" height="80" alt="" border="0" /></a>
+		<!--{else}-->
+			<img class="absmiddle" src="{IMGDIR}/trade_nophotosmall.gif" alt="" border="0" /></a>
+		<!--{/if}-->
+		</td>
+		<td>[{$tradetypes[$trade[typeid]]}] <a href="viewthread.php?do=tradeinfo&tid=$trade[tid]&pid=$trade[pid]" target="_blank">$trade[subject]</a><br />
+		<em class="tips">{lang my_trade_seller}: <a href="space.php?$trade[sellerid]/mytrades">$trade[seller]</a></em>
+		</td>
+		<td><strong><b>$trade[price]</b></strong></td>
+		<td>$trade[locus]&nbsp;</td>
+		<td>
+		<!--{if $trade[closed]}-->
+			{lang trade_timeout}
+		<!--{elseif $trade[expiration] > 0}-->
+			{$trade[expiration]}{lang trade_day}{$trade[expirationhour]}{lang trade_hour}
+		<!--{elseif $trade[expiration] == -1}-->
+			{lang trade_timeout}
+		<!--{/if}-->&nbsp;
+		</td>
+		</tr>
+	<!--{/loop}-->
+<!--{else}-->
+	<tr><td colspan="6">{lang search_nomatch}</td></tr>
+<!--{/if}-->
+</tbody>
+</table>
+</div>
+<!--{if !empty($multipage)}--><div class="pages_btns">$multipage</div><!--{/if}-->
+{template footer}

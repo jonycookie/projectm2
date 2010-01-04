@@ -1,0 +1,34 @@
+
+<form method="post" action="my.php?item=buddylist">
+<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+<table summary="{lang my_buddylist}" cellspacing="0" cellpadding="0" width="100%">
+	<thead>
+		<tr>
+			<td class="selector">{lang delete_check}</td>
+			<td class="user">{lang username}</td>
+			<td>{lang my_buddylist_note}</td>
+			<td class="time">{lang my_buddylist_time}</td>
+		</tr>
+	</thead>
+	<tbody>
+	<!--{loop $buddylist $buddy}-->
+		<tr>
+			<td class="selector"><input class="checkbox" type="checkbox" name="delete[]" value="$buddy[buddyid]" /></td>
+			<td><a href="space.php?uid=$buddy[buddyid]" target="_blank">$buddy[username]</a></td>
+			<td><input type="text" name="descriptionnew[{$buddy[buddyid]}]" value="$buddy[description]" style="width: 90%" /></td>
+			<td>$buddy[dateline]</td>
+		</tr>
+	<!--{/loop}-->
+	</tbody><tr>
+		<td class="selector"></td>
+		<td style="width: 200px">{lang add_new} <input type="text" name="newbuddy" size="15" /></td>
+		<td style="width: 55%"><input type="text" name="newdescription" style="width: 90%" /></td>
+		<td>&nbsp;</td>
+	</tr>
+		<tr class="btns">
+		<td class="selector"></td>
+		<td colspan="3"><button class="submit" type="submit" name="buddysubmit" id="buddysubmit" value="true">{lang submit}</button></td>
+	</tr>
+</table>
+</form>

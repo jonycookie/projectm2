@@ -1,0 +1,40 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> $navigation &raquo; {lang rate_view}</div>
+
+<!--{if $thread['price'] <= 0 && $post['message'] != ''}-->
+	<div class="spaceborder" style="clear: both">
+	<table cellspacing="{INNERBORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%" align="center">
+	<tr class="header"><td colspan="2">{lang rate_view_post}</td></tr>
+	<tr class="altbg1">
+	<td rowspan="2" valign="top" width="20%"><span class="bold">
+	<!--{if $post['author'] && !$post['anonymous']}--><a href="space.php?uid=$post[authorid]">$post[author]</a><!--{else}-->{lang anonymous}<!--{/if}-->
+	</span><br /><br /></td>
+	<td class="smalltxt">$post[dateline]</td></tr>
+	<tr class="altbg1"><td>
+	<table height="100%" width="100%" border="0" cellspacing="0" cellpadding="0" style="table-layout: fixed; word-wrap: break-word">
+	<tr><td><span class="bold"><span class="smalltxt">$post[subject]</span></span><br /><br />$post[message]</td></tr></table></td></tr>
+	</table></div><br />
+<!--{/if}-->
+
+<div class="mainbox">
+	<h1>{lang rate_view}</h1>
+	<table summary="{lang rate_view}" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<td>{lang credits}</td>
+				<td class="user">{lang username}</td>
+				<td class="time">{lang time}</td>
+				<td>{lang reason}</td>
+			</tr>
+		</thead>
+		<!--{loop $loglist $log}-->
+		<tr>
+			<td>{$extcredits[$log[extcredits]][title]} <span class="bold">$log[score]</span> {$extcredits[$log[extcredits]][unit]}</td>
+			<td class="user"><a href="space.php?uid=$log[uid]">$log[username]</a></td>
+			<td class="time">$log[dateline]</td>
+			<td>$log[reason]</td>
+		</tr>
+		<!--{/loop}-->
+	</table>
+</div>
+{template footer}

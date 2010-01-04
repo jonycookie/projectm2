@@ -1,0 +1,210 @@
+{template header}
+<div id="nav"><a href="$indexname">$bbname</a> &raquo; <a href="stats.php">{lang stats}</a>
+&raquo;
+<!--{if $type == 'views'}-->
+	{lang stats_views}
+<!--{elseif $type == 'agent'}-->
+	{lang stats_agent}
+<!--{elseif $type == 'posts'}-->
+	{lang stats_posthist}
+<!--{elseif $type == 'forumsrank'}-->
+	{lang stats_forums_rank}
+<!--{elseif $type == 'threadsrank'}-->
+	{lang stats_threads_rank}
+<!--{elseif $type == 'postsrank'}-->
+	{lang stats_posts_rank}
+<!--{elseif $type == 'creditsrank'}-->
+	{lang stats_credits_rank}
+<!--{elseif $type == 'modworks'}-->
+	{lang stats_modworks}
+<!--{/if}-->
+</div>
+<div class="container">
+<div class="side">
+	{template stats_navbar}
+</div>
+<div class="content">
+<div class="mainbox">
+<!--{if $type == 'views'}-->
+	<h1>{lang stats_views}</h1>
+	<table summary="{lang stats_week}" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<td colspan="2">{lang stats_week}</td>
+			</tr>
+		</thead>
+		$statsbar_week
+		<thead>
+			<tr>
+				<td colspan="2">{lang stats_hour}</td>
+			</tr>
+		</thead>
+		$statsbar_hour
+	</table>
+
+<!--{elseif $type == 'agent'}-->
+	<h1>{lang stats_agent}</h1>
+	<table summary="{lang stats_agent}" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<td colspan="2">{lang stats_os}</td>
+			</tr>
+		</thead>
+		$statsbar_os
+		<thead>
+			<tr>
+				<td colspan="2">{lang stats_browser}</td>
+			</tr>
+		</thead>
+		$statsbar_browser
+	</table>
+
+<!--{elseif $type == 'posts'}-->
+	<h1>{lang stats_posthist}</h1>
+	<table summary="{lang stats_posthist}" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<td colspan="2">{lang stats_month_posts}</td>
+			</tr>
+		</thead>
+		$statsbar_monthposts
+		<thead>
+			<tr>
+				<td colspan="2">{lang stats_day_posts}</td>
+			</tr>
+		</thead>
+		$statsbar_dayposts
+	</table>
+
+<!--{elseif $type == 'forumsrank'}-->
+	<h1>{lang stats_forums_rank}</h1>
+	<table summary="{lang stats_forums_rank}" cellpadding="0" cellspacing="0">
+		<thead>
+			<tr>
+				<td colspan="2">{lang stats_posts} {lang stats_rank}</td>
+				<td colspan="2">{lang reply} {lang stats_rank}</td>
+				<td colspan="2">{lang stats_posts_thismonth} {lang stats_rank}</td>
+				<td colspan="2">{lang stats_posts_today} {lang stats_rank}</td>
+			</tr>
+		</thead>
+		$forumsrank
+	</table>
+
+<!--{elseif $type == 'threadsrank'}-->
+	<h1>{lang stats_threads_rank}</h1>
+	<table summary="{lang stats_threads_rank}" cellpadding="0" cellspacing="0">
+		<thead>
+			<tr>
+				<td colspan="2">{lang stats_threads_most_views}</td>
+				<td colspan="2">{lang stats_threads_most_replies}</td>
+			</tr>
+		</thead>
+		$threadsrank
+	</table>
+
+<!--{elseif $type == 'postsrank'}-->
+	<h1>{lang stats_posts_rank}</h1>
+	<table summary="{lang stats_posts_rank}" cellpadding="0" cellspacing="0">
+		<thead>
+			<tr>
+				<td colspan="2">{lang stats_posts} {lang stats_rank}</td>
+				<td colspan="2">{lang stats_digest_posts} {lang stats_rank}</td>
+				<td colspan="2">{lang stats_posts_thismonth} {lang stats_rank}</td>
+				<td colspan="2">{lang stats_posts_today} {lang stats_rank}</td>
+			</tr>
+		</thead>
+		$postsrank
+		</table>
+
+<!--{elseif $type == 'creditsrank'}-->
+	<h1>{lang stats_credits_rank}</h1>
+	<table summary="{lang stats_credits_rank}" cellpadding="0" cellspacing="0">
+		<thead>
+			<tr>
+				<td colspan="2">{lang credits} {lang stats_rank}</td>
+				<!--{loop $arrextcredits[0] $id $credit}-->
+					<td colspan="2">$credit[title] {lang stats_rank}</td>
+				<!--{/loop}-->
+			</tr>
+		</thead>
+
+	$creditsrank[0]
+	</td></table>
+	<br />
+	<!--{if !empty($arrextcredits[1])}-->
+		<table summary="{lang stats_credits_rank}" cellpadding="0" cellspacing="0">
+			<thead>
+				<tr>
+					<!--{loop $arrextcredits[1] $id $credit}-->
+						<td colspan="2">$credit[title] {lang stats_rank}</td>
+					<!--{/loop}-->
+				</tr>
+			</thead>
+
+		$creditsrank[1]
+		</td></table>
+	<!--{/if}-->
+	</div>
+
+<!--{elseif $type == 'modworks' && $uid}-->
+
+	<h1>{lang stats_modworks} - $member[username]</h1>
+	<table width="100%" cellpadding="0" cellspacing="0">
+	<thead>
+	<tr align=center><td width="8%">{lang time}</td><!--{loop $modactioncode $key $val}--><td width="$tdwidth">$val</td><!--{/loop}--></tr>
+	</thead>
+	<tbody>
+	<!--{loop $modactions $day $modaction}-->
+		<tr align="center">
+		<td><em class="tips">$day</em></td>
+		<!--{loop $modactioncode $key $val}-->
+			<!--{if $modaction[$key]['posts']}--><td title="{lang posts}: $modaction[$key][posts]">$modaction[$key][count]<!--{else}--><td>&nbsp;<!--{/if}--></td>
+		<!--{/loop}-->
+		</tr>
+	<!--{/loop}-->
+	</tbody>
+	<tr ><td colspan="$tdcols"></td></tr>
+	<tr align="center">
+	<td>{lang stats_modworks_thismonth}</td>
+	<!--{loop $modactioncode $key $val}-->
+		<td class="$bgarray[$key]" <!--{if $totalactions[$key]['posts']}-->title="{lang posts}: {$totalactions[$key][posts]}"<!--{/if}-->>$totalactions[$key][count]</td>
+	<!--{/loop}-->
+	</tr>
+	</table>
+
+
+	<table cellspacing="0" cellpadding="4" border="0" width="100%%" align="center" class="tips">
+	<tr><td align="right">{lang stats_modworks_month}: <!--{loop $monthlinks $link}--> &nbsp;{$link}&nbsp; <!--{/loop}-->
+	</td></tr></table><br />
+
+
+<!--{elseif $type == 'modworks'}-->
+
+	<h1>{lang stats_modworks} - {lang stats_modworks_all}</h1>
+	<table width="100%" cellpadding="0" cellspacing="0">
+	<thead>
+	<tr align=center><td width="8%">{lang username}</td><!--{loop $modactioncode $key $val}--><td width="$tdwidth">$val</td><!--{/loop}--></tr>
+	</thead>
+	<tbody>
+	<!--{loop $members $uid $member}-->
+		<tr align="center">
+		<td><a href="stats.php?type=modworks&before=$before&uid=$uid" title="{lang stats_modworks_details}">{$member[username]}</a></td>
+		<!--{loop $modactioncode $key $val}-->
+			<!--{if $member[$key]['posts']}--><td title="{lang posts}: {$member[$key]['posts']}"><em class="tips">{$member[$key][count]}</em><!--{else}--><td>&nbsp;<!--{/if}--></td>
+		<!--{/loop}-->
+		</tr>
+	<!--{/loop}-->
+	</tbody>
+	</table>
+
+	<table cellspacing="0" cellpadding="4" border="0" width="95%" align="center" class="tips">
+	<tr><td align="right">{lang stats_modworks_month}: <!--{loop $monthlinks $link}--> &nbsp;{$link}&nbsp; <!--{/loop}-->
+	</td></tr></table><br />
+<!--{/if}-->
+
+			</div>
+			<!--{if $type == 'forumsrank'}--><div class="notice">{lang stats_update}</div><!--{/if}-->
+		</div>
+	</div>
+
+{template footer}
