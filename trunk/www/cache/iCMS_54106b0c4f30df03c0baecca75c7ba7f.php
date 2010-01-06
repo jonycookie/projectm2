@@ -51,33 +51,33 @@ $(function(){
 	<div id="catalogs">
 	  <ul>
 	    <li><a href="<?php echo $this->_vars['site']['url']; ?>">首页</a></li>
-	    <?php $this->_run_iCMS(array('loop' => 'true', 'type' => 'top', 'module' => "catalog"));  if (isset($this->_iCMS['G4027'])) unset($this->_iCMS['G4027']);
-$this->_iCMS['G4027']['loop'] = is_array($this->_vars['catalog']) ? count($this->_vars['catalog']) : max(0, (int)$this->_vars['catalog']);
-$this->_iCMS['_G4027']=$this->_vars['catalog'];
+	    <?php $this->_run_iCMS(array('loop' => 'true', 'type' => 'top', 'module' => "catalog"));  if (isset($this->_iCMS['Gc6a5'])) unset($this->_iCMS['Gc6a5']);
+$this->_iCMS['Gc6a5']['loop'] = is_array($this->_vars['catalog']) ? count($this->_vars['catalog']) : max(0, (int)$this->_vars['catalog']);
+$this->_iCMS['_Gc6a5']=$this->_vars['catalog'];
 unset($this->_vars['catalog']);
-$this->_iCMS['G4027']['show'] = true;
-$this->_iCMS['G4027']['max'] = $this->_iCMS['G4027']['loop'];
-$this->_iCMS['G4027']['step'] = 1;
-$this->_iCMS['G4027']['start'] = $this->_iCMS['G4027']['step'] > 0 ? 0 : $this->_iCMS['G4027']['loop']-1;
-if ($this->_iCMS['G4027']['show']) {
-	$this->_iCMS['G4027']['total'] = $this->_iCMS['G4027']['loop'];
-	if ($this->_iCMS['G4027']['total'] == 0){
-		$this->_iCMS['G4027']['show'] = false;
+$this->_iCMS['Gc6a5']['show'] = true;
+$this->_iCMS['Gc6a5']['max'] = $this->_iCMS['Gc6a5']['loop'];
+$this->_iCMS['Gc6a5']['step'] = 1;
+$this->_iCMS['Gc6a5']['start'] = $this->_iCMS['Gc6a5']['step'] > 0 ? 0 : $this->_iCMS['Gc6a5']['loop']-1;
+if ($this->_iCMS['Gc6a5']['show']) {
+	$this->_iCMS['Gc6a5']['total'] = $this->_iCMS['Gc6a5']['loop'];
+	if ($this->_iCMS['Gc6a5']['total'] == 0){
+		$this->_iCMS['Gc6a5']['show'] = false;
 	}
 } else{
-	$this->_iCMS['G4027']['total'] = 0;
+	$this->_iCMS['Gc6a5']['total'] = 0;
 }
-if ($this->_iCMS['G4027']['show']){
+if ($this->_iCMS['Gc6a5']['show']){
 
-		for ($this->_iCMS['G4027']['index'] = $this->_iCMS['G4027']['start'], $this->_iCMS['G4027']['iteration'] = 1;
-			 $this->_iCMS['G4027']['iteration'] <= $this->_iCMS['G4027']['total'];
-			 $this->_iCMS['G4027']['index'] += $this->_iCMS['G4027']['step'], $this->_iCMS['G4027']['iteration']++){
-$this->_iCMS['G4027']['rownum'] = $this->_iCMS['G4027']['iteration'];
-$this->_iCMS['G4027']['index_prev'] = $this->_iCMS['G4027']['index'] - $this->_iCMS['G4027']['step'];
-$this->_iCMS['G4027']['index_next'] = $this->_iCMS['G4027']['index'] + $this->_iCMS['G4027']['step'];
-$this->_iCMS['G4027']['first']	  = ($this->_iCMS['G4027']['iteration'] == 1);
-$this->_iCMS['G4027']['last']	   = ($this->_iCMS['G4027']['iteration'] == $this->_iCMS['G4027']['total']);
-$this->_vars['catalog']= array_merge($this->_iCMS['_G4027'][$this->_iCMS['G4027']['index']],$this->_iCMS['G4027']);
+		for ($this->_iCMS['Gc6a5']['index'] = $this->_iCMS['Gc6a5']['start'], $this->_iCMS['Gc6a5']['iteration'] = 1;
+			 $this->_iCMS['Gc6a5']['iteration'] <= $this->_iCMS['Gc6a5']['total'];
+			 $this->_iCMS['Gc6a5']['index'] += $this->_iCMS['Gc6a5']['step'], $this->_iCMS['Gc6a5']['iteration']++){
+$this->_iCMS['Gc6a5']['rownum'] = $this->_iCMS['Gc6a5']['iteration'];
+$this->_iCMS['Gc6a5']['index_prev'] = $this->_iCMS['Gc6a5']['index'] - $this->_iCMS['Gc6a5']['step'];
+$this->_iCMS['Gc6a5']['index_next'] = $this->_iCMS['Gc6a5']['index'] + $this->_iCMS['Gc6a5']['step'];
+$this->_iCMS['Gc6a5']['first']	  = ($this->_iCMS['Gc6a5']['iteration'] == 1);
+$this->_iCMS['Gc6a5']['last']	   = ($this->_iCMS['Gc6a5']['iteration'] == $this->_iCMS['Gc6a5']['total']);
+$this->_vars['catalog']= array_merge($this->_iCMS['_Gc6a5'][$this->_iCMS['Gc6a5']['index']],$this->_iCMS['Gc6a5']);
 ?>
 	    <li id="catalog_<?php echo $this->_vars['catalog']['id']; ?>"><a href="<?php echo $this->_vars['catalog']['url']; ?>"><?php echo $this->_vars['catalog']['name']; ?></a></li>
 	    <?php }}?>
@@ -112,64 +112,64 @@ $this->_vars['catalog']= array_merge($this->_iCMS['_G4027'][$this->_iCMS['G4027'
 		});
 	});
   </script>
-  <div class="tag"> <?php $this->_run_iCMS(array('loop' => 'true', 'row' => '10', 'orderby' => 'hot', 'module' => "tag"));  if (isset($this->_iCMS['G42a1'])) unset($this->_iCMS['G42a1']);
-$this->_iCMS['G42a1']['loop'] = is_array($this->_vars['tag']) ? count($this->_vars['tag']) : max(0, (int)$this->_vars['tag']);
-$this->_iCMS['_G42a1']=$this->_vars['tag'];
+  <div class="tag"> <?php $this->_run_iCMS(array('loop' => 'true', 'row' => '10', 'orderby' => 'hot', 'module' => "tag"));  if (isset($this->_iCMS['Gc923'])) unset($this->_iCMS['Gc923']);
+$this->_iCMS['Gc923']['loop'] = is_array($this->_vars['tag']) ? count($this->_vars['tag']) : max(0, (int)$this->_vars['tag']);
+$this->_iCMS['_Gc923']=$this->_vars['tag'];
 unset($this->_vars['tag']);
-$this->_iCMS['G42a1']['show'] = true;
-$this->_iCMS['G42a1']['max'] = $this->_iCMS['G42a1']['loop'];
-$this->_iCMS['G42a1']['step'] = 1;
-$this->_iCMS['G42a1']['start'] = $this->_iCMS['G42a1']['step'] > 0 ? 0 : $this->_iCMS['G42a1']['loop']-1;
-if ($this->_iCMS['G42a1']['show']) {
-	$this->_iCMS['G42a1']['total'] = $this->_iCMS['G42a1']['loop'];
-	if ($this->_iCMS['G42a1']['total'] == 0){
-		$this->_iCMS['G42a1']['show'] = false;
+$this->_iCMS['Gc923']['show'] = true;
+$this->_iCMS['Gc923']['max'] = $this->_iCMS['Gc923']['loop'];
+$this->_iCMS['Gc923']['step'] = 1;
+$this->_iCMS['Gc923']['start'] = $this->_iCMS['Gc923']['step'] > 0 ? 0 : $this->_iCMS['Gc923']['loop']-1;
+if ($this->_iCMS['Gc923']['show']) {
+	$this->_iCMS['Gc923']['total'] = $this->_iCMS['Gc923']['loop'];
+	if ($this->_iCMS['Gc923']['total'] == 0){
+		$this->_iCMS['Gc923']['show'] = false;
 	}
 } else{
-	$this->_iCMS['G42a1']['total'] = 0;
+	$this->_iCMS['Gc923']['total'] = 0;
 }
-if ($this->_iCMS['G42a1']['show']){
+if ($this->_iCMS['Gc923']['show']){
 
-		for ($this->_iCMS['G42a1']['index'] = $this->_iCMS['G42a1']['start'], $this->_iCMS['G42a1']['iteration'] = 1;
-			 $this->_iCMS['G42a1']['iteration'] <= $this->_iCMS['G42a1']['total'];
-			 $this->_iCMS['G42a1']['index'] += $this->_iCMS['G42a1']['step'], $this->_iCMS['G42a1']['iteration']++){
-$this->_iCMS['G42a1']['rownum'] = $this->_iCMS['G42a1']['iteration'];
-$this->_iCMS['G42a1']['index_prev'] = $this->_iCMS['G42a1']['index'] - $this->_iCMS['G42a1']['step'];
-$this->_iCMS['G42a1']['index_next'] = $this->_iCMS['G42a1']['index'] + $this->_iCMS['G42a1']['step'];
-$this->_iCMS['G42a1']['first']	  = ($this->_iCMS['G42a1']['iteration'] == 1);
-$this->_iCMS['G42a1']['last']	   = ($this->_iCMS['G42a1']['iteration'] == $this->_iCMS['G42a1']['total']);
-$this->_vars['tag']= array_merge($this->_iCMS['_G42a1'][$this->_iCMS['G42a1']['index']],$this->_iCMS['G42a1']);
+		for ($this->_iCMS['Gc923']['index'] = $this->_iCMS['Gc923']['start'], $this->_iCMS['Gc923']['iteration'] = 1;
+			 $this->_iCMS['Gc923']['iteration'] <= $this->_iCMS['Gc923']['total'];
+			 $this->_iCMS['Gc923']['index'] += $this->_iCMS['Gc923']['step'], $this->_iCMS['Gc923']['iteration']++){
+$this->_iCMS['Gc923']['rownum'] = $this->_iCMS['Gc923']['iteration'];
+$this->_iCMS['Gc923']['index_prev'] = $this->_iCMS['Gc923']['index'] - $this->_iCMS['Gc923']['step'];
+$this->_iCMS['Gc923']['index_next'] = $this->_iCMS['Gc923']['index'] + $this->_iCMS['Gc923']['step'];
+$this->_iCMS['Gc923']['first']	  = ($this->_iCMS['Gc923']['iteration'] == 1);
+$this->_iCMS['Gc923']['last']	   = ($this->_iCMS['Gc923']['iteration'] == $this->_iCMS['Gc923']['total']);
+$this->_vars['tag']= array_merge($this->_iCMS['_Gc923'][$this->_iCMS['Gc923']['index']],$this->_iCMS['Gc923']);
 ?> <a href="<?php echo $this->_vars['tag']['url']; ?>" target="_blank"><?php echo $this->_vars['tag']['name']; ?></a> <?php }}?> </div>
 </div>
 <div id="container">
   <div class="area1">
-    <div class="cleft"> <?php $this->_run_iCMS(array('loop' => 'true', 'pic' => 'true', 'row' => "7", 'module' => "list"));  if (isset($this->_iCMS['G4452'])) unset($this->_iCMS['G4452']);
-$this->_iCMS['G4452']['loop'] = is_array($this->_vars['list']) ? count($this->_vars['list']) : max(0, (int)$this->_vars['list']);
-$this->_iCMS['_G4452']=$this->_vars['list'];
+    <div class="cleft"> <?php $this->_run_iCMS(array('loop' => 'true', 'pic' => 'true', 'row' => "7", 'module' => "list"));  if (isset($this->_iCMS['Gca90'])) unset($this->_iCMS['Gca90']);
+$this->_iCMS['Gca90']['loop'] = is_array($this->_vars['list']) ? count($this->_vars['list']) : max(0, (int)$this->_vars['list']);
+$this->_iCMS['_Gca90']=$this->_vars['list'];
 unset($this->_vars['list']);
-$this->_iCMS['G4452']['show'] = true;
-$this->_iCMS['G4452']['max'] = $this->_iCMS['G4452']['loop'];
-$this->_iCMS['G4452']['step'] = 1;
-$this->_iCMS['G4452']['start'] = $this->_iCMS['G4452']['step'] > 0 ? 0 : $this->_iCMS['G4452']['loop']-1;
-if ($this->_iCMS['G4452']['show']) {
-	$this->_iCMS['G4452']['total'] = $this->_iCMS['G4452']['loop'];
-	if ($this->_iCMS['G4452']['total'] == 0){
-		$this->_iCMS['G4452']['show'] = false;
+$this->_iCMS['Gca90']['show'] = true;
+$this->_iCMS['Gca90']['max'] = $this->_iCMS['Gca90']['loop'];
+$this->_iCMS['Gca90']['step'] = 1;
+$this->_iCMS['Gca90']['start'] = $this->_iCMS['Gca90']['step'] > 0 ? 0 : $this->_iCMS['Gca90']['loop']-1;
+if ($this->_iCMS['Gca90']['show']) {
+	$this->_iCMS['Gca90']['total'] = $this->_iCMS['Gca90']['loop'];
+	if ($this->_iCMS['Gca90']['total'] == 0){
+		$this->_iCMS['Gca90']['show'] = false;
 	}
 } else{
-	$this->_iCMS['G4452']['total'] = 0;
+	$this->_iCMS['Gca90']['total'] = 0;
 }
-if ($this->_iCMS['G4452']['show']){
+if ($this->_iCMS['Gca90']['show']){
 
-		for ($this->_iCMS['G4452']['index'] = $this->_iCMS['G4452']['start'], $this->_iCMS['G4452']['iteration'] = 1;
-			 $this->_iCMS['G4452']['iteration'] <= $this->_iCMS['G4452']['total'];
-			 $this->_iCMS['G4452']['index'] += $this->_iCMS['G4452']['step'], $this->_iCMS['G4452']['iteration']++){
-$this->_iCMS['G4452']['rownum'] = $this->_iCMS['G4452']['iteration'];
-$this->_iCMS['G4452']['index_prev'] = $this->_iCMS['G4452']['index'] - $this->_iCMS['G4452']['step'];
-$this->_iCMS['G4452']['index_next'] = $this->_iCMS['G4452']['index'] + $this->_iCMS['G4452']['step'];
-$this->_iCMS['G4452']['first']	  = ($this->_iCMS['G4452']['iteration'] == 1);
-$this->_iCMS['G4452']['last']	   = ($this->_iCMS['G4452']['iteration'] == $this->_iCMS['G4452']['total']);
-$this->_vars['list']= array_merge($this->_iCMS['_G4452'][$this->_iCMS['G4452']['index']],$this->_iCMS['G4452']);
+		for ($this->_iCMS['Gca90']['index'] = $this->_iCMS['Gca90']['start'], $this->_iCMS['Gca90']['iteration'] = 1;
+			 $this->_iCMS['Gca90']['iteration'] <= $this->_iCMS['Gca90']['total'];
+			 $this->_iCMS['Gca90']['index'] += $this->_iCMS['Gca90']['step'], $this->_iCMS['Gca90']['iteration']++){
+$this->_iCMS['Gca90']['rownum'] = $this->_iCMS['Gca90']['iteration'];
+$this->_iCMS['Gca90']['index_prev'] = $this->_iCMS['Gca90']['index'] - $this->_iCMS['Gca90']['step'];
+$this->_iCMS['Gca90']['index_next'] = $this->_iCMS['Gca90']['index'] + $this->_iCMS['Gca90']['step'];
+$this->_iCMS['Gca90']['first']	  = ($this->_iCMS['Gca90']['iteration'] == 1);
+$this->_iCMS['Gca90']['last']	   = ($this->_iCMS['Gca90']['iteration'] == $this->_iCMS['Gca90']['total']);
+$this->_vars['list']= array_merge($this->_iCMS['_Gca90'][$this->_iCMS['Gca90']['index']],$this->_iCMS['Gca90']);
 ?> <?php if ($this->_vars['list']['first']): ?>
       <div id="headline" class="btitle2 showpic" picdiv="<?php echo $this->_vars['list']['index']; ?>">
         <h1><a href="<?php echo $this->_vars['list']['url']; ?>" id="titlelink" title="<?php echo $this->_vars['list']['title']; ?>"><?php echo $this->_run_modifier($this->_vars['list']['title'], 'cut', 'plugin', 1, 20); ?></a></h1>
@@ -180,33 +180,33 @@ $this->_vars['list']= array_merge($this->_iCMS['_G4452'][$this->_iCMS['G4452']['
         </ul>
         <?php endif; ?> <?php }}?> </div>
     </div>
-    <div class="cright"> <?php $this->_run_iCMS(array('loop' => 'true', 'pic' => 'true', 'row' => "7", 'module' => "list"));  if (isset($this->_iCMS['G6937'])) unset($this->_iCMS['G6937']);
-$this->_iCMS['G6937']['loop'] = is_array($this->_vars['list']) ? count($this->_vars['list']) : max(0, (int)$this->_vars['list']);
-$this->_iCMS['_G6937']=$this->_vars['list'];
+    <div class="cright"> <?php $this->_run_iCMS(array('loop' => 'true', 'pic' => 'true', 'row' => "7", 'module' => "list"));  if (isset($this->_iCMS['Gd0ef'])) unset($this->_iCMS['Gd0ef']);
+$this->_iCMS['Gd0ef']['loop'] = is_array($this->_vars['list']) ? count($this->_vars['list']) : max(0, (int)$this->_vars['list']);
+$this->_iCMS['_Gd0ef']=$this->_vars['list'];
 unset($this->_vars['list']);
-$this->_iCMS['G6937']['show'] = true;
-$this->_iCMS['G6937']['max'] = $this->_iCMS['G6937']['loop'];
-$this->_iCMS['G6937']['step'] = 1;
-$this->_iCMS['G6937']['start'] = $this->_iCMS['G6937']['step'] > 0 ? 0 : $this->_iCMS['G6937']['loop']-1;
-if ($this->_iCMS['G6937']['show']) {
-	$this->_iCMS['G6937']['total'] = $this->_iCMS['G6937']['loop'];
-	if ($this->_iCMS['G6937']['total'] == 0){
-		$this->_iCMS['G6937']['show'] = false;
+$this->_iCMS['Gd0ef']['show'] = true;
+$this->_iCMS['Gd0ef']['max'] = $this->_iCMS['Gd0ef']['loop'];
+$this->_iCMS['Gd0ef']['step'] = 1;
+$this->_iCMS['Gd0ef']['start'] = $this->_iCMS['Gd0ef']['step'] > 0 ? 0 : $this->_iCMS['Gd0ef']['loop']-1;
+if ($this->_iCMS['Gd0ef']['show']) {
+	$this->_iCMS['Gd0ef']['total'] = $this->_iCMS['Gd0ef']['loop'];
+	if ($this->_iCMS['Gd0ef']['total'] == 0){
+		$this->_iCMS['Gd0ef']['show'] = false;
 	}
 } else{
-	$this->_iCMS['G6937']['total'] = 0;
+	$this->_iCMS['Gd0ef']['total'] = 0;
 }
-if ($this->_iCMS['G6937']['show']){
+if ($this->_iCMS['Gd0ef']['show']){
 
-		for ($this->_iCMS['G6937']['index'] = $this->_iCMS['G6937']['start'], $this->_iCMS['G6937']['iteration'] = 1;
-			 $this->_iCMS['G6937']['iteration'] <= $this->_iCMS['G6937']['total'];
-			 $this->_iCMS['G6937']['index'] += $this->_iCMS['G6937']['step'], $this->_iCMS['G6937']['iteration']++){
-$this->_iCMS['G6937']['rownum'] = $this->_iCMS['G6937']['iteration'];
-$this->_iCMS['G6937']['index_prev'] = $this->_iCMS['G6937']['index'] - $this->_iCMS['G6937']['step'];
-$this->_iCMS['G6937']['index_next'] = $this->_iCMS['G6937']['index'] + $this->_iCMS['G6937']['step'];
-$this->_iCMS['G6937']['first']	  = ($this->_iCMS['G6937']['iteration'] == 1);
-$this->_iCMS['G6937']['last']	   = ($this->_iCMS['G6937']['iteration'] == $this->_iCMS['G6937']['total']);
-$this->_vars['list']= array_merge($this->_iCMS['_G6937'][$this->_iCMS['G6937']['index']],$this->_iCMS['G6937']);
+		for ($this->_iCMS['Gd0ef']['index'] = $this->_iCMS['Gd0ef']['start'], $this->_iCMS['Gd0ef']['iteration'] = 1;
+			 $this->_iCMS['Gd0ef']['iteration'] <= $this->_iCMS['Gd0ef']['total'];
+			 $this->_iCMS['Gd0ef']['index'] += $this->_iCMS['Gd0ef']['step'], $this->_iCMS['Gd0ef']['iteration']++){
+$this->_iCMS['Gd0ef']['rownum'] = $this->_iCMS['Gd0ef']['iteration'];
+$this->_iCMS['Gd0ef']['index_prev'] = $this->_iCMS['Gd0ef']['index'] - $this->_iCMS['Gd0ef']['step'];
+$this->_iCMS['Gd0ef']['index_next'] = $this->_iCMS['Gd0ef']['index'] + $this->_iCMS['Gd0ef']['step'];
+$this->_iCMS['Gd0ef']['first']	  = ($this->_iCMS['Gd0ef']['iteration'] == 1);
+$this->_iCMS['Gd0ef']['last']	   = ($this->_iCMS['Gd0ef']['iteration'] == $this->_iCMS['Gd0ef']['total']);
+$this->_vars['list']= array_merge($this->_iCMS['_Gd0ef'][$this->_iCMS['Gd0ef']['index']],$this->_iCMS['Gd0ef']);
 ?>
       <div id="picdiv<?php echo $this->_vars['list']['index']; ?>" style="display:<?php if ($this->_vars['list']['first']): ?>block<?php else: ?>none<?php endif; ?>;">
         <div class="fpic"><a href="<?php echo $this->_vars['list']['url']; ?>"><img src="<?php echo $this->_run_modifier($this->_vars['list']['pic'], 'small', 'plugin', 1, 400, 200); ?>" width="400" height="200" border="0" alt="<?php echo $this->_vars['list']['title']; ?>" /></a></div>
@@ -217,66 +217,66 @@ $this->_vars['list']= array_merge($this->_iCMS['_G6937'][$this->_iCMS['G6937']['
   </div>
   <div class="blank9"> </div>
   <div class="area0">
-    <div class="colist"> <?php $this->_run_iCMS(array('loop' => 'true', 'type' => "top", 'row' => "4", 'module' => "catalog"));  if (isset($this->_iCMS['G6c78'])) unset($this->_iCMS['G6c78']);
-$this->_iCMS['G6c78']['loop'] = is_array($this->_vars['catalog']) ? count($this->_vars['catalog']) : max(0, (int)$this->_vars['catalog']);
-$this->_iCMS['_G6c78']=$this->_vars['catalog'];
+    <div class="colist"> <?php $this->_run_iCMS(array('loop' => 'true', 'type' => "top", 'row' => "4", 'module' => "catalog"));  if (isset($this->_iCMS['Gd43c'])) unset($this->_iCMS['Gd43c']);
+$this->_iCMS['Gd43c']['loop'] = is_array($this->_vars['catalog']) ? count($this->_vars['catalog']) : max(0, (int)$this->_vars['catalog']);
+$this->_iCMS['_Gd43c']=$this->_vars['catalog'];
 unset($this->_vars['catalog']);
-$this->_iCMS['G6c78']['show'] = true;
-$this->_iCMS['G6c78']['max'] = $this->_iCMS['G6c78']['loop'];
-$this->_iCMS['G6c78']['step'] = 1;
-$this->_iCMS['G6c78']['start'] = $this->_iCMS['G6c78']['step'] > 0 ? 0 : $this->_iCMS['G6c78']['loop']-1;
-if ($this->_iCMS['G6c78']['show']) {
-	$this->_iCMS['G6c78']['total'] = $this->_iCMS['G6c78']['loop'];
-	if ($this->_iCMS['G6c78']['total'] == 0){
-		$this->_iCMS['G6c78']['show'] = false;
+$this->_iCMS['Gd43c']['show'] = true;
+$this->_iCMS['Gd43c']['max'] = $this->_iCMS['Gd43c']['loop'];
+$this->_iCMS['Gd43c']['step'] = 1;
+$this->_iCMS['Gd43c']['start'] = $this->_iCMS['Gd43c']['step'] > 0 ? 0 : $this->_iCMS['Gd43c']['loop']-1;
+if ($this->_iCMS['Gd43c']['show']) {
+	$this->_iCMS['Gd43c']['total'] = $this->_iCMS['Gd43c']['loop'];
+	if ($this->_iCMS['Gd43c']['total'] == 0){
+		$this->_iCMS['Gd43c']['show'] = false;
 	}
 } else{
-	$this->_iCMS['G6c78']['total'] = 0;
+	$this->_iCMS['Gd43c']['total'] = 0;
 }
-if ($this->_iCMS['G6c78']['show']){
+if ($this->_iCMS['Gd43c']['show']){
 
-		for ($this->_iCMS['G6c78']['index'] = $this->_iCMS['G6c78']['start'], $this->_iCMS['G6c78']['iteration'] = 1;
-			 $this->_iCMS['G6c78']['iteration'] <= $this->_iCMS['G6c78']['total'];
-			 $this->_iCMS['G6c78']['index'] += $this->_iCMS['G6c78']['step'], $this->_iCMS['G6c78']['iteration']++){
-$this->_iCMS['G6c78']['rownum'] = $this->_iCMS['G6c78']['iteration'];
-$this->_iCMS['G6c78']['index_prev'] = $this->_iCMS['G6c78']['index'] - $this->_iCMS['G6c78']['step'];
-$this->_iCMS['G6c78']['index_next'] = $this->_iCMS['G6c78']['index'] + $this->_iCMS['G6c78']['step'];
-$this->_iCMS['G6c78']['first']	  = ($this->_iCMS['G6c78']['iteration'] == 1);
-$this->_iCMS['G6c78']['last']	   = ($this->_iCMS['G6c78']['iteration'] == $this->_iCMS['G6c78']['total']);
-$this->_vars['catalog']= array_merge($this->_iCMS['_G6c78'][$this->_iCMS['G6c78']['index']],$this->_iCMS['G6c78']);
+		for ($this->_iCMS['Gd43c']['index'] = $this->_iCMS['Gd43c']['start'], $this->_iCMS['Gd43c']['iteration'] = 1;
+			 $this->_iCMS['Gd43c']['iteration'] <= $this->_iCMS['Gd43c']['total'];
+			 $this->_iCMS['Gd43c']['index'] += $this->_iCMS['Gd43c']['step'], $this->_iCMS['Gd43c']['iteration']++){
+$this->_iCMS['Gd43c']['rownum'] = $this->_iCMS['Gd43c']['iteration'];
+$this->_iCMS['Gd43c']['index_prev'] = $this->_iCMS['Gd43c']['index'] - $this->_iCMS['Gd43c']['step'];
+$this->_iCMS['Gd43c']['index_next'] = $this->_iCMS['Gd43c']['index'] + $this->_iCMS['Gd43c']['step'];
+$this->_iCMS['Gd43c']['first']	  = ($this->_iCMS['Gd43c']['iteration'] == 1);
+$this->_iCMS['Gd43c']['last']	   = ($this->_iCMS['Gd43c']['iteration'] == $this->_iCMS['Gd43c']['total']);
+$this->_vars['catalog']= array_merge($this->_iCMS['_Gd43c'][$this->_iCMS['Gd43c']['index']],$this->_iCMS['Gd43c']);
 ?>
       <div class="<?php echo tpl_function_cycle(array('values' => "col1,col2"), $this);?>">
         <div class="title">
           <h3><span><?php echo $this->_vars['catalog']['name']; ?></span></h3>
         </div>
         <ul class="newsList">
-          <?php $this->_run_iCMS(array('loop' => 'true', 'sub' => "all", 'row' => "10", 'sortid' => $this->_vars['catalog']['id'], 'module' => "list"));  if (isset($this->_iCMS['Gb036'])) unset($this->_iCMS['Gb036']);
-$this->_iCMS['Gb036']['loop'] = is_array($this->_vars['list']) ? count($this->_vars['list']) : max(0, (int)$this->_vars['list']);
-$this->_iCMS['_Gb036']=$this->_vars['list'];
+          <?php $this->_run_iCMS(array('loop' => 'true', 'sub' => "all", 'row' => "10", 'sortid' => $this->_vars['catalog']['id'], 'module' => "list"));  if (isset($this->_iCMS['Gdb41'])) unset($this->_iCMS['Gdb41']);
+$this->_iCMS['Gdb41']['loop'] = is_array($this->_vars['list']) ? count($this->_vars['list']) : max(0, (int)$this->_vars['list']);
+$this->_iCMS['_Gdb41']=$this->_vars['list'];
 unset($this->_vars['list']);
-$this->_iCMS['Gb036']['show'] = true;
-$this->_iCMS['Gb036']['max'] = $this->_iCMS['Gb036']['loop'];
-$this->_iCMS['Gb036']['step'] = 1;
-$this->_iCMS['Gb036']['start'] = $this->_iCMS['Gb036']['step'] > 0 ? 0 : $this->_iCMS['Gb036']['loop']-1;
-if ($this->_iCMS['Gb036']['show']) {
-	$this->_iCMS['Gb036']['total'] = $this->_iCMS['Gb036']['loop'];
-	if ($this->_iCMS['Gb036']['total'] == 0){
-		$this->_iCMS['Gb036']['show'] = false;
+$this->_iCMS['Gdb41']['show'] = true;
+$this->_iCMS['Gdb41']['max'] = $this->_iCMS['Gdb41']['loop'];
+$this->_iCMS['Gdb41']['step'] = 1;
+$this->_iCMS['Gdb41']['start'] = $this->_iCMS['Gdb41']['step'] > 0 ? 0 : $this->_iCMS['Gdb41']['loop']-1;
+if ($this->_iCMS['Gdb41']['show']) {
+	$this->_iCMS['Gdb41']['total'] = $this->_iCMS['Gdb41']['loop'];
+	if ($this->_iCMS['Gdb41']['total'] == 0){
+		$this->_iCMS['Gdb41']['show'] = false;
 	}
 } else{
-	$this->_iCMS['Gb036']['total'] = 0;
+	$this->_iCMS['Gdb41']['total'] = 0;
 }
-if ($this->_iCMS['Gb036']['show']){
+if ($this->_iCMS['Gdb41']['show']){
 
-		for ($this->_iCMS['Gb036']['index'] = $this->_iCMS['Gb036']['start'], $this->_iCMS['Gb036']['iteration'] = 1;
-			 $this->_iCMS['Gb036']['iteration'] <= $this->_iCMS['Gb036']['total'];
-			 $this->_iCMS['Gb036']['index'] += $this->_iCMS['Gb036']['step'], $this->_iCMS['Gb036']['iteration']++){
-$this->_iCMS['Gb036']['rownum'] = $this->_iCMS['Gb036']['iteration'];
-$this->_iCMS['Gb036']['index_prev'] = $this->_iCMS['Gb036']['index'] - $this->_iCMS['Gb036']['step'];
-$this->_iCMS['Gb036']['index_next'] = $this->_iCMS['Gb036']['index'] + $this->_iCMS['Gb036']['step'];
-$this->_iCMS['Gb036']['first']	  = ($this->_iCMS['Gb036']['iteration'] == 1);
-$this->_iCMS['Gb036']['last']	   = ($this->_iCMS['Gb036']['iteration'] == $this->_iCMS['Gb036']['total']);
-$this->_vars['list']= array_merge($this->_iCMS['_Gb036'][$this->_iCMS['Gb036']['index']],$this->_iCMS['Gb036']);
+		for ($this->_iCMS['Gdb41']['index'] = $this->_iCMS['Gdb41']['start'], $this->_iCMS['Gdb41']['iteration'] = 1;
+			 $this->_iCMS['Gdb41']['iteration'] <= $this->_iCMS['Gdb41']['total'];
+			 $this->_iCMS['Gdb41']['index'] += $this->_iCMS['Gdb41']['step'], $this->_iCMS['Gdb41']['iteration']++){
+$this->_iCMS['Gdb41']['rownum'] = $this->_iCMS['Gdb41']['iteration'];
+$this->_iCMS['Gdb41']['index_prev'] = $this->_iCMS['Gdb41']['index'] - $this->_iCMS['Gdb41']['step'];
+$this->_iCMS['Gdb41']['index_next'] = $this->_iCMS['Gdb41']['index'] + $this->_iCMS['Gdb41']['step'];
+$this->_iCMS['Gdb41']['first']	  = ($this->_iCMS['Gdb41']['iteration'] == 1);
+$this->_iCMS['Gdb41']['last']	   = ($this->_iCMS['Gdb41']['iteration'] == $this->_iCMS['Gdb41']['total']);
+$this->_vars['list']= array_merge($this->_iCMS['_Gdb41'][$this->_iCMS['Gdb41']['index']],$this->_iCMS['Gdb41']);
 ?>
           <li><span class="date"><?php echo $this->_run_modifier($this->_vars['list']['pubdate'], 'date', 'plugin', 1, "m-d"); ?></span><a href="<?php echo $this->_vars['list']['url']; ?>" title="<?php echo $this->_vars['list']['title']; ?>"><?php echo $this->_run_modifier($this->_vars['list']['title'], 'cut', 'plugin', 1, 16); ?></a></li>
           <?php }}?>
@@ -293,33 +293,33 @@ $this->_vars['list']= array_merge($this->_iCMS['_Gb036'][$this->_iCMS['Gb036']['
         </ul>
       </div>
       <dl id="diglist">
-        <dd> <?php $this->_run_iCMS(array('loop' => 'true', 'row' => "7", 'module' => "list"));  if (isset($this->_iCMS['Gb44e'])) unset($this->_iCMS['Gb44e']);
-$this->_iCMS['Gb44e']['loop'] = is_array($this->_vars['list']) ? count($this->_vars['list']) : max(0, (int)$this->_vars['list']);
-$this->_iCMS['_Gb44e']=$this->_vars['list'];
+        <dd> <?php $this->_run_iCMS(array('loop' => 'true', 'row' => "7", 'module' => "list"));  if (isset($this->_iCMS['Gdebb'])) unset($this->_iCMS['Gdebb']);
+$this->_iCMS['Gdebb']['loop'] = is_array($this->_vars['list']) ? count($this->_vars['list']) : max(0, (int)$this->_vars['list']);
+$this->_iCMS['_Gdebb']=$this->_vars['list'];
 unset($this->_vars['list']);
-$this->_iCMS['Gb44e']['show'] = true;
-$this->_iCMS['Gb44e']['max'] = $this->_iCMS['Gb44e']['loop'];
-$this->_iCMS['Gb44e']['step'] = 1;
-$this->_iCMS['Gb44e']['start'] = $this->_iCMS['Gb44e']['step'] > 0 ? 0 : $this->_iCMS['Gb44e']['loop']-1;
-if ($this->_iCMS['Gb44e']['show']) {
-	$this->_iCMS['Gb44e']['total'] = $this->_iCMS['Gb44e']['loop'];
-	if ($this->_iCMS['Gb44e']['total'] == 0){
-		$this->_iCMS['Gb44e']['show'] = false;
+$this->_iCMS['Gdebb']['show'] = true;
+$this->_iCMS['Gdebb']['max'] = $this->_iCMS['Gdebb']['loop'];
+$this->_iCMS['Gdebb']['step'] = 1;
+$this->_iCMS['Gdebb']['start'] = $this->_iCMS['Gdebb']['step'] > 0 ? 0 : $this->_iCMS['Gdebb']['loop']-1;
+if ($this->_iCMS['Gdebb']['show']) {
+	$this->_iCMS['Gdebb']['total'] = $this->_iCMS['Gdebb']['loop'];
+	if ($this->_iCMS['Gdebb']['total'] == 0){
+		$this->_iCMS['Gdebb']['show'] = false;
 	}
 } else{
-	$this->_iCMS['Gb44e']['total'] = 0;
+	$this->_iCMS['Gdebb']['total'] = 0;
 }
-if ($this->_iCMS['Gb44e']['show']){
+if ($this->_iCMS['Gdebb']['show']){
 
-		for ($this->_iCMS['Gb44e']['index'] = $this->_iCMS['Gb44e']['start'], $this->_iCMS['Gb44e']['iteration'] = 1;
-			 $this->_iCMS['Gb44e']['iteration'] <= $this->_iCMS['Gb44e']['total'];
-			 $this->_iCMS['Gb44e']['index'] += $this->_iCMS['Gb44e']['step'], $this->_iCMS['Gb44e']['iteration']++){
-$this->_iCMS['Gb44e']['rownum'] = $this->_iCMS['Gb44e']['iteration'];
-$this->_iCMS['Gb44e']['index_prev'] = $this->_iCMS['Gb44e']['index'] - $this->_iCMS['Gb44e']['step'];
-$this->_iCMS['Gb44e']['index_next'] = $this->_iCMS['Gb44e']['index'] + $this->_iCMS['Gb44e']['step'];
-$this->_iCMS['Gb44e']['first']	  = ($this->_iCMS['Gb44e']['iteration'] == 1);
-$this->_iCMS['Gb44e']['last']	   = ($this->_iCMS['Gb44e']['iteration'] == $this->_iCMS['Gb44e']['total']);
-$this->_vars['list']= array_merge($this->_iCMS['_Gb44e'][$this->_iCMS['Gb44e']['index']],$this->_iCMS['Gb44e']);
+		for ($this->_iCMS['Gdebb']['index'] = $this->_iCMS['Gdebb']['start'], $this->_iCMS['Gdebb']['iteration'] = 1;
+			 $this->_iCMS['Gdebb']['iteration'] <= $this->_iCMS['Gdebb']['total'];
+			 $this->_iCMS['Gdebb']['index'] += $this->_iCMS['Gdebb']['step'], $this->_iCMS['Gdebb']['iteration']++){
+$this->_iCMS['Gdebb']['rownum'] = $this->_iCMS['Gdebb']['iteration'];
+$this->_iCMS['Gdebb']['index_prev'] = $this->_iCMS['Gdebb']['index'] - $this->_iCMS['Gdebb']['step'];
+$this->_iCMS['Gdebb']['index_next'] = $this->_iCMS['Gdebb']['index'] + $this->_iCMS['Gdebb']['step'];
+$this->_iCMS['Gdebb']['first']	  = ($this->_iCMS['Gdebb']['iteration'] == 1);
+$this->_iCMS['Gdebb']['last']	   = ($this->_iCMS['Gdebb']['iteration'] == $this->_iCMS['Gdebb']['total']);
+$this->_vars['list']= array_merge($this->_iCMS['_Gdebb'][$this->_iCMS['Gdebb']['index']],$this->_iCMS['Gdebb']);
 ?>
           <div class="digbox" id="digboxa">
             <div class="diglink"><span id='digg_<?php echo $this->_vars['list']['id']; ?>'><?php echo $this->_vars['list']['digg']; ?></span> <a class="digvisited" href="javascript:digg('digg',<?php echo $this->_vars['list']['id']; ?>);"><!--顶一下--></a></div>
@@ -337,33 +337,33 @@ $this->_vars['list']= array_merge($this->_iCMS['_Gb44e'][$this->_iCMS['Gb44e']['
     </div>
     <div class="pic">
       <ul class="picList">
-        <?php $this->_run_iCMS(array('loop' => 'true', 'pic' => 'true', 'sub' => "all", 'row' => '7', 'orderby' => "pubdate", 'module' => "list"));  if (isset($this->_iCMS['Gb79b'])) unset($this->_iCMS['Gb79b']);
-$this->_iCMS['Gb79b']['loop'] = is_array($this->_vars['list']) ? count($this->_vars['list']) : max(0, (int)$this->_vars['list']);
-$this->_iCMS['_Gb79b']=$this->_vars['list'];
+        <?php $this->_run_iCMS(array('loop' => 'true', 'pic' => 'true', 'sub' => "all", 'row' => '7', 'orderby' => "pubdate", 'module' => "list"));  if (isset($this->_iCMS['Ge21f'])) unset($this->_iCMS['Ge21f']);
+$this->_iCMS['Ge21f']['loop'] = is_array($this->_vars['list']) ? count($this->_vars['list']) : max(0, (int)$this->_vars['list']);
+$this->_iCMS['_Ge21f']=$this->_vars['list'];
 unset($this->_vars['list']);
-$this->_iCMS['Gb79b']['show'] = true;
-$this->_iCMS['Gb79b']['max'] = $this->_iCMS['Gb79b']['loop'];
-$this->_iCMS['Gb79b']['step'] = 1;
-$this->_iCMS['Gb79b']['start'] = $this->_iCMS['Gb79b']['step'] > 0 ? 0 : $this->_iCMS['Gb79b']['loop']-1;
-if ($this->_iCMS['Gb79b']['show']) {
-	$this->_iCMS['Gb79b']['total'] = $this->_iCMS['Gb79b']['loop'];
-	if ($this->_iCMS['Gb79b']['total'] == 0){
-		$this->_iCMS['Gb79b']['show'] = false;
+$this->_iCMS['Ge21f']['show'] = true;
+$this->_iCMS['Ge21f']['max'] = $this->_iCMS['Ge21f']['loop'];
+$this->_iCMS['Ge21f']['step'] = 1;
+$this->_iCMS['Ge21f']['start'] = $this->_iCMS['Ge21f']['step'] > 0 ? 0 : $this->_iCMS['Ge21f']['loop']-1;
+if ($this->_iCMS['Ge21f']['show']) {
+	$this->_iCMS['Ge21f']['total'] = $this->_iCMS['Ge21f']['loop'];
+	if ($this->_iCMS['Ge21f']['total'] == 0){
+		$this->_iCMS['Ge21f']['show'] = false;
 	}
 } else{
-	$this->_iCMS['Gb79b']['total'] = 0;
+	$this->_iCMS['Ge21f']['total'] = 0;
 }
-if ($this->_iCMS['Gb79b']['show']){
+if ($this->_iCMS['Ge21f']['show']){
 
-		for ($this->_iCMS['Gb79b']['index'] = $this->_iCMS['Gb79b']['start'], $this->_iCMS['Gb79b']['iteration'] = 1;
-			 $this->_iCMS['Gb79b']['iteration'] <= $this->_iCMS['Gb79b']['total'];
-			 $this->_iCMS['Gb79b']['index'] += $this->_iCMS['Gb79b']['step'], $this->_iCMS['Gb79b']['iteration']++){
-$this->_iCMS['Gb79b']['rownum'] = $this->_iCMS['Gb79b']['iteration'];
-$this->_iCMS['Gb79b']['index_prev'] = $this->_iCMS['Gb79b']['index'] - $this->_iCMS['Gb79b']['step'];
-$this->_iCMS['Gb79b']['index_next'] = $this->_iCMS['Gb79b']['index'] + $this->_iCMS['Gb79b']['step'];
-$this->_iCMS['Gb79b']['first']	  = ($this->_iCMS['Gb79b']['iteration'] == 1);
-$this->_iCMS['Gb79b']['last']	   = ($this->_iCMS['Gb79b']['iteration'] == $this->_iCMS['Gb79b']['total']);
-$this->_vars['list']= array_merge($this->_iCMS['_Gb79b'][$this->_iCMS['Gb79b']['index']],$this->_iCMS['Gb79b']);
+		for ($this->_iCMS['Ge21f']['index'] = $this->_iCMS['Ge21f']['start'], $this->_iCMS['Ge21f']['iteration'] = 1;
+			 $this->_iCMS['Ge21f']['iteration'] <= $this->_iCMS['Ge21f']['total'];
+			 $this->_iCMS['Ge21f']['index'] += $this->_iCMS['Ge21f']['step'], $this->_iCMS['Ge21f']['iteration']++){
+$this->_iCMS['Ge21f']['rownum'] = $this->_iCMS['Ge21f']['iteration'];
+$this->_iCMS['Ge21f']['index_prev'] = $this->_iCMS['Ge21f']['index'] - $this->_iCMS['Ge21f']['step'];
+$this->_iCMS['Ge21f']['index_next'] = $this->_iCMS['Ge21f']['index'] + $this->_iCMS['Ge21f']['step'];
+$this->_iCMS['Ge21f']['first']	  = ($this->_iCMS['Ge21f']['iteration'] == 1);
+$this->_iCMS['Ge21f']['last']	   = ($this->_iCMS['Ge21f']['iteration'] == $this->_iCMS['Ge21f']['total']);
+$this->_vars['list']= array_merge($this->_iCMS['_Ge21f'][$this->_iCMS['Ge21f']['index']],$this->_iCMS['Ge21f']);
 ?>
         <li><a href="<?php echo $this->_vars['list']['url']; ?>"><img src="<?php echo $this->_run_modifier($this->_vars['list']['pic'], 'small', 'plugin', 1, 110, 110); ?>" width="110" height="110" border="0" alt="<?php echo $this->_vars['list']['title']; ?>" /></a>
           <p><a href="<?php echo $this->_vars['list']['url']; ?>" title="<?php echo $this->_vars['list']['title']; ?>"><?php echo $this->_run_modifier($this->_vars['list']['title'], 'cut', 'plugin', 1, 10); ?></a></p>
@@ -373,65 +373,65 @@ $this->_vars['list']= array_merge($this->_iCMS['_Gb79b'][$this->_iCMS['Gb79b']['
     </div>
   </div>
   <div class="blank9"> </div>
-  <div class="area2"> <?php $this->_run_iCMS(array('loop' => 'true', 'type' => "top", 'attr' => "list", 'module' => "catalog"));  if (isset($this->_iCMS['Gba0d'])) unset($this->_iCMS['Gba0d']);
-$this->_iCMS['Gba0d']['loop'] = is_array($this->_vars['catalog']) ? count($this->_vars['catalog']) : max(0, (int)$this->_vars['catalog']);
-$this->_iCMS['_Gba0d']=$this->_vars['catalog'];
+  <div class="area2"> <?php $this->_run_iCMS(array('loop' => 'true', 'type' => "top", 'attr' => "list", 'module' => "catalog"));  if (isset($this->_iCMS['Ge491'])) unset($this->_iCMS['Ge491']);
+$this->_iCMS['Ge491']['loop'] = is_array($this->_vars['catalog']) ? count($this->_vars['catalog']) : max(0, (int)$this->_vars['catalog']);
+$this->_iCMS['_Ge491']=$this->_vars['catalog'];
 unset($this->_vars['catalog']);
-$this->_iCMS['Gba0d']['show'] = true;
-$this->_iCMS['Gba0d']['max'] = $this->_iCMS['Gba0d']['loop'];
-$this->_iCMS['Gba0d']['step'] = 1;
-$this->_iCMS['Gba0d']['start'] = $this->_iCMS['Gba0d']['step'] > 0 ? 0 : $this->_iCMS['Gba0d']['loop']-1;
-if ($this->_iCMS['Gba0d']['show']) {
-	$this->_iCMS['Gba0d']['total'] = $this->_iCMS['Gba0d']['loop'];
-	if ($this->_iCMS['Gba0d']['total'] == 0){
-		$this->_iCMS['Gba0d']['show'] = false;
+$this->_iCMS['Ge491']['show'] = true;
+$this->_iCMS['Ge491']['max'] = $this->_iCMS['Ge491']['loop'];
+$this->_iCMS['Ge491']['step'] = 1;
+$this->_iCMS['Ge491']['start'] = $this->_iCMS['Ge491']['step'] > 0 ? 0 : $this->_iCMS['Ge491']['loop']-1;
+if ($this->_iCMS['Ge491']['show']) {
+	$this->_iCMS['Ge491']['total'] = $this->_iCMS['Ge491']['loop'];
+	if ($this->_iCMS['Ge491']['total'] == 0){
+		$this->_iCMS['Ge491']['show'] = false;
 	}
 } else{
-	$this->_iCMS['Gba0d']['total'] = 0;
+	$this->_iCMS['Ge491']['total'] = 0;
 }
-if ($this->_iCMS['Gba0d']['show']){
+if ($this->_iCMS['Ge491']['show']){
 
-		for ($this->_iCMS['Gba0d']['index'] = $this->_iCMS['Gba0d']['start'], $this->_iCMS['Gba0d']['iteration'] = 1;
-			 $this->_iCMS['Gba0d']['iteration'] <= $this->_iCMS['Gba0d']['total'];
-			 $this->_iCMS['Gba0d']['index'] += $this->_iCMS['Gba0d']['step'], $this->_iCMS['Gba0d']['iteration']++){
-$this->_iCMS['Gba0d']['rownum'] = $this->_iCMS['Gba0d']['iteration'];
-$this->_iCMS['Gba0d']['index_prev'] = $this->_iCMS['Gba0d']['index'] - $this->_iCMS['Gba0d']['step'];
-$this->_iCMS['Gba0d']['index_next'] = $this->_iCMS['Gba0d']['index'] + $this->_iCMS['Gba0d']['step'];
-$this->_iCMS['Gba0d']['first']	  = ($this->_iCMS['Gba0d']['iteration'] == 1);
-$this->_iCMS['Gba0d']['last']	   = ($this->_iCMS['Gba0d']['iteration'] == $this->_iCMS['Gba0d']['total']);
-$this->_vars['catalog']= array_merge($this->_iCMS['_Gba0d'][$this->_iCMS['Gba0d']['index']],$this->_iCMS['Gba0d']);
+		for ($this->_iCMS['Ge491']['index'] = $this->_iCMS['Ge491']['start'], $this->_iCMS['Ge491']['iteration'] = 1;
+			 $this->_iCMS['Ge491']['iteration'] <= $this->_iCMS['Ge491']['total'];
+			 $this->_iCMS['Ge491']['index'] += $this->_iCMS['Ge491']['step'], $this->_iCMS['Ge491']['iteration']++){
+$this->_iCMS['Ge491']['rownum'] = $this->_iCMS['Ge491']['iteration'];
+$this->_iCMS['Ge491']['index_prev'] = $this->_iCMS['Ge491']['index'] - $this->_iCMS['Ge491']['step'];
+$this->_iCMS['Ge491']['index_next'] = $this->_iCMS['Ge491']['index'] + $this->_iCMS['Ge491']['step'];
+$this->_iCMS['Ge491']['first']	  = ($this->_iCMS['Ge491']['iteration'] == 1);
+$this->_iCMS['Ge491']['last']	   = ($this->_iCMS['Ge491']['iteration'] == $this->_iCMS['Ge491']['total']);
+$this->_vars['catalog']= array_merge($this->_iCMS['_Ge491'][$this->_iCMS['Ge491']['index']],$this->_iCMS['Ge491']);
 ?>
     <div class="<?php echo tpl_function_cycle(array('values' => "col1,col2"), $this);?>">
       <div class="title">
         <h3><span><?php echo $this->_vars['catalog']['name']; ?></span></h3>
       </div>
-      <div class="newsA"> <?php $this->_run_iCMS(array('loop' => 'true', 'sub' => "all", 'row' => "13", 'sortid' => $this->_vars['catalog']['id'], 'module' => "list"));  if (isset($this->_iCMS['Gbf22'])) unset($this->_iCMS['Gbf22']);
-$this->_iCMS['Gbf22']['loop'] = is_array($this->_vars['list']) ? count($this->_vars['list']) : max(0, (int)$this->_vars['list']);
-$this->_iCMS['_Gbf22']=$this->_vars['list'];
+      <div class="newsA"> <?php $this->_run_iCMS(array('loop' => 'true', 'sub' => "all", 'row' => "13", 'sortid' => $this->_vars['catalog']['id'], 'module' => "list"));  if (isset($this->_iCMS['Ge8b8'])) unset($this->_iCMS['Ge8b8']);
+$this->_iCMS['Ge8b8']['loop'] = is_array($this->_vars['list']) ? count($this->_vars['list']) : max(0, (int)$this->_vars['list']);
+$this->_iCMS['_Ge8b8']=$this->_vars['list'];
 unset($this->_vars['list']);
-$this->_iCMS['Gbf22']['show'] = true;
-$this->_iCMS['Gbf22']['max'] = $this->_iCMS['Gbf22']['loop'];
-$this->_iCMS['Gbf22']['step'] = 1;
-$this->_iCMS['Gbf22']['start'] = $this->_iCMS['Gbf22']['step'] > 0 ? 0 : $this->_iCMS['Gbf22']['loop']-1;
-if ($this->_iCMS['Gbf22']['show']) {
-	$this->_iCMS['Gbf22']['total'] = $this->_iCMS['Gbf22']['loop'];
-	if ($this->_iCMS['Gbf22']['total'] == 0){
-		$this->_iCMS['Gbf22']['show'] = false;
+$this->_iCMS['Ge8b8']['show'] = true;
+$this->_iCMS['Ge8b8']['max'] = $this->_iCMS['Ge8b8']['loop'];
+$this->_iCMS['Ge8b8']['step'] = 1;
+$this->_iCMS['Ge8b8']['start'] = $this->_iCMS['Ge8b8']['step'] > 0 ? 0 : $this->_iCMS['Ge8b8']['loop']-1;
+if ($this->_iCMS['Ge8b8']['show']) {
+	$this->_iCMS['Ge8b8']['total'] = $this->_iCMS['Ge8b8']['loop'];
+	if ($this->_iCMS['Ge8b8']['total'] == 0){
+		$this->_iCMS['Ge8b8']['show'] = false;
 	}
 } else{
-	$this->_iCMS['Gbf22']['total'] = 0;
+	$this->_iCMS['Ge8b8']['total'] = 0;
 }
-if ($this->_iCMS['Gbf22']['show']){
+if ($this->_iCMS['Ge8b8']['show']){
 
-		for ($this->_iCMS['Gbf22']['index'] = $this->_iCMS['Gbf22']['start'], $this->_iCMS['Gbf22']['iteration'] = 1;
-			 $this->_iCMS['Gbf22']['iteration'] <= $this->_iCMS['Gbf22']['total'];
-			 $this->_iCMS['Gbf22']['index'] += $this->_iCMS['Gbf22']['step'], $this->_iCMS['Gbf22']['iteration']++){
-$this->_iCMS['Gbf22']['rownum'] = $this->_iCMS['Gbf22']['iteration'];
-$this->_iCMS['Gbf22']['index_prev'] = $this->_iCMS['Gbf22']['index'] - $this->_iCMS['Gbf22']['step'];
-$this->_iCMS['Gbf22']['index_next'] = $this->_iCMS['Gbf22']['index'] + $this->_iCMS['Gbf22']['step'];
-$this->_iCMS['Gbf22']['first']	  = ($this->_iCMS['Gbf22']['iteration'] == 1);
-$this->_iCMS['Gbf22']['last']	   = ($this->_iCMS['Gbf22']['iteration'] == $this->_iCMS['Gbf22']['total']);
-$this->_vars['list']= array_merge($this->_iCMS['_Gbf22'][$this->_iCMS['Gbf22']['index']],$this->_iCMS['Gbf22']);
+		for ($this->_iCMS['Ge8b8']['index'] = $this->_iCMS['Ge8b8']['start'], $this->_iCMS['Ge8b8']['iteration'] = 1;
+			 $this->_iCMS['Ge8b8']['iteration'] <= $this->_iCMS['Ge8b8']['total'];
+			 $this->_iCMS['Ge8b8']['index'] += $this->_iCMS['Ge8b8']['step'], $this->_iCMS['Ge8b8']['iteration']++){
+$this->_iCMS['Ge8b8']['rownum'] = $this->_iCMS['Ge8b8']['iteration'];
+$this->_iCMS['Ge8b8']['index_prev'] = $this->_iCMS['Ge8b8']['index'] - $this->_iCMS['Ge8b8']['step'];
+$this->_iCMS['Ge8b8']['index_next'] = $this->_iCMS['Ge8b8']['index'] + $this->_iCMS['Ge8b8']['step'];
+$this->_iCMS['Ge8b8']['first']	  = ($this->_iCMS['Ge8b8']['iteration'] == 1);
+$this->_iCMS['Ge8b8']['last']	   = ($this->_iCMS['Ge8b8']['iteration'] == $this->_iCMS['Ge8b8']['total']);
+$this->_vars['list']= array_merge($this->_iCMS['_Ge8b8'][$this->_iCMS['Ge8b8']['index']],$this->_iCMS['Ge8b8']);
 ?> <?php if ($this->_vars['list']['first']): ?>
         <div class="btitle">
           <h2><a href="<?php echo $this->_vars['list']['url']; ?>" title="<?php echo $this->_vars['list']['title']; ?>"><?php echo $this->_run_modifier($this->_vars['list']['title'], 'cut', 'plugin', 1, 20); ?></a></h2>
@@ -452,33 +452,33 @@ $this->_vars['list']= array_merge($this->_iCMS['_Gbf22'][$this->_iCMS['Gbf22']['
           <h4><?php echo $this->_vars['catalog']['name']; ?>精品推荐</h4>
         </div>
         <ul class="picList">
-          <?php $this->_run_iCMS(array('loop' => 'true', 'sub' => "all", 'pic' => "true", 'row' => "3", 'sortid' => $this->_vars['catalog']['id'], 'module' => "list"));  if (isset($this->_iCMS['Gc4ba'])) unset($this->_iCMS['Gc4ba']);
-$this->_iCMS['Gc4ba']['loop'] = is_array($this->_vars['list']) ? count($this->_vars['list']) : max(0, (int)$this->_vars['list']);
-$this->_iCMS['_Gc4ba']=$this->_vars['list'];
+          <?php $this->_run_iCMS(array('loop' => 'true', 'sub' => "all", 'pic' => "true", 'row' => "3", 'sortid' => $this->_vars['catalog']['id'], 'module' => "list"));  if (isset($this->_iCMS['Geeba'])) unset($this->_iCMS['Geeba']);
+$this->_iCMS['Geeba']['loop'] = is_array($this->_vars['list']) ? count($this->_vars['list']) : max(0, (int)$this->_vars['list']);
+$this->_iCMS['_Geeba']=$this->_vars['list'];
 unset($this->_vars['list']);
-$this->_iCMS['Gc4ba']['show'] = true;
-$this->_iCMS['Gc4ba']['max'] = $this->_iCMS['Gc4ba']['loop'];
-$this->_iCMS['Gc4ba']['step'] = 1;
-$this->_iCMS['Gc4ba']['start'] = $this->_iCMS['Gc4ba']['step'] > 0 ? 0 : $this->_iCMS['Gc4ba']['loop']-1;
-if ($this->_iCMS['Gc4ba']['show']) {
-	$this->_iCMS['Gc4ba']['total'] = $this->_iCMS['Gc4ba']['loop'];
-	if ($this->_iCMS['Gc4ba']['total'] == 0){
-		$this->_iCMS['Gc4ba']['show'] = false;
+$this->_iCMS['Geeba']['show'] = true;
+$this->_iCMS['Geeba']['max'] = $this->_iCMS['Geeba']['loop'];
+$this->_iCMS['Geeba']['step'] = 1;
+$this->_iCMS['Geeba']['start'] = $this->_iCMS['Geeba']['step'] > 0 ? 0 : $this->_iCMS['Geeba']['loop']-1;
+if ($this->_iCMS['Geeba']['show']) {
+	$this->_iCMS['Geeba']['total'] = $this->_iCMS['Geeba']['loop'];
+	if ($this->_iCMS['Geeba']['total'] == 0){
+		$this->_iCMS['Geeba']['show'] = false;
 	}
 } else{
-	$this->_iCMS['Gc4ba']['total'] = 0;
+	$this->_iCMS['Geeba']['total'] = 0;
 }
-if ($this->_iCMS['Gc4ba']['show']){
+if ($this->_iCMS['Geeba']['show']){
 
-		for ($this->_iCMS['Gc4ba']['index'] = $this->_iCMS['Gc4ba']['start'], $this->_iCMS['Gc4ba']['iteration'] = 1;
-			 $this->_iCMS['Gc4ba']['iteration'] <= $this->_iCMS['Gc4ba']['total'];
-			 $this->_iCMS['Gc4ba']['index'] += $this->_iCMS['Gc4ba']['step'], $this->_iCMS['Gc4ba']['iteration']++){
-$this->_iCMS['Gc4ba']['rownum'] = $this->_iCMS['Gc4ba']['iteration'];
-$this->_iCMS['Gc4ba']['index_prev'] = $this->_iCMS['Gc4ba']['index'] - $this->_iCMS['Gc4ba']['step'];
-$this->_iCMS['Gc4ba']['index_next'] = $this->_iCMS['Gc4ba']['index'] + $this->_iCMS['Gc4ba']['step'];
-$this->_iCMS['Gc4ba']['first']	  = ($this->_iCMS['Gc4ba']['iteration'] == 1);
-$this->_iCMS['Gc4ba']['last']	   = ($this->_iCMS['Gc4ba']['iteration'] == $this->_iCMS['Gc4ba']['total']);
-$this->_vars['list']= array_merge($this->_iCMS['_Gc4ba'][$this->_iCMS['Gc4ba']['index']],$this->_iCMS['Gc4ba']);
+		for ($this->_iCMS['Geeba']['index'] = $this->_iCMS['Geeba']['start'], $this->_iCMS['Geeba']['iteration'] = 1;
+			 $this->_iCMS['Geeba']['iteration'] <= $this->_iCMS['Geeba']['total'];
+			 $this->_iCMS['Geeba']['index'] += $this->_iCMS['Geeba']['step'], $this->_iCMS['Geeba']['iteration']++){
+$this->_iCMS['Geeba']['rownum'] = $this->_iCMS['Geeba']['iteration'];
+$this->_iCMS['Geeba']['index_prev'] = $this->_iCMS['Geeba']['index'] - $this->_iCMS['Geeba']['step'];
+$this->_iCMS['Geeba']['index_next'] = $this->_iCMS['Geeba']['index'] + $this->_iCMS['Geeba']['step'];
+$this->_iCMS['Geeba']['first']	  = ($this->_iCMS['Geeba']['iteration'] == 1);
+$this->_iCMS['Geeba']['last']	   = ($this->_iCMS['Geeba']['iteration'] == $this->_iCMS['Geeba']['total']);
+$this->_vars['list']= array_merge($this->_iCMS['_Geeba'][$this->_iCMS['Geeba']['index']],$this->_iCMS['Geeba']);
 ?>
           <li><a href="<?php echo $this->_vars['list']['url']; ?>"><img src="<?php echo $this->_run_modifier($this->_vars['list']['pic'], 'small', 'plugin', 1, 120, 90); ?>" width="120" height="90" border="0" alt="<?php echo $this->_vars['list']['title']; ?>" /></a>
             <p><a href="<?php echo $this->_vars['list']['url']; ?>" class="cBlue" title="<?php echo $this->_vars['list']['title']; ?>"><?php echo $this->_run_modifier($this->_vars['list']['title'], 'cut', 'plugin', 1, 10); ?></a></p>
@@ -498,41 +498,91 @@ $this->_vars['list']= array_merge($this->_iCMS['_Gc4ba'][$this->_iCMS['Gc4ba']['
     </div>
     <div class="flinkcon">
       <ul>
-        <?php $this->_run_iCMS(array('loop' => 'true', 'module' => "link"));  if (isset($this->_iCMS['Gc842'])) unset($this->_iCMS['Gc842']);
-$this->_iCMS['Gc842']['loop'] = is_array($this->_vars['link']) ? count($this->_vars['link']) : max(0, (int)$this->_vars['link']);
-$this->_iCMS['_Gc842']=$this->_vars['link'];
+        <?php $this->_run_iCMS(array('loop' => 'true', 'module' => "link"));  if (isset($this->_iCMS['Gf1ce'])) unset($this->_iCMS['Gf1ce']);
+$this->_iCMS['Gf1ce']['loop'] = is_array($this->_vars['link']) ? count($this->_vars['link']) : max(0, (int)$this->_vars['link']);
+$this->_iCMS['_Gf1ce']=$this->_vars['link'];
 unset($this->_vars['link']);
-$this->_iCMS['Gc842']['show'] = true;
-$this->_iCMS['Gc842']['max'] = $this->_iCMS['Gc842']['loop'];
-$this->_iCMS['Gc842']['step'] = 1;
-$this->_iCMS['Gc842']['start'] = $this->_iCMS['Gc842']['step'] > 0 ? 0 : $this->_iCMS['Gc842']['loop']-1;
-if ($this->_iCMS['Gc842']['show']) {
-	$this->_iCMS['Gc842']['total'] = $this->_iCMS['Gc842']['loop'];
-	if ($this->_iCMS['Gc842']['total'] == 0){
-		$this->_iCMS['Gc842']['show'] = false;
+$this->_iCMS['Gf1ce']['show'] = true;
+$this->_iCMS['Gf1ce']['max'] = $this->_iCMS['Gf1ce']['loop'];
+$this->_iCMS['Gf1ce']['step'] = 1;
+$this->_iCMS['Gf1ce']['start'] = $this->_iCMS['Gf1ce']['step'] > 0 ? 0 : $this->_iCMS['Gf1ce']['loop']-1;
+if ($this->_iCMS['Gf1ce']['show']) {
+	$this->_iCMS['Gf1ce']['total'] = $this->_iCMS['Gf1ce']['loop'];
+	if ($this->_iCMS['Gf1ce']['total'] == 0){
+		$this->_iCMS['Gf1ce']['show'] = false;
 	}
 } else{
-	$this->_iCMS['Gc842']['total'] = 0;
+	$this->_iCMS['Gf1ce']['total'] = 0;
 }
-if ($this->_iCMS['Gc842']['show']){
+if ($this->_iCMS['Gf1ce']['show']){
 
-		for ($this->_iCMS['Gc842']['index'] = $this->_iCMS['Gc842']['start'], $this->_iCMS['Gc842']['iteration'] = 1;
-			 $this->_iCMS['Gc842']['iteration'] <= $this->_iCMS['Gc842']['total'];
-			 $this->_iCMS['Gc842']['index'] += $this->_iCMS['Gc842']['step'], $this->_iCMS['Gc842']['iteration']++){
-$this->_iCMS['Gc842']['rownum'] = $this->_iCMS['Gc842']['iteration'];
-$this->_iCMS['Gc842']['index_prev'] = $this->_iCMS['Gc842']['index'] - $this->_iCMS['Gc842']['step'];
-$this->_iCMS['Gc842']['index_next'] = $this->_iCMS['Gc842']['index'] + $this->_iCMS['Gc842']['step'];
-$this->_iCMS['Gc842']['first']	  = ($this->_iCMS['Gc842']['iteration'] == 1);
-$this->_iCMS['Gc842']['last']	   = ($this->_iCMS['Gc842']['iteration'] == $this->_iCMS['Gc842']['total']);
-$this->_vars['link']= array_merge($this->_iCMS['_Gc842'][$this->_iCMS['Gc842']['index']],$this->_iCMS['Gc842']);
+		for ($this->_iCMS['Gf1ce']['index'] = $this->_iCMS['Gf1ce']['start'], $this->_iCMS['Gf1ce']['iteration'] = 1;
+			 $this->_iCMS['Gf1ce']['iteration'] <= $this->_iCMS['Gf1ce']['total'];
+			 $this->_iCMS['Gf1ce']['index'] += $this->_iCMS['Gf1ce']['step'], $this->_iCMS['Gf1ce']['iteration']++){
+$this->_iCMS['Gf1ce']['rownum'] = $this->_iCMS['Gf1ce']['iteration'];
+$this->_iCMS['Gf1ce']['index_prev'] = $this->_iCMS['Gf1ce']['index'] - $this->_iCMS['Gf1ce']['step'];
+$this->_iCMS['Gf1ce']['index_next'] = $this->_iCMS['Gf1ce']['index'] + $this->_iCMS['Gf1ce']['step'];
+$this->_iCMS['Gf1ce']['first']	  = ($this->_iCMS['Gf1ce']['iteration'] == 1);
+$this->_iCMS['Gf1ce']['last']	   = ($this->_iCMS['Gf1ce']['iteration'] == $this->_iCMS['Gf1ce']['total']);
+$this->_vars['link']= array_merge($this->_iCMS['_Gf1ce'][$this->_iCMS['Gf1ce']['index']],$this->_iCMS['Gf1ce']);
 ?><a href='<?php echo $this->_vars['link']['url']; ?>' target='_blank'><?php echo $this->_vars['link']['name']; ?></a><?php }}?>
       </ul>
     </div>
   </div>
 </div>
 <?php error_reporting(iCMS_TPL_BUG?E_ALL ^ E_NOTICE:0);!defined('iCMS') && exit('What are you doing?');?>
-<div id="footer">
-	<div id="copyright">&copy; <em><?php echo $this->_vars['site']['title']; ?></em></div>
+<div id="sitemap">
+	<div class="inner">
+	<ul>
+		<li>
+			<h4>娱乐</h4>
+			<ul>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+			</ul>
+		</li>
+		<li>
+			<h4>娱乐</h4>
+			<ul>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+			</ul>
+		</li>
+		<li>
+			<h4>娱乐</h4>
+			<ul>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+			</ul>
+		</li>
+		<li>
+			<h4>娱乐</h4>
+			<ul>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+				<li><a href="#">受到了罚款速度</a></li>
+			</ul>
+		</li>
+	</ul>
+	</div>
 </div>
+
+<div id="copyright">&copy; <em><?php echo $this->_vars['site']['title']; ?></em></div>
+
 </body>
 </html>

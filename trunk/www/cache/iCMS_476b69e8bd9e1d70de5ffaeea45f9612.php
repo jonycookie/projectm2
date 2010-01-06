@@ -6,35 +6,35 @@
 	<div id="catalogs">
 	  <ul>
 	    <li><a href="<?php echo $this->_vars['site']['url']; ?>">首页</a></li>
-	    <?php $this->_run_iCMS(array('loop' => 'true', 'type' => 'top', 'module' => "catalog"));  if (isset($this->_iCMS['G802f'])) unset($this->_iCMS['G802f']);
-$this->_iCMS['G802f']['loop'] = is_array($this->_vars['catalog']) ? count($this->_vars['catalog']) : max(0, (int)$this->_vars['catalog']);
-$this->_iCMS['_G802f']=$this->_vars['catalog'];
+	    <?php $this->_run_iCMS(array('loop' => 'true', 'type' => 'top', 'module' => "catalog"));  if (isset($this->_iCMS['G3a58'])) unset($this->_iCMS['G3a58']);
+$this->_iCMS['G3a58']['loop'] = is_array($this->_vars['catalog']) ? count($this->_vars['catalog']) : max(0, (int)$this->_vars['catalog']);
+$this->_iCMS['_G3a58']=$this->_vars['catalog'];
 unset($this->_vars['catalog']);
-$this->_iCMS['G802f']['show'] = true;
-$this->_iCMS['G802f']['max'] = $this->_iCMS['G802f']['loop'];
-$this->_iCMS['G802f']['step'] = 1;
-$this->_iCMS['G802f']['start'] = $this->_iCMS['G802f']['step'] > 0 ? 0 : $this->_iCMS['G802f']['loop']-1;
-if ($this->_iCMS['G802f']['show']) {
-	$this->_iCMS['G802f']['total'] = $this->_iCMS['G802f']['loop'];
-	if ($this->_iCMS['G802f']['total'] == 0){
-		$this->_iCMS['G802f']['show'] = false;
+$this->_iCMS['G3a58']['show'] = true;
+$this->_iCMS['G3a58']['max'] = $this->_iCMS['G3a58']['loop'];
+$this->_iCMS['G3a58']['step'] = 1;
+$this->_iCMS['G3a58']['start'] = $this->_iCMS['G3a58']['step'] > 0 ? 0 : $this->_iCMS['G3a58']['loop']-1;
+if ($this->_iCMS['G3a58']['show']) {
+	$this->_iCMS['G3a58']['total'] = $this->_iCMS['G3a58']['loop'];
+	if ($this->_iCMS['G3a58']['total'] == 0){
+		$this->_iCMS['G3a58']['show'] = false;
 	}
 } else{
-	$this->_iCMS['G802f']['total'] = 0;
+	$this->_iCMS['G3a58']['total'] = 0;
 }
-if ($this->_iCMS['G802f']['show']){
+if ($this->_iCMS['G3a58']['show']){
 
-		for ($this->_iCMS['G802f']['index'] = $this->_iCMS['G802f']['start'], $this->_iCMS['G802f']['iteration'] = 1;
-			 $this->_iCMS['G802f']['iteration'] <= $this->_iCMS['G802f']['total'];
-			 $this->_iCMS['G802f']['index'] += $this->_iCMS['G802f']['step'], $this->_iCMS['G802f']['iteration']++){
-$this->_iCMS['G802f']['rownum'] = $this->_iCMS['G802f']['iteration'];
-$this->_iCMS['G802f']['index_prev'] = $this->_iCMS['G802f']['index'] - $this->_iCMS['G802f']['step'];
-$this->_iCMS['G802f']['index_next'] = $this->_iCMS['G802f']['index'] + $this->_iCMS['G802f']['step'];
-$this->_iCMS['G802f']['first']	  = ($this->_iCMS['G802f']['iteration'] == 1);
-$this->_iCMS['G802f']['last']	   = ($this->_iCMS['G802f']['iteration'] == $this->_iCMS['G802f']['total']);
-$this->_vars['catalog']= array_merge($this->_iCMS['_G802f'][$this->_iCMS['G802f']['index']],$this->_iCMS['G802f']);
+		for ($this->_iCMS['G3a58']['index'] = $this->_iCMS['G3a58']['start'], $this->_iCMS['G3a58']['iteration'] = 1;
+			 $this->_iCMS['G3a58']['iteration'] <= $this->_iCMS['G3a58']['total'];
+			 $this->_iCMS['G3a58']['index'] += $this->_iCMS['G3a58']['step'], $this->_iCMS['G3a58']['iteration']++){
+$this->_iCMS['G3a58']['rownum'] = $this->_iCMS['G3a58']['iteration'];
+$this->_iCMS['G3a58']['index_prev'] = $this->_iCMS['G3a58']['index'] - $this->_iCMS['G3a58']['step'];
+$this->_iCMS['G3a58']['index_next'] = $this->_iCMS['G3a58']['index'] + $this->_iCMS['G3a58']['step'];
+$this->_iCMS['G3a58']['first']	  = ($this->_iCMS['G3a58']['iteration'] == 1);
+$this->_iCMS['G3a58']['last']	   = ($this->_iCMS['G3a58']['iteration'] == $this->_iCMS['G3a58']['total']);
+$this->_vars['catalog']= array_merge($this->_iCMS['_G3a58'][$this->_iCMS['G3a58']['index']],$this->_iCMS['G3a58']);
 ?>
-	    <li id="catalog_<?php echo $this->_vars['catalog']['id']; ?>" <?php if ($this->_vars['sort']['id'] == $this->_vars['catalog']['id']): ?>class="active"<?php endif; ?>><a href="<?php echo $this->_vars['catalog']['url']; ?>"><?php echo $this->_vars['catalog']['name']; ?></a></li>
+	    <li id="catalog_<?php echo $this->_vars['catalog']['id']; ?>"<?php if ($this->_vars['sort']['id'] == $this->_vars['catalog']['id']): ?> class="active"<?php endif; ?>><a href="<?php echo $this->_vars['catalog']['url']; ?>"><?php echo $this->_vars['catalog']['name']; ?></a></li>
 	    <?php }}?>
 	  </ul>
 	</div>
@@ -67,32 +67,32 @@ $this->_vars['catalog']= array_merge($this->_iCMS['_G802f'][$this->_iCMS['G802f'
 		});
 	});
   </script>
-  <div class="tag"> <?php $this->_run_iCMS(array('loop' => 'true', 'row' => '10', 'orderby' => 'hot', 'module' => "tag"));  if (isset($this->_iCMS['G8852'])) unset($this->_iCMS['G8852']);
-$this->_iCMS['G8852']['loop'] = is_array($this->_vars['tag']) ? count($this->_vars['tag']) : max(0, (int)$this->_vars['tag']);
-$this->_iCMS['_G8852']=$this->_vars['tag'];
+  <div class="tag"> <?php $this->_run_iCMS(array('loop' => 'true', 'row' => '10', 'orderby' => 'hot', 'module' => "tag"));  if (isset($this->_iCMS['G3ff9'])) unset($this->_iCMS['G3ff9']);
+$this->_iCMS['G3ff9']['loop'] = is_array($this->_vars['tag']) ? count($this->_vars['tag']) : max(0, (int)$this->_vars['tag']);
+$this->_iCMS['_G3ff9']=$this->_vars['tag'];
 unset($this->_vars['tag']);
-$this->_iCMS['G8852']['show'] = true;
-$this->_iCMS['G8852']['max'] = $this->_iCMS['G8852']['loop'];
-$this->_iCMS['G8852']['step'] = 1;
-$this->_iCMS['G8852']['start'] = $this->_iCMS['G8852']['step'] > 0 ? 0 : $this->_iCMS['G8852']['loop']-1;
-if ($this->_iCMS['G8852']['show']) {
-	$this->_iCMS['G8852']['total'] = $this->_iCMS['G8852']['loop'];
-	if ($this->_iCMS['G8852']['total'] == 0){
-		$this->_iCMS['G8852']['show'] = false;
+$this->_iCMS['G3ff9']['show'] = true;
+$this->_iCMS['G3ff9']['max'] = $this->_iCMS['G3ff9']['loop'];
+$this->_iCMS['G3ff9']['step'] = 1;
+$this->_iCMS['G3ff9']['start'] = $this->_iCMS['G3ff9']['step'] > 0 ? 0 : $this->_iCMS['G3ff9']['loop']-1;
+if ($this->_iCMS['G3ff9']['show']) {
+	$this->_iCMS['G3ff9']['total'] = $this->_iCMS['G3ff9']['loop'];
+	if ($this->_iCMS['G3ff9']['total'] == 0){
+		$this->_iCMS['G3ff9']['show'] = false;
 	}
 } else{
-	$this->_iCMS['G8852']['total'] = 0;
+	$this->_iCMS['G3ff9']['total'] = 0;
 }
-if ($this->_iCMS['G8852']['show']){
+if ($this->_iCMS['G3ff9']['show']){
 
-		for ($this->_iCMS['G8852']['index'] = $this->_iCMS['G8852']['start'], $this->_iCMS['G8852']['iteration'] = 1;
-			 $this->_iCMS['G8852']['iteration'] <= $this->_iCMS['G8852']['total'];
-			 $this->_iCMS['G8852']['index'] += $this->_iCMS['G8852']['step'], $this->_iCMS['G8852']['iteration']++){
-$this->_iCMS['G8852']['rownum'] = $this->_iCMS['G8852']['iteration'];
-$this->_iCMS['G8852']['index_prev'] = $this->_iCMS['G8852']['index'] - $this->_iCMS['G8852']['step'];
-$this->_iCMS['G8852']['index_next'] = $this->_iCMS['G8852']['index'] + $this->_iCMS['G8852']['step'];
-$this->_iCMS['G8852']['first']	  = ($this->_iCMS['G8852']['iteration'] == 1);
-$this->_iCMS['G8852']['last']	   = ($this->_iCMS['G8852']['iteration'] == $this->_iCMS['G8852']['total']);
-$this->_vars['tag']= array_merge($this->_iCMS['_G8852'][$this->_iCMS['G8852']['index']],$this->_iCMS['G8852']);
+		for ($this->_iCMS['G3ff9']['index'] = $this->_iCMS['G3ff9']['start'], $this->_iCMS['G3ff9']['iteration'] = 1;
+			 $this->_iCMS['G3ff9']['iteration'] <= $this->_iCMS['G3ff9']['total'];
+			 $this->_iCMS['G3ff9']['index'] += $this->_iCMS['G3ff9']['step'], $this->_iCMS['G3ff9']['iteration']++){
+$this->_iCMS['G3ff9']['rownum'] = $this->_iCMS['G3ff9']['iteration'];
+$this->_iCMS['G3ff9']['index_prev'] = $this->_iCMS['G3ff9']['index'] - $this->_iCMS['G3ff9']['step'];
+$this->_iCMS['G3ff9']['index_next'] = $this->_iCMS['G3ff9']['index'] + $this->_iCMS['G3ff9']['step'];
+$this->_iCMS['G3ff9']['first']	  = ($this->_iCMS['G3ff9']['iteration'] == 1);
+$this->_iCMS['G3ff9']['last']	   = ($this->_iCMS['G3ff9']['iteration'] == $this->_iCMS['G3ff9']['total']);
+$this->_vars['tag']= array_merge($this->_iCMS['_G3ff9'][$this->_iCMS['G3ff9']['index']],$this->_iCMS['G3ff9']);
 ?> <a href="<?php echo $this->_vars['tag']['url']; ?>" target="_blank"><?php echo $this->_vars['tag']['name']; ?></a> <?php }}?> </div>
 </div>
