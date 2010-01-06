@@ -5,6 +5,14 @@
 .margintop { margin-top:3px; }
 .floatclear { clear:both; }
 input, select { vertical-align:middle; }
+
+.context { width:638px; clear:both; }
+.diggArea { padding:0px; margin:0px; background-image:url(<!--{$site.tplurl}-->/images/diggbg2.gif); width:60px; height:58px; line-height:23px; float:left; }
+.diggNum { margin:0px; text-align:center; padding:0px; font-size:12px; font-weight:bold; color:#CC0000; width:58px; height:23px; margin-top:8px; }
+.diggLink { margin:0px; text-align:center; padding:0px; font-size:14px; font-weight:bold; width:58px; height:23px; }
+.diggLink a { font-size:14px; font-weight:bold; }
+
+
 /*---------------栏目*/
 .classbox { width:222px; clear:both; padding-bottom:5px; background:url(../images/rcbox_title.gif) center bottom no-repeat; }
 .classbox dl { width:222px; }
