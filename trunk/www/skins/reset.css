@@ -1,9 +1,26 @@
-/*Elements CSS Framework by Ben Henschel*/
-/*Mass Reset*/
-/*Thanks to Eric for this reset http://meyerweb.com/eric/thoughts/2007/04/14/reworked-reset/ */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,
+dl, dt, dd, ul, ol, li,
+pre,
+form, fieldset, legend, button, input, textarea,
+th, td {
+    margin: 0;
+    padding: 0;
+}
+body,
+button, input, select, textarea {
+    font: 12px/1.5 arial, simsun, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+address, cite, dfn, em, var { font-style: normal; }
+code, kbd, pre, samp { font-family: courier new, courier, monospace; }
+small { font-size: 12px; }
+ul, ol { list-style: none; }
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+sup { vertical-align: text-top; }
+sub { vertical-align: text-bottom; }
+legend { color: #000; }
+fieldset, img { border: 0; }
+button, input, select, textarea { font-size: 100%; }
+table { border-collapse: collapse; border-spacing: 0; }
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td
-{margin: 0;padding: 0;border: 0;outline: 0;font-weight: inherit;font-style: inherit;font-family: inherit;font-size:100%;text-align: left;vertical-align: baseline;list-style-type: none;}
-a img {border:none;}
-table {border-collapse: collapse; border-spacing: 0;}
-q:before, q:after, blockquote:before, blockquote:after {content: "";}
