@@ -1,0 +1,17 @@
+<h2 class="title"><img src="image/icon/profile.gif">个人设置</h2>
+<div class="tabs_header">
+	<ul class="tabs">
+		<li$actives[avatar]><a href="cp.php?ac=avatar"><span>我的头像</span></a></li>
+		<li$actives[profile]><a href="cp.php?ac=profile"><span>个人资料</span></a></li>
+		<li$actives[theme]><a href="cp.php?ac=theme"><span>主页风格</span></a></li>
+		<!--{if $_SCONFIG['allowdomain'] && $_SCONFIG['domainroot'] && checkperm('domainlength')}-->
+		<li$actives[domain]><a href="cp.php?ac=domain"><span>我的域名</span></a></li>
+		<!--{/if}-->
+		<!--{if $_SCONFIG[sendmailday]}-->
+		<li$actives[sendmail]><a href="cp.php?ac=sendmail"><span>邮件提醒</span></a></li>
+		<!--{/if}-->
+		<li$actives[password]><a href="cp.php?ac=password"><span>账号设置</span></a></li>
+		<li$actives[credit]><a href="cp.php?ac=credit"><span>积分</span></a></li>
+		<li$actives[advance]><a href="cp.php?ac=advance"><span>高级管理</span></a></li>
+	</ul>
+</div>

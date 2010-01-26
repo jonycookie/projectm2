@@ -1,0 +1,107 @@
+<!--{eval $_TPL['titles'] = array($share['title_template'], '分享');}-->
+<!--{template header}-->
+
+<!--{if $space[self]}-->
+<h2 class="title"><img src="image/app/share.gif" />分享</h2>
+<div class="tabs_header">
+	<ul class="tabs">
+		<!--{if $space[friendnum]}--><li$actives[we]><a href="space.php?uid=$space[uid]&do=share"><span>好友的分享</span></a></li><!--{/if}-->
+		<li class="active"><a href="space.php?uid=$space[uid]&do=share&view=me"><span>我的分享</span></a></li>
+		<li$actives[all]><a href="space.php?uid=$space[uid]&do=share&view=all"><span>大家的分享</span></a></li>
+	</ul>
+</div>
+<!--{else}-->
+<!--{eval 
+	$_TPL['spacetitle'] = "分享";
+	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=share&view=me\">查看全部分享</a>";
+}-->
+<!--{template space_menu}-->
+<!--{/if}-->
+
+<div id="share_ul">
+	<div class="title">
+		<div class="r_option">
+			<a href="cp.php?ac=common&op=report&idtype=share&id=$share[sid]" id="a_report" onclick="ajaxmenu(event, this.id, 99999,'' , -1)">举报</a>
+			<!--{if $_SGLOBAL[supe_uid] == $share[uid] || checkperm('manageshare')}-->
+			<span class="pipe">|</span><a href="cp.php?ac=share&sid=$share[sid]&op=delete" id="share_delete_$share[sid]" onclick="ajaxmenu(event, this.id, 99999)">删除</a>
+			<!--{/if}-->
+		</div>
+		<h1>$share[title_template]</h1>
+		<!--{date('Y-m-d H:i',$share[dateline],1)}-->
+	</div>
+	<div id="share_article" class="article l_text">
+
+	
+	<div id="share_image">
+	<!--{if $share['image']}--><a href="$share[image_link]"><img src="$share[image]" class="summaryimg image" alt="" /></a><!--{/if}-->
+	</div>
+	
+
+	{$share[body_template]}
+	
+	<!--{if 'video' == $share['type']}-->
+	<div class="box" id="flash_div_$share[sid]">
+		<script>showFlash('{$share['body_data']['host']}', '{$share['body_data']['flashvar']}', '', '{$share['sid']}');</script>
+	</div>
+	<!--{elseif 'music' == $share['type']}-->
+	<div class="box" id="flash_div_$share[sid]">
+		<script>showFlash('music', '{$share['body_data']['musicvar']}', '', '{$share['sid']}');</script>
+	</div>
+	<!--{elseif 'flash' == $share['type']}-->
+	<div class="box" id="flash_div_$share[sid]">
+		<script>showFlash('flash', '{$share['body_data']['flashaddr']}', '', '{$share['sid']}');</script>
+	</div>
+	<!--{/if}-->
+	
+	</div>
+	<div class="quote"><span class="q">$share[body_general]</span></div>
+</div>
+
+<div class="comments_list" id="comment">
+
+	<!--{if $cid}-->
+	<div class="notice">
+		当前只显示与你操作相关的单个评论，<a href="space.php?uid=$share[uid]&do=share&id=$share[sid]">点击此处查看全部评论</a>
+	</div>
+	<!--{/if}-->
+	
+	<ul id="comment_ul">
+	<!--{loop $list $value}-->
+		<!--{template space_comment_li}-->
+	<!--{/loop}-->
+	</ul>
+</div>
+<div class="page">$multi</div>
+
+<!--{if !$share[noreply]}-->
+<form id="quickcommentform_{$id}" name="quickcommentform_{$id}" action="cp.php?ac=comment" method="post" class="quickpost">
+<table cellpadding="0" cellspacing="0">
+	<tr>
+		<td>
+			<a href="###" id="comment_face" onclick="showFace(this.id, 'comment_message');"><img src="image/facelist.gif" align="absmiddle" /></a><br>
+			<textarea id="comment_message" name="message" rows="5" onkeydown="ctrlEnter(event, 'commentsubmit_btn');" style="width:380px;"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input type="hidden" name="refer" value="space.php?uid=$share[uid]&do=$do&id=$id" />
+			<input type="hidden" name="id" value="$id">
+			<input type="hidden" name="idtype" value="sid">
+			<input type="hidden" name="commentsubmit" value="true" />
+			<input type="button" id="commentsubmit_btn" name="commentsubmit_btn" class="submit" value="评论" onclick="ajaxpost('quickcommentform_{$id}', 'comment_status', 'comment_add')" />
+			<span id="comment_status"></span>
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+</form>
+<!--{/if}-->
+		
+<script type="text/javascript">
+<!--
+resizeImg('share_image','500');
+-->
+</script>
+
+
+<!--{template footer}-->
