@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>发表文章-<!--{$site.title}-->-<!--{$site.seotitle}--></title>
+<meta name="keywords" content="<!--{$site.keywords}-->">
+<meta name="description" content="<!--{$site.description|html2txt}-->">
+<meta name="copyright" content="<!--{$site.title}-->" />
+<link href="<!--{$site.dir}-->/templates/system/style/iCMS.css" rel="stylesheet" type="text/css" />
+<link href="style/iCMS.css" rel="stylesheet" type="text/css" />
+<!--{iCMS:javascript}-->
+<script type="text/javascript" src="<?=$iCMS->dir?>javascript/editor.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#verify").click(function(){		
+		$(this).attr("src","include/verify.php?t=post&g="+Math.random());	
+	}); 
+	$("#title").focus();
+	$("#url").keypress(function(){$("#editor").hide();}).blur( function(){
+		if(this.value){
+			$("#editor").hide();
+		}else{
+			$("#editor").show();
+		}
+	});
+	$("#keywordToTag").click( function(){
+		$("#tag").toggle();
+	}); 
+	$("#postarticle").submit(function(){
+		if($("#verifycode").val()==''){
+			alert("验证码不能为空!");
+			$("#verifycode").focus();
+			return false;
+		}
+		if($("#title").val()==''){
+			alert("标题不能为空!");
+			$("#title").focus();
+			return false;
+		}
+		if($("#catalog").val()=='0'){
+			alert("请选择所属栏目");
+			$("#catalog").focus();
+			return false;
+		}
+		var oEditor = FCKeditorAPI.GetInstance('content') ;
+		if(oEditor.GetXHTML( true )==''){
+			alert("内容不能为空!");
+			oEditor.Focus();
+			return false;
+		}
+	}); 
+});
+</script>
+</head>
+<body>
+<div align="justify"></div>
+<!--{include file="./header.htm"}-->
+<div id="container">
+  <div id="main">
+    <div class="position">当前位置: <a href="<!--{$site.index}-->">首页</a> &gt; 发表文章</div>
+    <form action="post.php?do=post" method="post" enctype="multipart/form-data" name="postarticle" id="postarticle">
+      <table width="98%" align="center">
+        <tr>
+          <td class="td27" style="width:70px;">*验证码：</td>
+          <td colspan="3" class="vtop rowform"><input name="verifycode" type="text" id="verifycode" size="4" maxlength="4"/> <img src="<!--{$site.dir}-->/include/verify.php?t=post" alt="看不清楚?点击刷新" align="absmiddle" id="verify"/></td>
+        </tr>
+        <tr>
+          <td class="td27" style="width:70px;">*标题：</td>
+          <td colspan="3" class="vtop rowform"><input type="text" name="title" class="txt" id="title" value="" size="30" /></td>
+        </tr>
+        <tr>
+          <td class="td27">缩略图：</td>
+          <td colspan="3" class="vtop rowform" style="width:auto"><input name="pic" type="file" class="uploadbtn" id="pic" size="40" /><input type="hidden" name="MAX_FILE_SIZE" value="2097152" /></td>
+        </tr>
+        <tr>
+          <td class="td27">出处：</td>
+          <td class="vtop rowform"><input type="text" name="source" class="txt" id="source" value="" size="30" /></td>
+          <td class="td27">作者：</td>
+          <td class="vtop rowform"><input type="text" name="author" class="txt" id="author" value="" size="30" /></td>
+        </tr>
+        <tr>
+          <td class="td27">摘要：</td>
+          <td class="vtop rowform"><textarea name="description" id="description" onkeyup="textareasize(this)" class="tarea"></textarea></td>
+          <td class="td27">关键字：<br />
+            多个关键字请用,格开</td>
+          <td class="vtop rowform"><textarea name="keywords" id="keywords" onkeyup="textareasize(this)" class="tarea"></textarea></td>
+        </tr>
+        <tr>
+          <td class="td27">标签：</td>
+          <td colspan="3" class="vtop rowform" style="width:auto"><input name="tag" class="txt" type="text" id="tag" size="50" />
+            <input name="keywordToTag" type="checkbox" class="checkbox" id="keywordToTag" value="1" />
+            将关键字转为标签<br />
+            多个标签请用空格(半角)格开</td>
+        </tr>
+        <tr>
+          <td class="td27">*所属栏目：</td>
+          <td colspan="3" class="vtop rowform">
+            <select name="catalog" id="catalog">
+              <option value="0"> == 请选择所属栏目 == </option>
+              <!--{$cataOption}-->
+            </select></td>
+        </tr>
+        <tr>
+          <td class="td27">副标题：</td>
+          <td colspan="3" class="vtop rowform"><input name="subtitle" class="txt" id="subtitle" size="30" type="text"/></td>
+        </tr>
+        <tr>
+          <td class="td27">*内容：</td>
+          <td colspan="3" class="vtop rowform" style="width:auto"></td>
+        </tr>
+        <tr class="nobg">
+          <td colspan="4">
+        	<textarea name="content" id="content" class="editor" rows="30" cols="80"><?=$rs['body']?></textarea>
+          </td>
+        </tr>
+        <tr class="nobg">
+          <td colspan="4" align="center"><input name="action" type="hidden" id="action" value="save" />
+            <input type="submit" value="提交" class="btn" />
+            &nbsp;&nbsp;
+            <input type="reset" value="重置" class="btn" /></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+<!--{include file="./footer.htm"}-->
+</body>
+</html>
