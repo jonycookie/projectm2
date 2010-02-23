@@ -1,0 +1,9 @@
+<ul>
+  <form name='loginform' method='POST' action='<!--{$site.dir}-->/member/index.php'>
+    <input name="action" type="hidden" value="login">
+    <li>用户名：<input name="username" class="username" type="text" maxlength="20" /></li>
+    <li>密 码： <input name="password" class="password" type="password" maxlength="20" /></li>
+    <li>验证码：<input name="codestr" size="4" maxlength="4"><img src="<!--{$site.dir}-->/include/seccode.php?t=user" alt="gdcode" align="absmiddle" /></li>
+    <li><input type="submit" value="登陆" class="submit" /><a href="<!--{$site.dir}-->/member/register.php">注册帐号</a></li>
+  </form>
+</ul>
