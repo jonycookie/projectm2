@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kingcms>
+
+	<item>
+		<title>设置网站信息及参数</title>
+		<body><![CDATA[主菜单 参数->网站参数设置
+		如果已经安装有其他模块，也可一同设置]]></body>
+	</item>
+
+	<item>
+		<title>如何添加功能模块</title>
+		<body><![CDATA[主菜单 模块->模块管理
+		方法一：若要添加模块，则点击“添加模块”，输入模块文件夹名称后点击确定。
+		方法二：直接访问模块安装目录，如：
+		http://www.example.com/<b class="red">public</b>/manage.php
+		系统会显示是否安装提示，点击安装即可。]]></body>
+	</item>
+
+	<item>
+		<title>设置快捷方式</title>
+		<body><![CDATA[快捷方式是方便管理员快速进入常用的管理地址而设置的管理链接。
+		可以<a target="_blank" href="../system/manage.php?action=lnk">点击这里</a>进行管理。]]></body>
+	</item>
+
+	<item>
+		<title>修改使用者模式</title>
+		<body><![CDATA[只有超级管理员才有权限修改这个模式
+		进入 设置->网站管理员 点击 <img src="../system/images/white.gif" class="os b6"/> 编辑对应的管理员
+		选择新的操作模式。<hr/>对各个使用者模式的解释如下：
+		完整模式：显示KingCMS模板标签及META录入框
+		专业模式：不显示KingCMS模板标签，显示META录入框
+		傻瓜模式：不显示KingCMS模板标签、META信息等，能不显示的都不给显示。]]></body>
+	</item>
+
+	<item>
+		<title>页脚显示的执行时间很短，但为什么感觉很卡?</title>
+		<body><![CDATA[这是因为管理页面中使用了大量的JavaScript的缘故，特别是IE对JavaScript的执行效率相对于Firefox或Chrome是很慢的。建议使用IE7或Firefox2.0+，Google最新推出的Chorme浏览器也很不错，据说是IE执行效率的30倍以上。]]></body>
+	</item>
+
+	<item>
+		<title>事件查看器中有很多错误该怎么办</title>
+		<body><![CDATA[这些错误并不影响程序的正常使用，这些是用来记录在写程序的过程中忽视的小错误的，如未对变量进行定义等。
+		建议把这些错误反馈到KingCMS开发者手中，或发邮件到：KingCMS@Gmail.com告知。
+		若要关闭错误记录，打开config.php，DEBUG值设置为False]]></body>
+	</item>
+
+	<item>
+		<title>启用了伪静态后需要注意的</title>
+		<body><![CDATA[如果启用了伪静态，则不要用动态页，可能会出现错误，静态可以用，但用静态页的时候，路径格式不要和伪静态一致。这样会进入伪静态处理程序去处理。]]></body>
+	</item>
+
+</kingcms>

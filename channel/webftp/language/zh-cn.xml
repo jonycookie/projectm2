@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kingcms>
+	<name>文件管理器</name>
+	<ACCESS>
+
+		<webftp1>文件管理[</webftp1>
+
+		<webftp>访问</webftp>
+		<webftp_edit>创建/编辑文件</webftp_edit>
+		<webftp_delete>删除</webftp_delete>
+		<webftp_move>移动</webftp_move>
+		<webftp_copy>复制</webftp_copy>
+		<webftp_rename>重命名</webftp_rename>
+		<webftp2>]</webftp2>
+
+	</ACCESS>
+
+	<CHANNEL>
+		<center access="webftp" href="../webftp/manage.php" img="p7">根目录</center>
+	</CHANNEL>
+
+	<title>
+		<center>文件管理器</center>
+	</title>
+
+	<list>
+		<dir>文件夹</dir>
+	</list>
+
+	<error>
+		<newname>新的文件名格式有问题!</newname>
+	</error>
+
+
+</kingcms>

@@ -1,0 +1,53 @@
+<h1>{king:title/}</h1>
+
+<p>
+来源：
+{king:_source split="|"}
+	<a href="{king:_source_2/}" target="_blank">{king:_source_1/}</a>
+{/king:_source}
+
+作者：{king:_author/}
+
+热度：{king:hit/}
+
+日期:{king:date formatdate="y-m-d, h:i A"/}
+
+<?php
+
+
+	if('{king:title fun="addslashes"/}'){//当标题中有单引号的时候，会出错，所以需要转换一下单引号
+		echo "<p>有标题</p>";
+	}else{
+		echo "<p>标题呢？<p>";
+	}
+
+ 
+?>
+
+</p>
+<div class="content">{king:content/}</div>
+<p>{king:digg/}</p>
+
+
+<p>添加：<a href="{king:add/}">添加主题</a></p>
+<p>回复：<a href="{king:reply/}">回复主题</a></p>
+<p>编辑：<a href="{king:edit/}">编辑主题</a></p>
+
+
+<p>Tag:{king:tag/}</p>
+
+<p>
+{king:tag explode=','}
+	<a href="{king:root/}index.php/tag-{king:tag fun='urlencode'/}{config:system.rewriteend/}">{king:tag/}</a>
+{/king:tag}
+</p>
+
+
+<hr/>
+
+<!-- 当每页显示数为1的时候用这个分页 -->
+<ol>
+{king:portal.article type="pagelist"}
+	<li><?php echo {king:this/}==1 ? '&gt;' : ' '; ?><a href="{king:path/}">{king:title/}</a> - {king:this/}</li>
+{/king:portal.article}
+</ol>
