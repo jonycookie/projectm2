@@ -1,0 +1,30 @@
+<div id="la">
+	<p id="important">
+	{king:portal.article listid="(king:listid/)" kid="(king:kid/)" number='1'}
+	<a href="{king:path/}"><img <?php echo('{king:kimage /}'!=''?'src="{king:kimage /}"':'src="/images/bottom.gif" width=90 height=90'); ?> /></a><strong><a href="{king:path/}">{king:title size="40"/}</a></strong><br />{king:description/}[<span><a href="{king:path/}">点击查看原文</a></span>]</p>
+	<span id="la_line">&nbsp;</span>
+	<ul>
+		<p align="center"><a href="{king:path/}">详细内容</a>{/king:portal.article} | 已有{king:comment/} 位村民发表意见</p>
+	</ul>
+	
+</div>
+<div id="lb">
+	<div class=tabs id=lbtabs>
+		<ul>
+		<li><A class="tab curtab">文章评论</a></li>
+		</ul>
+	</div>
+	
+	<div class="tabcontent" id="hda">
+		<ul>
+		{king:portal.comment modelid="(king:modelid/)" listid="(king:listid/)" kid="(king:kid/)"}
+		<li>
+			<p class="lbms"><b><?php if('{king:username/}'!=''){echo('村民{king:username/}');}else{echo('软件村网友');}?></b>(IP:<?php $ip='{king:ip/}';echo(substr($ip,0,strrpos($ip,'.')));?>.*)发表的评论</p>
+			<p class="lbtxt">{king:content/}</p>
+			<p class="lbxm">发表时间： {king:DATE formatdate="Y-m-d H:i:s"/}</p>
+		</li>
+		{/king:portal.comment}
+		</ul>
+	</div>
+	{king:pagelist/}
+</div>

@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{king:title/} KingCMS Administrator Panel.</title>
+<link href="../system/skins/default/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../system/skins/default/fun.js"></script>
+</head>
+
+<body>
+{king:skin.float/}
+<div id="top">
+	<a id="logo" href="../system/manage.php" title="{lang:system.home.welcome/}"><img src="../system/skins/{king:adminskins/}/logo.gif"/></a>
+	<a href="../" target="_blank" class="menu">{lang:system.common.home/}</a>
+
+	<ul class="k_menu">
+
+		<!-- 设置为显示的模块 -->
+		{king:skin.module show="1"}
+		<li><a href="javascript:;">{king:name/}</a>
+				<ul>
+				{king:skin.menu module="(king:path/)"}
+					<li class="{king:class/}"{king:rel/}><a href="{king:href/}"{king:onclick/}{king:target/}><img src="../system/images/white.gif" class="os {king:img/}"/>{king:name/}</a></li>
+				{/king:skin.menu}
+				</ul>
+		</li>
+		{/king:skin.module}
+
+
+		<li><a href="javascript:;">{lang:system.common.module/}</a>
+
+			<!-- 设置为不显示的模块 -->
+			<ul>
+			{king:skin.module show="0"}
+				<li><a href="../{king:path/}/manage.php"><img src="../system/images/white.gif" class="os k7"/>{king:name/}</a></li>
+			{/king:skin.module}
+			</ul>
+		</li>
+	</ul>
+
+	{king:skin.mainMenu/}
+
+	<div class="fr">Hi, {king:adminname/} &nbsp;[ {king:resetpwd/} | {king:logout/} ] {king:faq/}</div>
+
+</div>
+
+<div id="main">
+
+	<h2>
+		<strong>{king:title size="20"/}</strong>
+		<span class="left">
+			{king:leftmenu}
+				<a href="{king:href/}" class="{king:class/}" rel="{king:rel/}"><img src="../system/images/white.gif" class="os {king:ico/}"/>{king:title/}</a>
+			{/king:leftmenu}
+		</span>
+		<span class="right">
+			{king:rightmenu}
+				<a href="{king:href/}" class="{king:class/}" rel="{king:rel/}" target="{king:target/}"><img src="../system/images/white.gif" class="os {king:ico/}"/>{king:title/}</a>
+			{/king:rightmenu}
+		</span>
+	</h2>
+
+<table class="k_side">
+	<tr>
+		<td>{king:skin.info/}</td>
+		<td>{king:skin.lnk/}</td>
+		<td>{king:skin.msg/}</td>
+	</tr>
+</table>
+
+{king:inside/}
+
+</div>
+
+<div id="bottom">{king:copyright/} ~ {king:runtime/}</div>
+
+</body>
+</html>

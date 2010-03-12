@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kingcms>
+	<name>主系统</name>
+	<common>
+		<title>标题</title>
+		<subtitle>副标题</subtitle>
+		<tag>TAG标签</tag>
+		<keywords>META关键字</keywords>
+		<description>META简述</description>
+		<image>缩略图</image>
+		<new>新建</new>
+		<content>内容</content>
+		<path>路径</path>
+		<price>价格</price>
+		<text>正文</text>
+		<relate>相关内容</relate>
+		<back>返回</back>
+		<backlist>返回列表</backlist>
+		<add>添加</add>
+		<list>列表</list>
+		<objlist>项目列表</objlist>
+		<save>保存</save>
+		<reset>重置</reset>
+		<resetdb>初始化数据库</resetdb>
+		<edit>编辑</edit>
+		<reply>回复</reply>
+		<up>更新</up>
+		<moveup>上移</moveup>
+		<movedown>下移</movedown>
+		<updown>上下移动</updown>
+		<upfile>上传文件</upfile>
+		<brow>浏览</brow>
+		<view>查看</view>
+		<browserver>浏览服务器</browserver>
+		<rselect>反选</rselect>
+		<aselect>全选</aselect>
+		<nselect memo="取消选择">取消</nselect>
+		<cancel>取消</cancel>
+		<del>删除</del>
+		<delete>彻底删除</delete>
+		<close>关闭</close>
+		<create>生成</create>
+		<search>搜索</search>
+		<help>帮助</help>
+		<kchelp>KingCMS 在线帮助</kchelp>
+		<login>登录</login>
+		<post>发送</post>
+		<submit>提交</submit>
+		<manage>管理</manage>
+		<managelist>管理列表</managelist>
+		<install>安装</install>
+		<about>关于</about>
+		<insert>插入</insert>
+		<lock>锁定</lock>
+		<unlock>解锁</unlock>
+		<lockun>锁定及解锁</lockun>
+		<next>下一步</next>
+		<setting>设置</setting>
+		<date>日期时间</date>
+		<ip>客户端IP</ip>
+		<language>语言</language>
+		<faq>KingCMS 常见问题</faq>
+		<editor>编辑器</editor>
+		<module>模块</module>
+		<example>例子</example>
+		<attrib>属性</attrib>
+		<editattrib>编辑属性</editattrib>
+		<link>连接</link>
+		<tools>工具</tools>
+		<license>许可协议</license>
+		<not>无</not>
+		<rename>重命名</rename>
+		<md>创建文件夹</md>
+		<rd>删除文件夹</rd>
+		<delfile>删除文件</delfile>
+		<folder>文件夹</folder>
+		<access>访问</access>
+		<foldername>要创建的文件夹名称(必须为字母和数字构成)</foldername>
+		<file>文件</file>
+		<upload>上传</upload>
+		<filemanage>文件管理器</filemanage>
+		<rename>重命名</rename>
+		<ckre>检查重复</ckre>
+		<count>统计</count>
+		<filename>文件名</filename>
+		<filesize>文件大小</filesize>
+		<default>默认</default>
+		<style>样式</style>
+		<selectobj>选中项</selectobj>
+		<option>选项</option>
+		<union>合并</union>
+		<uniondata>合并数据</uniondata>
+		<move>移动</move>
+		<clearcache>清除缓存</clearcache>
+		<system>系统</system>
+		<version>版本</version>
+		<systeminfo>系统信息</systeminfo>
+		<home>首页</home>
+		<modify>修改</modify>
+		<log>记录</log>
+		<error>错误</error>
+		<verify>验证码</verify>
+		<code>代码</code>
+		<weight>重量</weight>
+		<setvalue>常用..</setvalue>
+		<common>常用</common>
+		<now>当前时间</now>
+		<sublist>子列表</sublist>
+		<addsub>添加子项</addsub>
+		<yes>是</yes>
+		<no>否</no>
+		<official>官方网站</official>
+		<clear>清除</clear>
+		<more>更多</more>
+		<morecmd>更多操作...</morecmd>
+		<notcmd>无操作!</notcmd>
+		<number>数量</number>
+		<selectyes>选择,是</selectyes>
+		<enter>确定</enter>
+		<welcome>欢迎</welcome>
+		<please>请选择</please>
+		<grab>远程抓图</grab>
+		<filtercode>过滤代码</filtercode>
+		<continueedit>继续编辑</continueedit>
+		<subtotal>小计</subtotal>
+		<total>合计</total>
+		<tip>提示</tip>
+		<select>选择</select>
+		<publish>发布</publish>
+		<down>下载</down>
+		<modifydate>修改时间</modifydate>
+	</common>
+
+	<progress>
+		<loading>正在加载进程...</loading>
+		<remainder>剩余时间</remainder>
+		<alltime>总共用时</alltime>
+		<ok>完成全部生成过程!</ok>
+		<not>无</not>
+	</progress>
+
+	<time>
+		<always>永久</always>
+		<day>天</day>
+		<hour>小时</hour>
+		<minute>分钟</minute>
+		<second>秒</second>
+		<ms>毫秒</ms>
+
+		<hebdomad>一周</hebdomad>
+		<halfmoon>半月</halfmoon>
+		<jan>一月</jan>
+		<halfyear>半年</halfyear>
+		<ayear>一年</ayear>
+
+		<cookie>浏览器进程</cookie>
+		<forever>永久</forever>
+
+		<oneday>一天</oneday>
+
+		<cache>缓存文件最后一次更新时间</cache>
+		<cacheclose>关闭提示</cacheclose>
+
+		<today>今天</today>
+		<yester>昨天</yester>
+
+		<week0>日</week0>
+		<week1>一</week1>
+		<week2>二</week2>
+		<week3>三</week3>
+		<week4>四</week4>
+		<week5>五</week5>
+		<week6>六</week6>
+	</time>
+
+	<skin>
+		<sys>环境</sys>
+		<other>其他信息</other>
+		<advice>建议</advice>
+		<os>操作系统</os>
+		<required>所需</required>
+		<this>当前</this>
+		<obj>项目</obj>
+		<browser>浏览器</browser>
+		<phpver>PHP版本</phpver>
+		<dbver>数据库版本</dbver>
+		<diskspace>磁盘空间</diskspace>
+		<filedir>目录或文件</filedir>
+		<writeinfo>文件目录权限检查</writeinfo>
+		<func>函数依赖性检查</func>
+		<funs>函数</funs>
+		<maxetime>脚本最大执行时间</maxetime>
+		<safemode>安全模式</safemode>
+		<open>
+			<o1>开启</o1>
+			<o0>关闭</o0>
+		</open>
+		<write>
+			<w1>可写</w1>
+			<w0>不可写</w0>
+		</write>
+		<fun>
+			<f1>支持</f1>
+			<f0>不支持</f0>
+		</fun>
+	</skin>
+
+	<const>
+		<sitename>网站名称</sitename>
+		<siteurl>网站首页地址</siteurl>
+		<beian>备案号</beian>
+		<lockip>限制访问的IP</lockip>
+		<inst>安装目录</inst>
+		<file>默认首页文件</file>
+		<timediff>时差校正</timediff>
+		<proptime>生成速度控制</proptime>
+		<rewriteline>伪静态分割线</rewriteline>
+		<rewriteend>伪静态结束标记</rewriteend>
+		<rewritetag>TAG开启伪静态</rewritetag>
+		<uppath>文件上传目录</uppath>
+		<upimg>图片文件类型</upimg>
+		<upfile>允许上传的文件类型</upfile>
+		<templatepath>模板文件夹</templatepath>
+		<templatefile>模板文件类型</templatefile>
+		<cachetime>缓存时间设置 (单位:秒)</cachetime>
+		<cachetip>缓存提示</cachetip>
+		<debug>错误调试</debug>
+		<switch>网站开关 (True开启;False关闭)</switch>
+		<templatedefault>默认调用模板</templatedefault>
+		<templateext>可支持的模板扩展名</templateext>
+		<templatefiternote>过滤模板中的注释</templatefiternote>
+		<htmlframe1>后台表现形式</htmlframe1>
+		<htmlframe0>前台表现形式</htmlframe0>
+
+		<verifyopen>是否使用验证码</verifyopen>
+		<verifytime>验证码过期时间 (秒)</verifytime>
+		<verifywidth>验证码图片长度</verifywidth>
+		<verifyheight>验证码图片高度</verifyheight>
+		<verifysize>验证码字体大小</verifysize>
+		<verifynum>验证码字符数量</verifynum>
+		<verifycontent>验证码字符</verifycontent>
+
+		<pidline>分页分割参数</pidline>
+		<gzencode>启用GZip压缩</gzencode>
+
+
+	</const>
+
+	<brow>
+		<rename>重命名文件名</rename>
+		<t1>上传成功!</t1>
+		<t2>上传失败!</t2>
+		<t3>文件类型不正确!</t3>
+		<t4>没有选择上传文件!</t4>
+	</brow>
+
+	<title>
+		<log>管理员日志</log>
+		<event>事件查看器</event>
+		<admin>网站管理员</admin>
+		<module>模块管理</module>
+		<plugin>插件管理</plugin>
+		<system>网站参数设置</system>
+		<list>栏目管理</list>
+		<home>管理首页</home>
+		<upfile>上传文件管理</upfile>
+		<lnk>快捷方式管理</lnk>
+		<bot>爬虫(Spider)管理</bot>
+		<timingtask>定时任务</timingtask>
+		<conn>跨站通信</conn>
+	</title>
+
+	<caption>
+		<basic>基本信息</basic>
+		<system>系统配置</system>
+		<rewrite>伪静态设置</rewrite>
+		<verify>验证码设置</verify>
+		<cache>缓存设置</cache>
+	</caption>
+
+	<conn>
+		<name>链接名称</name>
+		<urlpath>目标URL地址</urlpath>
+		<sign>通信密钥</sign>
+
+		<error>
+			<name>有重复值!</name>
+			<urlpath>网址不能以/结尾</urlpath>
+		</error>
+	</conn>
+
+	<novice>
+		<home>新手入门首页</home>
+		<main><![CDATA[第一次使用KingCMS，你会有很多很多的疑问吧。
+		KingCMS和国内主流的CMS操作界面上有很多不同，开始会有不习惯的情况。
+		这都是正常现象。
+		当你习惯了这个系统以后，你会一点点发现KingCMS的优势！
+		
+		先列出你可能感兴趣的资源：
+		用户手册[UserGuide]，简称UG，访问网址：<a href="http://help.kingcms.com/" target="_blank">Help.KingCMS.com</a>
+		提出问题的地方，论坛：<a href="http://bbs.kingcms.com/" target="_blank">BBS.KingCMS.com</a>
+		如果你在使用中发现了BUG，则反馈到BUG反馈板块：<a href="http://bbs.kingcms.com/forum-5-1.html" target="_blank">KingCMS-开发优化</a>
+		
+		<a href="javascript:;" class="k_ajax" rel="{CMD:'novice1',IS:1,URL:'../system/manage.php'}"><img src="../system/images/white.gif" class="os d9"/>开始学习概念，主系统、模块、模型、模板及标签</a>
+		<a href="../system/manage.php?action=module"><img src="../system/images/white.gif" class="os d9"/>进入模块管理，安装扩展模块！</a>
+		<a href="javascript:;" class="k_ajax" rel="{CMD:'faq',IS:1,URL:'../system/manage.php'}"><img src="../system/images/white.gif" class="os d9"/>我不用学明白基础概念，直接进阶到常见问题</a>]]></main>
+
+		<step1><![CDATA[主系统(System)：主系统也成为基本系统，仅提供管理员登录、退出等基本功能。
+		
+		模块(Module)：实现扩展功能的功能目录。内容发布用的内容管理(Portal)，管理前台用户的用户系统(User)，定义代码段的碎片(Block)等目录，均为模块。
+
+		模型(Model)：内容管理可以细分为文章管理、下载管理、论坛等功能，这些在内容管理(Portal)模块下实现具体发布功能的小功能块称之为模型；只有内容管理(Portal)有模型，其他模块没有模型。
+
+		模板(Template)：模板即为网站前台风格，默认是放在template目录和一个图片文件目录images构成。KingCMS模板分成外部模板和内部模板，对内外部模板的详细介绍请见<a href="http://help.kingcms.com/" target="_blank">UserGuide</a>。
+
+		模板标签(TAG)：模板标签是用来代替PHP脚本语言的构造语言，相似于HTML代码，并简单易学；无需掌握PHP却能实现调用动态内容的目的。
+
+		]]></step1>
+	</novice>
+
+	<lnk>
+		<kname>名称</kname>
+		<listname>列表名称</listname>
+		<edtlist>添加/编辑列表</edtlist>
+		<ktitle>说明</ktitle>
+		<kpath>链接路径</kpath>
+		<konclick>onClick值</konclick>
+		<attrib>连接属性</attrib>
+		<blank>新窗口中打开连接</blank>
+		<flo>后台显示任意拖动的连接</flo>
+		<image>选择图标</image>
+		<kimage>图标</kimage>
+	</lnk>
+
+	<bot>
+		<title>爬虫</title>
+		<kname>爬虫名称</kname>
+		<kmark>爬虫标记</kmark>
+		<ncount>来访次数</ncount>
+		<nlastdate>最后一次来访于</nlastdate>
+		<edt>[添加/编辑]爬虫</edt>
+	</bot>
+
+	<log>
+		<name>帐号</name>
+		<active>操作日志</active>
+		<num1>成功登录</num1>
+		<num2>登录失败</num2>
+		<num3>注销</num3>
+		<num4>非法登录</num4>
+		<num5>新建</num5>
+		<num6>删除</num6>
+		<num7>编辑</num7>
+		<num8>锁定</num8>
+		<num9>解锁</num9>
+		<num10>清除</num10>
+		<num0>未知操作</num0>
+	</log>
+
+	<msg>
+		<name>帐号</name>
+		<content>留言</content>
+	</msg>
+
+	<event>
+		<file>错误文件</file>
+		<type>级别</type>
+		<msg>详细</msg>
+		<code>出现错误的代码段</code>
+		<url>执行页面</url>
+	</event>
+
+	<module>
+		<name>模块名称</name>
+		<path>模块目录</path>
+		<add>添加模块</add>
+		<sub>子模块</sub>
+		<find>查找模块</find>
+		<addpath>请输入模块地址</addpath>
+		<list>模块</list>
+		<check>不存在的目录或非独立模块</check>
+		<error>已存在的模块，无需重复安装</error>
+		<install>安装模块</install>
+		<show>显示</show>
+		<tip>您正在调用的模块暂未安装,要安装请点击下面链接进行安装!</tip>
+	</module>
+
+	<ok>
+		<add>添加成功!</add>
+		<edt>编辑成功!</edt>
+		<save>保存成功!</save>
+		<delete>删除成功!</delete>
+		<clear>清除成功!</clear>
+		<set>设置成功!</set>
+	</ok>
+
+	<admin>
+		<name>管理员帐号</name>
+		<level>级别</level>
+		<count>访问次数</count>
+		<date>最后一次访问时间</date>
+		<oldpass>原管理员密码</oldpass>
+		<pass1>管理员密码</pass1>
+		<pass2>确认管理员密码</pass2>
+		<mode>管理操作界面</mode>
+		<mode2>完整模式</mode2>
+		<mode1>专业模式</mode1>
+		<mode0>傻瓜模式</mode0>
+		<setlevel>访问级操作权限设置</setlevel>
+		<delok>成功删除!</delok>
+		<pass>修改密码</pass>
+		<passok>成功设置密码</passok>
+		<login>登录后跳转到..</login>
+		<url>绑定管理员登录域名</url>
+	</admin>
+
+	<home>
+		<skins>默认风格</skins>
+		<welcome>感谢您使用KingCMS!</welcome>
+		<server>服务器信息</server>
+		<sql>数据库信息</sql>
+		<language>当前语言</language>
+	</home>
+
+	<level>
+		<admin>超级管理员</admin>
+		<admini>管理员</admini>
+		<module>模块管理</module>
+		<plugin>插件管理</plugin>
+		<lnk>快捷方式</lnk>
+		<config>系统参数设置</config>
+		<log>日志</log>
+		<event>事件</event>
+		<phpinfo>服务器信息</phpinfo>
+		<brow>浏览服务器</brow>
+		<clearcache>清除缓存</clearcache>
+		<timingtask>定时任务</timingtask>
+		<channel>启用系统管理菜单</channel>
+		<resetpass>允许修改密码</resetpass>
+		<novice>新手入门</novice>
+	</level>
+
+
+	<check>
+		<e00>不能为空!</e00>
+		<e0>长度不正确!</e0>
+		<e1>必须为字母和数字!</e1>
+		<e2>必须为数字!</e2>
+		<e3>必须为数字!</e3>
+		<e4>必须为字母、数字和下划线!</e4>
+		<e5>邮件格式不正确!</e5>
+		<e6>URL格式不正确!</e6>
+		<e7>图片地址格式不正确!</e7>
+		<e8>必须为时间+日期类型!</e8>
+		<e9>必须为日期类型!</e9>
+		<e12>未知错误!</e12>
+		<e13>颜色值格式不正确!</e13>
+		<e14>不能包含非法内容!</e14>
+		<e15>不能包含特殊符号或格式不正确!</e15>
+		<e16>错误的取值范围!</e16>
+		<e17>两次输入的密码不一致!</e17>
+		<e18>不能使用此保留对象!</e18>
+		<e19>值中未包含必须包含的字符串!</e19>
+		<e20>请选择!</e20>
+		<e21>提交的内容中带有非法数据!</e21>
+		<e22>必须为整数!</e22>
+		<e23>非法提交值!</e23>
+		<e999>格式错误!</e999>
+		<none>当前值已存在,不可以有重复值!</none>
+
+		<verify>您输入的验证码有误!</verify>
+		<verifytimeout>您输入的验证码已过期,请重新输入!</verifytimeout>
+		<notverify>验证码长度不正确!</notverify>
+
+		<verifynew>看不清?换一张</verifynew>
+	</check>
+
+	<error>
+		<param>非法参数!</param>
+		<not>缺少必须的参数</not>
+		<none>不能提交空值</none>
+		<include>非法引用!</include>
+		<login>您的操作已被我们记录，请不要尝试非法登录!</login>
+		<logintimeout><![CDATA[登录已超时或非法请求，请先<a href="../system/login.php">登录</a>!]]></logintimeout>
+		<admin>不能删除自己!</admin>
+		<level>操作被停止，权限不足!</level>
+		<notfile>找不到对应文件!</notfile>
+		<putcontents>写文件的时候出现了意外错误!</putcontents>
+		<unlink>删除文件的时候出现了意外错误,删除失败</unlink>
+		<notre>查询完毕，无记录显示!</notre>
+		<select>请选择一个项目</select>
+		<notdir>目录无效</notdir>
+		<lockmodule>您正要访问的模块被锁定，请先解除锁定!</lockmodule>
+		<notplugin>您要访问的页面不存在!</notplugin>
+		<notpluginfunc>请先设置插件函数!</notpluginfunc>
+		<notxmlfile>没有找到XML文件!</notxmlfile>
+		<notrecord>记录集为空!</notrecord>
+		<insert>插入数据失败!</insert>
+		<install>您的空间中有危险的文件[INSTALL.php],强烈建议删除</install>
+		<timeout>请求失败,脚本执行超时!</timeout>
+		<empty>请求失败,请求超时!</empty>
+		<oldpass>管理员密码有误!</oldpass>
+		<func>您正要调用的页面不存在!</func>
+
+		<siteclose>网站停止维护中，请稍后再来！</siteclose>
+
+		<notdb>数据库读取失败，请先确认数据库是否存在！</notdb>
+		<resetpass>此管理员当前不支持修改密码操作!</resetpass>
+
+		<dir>创建目录失败!必须以字母、数字和下划线和中划线构成。</dir>
+
+		<conn>通信错误,检查一下通信密钥!</conn>
+	</error>
+
+	<dberr>
+		<err1>连接数据库服务端失败!</err1>
+		<err2>不能打开指定的数据库!</err2>
+		<err3>查询语句出错!</err3>
+		<err4>连接数据库服务端失败!</err4>
+		<err5>定位结果集发生错误!</err5>
+
+		<err6>找不到数据库文件</err6>
+		<err7>获取新加入的ID失败！</err7>
+	</dberr>
+
+	<login>
+		<name>账号</name>
+		<pass>密码</pass>
+		<title>管理员登录</title>
+		<check>账号密码不正确!</check>
+		<expire>有效期</expire>
+		<logout>注销</logout>
+		<about>CMS of my own!</about>
+		<manual>KingCMS 用户指南</manual>
+		<upfaq>在线更新最新常见问题</upfaq>
+		<home>返回首页</home>
+		<team>谁在工作?</team>
+		<operation>项目运作</operation>
+		<dev>程序开发</dev>
+		<art>美工制作</art>
+		<editor>文档制作</editor>
+		<trans>翻译</trans>
+		<other>KC友人</other>
+	</login>
+
+	<goto>
+		<saveok>保存成功!</saveok>
+		<ok>成功完成当前操作!</ok>
+		<is>成功完成当前操作!\n\n[确定] 添加新记录;\n[取消] 返回列表.</is>
+		<isback>保存成功!\n\n[确定] 继续编辑;\n[取消] 返回列表.</isback>
+	</goto>
+
+	<confirm>
+		<delete>确定要删除?</delete>
+		<clear>确定要清除?</clear>
+		<logout>确定要注销?</logout>
+		<set>确定要设置?</set>
+		<help>您是否需要帮助?</help>
+		<close>确定要关闭?</close>
+	</confirm>
+
+	<menu>
+		<module>模块管理</module>
+		<license>使用许可协议</license>
+		<official>KingCMS官网网站</official>
+		<club>使用交流论坛</club>
+		<bug>报告BUG</bug>
+		<checknew>检查更新</checknew>
+		<info>服务器及网站信息</info>
+		<rewrite>伪静态规则</rewrite>
+	</menu>
+
+	<upfile>
+		<manage>已上传文件</manage>
+		<access>访问</access>
+		<del>删除</del>
+		<files>文件列表</files>
+		<admin>管理员上传</admin>
+		<user>会员上传</user>
+		<username>会员名称</username>
+		<close>关闭上传</close>
+		<title>关于文件的说明</title>
+		<list>文件上传清单</list>
+		<next>继续上传</next>
+	</upfile>
+
+	<help>
+
+		<lockip><![CDATA[多个IP之间用垂直线分开，举例：
+<span class="block k_in w300">192.168.0.1|192.167.|192.166.5.
+
+</span>依次锁定的IP为
+192.168.0.1
+192.167开头的IP段
+192.166.5开头的IP段]]></lockip>
+		<lockurl><![CDATA[限制账号以指定的URL地址访问管理系统。
+格式为：www.kingcms.com
+并只能管理public模块列表里绑定的域名一致的栏目。]]></lockurl>
+	<lnkimg><![CDATA[图片要放在 system/images/lnk 目录下面。
+长宽必须为 32px。
+支持类型：gif/png/jpg]]></lnkimg>
+		<proptime><![CDATA[控制静态页面生成速度 0是全速生成
+数值越大，生成速度越慢，服务器压力越小
+
+<strong>参数 / CPU占用率(cpu:E4500)</strong>
+0  / 60-100%
+1  / 30-40%
+2  / 25-35%
+5  / 10-20%
+10 / <=10%
+]]></proptime>
+	<verifycontent><![CDATA[KingCMS默认带的字体不支持中文，若要支持中文验证码，请把system/verify_font下面的字体替换为中文字体。
+	可以拷贝多种字体到以上目录,实现字体扩展，系统将随机调用字体进行显示。]]></verifycontent>
+	<siteurl><![CDATA[若要填写，则以http://打头
+	并且网址不能以/结尾
+	此参数和模板转换路径相关
+	若不填写，则输出不带域名的完整路径，如：
+	/images/style.css]]></siteurl>
+	<gzencode><![CDATA[若启用GZip压缩，可以减轻页面流量，加快显示速度；
+	同时增加服务器负担
+	根据具体的网络环境决定]]></gzencode>
+	<pidline><![CDATA[自动补充分页参数
+如地址为123.htm时，第二页地址为123-2.htm
+其中的-为分页参数，可以设置为路径不允许的
+特殊符号外的任意字符，反对频繁修改这个值]]></pidline>
+
+	</help>
+
+	<install>
+		<title>安装KingCMS</title>
+
+		<db>数据库设置</db>
+
+		<dbhost>数据库地址</dbhost>
+		<dbdata>库名称</dbdata>
+		<dbuser>登录帐号</dbuser>
+		<dbpass>密码</dbpass>
+		<dbtype>类型</dbtype>
+		<dbfile>数据库文件</dbfile>
+
+		<pre>数据库表前缀</pre>
+		<preadmin>管理员数据库前缀</preadmin>
+
+		<lang>系统默认语言</lang>
+		<cache>数据缓存目录</cache>
+		<debug>错误记录</debug>
+		<opendebug>开启错误记录</opendebug>
+		<timediff>服务器时差</timediff>
+
+		<admin>设置管理员帐号</admin>
+		<adminname>管理员帐号</adminname>
+		<adminpass>管理员密码</adminpass>
+
+		<think>感谢您选择使用KingCMS!</think>
+		<update>系统已成功升级为正式版!</update>
+
+		<readlicense>我已认真阅读并接受许可协议</readlicense>
+		<license>KingCMS许可协议</license>
+		<licenseerr>不接受协议，谢绝您使用本系统！</licenseerr>
+
+		<ckadminname>管理员名称长度为2-12个字符</ckadminname>
+		<ckadminpass>管理员密码长度为6-30个字符</ckadminpass>
+		<ckhost>数据库地址不能为空或格式不正确</ckhost>
+		<ckdata>数据库名称不能为空或格式不正确</ckdata>
+		<ckuser>数据库登录帐号为空或格式不正确</ckuser>
+		<ckcache>缓存文件夹格式不正确</ckcache>
+		<instok>成功安装KingCMS内容管理系统</instok>
+
+		<crtdb>成功写入config.php文件，正在创建数据表结构</crtdb>
+		<puterror>写config.php失败!</puterror>
+		<isdelete>安装的同时删除INSTALL.php文件</isdelete>
+		<delfile>删除INSTALL.php文件</delfile>
+
+		<resetpass>重新设置管理员密码</resetpass>
+		<repwd>重设密码</repwd>
+		<login>转到登录[不删INSTALL.php]</login>
+
+		<dbtypeerr>数据库类型不正确</dbtypeerr>
+
+	</install>
+</kingcms>
