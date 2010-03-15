@@ -374,7 +374,7 @@ function king_ajax_install(){
 				'cid'=>$cid,
 				'kname'=>'uppath',
 				'kmodule'=>'system',
-				'kvalue'=>'upfiles',
+				'kvalue'=>'files',
 				'ntype'=>1,
 				'nvalidate'=>4,
 				'nsizemin'=>1,
