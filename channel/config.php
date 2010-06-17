@@ -34,15 +34,15 @@
 */
 	define('DB_TYPE','mysql');
 	define('DB_CHARSET','utf8');
-	define('DB_PRE','king');
-	define('KC_DB_ADMIN','kc');
+	define('DB_PRE','channel');
+	define('KC_DB_ADMIN','admin');
 
 	define('DB_HOST','localhost');
-	define('DB_DATA','test');
+	define('DB_DATA','channel');
 	define('DB_USER','root');
 	define('DB_PASS','');
 
-	define('DB_SQLITE','iw8ap2wpxo64.db3');
+	define('DB_SQLITE','698ek7ot4s8j.db3');
 
 /* ------>>> 参数设置 <<<---------------------------- */
 
@@ -53,7 +53,7 @@
 
 /** 缓存文件夹 */
 
-	define('PATH_CACHE','_cache');
+	define('PATH_CACHE','cache');
 /**
 	错误记录
 		true  : 开启
